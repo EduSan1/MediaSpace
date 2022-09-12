@@ -5,6 +5,7 @@ function App() {
     <>
       <div className='teste' />
       <div className='teste2' />
+      <div className='teste' />
     </>
   );
 }
