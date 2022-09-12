@@ -1,13 +1,13 @@
-import { GenderORM } from "../entity/Gender"
+import { UserORM } from "../entity/User"
 
-export class GenderService {
-    private _: any
+export class UserService {
+    private _ : any
 
-    constructor(repo: any) {
+    constructor(repo : any) {
         this._ = repo
     }
 
-    create = async (entity: any) => {
+    create  = async (entity: any) => {
         try {
             return await this._.create(entity)
         } catch (error) {
@@ -44,16 +44,15 @@ export class GenderService {
         }
     }
 
-    update = async (id: string, entity: GenderORM) => {
+    update = async (id : string , entity : UserORM) => {
         try {
             const entityExists = await this._.listById(id)
 
             if (!entityExists) {
                 return {
-                    message: "Não foi possivel encontrar o genero"
+                    message: "Não foi possivel encontrar o usuário"
                 }
             }
-
             for (const [key, value] of Object.entries(entity)) {
                 entityExists[key] = value
             }
@@ -79,6 +78,7 @@ export class GenderService {
 
             return {
                 message: "Dados removidos com sucesso",
+                statusCode : 200
             }
         } catch (error) {
             return {
