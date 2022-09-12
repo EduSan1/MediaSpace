@@ -1,0 +1,15 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+:root {
+    
+    @import "./vars.scss";
+
+    @import "./components/Teste/index.scss";
+    @import "./components/Teste2/index.scss";
+}
