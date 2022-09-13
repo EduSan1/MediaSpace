@@ -1,4 +1,4 @@
-import { userRepository } from "../repository/User"
+import { UserRepository } from "../repository/User"
 import { Request, Response } from "express";
 import { UserService } from "../service/User";
 import UserDomain from "../domain/User";
@@ -9,7 +9,7 @@ export class UserController {
     private service    : any
 
     constructor() {
-        this.repository = new userRepository(),
+        this.repository = new UserRepository(),
         this.service = new UserService(this.repository)
     }
 

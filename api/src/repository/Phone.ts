@@ -1,12 +1,12 @@
 import { AppDataSource } from "../data-source";
-import { GenderORM } from "../entity/Gender";
+import { PhoneORM } from "../entity/Phone";
 
-export class GenderRepository {
-    
+export class PhoneRepository {
+
     private _ : any
 
     constructor() {
-        this._ = AppDataSource.getRepository(GenderORM)
+        this._ = AppDataSource.getRepository(PhoneORM)
     }
 
     create = async (entity : any) => {
@@ -14,9 +14,9 @@ export class GenderRepository {
     }
 
     list = async () => {
-        return await this._.find(GenderORM)
+        return await this._.find(PhoneORM)
     }
-
+    
     listById = async (id : string) => {
         return await this._.findOne({
             where :  {
@@ -25,7 +25,7 @@ export class GenderRepository {
         })
     }
 
-    update = async (entity : any) => {
+    update = async (entity : PhoneORM) => {
         return await this._.save(entity)
     }
 

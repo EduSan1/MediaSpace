@@ -1,7 +1,7 @@
 import { AppDataSource } from "../data-source"
 import { UserORM } from "../entity/User"
 
-export class userRepository {
+export class UserRepository {
 
     private _ : any
 
@@ -15,6 +15,21 @@ export class userRepository {
 
     list = async () => {
         return await this._.find(UserORM)
+    }
+
+    listByMail = async (mail : string) => {
+        return await this._.findOne({
+            where :  {
+                mail
+            }
+        })
+    }
+    listByVar = async (atributo : string ,varr : string) => {
+        return await this._.findOne({
+            where :  {
+                [atributo] : varr
+            }
+        })
     }
 
     listById = async (id : string) => {

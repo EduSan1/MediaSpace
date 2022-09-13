@@ -15,5 +15,5 @@ export interface IDomainUserProps {
     is_active: boolean
     is_authenticated: boolean
     gender : GenderORM
-    phones : PhoneORM[]
+    phone : PhoneORM
 }

@@ -16,7 +16,7 @@ export default class UserDomain {
     is_active: boolean
     is_authenticated: boolean
     gender : GenderORM
-    phones : PhoneORM[]
+    phone : PhoneORM
 
     constructor(props : IDomainUserProps) {
         this.id = props.id
@@ -32,6 +32,6 @@ export default class UserDomain {
         this.is_active = props.is_active
         this.is_authenticated = props.is_authenticated
         this.gender = props.gender
-        this.phones = props.phones
+        this.phone = props.phone
     }
 }

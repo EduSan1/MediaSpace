@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToMany, OneToOne } from "typeorm"
 import { GenderORM } from "./Gender"
 import { PhoneORM } from "./Phone"
 
@@ -18,7 +18,7 @@ export class UserORM {
     nickname: string
 
     @Column()
-    birth_date: string
+    birth_date: Date
 
     @Column({length : 11})
     cpf: string
@@ -44,8 +44,8 @@ export class UserORM {
     @ManyToOne(() => GenderORM, gender => gender.users, {eager : true})
     gender: GenderORM
 
-    @OneToMany(() => PhoneORM, phone => phone.user)
-    phones: PhoneORM[]
+    @OneToOne(() => PhoneORM, phone => phone.user, {eager : true})
+    phone: PhoneORM
 
     @CreateDateColumn()
     create_at: Timestamp

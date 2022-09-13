@@ -1,15 +1,50 @@
+import * as bcrypt from "bcrypt"
+import { response } from "express"
+import { PhoneORM } from "../entity/Phone"
 import { UserORM } from "../entity/User"
+import { PhoneRepository } from "../repository/Phone"
 
 export class UserService {
     private _ : any
+    private phoneRepo : any
 
     constructor(repo : any) {
-        this._ = repo
+        this._ = repo,
+        this.phoneRepo = new PhoneRepository()
     }
 
-    create  = async (entity: any) => {
+    create  = async (entity: UserORM) => {
         try {
-            return await this._.create(entity)
+            const cpf =  await this._.listByVar( "cpf" , entity.cpf)
+            const nickname = await await this._.listByVar( "nickname" , entity.nickname)
+            const mail = await await this._.listByVar( "mail" , entity.mail)
+
+            // if (mail !== null) 
+            //     return {
+            //         message: "email já cadastrado",
+            //         statusCode : 200
+            //     }
+            
+            // if (nickname !== null) 
+            //     return {
+            //         message: "nickname já cadastrado",
+            //         statusCode : 200
+            //     }
+
+        //     const hashPassword = await bcrypt.hash(entity.password , 10)
+        //     entity.password = hashPassword
+        //     const user : UserORM =  await this._.create(entity)
+
+        //     let phone : PhoneORM = entity.phone
+        //     phone = {...phone, user : user}
+        //     await this.phoneRepo.create(phone)
+            
+
+        //     return {
+        //         message: "Usuário cadastrado com sucesso!",
+        //         statusCode : 201
+        //     }
+
         } catch (error) {
             return {
                 message: error.message,
