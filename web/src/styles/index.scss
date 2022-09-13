@@ -4,12 +4,11 @@
     box-sizing: border-box;
 }
 
-
-
 :root {
     
     @import "./vars.scss";
+    @import "./pages/SpaceBackground/index.scss";
 
-    @import "./components/Teste/index.scss";
-    @import "./components/Teste2/index.scss";
+ 
 }
+
