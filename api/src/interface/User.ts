@@ -3,8 +3,8 @@ import { PhoneORM } from "../entity/Phone"
 
 export interface IDomainUserProps {
     id : string
-    firstName : string
-    lastName : string
+    first_name : string
+    last_name : string
     nickname: string
     birth_date: string
     cpf: string
@@ -15,5 +15,5 @@ export interface IDomainUserProps {
     is_active: boolean
     is_authenticated: boolean
     gender : GenderORM
-    phones : PhoneORM[]
+    phone : PhoneORM
 }

@@ -1,7 +1,7 @@
 import { AppDataSource } from "../data-source"
 import { UserORM } from "../entity/User"
 
-export class userRepository {
+export class UserRepository {
 
     private _ : any
 
@@ -13,11 +13,26 @@ export class userRepository {
         return await this._.save(entity)
     }
 
-    list =async (entity : any) => {
-        return await this._.findAll(UserORM)
+    list = async () => {
+        return await this._.find(UserORM)
     }
 
-    listById =async (id : string) => {
+    listByMail = async (mail : string) => {
+        return await this._.findOne({
+            where :  {
+                mail
+            }
+        })
+    }
+    listByVar = async (atributo : string ,varr : string) => {
+        return await this._.findOne({
+            where :  {
+                [atributo] : varr
+            }
+        })
+    }
+
+    listById = async (id : string) => {
         return await this._.findOne({
             where :  {
                 id
@@ -29,7 +44,7 @@ export class userRepository {
         return await this._.save(entity)
     }
 
-    delete = async (id : string) => {
+    remove = async (id : string) => {
         return await this._.delete({ id })
     }
 }

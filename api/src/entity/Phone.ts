@@ -14,10 +14,10 @@ export class PhoneORM {
     @Column()
     phone: string
 
-    @Column()
+    @Column({nullable : true})
     ddi: string
 
-    @ManyToOne(() => UserORM, user => user.phones)
+    @ManyToOne(() => UserORM, user => user.phone)
     user: UserORM
 
 }

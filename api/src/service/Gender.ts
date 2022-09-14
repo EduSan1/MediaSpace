@@ -1,4 +1,6 @@
-export class GenderService<T> {
+import { GenderORM } from "../entity/Gender"
+
+export class GenderService {
     private _: any
 
     constructor(repo: any) {
@@ -11,7 +13,8 @@ export class GenderService<T> {
         } catch (error) {
             return {
                 message: error.message,
-                error: error
+                error: error.code,
+                statusCode : 400
             }
         }
     }
@@ -21,7 +24,9 @@ export class GenderService<T> {
             return await this._.listById(id)
         } catch (error) {
             return {
-                message: error.message
+                message: error.message,
+                error: error.code,
+                statusCode : 400
             }
         }
     }
@@ -32,14 +37,16 @@ export class GenderService<T> {
           
         } catch (error) {
             return {
-                message: error.message
+                message: error.message,
+                error: error.code,
+                statusCode : 400
             }
         }
     }
 
-    update = async (_id: string, entity: T) => {
+    update = async (id: string, entity: GenderORM) => {
         try {
-            const entityExists = await this._.listById(_id)
+            const entityExists = await this._.listById(id)
 
             if (!entityExists) {
                 return {
@@ -58,7 +65,9 @@ export class GenderService<T> {
             }
         } catch (error) {
             return {
-                message: error.message
+                message: error.message,
+                error: error.code,
+                statusCode : 400
             }
         }
     }
@@ -73,7 +82,9 @@ export class GenderService<T> {
             }
         } catch (error) {
             return {
-                message: error.message
+                message: error.message,
+                error: error.code,
+                statusCode : 400
             }
         }
 

@@ -4,8 +4,8 @@ import { IDomainUserProps } from "../interface/User"
 
 export default class UserDomain {
     id : string
-    firstName : string
-    lastName : string
+    first_name : string
+    last_name : string
     nickname: string
     birth_date: string
     cpf: string
@@ -16,12 +16,12 @@ export default class UserDomain {
     is_active: boolean
     is_authenticated: boolean
     gender : GenderORM
-    phones : PhoneORM[]
+    phone : PhoneORM
 
     constructor(props : IDomainUserProps) {
         this.id = props.id
-        this.firstName = props.firstName
-        this.lastName = props.lastName
+        this.first_name = props.first_name
+        this.last_name = props.last_name
         this.nickname = props.nickname
         this.birth_date = props.birth_date
         this.cpf = props.cpf
@@ -32,6 +32,6 @@ export default class UserDomain {
         this.is_active = props.is_active
         this.is_authenticated = props.is_authenticated
         this.gender = props.gender
-        this.phones = props.phones
+        this.phone = props.phone
     }
 }

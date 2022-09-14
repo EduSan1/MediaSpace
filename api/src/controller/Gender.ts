@@ -1,5 +1,5 @@
 import { GenderORM } from "../entity/Gender";
-import { genderRepository } from "../repository/Gender"
+import { GenderRepository } from "../repository/Gender"
 import { Request, Response } from "express";
 import { GenderService } from "../service/Gender";
 import GenderDomain from "../domain/Gender";
@@ -10,7 +10,7 @@ export class GenderController {
     private service    : any
 
     constructor() {
-        this.repository = new genderRepository(),
+        this.repository = new GenderRepository(),
         this.service = new GenderService(this.repository)
     }
 
