@@ -1,29 +1,45 @@
 import React from "react";
+import InputLoign from "./inputLogin";
 
 
-const LoginSpace = () =>{
-  
-    return(
+const LoginSpace = () => {
 
-     <>
-       
-       <main className="SpaceLogin">
+  return (
 
-            <div>
-                 <img src="../assets/img/rocketart.png" alt="" />
-            </div>    
+    <>
+
+      <main className="SpaceLogin">
+
+        <div className="ImageSpaceLogin" >
+          <img src="../assets/img/rocketart.png" alt="" />
+        </div>
+
+        <div className="LoginSpace">
+          <div className="newHere">
+
+            <span>Nova aqui? </span>  
+            <span> Cadastre-se </span> 
             
-            <div>
-                <p>oii</p>
-            </div>        
-        
+          </div>
 
-  
-       </main>
-     
-     </>
+          <div className="TittleWelcomeBack">
+            <h1> Bem vindo de volta! </h1>
+            <p> Faça login para continuar </p>
+          </div>
+                 
+                  <div className="inputLogin">
+                         <InputLoign/>
+                  </div>
 
-    );
+        </div>
+
+
+
+      </main>
+
+    </>
+
+  );
 
 }
 

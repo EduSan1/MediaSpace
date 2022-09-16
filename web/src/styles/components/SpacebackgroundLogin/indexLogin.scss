@@ -1,35 +1,139 @@
- 
+@import "../../vars.scss";
 
-.SpaceLogin{
+.SpaceLogin {
+  display: flex;
+  width: 90%;
+  height: 75%;
+  margin-top: 5%;
+  left: 6%;
+  border-radius: 1rem;
+  border: solid 1px #d3d3d3d7;
+  background-color: #fff;
+  align-items: center;
+  justify-content: end;
+  position: absolute;
+  padding: 20px;
+  filter: drop-shadow(1px 1px 20px $primary-purple);
+  // border-image: linear-gradient($primary-purple, $dark-blue) 30;
+  // box-shadow: 0px 0px 4px;
+
+
+
+  div {
     display: flex;
-    width: 90%;
-    height: 75%;
-    background-color: #ffffff;
-    margin-top: 5%;
-    left: 6%;
-    border-radius: 1rem;
-    border: solid 1px #d3d3d3d7;
-    align-items:center ;
-    position: absolute;
-    box-shadow: -0px -10px 50px #cdbef6cb;
-    
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 
 
-    div{
-        display: flex;
-        width: 50%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-           
-        
-    }
+  }
 
-    
+
 
 
 }
 
-.SpaceLogin:nth-child(1){
+.ImageSpaceLogin {
+
+  img {
+    width: 80%;
+    height: auto;
+  }
+
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+
+
+.LoginSpace div:nth-child(1) {
+  height: 20%;
+  display: flex;
+  justify-content: end;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 10px;
+}
+
+.LoginSpace div:nth-child(2) {
+  display: flex;
+  height: 15%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+
+}
+
+.LoginSpace div:nth-child(3) {
+  justify-content:center; 
+  align-items: flex-start;
   background-color: aqua;
+} 
+
+.LoginSpace div:nth-child(4) {}
+
+
+
+.LoginSpace {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+
+
+  div {
+    display: flex;
+    width: 100%;
+
+  }
+
+  .newHere span:nth-child(1) {
+    display: flex;
+    font-family: $light-font;
+    font-style: normal;
+    font: 1.2em sans-serif;
+  }
+
+  .newHere span:nth-child(2) {
+    display: flex;
+    font-family: $light-font;
+    font-style: normal;
+    color: $dark-purple;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+
+  }
+
+
+  .TittleWelcomeBack h1 {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    font-size: 2.5rem;
+    font-family: $light-font;
+    font-weight: bold;
+    color: $primary-purple;
+
+  }
+
+  .TittleWelcomeBack p {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    font-size: 1.25rem;
+    font-family: $light-font;
+    font-weight: bold;
+    color: $dark-purple;
+
+  }
+
+
+
+
+
 }
