@@ -15,14 +15,16 @@ export class UserService {
 
     create = async (entity: UserORM) => {
         try {
-            // console.log(parseInt(entity.cpf))
 
-            // if (parseInt(entity.cpf) !== 11 || parseInt(entity.cpf) === NaN) {
-            //     return {
-            //         message: "insira um cpf válido!",
-            //         statusCode: 400
-            //     }
-            // }
+            const regex = new RegExp('^[0-9]{11}$');
+
+            if (!regex.test(entity.cpf)) {
+                return {
+                    message: "insira um cpf válido!",
+                    statusCode: 400
+                }
+            }
+
             const cpf = await this._.listByVar("cpf", entity.cpf)
             const nickname = await await this._.listByVar("nickname", entity.nickname)
             const mail = await await this._.listByVar("mail", entity.mail)
@@ -34,8 +36,8 @@ export class UserService {
                     cpf: cpf !== null ? true : false,
                     nickname: nickname !== null ? true : false,
                     statusCode: 400
-            }
-     
+                }
+
 
             const hashPassword = await bcrypt.hash(entity.password, 10)
             entity.password = hashPassword
