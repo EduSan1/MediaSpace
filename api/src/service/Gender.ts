@@ -1,9 +1,10 @@
 import { GenderORM } from "../entity/Gender"
+import { GenderRepository } from "../repository/Gender"
 
 export class GenderService {
-    private _: any
+    private _: GenderRepository
 
-    constructor(repo: any) {
+    constructor(repo: GenderRepository) {
         this._ = repo
     }
 
