@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import StartHome from './src/layers/startHome';
+import Login from './src/layers/login';
 export default function App() {
   return (
-    <StartHome/>
+    <Login/>
   );
 }
 
