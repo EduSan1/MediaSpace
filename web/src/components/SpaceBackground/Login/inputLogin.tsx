@@ -1,6 +1,8 @@
 import React from "react";
 
 
+
+
 const InputLoign = () =>{
   
     return(
@@ -8,8 +10,9 @@ const InputLoign = () =>{
 
         <>
          
+         
+          <input type='email' name="loginText" placeholder="username@mediaspace.com"/>
           
-          <input type="text" name="loginText" placeholder="username@mediaspace.com"/>
           
         
         </>
