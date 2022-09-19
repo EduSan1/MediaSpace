@@ -6,8 +6,8 @@ import GenderDomain from "../domain/Gender";
 
 export class GenderController {
 
-    private repository : any
-    private service    : any
+    private repository : GenderRepository
+    private service    : GenderService
 
     constructor() {
         this.repository = new GenderRepository(),
@@ -32,7 +32,7 @@ export class GenderController {
         this.service.create(new GenderDomain(request.body)).then((res) => {
             response.json(res)
         })
-        .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao criar o gênero"))
+        .catch(err => response.status(400).send({error : err.message, statusCode: err.status} || "Ocorreu um erro ao criar o gênero"))
     }
 
     update = async (request: Request, response: Response) => {
