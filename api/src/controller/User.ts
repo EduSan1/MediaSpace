@@ -6,7 +6,7 @@ import UserDomain from "../domain/User";
 export class UserController {
 
     private repository : any
-    private service    : any
+    private service    : UserService
 
     constructor() {
         this.repository = new UserRepository(),
@@ -43,6 +43,13 @@ export class UserController {
 
     login = (request : Request, response : Response) => {
         this.service.login(request.body.mail, request.body.password).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+        .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao realizar o login o usuário"))
+    }
+
+    authentication = (request : Request, response : Response) => {
+        this.service.authentication(request.params.userId).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
         .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao realizar o login o usuário"))

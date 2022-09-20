@@ -4,7 +4,9 @@
    "description": "Awesome project developed with TypeORM.",
    "type": "commonjs",
    "devDependencies": {
+      "@types/jsonwebtoken": "^8.5.9",
       "@types/node": "^16.11.58",
+      "jsonwebtoken": "^8.5.1",
       "nodemon": "^2.0.20",
       "ts-node": "10.7.0",
       "typescript": "4.5.2"
