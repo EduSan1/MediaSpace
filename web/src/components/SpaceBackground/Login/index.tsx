@@ -1,8 +1,9 @@
 import React from "react";
-import InputLoign from "./inputLogin";
+import InputLoign from "./LoginInput";
 import InputBtn from "./InputBtn";
-import { MdLock } from "react-icons/md";
-import { AiFillFacebook, AiFillGoogleCircle, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
+import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
+import { MdFacebook, MdEmail } from "react-icons/md";
+import { IconBase } from "react-icons";
 
 
 const LoginSpace = () => {
@@ -31,9 +32,9 @@ const LoginSpace = () => {
           </div>
 
           <div className="inputLogin">
-            <MdLock />
-            <InputLoign />
-            <InputLoign />
+            <span className="input-container">
+              <InputLoign typeInput={'email'} icon={<AiFillGoogleCircle className="IconLogin" />} />
+            </span>
           </div>
 
           <div className="btnLogin">
@@ -41,7 +42,32 @@ const LoginSpace = () => {
 
             <div className="btn_AutomaticLogin">
               <InputBtn />
-              <span>login com <AiFillFacebook onClick={() => { console.log('Facebook') }} /> <AiFillGoogleCircle /> <AiFillLinkedin /> <AiFillInstagram /> </span>
+              <div>
+                <h5> login com </h5>
+                <div className="loginIcons">
+
+                  <span>
+                    <MdFacebook onClick={() => { console.log('Facebook') }} />
+                  </span>
+
+                  <span>
+                    <AiFillGoogleCircle />
+                  </span>
+
+                  <span>
+                    <AiFillLinkedin />
+                  </span>
+
+                  <span>
+                    <AiFillTwitterCircle />
+                  </span>
+
+
+
+                </div>
+
+
+              </div>
             </div>
 
           </div>

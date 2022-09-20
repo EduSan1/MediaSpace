@@ -1,8 +1,6 @@
 import React from "react";
 import "../../styles/components/SpacebackgroundLogin/index.scss";
-
-
-import LoginSpace from "./Login";
+import LoginSpace from "./Login/Index";
 
 
 const SpaceBackground = () => {

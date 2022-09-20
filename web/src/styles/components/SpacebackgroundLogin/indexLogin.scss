@@ -69,12 +69,25 @@
 }
 
 .LoginSpace div:nth-child(3) {
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-start;
   flex-direction: column;
-  gap: 30px;
   height: 30%;
+
+
+
+  .input-container {
+
+
+    width: 100%;
+    background-color: aqua;
+   
+
+
+  }
+
 }
+
 
 .LoginSpace div:nth-child(4) {
   display: flex;
@@ -140,11 +153,9 @@
   }
 
 
-
-
   .btnLogin {
     width: 90%;
-  
+
 
 
     span {
@@ -153,14 +164,22 @@
     }
 
 
-    .btn_AutomaticLogin{
+    .btn_AutomaticLogin {
       width: 100%;
       height: 100%;
       justify-content: space-between;
-      gap: 50px;
       padding: 10px;
+      color: $light-purple;
 
-      span{
+
+      div {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+      }
+
+
+      h5 {
 
         font-family: $light-font;
         font-style: normal;
@@ -168,10 +187,38 @@
         font-size: 20px;
         line-height: 24px;
         letter-spacing: 0.03em;
-        color: $light-purple;
+        width: 20%;
+
+
 
 
       }
+
+      .loginIcons {
+        display: flex;
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding-top: 5px;
+
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 20%;
+          cursor: pointer;
+          font-size: 2rem;
+
+        }
+
+      }
+
+
+
 
     }
 
