@@ -5,12 +5,19 @@
     border: solid #D3C5F8;
     border-radius: 0.625rem;
     padding-left: 60px;
+    margin-left: -60px;
     
     
     
 }
 
 
-.input_icon_login{
+.IconLogin{ 
+    width: 50px;
+    height: 50px;
+    margin-top: 2.5%;
+    z-index: 1;
+    color: $dark-purple;
+
    
 }

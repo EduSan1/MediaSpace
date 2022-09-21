@@ -33,7 +33,7 @@ const LoginSpace = () => {
 
           <div className="inputLogin">
             <span className="input-container">
-              <InputLoign typeInput={'email'} icon={<AiFillGoogleCircle className="IconLogin" />} />
+              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<AiFillGoogleCircle className="IconLogin" />} />
             </span>
           </div>
 

@@ -4,11 +4,13 @@ import { MdLock } from "react-icons/md";
 
 interface IInput {
     icon : ReactNode,
-    typeInput : string
+    typeInput : string,
+    name : string,
+    placeholder : string
 }
 
 
-const InputLoign = ({icon,typeInput} : IInput) =>{
+const InputLoign = ({icon,typeInput,name,placeholder} : IInput) =>{
   
     return(
       
@@ -16,7 +18,7 @@ const InputLoign = ({icon,typeInput} : IInput) =>{
         <div className="input_icon_login">
 
            {icon}
-            <input className="Input_Login" type={typeInput} name="loginText" placeholder="username@mediaspace.com"/>
+            <input className="Input_Login" type={typeInput} name={name} placeholder={placeholder}/>
         
         </div>
 
