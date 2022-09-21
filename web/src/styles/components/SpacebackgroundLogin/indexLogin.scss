@@ -1,0 +1,246 @@
+@import "../../vars.scss";
+
+.SpaceLogin {
+  display: flex;
+  width: 90%;
+  height: 75%;
+  margin-top: 5%;
+  left: 6%;
+  border-radius: 1rem;
+  border: solid 1px #d3d3d3d7;
+  background-color: #fff;
+  align-items: center;
+  justify-content: end;
+  position: absolute;
+  padding: 20px;
+  filter: drop-shadow(1px 1px 20px $primary-purple);
+  // border-image: linear-gradient($primary-purple, $dark-blue) 30;
+  // box-shadow: 0px 0px 4px;
+
+
+
+  div {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+
+  }
+
+
+
+
+}
+
+.ImageSpaceLogin {
+
+  img {
+    width: 80%;
+    height: auto;
+  }
+
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+
+
+.LoginSpace div:nth-child(1) {
+  height: 20%;
+  display: flex;
+  justify-content: end;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 10px;
+}
+
+.LoginSpace div:nth-child(2) {
+  display: flex;
+  height: 15%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+
+}
+
+.LoginSpace div:nth-child(3) {
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 30%;
+
+
+
+  .input-container {
+
+
+    width: 100%;
+    background-color: aqua;
+   
+
+
+  }
+
+}
+
+
+.LoginSpace div:nth-child(4) {
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+  justify-content: start;
+}
+
+
+
+.LoginSpace {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+
+
+  div {
+    display: flex;
+    width: 90%;
+
+  }
+
+  .newHere span:nth-child(1) {
+    display: flex;
+    font-family: $light-font;
+    font-style: normal;
+    font: 1.2em sans-serif;
+  }
+
+  .newHere span:nth-child(2) {
+    display: flex;
+    font-family: $light-font;
+    font-style: normal;
+    color: $dark-purple;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+
+  }
+
+
+  .TittleWelcomeBack h1 {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    font-size: 2.5rem;
+    font-family: $light-font;
+    font-weight: bold;
+    color: $primary-purple;
+
+  }
+
+  .TittleWelcomeBack p {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    font-size: 1.25rem;
+    font-family: $light-font;
+    font-weight: bold;
+    color: $dark-purple;
+
+  }
+
+
+  .btnLogin {
+    width: 90%;
+
+
+
+    span {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+
+    .btn_AutomaticLogin {
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      padding: 10px;
+      color: $light-purple;
+
+
+      div {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+      }
+
+
+      h5 {
+
+        font-family: $light-font;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.03em;
+        width: 20%;
+
+
+
+
+      }
+
+      .loginIcons {
+        display: flex;
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding-top: 5px;
+
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 20%;
+          cursor: pointer;
+          font-size: 2rem;
+
+        }
+
+      }
+
+
+
+
+    }
+
+
+
+  }
+
+  .btnLogin span:nth-child(1) {
+
+    width: 100%;
+    justify-content: end;
+    padding: 1px;
+
+
+    font-family: $light-font;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.05em;
+
+  }
+
+
+}

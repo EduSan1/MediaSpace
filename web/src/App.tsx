@@ -1,11 +1,12 @@
 import React from 'react';
+import PageLogin from './pages/Login/Login';
 
 function App() {
   return (
     <>
-      <div className='teste' />
-      <div className='teste2' />
-      <div className='teste' />
+     
+     <PageLogin/>
+     
     </>
   );
 }

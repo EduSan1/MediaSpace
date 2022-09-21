@@ -7,9 +7,19 @@
 
 
 :root {
-    
+    //
     @import "./vars.scss";
 
-    @import "./components/Teste/index.scss";
-    @import "./components/Teste2/index.scss";
+
+
+    //pages
+    @import "./pages/SpaceBackground/index.scss";
+
+
+    //Componentes
+    @import "./components/SpacebackgroundLogin/indexInput.scss";
+    @import "./components/SpacebackgroundLogin/indexLogin.scss";
+    @import "./components/SpacebackgroundLogin/btnInput.scss";
+ 
 }
+
