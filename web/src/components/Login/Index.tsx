@@ -1,6 +1,6 @@
 import React from "react";
-import InputLoign from "./LoginInput";
-import InputBtn from "./InputBtn";
+import InputLoign from "../utils/Input/LoginInput";
+import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { MdFacebook, MdEmail, MdLock } from "react-icons/md";
 import { IconBase } from "react-icons";
@@ -33,7 +33,8 @@ const LoginSpace = () => {
 
           <div className="inputLogin">
             <span className="input-container">
-              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<Mdl className="IconLogin" />} />
+              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<MdLock className="IconLogin" />} />
+              
             </span>
           </div>
 

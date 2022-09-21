@@ -69,22 +69,34 @@
 }
 
 .LoginSpace div:nth-child(3) {
-  justify-content: space-around;
   align-items: flex-start;
   flex-direction: column;
-  height: 30%;
+
+
 
 
 
   .input-container {
 
 
+    div{
+
+      width: 100%;
+      height: inherit;
+      align-items: center;
+      flex-direction: row;
+      
+  
+
+    }
+
+
     width: 100%;
-    background-color: aqua;
-   
 
-
+        
   }
+
+
 
 }
 

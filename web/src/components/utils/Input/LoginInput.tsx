@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { MdLock } from "react-icons/md";
-
 interface IInput {
     icon : ReactNode,
     typeInput : string,
