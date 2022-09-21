@@ -3,7 +3,7 @@ import { Text, SafeAreaView, View, StyleSheet, Image } from "react-native";
 import WavyBackground from "react-native-wavy-background";
 // import LogoMediaSpace from '../../assets/icons/MediaSpaceLogo.svg'
 
-export default function StartHome() {
+const StartHome = () => {
     return (
         <SafeAreaView style={style.body}>
             <View style={style.sectionIcon}>
@@ -87,3 +87,5 @@ const style = StyleSheet.create({
  
     },
 })
+
+export default StartHome

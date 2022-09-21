@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import StartHome from './src/layers/startHome';
-import Login from './src/layers/login';
+import StartHome from './src/pages/StartHome';
+import LoginPage from './src/pages/Login';
+import React from 'react';
+
 export default function App() {
+  
   return (
-    <Login/>
+    <LoginPage/>
   );
 }
 
