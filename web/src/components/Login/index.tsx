@@ -12,7 +12,7 @@ const LoginSpace = () => {
 
     <>
 
-      <main className="SpaceLogin">
+   
 
         <div className="ImageSpaceLogin" >
           <img src="../assets/img/rocketart.png" alt="" />
@@ -76,7 +76,7 @@ const LoginSpace = () => {
 
 
 
-      </main>
+
 
     </>
 

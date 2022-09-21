@@ -14,6 +14,7 @@
 
     //pages
     @import "./pages/SpaceBackground/index.scss";
+    @import "./pages/Register/alignmentInputs.scss";
 
 
     //Componentes
@@ -21,5 +22,6 @@
     @import "./components/SpacebackgroundLogin/indexLogin.scss";
     @import "./components/SpacebackgroundLogin/btnInput.scss";
  
+   
 }
 

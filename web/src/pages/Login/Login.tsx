@@ -1,5 +1,5 @@
 import React from "react";
-import SpaceBackground from "../../components/SpaceBackground/Index";
+import SpaceBackground from "../../components/SpaceBackground/index";
 const PageLogin = () =>{
 
     return(
