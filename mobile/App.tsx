@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import StartHome from './src/layers/startHome';
+import Login from './src/layers/login';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>MediaSpace App!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Login/>
   );
 }
 
@@ -14,7 +12,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#75A5FF',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
   },
 });
