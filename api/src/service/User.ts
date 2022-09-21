@@ -5,6 +5,7 @@ import { PhoneORM } from "../entity/Phone";
 import { UserORM } from "../entity/User";
 import { PhoneRepository } from "../repository/Phone";
 import { Mail } from "./helpers/Mail";
+import * as jwt from "jsonwebtoken";
 import { APP_SECRET } from "../constants/consts";
 
 export class UserService {
@@ -95,7 +96,7 @@ export class UserService {
         try {
             if (query.showDisabled === undefined)
                 return await this._.listWhere("is_active", true);
-            else 
+            else
                 return await this._.list();
         } catch (error) {
             return {
@@ -138,16 +139,19 @@ export class UserService {
 
     login = async (mail: string, password: string) => {
         try {
-            const userDetails = await this._.findByWhere("mail", mail);
+            let userDetails = await this._.findByWhere("mail", mail);
 
-            
             if (await bcrypt.compare(password, userDetails.password)) {
 
+                delete userDetails.password
+                
+                const userJwt = jwt.sign({userDetails}, APP_SECRET, {expiresIn: '1d',})
+                
                 return {
                     message: "Login realizado com sucesso",
                     loged: true,
                     statusCode: 200,
-                    userDetails: {}
+                    userDetails: userJwt
                 }
             } else {
                 return {
