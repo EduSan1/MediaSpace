@@ -1,9 +1,11 @@
 import * as bcrypt from "bcrypt";
 import { response } from "express";
+import UserDomain from "../domain/User";
 import { PhoneORM } from "../entity/Phone";
 import { UserORM } from "../entity/User";
 import { PhoneRepository } from "../repository/Phone";
 import { Mail } from "./helpers/Mail";
+import { APP_SECRET } from "../constants/consts";
 
 export class UserService {
     private _: any;
@@ -13,7 +15,7 @@ export class UserService {
         (this._ = repo), (this.phoneRepo = new PhoneRepository());
     }
 
-    create = async (entity: UserORM) => {
+    create = async (entity: UserDomain) => {
         try {
 
             const regexCpf = new RegExp("^[0-9]{11}$");
@@ -93,7 +95,8 @@ export class UserService {
         try {
             if (query.showDisabled === undefined)
                 return await this._.listWhere("is_active", true);
-            else return await this._.list();
+            else 
+                return await this._.list();
         } catch (error) {
             return {
                 message: error.message,
@@ -110,6 +113,7 @@ export class UserService {
             if (!entityExists) {
                 return {
                     message: "Não foi possivel encontrar o usuário",
+                    statusCode: 200
                 };
             }
 
@@ -121,6 +125,7 @@ export class UserService {
 
             return {
                 message: "Dados atualizados com sucesso",
+                statusCode: 200
             };
         } catch (error) {
             return {
@@ -133,9 +138,26 @@ export class UserService {
 
     login = async (mail: string, password: string) => {
         try {
-            const user = await this._.findByWhere("mail", mail);
+            const userDetails = await this._.findByWhere("mail", mail);
 
-            return await bcrypt.compare(password, user.password);
+            
+            if (await bcrypt.compare(password, userDetails.password)) {
+
+                return {
+                    message: "Login realizado com sucesso",
+                    loged: true,
+                    statusCode: 200,
+                    userDetails: {}
+                }
+            } else {
+                return {
+                    message: "Senha incorreta",
+                    loged: false,
+                    statusCode: 200
+                }
+            }
+
+
         } catch (error) {
             return {
                 message: error.message,
@@ -152,6 +174,7 @@ export class UserService {
             if (!entityExists) {
                 return {
                     message: "Não foi possivel encontrar o usuário",
+                    statusCode: 200
                 };
             }
 
@@ -160,6 +183,7 @@ export class UserService {
             await this._.update(entityExists);
             return {
                 message: "Usuário desabilitado com sucesso",
+                statusCode: 200
             };
         } catch (error) {
             return {
@@ -169,6 +193,40 @@ export class UserService {
             };
         }
     };
+
+    authentication = async (_id: string) => {
+        try {
+
+            const entityExists = await this._.findById(_id);
+
+            if (!entityExists)
+                return {
+                    message: "Não foi possivel encontrar o usuário",
+                    statusCode: 200
+                };
+
+            if (entityExists.is_authenticated == true)
+                return {
+                    message: "Usuário já está autenticado",
+                    statusCode: 200
+                };
+
+            entityExists.is_authenticated = true;
+
+            await this._.update(entityExists);
+
+            return {
+                message: "Usuário autenticado com sucesso!",
+                statusCode: 200,
+            };
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 400,
+            };
+        }
+    }
 
     remove = async (_id: string) => {
         try {
