@@ -10,14 +10,12 @@ export const LoginInput = ({ title }: ILoginInput) => {
     const [inputTitle, serInputTitle] = useState(false)
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
                 <View style={styles.inputContainer}>
                     {inputTitle ? <Text style={styles.inputTitle} >{title}</Text> : null}
                     <TextInput onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input}></TextInput>
                 </View>
-            </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+
     )
 }
 

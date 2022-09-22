@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
 
@@ -7,12 +7,14 @@ import { ForgetPassword } from "../components/ForgetPassword";
 import { Login } from "../components/Login";
 export default function LoginPage() {
     return (
-        <SafeAreaView>
+        <KeyboardAvoidingView
+            style={styles.container}
+            behavior="height">
             <View style={styles.header}>
                 <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
-                    <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")}/>
+                    <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
                 </LinearGradient>
-         
+
                 <WavyBackground
                     bottom={false}
                     height={100}
@@ -29,14 +31,14 @@ export default function LoginPage() {
                 <Text style={styles.title}>Entre em sua conta</Text>
                 <Login />
             </View>
+        </KeyboardAvoidingView>
 
-        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     section: {
-        height: "70%",
+        height: "90%",
         width: "100%",
         backgroundColor: '#75A5FF',
         justifyContent: "flex-end",
@@ -45,30 +47,30 @@ const styles = StyleSheet.create({
     icon: {
         width: 140,
         height: 140,
-
     },
-    header : {
+    header: {
         width: "100%",
         height: "35%",
-        
+        top: -20,
+        marginBottom: 20
     },
     container: {
         width: "100%",
-        height: "65%",
+        height: 600,
         display: "flex",
         paddingTop: 20,
-        position:"relative",
+        position: "relative",
         alignContent: "center",
         justifyContent: "flex-start",
-        alignItems:"center"
+        alignItems: "center"
     },
     title: {
         width: "100%",
         height: "10%",
         textAlign: "center",
         fontSize: 22,
-        fontWeight: 'bold',  
+        fontWeight: 'bold',
         color: "#B275FF",
         textAlignVertical: "center"
-      },
+    },
 })
