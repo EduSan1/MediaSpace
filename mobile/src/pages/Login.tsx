@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
 
@@ -10,6 +10,7 @@ export default function LoginPage() {
         <KeyboardAvoidingView
             style={styles.container}
             behavior="height">
+            <ScrollView style={styles.containerScroll}>
             <View style={styles.header}>
                 <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
                     <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
@@ -31,6 +32,7 @@ export default function LoginPage() {
                 <Text style={styles.title}>Entre em sua conta</Text>
                 <Login />
             </View>
+            </ScrollView>
         </KeyboardAvoidingView>
 
     )
@@ -38,9 +40,9 @@ export default function LoginPage() {
 
 const styles = StyleSheet.create({
     section: {
-        height: "90%",
+        height: "80%",
         width: "100%",
-        backgroundColor: '#75A5FF',
+        backgroundColor: '#7FF5FF',
         justifyContent: "flex-end",
         alignItems: "center"
     },
@@ -50,19 +52,28 @@ const styles = StyleSheet.create({
     },
     header: {
         width: "100%",
-        height: "35%",
-        top: -20,
+        height: "55%",
         marginBottom: 20
     },
     container: {
         width: "100%",
-        height: 600,
+        height: 500,
         display: "flex",
         paddingTop: 20,
         position: "relative",
         alignContent: "center",
         justifyContent: "flex-start",
         alignItems: "center"
+        
+    },
+    containerScroll: {
+        width: "100%",
+        height: 500,
+        display: "flex",
+        paddingTop: 20,
+        position: "relative",
+        alignContent: "center",
+
     },
     title: {
         width: "100%",

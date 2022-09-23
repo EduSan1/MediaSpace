@@ -1,24 +1,25 @@
 import React, { useState } from "react"
-import { Text, StyleSheet, View, TextInput, KeyboardAvoidingView, Button, Pressable } from "react-native"
+import { Text, StyleSheet, View, TextInput, KeyboardAvoidingView, Button, Pressable, useWindowDimensions } from "react-native"
 import { LoginInput } from "../utils/LoginInput";
 
 export const Login = () => {
 
     return (
 
-            <View style={styles.container}>
-                <View style={styles.inputContainer}>
-                    <LoginInput title="Email" />
-                    <LoginInput title="Senha" />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Pressable style={styles.button}><Text style={styles.textButton}>Entrar</Text></Pressable>
-                    <Pressable style={styles.button}><Text>Cadastre-se</Text></Pressable>
-                </View>
-
+        <View style={styles.container}>
+            <View style={styles.inputContainer}>
+                <LoginInput title="Email" />
+                <LoginInput title="Senha" />
+            </View>
+            <View style={styles.buttonContainer}>
+                <Pressable style={styles.button}><Text style={styles.textButton}>Entrar</Text></Pressable>
+                <Pressable style={styles.button}><Text>Cadastre-se</Text></Pressable>
             </View>
 
+        </View>
+
     )
+
 }
 
 const styles = StyleSheet.create({
