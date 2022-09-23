@@ -5,17 +5,19 @@ import { LoginInput } from "../utils/LoginInput";
 export const Login = () => {
 
     return (
-        <View style={styles.container}>
-            <View style={styles.inputContainer}>
-                <LoginInput title="Email" />
-                <LoginInput title="Senha" />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Pressable style={styles.button}><Text style={styles.textButton}>Entrar</Text></Pressable>
-                <Pressable style={styles.button}><Text>Cadastre-se</Text></Pressable>
+
+            <View style={styles.container}>
+                <View style={styles.inputContainer}>
+                    <LoginInput title="Email" />
+                    <LoginInput title="Senha" />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Pressable style={styles.button}><Text style={styles.textButton}>Entrar</Text></Pressable>
+                    <Pressable style={styles.button}><Text>Cadastre-se</Text></Pressable>
+                </View>
+
             </View>
 
-        </View>
     )
 }
 
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
 
     },
-    textButton : {
-        
+    textButton: {
+
     }
 });
