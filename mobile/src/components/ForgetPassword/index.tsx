@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { Text, View, StyleSheet, TextInput, Button, TouchableOpacity, ScrollView } from "react-native";
 
 export const ForgetPassword = () => {
@@ -6,16 +6,16 @@ export const ForgetPassword = () => {
 
     return (
         <>
-        <View style={style.container}>
-        <Text style={style.title}>Esqueceu a senha?</Text>
-        <Text style={style.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
-        <TextInput style={style.input}/>
-        <TouchableOpacity 
-        style={style.button}
-        activeOpacity={0.8}>
-            <Text style={style.buttonText}>Enviar</Text>
-        </TouchableOpacity>
-        </View>
+            <View style={style.container}>
+                <Text style={style.title}>Esqueceu a senha?</Text>
+                <Text style={style.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
+                <TextInput style={style.input} />
+                <TouchableOpacity
+                    style={style.button}
+                    activeOpacity={0.8}>
+                    <Text style={style.buttonText}>Enviar</Text>
+                </TouchableOpacity>
+            </View>
         </>
     )
 }
@@ -29,10 +29,10 @@ const style = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "center"
     },
-    header : {
+    header: {
         width: "100%",
         height: "40%",
-        
+
     },
     icon: {
         width: 140,
@@ -45,38 +45,38 @@ const style = StyleSheet.create({
         display: "flex",
         alignContent: "flex-start",
         justifyContent: "flex-start",
-        alignItems:"center"
+        alignItems: "center"
     },
-    title:{
+    title: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
         color: "#B275FF"
     },
-    text:{
+    text: {
         fontSize: 12,
         width: "55%",
-        color:'#46307B',
-        marginBottom:12,
+        color: '#46307B',
+        marginBottom: 12,
         display: 'flex',
-    }, 
-    input:{},
-    button:{
+    },
+    input: {},
+    button: {
         width: 250,
         height: 50,
         paddingVertical: 8,
         borderRadius: 10,
         backgroundColor: "#B275FF",
-        justifyContent:'center',
-        alignItems:'center',
-        alignSelf:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
         marginTop: 50,
-        
-        
+
+
     },
-    buttonText:{
+    buttonText: {
         fontSize: 20,
-        fontWeight:"bold",
+        fontWeight: "bold",
         color: "#fff",
 
     }
