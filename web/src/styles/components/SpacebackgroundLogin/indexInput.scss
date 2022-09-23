@@ -1,6 +1,3 @@
-
-
-
 .input_icon_login{
     display: flex;
     flex-direction: row;
@@ -17,11 +14,7 @@
         height: 5.625rem;
         border: solid #D3C5F8;
         border-radius: 0.625rem;
-        padding-left: 60px;
-        
-        
-        
-        
+        padding-left: 60px;   
     }
 
    .spanIcon{
@@ -32,9 +25,6 @@
         align-items: center;
         position:absolute;
         left: -5px;
-          
-       
-
     }
     
     
@@ -42,11 +32,5 @@
         width: 50px;
         height: 30px;
         color: $dark-purple;
-       
-       
-       
     }
-
-
-
 }
