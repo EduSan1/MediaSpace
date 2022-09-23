@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Text, StyleSheet, View, TextInput, Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from "react-native"
+import { Text, StyleSheet, View, TextInput, Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Dimensions } from "react-native"
 
 interface ILoginInput {
     title: string
@@ -13,7 +13,7 @@ export const LoginInput = ({ title }: ILoginInput) => {
 
                 <View style={styles.inputContainer}>
                     {inputTitle ? <Text style={styles.inputTitle} >{title}</Text> : null}
-                    <TextInput onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input}></TextInput>
+                    <TextInput onChangeText={(text) => console.log(text)} onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input}></TextInput>
                 </View>
 
     )
@@ -21,12 +21,13 @@ export const LoginInput = ({ title }: ILoginInput) => {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        width: 320,
-        height: 60,
+        width:  Dimensions.get('window').width * 0.7 ,
+        height:  Dimensions.get('window').height * 0.06 ,
         borderColor: "#D3C5F8",
         borderWidth: 2,
         borderRadius: 10,
         paddingLeft: 10,
+        marginBottom:10,
         display: "flex",
         justifyContent: "center",
         position: "relative",
