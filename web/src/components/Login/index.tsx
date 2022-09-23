@@ -1,8 +1,8 @@
 import React from "react";
-import InputLoign from "./LoginInput";
-import InputBtn from "./InputBtn";
+import InputLoign from "../utils/Input/LoginInput";
+import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { MdFacebook, MdEmail } from "react-icons/md";
+import { MdFacebook, MdEmail, MdLock} from "react-icons/md";
 import { IconBase } from "react-icons";
 
 
@@ -17,7 +17,9 @@ const LoginSpace = () => {
         <div className="ImageSpaceLogin" >
           <img src="../assets/img/rocketart.png" alt="" />
         </div>
+       
 
+     
         <div className="LoginSpace">
           <div className="newHere">
 
@@ -32,9 +34,12 @@ const LoginSpace = () => {
           </div>
 
           <div className="inputLogin">
-            <span className="input-container">
-              <InputLoign typeInput={'email'} icon={<AiFillGoogleCircle className="IconLogin" />} />
-            </span>
+           
+              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<MdEmail className="IconLogin" />} />
+              <InputLoign typeInput={'senha'} name={'loginText'} placeholder={"senha"} icon={<MdLock className="IconLogin" />} />
+           
+      
+          
           </div>
 
           <div className="btnLogin">
@@ -61,19 +66,15 @@ const LoginSpace = () => {
                   <span>
                     <AiFillTwitterCircle />
                   </span>
-
-
-
                 </div>
-
-
               </div>
             </div>
-
           </div>
-
         </div>
 
+
+      
+      
 
 
 
