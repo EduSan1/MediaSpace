@@ -11,9 +11,6 @@ const LoginSpace = () => {
   return (
 
     <>
-
-   
-
         <div className="ImageSpaceLogin" >
           <img src="../assets/img/rocketart.png" alt="" />
         </div>
@@ -35,8 +32,8 @@ const LoginSpace = () => {
 
           <div className="inputLogin">
            
-              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<MdEmail className="IconLogin" />} />
-              <InputLoign typeInput={'senha'} name={'loginText'} placeholder={"senha"} icon={<MdLock className="IconLogin" />} />
+              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<MdEmail className="IconLogin" />} label ={""} />
+              <InputLoign typeInput={'senha'} name={'loginText'} placeholder={"senha"} icon={<MdLock className="IconLogin" />} label = {""} />
            
       
           

@@ -5,19 +5,20 @@ interface IInput {
     icon: ReactNode,
     typeInput: string,
     name: string,
-    placeholder: string
+    placeholder: string,
+    label: string
 }
 
+const InputLogin = ({icon, typeInput, name, placeholder, label}: IInput) => {
 
-
-const InputLoign = ({ icon, typeInput, name, placeholder }: IInput) => {
-
+   
+    
     return (
 
         <>
-            <div>
+            <div className="containerInput">
                 <div className="containerLabel">
-                    <label className="labelInput"> Nome: </label>
+                    <label>{label}</label>
                 </div>
                 <div className="input_icon_login">
                     <span className="spanIcon" > {icon} </span>
@@ -28,15 +29,8 @@ const InputLoign = ({ icon, typeInput, name, placeholder }: IInput) => {
 
         </>
 
-
-
-
-
     );
-
 
 }
 
-
-
-export default InputLoign;
+export default InputLogin;

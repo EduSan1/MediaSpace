@@ -1,4 +1,19 @@
-.container_inputs {
+.pageRegister{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.titlePage{
+    font-size: 1.1rem;
+    font-family: $light-font;
+    font-weight: bold;
+    color: $primary-purple;
+}
+
+.containerInputs {
     height: 100%;
     width: 100%;
     display: flex;
@@ -8,7 +23,6 @@
 }
 
 .teste {
-    background-color: aqua;
     width: 25%;
     height: 100%;
     display: flex;
