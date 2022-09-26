@@ -26,10 +26,12 @@ export const Login = () => {
     const changeVisibilityPassword = () => {
         setVisibilityPassword(!visibilityPassword)
     }
-    const login = async () => {
+    const login = () => {
         Keyboard.dismiss()
-        await api.post("/User/login", userLogin).then((res: any) => {
-            if (res.data.logged) 
+        console.log("teste")
+        api.post("/User/login", userLogin).then((res: any) => {
+            console.log(res)
+            if (res.data.logged)
                 ToastAndroid.show(res.data.message, 10)
             else {
                 setHasError(true)

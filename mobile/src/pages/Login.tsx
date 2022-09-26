@@ -31,11 +31,11 @@ export default function LoginPage() {
                 </View>
 
                 <View style={styles.container}>
-                    {/* <ForgetPassword/> */}
-                    <Text style={styles.title}>Entre em sua conta</Text>
+                    <ForgetPassword/>
+                    {/* <Text style={styles.title}>Entre em sua conta</Text>
 
 
-                    <Login />
+                    <Login /> */}
 
 
                 </View>
