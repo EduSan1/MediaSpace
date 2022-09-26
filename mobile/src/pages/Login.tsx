@@ -16,6 +16,7 @@ export default function LoginPage() {
                 <View style={styles.header}>
                     <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
                         <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
+                        <Image style={styles.starfield} source={require("../../assets/img/constelacao.png")} />
                     </LinearGradient>
 
                     <WavyBackground
@@ -51,13 +52,21 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         justifyContent: "center",
         alignItems: "center",
+        position: "relative"
         
+    },
+    starfield: {
+        height: Dimensions.get('window').height * 0.45,
+        width: Dimensions.get('window').width,
+        position: "absolute",
+        zIndex:1
+
     },
     icon: {
         width: Dimensions.get('window').width * 0.3,
         height: Dimensions.get('window').width * 0.3,
-        marginTop: Dimensions.get('window').width * 0.1,
-
+        marginTop: Dimensions.get('window').height * 0.1,
+ 
     },
     header: {
         width: "100%",

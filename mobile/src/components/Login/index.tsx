@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react"
-import { Text, StyleSheet, View, TextInput, KeyboardAvoidingView, Button, Pressable, useWindowDimensions, ScrollView, Dimensions, TouchableHighlight } from "react-native"
+import { Text, StyleSheet, View, TextInput, Image, KeyboardAvoidingView, Button, Pressable, useWindowDimensions, ScrollView, Dimensions, TouchableHighlight } from "react-native"
 import { LoginInput } from "../utils/LoginInput";
 import api from "../../../service";
 
@@ -20,14 +20,12 @@ export const Login = () => {
         )
     }
     const login = async () => {
-        console.log(userLogin)
         await api.post("/User/login", userLogin).then((res: any) => {
             console.log(res.data)
-
             if (res.data.logged) {
-                console.log("errado")
-            }else {
                 console.log("certo")
+            } else {
+                console.log("errado")
             }
         }).catch((error) => {
             console.log(error)
@@ -41,8 +39,8 @@ export const Login = () => {
         <View style={styles.container}>
 
             <View style={styles.inputContainer}>
-                <LoginInput name="mail" value={userLogin.mail} handleChange={handleChange} title="Email" />
-                <LoginInput name="password" value={userLogin.password} handleChange={handleChange} title="Senha" />
+                <LoginInput  name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} title="Email" />
+                <LoginInput isPassword={true} name="password" iconName="lock-outline" value={userLogin.password} handleChange={handleChange} title="Senha" />
             </View>
             <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
 
@@ -58,17 +56,23 @@ export const Login = () => {
                 <Text style={styles.textLine}>Conectar usando</Text>
             </View>
 
+            <View style={styles.iconContainer}>
+                <Image style={styles.icon} source={require("../../../assets/icons/facebook.png")} />
+                <Image style={styles.icon} source={require("../../../assets/icons/google.png")} />
+                <Image style={styles.icon} source={require("../../../assets/icons/linkedin.png")} />
+                <Image style={styles.icon} source={require("../../../assets/icons/twitter.png")} />
+            </View>
+
         </View>
 
     )
 
 }
-console.log(Dimensions.get('window').width)
-console.log()
+
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.5,
+        height: Dimensions.get('window').height * 0.6,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",
@@ -76,14 +80,14 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         width: Dimensions.get('window').width,
-        // height: "40%",
+        height: Dimensions.get('window').height * 0.15,
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-around"
+        justifyContent: "space-between",
     },
     buttonContainer: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.11,
+        height: Dimensions.get('window').height * 0.15,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -109,8 +113,8 @@ const styles = StyleSheet.create({
         color: "#BCA7F4",
     },
     button: {
-        width: 280,
-        height: 50,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').height * 0.06,
         backgroundColor: "#B275FF",
         borderRadius: 10,
         display: "flex",
@@ -140,8 +144,8 @@ const styles = StyleSheet.create({
 
     },
     registerButton: {
-        width: 280,
-        height: 50,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').height * 0.06,
         backgroundColor: "#fff",
         borderColor: "#BCA7F4",
         borderWidth: 2,
@@ -157,5 +161,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: "#B275FF",
 
+    },
+    icon: {
+        width: Dimensions.get("window").width * 0.1,
+        height: Dimensions.get("window").width * 0.1,
+        
+    },
+    iconContainer: {
+        width: Dimensions.get("window").width * 0.55,
+        height: Dimensions.get("window").height * 0.07,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexDirection: "row"
     }
 });
