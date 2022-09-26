@@ -149,14 +149,14 @@ export class UserService {
                 
                 return {
                     message: "Login realizado com sucesso",
-                    loged: true,
+                    logged: true,
                     statusCode: 200,
                     userDetails: userJwt
                 }
             } else {
                 return {
                     message: "Senha incorreta",
-                    loged: false,
+                    logged: false,
                     statusCode: 200
                 }
             }

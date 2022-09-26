@@ -11,35 +11,35 @@ export default function LoginPage() {
             style={styles.container}
             behavior="height">
 
+            <View style={styles.container}>
+
+                <View style={styles.header}>
+                    <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
+                        <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
+                    </LinearGradient>
+
+                    <WavyBackground
+                        bottom={false}
+                        height={120}
+                        width={100}
+                        amplitude={15}
+                        frequency={12}
+                        offset={20}
+                        color="#505BB0"
+                    />
+                </View>
+
                 <View style={styles.container}>
-
-                    <View style={styles.header}>
-                        <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
-                            <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
-                        </LinearGradient>
-
-                        <WavyBackground
-                            bottom={false}
-                            height={120}
-                            width={100}
-                            amplitude={15}
-                            frequency={12}
-                            offset={20}
-                            color="#505BB0"
-                        />
-                    </View>
-
-                    <View style={styles.container}>
-                        {/* <ForgetPassword/> */}
-                        <Text style={styles.title}>Entre em sua conta</Text>
+                    {/* <ForgetPassword/> */}
+                    <Text style={styles.title}>Entre em sua conta</Text>
 
 
-                            <Login />
+                    <Login />
 
-
-                    </View>
 
                 </View>
+
+            </View>
 
         </KeyboardAvoidingView>
     )
@@ -47,25 +47,27 @@ export default function LoginPage() {
 
 const styles = StyleSheet.create({
     section: {
-        height:  Dimensions.get('window').height * 0.3,
-        width:  Dimensions.get('window').width,
-        backgroundColor: '#7FF5FF',
-        justifyContent: "flex-end",
-        alignItems: "center"
+        height: Dimensions.get('window').height * 0.3,
+        width: Dimensions.get('window').width,
+        justifyContent: "center",
+        alignItems: "center",
+        
     },
     icon: {
-        width:   Dimensions.get('window').width *0.3,
-        height:   Dimensions.get('window').width *0.3,
+        width: Dimensions.get('window').width * 0.3,
+        height: Dimensions.get('window').width * 0.3,
+        marginTop: Dimensions.get('window').width * 0.1,
+
     },
     header: {
         width: "100%",
         height: Dimensions.get('window').height * 0.4,
     },
     container: {
-        width:  Dimensions.get('window').width,
-        minHeight:  Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        minHeight: Dimensions.get('window').height,
         display: "flex",
-        backgroundColor: '#7FF5FF',
+
         position: "relative",
         alignContent: "center",
         // justifyContent: "flex-end",
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     title: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.05,
-        backgroundColor: "#455f67",
+
         textAlign: "center",
         fontSize: 22,
         fontWeight: 'bold',

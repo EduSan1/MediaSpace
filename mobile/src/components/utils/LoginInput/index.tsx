@@ -3,9 +3,12 @@ import { Text, StyleSheet, View, TextInput, Keyboard, KeyboardAvoidingView, Plat
 
 interface ILoginInput {
     title: string
+    value : string
+    name : string
+    handleChange : (text : string, name : string) => void
 }
 
-export const LoginInput = ({ title }: ILoginInput) => {
+export const LoginInput = ({ title, value, name ,handleChange }: ILoginInput) => {
 
     const [inputTitle, serInputTitle] = useState(false)
 
@@ -13,7 +16,7 @@ export const LoginInput = ({ title }: ILoginInput) => {
 
                 <View style={styles.inputContainer}>
                     {inputTitle ? <Text style={styles.inputTitle} >{title}</Text> : null}
-                    <TextInput onChangeText={(text) => console.log(text)} onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input}></TextInput>
+                    <TextInput value={value} onChangeText={(text) => handleChange(text, name)} onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input}></TextInput>
                 </View>
 
     )
