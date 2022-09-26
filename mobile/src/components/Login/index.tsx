@@ -78,7 +78,7 @@ export const Login = () => {
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.6,
+        height: Dimensions.get('window').height * 0.55,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",
