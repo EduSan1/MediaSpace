@@ -69,28 +69,22 @@ const styles = StyleSheet.create({
  
     },
     header: {
-        width: "100%",
+        width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.4,
     },
     container: {
         width: Dimensions.get('window').width,
         minHeight: Dimensions.get('window').height,
         display: "flex",
-
         position: "relative",
         alignContent: "center",
-        // justifyContent: "flex-end",
         alignItems: "flex-start"
-    },
-    scrollContainer: {
-        width: Dimensions.get('window').width
     },
     title: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.05,
-
         textAlign: "center",
-        fontSize: 22,
+        fontSize: Dimensions.get("window").width * 0.05,
         fontWeight: 'bold',
         color: "#B275FF",
         textAlignVertical: "center"
