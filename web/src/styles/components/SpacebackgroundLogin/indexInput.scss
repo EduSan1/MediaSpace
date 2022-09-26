@@ -1,4 +1,4 @@
-.input_icon_login{
+.input_icon_login {
     display: flex;
     flex-direction: row;
     margin-top: 2px;
@@ -6,31 +6,41 @@
     width: 100%;
     position: relative;
     margin-bottom: 1rem;
+    background-color: black;
 
-
-
-    .Input_Login{
+    .Input_Login {
         width: 100%;
         height: 5.625rem;
         border: solid #D3C5F8;
         border-radius: 0.625rem;
-        padding-left: 60px;   
+        padding-left: 60px;
     }
 
-   .spanIcon{
+    .spanIcon {
         display: flex;
         width: 10%;
         height: 100%;
         justify-content: center;
         align-items: center;
-        position:absolute;
+        position: absolute;
         left: -5px;
     }
-    
-    
-    .IconLogin{ 
+
+    .IconLogin {
         width: 50px;
         height: 30px;
         color: $dark-purple;
     }
+
+    .containerLabel {
+        height: 30px;
+        width: 40px;
+        background-color: black;
+    }
+
+    .labelInput {
+        font-weight: 200;
+        color: aqua;
+    }
+
 }

@@ -1,16 +1,17 @@
-.container_inputs{
+.container_inputs {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    
+    align-items: center;
+
 }
 
-.teste{
+.teste {
+    background-color: aqua;
     width: 25%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    align-items: flex-start;
 }
