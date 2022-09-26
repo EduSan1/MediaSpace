@@ -38,7 +38,7 @@ const LoginSpace = () => {
   }, [diceLogin]);
 
 
-  const [erroLogin, setErroLogin] = React.useState();
+  const [hasError, setHasError] = React.useState(false);
 
 
   const handleChangeErro = (erroMsg: string) => {
@@ -53,6 +53,7 @@ const LoginSpace = () => {
     if (!diceLogin.mail) {
       handleChangeErro(diceLogin.mail);
       validate = false
+     
 
     } else {
 
@@ -61,8 +62,8 @@ const LoginSpace = () => {
     if (!diceLogin.password) {
 
       handleChangeErro('Senha ou Email invalido');
-      // tranofrma a input em erro Red
       validate = false
+   
 
     } else {
 
@@ -78,7 +79,8 @@ const LoginSpace = () => {
   const loginUser = async () => {
 
     await api.post("/User/login", diceLogin).then((res) => {
-      console.log(res.data)
+      const data = res.data;
+
     })
       .catch((error) => {
         console.log(error)
@@ -114,10 +116,10 @@ const LoginSpace = () => {
 
           <div className="inputLogin">
 
-            <InputLoign typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail className="IconLogin" />}
+            <InputLoign hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail/>} className={hasError ? "InputError" : "Input_Login" } 
               valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
             />
-            <InputLoign typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLock className="IconLogin" />}
+            <InputLoign hasError={hasError} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLock/>} className={hasError ? "InputError" : "Input_Login" } 
               valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
             />
 
