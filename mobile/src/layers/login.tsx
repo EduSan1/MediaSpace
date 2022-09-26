@@ -2,6 +2,7 @@ import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image } from "react-native";
 import WavyBackground from "react-native-wavy-background";
 import { ForgetPassword } from "../components/ForgetPassword";
+
 export default function Login() {
     return (
         <SafeAreaView>

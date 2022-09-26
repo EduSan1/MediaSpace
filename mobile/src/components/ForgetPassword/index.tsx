@@ -1,23 +1,25 @@
-import React, {useState} from "react"
-import { Text, View, StyleSheet, TextInput, Button, TouchableOpacity, ScrollView } from "react-native";
-
+import React, { useState } from "react";
+import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import TxtInput from "../TxtInput";
+import Icon  from "react-native-vector-icons/Entypo";
 export const ForgetPassword = () => {
-
-
     return (
         <>
-        <View style={style.container}>
-        <Text style={style.title}>Esqueceu a senha?</Text>
-        <Text style={style.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
-        <TextInput style={style.input}/>
-        <TouchableOpacity 
-        style={style.button}
-        activeOpacity={0.8}>
-            <Text style={style.buttonText}>Enviar</Text>
-        </TouchableOpacity>
-        </View>
+            <View style={style.container}>
+                <Text style={style.title}>Esqueceu a senha?</Text>
+                <Text style={style.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
+                <TxtInput />
+                <TouchableOpacity
+                    style={style.button}
+                    activeOpacity={0.7}>
+                    <Text style={style.buttonText}>Enviar</Text>
+                    
+                </TouchableOpacity>   
+            </View>
+      
         </>
-    )
+
+    );
 }
 
 const style = StyleSheet.create({
@@ -50,17 +52,16 @@ const style = StyleSheet.create({
     title:{
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 10,
+        marginBottom: 5,
         color: "#B275FF"
     },
     text:{
         fontSize: 12,
         width: "55%",
         color:'#46307B',
-        marginBottom:12,
+        marginBottom:25,
         display: 'flex',
     }, 
-    input:{},
     button:{
         width: 250,
         height: 50,
@@ -69,9 +70,7 @@ const style = StyleSheet.create({
         backgroundColor: "#B275FF",
         justifyContent:'center',
         alignItems:'center',
-        alignSelf:'center',
-        marginTop: 50,
-        
+        alignSelf:'center',  
         
     },
     buttonText:{
@@ -79,6 +78,7 @@ const style = StyleSheet.create({
         fontWeight:"bold",
         color: "#fff",
 
-    }
+    },
 
+   
 })
