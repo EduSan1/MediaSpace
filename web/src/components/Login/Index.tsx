@@ -4,6 +4,8 @@ import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { MdFacebook, MdEmail, MdLock } from "react-icons/md";
 import { IconBase } from "react-icons";
+import api from "../../service";
+
 
 
 
@@ -15,6 +17,12 @@ const LoginSpace = () => {
     "password": ""
 
   });
+
+  const erros = {
+    "mail": diceLogin.mail,
+    "password": "Senha ou Email invalido"
+  }
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDiceLogin({
@@ -29,14 +37,58 @@ const LoginSpace = () => {
     console.log(diceLogin)
   }, [diceLogin]);
 
-  
+
   const [erroLogin, setErroLogin] = React.useState();
 
 
-  const handleChangeErro = ( ) => {
-  
+  const handleChangeErro = (erroMsg: string) => {
+
+    console.log(erroMsg);
+
   };
 
+  const validate = () => {
+    let validate = true;
+
+    if (!diceLogin.mail) {
+      handleChangeErro(diceLogin.mail);
+      validate = false
+
+    } else {
+
+    }
+
+    if (!diceLogin.password) {
+
+      handleChangeErro('Senha ou Email invalido');
+      // tranofrma a input em erro Red
+      validate = false
+
+    } else {
+
+    }
+
+    if (validate) {
+      loginUser();
+    }
+
+
+  }
+
+  const loginUser = async () => {
+
+    await api.post("/User/login", diceLogin, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => {
+      console.log(res.data)
+    })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+  
 
 
   return (
@@ -81,9 +133,9 @@ const LoginSpace = () => {
             <span> Esqueceu a senha?</span>
 
             <div className="btn_AutomaticLogin">
-              <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'} onClick={() =>{
-                 console.log('click');
-              }}/>
+              <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'} onClick={() => {
+                validate();
+              }} />
 
               <div className="LoginIcons-container">
                 <h5> login com </h5>

@@ -8,7 +8,8 @@ interface IInput {
     name: string,
     placeholder: string,
     valueLogin: string,
-    handleChange : (event : React.ChangeEvent<HTMLInputElement>) => void
+    handleChange : (event : React.ChangeEvent<HTMLInputElement>) => void,
+    
 }
 
 
@@ -19,7 +20,7 @@ const InputLoign = ({ valueLogin , icon, typeInput, name, placeholder, handleCha
         <>
             <div className="input_icon_login">
                 <span className="spanIcon" > {icon } </span>
-                <input value={valueLogin}  onChange={(event : React.ChangeEvent<HTMLInputElement>) => handleChange(event)} className="Input_Login"  type={typeInput} name={name} placeholder={placeholder} />
+                <input value={valueLogin} onChange={(event : React.ChangeEvent<HTMLInputElement>) => handleChange(event)} className="Input_Login"  type={typeInput} name={name} placeholder={placeholder} />
 
             </div>
 
