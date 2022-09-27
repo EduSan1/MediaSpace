@@ -1,16 +1,22 @@
 import React, { ReactNode } from "react";
-
-
+import { IconType } from "react-icons";
+import { MdLock } from "react-icons/md";
+import { Value } from "sass";
 interface IInput {
     icon: ReactNode,
     typeInput: string,
     name: string,
     placeholder: string,
     label: string,
-    classNameInput: "Input_Login" | "inputRegister",
+    valueLogin: string,
+    className: "Input_Login" | "inputRegister" | "InputError",
+    hasError: boolean
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+
+
 }
 
-const InputLogin = ({ icon, typeInput, name, placeholder, label, classNameInput }: IInput) => {
+const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, className, hasError, valueLogin }: IInput) => {
 
 
 
@@ -22,14 +28,11 @@ const InputLogin = ({ icon, typeInput, name, placeholder, label, classNameInput 
                     <label>{label}</label>
                 </div>
                 <div className="input_icon_login">
-                    <span className="spanIcon" > {icon} </span>
-                    <input className={classNameInput} type={typeInput} name={name} placeholder={placeholder} />
+                    <span className={hasError ? "erroIcon" : "IconNormal"} id="spanIcon" > {icon} </span>
+                    <input value={valueLogin} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} className={className} type={typeInput} name={name} placeholder={placeholder} />
                 </div>
             </div>
-
-
         </>
-
     );
 
 }

@@ -31,7 +31,7 @@ const RegisterSpace = () => {
                 </div>
                 <span className="containerInputs">
                     <span className="teste">
-                        <InputLogin typeInput={"text"} placeholder={"Nome"} icon={<FaUserAlt className="IconLogin" />} name={"first_name"} label={"Nome"} classNameInput={"inputRegister"} />
+                        <InputLogin valueLogin="teste" hasError={false} handleChange={() => {}} typeInput={"text"} placeholder={"Nome"} icon={<FaUserAlt className="IconLogin" />} name={"first_name"} label={"Nome"} className={"inputRegister"} />
                     </span>
                 </span>
             </div>
