@@ -1,28 +1,54 @@
 import React, { useState } from "react";
-import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import TxtInput from "../TxtInput";
-import Icon  from "react-native-vector-icons/Entypo";
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { LoginInput } from "../utils/LoginInput";
+import { LoginButton } from "../utils/LoginButton";
+
+
 export const ForgetPassword = () => {
+
+    const [userEmail, setUserEmail] = useState({
+        mail: ""
+    })
+    const [hasError, setHasError] = useState(false)
+
+    const handleChange = (text: string, name: string) => {
+        setUserEmail(
+            {
+                ... userEmail,
+                [name]: text
+            }
+        )
+    }
+
+    const submit = async () =>{
+        console.log("enviado")
+    }
+
+
     return (
         <>
-            <View style={style.container}>
-                <Text style={style.title}>Esqueceu a senha?</Text>
-                <Text style={style.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
-                <TxtInput />
-                <TouchableOpacity
-                    style={style.button}
-                    activeOpacity={0.7}>
-                    <Text style={style.buttonText}>Enviar</Text>
-                    
-                </TouchableOpacity>   
+            <View style={styles.container}>
+                <Text style={styles.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
+
+                <View style={styles.inputContainer}>
+                <LoginInput name="mail" iconName="mail-outline" value={userEmail.mail} handleChange={handleChange} error={hasError} title="Email" />
+                </View>
+
+                <View>
+                     <LoginButton type="light" action={submit}  title="Enviar"/>
+                     
+                     
+                </View> 
+
+
             </View>
-      
+            
         </>
 
     );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     section: {
         flex: 1,
         height: "75%",
@@ -31,14 +57,9 @@ const style = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "center"
     },
-    header : {
+    header: {
         width: "100%",
         height: "40%",
-        
-    },
-    icon: {
-        width: 140,
-        height: 140,
 
     },
     container: {
@@ -47,38 +68,31 @@ const style = StyleSheet.create({
         display: "flex",
         alignContent: "flex-start",
         justifyContent: "flex-start",
-        alignItems:"center"
+        alignItems: "center",
+
     },
-    title:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 5,
-        color: "#B275FF"
-    },
-    text:{
+    text: {
         fontSize: 12,
         width: "55%",
         color:'#46307B',
-        marginBottom:25,
         display: 'flex',
+        marginTop:10,
+        marginBottom:20
     }, 
-    button:{
-        width: 250,
-        height: 50,
-        paddingVertical: 8,
-        borderRadius: 10,
-        backgroundColor: "#B275FF",
-        justifyContent:'center',
-        alignItems:'center',
-        alignSelf:'center',  
-        
+    buttonContainer: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.15,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
-    buttonText:{
-        fontSize: 20,
-        fontWeight:"bold",
-        color: "#fff",
+    inputContainer: {
+        width: Dimensions.get('window').width ,
+        height: Dimensions.get('window').height * 0.15,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
 
     },
-
    
 })

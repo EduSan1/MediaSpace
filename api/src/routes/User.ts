@@ -8,6 +8,8 @@ userRouter.get("/", userController.getAll)
 userRouter.get("/:userId", userController.getByID)
 userRouter.post("/", userController.create)
 userRouter.put("/:userId", userController.update)
-userRouter.delete("/:userId", userController.delete)
+userRouter.post("/login", userController.login)
+userRouter.post("/authentication/:userId", userController.authentication )
+userRouter.post("/disable/:userId", userController.disable)
 
 export default userRouter

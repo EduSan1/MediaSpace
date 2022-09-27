@@ -17,22 +17,24 @@ export class UserRepository {
         return await this._.find(UserORM)
     }
 
-    listByMail = async (mail : string) => {
-        return await this._.findOne({
+    listWhere =  async (key: keyof typeof UserORM, value: any) => {
+        return await this._.find({
             where :  {
-                mail
-            }
-        })
-    }
-    listByVar = async (atributo : string ,varr : string) => {
-        return await this._.findOne({
-            where :  {
-                [atributo] : varr
+                [key] : value
             }
         })
     }
 
-    listById = async (id : string) => {
+
+    findByWhere =  async (key: keyof typeof UserORM, value: any) => {
+        return await this._.findOne({
+            where :  {
+                [key] : value
+            }
+        })
+    }
+
+    findById = async (id : string) => {
         return await this._.findOne({
             where :  {
                 id
