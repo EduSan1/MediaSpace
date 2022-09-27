@@ -6,13 +6,14 @@ interface IInput {
     typeInput: string,
     name: string,
     placeholder: string,
-    label: string
+    label: string,
+    classNameInput: "Input_Login" | "inputRegister",
 }
 
-const InputLogin = ({icon, typeInput, name, placeholder, label}: IInput) => {
+const InputLogin = ({ icon, typeInput, name, placeholder, label, classNameInput }: IInput) => {
 
-   
-    
+
+
     return (
 
         <>
@@ -22,7 +23,7 @@ const InputLogin = ({icon, typeInput, name, placeholder, label}: IInput) => {
                 </div>
                 <div className="input_icon_login">
                     <span className="spanIcon" > {icon} </span>
-                    <input className="Input_Login" type={typeInput} name={name} placeholder={placeholder} />
+                    <input className={classNameInput} type={typeInput} name={name} placeholder={placeholder} />
                 </div>
             </div>
 

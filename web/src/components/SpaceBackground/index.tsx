@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/components/SpacebackgroundLogin/index.scss";
 import RegisterSpace from "../Register";
-import LoginSpace from "../Login/Index";
+import LoginSpace from "../Login/index";
 
 
 const SpaceBackground = () => {
@@ -15,8 +15,8 @@ const SpaceBackground = () => {
         </span>
 
         <main className="SpaceLogin">
-              <RegisterSpace />
-             {/*<LoginSpace />*/}
+          <RegisterSpace />
+          {/* <LoginSpace /> */}
         </main>
 
 

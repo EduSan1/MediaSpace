@@ -2,7 +2,7 @@ import React from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { MdFacebook, MdEmail, MdLock} from "react-icons/md";
+import { MdFacebook, MdEmail, MdLock } from "react-icons/md";
 import { IconBase } from "react-icons";
 
 
@@ -11,67 +11,67 @@ const LoginSpace = () => {
   return (
 
     <>
-        <div className="ImageSpaceLogin" >
-          <img src="../assets/img/rocketart.png" alt="" />
+      <div className="ImageSpaceLogin" >
+        <img src="../assets/img/rocketart.png" alt="" />
+      </div>
+
+
+
+      <div className="LoginSpace">
+        <div className="newHere">
+
+          <span>Nova aqui? </span>
+          <span> Cadastre-se </span>
+
         </div>
-       
 
-     
-        <div className="LoginSpace">
-          <div className="newHere">
+        <div className="TittleWelcomeBack">
+          <h1> Bem vindo de volta! </h1>
+          <p> Faça login para continuar </p>
+        </div>
 
-            <span>Nova aqui? </span>
-            <span> Cadastre-se </span>
+        <div className="inputLogin">
 
-          </div>
+          <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<MdEmail className="IconLogin" />} label={""} classNameInput={"Input_Login"} />
+          <InputLoign typeInput={'senha'} name={'loginText'} placeholder={"senha"} icon={<MdLock className="IconLogin" />} label={""} classNameInput={"Input_Login"} />
 
-          <div className="TittleWelcomeBack">
-            <h1> Bem vindo de volta! </h1>
-            <p> Faça login para continuar </p>
-          </div>
 
-          <div className="inputLogin">
-           
-              <InputLoign typeInput={'email'} name={'loginText'} placeholder={"username@mediaspace.com"} icon={<MdEmail className="IconLogin" />} label ={""} />
-              <InputLoign typeInput={'senha'} name={'loginText'} placeholder={"senha"} icon={<MdLock className="IconLogin" />} label = {""} />
-           
-      
-          
-          </div>
 
-          <div className="btnLogin">
-            <span> Esqueceu a senha?</span>
+        </div>
 
-            <div className="btn_AutomaticLogin">
-              <InputBtn />
-              <div>
-                <h5> login com </h5>
-                <div className="loginIcons">
+        <div className="btnLogin">
+          <span> Esqueceu a senha?</span>
 
-                  <span>
-                    <MdFacebook onClick={() => { console.log('Facebook') }} />
-                  </span>
+          <div className="btn_AutomaticLogin">
+            <InputBtn />
+            <div>
+              <h5> login com </h5>
+              <div className="loginIcons">
 
-                  <span>
-                    <AiFillGoogleCircle />
-                  </span>
+                <span>
+                  <MdFacebook onClick={() => { console.log('Facebook') }} />
+                </span>
 
-                  <span>
-                    <AiFillLinkedin />
-                  </span>
+                <span>
+                  <AiFillGoogleCircle />
+                </span>
 
-                  <span>
-                    <AiFillTwitterCircle />
-                  </span>
-                </div>
+                <span>
+                  <AiFillLinkedin />
+                </span>
+
+                <span>
+                  <AiFillTwitterCircle />
+                </span>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
 
-      
-      
+
+
 
 
 
