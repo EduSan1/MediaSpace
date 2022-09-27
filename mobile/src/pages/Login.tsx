@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
 
@@ -10,76 +10,81 @@ export default function LoginPage() {
         <KeyboardAvoidingView
             style={styles.container}
             behavior="height">
-            <ScrollView style={styles.containerScroll}>
-            <View style={styles.header}>
-                <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
-                    <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
-                </LinearGradient>
-
-                <WavyBackground
-                    bottom={false}
-                    height={100}
-                    width={100}
-                    amplitude={15}
-                    frequency={12}
-                    offset={20}
-                    color="#505BB0"
-                />
-            </View>
 
             <View style={styles.container}>
-                {/* <ForgetPassword/> */}
-                <Text style={styles.title}>Entre em sua conta</Text>
-                <Login />
-            </View>
-            </ScrollView>
-        </KeyboardAvoidingView>
 
+                <View style={styles.header}>
+                    <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
+                        <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
+                        <Image style={styles.starfield} source={require("../../assets/img/constelacao.png")} />
+                    </LinearGradient>
+
+                    <WavyBackground
+                        bottom={false}
+                        height={120}
+                        width={100}
+                        amplitude={15}
+                        frequency={12}
+                        offset={20}
+                        color="#505BB0"
+                    />
+                </View>
+
+                <View style={styles.container}>
+                    <ForgetPassword/>
+                    {/* <Text style={styles.title}>Entre em sua conta</Text>
+
+
+                    <Login /> */}
+
+
+                </View>
+
+            </View>
+
+        </KeyboardAvoidingView>
     )
 }
 
 const styles = StyleSheet.create({
     section: {
-        height: "80%",
-        width: "100%",
-        backgroundColor: '#7FF5FF',
-        justifyContent: "flex-end",
-        alignItems: "center"
-    },
-    icon: {
-        width: 140,
-        height: 140,
-    },
-    header: {
-        width: "100%",
-        height: "55%",
-        marginBottom: 20
-    },
-    container: {
-        width: "100%",
-        height: 500,
-        display: "flex",
-        paddingTop: 20,
-        position: "relative",
-        alignContent: "center",
-        justifyContent: "flex-start",
-        alignItems: "center"
+        height: Dimensions.get('window').height * 0.3,
+        width: Dimensions.get('window').width,
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative"
         
     },
-    containerScroll: {
-        width: "100%",
-        height: 500,
-        display: "flex",
-        paddingTop: 20,
-        position: "relative",
-        alignContent: "center",
+    starfield: {
+        height: Dimensions.get('window').height * 0.45,
+        width: Dimensions.get('window').width,
+        position: "absolute",
+        zIndex:1
 
     },
+    icon: {
+        width: Dimensions.get('window').width * 0.3,
+        height: Dimensions.get('window').width * 0.3,
+        marginTop: Dimensions.get('window').height * 0.1,
+ 
+    },
+    header: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.4,
+    },
+    container: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.6,
+        display: "flex",
+        position: "relative",
+        alignContent: "center",
+        alignItems: "flex-start"
+    },
     title: {
-        width: "100%",
-        height: "10%",
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.05,
         textAlign: "center",
-        fontSize: 22,
+        fontSize: Dimensions.get("window").width * 0.05,
         fontWeight: 'bold',
         color: "#B275FF",
         textAlignVertical: "center"
