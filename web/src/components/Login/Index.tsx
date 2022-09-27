@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
@@ -47,13 +47,20 @@ const LoginSpace = () => {
 
   };
 
+  const logIntUser = (diceUser: string) => {
+    localStorage.setItem('userDetailes', diceUser);
+
+  }
+
+
   const validate = () => {
     let validate = true;
 
     if (!diceLogin.mail) {
       handleChangeErro(diceLogin.mail);
-      validate = false
-     
+      validate = false;
+      setHasError(true);
+
 
     } else {
 
@@ -62,8 +69,11 @@ const LoginSpace = () => {
     if (!diceLogin.password) {
 
       handleChangeErro('Senha ou Email invalido');
-      validate = false
-   
+      validate = false;
+      setHasError(true);
+
+
+
 
     } else {
 
@@ -71,7 +81,12 @@ const LoginSpace = () => {
 
     if (validate) {
       loginUser();
+
+    } else {
+
     }
+
+
 
 
   }
@@ -81,12 +96,19 @@ const LoginSpace = () => {
     await api.post("/User/login", diceLogin).then((res) => {
       const data = res.data;
 
+      if (data) {
+        logIntUser(res.data.userDetails);
+      }
+
+
+
     })
       .catch((error) => {
+        setHasError(true);
         console.log(error)
       });
   }
-  
+
 
 
   return (
@@ -116,10 +138,10 @@ const LoginSpace = () => {
 
           <div className="inputLogin">
 
-            <InputLoign hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail/>} className={hasError ? "InputError" : "Input_Login" } 
+            <InputLoign hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail />} className={hasError ? "InputError" : "Input_Login"}
               valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
             />
-            <InputLoign hasError={hasError} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLock/>} className={hasError ? "InputError" : "Input_Login" } 
+            <InputLoign hasError={hasError} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLock />} className={hasError ? "InputError" : "Input_Login"}
               valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
             />
 
@@ -131,7 +153,8 @@ const LoginSpace = () => {
             <span> Esqueceu a senha?</span>
 
             <div className="btn_AutomaticLogin">
-              <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'} onClick={() => {
+              <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}  
+              onClick={() => {
                 validate();
               }} />
 
