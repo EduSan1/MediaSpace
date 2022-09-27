@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .containerInput {
     display: flex;
     flex-direction: column;
@@ -6,10 +8,10 @@
 }
 
 .input_icon_login {
-    //display: flex;
-    //flex-direction: row;
-    //margin-top: 2px;
-    //height: 50px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
+    height: 50px;
     width: 100%;
     position: relative;
     margin-bottom: 4rem;
@@ -24,7 +26,8 @@
 
     .inputRegister {
         width: 100%;
-        height: 30px;
+        height: 80%;
+        padding-left: 25%;
         border: solid #D3C5F8;
         border-radius: 0.625rem;
     }
@@ -34,19 +37,17 @@
    #spanIcon,
    .IconNormal{
         display: flex;
-        //width: 10%;
-        height: 100%;
+        width: 10%;
+        height: 80%;
         justify-content: center;
         align-items: center;
         position: absolute;
-        //left: -5px;
+        left: 5px;
     }
 
     .IconLogin {
-        //width: 50px;
-        width: 17px;
-        height: 17px;
-        //height: 30px;
+        width: 100%;
+        height: 100%;
         color: $dark-purple;
     }
 }

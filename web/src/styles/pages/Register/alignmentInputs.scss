@@ -1,4 +1,4 @@
-.pageRegister {
+.page_register {
     height: 80%;
     width: 90%;
     display: flex;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.titlePage {
+.title_page {
     width: 100%;
     font-size: 1.1rem;
     font-family: $light-font;
@@ -15,12 +15,11 @@
     color: $primary-purple;
 }
 
-.containerInputs {
+.container_inputs {
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
 
 }
 

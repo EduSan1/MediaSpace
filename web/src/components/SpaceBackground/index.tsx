@@ -15,8 +15,8 @@ const SpaceBackground = () => {
         </span>
 
         <main className="SpaceLogin">
-         {/* <RegisterSpace />*/}
-           <LoginSpace /> 
+         <RegisterSpace />
+          {/* <LoginSpace />*/} 
         </main>
 
 
