@@ -14,12 +14,15 @@
 
     //pages
     @import "./pages/SpaceBackground/index.scss";
+    @import "./pages/SucessRegister/index.scss";
 
 
     //Componentes
     @import "./components/SpacebackgroundLogin/indexInput.scss";
     @import "./components/SpacebackgroundLogin/indexLogin.scss";
     @import "./components/SpacebackgroundLogin/btnInput.scss";
+    @import "./components/ConcludeRegister/titleMain.scss";
+     @import "./components/ConcludeRegister/indexConclude.scss";
  
 }
 

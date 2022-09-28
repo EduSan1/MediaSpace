@@ -1,0 +1,54 @@
+#Main-ConcludeRegister {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+
+
+    .Container-Conclude-Register {
+        display: flex;
+        width: 40%;
+        height: 60%;
+        flex-direction: column;
+        align-items: center;
+        gap: 4%;
+        
+        
+
+
+        h3 {
+            display: flex;
+            width: 50%;
+            height: 5%;
+            font-size: clamp(0.5rem, 4vh, 1.5rem);
+            font-family: $light-font;
+            font-weight: bold;
+            color: $dark-purple;
+            
+            
+
+        }
+
+        .imgEmail{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin-top: -5%;
+        
+        
+
+            img{
+                width: 50%;
+                height: 50%;
+        
+            }
+        }
+
+    }
+
+
+}
