@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToMany, OneToOne } from "typeorm"
 import { GenderORM } from "./Gender"
 import { PhoneORM } from "./Phone"
+import { UserTeamORM } from "./UserTeam"
 
 @Entity({name : "tb_user"})
 export class UserORM {
@@ -46,6 +47,9 @@ export class UserORM {
 
     @OneToOne(() => PhoneORM, phone => phone.user, {eager : true})
     phone: PhoneORM
+    
+    @OneToMany(() => UserTeamORM, userTeam => userTeam.user)
+    userTeam : UserTeamORM
 
     @CreateDateColumn()
     create_at: Timestamp

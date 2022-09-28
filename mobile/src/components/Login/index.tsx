@@ -28,9 +28,9 @@ export const Login = () => {
     }
     const login = () => {
         Keyboard.dismiss()
-        console.log("teste")
+
         api.post("/User/login", userLogin).then((res: any) => {
-            console.log(res)
+
             if (res.data.logged)
                 ToastAndroid.show(res.data.message, 10)
             else {
@@ -49,8 +49,8 @@ export const Login = () => {
         <View style={styles.container}>
 
             <View style={styles.inputContainer}>
-                <LoginInput name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} error={hasError} title="Email" />
-                <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" error={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userLogin.password} handleChange={handleChange} title="Senha" />
+                <LoginInput name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} hasError={hasError} title="Email" />
+                <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userLogin.password} handleChange={handleChange} title="Senha" />
             </View>
             <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
 

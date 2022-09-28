@@ -55,6 +55,12 @@ export class UserController {
         .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao realizar o login o usuário"))
     }
 
+    recoverPassword = (request : Request, response : Response) => {
+        this.service.recoverPassword(request.body.mail).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+    }
+
     disable = (request: Request, response: Response) => {
         this.service.disable(request.params.userId).then((res) => {
             response.status(res.statusCode || 200).json(res)
