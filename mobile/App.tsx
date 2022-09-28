@@ -1,20 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import StartHome from './src/pages/StartHome';
 import LoginPage from './src/pages/Login';
 import React from 'react';
 
 export default function App() {
-  
+
   return (
-    <LoginPage/>
+    <View style={styles.container}>
+      <LoginPage />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#75A5FF',
-    
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+
   },
 });

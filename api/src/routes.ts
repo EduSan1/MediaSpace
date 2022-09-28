@@ -10,7 +10,7 @@ router.get("/", (req: Request, res: Response) => {
     })
 })
 
-router.use("/User", userRouter )
-router.use("/Gender" , genderRoute)
+router.use("/user", userRouter )
+router.use("/gender" , genderRoute)
 
 export default router

@@ -118,6 +118,12 @@ export class UserService {
                 };
             }
 
+            if (entity.password !== undefined){
+                console.log("mudou")
+                const hashPassword = await bcrypt.hash(entity.password, 10);
+                entity.password = hashPassword;
+            }
+
             for (const [key, value] of Object.entries(entity)) {
                 entityExists[key] = value;
             }
@@ -140,6 +146,12 @@ export class UserService {
     login = async (mail: string, password: string) => {
         try {
             let userDetails = await this._.findByWhere("mail", mail);
+            
+            if (userDetails === null)
+            return {
+                message: "Não foi possivel encontrar o usuário",
+                statusCode: 400
+            };
 
             if (await bcrypt.compare(password, userDetails.password)) {
 
@@ -149,14 +161,14 @@ export class UserService {
                 
                 return {
                     message: "Login realizado com sucesso",
-                    loged: true,
+                    logged: true,
                     statusCode: 200,
                     userDetails: userJwt
                 }
             } else {
                 return {
                     message: "Senha incorreta",
-                    loged: false,
+                    logged: false,
                     statusCode: 200
                 }
             }
@@ -224,6 +236,37 @@ export class UserService {
                 statusCode: 200,
             };
         } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 400,
+            };
+        }
+    }
+
+    recoverPassword = async (mail : string) => {
+        try {
+
+            const user = await this._.findByWhere("mail", mail);
+
+            if (user === null)
+            return {
+                message: "Não foi possivel encontrar o usuário",
+                hasSend: false,
+                statusCode: 400
+            };
+            
+            const mailer = new Mail()
+            await mailer.recoverPassword(mail,user.id, user.first_name)
+
+            return {
+                message: "Não foi possivel encontrar o usuário",
+                hasSend: true,
+                statusCode: 200
+            };
+
+
+        } catch(error) {
             return {
                 message: error.message,
                 error: error.code,

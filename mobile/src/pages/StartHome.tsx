@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView } from "react-native";
 import WavyBackground from "react-native-wavy-background";
 // import LogoMediaSpace from '../../assets/icons/MediaSpaceLogo.svg'
 
 const StartHome = () => {
     return (
         <SafeAreaView style={style.body}>
+
             <View style={style.sectionIcon}>
                 <Image style={style.icon} source={require('../../assets/icons/MediaSpaceLogo.png')} />
                 <Text style={style.textWelcome} > Bem Vindo!</Text>
@@ -28,6 +29,7 @@ const StartHome = () => {
                 </View>
                     <Image style={style.imageConstelacao} source={require('../../assets/img/constelacao.png')}/>
             </View>
+  
         </SafeAreaView>
     )
 }
@@ -38,6 +40,7 @@ const style = StyleSheet.create({
         // backgroundColor:"blue"
 
     },
+  
     section: {
         height: "40%",
         width: "100%",
