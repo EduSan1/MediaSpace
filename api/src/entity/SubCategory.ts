@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { CategorySubCategoryORM } from "./CategorySubCategory";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { CategoryORM } from "./Category";
 
-@Entity({name : "tb_sub_category"})
+@Entity({name : "tb_subcategory"})
 export class SubCategoryORM {
 
     @PrimaryGeneratedColumn("uuid")
@@ -10,8 +10,8 @@ export class SubCategoryORM {
     @Column({length : 50})
     name: string
 
-    @OneToMany(() => CategorySubCategoryORM, categorySubCategory => categorySubCategory.sub_category )
-    category_sub_category : CategorySubCategoryORM
+    @ManyToOne(() => CategoryORM, category => category.subCategory)
+    category: CategoryORM
 
     @CreateDateColumn()
     create_at: Timestamp

@@ -64,7 +64,7 @@ export class UserService {
             }
 
             const mailer = new Mail()
-            await mailer.confirmRegister(entity.mail, entity.first_name)
+            await mailer.confirmRegister(entity.mail, entity.id, entity.first_name)
 
 
             return {
