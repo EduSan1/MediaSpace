@@ -18,7 +18,7 @@ export const LoginButton = ({ action, type, title }: ILoginButton) => {
 const styles = StyleSheet.create({
     lightButton: {
         width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.06,
+        height: Dimensions.get('window').height * 0.09,
         backgroundColor: "#B275FF",
         borderRadius: 10,
         display: "flex",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     darkButton: {
         width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.06,
+        height: Dimensions.get('window').height * 0.08,
         backgroundColor: "#fff",
         borderColor: "#BCA7F4",
         borderWidth: 2,
