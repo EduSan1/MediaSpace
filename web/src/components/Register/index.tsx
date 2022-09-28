@@ -62,29 +62,42 @@ const RegisterSpace = () => {
                                 <label> Foto de perfil </label>
                             </div>
                             <div className="profile-picture-container">
-                                <p>Escolha um arquivo jpg, png, gif...</p>
+                                <div className="teste-foto">
+                                    <img src="./assets/img/register/profile.svg" alt="" />
+                                </div>
+                                <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
+
+                                <div className="alignment_buttons_photo_profile">
+                                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => {
+                                        ("teste");
+                                    }} />
+                                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => {
+                                        ("teste");
+                                    }} />
+                                </div>
+                               
                             </div>
                         </div>
-                        <div>
+                        <div className="container_text_area">
                             <div className="container_label">
                                 <label>Sobre</label>
                             </div>
-                            <div className="container_text_area">
-                                <textarea name="biography" id="biography"></textarea>
+                            <div>
+                                <textarea name="biography" id="biography" className="biography"></textarea>
                             </div>
                             
                         </div>
-
-                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                            ("teste");
-                        }} />
+                        <div>
+                            <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
+                                ("teste");
+                            }} />
+                        </div>
+                       
                     </div>
 
 
                 </div>
             </div>
-
-
 
         </>
     )
