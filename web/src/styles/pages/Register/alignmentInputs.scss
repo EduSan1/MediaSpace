@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    justify-content: baseline;
 }
 
 .title_page {
@@ -23,7 +24,7 @@
 
 }
 
-.alignment_inputs_by_divs {
+.alignment-inputs-by-divs {
     width: 33%;
     height: 100%;
     display: flex;
@@ -31,8 +32,18 @@
     align-items: flex-start;
 }
 
-.profile_picture {
-    background-color: aqua;
-    width: 100px;
-    height: 100px;
+.profile-picture {
+    width: 70%;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.profile-picture-container{
+    height: 90%;
+    border-color: $light-purple;
+    border-radius: 10px;
+    border-style: dashed
 }
