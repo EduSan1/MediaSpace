@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToOne, Double, OneToMany, ManyToMany, JoinColumn } from "typeorm"
-import { CategorySubCategoryORM } from "./CategorySubCategory"
 import { UserTeamORM } from "./UserTeam"
 
 @Entity({name : "tb_team"})
@@ -34,10 +33,6 @@ export class TeamORM {
 
     @OneToMany(() => UserTeamORM, userTeam => userTeam.team)
     teamUser : UserTeamORM[]
-
-    @ManyToMany(() => CategorySubCategoryORM, categories_sub_categories => categories_sub_categories.team)
-    @JoinColumn()
-    categories_sub_categories : CategorySubCategoryORM[]
 
     @CreateDateColumn()
     create_at: Timestamp
