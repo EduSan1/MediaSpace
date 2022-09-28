@@ -9,6 +9,7 @@ userRouter.get("/:userId", userController.getByID)
 userRouter.post("/", userController.create)
 userRouter.put("/:userId", userController.update)
 userRouter.post("/login", userController.login)
+userRouter.post("/recoverPassword", userController.recoverPassword)
 userRouter.post("/authentication/:userId", userController.authentication )
 userRouter.post("/disable/:userId", userController.disable)
 

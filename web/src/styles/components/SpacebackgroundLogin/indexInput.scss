@@ -1,0 +1,69 @@
+@import "../../vars.scss";
+
+.input_icon_login{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 4rem;
+
+
+
+    .Input_Login{
+        width: 100%;
+        height: 5.625rem;
+        border: solid #D3C5F8;
+        border-radius: 0.625rem;
+        padding-left: 60px;
+        
+        
+        
+        
+    }
+
+   #spanIcon,
+   .IconNormal{
+        display: flex;
+        width: 10%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        position:absolute;
+        left: -5px;
+          
+       
+
+    }
+    
+    
+    .IconLogin{ 
+        width: 50px;
+        height: 30px;
+        color: $dark-purple;
+       
+       
+       
+    }
+
+
+}
+
+
+.InputError{
+
+    width: 100%;
+    height: 5.625rem;
+    border-radius: 0.625rem;
+    padding-left: 60px;
+    border: solid $red;
+    
+   
+}
+
+.erroIcon{
+
+    color: red;
+
+}
