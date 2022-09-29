@@ -16,7 +16,7 @@ export class CategoryController {
         this.service.list().then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
-        .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar os usuários"))
+        .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar as categorias"))
     }
 
     getByID = (request: Request, response: Response) => {
