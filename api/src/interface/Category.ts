@@ -4,6 +4,7 @@ export interface IDomainCategoryProps {
     id : string
     name: string
     icon: string
+    is_active: boolean
     subCategory: SubCategoryORM[]
 
 }

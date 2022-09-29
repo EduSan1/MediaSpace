@@ -13,6 +13,9 @@ export class CategoryORM {
     @Column()
     icon: string
 
+    @Column({default : true})
+    is_active : boolean
+
     @OneToMany(() => SubCategoryORM, subCategory => subCategory.category, {eager: true})
     subCategory: SubCategoryORM[]
 

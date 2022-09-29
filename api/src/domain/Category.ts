@@ -6,6 +6,7 @@ export default class CategoryDomain {
     id : string
     name: string
     icon: string
+    is_active : boolean
     subCategory: SubCategoryORM[]
 
 
@@ -13,6 +14,7 @@ export default class CategoryDomain {
         this.id = props.id
         this.name = props.name
         this.icon = props.icon
+        this.is_active = props.is_active
         this.subCategory = props.subCategory
 
     }

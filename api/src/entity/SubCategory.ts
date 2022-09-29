@@ -10,6 +10,9 @@ export class SubCategoryORM {
     @Column({length : 50})
     name: string
 
+    @Column({default : true})
+    is_active : boolean
+
     @ManyToOne(() => CategoryORM, category => category.subCategory)
     category: CategoryORM
 
