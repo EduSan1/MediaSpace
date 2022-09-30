@@ -1,6 +1,6 @@
+import { CheckBox } from "@rneui/themed";
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView, Text, Dimensions,Image } from "react-native";
-import { CheckBoxComponent} from "@react-native-community/checkbox";
+import { StyleSheet, View, ScrollView, Text, Dimensions,Image, } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
 import { LoginInput } from "../utils/LoginInput";
 
@@ -77,14 +77,14 @@ export const Register = () => {
                     </View>
                 </View>
             </View>
-
+            
 
             <View style={styles.View}>
                 <View style={styles.View2}>
                     
                     <LoginInput name="genre" iconName="person-outline" value={userRegister.genre} handleChange={handleChange} error={hasError} title="Genero" />
-                    <LoginInput name="biography" iconName="person-outline" value={userRegister.biography} handleChange={handleChange} error={hasError} title="Biografia" />
-                    
+                    <LoginInput name="biography" iconName="person-outline" value={userRegister.biography} handleChange={handleChange} error={hasError} title="Biografia"/>
+                    <CheckBox title="Readiing" checked/>
                     {/* <View style={styles.scrollView}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     },
     View: {
         width: Dimensions.get('window').width,
-        minHeight: Dimensions.get('window').height * 0.1,
+        minHeight: Dimensions.get('window').height * 0.2,
         display: "flex",
         alignItems: 'center',
         justifyContent: 'space-evenly',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     },
     View2: {
         width: Dimensions.get('window').width,
-        minHeight: Dimensions.get('window').height * 0.20,
+        minHeight: Dimensions.get('window').height * 0.30,
         display: "flex",
         alignItems: 'center',
         justifyContent: 'space-evenly',
