@@ -5,6 +5,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdPhone, MdEmail, MdLock } from "react-icons/md";
 import { HiIdentification } from "react-icons/hi";
 
+
 const RegisterSpace = () => {
 
     const [inputs, setInputs] = React.useState({
@@ -25,9 +26,10 @@ const RegisterSpace = () => {
         })
     }
 
-    //useEffect(() => {
-    //  console.log(inputs)
-    //}, [inputs])
+    const teste = inputs.first_name.match("^[A-z]{1,50}$");
+    console.log(teste);
+
+
 
 
     return (
