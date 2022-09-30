@@ -35,11 +35,8 @@ export default function LoginPage() {
                 </View>
 
                 <View style={styles.container}>
-<<<<<<< HEAD
-                    <ForgetPassword/>
+                    {/* <ForgetPassword/> */}
                     {/* <Text style={styles.title}>Entre em sua conta</Text>
-=======
->>>>>>> a9293001e2d0f676edec39be9e045fe85b792093
 
                     {/* <Text style={styles.title}>Entre em sua conta</Text> */}
                     {/* <Login /> */}
@@ -47,14 +44,7 @@ export default function LoginPage() {
                     {/* <Text style={styles.title}>Esqueceu a sua senha?</Text>
                     <ForgetPassword/> */}
 
-<<<<<<< HEAD
-                    <Login /> */}
-=======
-                    {/* <Confirmation/> */}
-              
-                    {/* <Text style={styles.title}>Verifique seu e-mail</Text>
-                    <CheckEmail/> */}
->>>>>>> a9293001e2d0f676edec39be9e045fe85b792093
+                    {/* <Login />  */}
 
                     <Text style={styles.title}>Faça seu cadastro</Text>
                     <Register/>
