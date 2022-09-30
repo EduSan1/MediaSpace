@@ -1,4 +1,4 @@
-@import "../../vars.scss";
+@import "../../../vars.scss";
 
 .InputBtnLogin {
 
@@ -11,8 +11,6 @@
     background-color: $primary-purple;
     color: #fff;
     border: none;
-   
-
 
 
     font-family: $light-font;
@@ -20,11 +18,23 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
- 
+
 
 }
 
-.InputBtnLogin:hover{
+.InputBtnLogin:hover {
     background-color: $dark-purple;
     transition: 385ms;
+}
+
+.input_btn_cadastrar {
+    display: flex;
+    width: 164px;
+    height: 40px;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3.125rem;
+    background-color: $primary-purple;
+    color: #fff;
+    border: none;
 }

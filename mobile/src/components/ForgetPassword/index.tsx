@@ -1,26 +1,54 @@
-import React, { useState } from "react"
-import { Text, View, StyleSheet, TextInput, Button, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { LoginInput } from "../utils/LoginInput";
+import { LoginButton } from "../utils/LoginButton";
+
 
 export const ForgetPassword = () => {
+
+    const [userEmail, setUserEmail] = useState({
+        mail: ""
+    })
+    const [hasError, setHasError] = useState(false)
+
+    const handleChange = (text: string, name: string) => {
+        setUserEmail(
+            {
+                ... userEmail,
+                [name]: text
+            }
+        )
+    }
+
+    const submit = async () =>{
+        console.log("enviado")
+    }
 
 
     return (
         <>
-            <View style={style.container}>
-                <Text style={style.title}>Esqueceu a senha?</Text>
-                <Text style={style.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
-                <TextInput style={style.input} />
-                <TouchableOpacity
-                    style={style.button}
-                    activeOpacity={0.8}>
-                    <Text style={style.buttonText}>Enviar</Text>
-                </TouchableOpacity>
+            <View style={styles.container}>
+                <Text style={styles.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
+
+                <View style={styles.inputContainer}>
+                <LoginInput name="mail" iconName="mail-outline" value={userEmail.mail} handleChange={handleChange} error={hasError} title="Email" />
+                </View>
+
+                <View>
+                     <LoginButton type="light" action={submit}  title="Enviar"/>
+                     
+                     
+                </View> 
+
+
             </View>
+            
         </>
-    )
+
+    );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     section: {
         flex: 1,
         height: "75%",
@@ -34,51 +62,37 @@ const style = StyleSheet.create({
         height: "40%",
 
     },
-    icon: {
-        width: 140,
-        height: 140,
-
-    },
     container: {
         width: "100%",
         height: "80%",
         display: "flex",
         alignContent: "flex-start",
         justifyContent: "flex-start",
-        alignItems: "center"
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        color: "#B275FF"
+        alignItems: "center",
+
     },
     text: {
         fontSize: 12,
         width: "55%",
-        color: '#46307B',
-        marginBottom: 12,
+        color:'#46307B',
         display: 'flex',
+        marginTop:10,
+        marginBottom:20
+    }, 
+    buttonContainer: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.15,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
-    input: {},
-    button: {
-        width: 250,
-        height: 50,
-        paddingVertical: 8,
-        borderRadius: 10,
-        backgroundColor: "#B275FF",
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        marginTop: 50,
-
+    inputContainer: {
+        width: Dimensions.get('window').width ,
+        height: Dimensions.get('window').height * 0.15,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
 
     },
-    buttonText: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "#fff",
-
-    }
-
+   
 })

@@ -1,5 +1,4 @@
-
-
+@import "../../vars.scss";
 
 .input_icon_login{
     display: flex;
@@ -24,7 +23,8 @@
         
     }
 
-   .spanIcon{
+   #spanIcon,
+   .IconNormal{
         display: flex;
         width: 10%;
         height: 100%;
@@ -48,5 +48,22 @@
     }
 
 
+}
+
+
+.InputError{
+
+    width: 100%;
+    height: 5.625rem;
+    border-radius: 0.625rem;
+    padding-left: 60px;
+    border: solid $red;
+    
+   
+}
+
+.erroIcon{
+
+    color: red;
 
 }

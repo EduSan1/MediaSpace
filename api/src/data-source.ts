@@ -1,7 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CategoryORM } from "./entity/Category"
-import { CategorySubCategoryORM } from "./entity/CategorySubCategory"
 import { GenderORM } from "./entity/Gender"
 import { PhoneORM } from "./entity/Phone"
 import { SubCategoryORM } from "./entity/SubCategory"
@@ -24,7 +23,6 @@ export const AppDataSource = new DataSource({
         PhoneORM,
         CategoryORM,
         SubCategoryORM,
-        CategorySubCategoryORM,
         TeamORM,
         UserTeamORM
     ],
