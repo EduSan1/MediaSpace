@@ -48,8 +48,8 @@ export class UserORM {
     @OneToOne(() => PhoneORM, phone => phone.user, {eager : true})
     phone: PhoneORM
     
-    @OneToMany(() => UserTeamORM, userTeam => userTeam.user)
-    userTeam : UserTeamORM
+    @OneToMany(() => UserTeamORM, userTeam => userTeam.user, {eager : true})
+    teams : UserTeamORM
 
     @CreateDateColumn()
     create_at: Timestamp
