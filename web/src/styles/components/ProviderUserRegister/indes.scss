@@ -1,0 +1,117 @@
+#ConatinerALL_ProviderRegister {
+
+    #Container_tittle {
+
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1%;
+
+        .Tittle_main_ProviderUser {
+            display: flex;
+            font-size: clamp(2rem, 3vh, 4rem);
+            font-family: $light-font;
+            font-weight: bold;
+            color: $primary-purple;
+            margin-bottom: 1px;
+            white-space: nowrap;
+
+
+        }
+    }
+
+
+
+    .Container_Providor_user {
+        width: 100%;
+        height: 70%;
+        color: #fff;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+
+        .img_Astronaut {
+            width: 50%;
+            height: 50%;
+            
+
+            img {
+                width: 80%;
+                height: 80%;
+            }
+        }
+
+        .container_texte_previdor {
+            display: flex;
+            width: 100%;
+            height: 50%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: start;
+
+            h3{
+                display: flex;
+                font-size: clamp(1.5rem, 1vh, 2rem);
+                font-family: $light-font;
+                font-weight: bold;
+                color: $primary-purple;
+                margin-bottom: 1%;
+                white-space: nowrap;
+            }
+
+            li{
+                
+                font-size: clamp(1rem, 1vh, 0.8rem);
+                font-family: $light-font;
+                font-weight: normal;
+                color: $dark-purple;
+                margin-bottom: 1%;
+                white-space: nowrap;
+               text-align: start;
+               list-style-type: circle;
+               
+            }
+
+           
+        }
+      
+    }
+
+
+    .Conatiner_bnt_User_Provider {
+        width: 100%;
+        height: 15%;
+        flex-direction: row;
+        gap: 10px;
+
+
+        .InputBtnProviderUser {
+            display: flex;
+            width: 15rem;
+            height: 2.5rem;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 3.125rem;
+            background-color: $primary-purple;
+            color: #fff;
+            border: none;
+
+            font-family: $light-font;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 15px;
+            line-height: 29px;
+
+        }
+    }
+
+    .Conatiner_bnt_User_Provider input:nth-child(1) {
+        background-color: #ffff;
+        color: $dark-purple;
+    }
+
+
+}

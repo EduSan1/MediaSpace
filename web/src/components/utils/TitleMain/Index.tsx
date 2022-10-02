@@ -15,7 +15,7 @@ const TitleIndex = ({idConatinerDiv,classNameText,title}:ITitle) =>{
   
     return(
 
-     <div className={idConatinerDiv}>
+     <div id={idConatinerDiv}>
 
         <span className={classNameText}> {title} </span>       
   

@@ -3,7 +3,8 @@ import SucessRegister from "../../pages/SucessRegister/SucessRegister";
 import "../../styles/components/SpacebackgroundLogin/index.scss";
 import ConcludeRegister from "../ConcludeRegister/ConcludeRegister";
 import LoginSpace from "../Login/Index";
-import SendingEmailRecobery from "../../pages/SendingEmailRecovery";
+import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
+import ProviderUserRegsiter from "../../pages/ProviderUserRegister";
 
 
 const SpaceBackground = () => {
@@ -20,7 +21,8 @@ const SpaceBackground = () => {
         <main className="SpaceLogin"> 
          {/* <LoginSpace/> */}
         {/* <SucessRegister/> */}
-        <SendingEmailRecobery/>
+        {/* <SendingEmailRecovery/> */}
+        <ProviderUserRegsiter/>
         </main>
         
       
