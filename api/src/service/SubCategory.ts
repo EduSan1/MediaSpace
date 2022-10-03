@@ -1,3 +1,4 @@
+import SubCategoryDomain from "../domain/SubCategory";
 import { SubCategoryORM } from "../entity/SubCategory";
 import { SubCategoryRepository } from "../repository/SubCategory";
 
@@ -8,7 +9,7 @@ export class SubCategoryService {
         this._ = repo
     }
 
-    create = async (entity : any) => {
+    create = async (entity : SubCategoryDomain) => {
         try {
             return await this._.create(entity)
         }catch (error) {

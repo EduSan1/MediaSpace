@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { TeamDomain } from "../domain/Team";
-import { TeamRepository } from "../repository/Freelancer";
+import { FreelancerRepository } from "../repository/Freelancer";
 import { TeamService } from "../service/Freelancer";
 
 export class TeamController {
-    private repository : TeamRepository
+    private repository : FreelancerRepository
     private service : TeamService
 
     constructor() {
-        this.repository = new TeamRepository(),
+        this.repository = new FreelancerRepository(),
         this.service = new TeamService(this.repository)
     }
     getAll = (request: Request, response: Response) => {
@@ -26,8 +26,8 @@ export class TeamController {
     }
 
     create = (request: Request, response: Response) => {
-        this.service.createFreelancer(request.body).then((res) => {
-            response.json(res)
+        this.service.create(request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
         })
         .catch(error => response.status(400).send({error : error.message, statusCode: error.status} || "Ocorreu um erro ao criar o time"))
     }

@@ -14,7 +14,7 @@ export class SubCategoryORM {
     @Column({default : true})
     is_active : boolean
 
-    @ManyToOne(() => CategoryORM, category => category.subCategory)
+    @ManyToOne(() => CategoryORM, category => category.sub_categories)
     category: CategoryORM
 
     @ManyToMany(() => TeamORM)

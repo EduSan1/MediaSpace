@@ -21,7 +21,7 @@ export class CategoryORM {
     teams : TeamORM[]
 
     @OneToMany(() => SubCategoryORM, subCategory => subCategory.category, {eager: true})
-    subCategory: SubCategoryORM[]
+    sub_categories: SubCategoryORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

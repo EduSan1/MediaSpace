@@ -6,7 +6,7 @@ export interface IDomainCategoryProps {
     name: string
     icon: string
     is_active: boolean
-    subCategory: SubCategoryORM[]
+    sub_categories: SubCategoryORM[]
     teams: TeamORM[]
 
 }

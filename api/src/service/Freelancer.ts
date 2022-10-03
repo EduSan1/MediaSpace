@@ -1,28 +1,34 @@
 import { TeamORM } from "../entity/team";
-import { TeamRepository } from "../repository/Freelancer";
+import { FreelancerRepository } from "../repository/Freelancer";
 import { UserRepository } from "../repository/User";
 import { UserTeamRepository } from "../repository/UserTeam";
 
+interface ICreateFreelancer {
+  userId: string;
+  categories: {
+    id: string;
+  };
+  sub_categories: {
+    id: string;
+  };
+}
+
 export class TeamService {
-  private _: TeamRepository;
+  private _: FreelancerRepository;
   private userTeamRepository: UserTeamRepository;
   private userRepository: any;
 
-  constructor(repo: TeamRepository) {
+  constructor(repo: FreelancerRepository) {
     (this._ = repo),
       (this.userTeamRepository = new UserTeamRepository()),
       (this.userRepository = new UserRepository());
   }
 
-  createFreelancer = async (obj: any) => {
+  create = async (obj: ICreateFreelancer) => {
     try {
       const user = await this.userRepository.findById(obj.userId);
 
-      const hasFreelancerProfile = user.teams.find(
-        (team: any) => team.is_freelancer === true
-      )
-        ? true
-        : false;
+      const hasFreelancerProfile = user.teams.find((team: TeamORM) => team.is_freelancer === true) ? true : false;
 
       if (hasFreelancerProfile) {
         return {
@@ -31,7 +37,7 @@ export class TeamService {
         };
       }
 
-      const team = {
+      const freelancerData = {
         id: user.id,
         name: `${user.first_name} ${user.last_name}`,
         nickname: user.nickname,
@@ -44,7 +50,7 @@ export class TeamService {
         sub_categories: obj.sub_categories,
       };
 
-      const teamEntity = await this._.create(team);
+      const freelancer = await this._.create(freelancerData);
 
       const userTeam = {
         id: user.id,
@@ -52,16 +58,20 @@ export class TeamService {
           id: user.id,
         },
         team: {
-          id: teamEntity.id,
+          id: freelancer.id,
         },
         is_active: true,
         is_admin: true,
         is_freelancer: true,
       };
 
-      const userTeamEntity = await this.userTeamRepository.create(userTeam);
+       await this.userTeamRepository.create(userTeam);
 
-      return team;
+       return {
+        data: freelancer,
+        message: "Prestador cadastrado com sucesso",
+        statusCode: 200,
+      };
     } catch (error) {
       return {
         message: error.message,
@@ -75,6 +85,12 @@ export class TeamService {
     try {
       const entityExists = await this.userRepository.findById(id);
       if (entityExists) {
+        entityExists.teams.map((userteam: any) => {
+          userteam.team.categories.map((category: any) => {
+            category.sub_categories = undefined;
+          });
+        });
+
         return {
           data: entityExists,
           message: "Prestador encontrado com sucesso",
@@ -98,7 +114,20 @@ export class TeamService {
 
   list = async () => {
     try {
-      return await this.userRepository.listWhere("teams", "");
+      const freelancers = await this.userRepository.listWhere("teams", "");
+
+      freelancers.map((freelancer : any) => {
+        freelancer.teams.map((userteam: any) => {
+          userteam.team.categories.map((category: any) => {
+            category.sub_categories = undefined;
+          });
+        });
+      })
+      return {
+        data: freelancers,
+        message: "Prestadores encontrados com sucesso",
+        statusCode: 200,
+      };
     } catch (error) {
       return {
         message: error.message,
@@ -114,7 +143,7 @@ export class TeamService {
 
       if (!entityExists) {
         return {
-          message: "Não foi possivel encontrar o time",
+          message: "Não foi possivel encontrar o freelancer",
           statusCode: 200,
         };
       }
@@ -153,13 +182,13 @@ export class TeamService {
 
       if (!entityExists)
         return {
-          message: "Não foi possivel encontrar o time",
+          message: "Não foi possivel encontrar o freelancer",
           statusCode: 200,
         };
 
       if (entityExists.is_active === false)
         return {
-          message: "O time já está desativado",
+          message: "O freelancer já está desativado",
           statusCode: 200,
         };
 
@@ -168,7 +197,7 @@ export class TeamService {
       await this._.update(entityExists);
 
       return {
-        message: "Time desativado com sucesso",
+        message: "freelancer desativado com sucesso",
         statusCode: 200,
       };
     } catch (error) {

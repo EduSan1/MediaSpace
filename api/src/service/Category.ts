@@ -1,3 +1,4 @@
+import CategoryDomain from "../domain/Category";
 import { CategoryORM } from "../entity/Category";
 import { CategoryRepository } from "../repository/Category";
 
@@ -9,7 +10,7 @@ export class CategoryService {
         this._ = repo
     }
 
-    create = async (entity: any) => {
+    create = async (entity: CategoryDomain) => {
         try {
             return await this._.create(entity)
         } catch (error) {

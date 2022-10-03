@@ -1,4 +1,5 @@
 import { AppDataSource } from "../data-source"
+import UserDomain from "../domain/User"
 import { TeamORM } from "../entity/team"
 import { UserORM } from "../entity/User"
 
@@ -10,7 +11,7 @@ export class UserRepository {
         this._ = AppDataSource.getRepository(UserORM)
     }
 
-    create = async (entity : any) => {
+    create = async (entity : UserDomain) => {
         return await this._.save(entity)
     }
 
@@ -43,7 +44,7 @@ export class UserRepository {
         })
     }
 
-    update = async (entity : any) => {
+    update = async (entity : UserORM) => {
         return await this._.save(entity)
     }
 

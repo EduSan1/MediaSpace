@@ -1,8 +1,9 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../data-source"
+import { TeamDomain } from "../domain/Team"
 import { TeamORM } from "../entity/team"
 
-export class TeamRepository {
+export class FreelancerRepository {
     private _ : any
 
     constructor() {
@@ -41,7 +42,7 @@ export class TeamRepository {
         })
     }
 
-    update = async (entity : any) => {
+    update = async (entity : TeamORM) => {
         return await this._.save(entity)
     }
 

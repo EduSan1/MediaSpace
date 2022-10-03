@@ -161,14 +161,14 @@ export class UserService {
                 
                 return {
                     message: "Login realizado com sucesso",
-                    logged: true,
+                    is_logged: true,
                     statusCode: 200,
                     userDetails: userJwt
                 }
             } else {
                 return {
                     message: "Senha incorreta",
-                    logged: false,
+                    is_logged: false,
                     statusCode: 200
                 }
             }
@@ -202,6 +202,7 @@ export class UserService {
                 message: "Usuário desabilitado com sucesso",
                 statusCode: 200
             };
+
         } catch (error) {
             return {
                 message: error.message,
