@@ -24,7 +24,7 @@ const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, c
 
         <>
             <div className="containerInput">
-                <div className="containerLabel">
+                <div className="container_label">
                     <label>{label}</label>
                 </div>
                 <div className="input_icon_login">
