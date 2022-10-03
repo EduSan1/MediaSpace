@@ -7,6 +7,7 @@ import { HiIdentification } from "react-icons/hi";
 import { RiCalendar2Fill } from "react-icons/ri"
 import InputRadio from "../utils/Input/InputRadio";
 
+
 const RegisterSpace = () => {
 
     const [inputs, setInputs] = React.useState({
@@ -27,6 +28,7 @@ const RegisterSpace = () => {
         })
     }
 
+
     //const teste = inputs.first_name.match("^[A-z]{1,50}$");
     const teste = inputs.first_name.replace("[0-9]", "");
 
@@ -39,6 +41,7 @@ const RegisterSpace = () => {
     //useEffect(() => {
     //  console.log(inputs)
     //}, [inputs])
+
 
 
     return (
