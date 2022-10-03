@@ -19,10 +19,9 @@
     font-size: 24px;
     line-height: 29px;
 
-
 }
 
-.InputBtnLogin:hover {
+.InputBtnLogin, .input_btn_cadastrar:hover {
     background-color: $dark-purple;
     transition: 385ms;
 }
@@ -37,4 +36,23 @@
     background-color: $primary-purple;
     color: #fff;
     border: none;
+}
+
+.input_btn_upload_photo{
+    width: 100px;
+    height: 25px;
+    border-radius: 10px;
+    border-color: $dark-purple;
+    color: $dark-purple;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.input_btn_remove_photo{
+    width: 100px;
+    height: 25px;
+    background-color: transparent;
+    border: transparent;
+    color: $dark-purple;
+    cursor: pointer;
 }

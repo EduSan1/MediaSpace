@@ -14,14 +14,23 @@
 
     //pages
     @import "./pages/SpaceBackground/index.scss";
-    @import "./pages/Register/alignmentInputs.scss";
+    @import "./pages/SucessRegister/index.scss";
+    @import "./pages/SendingEmailRecovery/index.scss";
+    @import "./pages/ProviderUserRegister/indes.scss";
+    @import "./pages/RecoveryPassword/index.scss";
 
 
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
     @import "./components/SpacebackgroundLogin/indexLogin.scss";
     @import "./components/utils/Button/btnInput.scss";
-
+    @import "./components/ConcludeRegister/titleMain.scss";
+    @import "./components/ConcludeRegister/indexConclude.scss";
+    @import "./components/SendingEmailRecovery/indexContainerDiv.scss";
+    @import "./components/ProviderUserRegister/indes.scss";
+    @import "./components/RecoveryPassWord/index.scss";
+    @import "./components/Register/alignmentInputs.scss";
+    
  
    
 }

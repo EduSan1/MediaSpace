@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 80%;
 }
 
 .input_icon_login {
@@ -36,11 +37,12 @@
     .IconNormal {
         display: flex;
         width: 10%;
-        height: 60%;
+        height: 35%;
         justify-content: center;
         align-items: center;
         position: absolute;
         left: 10px;
+        top: 6px;
     }
 
     .IconLogin {
@@ -50,7 +52,7 @@
     }
 }
 
-.containerLabel {
+.container_label {
     font-size: 1rem;
     font-family: $light-font;
     font-weight: bolder;
@@ -76,4 +78,34 @@
 
     color: red;
 
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.container_input_radio {
+    display: flex;
+    flex-direction: column;
+}
+
+.container_options {
+    display: flex;
+    font-family: $light-font;
+    color: #979797;
+    gap: 10px;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: 1px double #B275FF;
+    margin-inline: 5px;
+}
+
+input[type="radio"]:checked {
+    background-color: #B275FF;
 }

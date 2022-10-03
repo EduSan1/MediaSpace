@@ -1,0 +1,12 @@
+
+
+.Title-Main {
+    display: flex;
+    font-size: clamp(4.5rem, 4vh, 4.5rem);
+    font-family: $light-font;
+    font-weight: bold;
+    color: $primary-purple;
+    margin-bottom: 1px;
+   white-space: nowrap;
+    
+  }

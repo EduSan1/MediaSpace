@@ -1,0 +1,96 @@
+#div-ConcludeRegister {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items:center;
+    padding-top: 7%;
+    flex-direction: column;
+
+
+
+    .Container-Conclude-Register {
+        display: flex;
+        width: 50%;
+        height: 60%;
+        flex-direction: column;
+        align-items: center;
+        gap: 4%;
+     
+
+       span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding-left: 1%;
+        
+       }
+
+
+
+
+        h3 {
+            display: flex;
+            width: 40.813rem;
+            height: 30%;
+            font-size: clamp(1.5rem, 3vh, 3.25rem);
+            font-family: $light-font;
+            font-weight: bold;
+            color: $dark-purple;
+            word-wrap: break-word;
+            white-space: inherit;
+           
+
+
+
+        }
+
+        .imgEmail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding-top: 5%;
+
+
+
+            img {
+                width: 100%;
+                height: 100%;
+
+            }
+        }
+
+    }
+
+
+    .Back_Login{
+        width: 100%;
+        height: 10%;
+        margin-top: 10%;
+        align-items: flex-end;
+        justify-content: end;
+        display: flex;
+        gap: 5px;
+        padding-right: 10px;
+
+
+        h3{
+            width: auto;
+            white-space: nowrap;
+            font-size: clamp(2rem, 3vh, 1.5rem);
+            font-family: $light-font;
+             font-weight: 100;
+            
+        }
+    }
+
+    .Back_Login h3:last-child{
+        color: $dark-purple;
+        font-weight: 400;
+    }
+
+
+}
