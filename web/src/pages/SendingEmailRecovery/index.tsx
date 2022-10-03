@@ -23,7 +23,7 @@ const SendingEmailRecovery = () => {
 
                 <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnSendEmail'} valueBtn={'Continuar'}
                     onClick={() => {
-                          console.log('next page')
+                          console.log('next page');
                     }} />
 
 
