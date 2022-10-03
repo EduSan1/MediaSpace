@@ -30,13 +30,9 @@ const RegisterSpace = () => {
 
 
     //const teste = inputs.first_name.match("^[A-z]{1,50}$");
-    const teste = inputs.first_name.replace("[0-9]", "");
+    //const teste = ;
 
-    if (teste == null) {
-        console.log()
-    }
-
-    console.log(teste);
+    //console.log(inputs.first_name.replace("1", " "));
 
     //useEffect(() => {
     //  console.log(inputs)
