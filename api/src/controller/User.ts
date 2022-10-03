@@ -5,7 +5,7 @@ import UserDomain from "../domain/User";
 
 export class UserController {
 
-    private repository : any
+    private repository : UserRepository
     private service    : UserService
 
     constructor() {

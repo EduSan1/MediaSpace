@@ -5,7 +5,7 @@ const mailer = require("nodemailer")
 export class Mail {
 
 
-    confirmRegister = async (userMail : string, userName : string) => {
+    confirmRegister = async (userMail : string, id : string, userName : string) => {
         try {
             const transporter = await mailer.createTransport({
                 service: "gmail",
@@ -16,11 +16,13 @@ export class Mail {
                 }
             })
 
+            const jwtID = jwt.sign({id : id}, APP_SECRET, {expiresIn: '1d',})
+
             const mail = await transporter.sendMail({
                 from: `"Media Space"`,
                 to: userMail,
                 subject: "Confirme seu cadastro",
-                text: `Olá ${userName}, acesse o link para confirmar seu cadastro! \n http://localhost:3000`,
+                text: `Olá ${userName}, acesse o link para confirmar seu cadastro! \n http://localhost:3000/confirmRegister?user=${jwtID}`,
             })
     
             return mail

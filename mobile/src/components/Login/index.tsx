@@ -31,7 +31,7 @@ export const Login = () => {
 
         api.post("/User/login", userLogin).then((res: any) => {
 
-            if (res.data.logged)
+            if (res.data.is_logged)
                 ToastAndroid.show(res.data.message, 10)
             else {
                 setHasError(true)

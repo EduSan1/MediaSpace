@@ -64,7 +64,7 @@ export class UserService {
             }
 
             const mailer = new Mail()
-            await mailer.confirmRegister(entity.mail, entity.first_name)
+            await mailer.confirmRegister(entity.mail, entity.id, entity.first_name)
 
 
             return {
@@ -161,14 +161,14 @@ export class UserService {
                 
                 return {
                     message: "Login realizado com sucesso",
-                    logged: true,
+                    is_logged: true,
                     statusCode: 200,
                     userDetails: userJwt
                 }
             } else {
                 return {
                     message: "Senha incorreta",
-                    logged: false,
+                    is_logged: false,
                     statusCode: 200
                 }
             }
@@ -197,10 +197,12 @@ export class UserService {
             entityExists.is_active = false;
 
             await this._.update(entityExists);
+            
             return {
                 message: "Usuário desabilitado com sucesso",
                 statusCode: 200
             };
+
         } catch (error) {
             return {
                 message: error.message,

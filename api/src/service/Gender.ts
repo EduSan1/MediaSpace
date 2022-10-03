@@ -1,3 +1,4 @@
+import GenderDomain from "../domain/Gender"
 import { GenderORM } from "../entity/Gender"
 import { GenderRepository } from "../repository/Gender"
 
@@ -8,7 +9,7 @@ export class GenderService {
         this._ = repo
     }
 
-    create = async (entity: any) => {
+    create = async (entity: GenderDomain) => {
         try {
             return await this._.create(entity)
         } catch (error) {

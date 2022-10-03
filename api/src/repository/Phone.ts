@@ -9,7 +9,7 @@ export class PhoneRepository {
         this._ = AppDataSource.getRepository(PhoneORM)
     }
 
-    create = async (entity : any) => {
+    create = async (entity : PhoneORM) => {
         return await this._.save(entity)
     }
 
