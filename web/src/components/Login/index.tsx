@@ -93,7 +93,7 @@ const LoginSpace = () => {
 
   const loginUser = async () => {
 
-    await api.post("/User/login", diceLogin).then((res) => {
+    await api.post("/user/login", diceLogin).then((res) => {
       const data = res.data;
       console.log(res.data.logged)
 
