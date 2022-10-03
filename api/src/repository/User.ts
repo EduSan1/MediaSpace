@@ -1,4 +1,5 @@
 import { AppDataSource } from "../data-source"
+import { TeamORM } from "../entity/team"
 import { UserORM } from "../entity/User"
 
 export class UserRepository {
@@ -17,7 +18,7 @@ export class UserRepository {
         return await this._.find(UserORM)
     }
 
-    listWhere =  async (key: string, value: any) => {
+    listWhere =  async (key:  keyof typeof UserORM | keyof typeof TeamORM, value: any) => {
         return await this._.find({
             where :  {
                 [key] : value
@@ -26,7 +27,7 @@ export class UserRepository {
     }
 
 
-    findByWhere =  async (key: string, value: any) => {
+    findByWhere =  async (key: keyof typeof UserORM | keyof typeof TeamORM, value: any) => {
         return await this._.findOne({
             where :  {
                 [key] : value

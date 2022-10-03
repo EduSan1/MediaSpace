@@ -33,7 +33,7 @@ export class TeamORM {
     @Column({default : false})
     is_freelancer : boolean
 
-    @OneToMany(() => UserTeamORM, userTeam => userTeam.team, {eager : true})
+    @OneToMany(() => UserTeamORM, userTeam => userTeam.team)
     users : UserTeamORM[]
 
     @ManyToMany(() => CategoryORM, {eager : true})

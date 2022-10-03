@@ -11,7 +11,7 @@ export class UserTeamORM {
     @ManyToOne(() => UserORM, user => user.teams)
     user : UserORM[]
 
-    @ManyToOne(() => TeamORM, team => team.users)
+    @ManyToOne(() => TeamORM, team => team.users, {eager : true})
     team : TeamORM[]
 
     @Column({default : true})

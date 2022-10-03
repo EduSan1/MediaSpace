@@ -6,7 +6,7 @@ import { UserTeamRepository } from "../repository/UserTeam";
 export class TeamService {
   private _: TeamRepository;
   private userTeamRepository: UserTeamRepository;
-  private userRepository: UserRepository;
+  private userRepository: any;
 
   constructor(repo: TeamRepository) {
     (this._ = repo),
@@ -16,16 +16,19 @@ export class TeamService {
 
   createFreelancer = async (obj: any) => {
     try {
-
       const user = await this.userRepository.findById(obj.userId);
 
-      const hasFreelancerProfile =  user.teams.find((team: any) => team.is_freelancer === true) ? true : false
+      const hasFreelancerProfile = user.teams.find(
+        (team: any) => team.is_freelancer === true
+      )
+        ? true
+        : false;
 
-      if(hasFreelancerProfile) {
-            return {
-                message: "O usuário ja possui um perfil de freelancer",
-                statusCode: 200
-              };
+      if (hasFreelancerProfile) {
+        return {
+          message: "O usuário ja possui um perfil de freelancer",
+          statusCode: 200,
+        };
       }
 
       const team = {
@@ -59,7 +62,6 @@ export class TeamService {
       const userTeamEntity = await this.userTeamRepository.create(userTeam);
 
       return team;
-
     } catch (error) {
       return {
         message: error.message,
@@ -71,21 +73,17 @@ export class TeamService {
 
   getById = async (id: string) => {
     try {
-      const entityExists = await this._.findById(id);
+      const entityExists = await this.userRepository.findById(id);
       if (entityExists) {
-        entityExists.categories.map((category: any) => {
-          category.subCategory = undefined;
-        });
-
         return {
           data: entityExists,
-          message: "Time encontrado com sucesso",
+          message: "Prestador encontrado com sucesso",
           statusCode: 200,
         };
       } else {
         return {
           data: entityExists,
-          message: "Não foi possivel encontrar o time",
+          message: "Não foi possivel encontrar o prestador",
           statusCode: 200,
         };
       }
@@ -121,13 +119,12 @@ export class TeamService {
         };
       }
       if (entity.categories) {
-        entityExists.categories = []
+        entityExists.categories = [];
       }
 
       if (entity.sub_categories) {
-        entityExists.sub_categories = []
+        entityExists.sub_categories = [];
       }
-
 
       await this._.update(entityExists);
 

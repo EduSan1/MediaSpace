@@ -197,6 +197,7 @@ export class UserService {
             entityExists.is_active = false;
 
             await this._.update(entityExists);
+            
             return {
                 message: "Usuário desabilitado com sucesso",
                 statusCode: 200
