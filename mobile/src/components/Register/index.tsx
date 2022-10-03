@@ -49,10 +49,10 @@ export const Register = () => {
             showsHorizontalScrollIndicator={true}>
 
             <View style={styles.View}>
-                <LoginInput name="name" iconName="person-outline" value={userRegister.name} handleChange={handleChange} hasError={hasError} title="Nome"/>
-                <LoginInput name="surname" iconName="person-outline" value={userRegister.surname} handleChange={handleChange} hasError={hasError} title="Sobrenome"/>
-                <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail"/>
-                <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" /> 
+                <LoginInput name="name" iconName="person-outline" value={userRegister.name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50}/>
+                <LoginInput name="surname" iconName="person-outline" value={userRegister.surname} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150}/>
+                <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250}/>
+                <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} /> 
 
                 <View style={styles.scrollView}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -61,10 +61,10 @@ export const Register = () => {
             </View>
 
             <View style={styles.View}>
-                <LoginInput name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasError} title="Nickname"/>
-                <LoginInput name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasError} title="CPF"/>
-                <LoginInput name="birth" iconName="today" value={userRegister.birth} handleChange={handleChange} hasError={hasError} title="Data de nascmento"/>
-                <LoginInput name="cell" iconName="phone" value={userRegister.cell} handleChange={handleChange} hasError={hasError} title="Celular"/>
+                <LoginInput name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasError} title="Nickname" maxLength={25}/>
+                <LoginInput name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasError} title="CPF" maxLength={11}/>
+                <LoginInput name="birth" iconName="today" value={userRegister.birth} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={8}/>
+                <LoginInput name="cell" iconName="phone" value={userRegister.cell} handleChange={handleChange} hasError={hasError} title="Celular" maxLength={12}/>
                 
                 <View style={styles.scrollView}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -75,7 +75,7 @@ export const Register = () => {
 
             <View style={styles.View}>
                 <CheckboxComponent/>
-                <LoginInput name="biography" iconName="person-outline" value={userRegister.biography} handleChange={handleChange} hasError={hasError} title="Biografia"/> 
+                <LoginInput name="biography" iconName="person-outline" value={userRegister.biography} handleChange={handleChange} hasError={hasError} title="Biografia" maxLength={800}/> 
                 
                 <View style={styles.scrollView}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -84,9 +84,7 @@ export const Register = () => {
             </View>
 
             <View style={styles.View}>
-                <LoginInput name="genre" iconName="person-outline" value={userRegister.genre} handleChange={handleChange} hasError={hasError} title="Genero"/>
-                <LoginInput name="biography" iconName="person-outline" value={userRegister.biography} handleChange={handleChange} hasError={hasError} title="Biografia"/> 
-
+            
                 <View style={styles.scrollView}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
