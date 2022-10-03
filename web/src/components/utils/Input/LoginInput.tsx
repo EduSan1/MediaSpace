@@ -14,6 +14,7 @@ interface IInput {
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 
 
+
 }
 
 const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, className, hasError, valueLogin }: IInput) => {
