@@ -5,6 +5,7 @@ import ConcludeRegister from "../ConcludeRegister/ConcludeRegister";
 import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
 import ProviderUserRegister from "../../pages/ProviderUserRegister";
 import RecoveryPassword from "../../pages/Recoverypassword";
+import RegisterSpace from "../Register";
 
 
 const SpaceBackground = () => {
@@ -22,7 +23,8 @@ const SpaceBackground = () => {
          {/* <LoginSpace/> */}
         {/* <SucessRegister/> */}
         {/* <SendingEmailRecovery/> */}
-        <ProviderUserRegister/>
+        {/* <ProviderUserRegister/> */}
+        <RegisterSpace/>
         {/* <RecoveryPassword/> */}
         </main>
         
