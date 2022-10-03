@@ -4,6 +4,8 @@ import InputBtn from "../utils/Button/InputBtn";
 import { FaUserAlt } from "react-icons/fa";
 import { MdPhone, MdEmail, MdLock } from "react-icons/md";
 import { HiIdentification } from "react-icons/hi";
+import { RiCalendar2Fill } from "react-icons/ri"
+import InputRadio from "../utils/Input/InputRadio";
 
 const RegisterSpace = () => {
 
@@ -24,6 +26,15 @@ const RegisterSpace = () => {
             ...inputs, [event.target.name]: event.target.value
         })
     }
+
+    //const teste = inputs.first_name.match("^[A-z]{1,50}$");
+    const teste = inputs.first_name.replace("[0-9]", "");
+
+    if (teste == null) {
+        console.log()
+    }
+
+    console.log(teste);
 
     //useEffect(() => {
     //  console.log(inputs)
@@ -54,7 +65,11 @@ const RegisterSpace = () => {
 
                         <InputLogin valueLogin={inputs.password} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Senha"} icon={<MdLock className="IconLogin" />} name={"password"} label={"Senha"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.birth_date} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<FaUserAlt className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={"inputRegister"} />
+                        <InputLogin valueLogin={inputs.birth_date} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Fill className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={"inputRegister"} />
+
+                        <InputRadio label="Genero" options={["Feminino", "Masculino", "Outro"]} name="genero" />
+
+
                     </div>
                     <div className="alignment-inputs-by-divs">
                         <div className="profile-picture">
@@ -62,20 +77,20 @@ const RegisterSpace = () => {
                                 <label> Foto de perfil </label>
                             </div>
                             <div className="profile-picture-container">
-                                <div className="teste-foto">
-                                    <img src="./assets/img/register/profile.svg" alt="" />
-                                </div>
+
+                                <img className="picture-pattern" src="./assets/img/register/profile.svg" alt="" />
+
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => {
+                                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => {
                                         ("teste");
                                     }} />
                                     <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => {
                                         ("teste");
                                     }} />
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div className="container_text_area">
@@ -83,16 +98,16 @@ const RegisterSpace = () => {
                                 <label>Sobre</label>
                             </div>
                             <div>
-                                <textarea name="biography" id="biography" className="biography"></textarea>
+                                <textarea name="biography" id="biography" className="biography" ></textarea>
                             </div>
-                            
+
                         </div>
                         <div>
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
                                 ("teste");
                             }} />
                         </div>
-                       
+
                     </div>
 
 
