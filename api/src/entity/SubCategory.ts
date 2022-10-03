@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { CategoryORM } from "./Category";
+import { TeamORM } from "./team";
 
 @Entity({name : "tb_subcategory"})
 export class SubCategoryORM {
@@ -13,8 +14,11 @@ export class SubCategoryORM {
     @Column({default : true})
     is_active : boolean
 
-    @ManyToOne(() => CategoryORM, category => category.subCategory)
+    @ManyToOne(() => CategoryORM, category => category.sub_categories)
     category: CategoryORM
+
+    @ManyToMany(() => TeamORM)
+    teams : TeamORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

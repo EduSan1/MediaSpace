@@ -8,10 +8,10 @@ export class UserTeamORM {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @ManyToOne(() => UserORM, user => user.userTeam)
+    @ManyToOne(() => UserORM, user => user.teams)
     user : UserORM[]
 
-    @ManyToOne(() => TeamORM, team => team.teamUser)
+    @ManyToOne(() => TeamORM, team => team.users, {eager : true})
     team : TeamORM[]
 
     @Column({default : true})
@@ -19,6 +19,9 @@ export class UserTeamORM {
 
     @Column()
     is_admin : boolean
+
+    @Column()
+    is_freelancer : boolean
     
     @CreateDateColumn()
     create_at: Timestamp

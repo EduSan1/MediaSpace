@@ -1,4 +1,5 @@
 import { AppDataSource } from "../data-source";
+import GenderDomain from "../domain/Gender";
 import { GenderORM } from "../entity/Gender";
 
 export class GenderRepository {
@@ -9,7 +10,7 @@ export class GenderRepository {
         this._ = AppDataSource.getRepository(GenderORM)
     }
 
-    create = async (entity : any) => {
+    create = async (entity : GenderDomain) => {
         return await this._.save(entity)
     }
 
@@ -25,7 +26,7 @@ export class GenderRepository {
         })
     }
 
-    update = async (entity : any) => {
+    update = async (entity : GenderORM) => {
         return await this._.save(entity)
     }
 

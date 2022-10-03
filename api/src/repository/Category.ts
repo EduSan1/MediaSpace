@@ -1,4 +1,5 @@
 import { AppDataSource } from "../data-source"
+import CategoryDomain from "../domain/Category"
 import { CategoryORM } from "../entity/Category"
 
 export class CategoryRepository {
@@ -8,7 +9,7 @@ export class CategoryRepository {
         this._ = AppDataSource.getRepository(CategoryORM)
     }
 
-    create = async (entity : any) => {
+    create = async (entity : CategoryDomain) => {
         return await this._.save(entity)
     }
 
@@ -41,7 +42,7 @@ export class CategoryRepository {
         })
     }
 
-    update = async (entity : any) => {
+    update = async (entity : CategoryORM) => {
         return await this._.save(entity)
     }
 
