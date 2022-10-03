@@ -17,7 +17,7 @@ export class UserRepository {
         return await this._.find(UserORM)
     }
 
-    listWhere =  async (key: keyof typeof UserORM, value: any) => {
+    listWhere =  async (key: string, value: any) => {
         return await this._.find({
             where :  {
                 [key] : value
@@ -26,7 +26,7 @@ export class UserRepository {
     }
 
 
-    findByWhere =  async (key: keyof typeof UserORM, value: any) => {
+    findByWhere =  async (key: string, value: any) => {
         return await this._.findOne({
             where :  {
                 [key] : value

@@ -31,7 +31,7 @@ export class TeamORM {
     is_active : boolean
 
     @Column({default : false})
-    is_personal : boolean
+    is_freelancer : boolean
 
     @OneToMany(() => UserTeamORM, userTeam => userTeam.team, {eager : true})
     users : UserTeamORM[]

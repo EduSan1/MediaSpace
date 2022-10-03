@@ -1,5 +1,5 @@
 import { TeamORM } from "../entity/team";
-import { TeamRepository } from "../repository/Team";
+import { TeamRepository } from "../repository/Freelancer";
 import { UserRepository } from "../repository/User";
 import { UserTeamRepository } from "../repository/UserTeam";
 
@@ -29,6 +29,7 @@ export class TeamService {
       }
 
       const team = {
+        id: user.id,
         name: `${user.first_name} ${user.last_name}`,
         nickname: user.nickname,
         description: user.description,
@@ -43,6 +44,7 @@ export class TeamService {
       const teamEntity = await this._.create(team);
 
       const userTeam = {
+        id: user.id,
         user: {
           id: user.id,
         },
@@ -56,21 +58,8 @@ export class TeamService {
 
       const userTeamEntity = await this.userTeamRepository.create(userTeam);
 
-      //teste listagem relacionamento
-    //   const userTeamEntity2 = await this.userTeamRepository.findById(
-    //     userTeamEntity.id
-    //   );
-
-    //   userTeamEntity2.user.teams = undefined;
-    //   userTeamEntity2.team.users = undefined;
-
       return team;
 
-      //   return {
-      //     data: team,
-      //     message: "Time criado com sucesso",
-      //     statusCode: 200,
-      //   };
     } catch (error) {
       return {
         message: error.message,
@@ -111,15 +100,7 @@ export class TeamService {
 
   list = async () => {
     try {
-      const entities = await this._.list();
-
-      entities.map((team: any) => {
-        team.categories.map((category: any) => {
-          category.subCategory = undefined;
-        });
-      });
-
-      return entities;
+      return await this.userRepository.listWhere("teams", "");
     } catch (error) {
       return {
         message: error.message,
@@ -139,6 +120,16 @@ export class TeamService {
           statusCode: 200,
         };
       }
+      if (entity.categories) {
+        entityExists.categories = []
+      }
+
+      if (entity.sub_categories) {
+        entityExists.sub_categories = []
+      }
+
+
+      await this._.update(entityExists);
 
       for (const [key, value] of Object.entries(entity)) {
         entityExists[key] = value;
