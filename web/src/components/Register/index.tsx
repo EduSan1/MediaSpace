@@ -11,6 +11,24 @@ import { storage } from "../../constants/firebase";
 
 
 const RegisterSpace = () => {
+    
+    const cpfMask = (value:any) => {
+        return value
+          .replace(/\D/g, '') 
+          .replace(/(\d{3})(\d)/, '$1.$2') 
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+          .replace(/(-\d{2})\d+?$/, '$1') 
+      }
+
+    const phoneMask = (value:any) =>{
+        return value
+            .replace(/\D/g, '')
+            .replace(/^(\d{4})(\d)/, "($1) $2")
+            .replace(/(\d{5})(\d{4}).*/, "$1-$2");
+    }
+
+    
 
     const [inputs, setInputs] = React.useState({
         first_name: '',
@@ -21,9 +39,12 @@ const RegisterSpace = () => {
         profile_picture: '',
         cpf: '',
         mail: '',
+        gender: '',
         password: '',
         biography: '',
     })
+
+
     const onlyLetters = new RegExp("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ']+$");
 
 
@@ -33,9 +54,19 @@ const RegisterSpace = () => {
         })
     }
 
-    const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) =>{
+        setInputs({
+            ...inputs, [event.target.name]: cpfMask(event.target.value)
+        })
+    }
 
-        //event.target.value
+    const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputs({
+            ...inputs, [event.target.name]: phoneMask(event.target.value)
+        })
+    }
+
+    const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         const validation = onlyLetters.test(event.target.value)
 
@@ -47,15 +78,9 @@ const RegisterSpace = () => {
         }
     }
 
-
-    const teste = inputs.first_name.match("^[A-z]{1,50}$");
-    //const teste = ;
-
-    //console.log(inputs.first_name.replace("1", " "));
-
-    //useEffect(() => {
-    //  console.log(inputs)
-    //}, [inputs])
+    useEffect(() => {
+     console.log(inputs)
+    }, [inputs])
 
     const uploadImage = (event :  any ) => {
         event.preventDefault();
@@ -96,15 +121,15 @@ const RegisterSpace = () => {
                 </div>
                 <div className="container_inputs">
                     <div className="alignment-inputs-by-divs">
-                        <InputLogin valueLogin={inputs.first_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Nome"} icon={<FaUserAlt className="IconLogin" />} name={"first_name"} label={"Nome"} className={"inputRegister"} />
+                        <InputLogin valueLogin={inputs.first_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName((event)) }} typeInput={"text"} placeholder={"Nome"} icon={<FaUserAlt className="IconLogin" />} name={"first_name"} label={"Nome"} className={"inputRegister"} />
 
                        <InputLogin valueLogin={inputs.last_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Sobrenome"} icon={<FaUserAlt className="IconLogin" />} name={"last_name"} label={"Sobrenome"} className={"inputRegister"} /> 
 
                         <InputLogin valueLogin={inputs.nickname} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<FaUserAlt className="IconLogin" />} name={"nickname"} label={"Nickname"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.phone} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<MdPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={"inputRegister"} />
+                        <InputLogin valueLogin={inputs.phone} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<MdPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.cpf} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={"inputRegister"} /> 
+                        <InputLogin valueLogin={inputs.cpf} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={"inputRegister"} /> 
                     </div>
 
                     <div className="alignment-inputs-by-divs">

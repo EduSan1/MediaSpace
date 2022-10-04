@@ -16,7 +16,7 @@ const InputRadio = ({ label, options, name }: IInputRadio) => {
             <div className="container_options">
                {options.map((option) => (
                   <label>
-                     <input type="radio" value={option} name={name} />
+                     <input type="radio" value={option} name={name}/>
                      {option}
                   </label>
                ))}
