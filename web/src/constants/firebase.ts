@@ -1,24 +1,17 @@
-import React from "react";
-
-
-//Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getStorage } from 'firebase/storage';
-
-
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
-// [https://firebase.google.com/docs/web/setup#available-libraries](https://firebase.google.com/docs/web/setup#available-libraries)
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-apiKey: "AIzaSyDikG-9Z4PnUDQnNyJgUG_ft94q1PqsHVI",
-authDomain: "[mediaspace-f3421.firebaseapp.com](http://mediaspace-f3421.firebaseapp.com/)",
-projectId: "mediaspace-f3421",
-storageBucket: "[mediaspace-f3421.appspot.com](http://mediaspace-f3421.appspot.com/)",
-messagingSenderId: "219667366921",
-appId: "1:219667366921:web:d7264c2fcbc63ae2c7a4d8",
-measurementId: "G-S4DG3606FQ"
+  apiKey: "AIzaSyDOYnJlYJwgzTBVXok_wKhqN3J442SP5kU",
+  authDomain: "mediaspace-35054.firebaseapp.com",
+  projectId: "mediaspace-35054",
+  storageBucket: "mediaspace-35054.appspot.com",
+  messagingSenderId: "324674130858",
+  appId: "1:324674130858:web:b843bd9c7da057a5e351d3"
 };
 
 // Initialize Firebase
