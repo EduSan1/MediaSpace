@@ -9,18 +9,17 @@ const ConfirmEmailWarningPage = () => {
 
         <main id="ConfirmEmailPage">
             <span className="logo_Name_pageConfirmEmail">
-                <ImageComponent alt="" src="../assets/img/MediaSpacenewlogo.svg" className="img_logo_mediaSpace_warningPage" />
+                <ImageComponent alt="" src="../assets/img/rocketart.png" className="img_logo_mediaSpace_warningPage" />
             </span>
 
-            <span className="tittle">
-                  <h1>  Seu Email Foi Autenticado. </h1> 
-            </span>
-               
-           
 
-            <span className="img_email_span">
+            <div className="tittle_and_img">
+                <h1 >  Seu Email Foi Autenticado. </h1>
                 <ImageComponent alt="" src="../assets/img/Email.svg" className="img_email" />
-            </span>
+
+            </div>
+
+
 
 
 

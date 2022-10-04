@@ -1,0 +1,97 @@
+.RecoveringPasswordPage{
+
+    .Container_logo{
+        display: flex;
+        width: 50%;
+        height: 100%;
+        
+
+
+        .div_img_logo{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content:center;
+            align-items: center;
+            padding-right: 5%;
+
+
+
+
+            img {
+                display: flex;
+                width: 90%;
+                height: 80%;
+
+
+            }
+        }
+      
+    }
+
+
+  .Container_Input{
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    padding-top: 5%;
+    padding-left: 1%;
+
+    h3{
+        font: clamp(1rem, 3vw, 1rem) $light-font;
+        color: $dark-purple;
+        
+    }
+      
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        margin-bottom: 20px;
+    }
+
+    .Input_one,
+    .Input_two{
+        width: clamp(100%, 3vw, 70%);
+        height: 70%;
+        border: solid 1px $primary-purple;
+        border-radius: 0.5rem;
+    }
+    p{
+        font-family: $light-font ;
+        color: #9E9E9E;
+        font-style: bold;
+        margin-bottom: 2%;
+    }
+
+
+    .hasErrorInput{
+        border: solid 1px red;
+    }
+  }
+
+  .Input_btn{
+    width: 100%;
+    height: 30%;
+    justify-content: start;
+    align-items: flex-start;
+    padding-left: 1%;
+
+
+
+    .Next_NewPassWord{
+
+        width: clamp(200px,2vw, 100px);
+        height: 30%;
+        background-color: $primary-purple;
+        color: #fff;
+        border: none;
+        border-radius: 2rem;
+
+    }
+  }
+    
+}

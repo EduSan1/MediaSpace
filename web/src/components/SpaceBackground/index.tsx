@@ -7,6 +7,8 @@ import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
 import ProviderUserRegsiter from "../../pages/ProviderUserRegister";
 import RecoveryPassword from "../../pages/Recoverypassword";
 import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
+import PasswordWarningPage from "../../pages/PasswordWarningPage";
+import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 
 
 const SpaceBackground = () => {
@@ -26,7 +28,9 @@ const SpaceBackground = () => {
         {/* <SendingEmailRecovery/> */}
         {/* <ProviderUserRegsiter/> */}
         {/* <RecoveryPassword/> */}
-        <ConfirmEmailWarningPage/>
+        {/* <ConfirmEmailWarningPage/> */}
+        {/* <PasswordWarningPage/> */}
+        <RecoveringPasswordPage/>
         </main>
         
       
