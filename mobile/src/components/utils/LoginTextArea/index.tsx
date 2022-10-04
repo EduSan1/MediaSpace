@@ -28,11 +28,11 @@ export const LoginTextArea = ({ title, value, name, handleChange, maxLength }: I
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.2,
+        height: Dimensions.get('window').height * 0.2 ,
         borderWidth: 2,
         borderRadius: 10,
         paddingLeft: 10,
-        marginBottom: 10,
+        marginBottom: 5,
         borderColor: "#D3C5F8",
         display: "flex",
         justifyContent: "center",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        flexDirection: "row"
+        flexDirection: "row",
     },
     inputTitle: {
         backgroundColor: "#fff",

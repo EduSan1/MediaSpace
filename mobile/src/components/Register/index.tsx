@@ -4,6 +4,7 @@ import { LoginButton } from "../utils/LoginButton";
 import { LoginInput } from "../utils/LoginInput";
 import { CheckboxComponent } from "../utils/LoginCheckBox";
 import { LoginTextArea } from "../utils/LoginTextArea";
+import { LoginImage } from "../utils/LoginImage";
 
 export const Register = () => {
 
@@ -50,7 +51,8 @@ export const Register = () => {
             gender: {
                 "id": check
             }
-        })}
+        })
+    }
         , [check]
     )
 
@@ -68,19 +70,26 @@ export const Register = () => {
                     <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                     <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
 
-                    <View style={styles.scrollView}>
+                    <View style={styles.iconViewEnd}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
                 </View>
 
                 <View style={styles.View}>
+
+
+                <View style={styles.iconViewStart}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                    </View>
+
                     <LoginInput name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasError} title="Nickname" maxLength={25} />
                     <LoginInput name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasError} title="CPF" maxLength={11} />
                     <LoginInput name="birth" iconName="today" value={userRegister.birth} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={8} />
                     <LoginInput name="cell" iconName="phone" value={userRegister.cell} handleChange={handleChange} hasError={hasError} title="Celular" maxLength={12} />
 
-                    <View style={styles.scrollView}>
+                    <View style={styles.iconViewEnd}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
@@ -88,6 +97,11 @@ export const Register = () => {
 
 
                 <View style={styles.View}>
+
+                    <View style={styles.iconViewStart}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                    </View>
 
                     <View>
                         <Text>Gênero</Text>
@@ -100,7 +114,7 @@ export const Register = () => {
                     </View>
                     <LoginTextArea name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
 
-                    <View style={styles.scrollView}>
+                    <View style={styles.iconViewEnd}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
@@ -108,7 +122,9 @@ export const Register = () => {
 
                 <View style={styles.View}>
 
-                    <View style={styles.scrollView}>
+                    <LoginImage/>
+
+                    <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
@@ -119,7 +135,7 @@ export const Register = () => {
 
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
-                <LoginButton type="dark" action={confirm} title="Entrar" />
+                <LoginButton type="dark" action={confirm} title="Continuar" />
                 <Text style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
         </>
@@ -129,6 +145,13 @@ export const Register = () => {
 
 const styles = StyleSheet.create({
 
+    container: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.15,
+        display: 'flex',
+
+    },
+
     View: {
         width: Dimensions.get('window').width,
         minHeight: Dimensions.get('window').height * 0.30,
@@ -136,21 +159,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-evenly',
     },
-    View2: {
-        width: Dimensions.get('window').width,
-        minHeight: Dimensions.get('window').height,
-        backgroundColor: '#0005F4',
-        display: "flex",
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    container: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.15,
-        display: 'flex',
 
-    },
     text: {
         fontSize: 10,
         width: "55%",
@@ -168,21 +177,29 @@ const styles = StyleSheet.create({
 
     },
     scrollIcon: {
-        width: Dimensions.get('window').width * 0.061,
-        height: Dimensions.get('window').height * 0.045,
-        justifyContent: "space-between",
-        alignItems: "center",
-
-
+        width: Dimensions.get('window').width * 0.0641,
+        height: Dimensions.get('window').height * 0.0469,
+        
     },
-    scrollView: {
-        width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.3,
+    iconViewStart: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.35,
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-around",
+        flexDirection: "column",
+        position: "absolute",
+        padding: 10
+    },
+    iconViewEnd: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.35,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "space-around",
         flexDirection: "column",
-        position: "absolute"
+        position: "absolute",
+        padding: 10
     },
     text2: {
         width: Dimensions.get('window').width * 0.5,
@@ -195,15 +212,12 @@ const styles = StyleSheet.create({
         padding: 5
     },
     checkboxContainer: {
-        width: Dimensions.get('window').width * 0.7,
-        minHeight: Dimensions.get('window').height * 0.1,
+        width: Dimensions.get('window').width * 0.8,
+        minHeight: Dimensions.get('window').height * 0.01,
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        fontSize: 12
-
-
-
+        justifyContent: 'space-around',
+        color: '#B275FF'
     }
 
 

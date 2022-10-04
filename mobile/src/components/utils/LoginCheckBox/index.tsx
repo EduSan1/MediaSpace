@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckBox, Icon } from '@rneui/themed';
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import {} from 'react-native';
 
 type CheckboxComponentProps = {};
 
@@ -19,6 +19,9 @@ export const CheckboxComponent = ({ check, value, title, setCheck }: ILoginCheck
       title={title}
       checkedIcon="dot-circle-o"
       uncheckedIcon="circle-o"
+      uncheckedColor='#D3C5F8'
+      checkedColor='#D3C5F8'
+      size={20}
       checked={check === value ? true : false}
       onPress={() => setCheck(value)}
     />
