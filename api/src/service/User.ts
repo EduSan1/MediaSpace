@@ -262,7 +262,7 @@ export class UserService {
             await mailer.recoverPassword(mail,user.id, user.first_name)
 
             return {
-                message: "Não foi possivel encontrar o usuário",
+                message: "Email enviado com sucesso",
                 hasSend: true,
                 statusCode: 200
             };

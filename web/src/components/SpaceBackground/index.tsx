@@ -24,8 +24,8 @@ const SpaceBackground = () => {
           {/* <SucessRegister/> */}
           {/* <SendingEmailRecovery/> */}
           {/* <ProviderUserRegister/> */}
-          <RegisterSpace/>
-          {/* <RecoveryPassword /> */}
+          {/* <RegisterSpace/> */}
+          <RecoveryPassword />
         </main>
 
 
