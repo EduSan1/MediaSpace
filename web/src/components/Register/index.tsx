@@ -9,7 +9,6 @@ import { RiCalendar2Fill } from "react-icons/ri"
 import InputRadio from "../utils/Input/InputRadio";
 import { storage } from "../../constants/firebase";
 
-
 const RegisterSpace = () => {
     
     const cpfMask = (value:any) => {
@@ -24,11 +23,9 @@ const RegisterSpace = () => {
     const phoneMask = (value:any) =>{
         return value
             .replace(/\D/g, '')
-            .replace(/^(\d{4})(\d)/, "($1) $2")
+            .replace(/^(\d{2})(\d)/, "($1) $2")
             .replace(/(\d{5})(\d{4}).*/, "$1-$2");
     }
-
-    
 
     const [inputs, setInputs] = React.useState({
         first_name: '',
@@ -49,6 +46,9 @@ const RegisterSpace = () => {
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if(event.target.name === 'password'){
+            
+        }
         setInputs({
             ...inputs, [event.target.name]: event.target.value
         })
@@ -78,9 +78,9 @@ const RegisterSpace = () => {
         }
     }
 
-    useEffect(() => {
-     console.log(inputs)
-    }, [inputs])
+    // useEffect(() => {
+    //  console.log(inputs)
+    // }, [inputs])
 
     const uploadImage = (event :  any ) => {
         event.preventDefault();
@@ -111,8 +111,6 @@ const RegisterSpace = () => {
         
     }
 
-
-
     return (
         <>
             <div className="page_register">
@@ -140,8 +138,6 @@ const RegisterSpace = () => {
                         <InputLogin valueLogin={inputs.birth_date} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Fill className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={"inputRegister"} />
 
                         <InputRadio label="Genero" options={["Feminino", "Masculino", "Outro"]} name="genero" />
-
-
                     </div>
                     <div className="alignment-inputs-by-divs">
                         <div className="profile-picture">
@@ -160,7 +156,6 @@ const RegisterSpace = () => {
                                         ("teste");
                                     }} />
                                 </div>
-
                             </form>
                         </div>
                         <div className="container_text_area">
