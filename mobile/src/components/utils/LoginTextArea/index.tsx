@@ -1,34 +1,24 @@
 import React, { useState } from "react"
-import { Text, StyleSheet, View, TextInput, Dimensions, Pressable } from "react-native"
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Text, StyleSheet, View, TextInput, Dimensions } from "react-native"
 
-interface ILoginInput {
+interface ILoginTextArea {
     title: string
     value: string
     name: string
-    iconName: string
-    isPassword?: boolean
-    hasError: boolean
     handleChange: (text: string, name: string) => void
-    onClickIcon?: () => void
     maxLength: number
 }
 
-export const LoginInput = ({ title, value, name, iconName, handleChange, isPassword, onClickIcon, hasError, maxLength}: ILoginInput) => {
+export const LoginTextArea = ({ title, value, name, handleChange, maxLength }: ILoginTextArea) => {
 
     const [inputTitle, serInputTitle] = useState(false)
 
     return (
 
-        <View style={[styles.container , hasError ? { borderColor: "#FF6666" } : { borderColor: "#D3C5F8" }]}>
+        <View style={styles.container}>
             {inputTitle ? <Text style={styles.inputTitle} >{title}</Text> : null}
             <View style={styles.inputContainer}>
-                <TextInput maxLength={maxLength} secureTextEntry={isPassword} value={value} onChangeText={(text) => handleChange(text, name)} onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input} ></TextInput>
-
-                <Pressable style={styles.inputIcon} onPress={() => onClickIcon ? onClickIcon() : null}>
-                    <Icon size={Dimensions.get('window').height * 0.025} name={iconName} style={[styles.inputIcon , hasError ? { color: "#FF6666" } : { color: "#46307B" } ]} />
-                </Pressable>
-
+                <TextInput multiline={true} maxLength={maxLength} value={value} onChangeText={(text) => handleChange(text, name)} onFocus={() => serInputTitle(true)} placeholder={inputTitle ? "" : title} style={styles.input} ></TextInput>
             </View>
         </View>
 
@@ -38,11 +28,12 @@ export const LoginInput = ({ title, value, name, iconName, handleChange, isPassw
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.06,
+        height: Dimensions.get('window').height * 0.2,
         borderWidth: 2,
         borderRadius: 10,
         paddingLeft: 10,
         marginBottom: 10,
+        borderColor: "#D3C5F8",
         display: "flex",
         justifyContent: "center",
         position: "relative",
@@ -65,8 +56,9 @@ const styles = StyleSheet.create({
     },
     input: {
         width: Dimensions.get('window').width * 0.6,
-        height: Dimensions.get('window').height * 0.05,
+        height: Dimensions.get('window').height * 0.18,
         color: "#979797",
+        textAlignVertical: "top"
     },
     inputIcon: {
         width: Dimensions.get('window').width * 0.06,
