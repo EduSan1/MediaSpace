@@ -2,7 +2,7 @@ import React, { ReactHTMLElement, useEffect, useState } from "react";
 import InputLogin from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { FaUserAlt } from "react-icons/fa";
-import {getDownloadURL, ref, uploadBytesResumable, UploadTask} from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage'
 import { MdPhone, MdEmail, MdLock } from "react-icons/md";
 import { HiIdentification } from "react-icons/hi";
 import { RiCalendar2Fill } from "react-icons/ri"
@@ -10,17 +10,17 @@ import InputRadio from "../utils/Input/InputRadio";
 import { storage } from "../../constants/firebase";
 
 const RegisterSpace = () => {
-    
-    const cpfMask = (value:any) => {
-        return value
-          .replace(/\D/g, '') 
-          .replace(/(\d{3})(\d)/, '$1.$2') 
-          .replace(/(\d{3})(\d)/, '$1.$2')
-          .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-          .replace(/(-\d{2})\d+?$/, '$1') 
-      }
 
-    const phoneMask = (value:any) =>{
+    const cpfMask = (value: any) => {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+            .replace(/(-\d{2})\d+?$/, '$1')
+    }
+
+    const phoneMask = (value: any) => {
         return value
             .replace(/\D/g, '')
             .replace(/^(\d{2})(\d)/, "($1) $2")
@@ -41,20 +41,20 @@ const RegisterSpace = () => {
         biography: '',
     })
 
-
     const onlyLetters = new RegExp("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ']+$");
+    const passwordMask = new RegExp('^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$');
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.name === 'password'){
-            
-        }
         setInputs({
             ...inputs, [event.target.name]: event.target.value
         })
+
     }
 
-    const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) =>{
+    // regex senha ('^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$'
+
+    const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputs({
             ...inputs, [event.target.name]: cpfMask(event.target.value)
         })
@@ -70,19 +70,26 @@ const RegisterSpace = () => {
 
         const validation = onlyLetters.test(event.target.value)
 
-        console.log(event.target.value)
         if (validation) {
-               setInputs({
-            ...inputs, [event.target.name]: event.target.value
-        })
+            setInputs({
+                ...inputs, [event.target.name]: event.target.value
+            })
+        }
+    }
+
+    const validation = () => {
+        const validation = true
+
+        if (!passwordMask.test(inputs.password)) {
+            console.log('bota o formato de senha certo meu parceiro')
         }
     }
 
     // useEffect(() => {
-    //  console.log(inputs)
+    //     console.log(inputs)
     // }, [inputs])
 
-    const uploadImage = (event :  any ) => {
+    const uploadImage = (event: any) => {
         event.preventDefault();
         const file = event.target[0].files[0]
 
@@ -91,7 +98,7 @@ const RegisterSpace = () => {
         if (!file) return
 
         const storageRef = ref(storage, `profilePicture/${file.name}`)
-        const uploadTask : UploadTask = uploadBytesResumable(storageRef, file)
+        const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
 
         console.log(uploadTask)
 
@@ -99,16 +106,16 @@ const RegisterSpace = () => {
             "state_changed",
             snapshot => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                
+
             },
             error => { alert(error) },
             () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((url : string) => {
-                    setInputs({...inputs, "profile_picture" : url})
+                getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+                    setInputs({ ...inputs, "profile_picture": url })
                 })
             }
         )
-        
+
     }
 
     return (
@@ -121,13 +128,13 @@ const RegisterSpace = () => {
                     <div className="alignment-inputs-by-divs">
                         <InputLogin valueLogin={inputs.first_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName((event)) }} typeInput={"text"} placeholder={"Nome"} icon={<FaUserAlt className="IconLogin" />} name={"first_name"} label={"Nome"} className={"inputRegister"} />
 
-                       <InputLogin valueLogin={inputs.last_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Sobrenome"} icon={<FaUserAlt className="IconLogin" />} name={"last_name"} label={"Sobrenome"} className={"inputRegister"} /> 
+                        <InputLogin valueLogin={inputs.last_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Sobrenome"} icon={<FaUserAlt className="IconLogin" />} name={"last_name"} label={"Sobrenome"} className={"inputRegister"} />
 
                         <InputLogin valueLogin={inputs.nickname} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<FaUserAlt className="IconLogin" />} name={"nickname"} label={"Nickname"} className={"inputRegister"} />
 
                         <InputLogin valueLogin={inputs.phone} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<MdPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.cpf} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={"inputRegister"} /> 
+                        <InputLogin valueLogin={inputs.cpf} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={"inputRegister"} />
                     </div>
 
                     <div className="alignment-inputs-by-divs">
@@ -147,11 +154,11 @@ const RegisterSpace = () => {
                             <form onSubmit={uploadImage} className="profile-picture-container">
 
                                 <img className="picture-pattern" src="./assets/img/register/profile.svg" alt="" />
-                                    <input type="file" />
+                                <input type="file" />
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'}  onClick={() => {}} />
+                                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => { }} />
                                     <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => {
                                         ("teste");
                                     }} />
@@ -169,7 +176,7 @@ const RegisterSpace = () => {
                         </div>
                         <div>
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                ("teste");
+                                validation();
                             }} />
                         </div>
 
