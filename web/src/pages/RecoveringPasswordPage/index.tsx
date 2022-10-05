@@ -53,6 +53,8 @@ const RecoveringPasswordPage = () => {
                 <h3> Nova Senha</h3>
                 <InputLoign className="Input_one" placeholder="" name={"NewPassword"} typeInput="text" maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   handleChange(event);
+
+                  
         
                 }} />
 
