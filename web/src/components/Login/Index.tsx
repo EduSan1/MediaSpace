@@ -138,10 +138,10 @@ const LoginSpace = () => {
 
           <div className="inputLogin">
 
-            <InputLoign hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail />} className={hasError ? "InputError" : "Input_Login"}
+            <InputLoign hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"}  maxlength={255} icon={<MdEmail />} className={hasError ? "InputError" : "Input_Login"}
               valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
             />
-            <InputLoign hasError={hasError} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLock />} className={hasError ? "InputError" : "Input_Login"}
+            <InputLoign hasError={hasError} typeInput={'password'} name={'password'} placeholder={"senha"}  maxlength={255}  icon={<MdLock />}  className={hasError ? "InputError" : "Input_Login"}
               valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
             />
 
