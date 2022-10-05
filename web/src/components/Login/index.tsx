@@ -5,9 +5,7 @@ import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-i
 import { MdFacebook, MdEmail, MdLock } from "react-icons/md";
 import { IconBase } from "react-icons";
 import api from "../../service";
-
-
-
+import { Link } from 'react-router-dom';
 
 const LoginSpace = () => {
 
@@ -111,7 +109,6 @@ const LoginSpace = () => {
   }
 
 
-
   return (
 
     <>
@@ -127,7 +124,9 @@ const LoginSpace = () => {
           <div className="newHere">
 
             <span>Nova aqui? </span>
-            <span> Cadastre-se </span>
+            <Link to='register'>
+              <span> Cadastre-se </span>
+            </Link>
 
           </div>
 

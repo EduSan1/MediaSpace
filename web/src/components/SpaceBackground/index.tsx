@@ -6,9 +6,13 @@ import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
 import ProviderUserRegister from "../../pages/ProviderUserRegister";
 import RecoveryPassword from "../../pages/Recoverypassword";
 import RegisterSpace from "../Register";
+import LoginSpace from "../Login";
 
+interface ISpaceBackground {
+  component : JSX.Element
+}
 
-const SpaceBackground = () => {
+const SpaceBackground = ({component} : ISpaceBackground) => {
 
   return (
 
@@ -20,12 +24,7 @@ const SpaceBackground = () => {
         
        
         <main className="SpaceLogin"> 
-         {/* <LoginSpace/> */}
-        {/* <SucessRegister/> */}
-        {/* <SendingEmailRecovery/> */}
-        {/* <ProviderUserRegister/> */}
-        <RegisterSpace/>
-        {/* <RecoveryPassword/> */}
+        {component}
         </main>
         
       
