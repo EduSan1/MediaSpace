@@ -58,6 +58,8 @@ export const Register = () => {
 
     return (
         <>
+
+            <Text style={styles.title}>{`Faça seu cadastro`}</Text>
             <ScrollView
                 style={styles.container}
                 horizontal={true}
@@ -145,42 +147,49 @@ export const Register = () => {
 
 const styles = StyleSheet.create({
 
+    title: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.07,
+        textAlign: "center",
+        fontSize: Dimensions.get("window").width * 0.05,
+        fontWeight: 'bold',
+        color: "#B275FF",
+        textAlignVertical: "center"
+    },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.15,
+        height: Dimensions.get('window').height * 0.20,
         display: 'flex',
     },
 
     View: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.35,
+        height: Dimensions.get('window').height * 0.4,
         display: "flex",
         alignItems: 'center',
         justifyContent: 'space-evenly',
     },
 
     text: {
-        fontSize: 10,
-        width: Dimensions.get('window').width * 0.4 ,
+        fontSize: Dimensions.get("window").width * 0.025,
+        width: Dimensions.get('window').width  * 0.6,
         color: '#46307B',
-        display: 'flex',
-        marginBottom: 10,
+        margin: 10,
         justifyContent:'center',
     },
     text2: {
         width: Dimensions.get('window').width * 0.4,
-        display: "flex",
-        fontSize: 12,
+        fontSize: Dimensions.get("window").width * 0.03,
         fontWeight: "bold",
         color: '#B275FF',
-        alignItems: "center",
+        display: "flex",
         justifyContent: "center",
     
     },
     containerTextButton: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.2,
-        justifyContent: "center",
+        height: Dimensions.get('window').height,
+        justifyContent: "flex-start",
         alignItems: "center",
         display: 'flex',
         flex: 1

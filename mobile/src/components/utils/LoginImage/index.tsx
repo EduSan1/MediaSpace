@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import { LoginButtonUpload } from '../LoginButtonUpload' 
 
-const confirm = async () => {
-    console.log("confirmado")
-}
+
+
+
 export const LoginImage = () => {
 
     return(
     <View style={styles.container}>
         <Text style={styles.inputTitle}>Foto de Perfil</Text>
-        <Image style={styles.image} source={require("../../../../assets/favicon.png")}/>
+        <Image style={styles.image} source={require("../../../../assets/icons/IconFreelancer.png")}/>
         <Text style={styles.text}>Escolha um arquivo jpg, png, gif...</Text>
-        <LoginButtonUpload type="dark" action={confirm} title="Upload" />
+        <LoginButtonUpload type="dark" action={() => console.log("a")} title="Upload" />
         <Text style={styles.textButton}>Remover imagem</Text>
     </View>
     )
@@ -21,7 +21,7 @@ export const LoginImage = () => {
 const styles = StyleSheet.create({
     container:{
         width: Dimensions.get('window').width * 0.6,
-        height: Dimensions.get('window').height * 0.31,
+        height: Dimensions.get('window').height * 0.35,
         borderWidth: 2,
         borderRadius: 10,
         paddingLeft: 10,
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
         left: 10
     },
     image:{
-        width: Dimensions.get("window").width * 0.15,
-        height: Dimensions.get("window").width * 0.15,
+        width: Dimensions.get("window").width * 0.25,
+        height: Dimensions.get("window").width * 0.25,
         display:'flex',
         alignItems:'center'
     },
