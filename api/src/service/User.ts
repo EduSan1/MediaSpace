@@ -23,16 +23,21 @@ export class UserService {
             const regexPhone = new RegExp("^9[0-9]{8}$");
             const regexDdd = new RegExp("^[0-9]{1,4}$");
 
+            const mailer = new Mail()
+
+
+
+
             if (!regexCpf.test(entity.cpf))
                 return {
                     message: "insira um cpf válido!",
-                    statusCode: 400,
+                    statusCode: 200,
                 };
             if (entity.phone) {
                 if (!regexPhone.test(entity.phone.phone) || !regexDdd.test(entity.phone.ddd))
                     return {
                         message: "insira um telefone válido!",
-                        statusCode: 400,
+                        statusCode: 200,
                     };
             }
 
@@ -50,8 +55,16 @@ export class UserService {
                     mail: mail !== null ? true : false,
                     cpf: cpf !== null ? true : false,
                     nickname: nickname !== null ? true : false,
-                    statusCode: 400,
+                    statusCode: 200,
                 };
+            const hasSend = await mailer.confirmRegister(entity.mail, entity.id, entity.first_name)
+
+            if (!hasSend.accepted) {
+                return {
+                    message: false,
+                    statusCode: 200,
+                };
+            }
 
             const hashPassword = await bcrypt.hash(entity.password, 10);
             entity.password = hashPassword;
@@ -63,10 +76,6 @@ export class UserService {
                 await this.phoneRepo.create(phone);
             }
 
-            const mailer = new Mail()
-            await mailer.confirmRegister(entity.mail, entity.id, entity.first_name)
-
-
             return {
                 message: "Usuário cadastrado com sucesso!",
                 statusCode: 201,
@@ -75,7 +84,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
@@ -87,7 +96,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
@@ -102,7 +111,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
@@ -118,7 +127,7 @@ export class UserService {
                 };
             }
 
-            if (entity.password !== undefined){
+            if (entity.password !== undefined) {
                 console.log("mudou")
                 const hashPassword = await bcrypt.hash(entity.password, 10);
                 entity.password = hashPassword;
@@ -138,7 +147,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
@@ -146,19 +155,19 @@ export class UserService {
     login = async (mail: string, password: string) => {
         try {
             let userDetails = await this._.findByWhere("mail", mail);
-            
+
             if (userDetails === null)
-            return {
-                message: "Não foi possivel encontrar o usuário",
-                statusCode: 400
-            };
+                return {
+                    message: "Não foi possivel encontrar o usuário",
+                    statusCode: 200
+                };
 
             if (await bcrypt.compare(password, userDetails.password)) {
 
                 delete userDetails.password
-                
-                const userJwt = jwt.sign({userDetails}, APP_SECRET, {expiresIn: '1d',})
-                
+
+                const userJwt = jwt.sign({ userDetails }, APP_SECRET, { expiresIn: '1d', })
+
                 return {
                     message: "Login realizado com sucesso",
                     is_logged: true,
@@ -178,7 +187,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
@@ -197,7 +206,7 @@ export class UserService {
             entityExists.is_active = false;
 
             await this._.update(entityExists);
-            
+
             return {
                 message: "Usuário desabilitado com sucesso",
                 statusCode: 200
@@ -207,7 +216,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
@@ -241,31 +250,31 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     }
 
-    recoverPassword = async (mail : string) => {
+    recoverPassword = async (mail: string) => {
 
 
-            const user = await this._.findByWhere("mail", mail);
-            
-            if (user === null)
+        const user = await this._.findByWhere("mail", mail);
+
+        if (user === null)
             return {
                 message: "Não foi possivel encontrar o usuário",
                 hasSend: false,
                 statusCode: 200
             };
-            
-            const mailer = new Mail()
-            await mailer.recoverPassword(mail,user.id, user.first_name)
 
-            return {
-                message: "Email enviado com sucesso",
-                hasSend: true,
-                statusCode: 200
-            };
+        const mailer = new Mail()
+        await mailer.recoverPassword(mail, user.id, user.first_name)
+
+        return {
+            message: "Email enviado com sucesso",
+            hasSend: true,
+            statusCode: 200
+        };
 
     }
 
@@ -280,7 +289,7 @@ export class UserService {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400,
+                statusCode: 200,
             };
         }
     };
