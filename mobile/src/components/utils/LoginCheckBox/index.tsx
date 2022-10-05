@@ -1,56 +1,30 @@
 import React, { useState } from 'react';
 import { CheckBox, Icon } from '@rneui/themed';
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import {} from 'react-native';
 
 type CheckboxComponentProps = {};
 
-export const CheckboxComponent: React.FunctionComponent<CheckboxComponentProps> = () => {
-const [check1, setCheck1] = useState(false);
-const [check2, setCheck2] = useState(false);
-const [check3, setCheck3] = useState(false);
+interface ILoginCheckBox {
+  check: string
+  value: string
+  title: string
+  setCheck: (value: string) => void
+}
 
-return (
-  <>
-  <View>
-    <Text>Gênero</Text>
-    <View style={styles.checkbox}>
+export const CheckboxComponent = ({ check, value, title, setCheck }: ILoginCheckBox) => {
+
+  return (
+
     <CheckBox
-      title="Masculino"
+      title={title}
       checkedIcon="dot-circle-o"
       uncheckedIcon="circle-o"
-      checked={check1}
-      onPress={() => setCheck1(!check1)}
+      uncheckedColor='#D3C5F8'
+      checkedColor='#D3C5F8'
+      size={20}
+      checked={check === value ? true : false}
+      onPress={() => setCheck(value)}
     />
-    <CheckBox
-      title="Feminino"
-      checkedIcon="dot-circle-o"
-      uncheckedIcon="circle-o"
-      checked={check2}
-      onPress={() => setCheck2(!check2)}
-    />
-    <CheckBox
-      title="Outro"
-      checkedIcon="dot-circle-o"
-      uncheckedIcon="circle-o"
-      checked={check3}
-      onPress={() => setCheck3(!check3)}
-    />
-    </View>
-    </View>
-  </>
-);
+
+  );
 };
-
-const styles = StyleSheet.create({
-    checkbox:{
-        width: Dimensions.get('window').width * 0.7,
-        minHeight: Dimensions.get('window').height * 0.1 ,
-        alignItems:'center',
-        flexDirection:'row',
-        justifyContent:'space-evenly',
-        fontSize: 12
-        
-
-        
-    }
-})

@@ -2,51 +2,68 @@ import React, { ReactHTMLElement, useEffect, useState } from "react";
 import InputLogin from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { FaUserAlt } from "react-icons/fa";
-import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage'
-import { MdPhone, MdEmail, MdLock } from "react-icons/md";
-import { HiIdentification } from "react-icons/hi";
-import { RiCalendar2Fill } from "react-icons/ri"
+import {getDownloadURL, ref, uploadBytesResumable, UploadTask} from 'firebase/storage'
+import { MdEmail, MdLock, MdPersonOutline, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
+import { HiOutlineIdentification } from "react-icons/hi";
+import { RiCalendar2Fill, RiCalendar2Line } from "react-icons/ri"
+import { FiPhone } from "react-icons/fi"
+import { AiOutlineMail } from "react-icons/ai"
 import InputRadio from "../utils/Input/InputRadio";
 import { storage } from "../../constants/firebase";
 import {cpfMask, phoneMask, onlyLetters, passwordMask} from "../../service/Regex/regex";
+import api from "../../service";
 
 
 const RegisterSpace = () => {
 
-    const [inputs, setInputs] = React.useState({
+    const [user, setUser] = React.useState({
         first_name: '',
         last_name: '',
         nickname: '',
-        phone: '',
+        phone : {
+            ddd : "11",
+            phone : "912345678"
+        },
         birth_date: '',
         profile_picture: '',
         cpf: '',
         mail: '',
-        gender: '',
+        gender: {
+            id : ""
+        },
         password: '',
         biography: '',
     })
 
+    const [genders,setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
 
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputs({
-            ...inputs, [event.target.name]: event.target.value
+        setUser({
+            ...user, [event.target.name]: event.target.value
+        })
+
+    }    
+    const handleGender = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUser({
+            ...user, gender: {
+                id : event.target.value
+            }
         })
 
     }
 
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputs({
-            ...inputs, [event.target.name]: cpfMask(event.target.value)
+        setUser({
+            ...user, [event.target.name]: cpfMask(event.target.value)
         })
     }
 
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputs({
-            ...inputs, [event.target.name]: phoneMask(event.target.value)
+        setUser({
+            ...user, [event.target.name]: phoneMask(event.target.value)
         })
     }
 
@@ -55,8 +72,8 @@ const RegisterSpace = () => {
         const validation = onlyLetters.test(event.target.value)
 
         if (validation) {
-            setInputs({
-                ...inputs, [event.target.name]: event.target.value
+            setUser({
+                ...user, [event.target.name]: event.target.value
             })
         }
     }
@@ -64,7 +81,7 @@ const RegisterSpace = () => {
     const validation = () => {
         let validate = false
 
-      if(!inputs.first_name){
+      if(!user.first_name){
         setHasErros(true)
         validate= true }
     //   }else if(inputs.last_name){
@@ -87,7 +104,7 @@ const RegisterSpace = () => {
         //     console.log("Por  favor, preencha o campo obrigatório");
         // }
 
-        if (!passwordMask.test(inputs.password)) {
+        if (!passwordMask.test(user.password)) {
             console.log('bota o formato de senha certo meu parceiro')
         }
 
@@ -119,12 +136,27 @@ const RegisterSpace = () => {
             error => { alert(error) },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-                    setInputs({ ...inputs, "profile_picture": url })
+                    setUser({ ...user, "profile_picture": url })
                 })
             }
         )
-
     }
+
+    const registerUser = () => {
+        api.post("/user", user).then((res) => {
+            console.log(res.data)
+        })
+    }
+
+    useEffect(() => {
+        api.get("/gender").then((res) => {
+                setGenders(res.data)
+        })
+    }, [])
+
+    useEffect(() => {
+  console.log(user.gender)
+    }, [user])
 
     return (
         <>
@@ -134,26 +166,39 @@ const RegisterSpace = () => {
                 </div>
                 <div className="container_inputs">
                     <div className="alignment-inputs-by-divs">
-                        <InputLogin valueLogin={inputs.first_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName((event)) }} typeInput={"text"} placeholder={"Nome"} icon={<FaUserAlt className="IconLogin" />} name={"first_name"} label={"Nome"} className={hasErrors? "InputError":"inputRegister"} maxlength={50}/>
+                        <InputLogin valueLogin={user.first_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Nome"} icon={<MdPersonOutline className="IconLogin" />} name={"first_name"} label={"Nome"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.last_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Sobrenome"} icon={<FaUserAlt className="IconLogin" />} name={"last_name"} label={"Sobrenome"} className={"inputRegister"} maxlength={50}/>
+                       <InputLogin valueLogin={user.last_name} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={"text"} placeholder={"Sobrenome"} icon={<MdPersonOutline className="IconLogin" />} name={"last_name"} label={"Sobrenome"} className={"inputRegister"} /> 
 
-                        <InputLogin valueLogin={inputs.nickname} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<FaUserAlt className="IconLogin" />} name={"nickname"} label={"Nickname"} className={"inputRegister"} maxlength={25}/>
+                        <InputLogin valueLogin={user.nickname} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<MdOutlineAlternateEmail className="IconLogin" />} name={"nickname"} label={"Nickname"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.phone} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<MdPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={"inputRegister"} maxlength={11}/>
+                        {/* <InputLogin valueLogin={user.phone.phone} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={"inputRegister"} /> */}
 
-                        <InputLogin valueLogin={inputs.cpf} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={"inputRegister"} maxlength={11}/>
+                        <InputLogin valueLogin={user.cpf} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiOutlineIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={"inputRegister"} /> 
                     </div>
 
                     <div className="alignment-inputs-by-divs">
-                        <InputLogin valueLogin={inputs.mail} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={<MdEmail className="IconLogin" />} name={"mail"} label={"Email"} className={"inputRegister"} maxlength={250} />
+                        <InputLogin valueLogin={user.mail} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={<AiOutlineMail className="IconLogin" />} name={"mail"} label={"Email"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.password} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Senha"} icon={<MdLock className="IconLogin" />} name={"password"} label={"Senha"} className={"inputRegister"} maxlength={255}/>
+                        <InputLogin valueLogin={user.password} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Senha"} icon={<MdLockOutline className="IconLogin" />} name={"password"} label={"Senha"} className={"inputRegister"} />
 
-                        <InputLogin valueLogin={inputs.birth_date} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Fill className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={"inputRegister"} maxlength={0} />
+                        <InputLogin valueLogin={user.birth_date} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={"inputRegister"} />
 
-                        <InputRadio label="Genero" options={["Feminino", "Masculino", "Outro"]} name="genero" />
-                    </div>
+                        {/* <InputRadio label="Genero" options={genders} name="genero" /> */}
+                        <div className="container_input_radio">
+                            <div className="container_label">
+                                <label>Gênero</label>
+                            </div>
+                                <div className="container_options">
+                                {
+                                    genders?.map((gender : any) => {
+                                        return <InputRadio handleChange={handleGender} name="genero" value={gender.gender} id={gender.id} />
+                                    }) 
+                                }
+
+                                </div>
+                            </div>  
+                        </div>
                     <div className="alignment-inputs-by-divs">
                         <div className="profile-picture">
                             <div className="container_label">
