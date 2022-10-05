@@ -59,6 +59,8 @@
         height: 70%;
         border: solid 1px $primary-purple;
         border-radius: 0.5rem;
+        
+        
     }
     p{
         font-family: $light-font ;
@@ -70,6 +72,12 @@
 
     .hasErrorInput{
         border: solid 1px red;
+    }
+
+    .input_icon_login{
+        span{
+            margin-top:1.3%;
+        }
     }
   }
 

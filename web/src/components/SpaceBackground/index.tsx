@@ -30,9 +30,8 @@ const SpaceBackground = () => {
         {/* <RecoveryPassword/> */}
         {/* <ConfirmEmailWarningPage/> */}
         {/* <PasswordWarningPage/> */}
-        {/* <RecoveringPasswordPage/> */}
-
-        <RegisterSpace/>
+        <RecoveringPasswordPage/>
+        {/* <RegisterSpace/> */}
         </main>
         
       
