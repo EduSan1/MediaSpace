@@ -36,6 +36,8 @@ const RegisterSpace = () => {
     })
 
     const [genders,setGenders] = useState([{}])
+    const [hasErrors, setHasErros] = React.useState(false)
+
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,13 +79,40 @@ const RegisterSpace = () => {
     }
 
     const validation = () => {
-        const validation = true
+        let validate = false
+
+      if(!user.first_name){
+        setHasErros(true)
+        validate= true }
+    //   }else if(inputs.last_name){
+    //     console.log("sobrenome")
+    //   }else if(inputs.nickname){
+    //     console.log("nickname")
+    //   }else if(inputs.cpf){
+    //     console.log("cpf")
+    //   }else if(inputs.birth_date){
+    //     console.log("birth_date")
+    //   }else if(inputs.mail){
+    //     console.log("mail")
+    //   }else if(inputs.password){
+    //     console.log("senha")
+    //   }
+
+        // if(!inputs.first_name || !inputs.last_name || !inputs.nickname || !inputs.cpf || !inputs.birth_date || !inputs.mail || !inputs.password ){
+        //     console.log("Por  favor, preencha o campo obrigatório");
+        // if(!inputs.last_name){
+        //     console.log("Por  favor, preencha o campo obrigatório");
+        // }
 
         if (!passwordMask.test(user.password)) {
             console.log('bota o formato de senha certo meu parceiro')
         }
 
     }
+
+    // useEffect(() => {
+    //     console.log(inputs)
+    // }, [inputs])
 
     const uploadImage = (event: any) => {
         event.preventDefault();
@@ -114,7 +143,6 @@ const RegisterSpace = () => {
     }
 
     const registerUser = () => {
-        console.log(user)
         api.post("/user", user).then((res) => {
             console.log(res.data)
         })
@@ -201,7 +229,7 @@ const RegisterSpace = () => {
                         </div>
                         <div>
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                registerUser();
+                                validation();
                             }} />
                         </div>
 

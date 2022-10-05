@@ -5,6 +5,7 @@ import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-i
 import { MdFacebook, MdEmail, MdLock } from "react-icons/md";
 import { IconBase } from "react-icons";
 import api from "../../service";
+import { kMaxLength } from "buffer";
 
 
 
@@ -139,10 +140,10 @@ const LoginSpace = () => {
           <div className="inputLogin">
 
             <InputLoign hasError={hasError} label={"email"} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail/>} className={hasError ? "InputError" : "Input_Login" } 
-              valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
+              valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
             />
             <InputLoign hasError={hasError} label={"senha"} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLock/>} className={hasError ? "InputError" : "Input_Login" } 
-              valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
+              valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
             />
           </div>
 

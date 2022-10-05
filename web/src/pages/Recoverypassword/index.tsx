@@ -53,6 +53,7 @@ const RecoveryPassword = () => {
           setHasError(true);
           window.alert("Não encontrado");
         }
+<<<<<<< HEAD
       })
       .catch((error) => {
         setHasError(true);
@@ -125,3 +126,81 @@ const RecoveryPassword = () => {
 };
 
 export default RecoveryPassword;
+=======
+    
+    
+    
+    
+      }
+    
+      const mailPasswordRecovery = async () => {
+    
+        await api.post("/user/login", diceLogin).then((res) => {
+          const data = res.data;
+    
+    
+        })
+          .catch((error) => {
+            setHasError(true);
+            console.log(error)
+          });
+      }
+    
+
+    return (
+
+        <main id="RecoveryPassword">
+
+            <div className="ContainerImg_recoveryPassword">
+
+                <ImageComponent alt="" src="../assets/img/rocketart.png" className="Img_RecoveryPassword" />
+
+            </div>
+
+            <div className="ContainerInputs_recoveryPassword">
+                <span className="newHere_recoveryPassword">
+                    <h3>Nova aqui? </h3>
+                    <h3>Cadastre-se </h3>
+                </span>
+
+                <div className="Tittle_input_btn_passWord">
+
+                    <TitleIndex classNameText="tittle_forgetPassword" idConatinerDiv="div_tittle_forgetPassword" title="Esqueceu a Senha?" />
+
+                    <span className="subtittle_span">
+                        <h3 className="subTittle_forgetPassword">
+                            Enviaremos um  email  para autenticaçào e reecuperação de senha
+                        </h3>
+                    </span>
+
+
+                    <span className="btn_span">
+                        <InputLoign label={"Email"} hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} maxlength={255} icon={<BsFillPersonFill/>} className={hasError ? "InputError" : "Input_PassWordRecovery"}
+                            valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}/>
+                    </span>
+
+
+                </div>
+
+                <span className="btn_Send">
+                    <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnPassWord'} valueBtn={'Enviar'}
+                        onClick={() => {
+                           validate();
+                            console.log('next page');
+                        }} />
+
+
+                </span>
+
+            </div>
+
+
+        </main>
+
+    );
+
+}
+
+
+export default RecoveryPassword;
+>>>>>>> 385f04ca39c6d3aac02ec9c9e927185c9d0dca70
