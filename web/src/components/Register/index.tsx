@@ -8,24 +8,10 @@ import { HiIdentification } from "react-icons/hi";
 import { RiCalendar2Fill } from "react-icons/ri"
 import InputRadio from "../utils/Input/InputRadio";
 import { storage } from "../../constants/firebase";
+import {cpfMask, phoneMask, onlyLetters, passwordMask} from "../../service/Regex/regex";
+
 
 const RegisterSpace = () => {
-
-    const cpfMask = (value: any) => {
-        return value
-            .replace(/\D/g, '')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-            .replace(/(-\d{2})\d+?$/, '$1')
-    }
-
-    const phoneMask = (value: any) => {
-        return value
-            .replace(/\D/g, '')
-            .replace(/^(\d{2})(\d)/, "($1) $2")
-            .replace(/(\d{5})(\d{4}).*/, "$1-$2");
-    }
 
     const [inputs, setInputs] = React.useState({
         first_name: '',
@@ -41,9 +27,6 @@ const RegisterSpace = () => {
         biography: '',
     })
 
-    const onlyLetters = new RegExp("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ']+$");
-    const passwordMask = new RegExp('^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$');
-
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputs({
@@ -51,8 +34,6 @@ const RegisterSpace = () => {
         })
 
     }
-
-    // regex senha ('^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$'
 
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputs({
@@ -83,6 +64,7 @@ const RegisterSpace = () => {
         if (!passwordMask.test(inputs.password)) {
             console.log('bota o formato de senha certo meu parceiro')
         }
+
     }
 
     // useEffect(() => {
