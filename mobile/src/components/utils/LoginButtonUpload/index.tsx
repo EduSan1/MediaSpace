@@ -1,13 +1,13 @@
 import React from "react"
 import { Text, StyleSheet, Dimensions, Pressable } from "react-native"
 
-interface ILoginButton {
+interface ILoginButtonUpload {
     action: () => void
     type: "light" | "dark"
     title: string
 }
 
-export const LoginButton = ({ action, type, title }: ILoginButton) => {
+export const LoginButtonUpload = ({ action, type, title }: ILoginButtonUpload) => {
 
     return (
         <Pressable onPress={() => action()} style={type === "light" ? styles.lightButton :  styles.darkButton}><Text style={type === "light" ? styles.textButton : styles.darkText}>{title}</Text></Pressable>
@@ -17,8 +17,8 @@ export const LoginButton = ({ action, type, title }: ILoginButton) => {
 
 const styles = StyleSheet.create({
     lightButton: {
-        width: Dimensions.get('window').width * 0.67,
-        height: Dimensions.get('window').height * 0.07,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').height * 0.09,
         backgroundColor: "#B275FF",
         borderRadius: 10,
         display: "flex",
@@ -27,16 +27,16 @@ const styles = StyleSheet.create({
     },
     textButton: {
         textAlign: "center",
-        fontSize: Dimensions.get("window").width * 0.045,
+        fontSize: Dimensions.get("window").width * 0.05,
         fontWeight: 'bold',
         color: "#fff",
     },
     darkButton: {
-        width: Dimensions.get('window').width * 0.67,
-        height: Dimensions.get('window').height * 0.07,
+        width: Dimensions.get('window').width * 0.25,
+        height: Dimensions.get('window').height * 0.04,
         backgroundColor: "#fff",
         borderColor: "#BCA7F4",
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 10,
         display: "flex",
         alignItems: "center",
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     },
     darkText: {
         textAlign: "center",
-        fontSize: Dimensions.get("window").width * 0.045,
-        fontWeight: 'bold',
+        fontSize: Dimensions.get("window").width * 0.023,
+        fontWeight:"bold",
         color: "#B275FF",
 
     }
