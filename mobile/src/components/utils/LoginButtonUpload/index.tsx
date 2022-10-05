@@ -7,7 +7,7 @@ interface ILoginButtonUpload {
     title: string
 }
 
-export const LoginButtonUpload = ({ action, type, title }: ILoginButtonUpload) => {
+export const LoginButtonUpload = ({ action, type, title, }: ILoginButtonUpload) => {
 
     return (
         <Pressable onPress={() => action()} style={type === "light" ? styles.lightButton :  styles.darkButton}><Text style={type === "light" ? styles.textButton : styles.darkText}>{title}</Text></Pressable>
