@@ -130,9 +130,9 @@ export const Register = () => {
                     </View>
                 </View>
 
-
             </ScrollView>
 
+            
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
                 <LoginButton type="dark" action={confirm} title="Continuar" />
@@ -186,6 +186,15 @@ const styles = StyleSheet.create({
         flex: 1
 
     },
+    // containerTextButton:{
+    //     width: Dimensions.get('window').width,
+    //     height: Dimensions.get('window').height  ,
+    //     justifyContent: "flex-end",
+    //     alignItems: "center",
+    //     display: 'flex',
+    //     flex: 0.5,
+      
+    // },
     scrollIcon: {
         width: Dimensions.get('window').width * 0.064,
         height: Dimensions.get('window').height * 0.04,
@@ -218,8 +227,34 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         color: '#B275FF'
-    }
+    },
 
 
+    // text2: {
+    //     width: Dimensions.get('window').width * 0.5,
+    //     display: "flex",
+    //     fontSize: 12,
+    //     fontWeight: "bold",
+    //     color: '#B275FF',
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    //     padding: 5
+    // }
+    // scrollIcon: {
+    //     width: Dimensions.get('window').width * 0.085 ,
+    //     height: Dimensions.get('window').height * 0.06,
+    //     justifyContent:"space-between",
+    //     alignItems:"center",
+        
 
+    // },
+    // scrollView: {
+    //     width: Dimensions.get('window').width * 1.9,
+    //     height: Dimensions.get('window').height * 0.1,
+    //     display: "flex",
+    //     alignItems: "center",
+    //     justifyContent: "space-between",
+    //     flexDirection: "column",
+    //     position: "absolute"
+    // }
 })

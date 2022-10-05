@@ -9,7 +9,7 @@ interface IInput {
     placeholder: string,
     label: string,
     valueLogin: string,
-    className: "Input_Login" | "inputRegister" | "InputError",
+    className: "Input_Login" | "inputRegister" | "InputError" | "Input_PassWordRecovery",
     hasError: boolean
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 
@@ -24,7 +24,7 @@ const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, c
 
         <>
             <div className="containerInput">
-                <div className="containerLabel">
+                <div className="container_label">
                     <label>{label}</label>
                 </div>
                 <div className="input_icon_login">

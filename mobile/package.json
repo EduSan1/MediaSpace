@@ -13,7 +13,7 @@
     "@rneui/themed": "^4.0.0-rc.6",
     "axios": "^0.27.2",
     "expo": "~46.0.9",
-    "expo-cli": "^6.0.5",
+    "expo-cli": "^4.3.0",
     "expo-linear-gradient": "~11.4.0",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@types/react": "~18.0.14",
+    "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "@types/react-native-vector-icons": "^6.4.12",
     "react-native-svg-transformer": "^1.0.0",

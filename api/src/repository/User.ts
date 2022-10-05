@@ -1,4 +1,6 @@
 import { AppDataSource } from "../data-source"
+import UserDomain from "../domain/User"
+import { TeamORM } from "../entity/team"
 import { UserORM } from "../entity/User"
 
 export class UserRepository {
@@ -9,7 +11,7 @@ export class UserRepository {
         this._ = AppDataSource.getRepository(UserORM)
     }
 
-    create = async (entity : any) => {
+    create = async (entity : UserDomain) => {
         return await this._.save(entity)
     }
 
@@ -17,7 +19,7 @@ export class UserRepository {
         return await this._.find(UserORM)
     }
 
-    listWhere =  async (key: keyof typeof UserORM, value: any) => {
+    listWhere =  async (key:  keyof typeof UserORM | keyof typeof TeamORM, value: any) => {
         return await this._.find({
             where :  {
                 [key] : value
@@ -26,7 +28,7 @@ export class UserRepository {
     }
 
 
-    findByWhere =  async (key: keyof typeof UserORM, value: any) => {
+    findByWhere =  async (key: keyof typeof UserORM | keyof typeof TeamORM, value: any) => {
         return await this._.findOne({
             where :  {
                 [key] : value
@@ -42,7 +44,7 @@ export class UserRepository {
         })
     }
 
-    update = async (entity : any) => {
+    update = async (entity : UserORM) => {
         return await this._.save(entity)
     }
 
