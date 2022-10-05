@@ -247,15 +247,15 @@ export class UserService {
     }
 
     recoverPassword = async (mail : string) => {
-        try {
+
 
             const user = await this._.findByWhere("mail", mail);
-
+            
             if (user === null)
             return {
                 message: "Não foi possivel encontrar o usuário",
                 hasSend: false,
-                statusCode: 400
+                statusCode: 200
             };
             
             const mailer = new Mail()
@@ -267,14 +267,6 @@ export class UserService {
                 statusCode: 200
             };
 
-
-        } catch(error) {
-            return {
-                message: error.message,
-                error: error.code,
-                statusCode: 400,
-            };
-        }
     }
 
     remove = async (_id: string) => {
