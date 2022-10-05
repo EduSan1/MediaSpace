@@ -4,6 +4,7 @@ import InputLoign from "../../components/utils/Input/LoginInput";
 import InputBtn from "../../components/utils/Button/InputBtn";
 
 
+
 const RecoveringPasswordPage = () => {
 
     const [DiceNewPassword, setDiceNewPassWord] = useState({
@@ -30,6 +31,10 @@ const RecoveringPasswordPage = () => {
 
 
     const validate = () =>{
+        if(DiceNewPassword.NewPassword == DiceNewPassword.repetePassword){
+            console.log('sao iguais');
+            
+        }
     // validar se campo são iguais, e se existe 1 caractere especial
            
     }
@@ -46,13 +51,15 @@ const RecoveringPasswordPage = () => {
 
             <div className="Container_Input">
                 <h3> Nova Senha</h3>
-                <InputLoign className="Input_one" placeholder="" name="NewPassword" typeInput="text" valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                <InputLoign label={""} className="Input_one" placeholder="" name={"NewPassword"} typeInput="text" maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   handleChange(event);
+
+                  
         
                 }} />
 
                 <h3> Reescreva Sua Senha </h3>
-                <InputLoign className="Input_two" placeholder="" name={"Repete_New_Password"} typeInput="text" valueLogin={DiceNewPassword.repetePassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                <InputLoign label={""}  className="Input_two" placeholder="" name={"repetePassword"} typeInput="text" maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 handleChange(event);
 
                 }} />
@@ -61,7 +68,7 @@ const RecoveringPasswordPage = () => {
 
                 <div className="Input_btn">
 
-                <InputBtn className="Next_NewPassWord" name="Btn_Next_NewPassWord" valueBtn="Confirmar" typeInput="Submit" onClick={() =>{
+                <InputBtn className="Next_NewPassWord" name="Btn_Next_NewPassWord" valueBtn="Confirmar" typeInput="Submit"  onClick={() =>{
 
                     console.log("enviar");
                 }}/>

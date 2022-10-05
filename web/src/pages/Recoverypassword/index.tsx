@@ -116,7 +116,7 @@ const RecoveryPassword = () => {
 
 
                     <span className="btn_span">
-                        <InputLoign label="Email" hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<BsFillPersonFill/>} className={hasError ? "InputError" : "Input_PassWordRecovery"}
+                        <InputLoign label={"Email"} hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} maxlength={255} icon={<BsFillPersonFill/>} className={hasError ? "InputError" : "Input_PassWordRecovery"}
                             valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}/>
                     </span>
 
