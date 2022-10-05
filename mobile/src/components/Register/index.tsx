@@ -149,12 +149,11 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.15,
         display: 'flex',
-
     },
 
     View: {
         width: Dimensions.get('window').width,
-        minHeight: Dimensions.get('window').height * 0.30,
+        height: Dimensions.get('window').height * 0.35,
         display: "flex",
         alignItems: 'center',
         justifyContent: 'space-evenly',
@@ -162,23 +161,34 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: 10,
-        width: "55%",
+        width: Dimensions.get('window').width * 0.4 ,
         color: '#46307B',
         display: 'flex',
         marginBottom: 10,
+        justifyContent:'center',
+    },
+    text2: {
+        width: Dimensions.get('window').width * 0.4,
+        display: "flex",
+        fontSize: 12,
+        fontWeight: "bold",
+        color: '#B275FF',
+        alignItems: "center",
+        justifyContent: "center",
+    
     },
     containerTextButton: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.1,
-        justifyContent: "flex-start",
+        height: Dimensions.get('window').height * 0.2,
+        justifyContent: "center",
         alignItems: "center",
         display: 'flex',
         flex: 1
 
     },
     scrollIcon: {
-        width: Dimensions.get('window').width * 0.0641,
-        height: Dimensions.get('window').height * 0.0469,
+        width: Dimensions.get('window').width * 0.064,
+        height: Dimensions.get('window').height * 0.04,
         
     },
     iconViewStart: {
@@ -200,16 +210,6 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         position: "absolute",
         padding: 10
-    },
-    text2: {
-        width: Dimensions.get('window').width * 0.5,
-        display: "flex",
-        fontSize: 12,
-        fontWeight: "bold",
-        color: '#B275FF',
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 5
     },
     checkboxContainer: {
         width: Dimensions.get('window').width * 0.8,

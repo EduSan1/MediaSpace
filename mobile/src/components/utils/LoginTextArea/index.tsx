@@ -28,7 +28,7 @@ export const LoginTextArea = ({ title, value, name, handleChange, maxLength }: I
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.2 ,
+        height: Dimensions.get('window').height * 0.22 ,
         borderWidth: 2,
         borderRadius: 10,
         paddingLeft: 10,
