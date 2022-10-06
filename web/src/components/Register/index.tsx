@@ -15,6 +15,8 @@ import api from "../../service";
 
 const RegisterSpace = () => {
 
+  
+
     const [user, setUser] = React.useState({
         first_name: '',
         last_name: '',
@@ -24,7 +26,7 @@ const RegisterSpace = () => {
             phone : ""
         },
         birth_date: '',
-        profile_picture: '',
+        profile_picture:'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57',
         cpf: '',
         mail: '',
         gender: {
@@ -53,19 +55,16 @@ const RegisterSpace = () => {
         })
 
     }
-
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
             ...user, [event.target.name]: cpfMask(event.target.value)
         })
     }
-
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
             ...user, [event.target.name]: phoneMask(event.target.value)
         })
     }
-
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         const validation = onlyLetters.test(event.target.value)
@@ -76,7 +75,6 @@ const RegisterSpace = () => {
             })
         }
     }
-
     const validation = () => {
         let validate = false
 
@@ -157,6 +155,7 @@ const RegisterSpace = () => {
   console.log(user.gender)
     }, [user])
 
+    
     return (
         <>
             <div className="page_register">
@@ -204,14 +203,18 @@ const RegisterSpace = () => {
                                 <label> Foto de perfil </label>
                             </div>
                             <form onSubmit={uploadImage} className="profile-picture-container">
-
-                                <img className="picture-pattern" src="./assets/img/register/profile.svg" alt="" />
-                                <input type="file" />
+                                <div  className="picture-pattern">
+                                    <img className="picture" src={user.profile_picture} alt="" />
+                                </div>
                                 
+                               
+
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => { }} />
+                                    <label className="teste" htmlFor="image">Upload</label>
+                                    <input type="file" name="teste" id="image"/>
+                                    {/* <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => {}} /> */}
                                     <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => {
                                         ("teste");
                                     }} />
