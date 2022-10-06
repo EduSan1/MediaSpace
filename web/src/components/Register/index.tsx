@@ -6,7 +6,7 @@ import { MdPhone, MdEmail, MdLock } from "react-icons/md";
 import { HiIdentification } from "react-icons/hi";
 import { RiCalendar2Fill } from "react-icons/ri"
 import InputRadio from "../utils/Input/InputRadio";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const RegisterSpace = () => {
 
@@ -85,12 +85,10 @@ const RegisterSpace = () => {
 
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
-                                <div className="alignment_buttons_photo_profile">
-                                    <Link to='registered'>
-                                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => {
-                                            ("teste");
-                                        }} />
-                                    </Link>
+                                <div className="alignment_buttons_photo_profile">                                    
+                                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_upload_photo'} valueBtn={'Upload'} onClick={() => {
+                                        ("teste");
+                                    }} />
                                     <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => {
                                         ("teste");
                                     }} />
@@ -108,9 +106,11 @@ const RegisterSpace = () => {
 
                         </div>
                         <div>
-                            <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                ("teste");
-                            }} />
+                            <Link to='provideruserregister'>
+                                <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
+                                    ("teste");
+                                }} />
+                            </Link>
                         </div>
 
                     </div>

@@ -43,7 +43,6 @@ export const Login = () => {
 
     }
 
-
     return (
 
         <View style={styles.container}>
@@ -52,7 +51,8 @@ export const Login = () => {
                 <LoginInput name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} hasError={hasError} title="Email" />
                 <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userLogin.password} handleChange={handleChange} title="Senha" />
             </View>
-            <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
+
+                <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
 
             <View style={styles.buttonContainer}>
                 <LoginButton type="light" action={login} title="Entrar" />

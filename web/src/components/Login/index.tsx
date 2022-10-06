@@ -146,8 +146,9 @@ const LoginSpace = () => {
           </div>
 
           <div className="btnLogin">
-            <span> Esqueceu a senha?</span>
-
+            <Link to='recoverpassword'>
+              <span> Esqueceu a senha?</span>
+            </Link>
             <div className="btn_AutomaticLogin">
               <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}  
               onClick={() => {
