@@ -19,6 +19,7 @@ export const Register = () => {
         cpf: "",
         birth: "",
         cell: "",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57",
         gender: {
             "id": check
         },
@@ -34,6 +35,15 @@ export const Register = () => {
             {
                 ...userRegister,
                 [name]: text
+            }
+        )
+    }
+
+    const handleUserPicture = (text: string) => {
+        setUserRegister(
+            {
+                ...userRegister,
+                profile_picture: text
             }
         )
     }
@@ -124,7 +134,7 @@ export const Register = () => {
 
                 <View style={styles.View}>
 
-                    <LoginImage/>
+                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image : string) => handleUserPicture(image)}/>
 
                     <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
