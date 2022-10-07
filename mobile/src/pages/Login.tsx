@@ -36,8 +36,10 @@ export default function LoginPage() {
                 </View>
 
                 <View style={styles.container}>
-                    {/* <RegisterFreelancerComplete/> */}
-                    <Register />
+                    <RegisterFreelancerComplete/>
+                    {/* <RegisterFreelancer/> */}
+                    {/* <Register /> */}
+                    {/* <Login/> */}
                 </View>
 
             </View>
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         position: "relative"
+        
 
     },
     starfield: {
