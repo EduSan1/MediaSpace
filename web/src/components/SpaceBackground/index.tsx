@@ -17,6 +17,7 @@ interface ISpaceBackground {
 
 const SpaceBackground = ({component} : ISpaceBackground) => {
 
+
   return (
 
     <>
@@ -24,22 +25,11 @@ const SpaceBackground = ({component} : ISpaceBackground) => {
         <span className="MediaSpaceLogo">
           <img src="../assets/img/MediaSpaceLogo.png" />
         </span>
-<<<<<<< HEAD
 
-
-        <main className="SpaceLogin">
-          {/* <LoginSpace/> */}
-          {/* <SucessRegister/> */}
-          {/* <SendingEmailRecovery/> */}
-          {/* <ProviderUserRegister/> */}
-          <RegisterSpace/>
-          {/* <RecoveryPassword /> */}
-=======
         
-       
+
         <main className="SpaceLogin"> 
         {component}
->>>>>>> 3f214b3eaf5b1a8d3bea6163db42b2661845fa43
         </main>
 
 
