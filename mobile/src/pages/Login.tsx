@@ -2,7 +2,6 @@ import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
-
 import { ForgetPassword } from "../components/ForgetPassword";
 import { Login } from "../components/Login";
 import { Confirmation } from "../components/Confirmation"
@@ -10,7 +9,13 @@ import { CheckEmail } from "../components/CheckEmail"
 import { Register } from "../components/Register"
 import { RegisterFreelancer } from "../components/RegisterFreelancer";
 import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 export default function LoginPage() {
+
+    const Stack = createNativeStackNavigator();
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -35,12 +40,16 @@ export default function LoginPage() {
                     />
                 </View>
 
-                <View style={styles.container}>
-                    <RegisterFreelancerComplete/>
-                    {/* <RegisterFreelancer/> */}
-                    {/* <Register /> */}
-                    {/* <Login/> */}
-                </View>
+                <NavigationContainer>
+                    <Stack.Navigator initialRouteName="Login">
+                        <Stack.Screen name="Login" component={Login}/>
+                        <Stack.Screen name="Register" component={Register}/>
+                    </Stack.Navigator>
+                </NavigationContainer>
+                
+                {/* <View style={styles.container}>
+                    <Login/>
+                </View> */}
 
             </View>
 

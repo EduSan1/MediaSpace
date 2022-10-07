@@ -1,15 +1,17 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import StartHome from './src/pages/StartHome';
 import LoginPage from './src/pages/Login';
-import React from 'react';
 
 export default function App() {
 
   return (
+
     <View style={styles.container}>
       <LoginPage />
     </View>
+
   );
 }
 

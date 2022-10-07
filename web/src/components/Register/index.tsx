@@ -12,6 +12,7 @@ import { storage } from "../../constants/firebase";
 import {cpfMask, phoneMask, onlyLetters, passwordMask} from "../../service/Regex/regex";
 import api from "../../service";
 
+import { Link } from "react-router-dom";
 
 const RegisterSpace = () => {
 

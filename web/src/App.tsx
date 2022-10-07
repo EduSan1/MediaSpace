@@ -1,15 +1,31 @@
 import React from 'react';
-import SpaceBackground from './components/SpaceBackground';
-import PageLogin from './pages/Login/Login';
-import SucessRegister from './pages/SucessRegister/SucessRegister';
+import { Routes, Route} from 'react-router-dom';
+import LoginPage from './pages/Login/Login';
+import RegisterPage from './pages/Register';
+import ProviderUserRegisterPage from './pages/ProviderUserRegister';
+import RegisteredPage from './pages/SucessRegister/SucessRegister';
+import RecoveryPasswordPage from './pages/Recoverypassword';
+import SendingEmailRecoveryPage from './pages/SendingEmailRecovery';
+//import SpaceBackground from './components/SpaceBackground';
 
 function App() {
+
   return (
     <>
-     
-     {/* <PageLogin/> */}
-     <SpaceBackground/>
-     
+
+      <Routes>
+        <Route path='/'                                 element={<LoginPage/>}/>
+        <Route path='/register'                         element={<RegisterPage/>}/>
+        <Route path='/register/provideruserregister'    element={<ProviderUserRegisterPage/>}/>
+        {/* <Route path='/register/categoryregister'    element={<CategoryRegisterPage/>}/> */}
+        <Route path='/register/registered'              element={<RegisteredPage/>}/>
+        <Route path='/recoverpassword'                  element={<RecoveryPasswordPage/>}/>
+        <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage/>}/>
+      </Routes>
+
+      {/* <PageLogin/> */}
+      {/* <SpaceBackground/>      */}
+    
     </>
   );
 }

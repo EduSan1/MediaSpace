@@ -9,6 +9,7 @@ import { kMaxLength } from "buffer";
 
 
 
+import { Link } from 'react-router-dom';
 
 const LoginSpace = () => {
 
@@ -112,7 +113,6 @@ const LoginSpace = () => {
   }
 
 
-
   return (
 
     <>
@@ -128,7 +128,9 @@ const LoginSpace = () => {
           <div className="newHere">
 
             <span>Nova aqui? </span>
-            <span> Cadastre-se </span>
+            <Link to='register'>
+              <span> Cadastre-se </span>
+            </Link>
 
           </div>
 
@@ -148,8 +150,9 @@ const LoginSpace = () => {
           </div>
 
           <div className="btnLogin">
-            <span> Esqueceu a senha?</span>
-
+            <Link to='recoverpassword'>
+              <span> Esqueceu a senha?</span>
+            </Link>
             <div className="btn_AutomaticLogin">
               <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}  
               onClick={() => {

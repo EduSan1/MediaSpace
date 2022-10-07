@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState, Component } from "react";
 import ImageComponent from "../../components/utils/imageComponent/imageComponent";
 import TitleIndex from "../../components/utils/TitleMain/Index";
@@ -126,3 +127,24 @@ const RecoveryPassword = () => {
 };
 
 export default RecoveryPassword;
+=======
+import React from "react";
+import RecoveryPassword from "../../components/PasswordRecovery";
+import SpaceBackground from "../../components/SpaceBackground/index";
+
+const RecoveryPasswordPage = () => {
+    
+  return(
+   
+        <>
+
+          <SpaceBackground component={<RecoveryPassword/>}/>    
+ 
+        </>
+  
+    );
+
+}
+
+export default RecoveryPasswordPage;
+>>>>>>> 3f214b3eaf5b1a8d3bea6163db42b2661845fa43
