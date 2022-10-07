@@ -219,8 +219,18 @@ const RegisterSpace = () => {
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                    <label className="input_btn_upload_photo" htmlFor="image">Upload</label>
+                                    <label className="input_btn_upload_photo" htmlFor="image">
+                                        <InputBtn typeInput={'submit'} 
+                                            name={'btn_add_photo'} 
+                                            className={'input_btn_upload_photo'} 
+                                            valueBtn={'adicionar imagem'} onClick={() => { }} />
+                                    </label>
                                     <input type="file" id="image" />
+                                    
+                                    {/* <InputBtn typeInput={'submit'} 
+                                        name={'btn_add_photo'} 
+                                        className={'input_btn_upload_photo'} 
+                                        valueBtn={'adicionar imagem'} onClick={() => { }} /> */}
 
                                     <InputBtn typeInput={'submit'} name={'btn_remove_photo'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => { user.profile_picture = "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57" }} />
                                 </div>
