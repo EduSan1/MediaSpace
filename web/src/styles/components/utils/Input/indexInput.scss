@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    
 }
 
 .input_icon_login {
@@ -14,13 +15,16 @@
     height: 50px;
     width: 100%;
     position: relative;
+    align-items: center;
+    
 
     .Input_Login {
         width: 100%;
         height: 5.625rem;
         border: solid #D3C5F8;
         border-radius: 0.625rem;
-        padding-left: 60px;
+        padding-left: 4%;
+
     }
 
     .inputRegister {
@@ -36,13 +40,12 @@
     #spanIcon,
     .IconNormal {
         display: flex;
-        width: 10%;
-        height: 35%;
+        width: 3%;
+        height: 100%;
         justify-content: center;
         align-items: center;
         position: absolute;
-        left: 10px;
-        top: 6px;
+        background-color: #B275FF;
     }
 
     .IconLogin {

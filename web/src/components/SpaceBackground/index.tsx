@@ -11,6 +11,7 @@ import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 import RegisterSpace from "../Register";
 
 
+
 const SpaceBackground = () => {
 
   return (

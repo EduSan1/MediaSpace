@@ -86,7 +86,7 @@ const RecoveringPasswordPage = () => {
                
                 
                 <span> 
-                <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={<FaLock/>} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(event);
                     
                 }} />
