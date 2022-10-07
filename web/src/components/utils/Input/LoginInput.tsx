@@ -9,15 +9,13 @@ interface IInput {
     placeholder: string,
     label: string,
     valueLogin: string,
-    className: "Input_Login" | "inputRegister" | "InputError" | "Input_PassWordRecovery",
+    className: "Input_Login" | "inputRegister" | "InputError" | "Input_PassWordRecovery" | "Input_one" | "Input_two" ,
     hasError: boolean
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-
-
-
+    maxlength: number
 }
 
-const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, className, hasError, valueLogin }: IInput) => {
+const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, className, hasError, valueLogin, maxlength }: IInput) => {
 
 
 
@@ -30,7 +28,7 @@ const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, c
                 </div>
                 <div className="input_icon_login">
                     <span className={hasError ? "erroIcon" : "IconNormal"} id="spanIcon" > {icon} </span>
-                    <input value={valueLogin} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} className={className} type={typeInput} name={name} placeholder={placeholder} />
+                    <input value={valueLogin} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} className={className} type={typeInput} name={name} placeholder={placeholder} maxLength={maxlength} />
                 </div>
             </div>
         </>
