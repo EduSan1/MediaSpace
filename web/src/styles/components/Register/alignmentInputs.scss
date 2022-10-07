@@ -23,18 +23,20 @@
     flex-direction: row;
 
 }
-#image{
+
+#image {
     display: none;
 }
 
-.teste{
+.input_btn_upload_photo {
     width: 100px;
     height: 25px;
     border-radius: 10px;
-    border:solid $dark-purple;
+    border: 3px solid $dark-purple;
     color: $dark-purple;
     background-color: transparent;
     cursor: pointer;
+    text-align: center;
 }
 
 .alignment-inputs-by-divs {
@@ -70,7 +72,7 @@
     height: 40%;
 }
 
-.picture{
+.picture {
     border-radius: 50%;
     height: 100%;
 }
