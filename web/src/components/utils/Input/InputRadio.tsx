@@ -1,32 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface IInputRadio {
-   label: string,
-   options: string[],
-   name: string
+  value : string
+  id: string
+  name: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+
 }
 
-const InputRadio = ({ label, options, name }: IInputRadio) => {
-   return (
-      <>
-         <div className="container_input_radio">
-            <div className="container_label">
-               <label>{label}</label>
-            </div>
-            <div className="container_options">
-               {options.map((option) => (
-                  <label>
-                     <input type="radio" value={option} name={name} />
-                     {option}
-                  </label>
-               ))}
-            </div>
+const InputRadio = ({ value, id, name , handleChange }: IInputRadio) => {
 
-         </div>
-      </>
-   );
-}
+   useEffect(() => {
+
+        }, [id])
+    return (
+      <label>
+         <input onChange={(event) => handleChange(event)} type="radio" value={id} name={name} />
+              {value}
+      </label>
+
+  );
+};
 
 export default InputRadio;
-
-

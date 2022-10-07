@@ -6,8 +6,8 @@ import WavyBackground from "react-native-wavy-background";
 import { ForgetPassword } from "../components/ForgetPassword";
 import { Login } from "../components/Login";
 import { Confirmation } from "../components/Confirmation"
-import {CheckEmail} from "../components/CheckEmail"
-import {Register} from "../components/Register"
+import { CheckEmail } from "../components/CheckEmail"
+import { Register } from "../components/Register"
 import { RegisterFreelancer } from "../components/RegisterFreelancer";
 import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
 export default function LoginPage() {
@@ -37,6 +37,9 @@ export default function LoginPage() {
 
                 <View style={styles.container}>
                     <RegisterFreelancerComplete/>
+                    {/* <RegisterFreelancer/> */}
+                    {/* <Register /> */}
+                    {/* <Login/> */}
                 </View>
 
             </View>
@@ -52,6 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         position: "relative"
+        
 
     },
     starfield: {
@@ -70,12 +74,13 @@ const styles = StyleSheet.create({
     header: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.3,
-        marginBottom:25,
+        marginBottom: 25,
     },
     container: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.7,
         position: "relative",
+
         alignContent: "center",
         alignItems: "flex-start"
     },
