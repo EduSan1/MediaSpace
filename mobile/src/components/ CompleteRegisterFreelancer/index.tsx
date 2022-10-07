@@ -26,9 +26,6 @@ export const RegisterFreelancerComplete = () => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>{`Com quais tipos de serviços você deseja trabalhar?`}</Text>
-
-            {/* Categorias */}
 
             <View style={styles.textArea}>
                 <Text style={styles.text1}>Categorais</Text>
@@ -50,7 +47,7 @@ export const RegisterFreelancerComplete = () => {
 
             
 
-            {/* SubCategorias */}
+
             <View style={styles.textArea}>
                 <Text style={styles.text1}>Sub-Categorais</Text>
             </View>

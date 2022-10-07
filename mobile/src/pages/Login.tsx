@@ -42,14 +42,17 @@ export default function LoginPage() {
 
                 <NavigationContainer>
                     <Stack.Navigator initialRouteName="Login">
-                        <Stack.Screen name="Login" component={Login}/>
+                        <Stack.Screen name="Login"    component={Login}/>
                         <Stack.Screen name="Register" component={Register}/>
                     </Stack.Navigator>
                 </NavigationContainer>
-                
-                {/* <View style={styles.container}>
-                    <Login/>
-                </View> */}
+
+                <View style={styles.container}>
+                    <RegisterFreelancerComplete/>
+                    {/* <RegisterFreelancer/> */}
+                    {/* <Register /> */}
+                    {/* <Login/> */}
+                </View>
 
             </View>
 
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.7,
+        height: Dimensions.get('window').height ,
         position: "relative",
 
         alignContent: "center",

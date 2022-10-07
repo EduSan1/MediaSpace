@@ -5,11 +5,8 @@ import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-i
 import { MdFacebook, MdEmail, MdLock } from "react-icons/md";
 import { IconBase } from "react-icons";
 import api from "../../service";
-import { kMaxLength } from "buffer";
-
-
-
 import { Link } from 'react-router-dom';
+import { kMaxLength } from "buffer";
 
 const LoginSpace = () => {
 

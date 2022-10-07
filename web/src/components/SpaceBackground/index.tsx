@@ -25,7 +25,6 @@ const SpaceBackground = ({component} : ISpaceBackground) => {
         <span className="MediaSpaceLogo">
           <img src="../assets/img/MediaSpaceLogo.png" />
         </span>
-
         
 
         <main className="SpaceLogin"> 
