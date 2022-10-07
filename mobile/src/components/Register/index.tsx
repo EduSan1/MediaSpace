@@ -7,8 +7,9 @@ import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
 
 export const Register = () => {
-
+    
     const [check, setCheck] = useState("")
+    const [registerLoad, setRegisterLoad] = useState(false)
 
     const [userRegister, setUserRegister] = useState({
         name: "",
@@ -52,7 +53,7 @@ export const Register = () => {
     }
 
     const confirm = async () => {
-        console.log("confirmado")
+        setRegisterLoad(!registerLoad)
     }
 
     useEffect(() => {
@@ -91,7 +92,7 @@ export const Register = () => {
                 <View style={styles.View}>
 
 
-                <View style={styles.iconViewStart}>
+                    <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
@@ -134,7 +135,7 @@ export const Register = () => {
 
                 <View style={styles.View}>
 
-                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image : string) => handleUserPicture(image)}/>
+                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
 
                     <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -144,10 +145,10 @@ export const Register = () => {
 
             </ScrollView>
 
-            
+
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
-                <LoginButton type="dark" action={confirm} title="Continuar" />
+                    <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
                 <Text style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
         </>
@@ -182,10 +183,10 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: Dimensions.get("window").width * 0.025,
-        width: Dimensions.get('window').width  * 0.6,
+        width: Dimensions.get('window').width * 0.6,
         color: '#46307B',
         margin: 10,
-        justifyContent:'center',
+        justifyContent: 'center',
     },
     text2: {
         width: Dimensions.get('window').width * 0.4,
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
         color: '#B275FF',
         display: "flex",
         justifyContent: "center",
-    
+
     },
     containerTextButton: {
         width: Dimensions.get('window').width,
@@ -212,12 +213,12 @@ const styles = StyleSheet.create({
     //     alignItems: "center",
     //     display: 'flex',
     //     flex: 0.5,
-      
+
     // },
     scrollIcon: {
         width: Dimensions.get('window').width * 0.064,
         height: Dimensions.get('window').height * 0.04,
-        
+
     },
     iconViewStart: {
         width: Dimensions.get('window').width,
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
     //     height: Dimensions.get('window').height * 0.06,
     //     justifyContent:"space-between",
     //     alignItems:"center",
-        
+
 
     // },
     // scrollView: {

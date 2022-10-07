@@ -1,16 +1,23 @@
 import React from "react"
-import { Text, StyleSheet, Dimensions, Pressable } from "react-native"
+import { Text, StyleSheet, Dimensions, Pressable, ActivityIndicator } from "react-native"
 
 interface ILoginButton {
     action: () => void
     type: "light" | "dark"
     title: string
+    isLoad: boolean
 }
 
-export const LoginButton = ({ action, type, title }: ILoginButton) => {
+export const LoginButton = ({ action, type, title, isLoad }: ILoginButton) => {
 
     return (
-        <Pressable onPress={() => action()} style={type === "light" ? styles.lightButton :  styles.darkButton}><Text style={type === "light" ? styles.textButton : styles.darkText}>{title}</Text></Pressable>
+        <Pressable onPress={() => isLoad ? null : action()} style={type === "light" ? styles.lightButton : styles.darkButton}>
+            {isLoad ?
+                <ActivityIndicator size="large" color="#B275FF" />
+                :
+                <Text style={type === "light" ? styles.textButton : styles.darkText}>{title}</Text>
+            }
+        </Pressable>
 
     )
 }

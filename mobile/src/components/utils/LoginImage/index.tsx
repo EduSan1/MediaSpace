@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Image, StyleSheet, Dimensions, Alert, Pressable } from 'react-native'
+import { View, Text, Image, StyleSheet, Dimensions, Alert, Pressable, ActivityIndicator } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import { firebase } from '../../../constants/firebase'
 import { LoginButtonUpload } from '../LoginButtonUpload'
@@ -25,8 +25,9 @@ export const LoginImage = ({ userImage, setUserImage }: ILoadImage) => {
         })
 
         const source = { uri: result.uri }
-
-        uploadImage(source)
+        
+        if (source.uri != undefined)
+            uploadImage(source)
 
     }
 
@@ -57,7 +58,11 @@ export const LoginImage = ({ userImage, setUserImage }: ILoadImage) => {
             <Text style={styles.inputTitle}>Foto de Perfil</Text>
             <Image style={styles.image} source={{ uri: userImage }} />
             <Text style={styles.text}>Escolha um arquivo jpg, png, gif...</Text>
-            <LoginButtonUpload type="dark" action={() => searchImage()} title="Upload" />
+            {uploading ?
+                <ActivityIndicator size='large' color="#B275FF" />
+                :
+                <LoginButtonUpload type="dark" action={() => searchImage()} title="Upload" />
+            }
             <Pressable onPress={() => setUserImage("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57")}>
                 <Text style={styles.textButton}>Remover imagem</Text>
             </Pressable>
