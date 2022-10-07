@@ -3,7 +3,6 @@ import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Image } from "rea
 import { LoginButton } from "../utils/LoginButton";
 export const CheckEmail = () => {
 
-
     const submit = async () =>{
         
     }
@@ -11,6 +10,7 @@ export const CheckEmail = () => {
 
     return (
         <>
+        <Text style={styles.title}>{`Verifique seu e-mail`}</Text>
         <View style={styles.container}>
 
             <View>
