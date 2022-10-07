@@ -9,6 +9,10 @@ import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
 import PasswordWarningPage from "../../pages/PasswordWarningPage";
 import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 import RegisterSpace from "../Register";
+import ButtonIcon from "../utils/Button/ButtonIcon";
+import { FaLock } from "react-icons/fa";
+import LoginSpace from "../Login";
+
 
 
 
@@ -24,15 +28,18 @@ const SpaceBackground = () => {
         
        
         <main className="SpaceLogin"> 
-         {/* <LoginSpace/> */}
+         <LoginSpace/>
         {/* <SucessRegister/> */}
         {/* <SendingEmailRecovery/> */}
         {/* <ProviderUserRegsiter/> */}
         {/* <RecoveryPassword/> */}
         {/* <ConfirmEmailWarningPage/> */}
         {/* <PasswordWarningPage/> */}
-        <RecoveringPasswordPage/>
+        {/* <RecoveringPasswordPage/> */}
         {/* <RegisterSpace/> */}
+        {/* <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
+                                         
+                }} /> */}
         </main>
         
       

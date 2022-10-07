@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    margin-bottom: 1%;
     
 }
 
@@ -45,14 +46,10 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        background-color: #B275FF;
+        color: $dark-purple;
+        
     }
 
-    .IconLogin {
-        width: 100%;
-        height: 100%;
-        color: $dark-purple;
-    }
 }
 
 .container_label {
@@ -60,6 +57,7 @@
     font-family: $light-font;
     font-weight: bolder;
     color: $dark-purple;
+    margin-bottom: 2%;
 
 
 }

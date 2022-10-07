@@ -5,6 +5,7 @@ import InputBtn from "../../components/utils/Button/InputBtn";
 import { passwordMask } from "../../service/Regex/regex";
 import api from "../../service";
 import { FaLock, FaLockOpen, FaEye } from "react-icons/fa";
+import ButtonIcon from "../../components/utils/Button/ButtonIcon";
 
 
 
@@ -77,9 +78,9 @@ const RecoveringPasswordPage = () => {
                 <InputLoign label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(event);
                 }} />
-                <InputBtn className="Passeyes" name="" typeInput="button" valueBtn="" onClick={() =>{
+                <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
                                            setHaspass(!haspass)
-                }} ></InputBtn>
+                }} />
 
 
                 </span>
