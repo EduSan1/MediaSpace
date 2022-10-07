@@ -60,7 +60,7 @@ export const Login = () => {
                 <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
 
             <View style={styles.buttonContainer}>
-                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar" />
+                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar"/>
                 <LoginButton isLoad={isLoad} type="dark" action={login} title="Cadastre-se" />
             </View>
 

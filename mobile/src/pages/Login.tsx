@@ -9,12 +9,8 @@ import { CheckEmail } from "../components/CheckEmail"
 import { Register } from "../components/Register"
 import { RegisterFreelancer } from "../components/RegisterFreelancer";
 import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function LoginPage() {
-
-    const Stack = createNativeStackNavigator();
 
     return (
         <KeyboardAvoidingView
@@ -39,13 +35,6 @@ export default function LoginPage() {
                         color="#505BB0"
                     />
                 </View>
-
-                <NavigationContainer>
-                    <Stack.Navigator initialRouteName="Login">
-                        <Stack.Screen name="Login"    component={Login}/>
-                        <Stack.Screen name="Register" component={Register}/>
-                    </Stack.Navigator>
-                </NavigationContainer>
 
                 <View style={styles.container}>
                     {/* <RegisterFreelancerComplete/> */}
