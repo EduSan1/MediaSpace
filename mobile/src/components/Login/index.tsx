@@ -6,6 +6,7 @@ import { LoginButton } from "../utils/LoginButton";
 
 export const Login = () => {
 
+    const [isLoad, setIsLoad] = useState(false)
     const [userLogin, setUserLogin] = useState({
         mail: "",
         password: ""
@@ -28,6 +29,7 @@ export const Login = () => {
     }
     const login = () => {
         Keyboard.dismiss()
+        setIsLoad(true)
 
         api.post("/User/login", userLogin).then((res: any) => {
 
@@ -37,9 +39,12 @@ export const Login = () => {
                 setHasError(true)
                 ToastAndroid.show(res.data.message, 10)
             }
+            
         }).catch((error) => {
             console.log(error)
         })
+
+        setIsLoad(false)
 
     }
 
@@ -55,8 +60,8 @@ export const Login = () => {
             <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
 
             <View style={styles.buttonContainer}>
-                <LoginButton type="light" action={login} title="Entrar" />
-                <LoginButton type="dark" action={login} title="Cadastre-se" />
+                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar" />
+                <LoginButton isLoad={isLoad} type="dark" action={login} title="Cadastre-se" />
             </View>
 
             <Text style={styles.textNavigate}>Navegar sem uma conta</Text>

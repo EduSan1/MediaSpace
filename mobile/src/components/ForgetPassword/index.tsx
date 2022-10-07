@@ -6,6 +6,7 @@ import { LoginButton } from "../utils/LoginButton";
 
 export const ForgetPassword = () => {
 
+    const [isLoad, setIsLoad] = useState(false)
     const [userEmail, setUserEmail] = useState({
         mail: ""
     })
@@ -35,7 +36,7 @@ export const ForgetPassword = () => {
                 </View>
 
                 <View>
-                     <LoginButton type="light" action={submit}  title="Enviar"/>
+                     <LoginButton isLoad={isLoad} type="light" action={submit}  title="Enviar"/>
                      
                      
                 </View> 

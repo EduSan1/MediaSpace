@@ -6,7 +6,7 @@ import { CheckboxComponent } from "../utils/subCategory";
 export const RegisterFreelancerComplete = () => {
 
     const [check, setCheck] = useState("")
-
+    const [isLoad, setIsLoad] = useState(false)
     const [userRegister, setUserRegister] = useState({
         name: {
             "id": check
@@ -69,7 +69,7 @@ export const RegisterFreelancerComplete = () => {
                 </ScrollView>
             </View>
 
-                <LoginButton action={() => console.log("a")} type="dark" title="Continuar"/>
+                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar"/>
 
         </View>
     )
