@@ -7,8 +7,9 @@ import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
 
 export const Register = () => {
-
+    
     const [check, setCheck] = useState("")
+    const [registerLoad, setRegisterLoad] = useState(false)
 
     const [userRegister, setUserRegister] = useState({
         name: "",
@@ -19,6 +20,7 @@ export const Register = () => {
         cpf: "",
         birth: "",
         cell: "",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57",
         gender: {
             "id": check
         },
@@ -37,12 +39,21 @@ export const Register = () => {
             }
         )
     }
+
+    const handleUserPicture = (text: string) => {
+        setUserRegister(
+            {
+                ...userRegister,
+                profile_picture: text
+            }
+        )
+    }
     const changeVisibilityPassword = () => {
         setVisibilityPassword(!visibilityPassword)
     }
 
     const confirm = async () => {
-        console.log("confirmado")
+        setRegisterLoad(!registerLoad)
     }
 
     useEffect(() => {
@@ -126,7 +137,7 @@ export const Register = () => {
 
                 <View style={styles.View}>
 
-                    <LoginImage />
+                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
 
                     <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -134,10 +145,11 @@ export const Register = () => {
                 </View>
 
             </ScrollView>
-            
+
+
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
-                <LoginButton type="dark" action={confirm} title="Continuar" />
+                    <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
                 <Text style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
             </ScrollView>

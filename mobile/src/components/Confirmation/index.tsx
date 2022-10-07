@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Image } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
+
 export const Confirmation = () => {
 
-
+    const [isLoad, setIsLoad] = useState(false)
     const submit = async () =>{
         console.log("enviado")
     }
@@ -22,13 +23,13 @@ export const Confirmation = () => {
 
 
             <View style={styles.buttonContainer}>
-            <LoginButton type="light" action={submit}  title="OK"/>          
+            <LoginButton isLoad={isLoad} type="light" action={submit}  title="OK"/>          
             </View>
 
             <Text style={styles.text}>Caso não receba nosso e-mail em alguns minutos, tente reenviar</Text>    
 
             <View style={styles.buttonContainer}>
-            <LoginButton type="dark" action={submit}  title="Reenviar"/> 
+            <LoginButton isLoad={isLoad} type="dark" action={submit}  title="Reenviar"/> 
             </View>
 
         </View>

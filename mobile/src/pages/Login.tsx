@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         position: "relative"
+        
 
     },
     starfield: {
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.7,
         position: "relative",
+
         alignContent: "center",
         alignItems: "flex-start"
     },
