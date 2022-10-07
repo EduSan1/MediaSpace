@@ -7,8 +7,9 @@ import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
 
 export const Register = () => {
-
+    
     const [check, setCheck] = useState("")
+    const [registerLoad, setRegisterLoad] = useState(false)
 
     const [userRegister, setUserRegister] = useState({
         name: "",
@@ -19,6 +20,7 @@ export const Register = () => {
         cpf: "",
         birth: "",
         cell: "",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57",
         gender: {
             "id": check
         },
@@ -37,12 +39,21 @@ export const Register = () => {
             }
         )
     }
+
+    const handleUserPicture = (text: string) => {
+        setUserRegister(
+            {
+                ...userRegister,
+                profile_picture: text
+            }
+        )
+    }
     const changeVisibilityPassword = () => {
         setVisibilityPassword(!visibilityPassword)
     }
 
     const confirm = async () => {
-        console.log("confirmado")
+        setRegisterLoad(!registerLoad)
     }
 
     useEffect(() => {
@@ -58,6 +69,8 @@ export const Register = () => {
 
     return (
         <>
+
+            <Text style={styles.title}>{`Faça seu cadastro`}</Text>
             <ScrollView
                 style={styles.container}
                 horizontal={true}
@@ -79,7 +92,7 @@ export const Register = () => {
                 <View style={styles.View}>
 
 
-                <View style={styles.iconViewStart}>
+                    <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
@@ -122,7 +135,7 @@ export const Register = () => {
 
                 <View style={styles.View}>
 
-                    <LoginImage/>
+                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
 
                     <View style={styles.iconViewStart}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -132,10 +145,10 @@ export const Register = () => {
 
             </ScrollView>
 
-            
+
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
-                <LoginButton type="dark" action={confirm} title="Continuar" />
+                    <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
                 <Text style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
         </>
@@ -145,42 +158,49 @@ export const Register = () => {
 
 const styles = StyleSheet.create({
 
+    title: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.07,
+        textAlign: "center",
+        fontSize: Dimensions.get("window").width * 0.05,
+        fontWeight: 'bold',
+        color: "#B275FF",
+        textAlignVertical: "center"
+    },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.15,
+        height: Dimensions.get('window').height * 0.20,
         display: 'flex',
     },
 
     View: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.35,
+        height: Dimensions.get('window').height * 0.4,
         display: "flex",
         alignItems: 'center',
         justifyContent: 'space-evenly',
     },
 
     text: {
-        fontSize: 10,
-        width: Dimensions.get('window').width * 0.4 ,
+        fontSize: Dimensions.get("window").width * 0.025,
+        width: Dimensions.get('window').width * 0.6,
         color: '#46307B',
-        display: 'flex',
-        marginBottom: 10,
-        justifyContent:'center',
+        margin: 10,
+        justifyContent: 'center',
     },
     text2: {
         width: Dimensions.get('window').width * 0.4,
-        display: "flex",
-        fontSize: 12,
+        fontSize: Dimensions.get("window").width * 0.03,
         fontWeight: "bold",
         color: '#B275FF',
-        alignItems: "center",
+        display: "flex",
         justifyContent: "center",
-    
+
     },
     containerTextButton: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.2,
-        justifyContent: "center",
+        height: Dimensions.get('window').height,
+        justifyContent: "flex-start",
         alignItems: "center",
         display: 'flex',
         flex: 1
@@ -193,12 +213,12 @@ const styles = StyleSheet.create({
     //     alignItems: "center",
     //     display: 'flex',
     //     flex: 0.5,
-      
+
     // },
     scrollIcon: {
         width: Dimensions.get('window').width * 0.064,
         height: Dimensions.get('window').height * 0.04,
-        
+
     },
     iconViewStart: {
         width: Dimensions.get('window').width,
@@ -245,7 +265,7 @@ const styles = StyleSheet.create({
     //     height: Dimensions.get('window').height * 0.06,
     //     justifyContent:"space-between",
     //     alignItems:"center",
-        
+
 
     // },
     // scrollView: {

@@ -38,6 +38,7 @@
     justify-content: start;
     padding-top: 5%;
     padding-left: 1%;
+   
 
     h3{
         font: clamp(1rem, 3vw, 1rem) $light-font;
@@ -56,9 +57,12 @@
     .Input_one,
     .Input_two{
         width: clamp(100%, 3vw, 70%);
-        height: 70%;
+        height: 80%;
         border: solid 1px $primary-purple;
         border-radius: 0.5rem;
+        padding-left: 10px;
+
+        
     }
     p{
         font-family: $light-font ;
@@ -70,6 +74,25 @@
 
     .hasErrorInput{
         border: solid 1px red;
+    }
+
+    .input_icon_login{
+        span{
+            margin-top:1.3%;
+            visibility: hidden;
+        }
+    }
+
+
+    .teste_tow{
+        display: flex;
+        width: 100%;
+        height: 10%;
+        position: relative;
+        justify-content: end;
+        align-items: center;
+
+        
     }
   }
 

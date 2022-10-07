@@ -32,6 +32,7 @@ const SpaceBackground = () => {
         </main>
 
 
+
         <span className="Space">
           <img src="../assets/img/backSpace.png" />
         </span>

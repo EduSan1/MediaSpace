@@ -138,7 +138,7 @@ const LoginSpace = () => {
           </div>
 
           <div className="inputLogin">
-
+            
             <InputLoign hasError={hasError} label={"email"} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<MdEmail/>} className={hasError ? "InputError" : "Input_Login" } 
               valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
             />
