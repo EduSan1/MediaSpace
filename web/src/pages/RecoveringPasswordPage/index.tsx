@@ -1,42 +1,65 @@
-import React ,{useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import ImageComponent from "../../components/utils/imageComponent/imageComponent";
 import InputLoign from "../../components/utils/Input/LoginInput";
 import InputBtn from "../../components/utils/Button/InputBtn";
+import { passwordMask } from "../../service/Regex/regex";
+import api from "../../service";
+import { FaLock, FaLockOpen, FaEye } from "react-icons/fa";
+
 
 
 
 const RecoveringPasswordPage = () => {
 
     const [DiceNewPassword, setDiceNewPassWord] = useState({
-    
-         "NewPassword":"",
-         "repetePassword":""
+
+        "NewPassword": "",
+        "repetePassword": ""
 
     });
-    
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>)=>{
-         setDiceNewPassWord({
-        ...DiceNewPassword,
-        [event.target.name]: event.target.value
-         })
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDiceNewPassWord({
+            ...DiceNewPassword,
+            [event.target.name]: event.target.value
+        })
     };
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(DiceNewPassword)
     }, [DiceNewPassword])
 
 
     const [hasError, setHasError] = React.useState(false);
+    const [haspass, setHaspass] = React.useState(false);
+    const [hasrepetepass, setHasrepetepass] = React.useState(false);
 
 
-    const validate = () =>{
-        if(DiceNewPassword.NewPassword == DiceNewPassword.repetePassword){
-            console.log('sao iguais');
-            
-        }
-    // validar se campo são iguais, e se existe 1 caractere especial
+    const validate = async () => {
+
+        if(DiceNewPassword.NewPassword){
+            if(Object.is(DiceNewPassword.NewPassword, DiceNewPassword.repetePassword)){
+                if(passwordMask.test(DiceNewPassword.NewPassword)){
+                         await api.post("/user/recoverPassword", DiceNewPassword).then(() =>{
+
+                         })
+                         .catch(()=>{
+
+                         })
+                }else{
+                    setHasError(true);
+                }   
+            }else{
+                    setHasError(true);
+            }
            
+        }else{
+            setHasError(true);
+        }
+
+          
+          
     }
 
 
@@ -50,35 +73,44 @@ const RecoveringPasswordPage = () => {
             </div>
 
             <div className="Container_Input">
-                <h3> Nova Senha</h3>
-                <InputLoign label={""} className="Input_one" placeholder="" name={"NewPassword"} typeInput="text" maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  handleChange(event);
-
-                  
-        
+                <span className="teste_tow"> 
+                <InputLoign label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChange(event);
                 }} />
+                <InputBtn className="Passeyes" name="" typeInput="button" valueBtn="" onClick={() =>{
+                                           setHaspass(!haspass)
+                }} ></InputBtn>
 
-                <h3> Reescreva Sua Senha </h3>
-                <InputLoign label={""}  className="Input_two" placeholder="" name={"repetePassword"} typeInput="text" maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                handleChange(event);
 
+                </span>
+               
+                
+                <span> 
+                <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChange(event);
+                    
                 }} />
+                 <InputBtn className="" name="" typeInput="button" valueBtn="" onClick={() =>{
+                                           setHasrepetepass(!hasrepetepass)
+                }} />
+                </span>
+      
 
                 <p> Conter pelo menos 1 caractere especial, limite de 255 caracteres. </p>
 
                 <div className="Input_btn">
 
-                <InputBtn className="Next_NewPassWord" name="Btn_Next_NewPassWord" valueBtn="Confirmar" typeInput="Submit"  onClick={() =>{
+                    <InputBtn className="Next_NewPassWord" name="Btn_Next_NewPassWord" valueBtn="Confirmar" typeInput="Submit" onClick={() => {
 
-                    console.log("enviar");
-                }}/>
+                        validate();
+                    }} />
 
+
+                </div>
 
             </div>
 
-            </div>
 
-            
         </main>
 
     );

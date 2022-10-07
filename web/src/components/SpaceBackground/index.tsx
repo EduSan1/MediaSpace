@@ -20,18 +20,6 @@ const SpaceBackground = () => {
         <span className="MediaSpaceLogo">
           <img src="../assets/img/MediaSpaceLogo.png" />
         </span>
-<<<<<<< HEAD
-
-
-        <main className="SpaceLogin">
-          {/* <LoginSpace/> */}
-          {/* <SucessRegister/> */}
-          {/* <SendingEmailRecovery/> */}
-          {/* <ProviderUserRegister/> */}
-          <RegisterSpace/>
-          {/* <RecoveryPassword /> */}
-=======
-        
        
         <main className="SpaceLogin"> 
          {/* <LoginSpace/> */}
@@ -44,9 +32,9 @@ const SpaceBackground = () => {
         {/* <RecoveringPasswordPage/> */}
 
         <RegisterSpace/>
->>>>>>> 385f04ca39c6d3aac02ec9c9e927185c9d0dca70
-        </main>
 
+        {/* <RecoveringPasswordPage/> */}
+        </main>
 
         <span className="Space">
           <img src="../assets/img/backSpace.png" />
