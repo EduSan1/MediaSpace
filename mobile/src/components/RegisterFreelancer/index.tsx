@@ -3,6 +3,7 @@ import { StyleSheet,View, ScrollView,Text,Dimensions, Image,  } from "react-nati
 import { LoginButton } from "../utils/LoginButton";
 
 export const RegisterFreelancer = () => {
+    const [isLoad, setIsLoad] = useState(false)
     return(
         <View style={styles.container}>
             <Text style={styles.title}>{`Deseja cadastrar-se como prestador?`}</Text>
@@ -15,9 +16,9 @@ export const RegisterFreelancer = () => {
                 <Text style={styles.text2}>&#8226; Formação de equipes</Text>
             </View>
             <View style={styles.areaContainer2}>
-                <LoginButton action={() => console.log("a")} type="dark" title="Continuar como prestador"/>
+                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar como prestador"/>
             </View>
-                <LoginButton action={() => console.log("a")} type="light" title="Continuar como cliente"/>
+                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="light" title="Continuar como cliente"/>
 
         </View>
     )

@@ -6,6 +6,7 @@ import { LoginButton } from "../utils/LoginButton";
 
 export const ForgetPassword = () => {
 
+    const [isLoad, setIsLoad] = useState(false)
     const [userEmail, setUserEmail] = useState({
         mail: ""
     })
@@ -31,11 +32,11 @@ export const ForgetPassword = () => {
                 <Text style={styles.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
 
                 <View style={styles.inputContainer}>
-                <LoginInput name="mail" iconName="mail-outline" value={userEmail.mail} handleChange={handleChange} error={hasError} title="Email" />
+                <LoginInput name="mail" iconName="mail-outline" value={userEmail.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                 </View>
 
                 <View>
-                     <LoginButton type="light" action={submit}  title="Enviar"/>
+                     <LoginButton isLoad={isLoad} type="light" action={submit}  title="Enviar"/>
                      
                      
                 </View> 

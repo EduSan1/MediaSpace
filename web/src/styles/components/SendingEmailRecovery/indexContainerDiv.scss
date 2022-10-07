@@ -28,21 +28,24 @@
 
 
     .div_Container_MailSend {
-        width: 40%;
+        width: 60%;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 2%;
 
 
 
-
-        .Container_sendEmail {
+        #Container_sendEmail {
             width: 100%;
             margin-bottom: 2%;
+            justify-content: start;
+            padding-left: 10px;
 
 
             .Tittle_SendEmail {
                 display: flex;
-                font-size: clamp(1.5rem, 2vh, 0.5rem);
+                font-size: clamp(2.5rem, 2vh, 1rem);
                 font-family: $light-font;
                 font-weight: bold;
                 color: $primary-purple;
@@ -53,19 +56,32 @@
 
         }
 
+        span {
+
+            width: 100%;
+            height: auto;
+
+
+        }
 
         h3 {
             display: flex;
-            width: 90%;
+            width: 50%;
             height: 20%;
-            font-size: clamp(1rem, 3vh, 1.25rem);
+            font-size: clamp(1.5rem, 3vh, 1.25rem);
             font-family: $light-font;
             font-weight: bold;
             color: $dark-purple;
             word-wrap: break-word;
             white-space: inherit;
-            margin-bottom: 10%;
+            margin-bottom: 5%;
+            padding-left: 10px;
 
+
+        }
+
+        .ImgMain {
+            margin-bottom: 5%;
         }
 
         .InputBtnSendEmail {
@@ -78,8 +94,7 @@
             background-color: $primary-purple;
             color: #fff;
             border: none;
-            margin-top: 10%;
-
+            margin-top: 5%;
 
 
 
@@ -97,6 +112,14 @@
             transition: 385ms;
         }
 
+        .span_inputNext_SendEmail {
+            display: flex;
+            width: 50%;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
 
 
 
@@ -106,7 +129,7 @@
 
     .div_Container_newRegister {
         display: flex;
-        width: 20%;
+        width: 10%;
         height: 100%;
         align-items: flex-start;
 

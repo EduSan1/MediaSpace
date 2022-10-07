@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 80%;
+    width: 100%;
 }
 
 .input_icon_login {
@@ -31,18 +31,23 @@
         border-radius: 0.625rem;
     }
 
+  
+
 
     .spanIcon,
     #spanIcon,
     .IconNormal {
         display: flex;
-        width: 10%;
+        width: 5%;
         height: 35%;
         justify-content: center;
         align-items: center;
         position: absolute;
         left: 10px;
         top: 6px;
+
+        // left: 2%;
+        // top: 33%;
     }
 
     .IconLogin {
@@ -65,19 +70,19 @@
 .InputError {
 
     width: 100%;
-    height: 5.625rem;
+    height: 80%;
     border-radius: 0.625rem;
     padding-left: 60px;
     color: $red;
     border: solid $red;
 
+    
+
 
 }
 
 .erroIcon {
-
     color: red;
-
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {

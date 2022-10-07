@@ -5,6 +5,9 @@ import ConcludeRegister from "../ConcludeRegister/ConcludeRegister";
 import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
 import ProviderUserRegister from "../../pages/ProviderUserRegister";
 import RecoveryPassword from "../../pages/Recoverypassword";
+import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
+import PasswordWarningPage from "../../pages/PasswordWarningPage";
+import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 import RegisterSpace from "../Register";
 import LoginSpace from "../Login";
 
@@ -26,8 +29,9 @@ const SpaceBackground = ({component} : ISpaceBackground) => {
         <main className="SpaceLogin"> 
         {component}
         </main>
-        
-      
+
+
+
         <span className="Space">
           <img src="../assets/img/backSpace.png" />
         </span>

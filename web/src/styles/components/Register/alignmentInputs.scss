@@ -23,6 +23,19 @@
     flex-direction: row;
 
 }
+#image{
+    display: none;
+}
+
+.teste{
+    width: 100px;
+    height: 25px;
+    border-radius: 10px;
+    border:solid $dark-purple;
+    color: $dark-purple;
+    background-color: transparent;
+    cursor: pointer;
+}
 
 .alignment-inputs-by-divs {
     width: 33%;
@@ -53,7 +66,13 @@
 }
 
 .picture-pattern {
+    border-radius: 100%;
     height: 40%;
+}
+
+.picture{
+    border-radius: 50%;
+    height: 100%;
 }
 
 .container_text_area {
