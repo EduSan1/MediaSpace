@@ -9,7 +9,7 @@ import { FiPhone } from "react-icons/fi"
 import { AiOutlineMail } from "react-icons/ai"
 import InputRadio from "../utils/Input/InputRadio";
 import { storage } from "../../constants/firebase";
-import { cpfMask, phoneMask, onlyLetters, passwordMask } from "../../service/Regex/regex";
+import { cpfMask, phoneMask, onlyLetters, passwordMask, onlyNumbers } from "../../service/Regex/regex";
 import api from "../../service";
 
 
@@ -24,7 +24,7 @@ const RegisterSpace = () => {
             phone: ""
         },
         birth_date: '',
-        profile_picture: 'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57',
+        profile_picture: 'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae',
         cpf: '',
         mail: '',
         gender: {
@@ -54,11 +54,13 @@ const RegisterSpace = () => {
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
             ...user, [event.target.name]: cpfMask(event.target.value)
+             
         })
     }
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
-            ...user, [event.target.name]: phoneMask(event.target.value)
+           ...user, [event.target.name]: phoneMask(event.target.value)
+            //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,7 +151,16 @@ const RegisterSpace = () => {
     }
 
     const registerUser = () => {
-        api.post("/user", user).then((res) => {
+        
+        const userToSend = {
+        ...user ,
+        cpf : onlyNumbers(user.cpf),
+        phone : {
+            ddd: onlyNumbers(user.phone.ddd) ,
+            phone: onlyNumbers(user.phone.phone)
+        },
+}
+        api.post("/user", userToSend).then((res) => {
             console.log(res.data)
         })
     }
@@ -179,9 +190,9 @@ const RegisterSpace = () => {
 
                         <InputLogin valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<MdOutlineAlternateEmail className="IconLogin" />} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25} />
 
-                        <InputLogin valueLogin={user.phone.ddd} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={12} />
+                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={12} />
 
-                        <InputLogin valueLogin={user.cpf} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"text"} placeholder={"CPF"} icon={<HiOutlineIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
+                        <InputLogin valueLogin={user.cpf} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"string"} placeholder={"CPF"} icon={<HiOutlineIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
                     </div>
 
                     <div className="alignment-inputs-by-divs">
@@ -219,14 +230,11 @@ const RegisterSpace = () => {
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                    <label className="input_btn_upload_photo" htmlFor="image">
-                                        <InputBtn typeInput={'submit'} 
-                                            name={'btn_add_photo'} 
-                                            className={'input_btn_upload_photo'} 
-                                            valueBtn={'adicionar imagem'} onClick={() => { }} />
-                                    </label>
+                                  <label className="input_btn_upload_photo" htmlFor="image"> 
+                                        Upload
+                                  </label> 
                                     <input type="file" id="image" />
-                                    
+
                                     {/* <InputBtn typeInput={'submit'} 
                                         name={'btn_add_photo'} 
                                         className={'input_btn_upload_photo'} 
@@ -247,7 +255,8 @@ const RegisterSpace = () => {
                         </div>
                         <div>
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                validation();
+                                // validation()
+                                registerUser();
                             }} />
                         </div>
 
