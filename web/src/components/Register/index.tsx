@@ -1,17 +1,17 @@
 import React, { ReactHTMLElement, useEffect, useState } from "react";
 import InputLogin from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
-import {getDownloadURL, ref, uploadBytesResumable, UploadTask} from 'firebase/storage'
+import {getDownloadURL, ref, uploadBytesResumable, UploadTask} from 'firebase/storage';
 import { MdPersonOutline, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
 import { HiOutlineIdentification } from "react-icons/hi";
-import { RiCalendar2Line } from "react-icons/ri"
-import { FiPhone } from "react-icons/fi"
-import { AiOutlineMail } from "react-icons/ai"
+import { RiCalendar2Line } from "react-icons/ri";
+import { FiPhone } from "react-icons/fi";
+import { AiOutlineMail } from "react-icons/ai";
 import InputRadio from "../utils/Input/InputRadio";
+import { Link } from "react-router-dom";
 import { storage } from "../../constants/firebase";
 import {cpfMask, phoneMask, onlyLetters, passwordMask} from "../../service/Regex/regex";
 import api from "../../service";
-
 
 const RegisterSpace = () => {
 

@@ -1,15 +1,16 @@
 import React from "react";
 import LoginSpace from "../../components/Login";
+import RegisterSpace from "../../components/Register";
 import SpaceBackground from "../../components/SpaceBackground/index";
 
-const LoginPage = () =>{
+const RegisterPage = () =>{
 
     return(
    
         <>
         <main id="LoginPage">
 
-        <SpaceBackground component={<LoginSpace/>}/>   
+        <SpaceBackground component={<RegisterSpace/>}/>   
 
         </main>
          
@@ -18,4 +19,4 @@ const LoginPage = () =>{
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

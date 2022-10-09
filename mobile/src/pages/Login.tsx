@@ -2,7 +2,6 @@ import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
-
 import { ForgetPassword } from "../components/ForgetPassword";
 import { Login } from "../components/Login";
 import { Confirmation } from "../components/Confirmation"
@@ -10,7 +9,9 @@ import { CheckEmail } from "../components/CheckEmail"
 import { Register } from "../components/Register"
 import { RegisterFreelancer } from "../components/RegisterFreelancer";
 import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
+
 export default function LoginPage() {
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -39,8 +40,7 @@ export default function LoginPage() {
                     {/* <RegisterFreelancerComplete/> */}
                     {/* <RegisterFreelancer/> */}
                     {/* <Register /> */}
-                    {/* <Login/> */}
-                    <ForgetPassword/>
+                    <Login/>
                 </View>
 
             </View>

@@ -5,10 +5,8 @@ import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-i
 import { MdFacebook, MdEmail, MdLock, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
-
-
-
-
+import { Link } from 'react-router-dom';
+import { kMaxLength } from "buffer";
 
 const LoginSpace = () => {
 
@@ -112,75 +110,80 @@ const LoginSpace = () => {
   }
 
 
-
   return (
 
     <>
 
 
-        <div className="ImageSpaceLogin" >
-          <img src="../assets/img/rocketart.png" alt="" />
+      <div className="ImageSpaceLogin" >
+        <img src="../assets/img/rocketart.png" alt="" />
+      </div>
+
+
+
+      <div className="LoginSpace">
+        <div className="newHere">
+
+          <span>Nova aqui? </span>
+          <Link to='register'>
+            <span> Cadastre-se </span>
+          </Link>
+
         </div>
 
+        <div className="TittleWelcomeBack">
+          <h1> Bem vindo de volta! </h1>
+          <p> Faça login para continuar </p>
+        </div>
 
+        <div className="inputLogin">
 
-        <div className="LoginSpace">
-          <div className="newHere">
+          <InputLoign hasError={hasError} label={"email"} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<AiOutlineMail />} className={hasError ? "InputError" : "Input_Login"}
+            valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
+          />
+          <InputLoign hasError={hasError} label={"senha"} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLockOutline />} className={hasError ? "InputError" : "Input_Login"}
+            valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
+          />
+        </div>
 
-            <span>Nova aqui? </span>
-            <span> Cadastre-se </span>
+        <div className="btnLogin">
+          <Link to='recoverpassword'>
+            <span className="forguetPass">
+              <h5>Esqueceu a senha?</h5>
+            </span>
+          </Link>
 
-          </div>
-
-          <div className="TittleWelcomeBack">
-            <h1> Bem vindo de volta! </h1>
-            <p> Faça login para continuar </p>
-          </div>
-
-          <div className="inputLogin">
-            
-            <InputLoign hasError={hasError} label={"email"} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<AiOutlineMail/>} className={hasError ? "InputError" : "Input_Login" } 
-              valueLogin={diceLogin.mail} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
-            />
-            <InputLoign hasError={hasError} label={"senha"} typeInput={'password'} name={'password'} placeholder={"senha"} icon={<MdLockOutline/>} className={hasError ? "InputError" : "Input_Login" } 
-              valueLogin={diceLogin.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} maxlength={250}
-            />
-          </div>
-
-          <div className="btnLogin">
-            <span className="forguetPass"> <h5>Esqueceu a senha?</h5> </span>
-
-            <div className="btn_AutomaticLogin">
-              <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}  
+          <div className="btn_AutomaticLogin">
+            <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}
               onClick={() => {
                 validate();
               }} />
 
-              <div className="LoginIcons-container">
-                <h5> login com </h5>
-                <div className="loginIcons">
+            <div className="LoginIcons-container">
+              <h5> login com </h5>
+              <div className="loginIcons">
 
-                  <span>
-                    <MdFacebook onClick={() => { console.log('Facebook') }} />
-                  </span>
+                <span>
+                  <MdFacebook onClick={() => { console.log('Facebook') }} />
+                </span>
 
-                  <span>
-                    <AiFillGoogleCircle />
-                  </span>
+                <span>
+                  <AiFillGoogleCircle />
+                </span>
 
-                  <span>
-                    <AiFillLinkedin />
-                  </span>
+                <span>
+                  <AiFillLinkedin />
+                </span>
 
-                  <span>
-                    <AiFillTwitterCircle />
-                  </span>
-                </div>
+                <span>
+                  <AiFillTwitterCircle />
+                </span>
               </div>
             </div>
-
           </div>
+
         </div>
+      </div>
 
     </>
 
