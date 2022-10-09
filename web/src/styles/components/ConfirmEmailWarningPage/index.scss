@@ -1,15 +1,21 @@
 @import "../../vars.scss";
 
 #ConfirmEmailPage {
+    display: flex;
+    justify-content: center;
     align-items: center;
 
+    .tittle_and_img {
+        h1 {
+            padding: 0;
+            text-align: center;
+        }
+    }
     .logo_Name_pageConfirmEmail {
         display: flex;
         width: 50%;
         height: 100%;
-
-
-
+        
 
 
         .img_logo_mediaSpace_warningPage {
@@ -70,7 +76,7 @@
 
         .img_email {
             display: flex;
-            width: clamp(90%, 3vw, 50%);
+            width: 50%;
             height: auto;
             justify-content: center;
             align-items: center;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert } from "react-native";
 import { LoginInput } from "../utils/LoginInput";
 import { LoginButton } from "../utils/LoginButton";
 
@@ -7,22 +7,26 @@ import { LoginButton } from "../utils/LoginButton";
 export const ForgetPassword = () => {
 
     const [isLoad, setIsLoad] = useState(false)
-    const [userEmail, setUserEmail] = useState({
+    const [user, setuser] = useState({
         mail: ""
     })
     const [hasError, setHasError] = useState(false)
 
     const handleChange = (text: string, name: string) => {
-        setUserEmail(
+        setuser(
             {
-                ... userEmail,
+                ... user,
                 [name]: text
             }
         )
     }
 
     const submit = async () =>{
-        console.log("enviado")
+
+        setIsLoad(true)
+        Alert.alert(`email enviado para "${user.mail}"`)
+        setIsLoad(false)
+
     }
 
 
@@ -32,7 +36,7 @@ export const ForgetPassword = () => {
                 <Text style={styles.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
 
                 <View style={styles.inputContainer}>
-                <LoginInput name="mail" iconName="mail-outline" value={userEmail.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
+                <LoginInput name="mail" iconName="mail-outline" value={user.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                 </View>
 
                 <View>

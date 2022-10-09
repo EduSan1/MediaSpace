@@ -38,8 +38,9 @@ export default function LoginPage() {
                 <View style={styles.container}>
                     {/* <RegisterFreelancerComplete/> */}
                     {/* <RegisterFreelancer/> */}
-                    <Register />
+                    {/* <Register /> */}
                     {/* <Login/> */}
+                    <ForgetPassword/>
                 </View>
 
             </View>

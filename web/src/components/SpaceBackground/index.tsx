@@ -13,7 +13,9 @@ import ButtonIcon from "../utils/Button/ButtonIcon";
 import { FaLock } from "react-icons/fa";
 import LoginSpace from "../Login";
 
-
+interface ISpaceBackgroung {
+  conponent : JSX.Element
+}
 
 
 const SpaceBackground = () => {
@@ -31,11 +33,11 @@ const SpaceBackground = () => {
          {/* <LoginSpace/> */}
         {/* <SucessRegister/> */}
         {/* <SendingEmailRecovery/> */}
-        {/* <ProviderUserRegsiter/> */}
+        <ProviderUserRegister/>
         {/* <RecoveryPassword/> */}
         {/* <ConfirmEmailWarningPage/> */}
         {/* <PasswordWarningPage/> */}
-        {/* <RecoveringPasswordPage/>  esse ainda nao*/} 
+        {/* <RecoveringPasswordPage/>  */}
         {/* <RegisterSpace/> */}
 
         </main>
