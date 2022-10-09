@@ -9,7 +9,7 @@ const PasswordWarningPage = () => {
   return (
 
     <main className="PasswordWarningPage">
-
+  
       <div className="tittle_updated">
 
         <h3>Senha Atualizada</h3>

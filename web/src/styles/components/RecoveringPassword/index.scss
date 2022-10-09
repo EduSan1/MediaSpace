@@ -103,16 +103,36 @@
         }
 
 
-        .teste_tow {
+        .Span_tow {
             display: flex;
             width: 100%;
-            height: 10%;
+            height: 16%;
             position: relative;
             justify-content: end;
             align-items: center;
+            margin-bottom: 5%;
+            flex-direction: row;
+            position: relative;
 
 
-            
+            .Container_btnIcon{
+                display: flex;
+                position: absolute;
+                width: 8%;
+                height: 100%;
+                justify-content: end;
+                align-items: flex-end;
+                 
+                input{
+                    img{
+                        cursor: pointer;
+                    }
+                }
+               
+                
+            }
+
+             
 
 
         }
@@ -139,4 +159,98 @@
         }
     }
 
+}
+
+
+
+
+
+
+@media(max-width:1400px){
+    .RecoveringPasswordPage {
+        
+        .Span_tow {
+            display: flex;
+            width: 100%;
+            height: 16%;
+            position: relative;
+            justify-content: end;
+            align-items: center;
+            margin-bottom: 5%;
+            flex-direction: row;
+            position: relative;
+
+
+            .Container_btnIcon{
+                display: flex;
+                position: absolute;
+                width: 10%;
+                height: 100%;
+                justify-content: end;
+                align-items: flex-end;
+                top: 2%;
+                 
+                input{
+                    img{
+                        cursor: pointer;
+                    }
+                }
+               
+                
+            }
+
+             
+
+
+        }
+
+
+    }
+}
+
+
+
+
+
+
+@media(min-width:1500px),(min-height:900px){
+    .RecoveringPasswordPage {
+        
+        .Span_tow {
+            display: flex;
+            width: 100%;
+            height: 16%;
+            position: relative;
+            justify-content: end;
+            align-items: center;
+            margin-bottom: 5%;
+            flex-direction: row;
+            position: relative;
+
+
+            .Container_btnIcon{
+                display: flex;
+                position: absolute;
+                width: 15%;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 3%;
+
+                 
+                input{
+                    img{
+                        cursor: pointer;
+                    }
+                }
+               
+                
+            }
+
+             
+
+
+        }
+
+
+    }
 }

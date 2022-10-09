@@ -74,7 +74,7 @@ const RecoveringPasswordPage = () => {
             </div>
 
             <div className="Container_Input">
-                <span className="teste_tow"> 
+                <span className="Span_tow"> 
                 <InputLoign label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(event);
                 }} />
@@ -86,14 +86,14 @@ const RecoveringPasswordPage = () => {
                 </span>
                
                 
-                <span> 
+                <span className="Span_tow" > 
                 <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={<FaLock/>} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(event);
                     
                 }} />
-                 <InputBtn className="" name="" typeInput="button" valueBtn="" onClick={() =>{
+                    <ButtonIcon className="" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
                                            setHasrepetepass(!hasrepetepass)
-                }} />
+                }} />   
                 </span>
       
 

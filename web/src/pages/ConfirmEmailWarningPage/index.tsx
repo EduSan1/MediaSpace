@@ -8,7 +8,7 @@ const ConfirmEmailWarningPage = () => {
     return (
 
         <main id="ConfirmEmailPage">
-
+        
             <div className="tittle_and_img">
                 <h1 >  Seu Email Foi Autenticado. </h1>
                 <div className="Div_img_center">
