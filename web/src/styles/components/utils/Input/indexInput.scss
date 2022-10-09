@@ -38,10 +38,9 @@
 
 
     .spanIcon,
-    #spanIcon,
     .IconNormal {
         display: flex;
-        width: 3%;
+        width: 4%;
         height: 100%;
         justify-content: center;
         align-items: center;
@@ -64,20 +63,26 @@
 
 
 .InputError {
-
     width: 100%;
-    height: 80%;
+    height: 5.625rem;
     border-radius: 0.625rem;
-    padding-left: 60px;
+    padding-left: 4%;
     color: $red;
     border: solid $red;
-
+         
     
-
-
+  
+    
+ 
 }
 
 .erroIcon {
+    display: flex;
+    width: 4%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
 
     color: red;
 

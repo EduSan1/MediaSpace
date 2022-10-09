@@ -27,7 +27,7 @@ const InputLogin = ({ icon, typeInput, name, placeholder, label, handleChange, c
                     <label>{label}</label>
                 </div>
                 <div className="input_icon_login">
-                    <span className={hasError ? "erroIcon" : "IconNormal"} id="spanIcon" > {icon} </span>
+                    <span className={hasError ? "erroIcon" : "IconNormal"} > {icon} </span>
                     <input value={valueLogin} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} className={className} type={typeInput} name={name} placeholder={placeholder} maxLength={maxlength} />
                 </div>
             </div>
