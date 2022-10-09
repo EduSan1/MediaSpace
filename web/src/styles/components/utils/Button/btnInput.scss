@@ -18,14 +18,10 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
+ 
+  
 
 }
-
-.InputBtnLogin, .input_btn_cadastrar:hover {
-    background-color: $dark-purple;
-    transition: 385ms;
-}
-
 .input_btn_cadastrar {
     display: flex;
     width: 164px;
@@ -36,6 +32,12 @@
     background-color: $primary-purple;
     color: #fff;
     border: none;
+}
+
+
+.InputBtnLogin:hover{
+    background-color: $dark-purple;
+    transition: 0.5s;
 }
 
 .input_btn_upload_photo{

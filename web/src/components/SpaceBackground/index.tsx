@@ -28,18 +28,16 @@ const SpaceBackground = () => {
         
        
         <main className="SpaceLogin"> 
-         <LoginSpace/>
+         {/* <LoginSpace/> */}
         {/* <SucessRegister/> */}
         {/* <SendingEmailRecovery/> */}
         {/* <ProviderUserRegsiter/> */}
         {/* <RecoveryPassword/> */}
         {/* <ConfirmEmailWarningPage/> */}
         {/* <PasswordWarningPage/> */}
-        {/* <RecoveringPasswordPage/> */}
+        {/* <RecoveringPasswordPage/>  esse ainda nao*/} 
         {/* <RegisterSpace/> */}
-        {/* <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
-                                         
-                }} /> */}
+
         </main>
         
       
