@@ -20,7 +20,10 @@ const PasswordWarningPage = () => {
       <div className="tittle_updated">
 
         <h3>Senha Atualizada</h3>
+        <div className="Div_img_center">
         <ImageComponent alt="" src="../assets/img/verification.svg" className="" />
+        </div>
+       
       </div>
 
 

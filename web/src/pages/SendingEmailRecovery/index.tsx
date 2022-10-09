@@ -21,8 +21,11 @@ const SendingEmailRecovery = () => {
                 <span>
                 <h3>Aguarde o email para realizar a recuperação de senha</h3>
                 </span>
-              
+                
+                <span className="Span_imgCenter">
                 <ImageComponent className="image_Logo" alt="" src="../assets/img/artConfirme.svg" />
+                </span>
+                
                 <span className="span_inputNext_SendEmail">
                 <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnSendEmail'} valueBtn={'Continuar'}
                     onClick={() => {

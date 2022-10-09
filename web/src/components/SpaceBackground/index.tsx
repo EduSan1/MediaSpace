@@ -9,6 +9,11 @@ import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
 import PasswordWarningPage from "../../pages/PasswordWarningPage";
 import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 import RegisterSpace from "../Register";
+import ButtonIcon from "../utils/Button/ButtonIcon";
+import { FaLock } from "react-icons/fa";
+import LoginSpace from "../Login";
+
+
 
 
 const SpaceBackground = () => {
@@ -20,15 +25,19 @@ const SpaceBackground = () => {
         <span className="MediaSpaceLogo">
           <img src="../assets/img/MediaSpaceLogo.png" />
         </span>
+        
+       
+        <main className="SpaceLogin"> 
+         {/* <LoginSpace/> */}
+        {/* <SucessRegister/> */}
+        {/* <SendingEmailRecovery/> */}
+        {/* <ProviderUserRegsiter/> */}
+        {/* <RecoveryPassword/> */}
+        {/* <ConfirmEmailWarningPage/> */}
+        {/* <PasswordWarningPage/> */}
+        {/* <RecoveringPasswordPage/>  esse ainda nao*/} 
+        {/* <RegisterSpace/> */}
 
-
-        <main className="SpaceLogin">
-          {/* <LoginSpace/> */}
-          {/* <SucessRegister/> */}
-          {/* <SendingEmailRecovery/> */}
-          {/* <ProviderUserRegister/> */}
-          <RegisterSpace/>
-          {/* <RecoveryPassword /> */}
         </main>
 
 

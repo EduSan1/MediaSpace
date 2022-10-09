@@ -12,8 +12,8 @@ export const Register = () => {
     const [registerLoad, setRegisterLoad] = useState(false)
 
     const [userRegister, setUserRegister] = useState({
-        name: "",
-        surname: "",
+        first_name: "",
+        last_name: "",
         mail: "",
         password: "",
         nickname: "",
@@ -54,6 +54,8 @@ export const Register = () => {
 
     const confirm = async () => {
         setRegisterLoad(!registerLoad)
+
+        console.log(userRegister)
     }
 
     useEffect(() => {
@@ -78,8 +80,8 @@ export const Register = () => {
                 showsHorizontalScrollIndicator={true}>
 
                 <View style={styles.View}>
-                    <LoginInput name="name" iconName="person-outline" value={userRegister.name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
-                    <LoginInput name="surname" iconName="person-outline" value={userRegister.surname} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
+                    <LoginInput name="first_name" iconName="person-outline" value={userRegister.first_name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
+                    <LoginInput name="last_name" iconName="person-outline" value={userRegister.last_name} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
                     <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                     <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
 

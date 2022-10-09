@@ -15,7 +15,10 @@ const ConfirmEmailWarningPage = () => {
 
             <div className="tittle_and_img">
                 <h1 >  Seu Email Foi Autenticado. </h1>
+                <div className="Div_img_center">
                 <ImageComponent alt="" src="../assets/img/Email.svg" className="img_email" />
+                </div>
+              
 
             </div>
 
