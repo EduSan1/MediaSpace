@@ -15,7 +15,7 @@ const InputRadio = ({ value, id, name , handleChange }: IInputRadio) => {
         }, [id])
     return (
       <label>
-         <input onChange={(event) => handleChange(event)} type="radio" value={id} name={name} />
+         <input onChange={(event) => handleChange(event)} type="radio" value={id} name={name}  />
               {value}
       </label>
 

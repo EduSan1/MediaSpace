@@ -1,31 +1,21 @@
 import React from "react";
-import ImageComponent from "../../components/utils/imageComponent/imageComponent";
+import MailConfirmed from "../../components/MailConfirmed";
+import SpaceBackground from "../../components/SpaceBackground/index";
 
+const MailConfirmedPage = () =>{
 
+    return(
+   
+        <>
+        <main id="LoginPage">
 
-const ConfirmEmailWarningPage = () => {
-
-    return (
-
-        <main id="ConfirmEmailPage">
-        
-            <div className="tittle_and_img">
-                <h1 >  Seu Email Foi Autenticado. </h1>
-                <div className="Div_img_center">
-                    <ImageComponent alt="" src="../assets/img/Email.svg" className="img_email" />
-                </div>
-
-
-            </div>
-
-
-
-
+        <SpaceBackground component={<MailConfirmed/>}/>   
 
         </main>
-
+         
+        </>
+  
     );
 }
 
-
-export default ConfirmEmailWarningPage;
+export default MailConfirmedPage;
