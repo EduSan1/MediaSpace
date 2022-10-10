@@ -9,6 +9,24 @@ import { CheckEmail } from "../components/CheckEmail"
 import { Register } from "../components/Register"
 import { RegisterFreelancer } from "../components/RegisterFreelancer";
 import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+function StackNavigation(){
+  
+    const Stack = createNativeStackNavigator();
+    
+    return(
+      <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+              <Stack.Screen name="Login"                        component={Login}/>
+              <Stack.Screen name="Register"                     component={Register}/>
+              <Stack.Screen name="RegisterFreelancer"           component={RegisterFreelancer}/>
+              <Stack.Screen name="RegisterFreelancerComplete"   component={RegisterFreelancerComplete}/>
+          </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 
 export default function LoginPage() {
 
@@ -37,10 +55,11 @@ export default function LoginPage() {
                 </View>
 
                 <View style={styles.container}>
+                    <StackNavigation/>
                     {/* <RegisterFreelancerComplete/> */}
                     {/* <RegisterFreelancer/> */}
                     {/* <Register /> */}
-                    <Login/>
+                    {/* <Login/> */}
                 </View>
 
             </View>

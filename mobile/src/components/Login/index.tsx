@@ -1,10 +1,12 @@
 import React, { useState } from "react"
-import { Text, StyleSheet, View, Image, Dimensions, ToastAndroid, Keyboard } from "react-native"
+import { Text, StyleSheet, View, Image, Dimensions, ToastAndroid, Keyboard, TouchableOpacity } from "react-native"
 import { LoginInput } from "../utils/LoginInput";
 import api from "../../../service";
 import { LoginButton } from "../utils/LoginButton";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export const Login = () => {
+export const Login = ({navigation}) => {
 
     const [isLoad, setIsLoad] = useState(false)
     const [userLogin, setUserLogin] = useState({
@@ -61,7 +63,10 @@ export const Login = () => {
 
             <View style={styles.buttonContainer}>
                 <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar"/>
-                <LoginButton isLoad={isLoad} type="dark" action={login} title="Cadastre-se" />
+                
+                <TouchableOpacity OnPress={() => {navigation.navigate('Register')}}>
+                    <LoginButton isLoad={isLoad} type="dark" action={login} title="Cadastre-se" />
+                <TouchableOpacity/>
             </View>
 
             <Text style={styles.textNavigate}>Navegar sem uma conta</Text>
