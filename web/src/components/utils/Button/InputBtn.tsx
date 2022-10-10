@@ -8,10 +8,9 @@ interface IInputBtn {
   valueBtn: string,
   onClick: (event: React.MouseEvent<HTMLInputElement>) => void
 
-
 }
 
-const inputBtn = ({ typeInput, name, className, valueBtn, onClick }: IInputBtn) => {
+const inputBtn = ({ typeInput, name, className, valueBtn, onClick, }: IInputBtn) => {
 
   return (
 

@@ -26,13 +26,13 @@
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
     @import "./components/SpacebackgroundLogin/indexLogin.scss";
-    @import "./components/utils/Button/btnInput.scss";
+    //@import "./components/utils/Button/btnInput.scss";
     @import "./components/ConcludeRegister/titleMain.scss";
     @import "./components/ConcludeRegister/indexConclude.scss";
     @import "./components/SendingEmailRecovery/indexContainerDiv.scss";
     @import "./components/ProviderUserRegister/indes.scss";
     @import "./components/RecoveryPassWord/index.scss";
-    @import "./components/Register/alignmentInputs.scss";
+    //@import "./components/Register/alignmentInputs.scss";
     @import "./components/ConfirmEmailWarningPage/index.scss";
     @import "./components/PasswordWarningPage/index.scss";
     @import "./components/RecoveringPassword/index.scss";
@@ -40,7 +40,8 @@
     @import "./components/RegisterFreelancer/resgisterFreelancer.scss";
     @import "./components/utils/Input/radio.scss";
     @import "./components/utils/Button/btnCategories.scss";
-
+    @import "../components/Register/style/alignmentInputs.scss";
+    @import "../components/utils/Button/style/btnInput.scss";
 
 
 

@@ -21,7 +21,7 @@ const RegisterSpace = () => {
         nickname: '',
         phone: {
             ddd: "11",
-            phone: "97362-0943"
+            phone: ""
         },
         birth_date: '',
         profile_picture: 'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae',
@@ -34,7 +34,9 @@ const RegisterSpace = () => {
         biography: '',
     })
 
+
     const navigate = useNavigate()
+    
     const [genders, setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
 
@@ -54,27 +56,21 @@ const RegisterSpace = () => {
     }
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
-<<<<<<< HEAD
             ...user, [event.target.name]: cpfMask(event.target.value)
 
-=======
-            ...user, [event.target.name]: event.target.value
+            //...user, [event.target.name]: event.target.value
              
->>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
         })
     }
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(user.phone.phone.split)
         setUser({
-<<<<<<< HEAD
-            ...user, [event.target.name]: phoneMask(event.target.value)
-=======
+           // ...user, [event.target.name]: phoneMask(event.target.value)
            ...user, phone : {
             ddd : "11",
-            phone :event.target.value
+            phone :phoneMask(event.target.value)
 
         }
->>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
             //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
@@ -90,56 +86,51 @@ const RegisterSpace = () => {
     }
     const validation = () => {
         if (!user.first_name) {
-            setHasErros(true)
+            return true
         } else {
 
         }
 
         if (!user.last_name) {
-            setHasErros(true)
+            return setHasErros
         } else {
 
         }
 
-        if (!user.nickname) {
-            setHasErros(true)
-        } else {
+        // if (!user.nickname) {
+        //     return setHasErros(true)
+        // } else {
 
-        }
+        // }
 
-        if (!user.cpf) {
-            setHasErros(true)
-        } else {
+        // if (!user.cpf) {
+        //     return setHasErros(true)
+        // } else {
 
-        }
-        if (!user.birth_date) {
-            setHasErros(true)
-        } else {
+        // }
+        // if (!user.birth_date) {
+        //     return setHasErros(true)
+        // } else {
 
-        }
+        // }
 
-        if (!user.mail) {
-            setHasErros(true)
-        } else {
+        // if (!user.mail) {
+        //     return setHasErros(true)
+        // } else {
 
-        }
+        // }
 
         if (!passwordMask.test(user.password)) {
-            setHasErros(true)
-            console.log('bota o formato de senha certo meu parceiro')
+
+            //return setHasErros(true)
+            return console.log("Senha formato errado")
+            //console.log('bota o formato de senha certo meu parceiro')
         } else {
 
         }
 
     }
 
-<<<<<<< HEAD
-    // useEffect(() => {
-    //     console.log(user)
-    // }, [user])
-
-=======
->>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
     const uploadImage = (event: any) => {
         event.preventDefault();
         const file = event.target[0].files[0]
@@ -166,38 +157,19 @@ const RegisterSpace = () => {
         )
     }
 
-
-
     const registerUser = () => {
 
-<<<<<<< HEAD
-        const userToSend = {
-            ...user,
-            cpf: onlyNumbers(user.cpf),
-            phone: {
-                ddd: onlyNumbers(user.phone.ddd),
-                phone: onlyNumbers(user.phone.phone)
-            },
-
-
-        }
-
-        console.log(userToSend);
-
-        // api.post("/user", userToSend).then((res) => {
-        //     console.log(res.data)
-        // })
-=======
-        // console.log("only -=> ",user.cpf)
+       const phone = user.phone.phone.split(" ")
         
         const userToSend = {
-        ...user ,
-        cpf : onlyNumbers(user.cpf),
-        phone : {
-            ddd: onlyNumbers(user.phone.ddd) ,
-            phone: onlyNumbers(user.phone.phone)
-        },
-}
+            ...user ,
+            cpf : onlyNumbers(user.cpf),
+            phone : {
+                ddd: onlyNumbers(phone[0]),
+                phone: onlyNumbers(phone[1])
+            },
+        }
+
         api.post("/user", userToSend).then((res) => {
 
             console.log(res.data)
@@ -207,7 +179,6 @@ const RegisterSpace = () => {
                 navigate("provideruserregister")
             }
         })
->>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
     }
 
     useEffect(() => {
@@ -233,7 +204,7 @@ const RegisterSpace = () => {
 
                         <InputLogin valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<MdOutlineAlternateEmail className="IconLogin" />} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25} />
 
-                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={12} />
+                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
 
                         <InputLogin valueLogin={user.cpf} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"string"} placeholder={"CPF"} icon={<HiOutlineIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
                     </div>
@@ -255,7 +226,6 @@ const RegisterSpace = () => {
                                         return <InputRadio handleChange={handleGender} name="genero" value={gender.gender} id={gender.id} />
                                     })
                                 }
-
                             </div>
                         </div>
                     </div>
@@ -272,15 +242,19 @@ const RegisterSpace = () => {
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
+                                    
                                     <label className="input_btn_upload_photo" htmlFor="image">
-                                        Upload
+                                        upload
                                     </label>
-                                    <input type="file" id="image" />
+                                   
+                                   <input type="file" id="image" /> 
 
-                                    {/* <InputBtn typeInput={'submit'} 
-                                        name={'btn_add_photo'} 
-                                        className={'input_btn_upload_photo'} 
-                                        valueBtn={'adicionar imagem'} onClick={() => { }} /> */}
+                                    <InputBtn typeInput={'submit'} 
+                                            name={'btn_add_photo'} 
+                                            className={'input_btn_upload_photo'} 
+                                            valueBtn={'adicionar imagem'} onClick={() => { }}  />
+
+                                    
 
                                     <InputBtn typeInput={'submit'} name={'btn_remove_photo'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => { user.profile_picture = "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57" }} />
                                 </div>
@@ -297,8 +271,14 @@ const RegisterSpace = () => {
                         </div>
                         <div>
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                // validation()
-                                registerUser();
+                            //    if(validation()){
+                            //         console.log("Campos não preenchidos")
+                            //    }else{
+                                    registerUser();
+                              // }
+                               
+                               // validation()
+                               
                             }} />
                         </div>
 
