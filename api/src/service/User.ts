@@ -57,18 +57,20 @@ export class UserService {
                     nickname: nickname !== null ? true : false,
                     statusCode: 200,
                 };
-            const hasSend = await mailer.confirmRegister(entity.mail, entity.id, entity.first_name)
-
-            if (!hasSend.accepted) {
-                return {
-                    message: false,
-                    statusCode: 200,
-                };
-            }
+         
 
             const hashPassword = await bcrypt.hash(entity.password, 10);
             entity.password = hashPassword;
             const user: UserORM = await this._.create(entity);
+
+            const hasSend = await mailer.confirmRegister(user.mail, user.id, user.first_name)
+
+            if (!hasSend.accepted) {
+                return {
+                    message: "Não foi possivel enviar o email",
+                    statusCode: 200,
+                };
+            }
 
             if (entity.phone) {
                 let phone: PhoneORM = entity.phone;
@@ -128,7 +130,6 @@ export class UserService {
             }
 
             if (entity.password !== undefined) {
-                console.log("mudou")
                 const hashPassword = await bcrypt.hash(entity.password, 10);
                 entity.password = hashPassword;
             }
@@ -221,10 +222,12 @@ export class UserService {
         }
     };
 
-    authentication = async (_id: string) => {
+    authentication = async (idJwt: string) => {
         try {
 
-            const entityExists = await this._.findById(_id);
+            const user : any = jwt.decode(idJwt)
+
+            const entityExists = await this._.findById(user.id);
 
             if (!entityExists)
                 return {
@@ -293,4 +296,18 @@ export class UserService {
             };
         }
     };
+
+    changePassword = async (idJwt : string, entity : UserORM) => {
+        try {
+            const user : any = jwt.decode(idJwt)
+            const status = await this.update(user.id, entity)
+            return status
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 }

@@ -4,14 +4,21 @@ import "../../styles/components/SpacebackgroundLogin/index.scss";
 import ConcludeRegister from "../ConcludeRegister/ConcludeRegister";
 import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
 import ProviderUserRegister from "../../pages/ProviderUserRegister";
-import RecoveryPassword from "../../pages/Recoverypassword";
+// import RecoveryPassword from "../../pages/Recoverypassword";
 import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
 import PasswordWarningPage from "../../pages/PasswordWarningPage";
 import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 import RegisterSpace from "../Register";
+import ButtonIcon from "../utils/Button/ButtonIcon";
+import { FaLock } from "react-icons/fa";
+import LoginSpace from "../Login";
 
 
-const SpaceBackground = () => {
+interface ISpaceBackground {
+  component : JSX.Element
+}
+
+const SpaceBackground = ({component} : ISpaceBackground) => {
 
   return (
 
@@ -20,15 +27,10 @@ const SpaceBackground = () => {
         <span className="MediaSpaceLogo">
           <img src="../assets/img/MediaSpaceLogo.png" />
         </span>
-
-
-        <main className="SpaceLogin">
-          {/* <LoginSpace/> */}
-          {/* <SucessRegister/> */}
-          {/* <SendingEmailRecovery/> */}
-          {/* <ProviderUserRegister/> */}
-          <RegisterSpace/>
-          {/* <RecoveryPassword /> */}
+        
+       
+        <main className="SpaceLogin"> 
+        {component}
         </main>
 
 

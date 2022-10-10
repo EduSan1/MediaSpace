@@ -33,14 +33,16 @@
         justify-content: center;
         align-items: flex-start;
         padding-left: 2%;
+        gap: 1%;
 
 
 
         #Container_sendEmail {
-            width: 100%;
+            width: 60%;
             margin-bottom: 2%;
             justify-content: start;
             padding-left: 10px;
+            
 
 
             .Tittle_SendEmail {
@@ -58,9 +60,26 @@
 
         span {
 
-            width: 100%;
+            width: clamp(100%,3vw,60%);
             height: auto;
+            
+            
 
+
+        }
+        .Span_imgCenter{
+            width: clamp(20%,3vw,60%);
+            height: auto;
+            margin-bottom: 3%;
+            
+
+            div{
+                display: flex;
+                width: 50%;
+                justify-content: center;
+                align-items: center;
+                
+            }
 
         }
 
@@ -68,7 +87,7 @@
             display: flex;
             width: 50%;
             height: 20%;
-            font-size: clamp(1.5rem, 3vh, 1.25rem);
+            font-size: clamp(1.3rem, 3vh, 1rem);
             font-family: $light-font;
             font-weight: bold;
             color: $dark-purple;
@@ -76,6 +95,7 @@
             white-space: inherit;
             margin-bottom: 5%;
             padding-left: 10px;
+            
 
 
         }
@@ -103,6 +123,7 @@
             font-weight: 700;
             font-size: 24px;
             line-height: 29px;
+            white-space: nowrap;
 
         }
 
@@ -118,6 +139,7 @@
             height: auto;
             justify-content: center;
             align-items: center;
+            white-space: nowrap;
         }
 
 
