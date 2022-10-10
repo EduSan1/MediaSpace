@@ -6,7 +6,11 @@ import { CheckboxComponent } from "../utils/LoginCheckBox";
 import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
 
-export const Register = () => {
+interface IRegister {
+    navigation : any
+}
+
+export const Register = ({navigation} : IRegister) => {
     
     const [check, setCheck] = useState("")
     const [registerLoad, setRegisterLoad] = useState(false)
@@ -56,6 +60,7 @@ export const Register = () => {
         setRegisterLoad(!registerLoad)
 
         console.log(userRegister)
+        navigation.navigate("CheckMail")
     }
 
     useEffect(() => {
@@ -151,7 +156,7 @@ export const Register = () => {
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
                     <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
-                <Text style={styles.text2}>Já possui uma conta? Entre</Text>
+                <Text onPress={() => navigation.navigate('Login')} style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
         </>
     )
@@ -191,8 +196,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text2: {
-        width: Dimensions.get('window').width * 0.4,
+        width: Dimensions.get('window').width * 0.6,
         fontSize: Dimensions.get("window").width * 0.03,
+        marginTop: Dimensions.get("window").height * 0.02,
+        textAlign: "center",
+        textDecorationLine:"underline",
         fontWeight: "bold",
         color: '#B275FF',
         display: "flex",
