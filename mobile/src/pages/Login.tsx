@@ -9,7 +9,7 @@ import { Confirmation } from "../components/Confirmation"
 import { CheckEmail } from "../components/CheckEmail"
 import { Register } from "../components/Register"
 import { RegisterFreelancer } from "../components/RegisterFreelancer";
-import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
+import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer/";
 export default function LoginPage() {
     return (
         <KeyboardAvoidingView
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.7,
+        height: Dimensions.get('window').height,
         position: "relative",
 
         alignContent: "center",

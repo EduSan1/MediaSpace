@@ -87,7 +87,9 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         width: Dimensions.get('window').width * 0.90 ,
         height: Dimensions.get('window').height * 0.3,
-        flexWrap:"wrap",
+        flexWrap: "wrap",
+        borderColor:"#DEDEDE",
+        
         
     },
     sectionCategory:{
@@ -124,7 +126,8 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.20,      
         marginBottom:15,
         borderWidth:2,
-        borderColor:"#DEDEDE"
+        display: "flex",
+  
         // elevation:7,
     },
 })
