@@ -12,6 +12,7 @@ import RegisterSpace from "../Register";
 import ButtonIcon from "../utils/Button/ButtonIcon";
 import { FaLock } from "react-icons/fa";
 import LoginSpace from "../Login";
+import RegisterFreelancer from "../../pages/RegisterFreelancer";
 
 
 interface ISpaceBackground {

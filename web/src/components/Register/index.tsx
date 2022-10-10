@@ -1,7 +1,7 @@
 import React, { ReactHTMLElement, useEffect, useState } from "react";
 import InputLogin from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
-import {getDownloadURL, ref, uploadBytesResumable, UploadTask} from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import { MdPersonOutline, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
 import { HiOutlineIdentification } from "react-icons/hi";
 import { RiCalendar2Line } from "react-icons/ri";
@@ -15,12 +15,14 @@ import api from "../../service";
 
 const RegisterSpace = () => {
 
+    // const navigate = useNavigate()
+
     const [user, setUser] = React.useState({
         first_name: '',
         last_name: '',
         nickname: '',
         phone: {
-            ddd: "",
+            ddd: "11",
             phone: ""
         },
         birth_date: '',
@@ -55,18 +57,22 @@ const RegisterSpace = () => {
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
             ...user, [event.target.name]: event.target.value
-             
+
         })
     }
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(user.phone.phone.split)
-        setUser({
-           ...user, phone : {
-            ddd : "11",
-            phone :event.target.value
+        // setUser({
+        //     ...user, [event.target.name]: phoneMask(event.target.value)
+        //     //...user, [event.target.name]: onlyNumbers(event.target.value)
+        // })
 
-        }
-            //...user, [event.target.name]: onlyNumbers(event.target.value)
+        setUser({
+            ...user,
+            phone: {
+                phone: event.target.value,
+                ddd: "11"
+            }
         })
     }
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,6 +130,10 @@ const RegisterSpace = () => {
 
     }
 
+    // useEffect(() => {
+    //     console.log(user)
+    // }, [user])
+
     const uploadImage = (event: any) => {
         event.preventDefault();
         const file = event.target[0].files[0]
@@ -150,26 +160,29 @@ const RegisterSpace = () => {
         )
     }
 
+
+
     const registerUser = () => {
 
-        // console.log("only -=> ",user.cpf)
-        
-        const userToSend = {
-        ...user ,
-        cpf : onlyNumbers(user.cpf),
-        phone : {
-            ddd: onlyNumbers(user.phone.ddd) ,
-            phone: onlyNumbers(user.phone.phone)
-        },
-}
-        api.post("/user", userToSend).then((res) => {
+        // const userToSend = {
+        //     ...user,
+        //     cpf: user.cpf,
+        //     phone: {
+        //         ddd: onlyNumbers(user.phone.ddd),
+        //         phone: onlyNumbers(user.phone.phone)
+        //     },
 
-            console.log(res.data)
-            if (res.data.statusCode !== 201){
+
+        // }
+
+        console.log(user);
+
+        api.post("/user", user).then((res) => {
+            console.log(res)
+            if (res.data.statusCode === 201)
+                navigate("/register/provideruserregister")
+            else
                 window.alert("não foi possivel cadastrar o usuário")
-            }else {
-                navigate("provideruserregister")
-            }
         })
     }
 
@@ -208,7 +221,6 @@ const RegisterSpace = () => {
 
                         <InputLogin valueLogin={user.birth_date} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} />
 
-                        {/* <InputRadio label="Genero" options={genders} name="genero" /> */}
                         <div className="container_input_radio">
                             <div className="container_label">
                                 <label>Gênero</label>
@@ -236,9 +248,9 @@ const RegisterSpace = () => {
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                  <label className="input_btn_upload_photo" htmlFor="image"> 
+                                    <label className="input_btn_upload_photo" htmlFor="image">
                                         Upload
-                                  </label> 
+                                    </label>
                                     <input type="file" id="image" />
 
                                     {/* <InputBtn typeInput={'submit'} 
