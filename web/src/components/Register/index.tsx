@@ -20,8 +20,8 @@ const RegisterSpace = () => {
         last_name: '',
         nickname: '',
         phone: {
-            ddd: "",
-            phone: ""
+            ddd: "11",
+            phone: "97362-0943"
         },
         birth_date: '',
         profile_picture: 'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae',
@@ -54,12 +54,12 @@ const RegisterSpace = () => {
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
             ...user, [event.target.name]: cpfMask(event.target.value)
-             
+
         })
     }
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
-           ...user, [event.target.name]: phoneMask(event.target.value)
+            ...user, [event.target.name]: phoneMask(event.target.value)
             //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
@@ -118,9 +118,9 @@ const RegisterSpace = () => {
 
     }
 
-    useEffect(() => {
-        console.log(user)
-    }, [user])
+    // useEffect(() => {
+    //     console.log(user)
+    // }, [user])
 
     const uploadImage = (event: any) => {
         event.preventDefault();
@@ -150,19 +150,26 @@ const RegisterSpace = () => {
         )
     }
 
+
+
     const registerUser = () => {
-        
+
         const userToSend = {
-        ...user ,
-        cpf : onlyNumbers(user.cpf),
-        phone : {
-            ddd: onlyNumbers(user.phone.ddd) ,
-            phone: onlyNumbers(user.phone.phone)
-        },
-}
-        api.post("/user", userToSend).then((res) => {
-            console.log(res.data)
-        })
+            ...user,
+            cpf: onlyNumbers(user.cpf),
+            phone: {
+                ddd: onlyNumbers(user.phone.ddd),
+                phone: onlyNumbers(user.phone.phone)
+            },
+
+
+        }
+
+        console.log(userToSend);
+
+        // api.post("/user", userToSend).then((res) => {
+        //     console.log(res.data)
+        // })
     }
 
     useEffect(() => {
@@ -202,7 +209,6 @@ const RegisterSpace = () => {
 
                         <InputLogin valueLogin={user.birth_date} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} />
 
-                        {/* <InputRadio label="Genero" options={genders} name="genero" /> */}
                         <div className="container_input_radio">
                             <div className="container_label">
                                 <label>Gênero</label>
@@ -230,9 +236,9 @@ const RegisterSpace = () => {
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
-                                  <label className="input_btn_upload_photo" htmlFor="image"> 
+                                    <label className="input_btn_upload_photo" htmlFor="image">
                                         Upload
-                                  </label> 
+                                    </label>
                                     <input type="file" id="image" />
 
                                     {/* <InputBtn typeInput={'submit'} 

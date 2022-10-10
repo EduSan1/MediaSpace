@@ -11,7 +11,7 @@ export const cpfMask = (value: string) => {
 
 export const onlyNumbers = (value: string) => {
     return value
-        .replace("[().-]", "");
+        .replace(/\.|\-/g, '');
 }
 
 export const phoneMask = (value: string) => {

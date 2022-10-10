@@ -9,6 +9,7 @@ import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
 import PasswordWarningPage from "../../pages/PasswordWarningPage";
 import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
 import RegisterSpace from "../Register";
+import RegisterFreelancer from "../../pages/RegisterFreelancer";
 
 
 const SpaceBackground = () => {
@@ -27,7 +28,8 @@ const SpaceBackground = () => {
           {/* <SucessRegister/> */}
           {/* <SendingEmailRecovery/> */}
           {/* <ProviderUserRegister/> */}
-          <RegisterSpace/>
+          <RegisterSpace />
+          {/* <RegisterFreelancer /> */}
           {/* <RecoveryPassword /> */}
         </main>
 
