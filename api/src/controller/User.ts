@@ -61,6 +61,13 @@ export class UserController {
         })
     }
 
+    changePassword = (request: Request, response: Response) => {
+        this.service.changePassword(request.params.userId, request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+        .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o usuário"))
+  }
+
     disable = (request: Request, response: Response) => {
         this.service.disable(request.params.userId).then((res) => {
             response.status(res.statusCode || 200).json(res)

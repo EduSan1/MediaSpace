@@ -18,14 +18,10 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
+ 
+  
 
 }
-
-.InputBtnLogin, .input_btn_cadastrar:hover {
-    background-color: $dark-purple;
-    transition: 385ms;
-}
-
 .input_btn_cadastrar {
     display: flex;
     width: 164px;
@@ -47,4 +43,39 @@
     border: transparent;
     color: $dark-purple;
     cursor: pointer;
+}
+
+
+
+.Container_btnIcon{
+    display: flex;
+     width: 5%;
+     height: 100%;
+     justify-content: center;
+     align-items: center;
+     position: relative;
+     background-color: transparent;
+     
+     
+
+     span{
+        width: 100%;
+        display: flex;
+        border: none;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        
+     }
+
+     input{
+        width: 100%;
+        height: 100%;
+        border: none;
+        cursor: pointer;
+        transition: 40s;
+        background-color: transparent;
+        
+     }
+    
 }

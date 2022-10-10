@@ -1,44 +1,50 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert } from "react-native";
 import { LoginInput } from "../utils/LoginInput";
 import { LoginButton } from "../utils/LoginButton";
 
+interface IForgetPassword {
+    navigation : any
+}
 
-export const ForgetPassword = () => {
+export const ForgetPassword = ({navigation} : IForgetPassword) => {
 
     const [isLoad, setIsLoad] = useState(false)
-    const [userEmail, setUserEmail] = useState({
+    const [user, setuser] = useState({
         mail: ""
     })
     const [hasError, setHasError] = useState(false)
 
     const handleChange = (text: string, name: string) => {
-        setUserEmail(
+        setuser(
             {
-                ... userEmail,
+                ... user,
                 [name]: text
             }
         )
     }
 
     const submit = async () =>{
-        console.log("enviado")
+
+        setIsLoad(true)
+     
+        navigation.navigate('SendMailPasswordRecover')
+        setIsLoad(false)
     }
 
 
     return (
         <>
             <View style={styles.container}>
-                <Text style={styles.text}>Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
+            <Text style={styles.title}>Esqueceu a senha?</Text>
+                <Text style={styles.text}>Tudo bem! Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
 
                 <View style={styles.inputContainer}>
-                <LoginInput name="mail" iconName="mail-outline" value={userEmail.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
+                <LoginInput name="mail" iconName="mail-outline" value={user.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                 </View>
 
                 <View>
                      <LoginButton isLoad={isLoad} type="light" action={submit}  title="Enviar"/>
-                     
-                     
                 </View> 
 
 
@@ -57,6 +63,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A2345',
         justifyContent: "flex-end",
         alignItems: "center"
+    },
+    title: {
+        marginHorizontal:70,
+        height: Dimensions.get('window').height * 0.07,
+        textAlign: "center",
+        fontSize: Dimensions.get("window").width * 0.05,
+        fontWeight: 'bold',
+        color: "#B275FF",
+        textAlignVertical: "center"
     },
     header: {
         width: "100%",

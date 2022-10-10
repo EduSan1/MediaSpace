@@ -1,12 +1,16 @@
 import React from "react";
+import SendingEmailRecovery from "../../components/SendingEmailRecovery";
+import SpaceBackground from "../../components/SpaceBackground/index";
+import InputBtn from "../../components/utils/Button/InputBtn";
 import ImageComponent from "../../components/utils/imageComponent/imageComponent";
 import TitleIndex from "../../components/utils/TitleMain/Index";
-import InputBtn from "../../components/utils/Button/InputBtn";
 
-
-const SendingEmailRecovery = () => {
+const SendingEmailRecoveryPage = () => {
 
     return (
+        <>
+        
+            <SpaceBackground component={<SendingEmailRecovery/>}/>
 
 
         <main id="SendingRecovery">
@@ -21,8 +25,11 @@ const SendingEmailRecovery = () => {
                 <span>
                 <h3>Aguarde o email para realizar a recuperação de senha</h3>
                 </span>
-              
+                
+                <span className="Span_imgCenter">
                 <ImageComponent className="image_Logo" alt="" src="../assets/img/artConfirme.svg" />
+                </span>
+                
                 <span className="span_inputNext_SendEmail">
                 <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnSendEmail'} valueBtn={'Continuar'}
                     onClick={() => {
@@ -45,14 +52,11 @@ const SendingEmailRecovery = () => {
 
         </main>
 
-
+</>
 
 
     );
 
-
-
 }
 
-
-export default SendingEmailRecovery;
+export default SendingEmailRecoveryPage;

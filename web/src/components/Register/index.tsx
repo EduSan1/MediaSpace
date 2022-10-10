@@ -1,17 +1,17 @@
 import React, { ReactHTMLElement, useEffect, useState } from "react";
 import InputLogin from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
-import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage'
+import {getDownloadURL, ref, uploadBytesResumable, UploadTask} from 'firebase/storage';
 import { MdPersonOutline, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
 import { HiOutlineIdentification } from "react-icons/hi";
-import { RiCalendar2Line } from "react-icons/ri"
-import { FiPhone } from "react-icons/fi"
-import { AiOutlineMail } from "react-icons/ai"
+import { RiCalendar2Line } from "react-icons/ri";
+import { FiPhone } from "react-icons/fi";
+import { AiOutlineMail } from "react-icons/ai";
 import InputRadio from "../utils/Input/InputRadio";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { storage } from "../../constants/firebase";
 import { cpfMask, phoneMask, onlyLetters, passwordMask, onlyNumbers } from "../../service/Regex/regex";
 import api from "../../service";
-
 
 const RegisterSpace = () => {
 
@@ -34,6 +34,7 @@ const RegisterSpace = () => {
         biography: '',
     })
 
+    const navigate = useNavigate()
     const [genders, setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
 
@@ -53,13 +54,27 @@ const RegisterSpace = () => {
     }
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
+<<<<<<< HEAD
             ...user, [event.target.name]: cpfMask(event.target.value)
 
+=======
+            ...user, [event.target.name]: event.target.value
+             
+>>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
         })
     }
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // console.log(user.phone.phone.split)
         setUser({
+<<<<<<< HEAD
             ...user, [event.target.name]: phoneMask(event.target.value)
+=======
+           ...user, phone : {
+            ddd : "11",
+            phone :event.target.value
+
+        }
+>>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
             //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
@@ -118,10 +133,13 @@ const RegisterSpace = () => {
 
     }
 
+<<<<<<< HEAD
     // useEffect(() => {
     //     console.log(user)
     // }, [user])
 
+=======
+>>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
     const uploadImage = (event: any) => {
         event.preventDefault();
         const file = event.target[0].files[0]
@@ -132,8 +150,6 @@ const RegisterSpace = () => {
 
         const storageRef = ref(storage, `profilePicture/${file.name}`)
         const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
-
-        console.log(uploadTask)
 
         uploadTask.on(
             "state_changed",
@@ -154,6 +170,7 @@ const RegisterSpace = () => {
 
     const registerUser = () => {
 
+<<<<<<< HEAD
         const userToSend = {
             ...user,
             cpf: onlyNumbers(user.cpf),
@@ -170,6 +187,27 @@ const RegisterSpace = () => {
         // api.post("/user", userToSend).then((res) => {
         //     console.log(res.data)
         // })
+=======
+        // console.log("only -=> ",user.cpf)
+        
+        const userToSend = {
+        ...user ,
+        cpf : onlyNumbers(user.cpf),
+        phone : {
+            ddd: onlyNumbers(user.phone.ddd) ,
+            phone: onlyNumbers(user.phone.phone)
+        },
+}
+        api.post("/user", userToSend).then((res) => {
+
+            console.log(res.data)
+            if (res.data.statusCode !== 201){
+                window.alert("não foi possivel cadastrar o usuário")
+            }else {
+                navigate("provideruserregister")
+            }
+        })
+>>>>>>> 2cfa8c855723d2ac64ec22e298d8e5ab26c574d3
     }
 
     useEffect(() => {
@@ -178,9 +216,7 @@ const RegisterSpace = () => {
         })
     }, [])
 
-    useEffect(() => {
-        console.log(user.gender)
-    }, [user])
+
 
 
     return (
