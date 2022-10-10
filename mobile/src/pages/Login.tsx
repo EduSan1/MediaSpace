@@ -36,9 +36,9 @@ export default function LoginPage() {
                 </View>
 
                 <View style={styles.container}>
-                    <RegisterFreelancerComplete/>
+                    {/* <RegisterFreelancerComplete/> */}
                     {/* <RegisterFreelancer/> */}
-                    {/* <Register /> */}
+                    <Register />
                     {/* <Login/> */}
                 </View>
 
