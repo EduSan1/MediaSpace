@@ -1,4 +1,4 @@
-import React, { } from "react";
+import React, { ReactNode} from "react";
 import "../../../styles/components/utils/Button/btnInput.scss"
 
 interface IInputBtn {

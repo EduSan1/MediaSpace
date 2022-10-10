@@ -49,7 +49,7 @@ export class Mail {
                 from: `"Media Space"`,
                 to: userMail,
                 subject: "Recuperação de senha",
-                text: `Olá ${userName}, acesse o link para redefinir sua senha! \n http://localhost:3000/recoverPassword?user=${jwtID}`,
+                text: `Olá ${userName}, acesse o link para redefinir sua senha! \n http://localhost:3000/changePassword?user=${jwtID}`,
             })
             return mail
 

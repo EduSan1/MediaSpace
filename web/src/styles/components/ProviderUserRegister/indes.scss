@@ -1,7 +1,7 @@
 #ConatinerALL_ProviderRegister {
 
     #Container_tittle {
-
+       display: flex;
         width: 100%;
         height: auto;
         justify-content: center;
@@ -24,17 +24,23 @@
 
 
     .Container_Providor_user {
+        display: flex;
         width: 100%;
         height: 70%;
         color: #fff;
         align-items: center;
         flex-direction: column;
         justify-content: center;
+       
 
 
         .img_Astronaut {
-            width: 50%;
+            display: flex;
+            width: 100%;
             height: 50%;
+            justify-content: center;
+            align-items: center;
+          
             
 
             img {
@@ -82,10 +88,14 @@
 
 
     .Conatiner_bnt_User_Provider {
+        display: flex;
         width: 100%;
         height: 15%;
         flex-direction: row;
         gap: 10px;
+        justify-content: center;
+        align-items: center;
+      
 
 
         .InputBtnProviderUser {

@@ -1,13 +1,15 @@
 import React from "react";
+import LoginSpace from "../../components/Login";
 import SpaceBackground from "../../components/SpaceBackground/index";
-const PageLogin = () =>{
+
+const LoginPage = () =>{
 
     return(
    
         <>
         <main id="LoginPage">
 
-        <SpaceBackground/>   
+        <SpaceBackground component={<LoginSpace/>}/>   
 
         </main>
          
@@ -16,4 +18,4 @@ const PageLogin = () =>{
     );
 }
 
-export default PageLogin;
+export default LoginPage;
