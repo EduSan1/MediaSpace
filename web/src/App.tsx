@@ -7,6 +7,10 @@ import RegisteredPage from './pages/SucessRegister/SucessRegister';
 import RecoveryPasswordPage from './pages/Recoverypassword';
 import SendingEmailRecoveryPage from './pages/SendingEmailRecovery';
 import MailConfirmedPage from './pages/ConfirmEmailWarningPage';
+import RecoveringPasswordPage from './pages/RecoveringPasswordPage';
+import ChangePasswordPage from './pages/RecoveringPasswordPage';
+import SpaceBackground from './components/SpaceBackground';
+import PasswordWarningPage from './pages/PasswordWarningPage';
 //import SpaceBackground from './components/SpaceBackground';
 
 function App() {
@@ -22,6 +26,8 @@ function App() {
         {/* <Route path='/register/categoryregister'    element={<CategoryRegisterPage/>}/> */}
         <Route path='/register/registered'              element={<RegisteredPage/>}/>
         <Route path='/recoverpassword'                  element={<RecoveryPasswordPage/>}/>
+        <Route path='/changePassword'                   element={<SpaceBackground component={<RecoveringPasswordPage/>}/>}/>
+        <Route path='/changePassword/sucess'            element={<SpaceBackground component={<PasswordWarningPage/>}/>}/>
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage/>}/>
       </Routes>
 

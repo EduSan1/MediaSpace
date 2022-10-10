@@ -130,7 +130,6 @@ export class UserService {
             }
 
             if (entity.password !== undefined) {
-                console.log("mudou")
                 const hashPassword = await bcrypt.hash(entity.password, 10);
                 entity.password = hashPassword;
             }
@@ -297,4 +296,18 @@ export class UserService {
             };
         }
     };
+
+    changePassword = async (idJwt : string, entity : UserORM) => {
+        try {
+            const user : any = jwt.decode(idJwt)
+            const status = await this.update(user.id, entity)
+            return status
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 }

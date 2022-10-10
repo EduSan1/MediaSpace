@@ -61,8 +61,6 @@ const LoginSpace = () => {
       setHasError(true);
 
 
-    } else {
-
     }
 
     if (!diceLogin.password) {
@@ -70,20 +68,12 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-
-
-
-
-    } else {
-
-    }
+    } 
 
     if (validate) {
       loginUser();
 
-    } else {
-
-    }
+    } 
 
 
 
@@ -93,11 +83,15 @@ const LoginSpace = () => {
   const loginUser = async () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
+      console.log(res.data)
       const data = res.data;
-      console.log(res.data.logged)
+      console.log(res.data.is_logged)
 
-      if (data) {
+      if (res.data.is_logged) {
         logIntUser(res.data.userDetails);
+        window.alert("usuario logado!")
+      }else {
+        window.alert("senha incorreta")
       }
 
 
