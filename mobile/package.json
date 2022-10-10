@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@react-native-firebase/storage": "^15.7.0",
+    "@react-navigation/native": "^6.0.13",
+    "@react-navigation/native-stack": "^6.9.0",
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
     "axios": "^0.27.2",
@@ -25,6 +27,8 @@
     "react-native": "0.69.6",
     "react-native-image-crop-picker": "^0.38.0",
     "react-native-image-picker": "^4.10.0",
+    "react-native-mask-input": "^1.2.1",
+    "react-native-masked-text": "^1.13.0",
     "react-native-nj-image-crop-picker": "^0.0.7",
     "react-native-svg": "12.3.0",
     "react-native-vector-icons": "^9.2.0",

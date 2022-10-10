@@ -1,24 +1,11 @@
 import React from "react";
 import TitleIndex from "../utils/TitleMain/Index";
 import ImageComponent from "../utils/imageComponent/imageComponent";
-
-
-
+import { Link } from 'react-router-dom';
 
 const ConcludeRegister = () => {
 
     return (
-
-
-
-
-
-
-
-
-
-
-
 
         <div id="div-ConcludeRegister">
             <div className="Container-Conclude-Register">
@@ -36,22 +23,13 @@ const ConcludeRegister = () => {
             </div>   
 
             <span className="Back_Login">
-                      <h3>Voltar a Tela De</h3>
+                      <h3>Voltar a tela de</h3>
+                      <Link to="/">
                       <h3>Login</h3>
+                      </Link>
             </span>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
     );
 

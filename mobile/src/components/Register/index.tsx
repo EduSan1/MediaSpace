@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, ScrollView, Text, Dimensions, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Dimensions, Image, ToastAndroid } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
 import { LoginInput } from "../utils/LoginInput";
 import { CheckboxComponent } from "../utils/LoginCheckBox";
 import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
+import { LoginInputNumber } from "../utils/LoginInputNumber";
+import api from "../../../service";
 
 export const Register = () => {
-    
+
     const [check, setCheck] = useState("")
     const [registerLoad, setRegisterLoad] = useState(false)
 
     const [userRegister, setUserRegister] = useState({
-        name: "",
-        surname: "",
+        first_name: "",
+        last_name: "",
         mail: "",
         password: "",
         nickname: "",
         cpf: "",
-        birth: "",
-        cell: "",
-        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57",
+        birth_date: "",
+        phone: "",
+        // {        
+        // "ddd": Number,
+        // "phone": Number},
+
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae",
         gender: {
             "id": check
         },
@@ -52,105 +58,127 @@ export const Register = () => {
         setVisibilityPassword(!visibilityPassword)
     }
 
-    const confirm = async () => {
-        setRegisterLoad(!registerLoad)
-    }
-
+    // useEffect(()=>{
+    //     setUserRegister({
+    //         ...userRegister,
+    //         // phone:{
+    //         //     "ddd": Number
+    //         // }
+    //     })
+    // })
     useEffect(() => {
         setUserRegister({
             ...userRegister,
             gender: {
                 "id": check
             }
+            
         })
     }
         , [check]
     )
 
+    const register = () => {
+        setRegisterLoad(true)
+
+        api.post("/user", userRegister).then((res: any) => {
+            if (res.data.is_logged)
+                ToastAndroid.show(res.data.message, 10)
+            else {
+                setHasError(true)
+                ToastAndroid.show(res.data.message, 10)
+            }
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        setRegisterLoad(false)
+    }
+
     return (
         <>
-        
+
             <Text style={styles.title}>{`Faça seu cadastro`}</Text>
             <ScrollView >
-            <ScrollView
-                style={styles.container}
-                horizontal={true}
-                pagingEnabled={true}
-                showsHorizontalScrollIndicator={true}
-                automaticallyAdjustKeyboardInsets>
+                <ScrollView
+                    style={styles.container}
+                    horizontal={true}
+                    pagingEnabled={true}
+                    showsHorizontalScrollIndicator={true}
+                    automaticallyAdjustKeyboardInsets>
 
-                <View style={styles.View}>
-                    <LoginInput name="name" iconName="person-outline" value={userRegister.name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
-                    <LoginInput name="surname" iconName="person-outline" value={userRegister.surname} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
-                    <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
-                    <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
+                    <View style={styles.View}>
+                        <LoginInput name="first_name" iconName="person-outline" value={userRegister.first_name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
+                        <LoginInput name="last_name" iconName="person-outline" value={userRegister.last_name} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
+                        <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
+                        <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
 
-                    <View style={styles.iconViewEnd}>
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                    </View>
-                </View>
-
-                <View style={styles.View}>
-
-
-                    <View style={styles.iconViewStart}>
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                        <View style={styles.iconViewEnd}>
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                        </View>
                     </View>
 
-                    <LoginInput name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasError} title="Nickname" maxLength={25} />
-                    <LoginInput name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasError} title="CPF" maxLength={11} />
-                    <LoginInput name="birth" iconName="today" value={userRegister.birth} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={8} />
-                    <LoginInput name="cell" iconName="phone" value={userRegister.cell} handleChange={handleChange} hasError={hasError} title="Celular" maxLength={12} />
-
-                    <View style={styles.iconViewEnd}>
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                    </View>
-                </View>
+                    <View style={styles.View}>
 
 
-                <View style={styles.View}>
-
-                    <View style={styles.iconViewStart}>
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                    </View>
-
-                    <View>
-                        <Text>Gênero</Text>
-                        <View style={styles.checkboxContainer}>
-                            <CheckboxComponent check={check} setCheck={setCheck} title="Masculino" value="M" />
-                            <CheckboxComponent check={check} setCheck={setCheck} title="Feminino" value="F" />
-                            <CheckboxComponent check={check} setCheck={setCheck} title="Outro" value="O" />
+                        <View style={styles.iconViewStart}>
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                         </View>
 
-                    </View>
-                    <LoginTextArea name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
+                        <LoginInput name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasError} title="Nickname" maxLength={25} />
+                        <LoginInputNumber name="cpf" keuboardType="numeric" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasError} title="CPF" maxLength={11} />
+                        <LoginInputNumber name="birth_date" keuboardType="numeric" iconName="today" value={userRegister.birth_date} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={8} />
+                        <LoginInputNumber name="phone" keuboardType="numeric" iconName="phone" value={userRegister.phone} handleChange={handleChange} hasError={hasError} title="Celular" maxLength={12} />
 
-                    <View style={styles.iconViewEnd}>
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                        <View style={styles.iconViewEnd}>
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                        </View>
                     </View>
+
+
+                    <View style={styles.View}>
+
+                        <View style={styles.iconViewStart}>
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                        </View>
+
+                        <View>
+                            <Text>Gênero</Text>
+                            <View style={styles.checkboxContainer}>
+                                <CheckboxComponent check={check} setCheck={setCheck} title="Masculino" value="M" />
+                                <CheckboxComponent check={check} setCheck={setCheck} title="Feminino" value="F" />
+                                <CheckboxComponent check={check} setCheck={setCheck} title="Outro" value="O" />
+                            </View>
+
+                        </View>
+                        <LoginTextArea name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
+
+                        <View style={styles.iconViewEnd}>
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                        </View>
+                    </View>
+
+                    <View style={styles.View}>
+
+                        <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
+
+                        <View style={styles.iconViewStart}>
+                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        </View>
+                    </View>
+
+                </ScrollView>
+
+
+                <View style={styles.containerTextButton}>
+                    <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
+                    <LoginButton type="dark" action={register} isLoad={registerLoad} title="Continuar" />
+                    <Text style={styles.text2}>Já possui uma conta? Entre</Text>
                 </View>
-
-                <View style={styles.View}>
-
-                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
-
-                    <View style={styles.iconViewStart}>
-                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                    </View>
-                </View>
-
-            </ScrollView>
-
-
-            <View style={styles.containerTextButton}>
-                <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
-                    <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
-                <Text style={styles.text2}>Já possui uma conta? Entre</Text>
-            </View>
             </ScrollView>
         </>
     )
