@@ -1,0 +1,65 @@
+#LoginPage{
+    .Container_navegation{
+        display: flex;
+        width: 3%;
+        height: 100%;
+        background-color: aqua;
+        flex-direction: column;
+        align-items: center;
+
+
+        button{
+             width: 100%;
+             height: 2.5rem;
+             background-color: rgba(128, 128, 128, 0.652);
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             border: none;
+             
+
+             span{
+                width: 100%;
+                height: 2px;
+                background-color: rgb(17, 3, 170);
+                margin-bottom: 1%;
+             }
+        }
+
+
+        .img_Container{
+            display: flex;
+            width: 100%;
+            height: 20%;
+            align-items: flex-start;
+            justify-content: start;
+            margin-bottom: 20%;
+            background-color: rgb(6, 37, 3);
+    
+            
+            div{
+                display: flex;
+                width: 100%;
+                height: 50%;
+                align-items: flex-start;
+                justify-content: start;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+           
+         }
+    
+    }
+
+
+
+    .nav_Bar{
+        width: 100%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.725);
+  
+    }
+}

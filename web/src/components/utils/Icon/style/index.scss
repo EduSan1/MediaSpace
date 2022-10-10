@@ -1,0 +1,29 @@
+@import "../../../../styles/vars.scss";
+#IconBar{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1%;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+    gap: 5%;
+
+    span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        height: 100%;
+        flex-direction: row;
+
+    }
+
+    h3{
+        font-family: $light-font ;
+        width: 10%;
+        height: 10%;
+        font-size: clamp(0.8rem, 2vw, 1.2rem);
+    }
+
+}
