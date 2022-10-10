@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image, KeyboardAvoidingView, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
-
+import { CompleteRegisterFreelancer } from "../../components/ CompleteRegisterFreelancer";
 import { Login } from "../../components/Login";
 
 
@@ -38,7 +38,7 @@ export default function LoginPage({navigation} : ILogin) {
 
                 <View style={styles.container}>
                     {/* <StackNavigation/> */}
-                    {/* <RegisterFreelancerComplete/> */}
+                    <CompleteRegisterFreelancer/>
                     {/* <RegisterFreelancer/> */}
                     {/* <Register /> */}
                     <Login navigation={navigation}/>

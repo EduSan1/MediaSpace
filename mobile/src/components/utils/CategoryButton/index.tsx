@@ -1,42 +1,52 @@
-import React from "react"
+import React, { useState } from "react"
 import { Text, StyleSheet, Dimensions, Pressable, ActivityIndicator } from "react-native"
-interface ILoginButton {
+
+interface ICategoryButton {
+    id : string
     action: () => void
-    type: "light" | "dark"
-    title: string
-    isLoad: boolean
+    category: string
+    icon: string
+    setSubCategories : (id : string, action : "REMOVE" | "ADD") => void
+    
 }
 
-export const CategoryButton = ({ action, type, title, isLoad }: ILoginButton) => {
+
+export const CategoryButton = ({id, action, icon, category, setSubCategories }: ICategoryButton) => {
+
+    const [isSelected, setIsSelected] = useState(false)
+
+    const onSelected = () => {
+        setIsSelected(!isSelected)
+        setSubCategories(id, "ADD")
+    }
+    
 
     return (
-        <Pressable onPress={() => isLoad ? null : action()} style={type === "light" ? styles. category : styles.categorySelected}>
-            {isLoad ?
-                <ActivityIndicator size="large" color="#B275FF" />
-                :
-                <Text style={type === "light" ? styles.textButton : styles.darkText}>{title}</Text>
-            }
+        <Pressable onPress={() => onSelected()} style={isSelected ? styles.categorySelected : styles.category }>
+                <Text style={isSelected ? styles.btnTextSelected : styles.btnText}>{category}</Text>
         </Pressable>
 
     )
 }
 const styles = StyleSheet.create({
     category: {
-        width: Dimensions.get('window').width * 0.67,
-        height: Dimensions.get('window').height * 0.07,
-        backgroundColor: "#B275FF",
-        borderRadius: 10,
+        paddingHorizontal:Dimensions.get('window').width * 0.07,
+        margin:Dimensions.get('window').width * 0.02,
+        height: Dimensions.get('window').height * 0.06,
+        backgroundColor: "#C6D2FF",
+        borderRadius: 100,
+        display: "flex",
         alignItems: "center",
         justifyContent: "center"
     },
-    textButton: {
+    btnTextSelected: {
         textAlign: "center",
-        fontSize: Dimensions.get("window").width * 0.04,
-        fontWeight: 'bold',
-        color: "#fff",
+        fontSize: Dimensions.get("window").width * 0.045,
+        fontWeight: '300',
+        color: "#FFF",
+
     },
     categorySelected: {
-        
         paddingHorizontal:Dimensions.get('window').width * 0.07,
         margin:Dimensions.get('window').width * 0.02,
         height: Dimensions.get('window').height * 0.06,
@@ -47,11 +57,11 @@ const styles = StyleSheet.create({
         justifyContent: "center"
 
     },
-    darkText: {
+    btnText: {
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.045,
         fontWeight: '300',
-        color: "#FFF",
+        color: "#000",
 
     }
 });
