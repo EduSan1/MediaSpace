@@ -1,10 +1,16 @@
 import React, { useState } from "react"
-import { Text, StyleSheet, View, Image, Dimensions, ToastAndroid, Keyboard } from "react-native"
+import { Text, StyleSheet, View, Image, Dimensions, ToastAndroid, Keyboard, TouchableOpacity, Pressable } from "react-native"
 import { LoginInput } from "../utils/LoginInput";
 import api from "../../../service";
 import { LoginButton } from "../utils/LoginButton";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export const Login = () => {
+interface ILogin {
+    navigation : any
+}
+
+export const Login = ({navigation} : ILogin) => {
 
     const [isLoad, setIsLoad] = useState(false)
     const [userLogin, setUserLogin] = useState({
@@ -51,17 +57,21 @@ export const Login = () => {
     return (
 
         <View style={styles.container}>
+            <Text style={styles.title}>Entre em sua conta</Text>
 
             <View style={styles.inputContainer}>
                 <LoginInput maxLength={50} name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} hasError={hasError} title="Email" />
                 <LoginInput maxLength={50} onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userLogin.password} handleChange={handleChange} title="Senha" />
             </View>
 
-                <Text style={styles.textForgetPassword}>Esqueci minha senha</Text>
+                <Text onPress={() => navigation.navigate('ForgetPassword')} style={styles.textForgetPassword}>Esqueci minha senha</Text>
 
             <View style={styles.buttonContainer}>
-                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar" />
-                <LoginButton isLoad={isLoad} type="dark" action={login} title="Cadastre-se" />
+                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar"/>
+                
+
+                    <LoginButton isLoad={isLoad} type="dark" action={() => navigation.navigate('Register')} title="Cadastre-se" />
+
             </View>
 
             <Text style={styles.textNavigate}>Navegar sem uma conta</Text>
@@ -85,11 +95,20 @@ export const Login = () => {
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.55,
+        height: Dimensions.get('window').height * 0.65,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",
         flexDirection: "column"
+    },
+    title: {
+        marginHorizontal:70,
+        height: Dimensions.get('window').height * 0.07,
+        textAlign: "center",
+        fontSize: Dimensions.get("window").width * 0.05,
+        fontWeight: 'bold',
+        color: "#B275FF",
+        textAlignVertical: "center"
     },
     inputContainer: {
         width: Dimensions.get('window').width,
@@ -129,6 +148,7 @@ const styles = StyleSheet.create({
     textForgetPassword: {
         width: Dimensions.get('window').width * 0.7,
         textAlign: "right",
+        textDecorationLine: "underline",
         fontSize: Dimensions.get("window").width * 0.035,
         fontWeight: 'bold',
         color: "#BCA7F4",

@@ -16,4 +16,4 @@ const RecoveryPasswordPage = () => {
 
 }
 
-export default RecoveryPasswordPage;
+export default RecoveryPasswordPage

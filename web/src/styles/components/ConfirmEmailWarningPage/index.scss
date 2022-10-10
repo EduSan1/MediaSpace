@@ -1,66 +1,44 @@
 @import "../../vars.scss";
 
 #ConfirmEmailPage {
+    display: flex;
+    justify-content: center;
     align-items: center;
-
-    .logo_Name_pageConfirmEmail {
-        display: flex;
-        width: 50%;
-        height: 100%;
-
-
-
-
-
-        .img_logo_mediaSpace_warningPage {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-
-
-
-
-            img {
-                width: 80%;
-                height: 80%;
-
-
-            }
-
-        }
-
-    }
-
-
-
-
-
-
 
 
     .tittle_and_img {
-        width: 50%;
+        display: flex;
+        width: 100%;
         height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 5%;
+        
 
         h1 {
             font: clamp(2.2rem, 1vw, 1rem) $light-font ;
             font-weight: bold;
             color: $dark-purple;
+            
 
 
 
         }
 
+        .Div_img_center{
+            width: 100%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+
 
         .img_email {
             display: flex;
-            width: clamp(90%, 3vw, 50%);
+            width: clamp(60%, 3vw, 50%);
             height: auto;
             justify-content: center;
             align-items: center;

@@ -1,20 +1,16 @@
 import React from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView, Dimensions } from "react-native";
+import { View, StyleSheet, Image, KeyboardAvoidingView, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
-import { ForgetPassword } from "../components/ForgetPassword";
-import { Login } from "../components/Login";
-import { Confirmation } from "../components/Confirmation"
-import { CheckEmail } from "../components/CheckEmail"
-import { Register } from "../components/Register"
-import { RegisterFreelancer } from "../components/RegisterFreelancer";
-import { RegisterFreelancerComplete } from "../components/ CompleteRegisterFreelancer";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function LoginPage() {
+import { Login } from "../../components/Login";
 
-    const Stack = createNativeStackNavigator();
+
+interface ILogin {
+    navigation : any
+}
+
+export default function LoginPage({navigation} : ILogin) {
 
     return (
         <KeyboardAvoidingView
@@ -25,8 +21,8 @@ export default function LoginPage() {
 
                 <View style={styles.header}>
                     <LinearGradient style={styles.section} colors={['#1A2369', '#505BB0']}>
-                        <Image style={styles.icon} source={require("../../assets/icons/MediaSpaceLogoWhite.png")} />
-                        <Image style={styles.starfield} source={require("../../assets/img/consteletion.png")} />
+                        <Image style={styles.icon} source={require("../../../assets/icons/MediaSpaceLogoWhite.png")} />
+                        <Image style={styles.starfield} source={require("../../../assets/img/consteletion.png")} />
                     </LinearGradient>
 
                     <WavyBackground
@@ -40,18 +36,8 @@ export default function LoginPage() {
                     />
                 </View>
 
-                <NavigationContainer>
-                    <Stack.Navigator initialRouteName="Login">
-                        <Stack.Screen name="Login"    component={Login}/>
-                        <Stack.Screen name="Register" component={Register}/>
-                    </Stack.Navigator>
-                </NavigationContainer>
-
                 <View style={styles.container}>
-                    <RegisterFreelancerComplete/>
-                    {/* <RegisterFreelancer/> */}
-                    {/* <Register /> */}
-                    {/* <Login/> */}
+                    <Login navigation={navigation}/>
                 </View>
 
             </View>
@@ -92,7 +78,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height ,
         position: "relative",
-
+        backgroundColor:"#fff",
         alignContent: "center",
         alignItems: "flex-start"
     },
