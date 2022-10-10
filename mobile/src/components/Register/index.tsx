@@ -71,14 +71,13 @@ export const Register = () => {
         <>
         
             <Text style={styles.title}>{`Faça seu cadastro`}</Text>
-            <ScrollView style={styles.containerDad}
-            scrollEnabled>
+            <ScrollView >
             <ScrollView
                 style={styles.container}
                 horizontal={true}
                 pagingEnabled={true}
                 showsHorizontalScrollIndicator={true}
-                nestedScrollEnabled>
+                automaticallyAdjustKeyboardInsets>
 
                 <View style={styles.View}>
                     <LoginInput name="name" iconName="person-outline" value={userRegister.name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
@@ -160,10 +159,12 @@ export const Register = () => {
 
 const styles = StyleSheet.create({
 
-    containerDad:{
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.001 ,
-    },
+    // containerDad:{
+    //     width: Dimensions.get('window').width,
+    //     display: "flex",
+    //     flex: 1,
+    //     minHeight: Dimensions.get('window').height*0
+    // },
     title: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.07,
@@ -222,8 +223,8 @@ const styles = StyleSheet.create({
 
     // },
     scrollIcon: {
-        width: Dimensions.get('window').width * 0.064,
-        height: Dimensions.get('window').height * 0.04,
+        width: Dimensions.get('window').width * 0.059,
+        height: Dimensions.get('window').height * 0.0439,
 
     },
     iconViewStart: {
