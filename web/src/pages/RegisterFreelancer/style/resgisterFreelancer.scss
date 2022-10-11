@@ -37,10 +37,13 @@
 .categories,
 .sub_categories {
    height: 70%;
-   background-color: cadetblue;
    overflow-y: auto;
-   border: solid #D3C5F8;
+   //border: solid #D3C5F8;
+   box-shadow: inset 0px 4px 15px #DEDEDE;
    border-radius: 0.625rem;
+   display: flex;
+   flex-wrap: wrap;
+   padding: 10px;
 }
 
 .container_subcategories {

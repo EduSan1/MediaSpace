@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonCategories from "../../components/utils/Button/Categories";
-import Checkbok from "../../components/utils/Input/InputCheckbox";
+import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 
 
 const RegisterFreelancer = () => {
@@ -29,7 +29,7 @@ const RegisterFreelancer = () => {
                </div>
 
                <div className="sub_categories">
-                  <Checkbok options={["Arte", "Design", "Teste"]} value={subCategorias} setValue={setSubCategoria} />
+                  <Checkbox options={["Arte", "Design", "Teste"]} value={subCategorias} setValue={setSubCategoria} />
                </div>
 
             </div>

@@ -7,7 +7,7 @@ interface InputCheckbox {
 }
 
 
-const Checkbok = ({ options, value, setValue }: InputCheckbox) => {
+const Checkbox = ({ options, value, setValue }: InputCheckbox) => {
    const handleChange = ({ target }: any) => {
       if (target.checked) {
          setValue([...value, target.value]);
@@ -28,4 +28,4 @@ const Checkbok = ({ options, value, setValue }: InputCheckbox) => {
    )
 }
 
-export default Checkbok;      
+export default Checkbox;      
