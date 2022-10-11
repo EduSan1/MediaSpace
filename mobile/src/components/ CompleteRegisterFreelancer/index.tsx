@@ -9,46 +9,7 @@ export const CompleteRegisterFreelancer = () => {
     const [check, setCheck] = useState("")
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([
-        {
-            "id": "30a57a03-96c6-42c2-b098-32e8756d2b62",
-            "name": "123456",
-            "icon": "123",
-            "is_active": true,
-            "create_at": "2022-09-28T23:23:10.927Z",
-            "update_at": "2022-09-28T23:23:10.927Z",
-            "sub_categories": [
-                {
-                    "id": "30cd530f-e380-412c-8fc7-3707506cb71d",
-                    "name": "aaaaa",
-                    "is_active": false,
-                    "create_at": "2022-09-29T23:23:12.567Z",
-                    "update_at": "2022-09-29T23:26:51.000Z"
-                },
-                {
-                    "id": "72b1a1c4-961c-485a-aa67-ac406d2447a8",
-                    "name": "2",
-                    "is_active": true,
-                    "create_at": "2022-09-29T23:23:19.043Z",
-                    "update_at": "2022-09-29T23:23:19.043Z"
-                },
-                {
-                    "id": "9d243ac6-c8f7-4ae8-81d9-2ec6dd2565b3",
-                    "name": "3",
-                    "is_active": true,
-                    "create_at": "2022-09-29T23:23:23.237Z",
-                    "update_at": "2022-09-29T23:23:23.237Z"
-                }
-            ]
-        },
-        {
-            "id": "7979b446-b804-4f33-88d9-a1c60f147516",
-            "name": "teste123321123321",
-            "icon": "123",
-            "is_active": false,
-            "create_at": "2022-09-28T23:22:07.202Z",
-            "update_at": "2022-09-28T23:26:26.000Z",
-            "sub_categories": []
-        },
+     
         {
             "id": "859c7fb7-9c8e-4bb2-88ef-605502ebbeaa",
             "name": "gean",
@@ -86,25 +47,7 @@ export const CompleteRegisterFreelancer = () => {
                     "update_at": "2022-10-09T14:24:05.010Z"
                 }
             ]
-        },
-        {
-            "id": "a16b6bf4-1d3e-4319-b01c-ada96ac55dd1",
-            "name": "4",
-            "icon": "4",
-            "is_active": true,
-            "create_at": "2022-10-02T23:46:10.174Z",
-            "update_at": "2022-10-02T23:46:10.174Z",
-            "sub_categories": []
-        },
-        {
-            "id": "bdec6f7c-d71c-4125-b8e1-9db47303270b",
-            "name": "2",
-            "icon": "2",
-            "is_active": true,
-            "create_at": "2022-10-02T23:45:46.634Z",
-            "update_at": "2022-10-02T23:45:46.634Z",
-            "sub_categories": []
-        },
+        },  
         {
             "id": "d4a10075-3171-4998-91ab-30b17b8ef2f3",
             "name": "edu",
@@ -143,15 +86,7 @@ export const CompleteRegisterFreelancer = () => {
                 }
             ]
         },
-        {
-            "id": "d9314b8f-7cf8-4cba-a8da-69c579073b98",
-            "name": "3",
-            "icon": "3",
-            "is_active": true,
-            "create_at": "2022-10-02T23:46:04.564Z",
-            "update_at": "2022-10-02T23:46:04.564Z",
-            "sub_categories": []
-        }
+   
     ])
     const [userRegister, setUserRegister] = useState({
         name: {
@@ -160,14 +95,22 @@ export const CompleteRegisterFreelancer = () => {
 
     })
 
-    const [subCategories, setSubCategories] = useState([{}])
+    const [subCategories, setSubCategories] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
 
-       const filter : any = categories.find((category : any) => category.id === idCategory)
-       console.log(filter)
+        const categoryFilter : any = categories.find((category: any) => category.id === idCategory)
 
-    //    setSubCategories({...subCategories, filter.sub_categories})
+        if (action === "ADD") {
+            setSubCategories([ ...subCategories, ...categoryFilter.sub_categories ])
+        }else {
+            let subcategoriesFilter = categoryFilter.sub_categories.filter((subCategoryFilter: any) => subCategories.filter((subcategory : any) => subcategory.id !== subCategoryFilter.id))
+            // subcategoriesFilter = subcategoriesFilter
+            console.log(JSON.stringify(subcategoriesFilter))
+
+            // setSubCategories(subcategoriesFilter)
+        }
+
     }
 
 
@@ -200,7 +143,7 @@ export const CompleteRegisterFreelancer = () => {
                             return <CategoryButton id={category.id} setSubCategories={findSubCategories} icon="s" action={() => console.log("a")} category={category.name} />
                         })
                     }
-               </ScrollView>
+                </ScrollView>
             </View>
 
 
@@ -212,15 +155,13 @@ export const CompleteRegisterFreelancer = () => {
 
             <View style={styles.areaContainer2}>
                 <ScrollView style={styles.sectionSubCategory}>
-                    <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
-                    <CheckboxComponent title="Figma" id="Figma" />
-                    <CheckboxComponent title="3D" id="3d" />
-                    <CheckboxComponent title="JavaScrpit" id="js" />
-                    <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
-                    <CheckboxComponent title="Figma" id="Figma" />
-                    <CheckboxComponent title="3D" id="3d" />
-                    <CheckboxComponent title="JavaScrpit" id="js" />
-                    <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
+
+                    {
+                        subCategories?.map((subcategory: any) => {
+                            return <CheckboxComponent title={subcategory.name} id={subcategory.id} />
+                        })
+                    }
+
                 </ScrollView>
             </View>
 

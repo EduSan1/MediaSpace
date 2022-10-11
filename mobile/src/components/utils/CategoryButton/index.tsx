@@ -17,7 +17,7 @@ export const CategoryButton = ({id, action, icon, category, setSubCategories }: 
 
     const onSelected = () => {
         setIsSelected(!isSelected)
-        setSubCategories(id, "ADD")
+        setSubCategories(id, isSelected ? "REMOVE" : "ADD" )
     }
     
 
