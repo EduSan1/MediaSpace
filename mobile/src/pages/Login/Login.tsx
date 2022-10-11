@@ -2,9 +2,9 @@ import React from "react";
 import { View, StyleSheet, Image, KeyboardAvoidingView, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
-
+import { CompleteRegisterFreelancer } from "../../components/ CompleteRegisterFreelancer";
 import { Login } from "../../components/Login";
-import { RegisterFreelancerComplete } from "../../components/ CompleteRegisterFreelancer";
+// import { RegisterFreelancerComplete } from "../../components/ CompleteRegisterFreelancer";
 
 
 interface ILogin {
@@ -38,6 +38,9 @@ export default function LoginPage({navigation} : ILogin) {
                 </View>
 
                 <View style={styles.container}>
+
+                    <CompleteRegisterFreelancer/>
+
                     <Login navigation={navigation}/>
                 </View>
 
