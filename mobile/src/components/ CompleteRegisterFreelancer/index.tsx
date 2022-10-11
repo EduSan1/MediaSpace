@@ -17,19 +17,45 @@ export const CompleteRegisterFreelancer = () => {
 
     })
 
+    const [freelancer, setFreelancer] = useState({
+        categories: [
+    
+        ],
+        sub_categories: [
+
+        ],
+        userId: "be630814-7236-4d49-b076-5603efa2f21c"
+    })
+
+    const addToFreelancer  = (id : string, name : "sub_categories" | "categories") => {
+        setFreelancer({...freelancer, [name] : [
+            ...freelancer[name], {id : id}
+        ]})
+    }
+
+    const RemoveFromFreelancer  = (object : [{}], name : "sub_categories" | "categories") => {
+        setFreelancer({...freelancer, [name] : object})
+    }
+
+    useEffect(() => {
+        console.log(freelancer)
+    },[freelancer])
+
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
-
         const categoryFilter : any = categories.find((category: any) => category.id === idCategory)
 
         if (action === "ADD") {
-            setSubategoriesToRender([ ...subcategoriesToRender, categoryFilter ])
-        }else {
-            let subcategoriesFilter = subcategoriesToRender.filter((category : any) => category.id !== categoryFilter.id )
-            setSubategoriesToRender(subcategoriesFilter)
+                setSubategoriesToRender([ ...subcategoriesToRender, categoryFilter ])
+                addToFreelancer(categoryFilter.id, "categories")
         }
+        else {
 
+            const categoryFilter = subcategoriesToRender.filter((category : any) => category.id !== idCategory)
+            setSubategoriesToRender(categoryFilter)
+            // RemoveFromFreelancer(categoryFilter.map((category : any) => { id : category.id}) , "categories")
+        }
     }
 
 
