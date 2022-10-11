@@ -5,14 +5,15 @@ interface IButtonCategories {
    className: string,
    valueBtn: string,
    icon: string,
+ 
 }
 
 const ButtonCategories = ({ name, className, valueBtn, icon }: IButtonCategories) => {
    return (
       <>
-         <button name={name} className={className} value={valueBtn}>
+         <button name={name} className={className} value={valueBtn} >
             {valueBtn}
-            <img src={icon} />
+            <img src={icon} className="teste"/>
          </button>
       </>
    );

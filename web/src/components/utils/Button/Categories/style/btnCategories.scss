@@ -1,0 +1,26 @@
+.button-category {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+   background-color: $light-blue;
+   min-width: 80px;
+   height: 30px;
+   border-radius: 30px;
+   border-style: none;
+   cursor: pointer;
+   font-family: $light-font;
+   margin-left: 10px;
+}
+
+.button-category:focus{
+   background-color:$primary-blue;
+   color: #FFFFFF;
+}
+
+.teste{
+   height: 10px;
+   width: 10px;
+   background-color: aqua;
+}
+

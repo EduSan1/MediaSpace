@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonCategories from "../../components/utils/Button/Categories";
+import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 
 
@@ -20,7 +20,9 @@ const RegisterFreelancer = () => {
                   <label> Categorias </label>
                </div>
                <div className="categories">
-                  <ButtonCategories className="button-category" valueBtn="teste" name="teste" icon="" />
+                  <ButtonCategories className="button-category" valueBtn="teste" name="teste" icon=""/>
+                  <ButtonCategories className="button-category" valueBtn="teste" name="teste" icon=""/>
+
                </div>
             </div>
             <div className="container_subcategories">
