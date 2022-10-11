@@ -4,6 +4,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
 import { Register } from "../../components/Register";
 import { Login } from "../../components/Login";
+import { RegisterPreject } from "../RegisterProject";
+import { RegisterFreelancerComplete } from "../../components/ CompleteRegisterFreelancer";
 
 
 interface ILogin {
@@ -37,8 +39,8 @@ export default function LoginPage({navigation} : ILogin) {
                 </View>
 
                 <View style={styles.container}>
-                    {/* <RegisterFreelancerComplete/> */}
-                    <Register/>
+                    <RegisterFreelancerComplete/>
+                    {/* <RegisterPreject/> */}
                 </View>
 
             </View>

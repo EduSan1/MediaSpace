@@ -9,6 +9,7 @@ import RegisterPage from './src/pages/ResgisterPage';
 import ForgetPasswordPage from './src/pages/ForgetPasswordPage';
 import SendMailPasswordRecoverPage from './src/pages/SendMailPasswordRecoverPage';
 import CheckMailPage from './src/pages/CheckMailPage';
+import { RegisterPreject } from './src/pages/RegisterProject';
 
 export default function App() {
 
@@ -19,7 +20,7 @@ export default function App() {
     return(
       <NavigationContainer >
           <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-              <Stack.Screen  name="Login"                        component={LoginPage}/>
+              <Stack.Screen  name="Login"                        component={RegisterPreject}/>
               <Stack.Screen name="Register"                     component={RegisterPage}/>
               <Stack.Screen name="ForgetPassword"                     component={ForgetPasswordPage}/>
               <Stack.Screen name="SendMailPasswordRecover"                     component={SendMailPasswordRecoverPage}/>

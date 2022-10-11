@@ -104,8 +104,7 @@ export const Register = () => {
                     style={styles.container}
                     horizontal={true}
                     pagingEnabled={true}
-                    showsHorizontalScrollIndicator={true}
-                    automaticallyAdjustKeyboardInsets>
+                    showsHorizontalScrollIndicator={true}>
 
                     <View style={styles.View}>
                         <LoginInput name="first_name" iconName="person-outline" value={userRegister.first_name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
@@ -186,13 +185,6 @@ export const Register = () => {
 }
 
 const styles = StyleSheet.create({
-
-    // containerDad:{
-    //     width: Dimensions.get('window').width,
-    //     display: "flex",
-    //     flex: 1,
-    //     minHeight: Dimensions.get('window').height*0
-    // },
     title: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.07,
