@@ -15,6 +15,8 @@ import api from "../../service";
 
 const RegisterSpace = () => {
 
+    // const navigate = useNavigate()
+
     const [user, setUser] = React.useState({
         first_name: '',
         last_name: '',

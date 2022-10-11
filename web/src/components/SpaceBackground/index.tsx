@@ -4,7 +4,6 @@ import "../../styles/components/SpacebackgroundLogin/index.scss";
 import ConcludeRegister from "../ConcludeRegister/ConcludeRegister";
 import SendingEmailRecovery from "../../pages/SendingEmailRecovery";
 import ProviderUserRegister from "../../pages/ProviderUserRegister";
-// import RecoveryPassword from "../../pages/Recoverypassword";
 import ConfirmEmailWarningPage from "../../pages/ConfirmEmailWarningPage";
 import PasswordWarningPage from "../../pages/PasswordWarningPage";
 import RecoveringPasswordPage from "../../pages/RecoveringPasswordPage";
@@ -21,6 +20,7 @@ interface ISpaceBackground {
 
 const SpaceBackground = ({component} : ISpaceBackground) => {
 
+
   return (
 
     <>
@@ -29,7 +29,7 @@ const SpaceBackground = ({component} : ISpaceBackground) => {
           <img src="../assets/img/MediaSpaceLogo.png" />
         </span>
         
-       
+
         <main className="SpaceLogin"> 
         {component}
         </main>

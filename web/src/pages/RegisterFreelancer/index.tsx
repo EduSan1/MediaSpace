@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
+import InputBtn from "../../components/utils/Button/InputBtn";
 
 
 const RegisterFreelancer = () => {
@@ -35,6 +36,10 @@ const RegisterFreelancer = () => {
                </div>
 
             </div>
+         </div>
+
+         <div>
+            <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => {}} />
          </div>
       </div>
    )
