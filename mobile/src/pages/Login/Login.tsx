@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import WavyBackground from "react-native-wavy-background";
 
 import { Login } from "../../components/Login";
+import { RegisterFreelancerComplete } from "../../components/ CompleteRegisterFreelancer";
 
 
 interface ILogin {
