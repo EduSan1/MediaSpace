@@ -1,44 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import { AiOutlineHome } from "react-icons/ai";
+import { FaBars } from "react-icons/fa";
+import { IoClose } from "react-icons/io5"
+
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
-import { MdFacebook } from "react-icons/md";
 
 
 
- const NavegationBar = () =>{
+const NavegationBar = () => {
 
-    return(
+    const [open, setOpen] = useState(false);
 
-    
-        <div className="Container_navegation">
-                 <button className="">
-                     <span>.</span>
-                     <span>.</span>
-                     <span>.</span>
-                 </button>
-            <div className="img_Container">
+    return (
 
-              <ImageComponent src="../assets/img/profileTeste.svg" alt="" className=""/>
 
-                <h1></h1>
+        <div className={open ? "Container_navegation_Open" : "Container_navegation"}>
+            <span className="Menu_bar_icon">
+                <div className="logo_img">
+                    {<img src="../assets/img/LogoBlack.svg" className="visible_img" alt="" />}
+                </div>
+                <button className="Button_menu">
+                    <IconBar Icon={!open ? <FaBars onClick={() => {
+                        setOpen(!open);
+                    }} /> : <IoClose onClick={() => {
+                        setOpen(!open);
+                    }} />} text={''} className='Span_icon' />
+                </button>
+            </span>
 
+            <div className="photo_User_container">
+                get api
+                img
+                info
             </div>
 
-             <nav className="nav_Bar">
-                 <ul>
-                    <li><IconBar Icon={<MdFacebook/>} text={'teste'} className='' /></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                 </ul>
-            </nav>   
-        
+            <div className="Icon_bar_nav">
+          teste
+            </div>
+
+
 
         </div>
 
 
-         
+
+
+
+
     );
 }
 
