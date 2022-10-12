@@ -21,8 +21,8 @@ const RegisterFreelancer = () => {
                   <label> Categorias </label>
                </div>
                <div className="categories">
-                  <ButtonCategories className="button-category" valueBtn="teste" name="teste" icon=""/>
-                  <ButtonCategories className="button-category" valueBtn="teste" name="teste" icon=""/>
+                  <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                  <ButtonCategories category="teste" name="teste" icon="" id="4" action={() => console.log("testando")} />
 
                </div>
             </div>
@@ -32,15 +32,22 @@ const RegisterFreelancer = () => {
                </div>
 
                <div className="sub_categories">
-                  <Checkbox options={["Arte", "Design", "Teste"]} value={subCategorias} setValue={setSubCategoria} />
-               </div>
+                  <Checkbox nameOption="teste" />
+                  <Checkbox nameOption="outroteste" />
+                  <Checkbox nameOption="maisumteste" />
 
+
+
+               </div>
             </div>
          </div>
 
-         <div>
-            <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => {}} />
+         <div className="container_button_finish">
+            <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => { }} />
          </div>
+
+
+
       </div>
    )
 

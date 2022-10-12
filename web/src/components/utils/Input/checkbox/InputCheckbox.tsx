@@ -1,31 +1,24 @@
 import React from "react";
 
 interface InputCheckbox {
-   options: string[]
-   value: string[]
-   setValue: any
+   nameOption: string
 }
 
 
-const Checkbox = ({ options, value, setValue }: InputCheckbox) => {
-   const handleChange = ({ target }: any) => {
-      if (target.checked) {
-         setValue([...value, target.value]);
-      } else {
-         setValue(value.filter((itemValue) => itemValue !== target.value));
-      }
-   }
+const Checkbox = ({ nameOption }: InputCheckbox) => {
+
+   const [check, setCheck] = React.useState(false)
 
    return (
-      <div className="container_checkbox">
-         {options.map((option) => (
-            <label>
-               <input className="item_checkbox" type="checkbox" value={option} checked={value.includes(option)}
-                  onChange={handleChange} /> {option}
-            </label>
-         ))}
-      </div>
+      <div >
+         <label className="container_checkbox" >
+
+            <input className="item_checkbox" type="checkbox" id="" onClick={() => setCheck(!check)} value={nameOption} /> {nameOption}
+
+         </label>
+      </div >
    )
+
 }
 
 export default Checkbox;      

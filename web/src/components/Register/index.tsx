@@ -256,8 +256,6 @@ const RegisterSpace = () => {
                                         className={'input_btn_upload_photo'}
                                         valueBtn={'adicionar imagem'} onClick={() => { }} />
 
-
-
                                     <InputBtn typeInput={'submit'} name={'btn_remove_photo'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => { user.profile_picture = "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57" }} />
                                 </div>
                             </form>
@@ -271,7 +269,7 @@ const RegisterSpace = () => {
                             </div>
 
                         </div>
-                        <div>
+                        <div className="container_button">
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
                                 //    if(validation()){
                                 //         console.log("Campos não preenchidos")
