@@ -178,7 +178,7 @@ const RegisterSpace = () => {
             if (res.data.statusCode !== 201) {
                 window.alert("não foi possivel cadastrar o usuário")
             } else {
-                navigate("provideruserregister")
+                navigate(`provideruserregister/${res.data.data.id}`)
             }
         })
     }

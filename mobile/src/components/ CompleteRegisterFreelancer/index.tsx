@@ -10,40 +10,43 @@ export const CompleteRegisterFreelancer = () => {
     const [check, setCheck] = useState("")
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
-    const [userRegister, setUserRegister] = useState({
-        name: {
-            "id": check
-        },
 
+    const [freelancer, setFreelancer] = useState({
+        categories: [
+    
+        ],
+        sub_categories: [
+
+        ],
+        userId: "be630814-7236-4d49-b076-5603efa2f21c"
     })
+
+    const addToFreelancer  = (id : string, name : "sub_categories" | "categories") => {
+        setFreelancer({...freelancer, [name] : [
+            ...freelancer[name], {id : id}
+        ]})
+    }
+
+    const RemoveFromFreelancer  = (object : [{}], name : "sub_categories" | "categories") => {
+        setFreelancer({...freelancer, [name] : object})
+    }
 
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
-
         const categoryFilter : any = categories.find((category: any) => category.id === idCategory)
 
         if (action === "ADD") {
-            setSubategoriesToRender([ ...subcategoriesToRender, categoryFilter ])
-        }else {
-            let subcategoriesFilter = subcategoriesToRender.filter((category : any) => category.id !== idCategory )
-            setSubategoriesToRender(subcategoriesFilter)
+                setSubategoriesToRender([ ...subcategoriesToRender, categoryFilter ])
+                addToFreelancer(categoryFilter.id, "categories")
         }
+        else {
 
+            const categoryFilter = subcategoriesToRender.filter((category : any) => category.id !== idCategory)
+            setSubategoriesToRender(categoryFilter)
+            // RemoveFromFreelancer(categoryFilter.map((category : any) => { id : category.id}) , "categories")
+        }
     }
-
-
-
-    useEffect(() => {
-        setUserRegister({
-            ...userRegister,
-            name: {
-                "id": check
-            }
-        })
-    }
-        , [check]
-    )
 
     useEffect(() => {
         api.get("/category").then((res : any) => {

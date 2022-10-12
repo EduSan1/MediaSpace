@@ -20,10 +20,11 @@ function App() {
     <>
 
       <Routes>
-        <Route path='/' element={<LoginPage />} />
+        <Route path='/' element={<LoginPage  />}  />
         <Route path='/register' element={<RegisterPage />} />
-        <Route path='/register/provideruserregister' element={<ProviderUserRegisterPage />} />
+        <Route path='/register/provideruserregister/:userId' element={<ProviderUserRegisterPage />} />
         <Route path='/confirmRegister' element={<MailConfirmedPage />} />
+        <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
         <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
