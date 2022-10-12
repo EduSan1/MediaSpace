@@ -69,7 +69,7 @@ const RegisterSpace = () => {
         setUser({
             // ...user, [event.target.name]: phoneMask(event.target.value)
             ...user, phone: {
-                ddd: "11",
+                ddd: "",
                 phone: phoneMask(event.target.value)
 
             }
@@ -85,52 +85,6 @@ const RegisterSpace = () => {
                 ...user, [event.target.name]: event.target.value
             })
         }
-    }
-    const validation = () => {
-        if (!user.first_name) {
-            return true
-        } else {
-
-        }
-
-        if (!user.last_name) {
-            return setHasErros
-        } else {
-
-        }
-
-        // if (!user.nickname) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-
-        // if (!user.cpf) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-        // if (!user.birth_date) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-
-        // if (!user.mail) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-
-        if (!passwordMask.test(user.password)) {
-
-            //return setHasErros(true)
-            return console.log("Senha formato errado")
-            //console.log('bota o formato de senha certo meu parceiro')
-        } else {
-
-        }
-
     }
 
     const uploadImage = (event: any) => {
