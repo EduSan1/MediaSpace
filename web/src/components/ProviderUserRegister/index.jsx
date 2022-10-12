@@ -29,7 +29,7 @@ const ProviderUserRegister = () => {
 
             <div className="Conatiner_bnt_User_Provider">
 
-                <Link to="">
+                <Link to='/register/registerFreelancer'>
                     <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como prestador'}
                         onClick={() => {
                             console.log('next page')
