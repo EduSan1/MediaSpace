@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { AiOutlineHome, AiOutlineRise,AiOutlineLogout } from "react-icons/ai";
-import {BsChatText} from "react-icons/bs"
-import {BiUser} from "react-icons/bi"
+import { AiOutlineHome, AiOutlineRise, AiOutlineLogout } from "react-icons/ai";
+import { BsChatText } from "react-icons/bs";
+import { BiRocket, BiUser } from "react-icons/bi";
 import { FaBars } from "react-icons/fa";
-import { IoClose } from "react-icons/io5"
-
+import { IoClose } from "react-icons/io5";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 
@@ -32,17 +31,27 @@ const NavegationBar = () => {
             </span>
 
             <div className="photo_User_container">
-               <ImageComponent src="../assets/img/profileTeste.svg" alt="" className="photo_user_img"/>
+                <ImageComponent src="../assets/img/profileTeste.svg" alt="" className="photo_user_img" />
             </div>
 
             <div className="Container_icon_nav">
-              <IconBar Icon={<AiOutlineHome/>} text={'teste'} className={'icon_navBar'}/>
-              <IconBar Icon={<AiOutlineRise/>} text={'teste'} className={'icon_navBar'}/>
-              <IconBar Icon={<BsChatText/>} text={'teste'} className={'icon_navBar'}/>
-              <IconBar Icon={<BiUser/>} text={'teste'} className={'icon_navBar'}/>
-              <IconBar Icon={<AiOutlineLogout/>} text={'teste'} className={'icon_navBar'}/>
-               
+                <div className="icons_all_navBar">
+                    <IconBar Icon={<AiOutlineHome />} text={'teste'} className={'icon_navBar'} />
+                    <IconBar Icon={<AiOutlineRise />} text={'teste'} className={'icon_navBar'} />
+                    <IconBar Icon={<BsChatText />} text={'teste'} className={'icon_navBar'} />
+                    <IconBar Icon={<BiUser />} text={'teste'} className={'icon_navBar'} />
+
+                </div>
+                <div className="Logout_icon_nav">
+                    
+                    <IconBar Icon={<AiOutlineLogout />} text={'teste'} className={'icon_navBar'} />
+
+
+                </div>
+
+
             </div>
+
 
 
 

@@ -73,15 +73,39 @@
     flex-direction: column;
     width: 100%;
     height: inherit;
-    gap: 4%;
     background-color: rgba(0, 255, 255, 0.205);
     align-items: flex-end;
-    justify-content: center;
+    justify-content: end;
+     padding-top: 20px;
+     padding-bottom: 10px;
+
+    .icons_all_navBar{
+        display: flex;
+        justify-content: end;
+        align-items: flex-end;
+        width: 100%;
+        height: 90%;
+        flex-direction: column;
+        background-color: bisque;
+        padding-top: 100px;
+        border-radius: 0% 0% 12% 0%;
+     
+    }
+
+    .Logout_icon_nav{
+        display: flex;
+        width: 100%;
+        height: 10%;
+        background-color: #371010;
+        justify-content: center;
+        align-items: flex-end;
+        border-radius: 0% 40% 0% 0%;
+    }
    
 
     .icon_navBar{
-        width: 100%;
-        height: 5%;
+        width: 90%;
+        height: 60%;
         margin-bottom: 2%;
         color: #D9D9D9;
 
@@ -104,6 +128,8 @@
         transition: 0.30s;
     }
    }
+
+
       
 }
 
