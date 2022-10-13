@@ -147,7 +147,9 @@ export const Register = ({ navigation }: IRegister) => {
         api.post("/user", user).then((res: any) => {
            
             if (res.data.statusCode === 201) {
-                navigation.navigate("CheckMail")
+                navigation.navigate("RegisterFreelancer", { 
+                    userId: res.data.data.id, 
+                  })
             } else {
                 if (res.data.cpf) {
                     setHasErrorCpf(res.data.cpf)

@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { StyleSheet,View, ScrollView,Text,Dimensions, Image,  } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
 
-export const RegisterFreelancer = () => {
+interface IRegisterFreelancer {
+    navigation : any
+}
+
+
+export const RegisterFreelancer = ({navigation} : IRegisterFreelancer) => {
     const [isLoad, setIsLoad] = useState(false)
+
     return(
         <View style={styles.container}>
             <Text style={styles.title}>{`Deseja cadastrar-se como prestador?`}</Text>
@@ -16,9 +22,9 @@ export const RegisterFreelancer = () => {
                 <Text style={styles.text2}>&#8226; Formação de equipes</Text>
             </View>
             <View style={styles.areaContainer2}>
-                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar como prestador"/>
+                <LoginButton isLoad={isLoad} action={() =>  navigation.navigate('RegisterFreelancerComplete')} type="dark" title="Continuar como prestador"/>
             </View>
-                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="light" title="Continuar como cliente"/>
+                <LoginButton isLoad={isLoad} action={() =>  navigation.navigate('CheckMail')} type="light" title="Continuar como cliente"/>
 
         </View>
     )

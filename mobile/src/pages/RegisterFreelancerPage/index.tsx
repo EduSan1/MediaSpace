@@ -5,14 +5,16 @@ import WavyBackground from "react-native-wavy-background";
 
 import { Login } from "../../components/Login";
 import { Register } from "../../components/Register";
-import { SendMailPasswordRecover } from "../../components/Confirmation";
+import { ForgetPassword } from "../../components/ForgetPassword";
+import { RegisterFreelancer } from "../../components/RegisterFreelancer";
 
 
-interface IRegisterPage {
+interface IRegisterFreelancerPage {
     navigation : any
+
 }
 
-export default function RegisterPage({navigation} : IRegisterPage) {
+export default function RegisterFreelancerPage({navigation} : IRegisterFreelancerPage) {
 
     return (
         <KeyboardAvoidingView
@@ -39,7 +41,7 @@ export default function RegisterPage({navigation} : IRegisterPage) {
                 </View>
 
                 <View style={styles.container}>
-                    <SendMailPasswordRecover navigation={navigation}/>
+                    <RegisterFreelancer navigation={navigation}/>
                 </View>
 
             </View>
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height * 0.7,
         position: "relative",
         backgroundColor:"#fff",
         alignContent: "center",
