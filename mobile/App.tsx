@@ -9,33 +9,36 @@ import RegisterPage from './src/pages/ResgisterPage';
 import ForgetPasswordPage from './src/pages/ForgetPasswordPage';
 import SendMailPasswordRecoverPage from './src/pages/SendMailPasswordRecoverPage';
 import CheckMailPage from './src/pages/CheckMailPage';
-
+import Home from './src/pages/Home';
+import Routes from './src/routes';
 export default function App() {
 
-  function StackNavigation(){
+  // function StackNavigation(){
   
-    const Stack = createNativeStackNavigator();
+  //   const Stack = createNativeStackNavigator();
     
-    return(
-      <NavigationContainer >
-          <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-              <Stack.Screen  name="Login"                        component={LoginPage}/>
-              <Stack.Screen name="Register"                     component={RegisterPage}/>
-              <Stack.Screen name="ForgetPassword"                     component={ForgetPasswordPage}/>
-              <Stack.Screen name="SendMailPasswordRecover"                     component={SendMailPasswordRecoverPage}/>
-              <Stack.Screen name="CheckMail"                     component={CheckMailPage}/>
-              {/* <Stack.Screen name="RegisterFreelancer"           component={RegisterFreelancer}/>
-              <Stack.Screen name="RegisterFreelancerComplete"   component={RegisterFreelancerComplete}/>  */}
-          </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+  //   return(
+  //     <NavigationContainer >
+  //         <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+  //             <Stack.Screen  name="Login"                        component={LoginPage}/>
+  //             <Stack.Screen name="Register"                     component={RegisterPage}/>
+  //             <Stack.Screen name="ForgetPassword"                     component={ForgetPasswordPage}/>
+  //             <Stack.Screen name="SendMailPasswordRecover"                     component={SendMailPasswordRecoverPage}/>
+  //             <Stack.Screen name="CheckMail"                     component={CheckMailPage}/>
+  //             {/* <Stack.Screen name="RegisterFreelancer"           component={RegisterFreelancer}/>
+  //             <Stack.Screen name="RegisterFreelancerComplete"   component={RegisterFreelancerComplete}/>  */}
+  //         </Stack.Navigator>
+  //     </NavigationContainer>
+  //   );
+  // }
 
   return (
-
-    <View style={styles.container}>
-        <StackNavigation />
-    </View>
+    <NavigationContainer>
+      <Routes/>
+    </NavigationContainer>
+    // <View style={styles.container}>
+    //     <StackNavigation />
+    // </View>
 
   );
 }
