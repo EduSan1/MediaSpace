@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineRise,AiOutlineLogout } from "react-icons/ai";
+import {BsChatText} from "react-icons/bs"
+import {BiUser} from "react-icons/bi"
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5"
 
@@ -30,13 +32,16 @@ const NavegationBar = () => {
             </span>
 
             <div className="photo_User_container">
-                get api
-                img
-                info
+               <ImageComponent src="../assets/img/profileTeste.svg" alt="" className="photo_user_img"/>
             </div>
 
-            <div className="Icon_bar_nav">
-          teste
+            <div className="Container_icon_nav">
+              <IconBar Icon={<AiOutlineHome/>} text={'teste'} className={'icon_navBar'}/>
+              <IconBar Icon={<AiOutlineRise/>} text={'teste'} className={'icon_navBar'}/>
+              <IconBar Icon={<BsChatText/>} text={'teste'} className={'icon_navBar'}/>
+              <IconBar Icon={<BiUser/>} text={'teste'} className={'icon_navBar'}/>
+              <IconBar Icon={<AiOutlineLogout/>} text={'teste'} className={'icon_navBar'}/>
+               
             </div>
 
 

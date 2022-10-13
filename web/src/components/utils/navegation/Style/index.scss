@@ -1,7 +1,7 @@
 #LoginPage {
     .Container_navegation {
         display: flex;
-        width: 3%;
+        width: 3.5%;
         height: 100%;
         flex-direction: column;
         align-items: center;
@@ -16,10 +16,17 @@
             visibility: hidden;
         }
         .photo_User_container{
+            display: flex;
             width: 100%;
-            height: 10%;
+            height: 20%;
             background-color: rgb(122, 191, 19);
-            margin-bottom: 150px;
+            margin-bottom: 50px;
+            justify-content: center;
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
            }
 
         .Menu_bar_icon {
@@ -45,7 +52,7 @@
                 background-color: transparent;
           
                 span {
-                    width:50%;
+                    width:65%;
 
                     svg {
                         width: 100%;
@@ -59,15 +66,44 @@
 
     }
 
+    
 
-    .Icon_bar_nav{
+   .Container_icon_nav{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: inherit;
+    gap: 4%;
+    background-color: rgba(0, 255, 255, 0.205);
+    align-items: flex-end;
+    justify-content: center;
+   
+
+    .icon_navBar{
         width: 100%;
-        min-height: auto;
-        height: inherit;
-        background-color: aqua;
+        height: 5%;
+        margin-bottom: 2%;
+        color: #D9D9D9;
+
+        svg{
+          width: 90%;
+          height: 90%;
+        }
+        
+         
+        h3{
+            display: none;
+            visibility: hidden;
+            background-color: black;
+        }
     }
 
-
+    .icon_navBar:hover{
+        color:purple ;
+        cursor: pointer;
+        transition: 0.30s;
+    }
+   }
       
 }
 
