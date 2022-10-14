@@ -30,11 +30,34 @@ const NavegationBar = () => {
                 </button>
             </span>
 
-            <div className="photo_User_container">
+            <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
                 <ImageComponent src="../assets/img/profileTeste.svg" alt="" className="photo_user_img" />
+                <span className="InfoName_user">
+                    <h2>Cardmon</h2>
+                    <h4>@CardamonViolet</h4>
+                </span>
+                <div className="Info_data">
+                    <span>
+                        <h2>5.7K</h2>
+                        <h4>seguidores</h4>
+                    </span>
+                    <span>
+                        <h2>4.8</h2>
+                        <h4> Avaliação</h4>
+                    </span>
+                    <span>
+                        <h2>2</h2>
+                        <h4>Equipes</h4>
+                    </span>
+                </div>
+                 
+                 <div className="btns">
+                    button
+                 </div>
+
             </div>
 
-            <div className="Container_icon_nav">
+            <div className={!open ? "Container_icon_nav" : "Container_icon_nav_open"}>
                 <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
                     <IconBar Icon={<AiOutlineHome />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} />
                     <IconBar Icon={<AiOutlineRise />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
@@ -43,7 +66,7 @@ const NavegationBar = () => {
 
                 </div>
                 <div className="Logout_icon_nav">
-                    
+
                     <IconBar Icon={<AiOutlineLogout />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
 
 
