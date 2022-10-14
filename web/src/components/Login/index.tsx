@@ -68,12 +68,12 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    } 
+    }
 
     if (validate) {
       loginUser();
 
-    } 
+    }
 
 
 
@@ -90,7 +90,7 @@ const LoginSpace = () => {
       if (res.data.is_logged) {
         logIntUser(res.data.userDetails);
         window.alert("usuario logado!")
-      }else {
+      } else {
         window.alert("senha incorreta")
       }
 
