@@ -11,3 +11,5 @@ const HeaderPages = () => {
       </>
    )
 }
+
+export default HeaderPages;

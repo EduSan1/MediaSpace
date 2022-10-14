@@ -1,12 +1,23 @@
 import React from "react";
+import Checkbox from "../../utils/Input/checkbox/InputCheckbox";
 
 const ToggleButton = () => {
 
    return (
       <>
-         <label htmlFor="">
-            <input type="checkbox" />
-         </label>
+         <div className="container_aligment">
+            <div>
+                <h2>Tema:</h2>
+            </div>
+            
+            <label className="switch">
+               <input type="checkbox" />
+               <span className="slider"></span>
+            </label>
+         </div>
+     
+
+         
       </>
    )
 }

@@ -35,9 +35,6 @@ const RegisterFreelancer = () => {
                   <Checkbox nameOption="teste" />
                   <Checkbox nameOption="outroteste" />
                   <Checkbox nameOption="maisumteste" />
-
-
-
                </div>
             </div>
          </div>
