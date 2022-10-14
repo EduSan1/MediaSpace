@@ -15,7 +15,8 @@
         .visible_close_img {
             visibility: hidden;
         }
-        .photo_User_container{
+
+        .photo_User_container {
             display: flex;
             width: 100%;
             height: 20%;
@@ -23,11 +24,11 @@
             margin-bottom: 50px;
             justify-content: center;
 
-            img{
+            img {
                 width: 100%;
                 height: 100%;
             }
-           }
+        }
 
         .Menu_bar_icon {
             display: flex;
@@ -40,7 +41,7 @@
             background-color: greenyellow;
 
 
-   
+
 
             .Button_menu {
                 display: flex;
@@ -50,9 +51,9 @@
                 justify-content: center;
                 align-items: center;
                 background-color: transparent;
-          
+
                 span {
-                    width:65%;
+                    width: 65%;
 
                     svg {
                         width: 100%;
@@ -66,78 +67,78 @@
 
     }
 
-    
 
-   .Container_icon_nav{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: inherit;
-    background-color: rgba(0, 255, 255, 0.205);
-    align-items: flex-end;
-    justify-content: end;
-     padding-top: 20px;
-     padding-bottom: 10px;
 
-    .icons_all_navBar{
+    .Container_icon_nav {
         display: flex;
-        justify-content: end;
-        align-items: flex-end;
-        width: 100%;
-        height: 90%;
         flex-direction: column;
-        background-color: bisque;
-        padding-top: 100px;
-        border-radius: 0% 0% 12% 0%;
-     
-    }
-
-    .Logout_icon_nav{
-        display: flex;
         width: 100%;
-        height: 10%;
-        background-color: #371010;
-        justify-content: center;
+        height: inherit;
+        background-color: rgba(0, 255, 255, 0.205);
         align-items: flex-end;
-        border-radius: 0% 40% 0% 0%;
-    }
-   
+        justify-content: end;
+        padding-top: 20px;
+        padding-bottom: 10px;
 
-    .icon_navBar{
-        width: 90%;
-        height: 60%;
-        margin-bottom: 2%;
-        color: #D9D9D9;
+        .icons_all_navBar {
+            display: flex;
+            justify-content: end;
+            align-items: flex-end;
+            width: 100%;
+            height: 90%;
+            flex-direction: column;
+            background-color: bisque;
+            padding-top: 100px;
+            border-radius: 0% 0% 12% 0%;
 
-        svg{
-          width: 90%;
-          height: 90%;
         }
-        
-         
-        h3{
-            display: none;
-            visibility: hidden;
-            background-color: black;
+
+        .Logout_icon_nav {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            background-color: #371010;
+            justify-content: center;
+            align-items: flex-end;
+            border-radius: 0% 40% 0% 0%;
+        }
+
+
+        .icon_navBar {
+            width: 90%;
+            height: 60%;
+            margin-bottom: 2%;
+            color: #D9D9D9;
+
+            svg {
+                width: 90%;
+                height: 90%;
+            }
+
+
+            h3 {
+                display: none;
+                visibility: hidden;
+                background-color: black;
+            }
+        }
+
+        .icon_navBar:hover {
+            color: purple;
+            cursor: pointer;
+            transition: 0.30s;
         }
     }
 
-    .icon_navBar:hover{
-        color:purple ;
-        cursor: pointer;
-        transition: 0.30s;
-    }
-   }
 
 
-      
 }
 
 
 //open
 .Container_navegation_Open {
     display: flex;
-    width: 10%;
+    width: 15%;
     height: 100%;
     background-color: rgba(4, 62, 62, 0.434);
     flex-direction: column;
@@ -150,11 +151,12 @@
         display: block;
 
     }
-    .photo_User_container{
+
+    .photo_User_container {
         width: 100%;
         height: 10%;
         background-color: aliceblue;
-       }
+    }
 
     .Menu_bar_icon {
         display: flex;
@@ -181,11 +183,11 @@
             img {
                 width: 100%;
                 height: 100%;
-                
+
             }
         }
 
-        .Button_menu{
+        .Button_menu {
             display: flex;
             width: 20%;
             height: 100%;
@@ -194,29 +196,94 @@
             align-items: center;
             background-color: transparent;
             padding-left: 4%;
-       
-            .Span_icon{
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-           
 
-            svg{
+            .Span_icon {
+                display: flex;
                 width: 100%;
                 height: 100%;
-                color: #D9D9D9;
-                cursor: pointer;
+                justify-content: center;
 
+
+                svg {
+                    width: 100%;
+                    height: 100%;
+                    color: #D9D9D9;
+                    cursor: pointer;
+
+                }
             }
-          }
 
         }
 
     }
 
 
+    .photo_User_container {
+        display: flex;
+        width: 100%;
+        height: 20%;
+        background-color: rgb(122, 191, 19);
+        margin-bottom: 50px;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 90%;
+            height: 90%;
+        }
+    }
 
 
- 
+    .Container_icon_nav {
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        .icons_all_navBar_open {
+            display: flex;
+            width: 100%;
+            height: 90%;
+            background-color: #d42929;
+            justify-content: end;
+            align-items: flex-start;
+            flex-direction: column;
+            padding-bottom: 50px;
+            gap: 3%;
+
+            .icon_navBar_open {
+                width: 100%;
+                height: 10%;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    width: 90%;
+                    height: 90%;
+                    background-color: aliceblue;
+                }
+
+                span{
+                    display: flex;
+                    width: 50%;
+                    align-items: flex-start;
+                    justify-content: center; 
+                    background-color: aqua;
+                }
+
+
+                h3 {
+                    width: 20%;
+                    height: 100%;
+                    background-color: black;
+                    font: 1em sans-serif;
+                }
+
+            }
+
+        }
+
+
+
+
+    }
 }

@@ -35,16 +35,16 @@ const NavegationBar = () => {
             </div>
 
             <div className="Container_icon_nav">
-                <div className="icons_all_navBar">
-                    <IconBar Icon={<AiOutlineHome />} text={'teste'} className={'icon_navBar'} />
-                    <IconBar Icon={<AiOutlineRise />} text={'teste'} className={'icon_navBar'} />
-                    <IconBar Icon={<BsChatText />} text={'teste'} className={'icon_navBar'} />
-                    <IconBar Icon={<BiUser />} text={'teste'} className={'icon_navBar'} />
+                <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
+                    <IconBar Icon={<AiOutlineHome />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} />
+                    <IconBar Icon={<AiOutlineRise />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
+                    <IconBar Icon={<BsChatText />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
+                    <IconBar Icon={<BiUser />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
 
                 </div>
                 <div className="Logout_icon_nav">
                     
-                    <IconBar Icon={<AiOutlineLogout />} text={'teste'} className={'icon_navBar'} />
+                    <IconBar Icon={<AiOutlineLogout />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
 
 
                 </div>
