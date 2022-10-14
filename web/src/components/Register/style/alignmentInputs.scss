@@ -38,12 +38,10 @@
     color: $dark-purple;
     background-color: transparent;
     cursor: pointer;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-.teste {
-    //display: none;
-}
 
 .alignment-inputs-by-divs {
     width: 33%;
@@ -106,4 +104,8 @@
 .alignment_buttons_photo_profile {
     display: flex;
     flex-direction: column;
+}
+
+.container_button {
+    margin-inline: auto;
 }

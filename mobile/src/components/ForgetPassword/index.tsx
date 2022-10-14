@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert, ToastAndroid } from "react-native";
 import { LoginInput } from "../utils/LoginInput";
 import { LoginButton } from "../utils/LoginButton";
+import api from "../../../service";
 
 interface IForgetPassword {
     navigation : any
@@ -28,9 +29,26 @@ export const ForgetPassword = ({navigation} : IForgetPassword) => {
 
         setIsLoad(true)
      
-        navigation.navigate('SendMailPasswordRecover')
+      
+        await api.post("/user/recoverPassword", user).then((res : any) => {
+          if (res.data.hasSend === true ) {
+            navigation.navigate('SendMailPasswordRecover')   
+          }else {
+            ToastAndroid.show("não foi possivel encontrar o email", 10)
+          }
+    
+        })
+          .catch((error) => {
+            setHasError(true);
+            console.log(error)
+          });
         setIsLoad(false)
     }
+
+    const mailPasswordRecovery = async () => {
+   
+     
+      }
 
 
     return (
@@ -40,7 +58,7 @@ export const ForgetPassword = ({navigation} : IForgetPassword) => {
                 <Text style={styles.text}>Tudo bem! Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
 
                 <View style={styles.inputContainer}>
-                <LoginInput name="mail" iconName="mail-outline" value={user.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
+                <LoginInput type="default" name="mail" iconName="mail-outline" value={user.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                 </View>
 
                 <View>

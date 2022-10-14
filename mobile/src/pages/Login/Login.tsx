@@ -39,7 +39,7 @@ export default function LoginPage({navigation} : ILogin) {
 
                 <View style={styles.container}>
 
-                    <CompleteRegisterFreelancer/>
+                    {/* <CompleteRegisterFreelancer/> */}
 
                     <Login navigation={navigation}/>
                 </View>

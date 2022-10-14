@@ -10,11 +10,6 @@ export const CompleteRegisterFreelancer = () => {
     const [check, setCheck] = useState("")
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
-    const [userRegister, setUserRegister] = useState({
-        name: {
-            "id": check
-        },
-    })
     const [freelancer, setFreelancer] = useState({
         categories: [],
         sub_categories: [],
@@ -33,10 +28,6 @@ export const CompleteRegisterFreelancer = () => {
         setFreelancer({ ...freelancer, [name]: object })
     }
 
-    useEffect(() => {
-        console.log(freelancer)
-    }, [freelancer])
-
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
@@ -51,19 +42,6 @@ export const CompleteRegisterFreelancer = () => {
             // RemoveFromFreelancer(categoryFilter.map((category : any) => { id : category.id}) , "categories")
         }
     }
-
-
-
-    useEffect(() => {
-        setUserRegister({
-            ...userRegister,
-            name: {
-                "id": check
-            }
-        })
-    }
-        , [check]
-    )
 
     useEffect(() => {
         api.get("/category").then((res: any) => {

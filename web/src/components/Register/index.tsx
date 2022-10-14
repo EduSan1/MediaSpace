@@ -36,7 +36,9 @@ const RegisterSpace = () => {
         biography: '',
     })
 
+
     const navigate = useNavigate()
+
     const [genders, setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
 
@@ -56,23 +58,22 @@ const RegisterSpace = () => {
     }
     const handleCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
-            ...user, [event.target.name]: event.target.value
+            ...user, [event.target.name]: cpfMask(event.target.value)
+
+            //...user, [event.target.name]: event.target.value
 
         })
     }
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(user.phone.phone.split)
-        // setUser({
-        //     ...user, [event.target.name]: phoneMask(event.target.value)
-        //     //...user, [event.target.name]: onlyNumbers(event.target.value)
-        // })
-
         setUser({
-            ...user,
-            phone: {
-                phone: event.target.value,
-                ddd: "11"
+            // ...user, [event.target.name]: phoneMask(event.target.value)
+            ...user, phone: {
+                ddd: "",
+                phone: phoneMask(event.target.value)
+
             }
+            //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,54 +86,6 @@ const RegisterSpace = () => {
             })
         }
     }
-    const validation = () => {
-        if (!user.first_name) {
-            setHasErros(true)
-        } else {
-
-        }
-
-        if (!user.last_name) {
-            setHasErros(true)
-        } else {
-
-        }
-
-        if (!user.nickname) {
-            setHasErros(true)
-        } else {
-
-        }
-
-        if (!user.cpf) {
-            setHasErros(true)
-        } else {
-
-        }
-        if (!user.birth_date) {
-            setHasErros(true)
-        } else {
-
-        }
-
-        if (!user.mail) {
-            setHasErros(true)
-        } else {
-
-        }
-
-        if (!passwordMask.test(user.password)) {
-            setHasErros(true)
-            console.log('bota o formato de senha certo meu parceiro')
-        } else {
-
-        }
-
-    }
-
-    // useEffect(() => {
-    //     console.log(user)
-    // }, [user])
 
     const uploadImage = (event: any) => {
         event.preventDefault();
@@ -160,29 +113,27 @@ const RegisterSpace = () => {
         )
     }
 
-
-
     const registerUser = () => {
 
-        // const userToSend = {
-        //     ...user,
-        //     cpf: user.cpf,
-        //     phone: {
-        //         ddd: onlyNumbers(user.phone.ddd),
-        //         phone: onlyNumbers(user.phone.phone)
-        //     },
+        const phone = user.phone.phone.split(" ")
 
+        const userToSend = {
+            ...user,
+            cpf: onlyNumbers(user.cpf),
+            phone: {
+                ddd: onlyNumbers(phone[0]),
+                phone: onlyNumbers(phone[1])
+            },
+        }
 
-        // }
+        api.post("/user", userToSend).then((res) => {
 
-        console.log(user);
-
-        api.post("/user", user).then((res) => {
-            console.log(res)
-            if (res.data.statusCode === 201)
-                navigate("/register/provideruserregister")
-            else
+            console.log(res.data)
+            if (res.data.statusCode !== 201) {
                 window.alert("não foi possivel cadastrar o usuário")
+            } else {
+                navigate(`provideruserregister/${res.data.data.id}`)
+            }
         })
     }
 
@@ -209,7 +160,7 @@ const RegisterSpace = () => {
 
                         <InputLogin valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Nickname"} icon={<MdOutlineAlternateEmail className="IconLogin" />} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25} />
 
-                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={12} />
+                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"tel"} placeholder={"Celular"} icon={<FiPhone className="IconLogin" />} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
 
                         <InputLogin valueLogin={user.cpf} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleCPF(event) }} typeInput={"string"} placeholder={"CPF"} icon={<HiOutlineIdentification className="IconLogin" />} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
                     </div>
@@ -231,7 +182,6 @@ const RegisterSpace = () => {
                                         return <InputRadio handleChange={handleGender} name="genero" value={gender.gender} id={gender.id} />
                                     })
                                 }
-
                             </div>
                         </div>
                     </div>
@@ -248,15 +198,17 @@ const RegisterSpace = () => {
                                 <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
 
                                 <div className="alignment_buttons_photo_profile">
+
                                     <label className="input_btn_upload_photo" htmlFor="image">
-                                        Upload
+                                        upload
                                     </label>
+
                                     <input type="file" id="image" />
 
-                                    {/* <InputBtn typeInput={'submit'} 
-                                        name={'btn_add_photo'} 
-                                        className={'input_btn_upload_photo'} 
-                                        valueBtn={'adicionar imagem'} onClick={() => { }} /> */}
+                                    <InputBtn typeInput={'submit'}
+                                        name={'btn_add_photo'}
+                                        className={'input_btn_upload_photo'}
+                                        valueBtn={'adicionar imagem'} onClick={() => { }} />
 
                                     <InputBtn typeInput={'submit'} name={'btn_remove_photo'} className={'input_btn_remove_photo'} valueBtn={'Remover imagem'} onClick={() => { user.profile_picture = "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57" }} />
                                 </div>
@@ -271,10 +223,16 @@ const RegisterSpace = () => {
                             </div>
 
                         </div>
-                        <div>
+                        <div className="container_button">
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                // validation()
+                                //    if(validation()){
+                                //         console.log("Campos não preenchidos")
+                                //    }else{
                                 registerUser();
+                                // }
+
+                                // validation()
+
                             }} />
                         </div>
 
