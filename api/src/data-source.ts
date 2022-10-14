@@ -3,6 +3,8 @@ import { DataSource } from "typeorm"
 import { CategoryORM } from "./entity/Category"
 import { GenderORM } from "./entity/Gender"
 import { PhoneORM } from "./entity/Phone"
+import { ProjectORM } from "./entity/Project"
+import { ProjectImageORM } from "./entity/ProjectImage"
 import { SubCategoryORM } from "./entity/SubCategory"
 import { TeamORM } from "./entity/team"
 import { UserORM } from "./entity/User"
@@ -13,7 +15,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "BcdSenai127",
+    password: "12345678",
     database: "db_media_space",
     synchronize: true,
     logging: false,
@@ -24,6 +26,8 @@ export const AppDataSource = new DataSource({
         CategoryORM,
         SubCategoryORM,
         TeamORM,
+        ProjectORM,
+        ProjectImageORM,
         UserTeamORM
     ],
     migrations: [],
