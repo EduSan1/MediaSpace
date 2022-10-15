@@ -6,14 +6,18 @@ import { CheckboxComponent } from "../utils/LoginCheckBox";
 import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
 
-export const Register = () => {
+interface IRegister {
+    navigation : any
+}
+
+export const Register = ({navigation} : IRegister) => {
     
     const [check, setCheck] = useState("")
     const [registerLoad, setRegisterLoad] = useState(false)
 
     const [userRegister, setUserRegister] = useState({
-        name: "",
-        surname: "",
+        first_name: "",
+        last_name: "",
         mail: "",
         password: "",
         nickname: "",
@@ -54,6 +58,9 @@ export const Register = () => {
 
     const confirm = async () => {
         setRegisterLoad(!registerLoad)
+
+        console.log(userRegister)
+        navigation.navigate("CheckMail")
     }
 
     useEffect(() => {
@@ -78,8 +85,8 @@ export const Register = () => {
                 showsHorizontalScrollIndicator={true}>
 
                 <View style={styles.View}>
-                    <LoginInput name="name" iconName="person-outline" value={userRegister.name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
-                    <LoginInput name="surname" iconName="person-outline" value={userRegister.surname} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
+                    <LoginInput name="first_name" iconName="person-outline" value={userRegister.first_name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
+                    <LoginInput name="last_name" iconName="person-outline" value={userRegister.last_name} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
                     <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                     <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
 
@@ -149,7 +156,7 @@ export const Register = () => {
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
                     <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
-                <Text style={styles.text2}>Já possui uma conta? Entre</Text>
+                <Text onPress={() => navigation.navigate('Login')} style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
         </>
     )
@@ -189,8 +196,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text2: {
-        width: Dimensions.get('window').width * 0.4,
+        width: Dimensions.get('window').width * 0.6,
         fontSize: Dimensions.get("window").width * 0.03,
+        marginTop: Dimensions.get("window").height * 0.02,
+        textAlign: "center",
+        textDecorationLine:"underline",
         fontWeight: "bold",
         color: '#B275FF',
         display: "flex",

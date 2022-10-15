@@ -9,6 +9,11 @@ export const cpfMask = (value: string) => {
         .replace(/(-\d{2})\d+?$/, '$1')
 }
 
+export const onlyNumbers = (value: string) => {
+    return value
+        .replace("[().-]", "");
+}
+
 export const phoneMask = (value: string) => {
     return value
         .replace(/\D/g, '')
