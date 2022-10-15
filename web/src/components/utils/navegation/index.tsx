@@ -79,9 +79,6 @@ const NavegationBar = () => {
                         </li>
                     </ul>
 
-
-
-
                 </div>
 
 

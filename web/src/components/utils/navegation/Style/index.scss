@@ -10,6 +10,8 @@
         box-shadow: 0px 0px 6px #979797;
         border-radius: 0px 8px 0px;
         transition: 0.20s;
+        position: absolute;
+        z-index: 1;
 
         .Menu_bar_icon {
             display: flex;
@@ -249,6 +251,8 @@
     transition: 0.20s;
     box-shadow: 1px 1px 6px #979797;
     border-radius: 0px 20px 20px 0px;
+    position: absolute;
+    z-index: 1;
 
 
 
