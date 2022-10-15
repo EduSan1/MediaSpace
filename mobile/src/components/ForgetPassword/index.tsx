@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert, ToastAndroid } from "react-native";
 import { LoginInput } from "../utils/LoginInput";
 import { LoginButton } from "../utils/LoginButton";
+import api from "../../../service";
 
 interface IForgetPassword {
-    navigation : any
+    navigation: any
 }
 
-export const ForgetPassword = ({navigation} : IForgetPassword) => {
+export const ForgetPassword = ({ navigation }: IForgetPassword) => {
 
     const [isLoad, setIsLoad] = useState(false)
     const [user, setuser] = useState({
@@ -18,37 +19,55 @@ export const ForgetPassword = ({navigation} : IForgetPassword) => {
     const handleChange = (text: string, name: string) => {
         setuser(
             {
-                ... user,
+                ...user,
                 [name]: text
             }
         )
     }
 
-    const submit = async () =>{
+    const submit = async () => {
 
         setIsLoad(true)
-        navigation.navigate('SendMailPasswordRecover')
+
+
+        await api.post("/user/recoverPassword", user).then((res: any) => {
+            if (res.data.hasSend === true) {
+                navigation.navigate('SendMailPasswordRecover')
+            } else {
+                ToastAndroid.show("não foi possivel encontrar o email", 10)
+            }
+
+        })
+            .catch((error) => {
+                setHasError(true);
+                console.log(error)
+            });
         setIsLoad(false)
+    }
+
+    const mailPasswordRecovery = async () => {
+
+
     }
 
 
     return (
         <>
             <View style={styles.container}>
-            <Text style={styles.title}>Esqueceu a senha?</Text>
+                <Text style={styles.title}>Esqueceu a senha?</Text>
                 <Text style={styles.text}>Tudo bem! Enviaremos um e-mail para a autenticação e recuperação de senha</Text>
 
                 <View style={styles.inputContainer}>
-                <LoginInput name="mail" iconName="mail-outline" value={user.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
+                    <LoginInput type="default" name="mail" iconName="mail-outline" value={user.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
                 </View>
 
                 <View>
-                     <LoginButton isLoad={isLoad} type="light" action={submit}  title="Enviar"/>
-                </View> 
+                    <LoginButton isLoad={isLoad} type="light" action={submit} title="Enviar" />
+                </View>
 
 
             </View>
-            
+
         </>
 
     );
@@ -64,7 +83,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     title: {
-        marginHorizontal:70,
+        marginHorizontal: 70,
         height: Dimensions.get('window').height * 0.07,
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.05,
@@ -89,11 +108,11 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 12,
         width: "55%",
-        color:'#46307B',
+        color: '#46307B',
         display: 'flex',
-        marginTop:10,
-        marginBottom:20
-    }, 
+        marginTop: 10,
+        marginBottom: 20
+    },
     buttonContainer: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.15,
@@ -102,12 +121,12 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     inputContainer: {
-        width: Dimensions.get('window').width ,
+        width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.15,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
 
     },
-   
+
 })

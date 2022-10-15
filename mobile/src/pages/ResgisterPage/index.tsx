@@ -38,10 +38,6 @@ export default function RegisterPage({navigation} : IRegisterPage) {
                 </View>
 
                 <View style={styles.container}>
-                    {/* <StackNavigation/> */}
-                    {/* <RegisterFreelancerComplete/> */}
-                    {/* <RegisterFreelancer/> */}
-                    {/* <Register /> */}
                     <Register navigation={navigation}/>
                 </View>
 

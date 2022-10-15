@@ -37,7 +37,7 @@ export const Login = ({navigation} : ILogin) => {
         Keyboard.dismiss()
         setIsLoad(true)
 
-        api.post("/User/login", userLogin).then((res: any) => {
+        api.post("/user/login", userLogin).then((res: any) => {
 
             if (res.data.is_logged)
                 ToastAndroid.show(res.data.message, 10)

@@ -11,10 +11,7 @@ const RecoveryPassword = () => {
 
   const navigate = useNavigate()
   const [user, setUser] = useState({
-
     "mail": "",
-
-
   });
 
 
@@ -58,10 +55,10 @@ const RecoveryPassword = () => {
 
   const mailPasswordRecovery = async () => {
    
-
     await api.post("/user/recoverPassword", user).then((res : any) => {
       if (res.data.hasSend === true ) {
-        navigate("recoveryemailsent")
+        // navigate("recoveryemailsent")
+        console.log(res)
       }else {
         window.alert("não foi possivel encontrar o email")
       }

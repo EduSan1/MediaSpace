@@ -1,19 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, ScrollView, Text, Dimensions, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Dimensions, Image, ToastAndroid } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
 import { LoginInput } from "../utils/LoginInput";
 import { CheckboxComponent } from "../utils/LoginCheckBox";
 import { LoginTextArea } from "../utils/LoginTextArea";
 import { LoginImage } from "../utils/LoginImage";
+import api from "../../../service";
 
 interface IRegister {
-    navigation : any
+    navigation: any
 }
 
-export const Register = ({navigation} : IRegister) => {
-    
+export const Register = ({ navigation }: IRegister) => {
+
     const [check, setCheck] = useState("")
     const [registerLoad, setRegisterLoad] = useState(false)
+
+    const phoneMask = (value: string) => {
+        return value
+            .replace(/\D/g, '')
+            .replace(/^(\d{2})(\d)/, "($1) $2")
+            .replace(/(\d{5})(\d{4}).*/, "$1-$2");
+    }
+
+    const dateMask = (value: string) => {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, "$1/$2")
+            .replace(/(\d{2})(\d{4})/, "$1/$2")
+    }
+
+    const onlyNumbers = (value: string) => {
+        return value
+            .replace(/\.|\(|\)|\-|\//g, '');
+    }
+
+    const dateToSend = (value: string) => {
+
+        return onlyNumbers(value)
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d{2})(\d{4})/, "$3-$1-$2")
+    }
+
+    const cpfMask = (value: string) => {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+            .replace(/(-\d{2})\d+?$/, '$1')
+    }
 
     const [userRegister, setUserRegister] = useState({
         first_name: "",
@@ -22,8 +58,11 @@ export const Register = ({navigation} : IRegister) => {
         password: "",
         nickname: "",
         cpf: "",
-        birth: "",
-        cell: "",
+        birth_date: "",
+        phone: {
+            ddd: "",
+            phone: ""
+        },
         profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57",
         gender: {
             "id": check
@@ -32,16 +71,50 @@ export const Register = ({navigation} : IRegister) => {
     })
 
     const [hasError, setHasError] = useState(false)
-
+    const [hasErrorCpf, setHasErrorCpf] = useState(false)
+    const [hasErrorMail, setHasErrorMail] = useState(false)
+    const [hasErrorNickname, setHasErrorNickname] = useState(false)
+    const [gender, setGender] = useState([])
     const [visibilityPassword, setVisibilityPassword] = useState(true)
 
     const handleChange = (text: string, name: string) => {
-        setUserRegister(
-            {
-                ...userRegister,
-                [name]: text
+        if (name === "cpf") {
+            setUserRegister(
+                {
+                    ...userRegister,
+                    [name]: cpfMask(text)
+                }
+            )
+        } else if (name === "birth_date") {
+            setUserRegister(
+                {
+                    ...userRegister,
+                    [name]: dateMask(text)
+                }
+            )
+        } else {
+            setUserRegister(
+                {
+                    ...userRegister,
+                    [name]: text
+                }
+            )
+        }
+
+
+    }
+
+    const handlePhone = (text: string, name: string) => {
+        // console.log(user.phone.phone.split)
+        setUserRegister({
+            // ...user, [event.target.name]: phoneMask(event.target.value)
+            ...userRegister, phone: {
+                ddd: "",
+                phone: phoneMask(text)
+
             }
-        )
+            //...user, [event.target.name]: onlyNumbers(event.target.value)
+        })
     }
 
     const handleUserPicture = (text: string) => {
@@ -57,10 +130,41 @@ export const Register = ({navigation} : IRegister) => {
     }
 
     const confirm = async () => {
-        setRegisterLoad(!registerLoad)
 
-        console.log(userRegister)
-        navigation.navigate("CheckMail")
+        const [ddd, phone] = userRegister.phone.phone.split(" ")
+
+        const user = {
+            ...userRegister,
+            cpf: onlyNumbers(userRegister.cpf),
+            birth_date: dateToSend(userRegister.birth_date),
+            phone: {
+                ddd: onlyNumbers(ddd),
+                phone: onlyNumbers(phone)
+            }
+        }
+         setRegisterLoad(true)
+
+        api.post("/user", user).then((res: any) => {
+           
+            if (res.data.statusCode === 201) {
+                navigation.navigate("RegisterFreelancer", { 
+                    userId: res.data.data.id, 
+                  })
+            } else {
+                if (res.data.cpf) {
+                    setHasErrorCpf(res.data.cpf)
+                    setHasErrorMail(res.data.mail)
+                    setHasErrorNickname(res.data.nickname)
+                    ToastAndroid.show(res.data.message, 10)
+                }else {
+                    ToastAndroid.show("res.data.message", 10)
+
+                }
+
+
+            }
+            setRegisterLoad(false)
+        })
     }
 
     useEffect(() => {
@@ -74,6 +178,12 @@ export const Register = ({navigation} : IRegister) => {
         , [check]
     )
 
+    useEffect(() => {
+        api.get("/gender").then((res: any) => {
+            setGender(res.data)
+        })
+    }, [])
+
     return (
         <>
 
@@ -85,10 +195,10 @@ export const Register = ({navigation} : IRegister) => {
                 showsHorizontalScrollIndicator={true}>
 
                 <View style={styles.View}>
-                    <LoginInput name="first_name" iconName="person-outline" value={userRegister.first_name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
-                    <LoginInput name="last_name" iconName="person-outline" value={userRegister.last_name} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
-                    <LoginInput name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasError} title="E-mail" maxLength={250} />
-                    <LoginInput onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
+                    <LoginInput type="default" name="first_name" iconName="person-outline" value={userRegister.first_name} handleChange={handleChange} hasError={hasError} title="Nome" maxLength={50} />
+                    <LoginInput type="default" name="last_name" iconName="person-outline" value={userRegister.last_name} handleChange={handleChange} hasError={hasError} title="Sobrenome" maxLength={150} />
+                    <LoginInput type="default" name="mail" iconName="mail-outline" value={userRegister.mail} handleChange={handleChange} hasError={hasErrorMail} title="E-mail" maxLength={250} />
+                    <LoginInput type="default" onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userRegister.password} handleChange={handleChange} title="Senha" maxLength={255} />
 
                     <View style={styles.iconViewEnd}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -104,10 +214,10 @@ export const Register = ({navigation} : IRegister) => {
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
 
-                    <LoginInput name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasError} title="Nickname" maxLength={25} />
-                    <LoginInput name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasError} title="CPF" maxLength={11} />
-                    <LoginInput name="birth" iconName="today" value={userRegister.birth} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={8} />
-                    <LoginInput name="cell" iconName="phone" value={userRegister.cell} handleChange={handleChange} hasError={hasError} title="Celular" maxLength={12} />
+                    <LoginInput type="default" name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasErrorNickname} title="Nickname" maxLength={25} />
+                    <LoginInput type="numeric" name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasErrorCpf} title="CPF" maxLength={14} />
+                    <LoginInput type="numeric" name="birth_date" iconName="today" value={userRegister.birth_date} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={10} />
+                    <LoginInput type="numeric" name="phone" iconName="phone" value={userRegister.phone.phone} handleChange={handlePhone} hasError={hasError} title="Celular" maxLength={15} />
 
                     <View style={styles.iconViewEnd}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -126,9 +236,11 @@ export const Register = ({navigation} : IRegister) => {
                     <View>
                         <Text>Gênero</Text>
                         <View style={styles.checkboxContainer}>
-                            <CheckboxComponent check={check} setCheck={setCheck} title="Masculino" value="M" />
-                            <CheckboxComponent check={check} setCheck={setCheck} title="Feminino" value="F" />
-                            <CheckboxComponent check={check} setCheck={setCheck} title="Outro" value="O" />
+                            {
+                                gender.map((gender: any) => {
+                                    return <CheckboxComponent check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
+                                })
+                            }
                         </View>
 
                     </View>
@@ -155,7 +267,7 @@ export const Register = ({navigation} : IRegister) => {
 
             <View style={styles.containerTextButton}>
                 <Text style={styles.text}>Arraste para o lado para preencher todos os campos </Text>
-                    <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
+                <LoginButton type="dark" action={confirm} isLoad={registerLoad} title="Continuar" />
                 <Text onPress={() => navigation.navigate('Login')} style={styles.text2}>Já possui uma conta? Entre</Text>
             </View>
         </>
@@ -200,7 +312,7 @@ const styles = StyleSheet.create({
         fontSize: Dimensions.get("window").width * 0.03,
         marginTop: Dimensions.get("window").height * 0.02,
         textAlign: "center",
-        textDecorationLine:"underline",
+        textDecorationLine: "underline",
         fontWeight: "bold",
         color: '#B275FF',
         display: "flex",

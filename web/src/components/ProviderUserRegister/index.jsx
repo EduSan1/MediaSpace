@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TitleIndex from '../../components/utils/TitleMain/Index';
 import InputBtn from '../../components/utils/Button/InputBtn';
 import ImageComponent from '../../components/utils/imageComponent/imageComponent';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProviderUserRegister = () => {
+
+    const { userId } = useParams()
 
     return (
 
@@ -28,16 +30,16 @@ const ProviderUserRegister = () => {
             </div>
 
             <div className="Conatiner_bnt_User_Provider">
-                <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como prestador'}
-                    onClick={() => {
-                        console.log('next page')
-                    }} />
+
+                <Link to={`/register/registerFreelancer/${userId}`}>
+                    <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como prestador'}
+                        onClick={() => {}} />
+                </Link>
+
 
                 <Link to='/register/registered'>
                     <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como cliente'}
-                        onClick={() => {
-                            console.log('next page')
-                        }} />
+                        onClick={() => {}} />
                 </Link>
             </div>
 

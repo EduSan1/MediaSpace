@@ -1,48 +1,56 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToOne, Double, OneToMany, ManyToMany, JoinColumn, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, OneToMany, ManyToMany, JoinTable } from "typeorm"
 import { CategoryORM } from "./Category"
+import { InterestMemberORM } from "./Interest"
 import { SubCategoryORM } from "./SubCategory"
+import { TeamProjectManagementORM } from "./TeamProjectManagment"
 import { UserTeamORM } from "./UserTeam"
 
-@Entity({name : "tb_team"})
+@Entity({ name: "tb_team" })
 export class TeamORM {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column({length : 100})
-    name : string
-    
-    @Column({length : 25})
-    nickname : string
+    @Column({ length: 100 })
+    name: string
 
-    @Column({length : 500, nullable: true})
-    description : string
-    
-    @Column()
-    profile_picture : string
+    @Column({ length: 25 })
+    nickname: string
+
+    @Column({ length: 500, nullable: true })
+    description: string
 
     @Column()
-    general_evaluation : number
-    
-    @Column({default : true})
-    status : boolean
+    profile_picture: string
 
-    @Column({default : true})
-    is_active : boolean
+    @Column()
+    general_evaluation: number
 
-    @Column({default : false})
-    is_freelancer : boolean
+    @Column({ default: true })
+    status: boolean
+
+    @Column({ default: true })
+    is_active: boolean
+
+    @Column({ default: false })
+    is_freelancer: boolean
 
     @OneToMany(() => UserTeamORM, userTeam => userTeam.team)
-    users : UserTeamORM[]
+    users: UserTeamORM[]
 
-    @ManyToMany(() => CategoryORM, {eager : true})
+    @ManyToMany(() => CategoryORM, { eager: true })
     @JoinTable()
-    categories : CategoryORM[]
+    categories: CategoryORM[]
 
-    @ManyToMany(() => SubCategoryORM, {eager : true})
-    @JoinTable() 
-    sub_categories : SubCategoryORM[]
+    @ManyToMany(() => SubCategoryORM, { eager: true })
+    @JoinTable()
+    sub_categories: SubCategoryORM[]
+
+    @OneToMany(() => TeamProjectManagementORM, teamProjectManagment => teamProjectManagment.team)
+    team_project_managment: TeamProjectManagementORM[]
+
+    @OneToMany(() => InterestMemberORM, interestMember => interestMember.project)
+    interest: InterestMemberORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

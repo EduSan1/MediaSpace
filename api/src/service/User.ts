@@ -61,7 +61,7 @@ export class UserService {
 
             const hashPassword = await bcrypt.hash(entity.password, 10);
             entity.password = hashPassword;
-            const user: UserORM = await this._.create(entity);
+            const user : UserORM = await this._.create(entity);
 
             const hasSend = await mailer.confirmRegister(user.mail, user.id, user.first_name)
 
@@ -80,6 +80,7 @@ export class UserService {
 
             return {
                 message: "Usuário cadastrado com sucesso!",
+                data: user,
                 statusCode: 201,
             };
         } catch (error) {
