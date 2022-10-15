@@ -10,6 +10,7 @@ export const CompleteRegisterFreelancer = () => {
     const [check, setCheck] = useState("")
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
+<<<<<<< HEAD
 
     const [freelancer, setFreelancer] = useState({
         categories: [
@@ -29,11 +30,30 @@ export const CompleteRegisterFreelancer = () => {
 
     const RemoveFromFreelancer  = (object : [{}], name : "sub_categories" | "categories") => {
         setFreelancer({...freelancer, [name] : object})
+=======
+    const [freelancer, setFreelancer] = useState({
+        categories: [],
+        sub_categories: [],
+        userId: "be630814-7236-4d49-b076-5603efa2f21c"
+    })
+
+    const addToFreelancer = (id: string, name: "sub_categories" | "categories") => {
+        setFreelancer({
+            ...freelancer, [name]: [
+                ...freelancer[name], { id: id }
+            ]
+        })
+    }
+
+    const RemoveFromFreelancer = (object: [{}], name: "sub_categories" | "categories") => {
+        setFreelancer({ ...freelancer, [name]: object })
+>>>>>>> 6dc25cca88a7ffde738a76585203edcf884bd5dc
     }
 
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
+<<<<<<< HEAD
         const categoryFilter : any = categories.find((category: any) => category.id === idCategory)
 
         if (action === "ADD") {
@@ -43,24 +63,39 @@ export const CompleteRegisterFreelancer = () => {
         else {
 
             const categoryFilter = subcategoriesToRender.filter((category : any) => category.id !== idCategory)
+=======
+        const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
+
+        if (action === "ADD") {
+            setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
+            addToFreelancer(categoryFilter.id, "categories")
+        } else {
+            const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
+>>>>>>> 6dc25cca88a7ffde738a76585203edcf884bd5dc
             setSubategoriesToRender(categoryFilter)
             // RemoveFromFreelancer(categoryFilter.map((category : any) => { id : category.id}) , "categories")
         }
     }
 
     useEffect(() => {
+<<<<<<< HEAD
         api.get("/category").then((res : any) => {
+=======
+        api.get("/category").then((res: any) => {
+>>>>>>> 6dc25cca88a7ffde738a76585203edcf884bd5dc
             setCategories(res.data)
         })
     }, [])
 
     return (
         <View style={styles.container}>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6dc25cca88a7ffde738a76585203edcf884bd5dc
             <View style={styles.textArea}>
                 <Text style={styles.text1}>Categorais</Text>
             </View>
-
             <View style={styles.areaContainer1}>
                 <ScrollView horizontal={true} style={styles.sectionCategory}>
                     {
@@ -70,6 +105,7 @@ export const CompleteRegisterFreelancer = () => {
                     }
                 </ScrollView>
             </View>
+<<<<<<< HEAD
 
 
 
@@ -84,16 +120,32 @@ export const CompleteRegisterFreelancer = () => {
                     {
                         subcategoriesToRender?.map((category: any) => {
                             return category.sub_categories.map((subcategory : any) => {
+=======
+            <View style={styles.textArea}>
+                <Text style={styles.text1}>Sub-Categorais</Text>
+            </View>
+            <View style={styles.areaContainer2}>
+                <ScrollView style={styles.sectionSubCategory}>
+                    {
+                        subcategoriesToRender?.map((category: any) => {
+                            return category.sub_categories.map((subcategory: any) => {
+>>>>>>> 6dc25cca88a7ffde738a76585203edcf884bd5dc
                                 return <CheckboxComponent key={subcategory.id} title={subcategory.name} id={subcategory.id} />
                             })
                         })
                     }
+<<<<<<< HEAD
 
                 </ScrollView>
             </View>
 
             <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar" />
 
+=======
+                </ScrollView>
+            </View>
+            <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar" />
+>>>>>>> 6dc25cca88a7ffde738a76585203edcf884bd5dc
         </View>
     )
 }

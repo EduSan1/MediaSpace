@@ -4,6 +4,7 @@ import genderRoute from "./routes/Gender"
 import subCategoryRoute from "./routes/SubCategory"
 import freelancerRoute from "./routes/Freelancer"
 import userRouter from "./routes/user"
+import projectRoute from "./routes/Project"
 
 const router = Router()
 
@@ -13,10 +14,11 @@ router.get("/", (req: Request, res: Response) => {
     })
 })
 
-router.use("/user", userRouter )
-router.use("/gender" , genderRoute)
+router.use("/user", userRouter)
+router.use("/gender", genderRoute)
 router.use("/category", categoryRoute)
 router.use("/subCategory", subCategoryRoute)
 router.use("/freelancer", freelancerRoute)
+router.use("/project", projectRoute)
 
 export default router

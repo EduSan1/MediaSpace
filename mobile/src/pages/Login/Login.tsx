@@ -8,10 +8,10 @@ import { Login } from "../../components/Login";
 
 
 interface ILogin {
-    navigation : any
+    navigation: any
 }
 
-export default function LoginPage({navigation} : ILogin) {
+export default function LoginPage({ navigation }: ILogin) {
 
     return (
         <KeyboardAvoidingView
@@ -41,7 +41,7 @@ export default function LoginPage({navigation} : ILogin) {
 
                     {/* <CompleteRegisterFreelancer/> */}
 
-                    <Login navigation={navigation}/>
+                    <Login navigation={navigation} />
                 </View>
 
             </View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         position: "relative"
-        
+
 
     },
     starfield: {
@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height ,
+        height: Dimensions.get('window').height,
         position: "relative",
-        backgroundColor:"#fff",
+        backgroundColor: "#fff",
         alignContent: "center",
         alignItems: "flex-start"
     },
