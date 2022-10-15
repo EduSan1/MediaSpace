@@ -6,6 +6,7 @@ import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 
@@ -50,24 +51,35 @@ const NavegationBar = () => {
                         <h4>Equipes</h4>
                     </span>
                 </div>
-                 
-                 <div className="btns">
+
+                <div className="btns">
                     button
-                 </div>
+                </div>
 
             </div>
 
             <div className={!open ? "Container_icon_nav" : "Container_icon_nav_open"}>
                 <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
-                    <IconBar Icon={<AiOutlineHome />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} />
-                    <IconBar Icon={<AiOutlineRise />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
-                    <IconBar Icon={<BsChatText />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
-                    <IconBar Icon={<BiUser />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
+                    <ul>
+                        <li> <Link to={'/'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} /></Link></li>
+                        <li> <Link to={'/'}className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                        <li> <Link to={'/'}className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                        <li> <Link to={'/'}className='Link_NextPage'><IconBar Icon={<BiUser />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
 
+                    </ul>
+                </div>
+                <div className="rocket_icon">
+                    <ImageComponent src="../assets/img/Iconrocket.svg" alt="" className="" />
                 </div>
                 <div className="Logout_icon_nav">
 
-                    <IconBar Icon={<AiOutlineLogout />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} />
+                    <ul>
+                        <li>
+                            <Link to={'/'} className='Link_NextPage'><IconBar Icon={<AiOutlineLogout />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link>
+                        </li>
+                    </ul>
+
+
 
 
                 </div>
