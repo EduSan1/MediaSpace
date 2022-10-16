@@ -10,7 +10,7 @@ const RegisterFreelancer = () => {
    // const [subCategorias, setSubCategoria] = React.useState([]);
    const [categories, setCategories] = useState([])
 
-   const {userId} = useParams()
+   const { userId } = useParams()
 
    const navigate = useNavigate()
 
@@ -36,9 +36,9 @@ const RegisterFreelancer = () => {
       setFreelancer({ ...freelancer, [name]: object })
    }
 
-   const removeSubcategory = (id : string) => {
+   const removeSubcategory = (id: string) => {
       console.log(id)
-      const subCategoriesFilter = freelancer.sub_categories.filter((subcategory : any) => subcategory.id !== id )
+      const subCategoriesFilter = freelancer.sub_categories.filter((subcategory: any) => subcategory.id !== id)
       setFreelancer({ ...freelancer, sub_categories: subCategoriesFilter })
    }
 
@@ -55,18 +55,18 @@ const RegisterFreelancer = () => {
 
          const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
          setSubategoriesToRender(categoryFilter)
-         const categoryToRemove =  categoryFilter.map((category: any) => {
-            return  {id: category.id }
-         }) 
+         const categoryToRemove = categoryFilter.map((category: any) => {
+            return { id: category.id }
+         })
          removeFromFreelancer(categoryToRemove, "categories")
       }
    }
 
    const registerFreelancer = () => {
-      api.post("/freelancer", freelancer).then((res : any) => {
-         if(res.data.statusCode == 200) {
+      api.post("/freelancer", freelancer).then((res: any) => {
+         if (res.data.statusCode === 200) {
             navigate("/register/registered")
-         }else {
+         } else {
             window.alert("Não foi possivel cadastrar o prestador")
          }
       })
@@ -77,12 +77,8 @@ const RegisterFreelancer = () => {
          setCategories(res.data)
       })
 
-      setFreelancer({...freelancer, userId : userId ? userId : ""})
+      setFreelancer({ ...freelancer, userId: userId ? userId : "" })
    }, [])
-
-   useEffect(() => {
-      console.log("freelancer => ",freelancer)
-   }, [freelancer])
 
    return (
       <div className="page_register_freelancer">
@@ -115,7 +111,7 @@ const RegisterFreelancer = () => {
                   {
                      subcategoriesToRender.map((category: any) => {
                         return category.sub_categories.map((subcategory: any) => {
-                           return <Checkbox onClickFunction={(check) => check ? removeSubcategory(subcategory.id) : addToFreelancer(subcategory.id, "sub_categories")  } key={subcategory.id} nameOption={subcategory.name} />
+                           return <Checkbox onClickFunction={(check) => check ? removeSubcategory(subcategory.id) : addToFreelancer(subcategory.id, "sub_categories")} key={subcategory.id} nameOption={subcategory.name} />
                         })
                      })
                   }
@@ -125,7 +121,7 @@ const RegisterFreelancer = () => {
          </div>
 
          <div className="container_button_finish">
-            <InputBtn enable={freelancer.categories.length < 1} typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() =>  registerFreelancer() } />
+            <InputBtn enable={freelancer.categories.length < 1} typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => registerFreelancer()} />
          </div>
 
 

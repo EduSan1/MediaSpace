@@ -238,7 +238,7 @@ export const Register = ({ navigation }: IRegister) => {
                         <View style={styles.checkboxContainer}>
                             {
                                 gender.map((gender: any) => {
-                                    return <CheckboxComponent check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
+                                    return <CheckboxComponent key={gender.id} check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
                                 })
                             }
                         </View>

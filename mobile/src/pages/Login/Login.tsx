@@ -38,9 +38,6 @@ export default function LoginPage({ navigation }: ILogin) {
                 </View>
 
                 <View style={styles.container}>
-
-                    {/* <CompleteRegisterFreelancer/> */}
-
                     <Login navigation={navigation} />
                 </View>
 

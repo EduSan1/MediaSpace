@@ -178,6 +178,12 @@ export class UserService {
                     statusCode: 200
                 };
 
+            if (userDetails.is_authenticated === false)
+                return {
+                    message: "Para continuar confirme seu e-mail",
+                    statusCode: 200
+                };
+
             if (await bcrypt.compare(password, userDetails.password)) {
 
                 delete userDetails.password

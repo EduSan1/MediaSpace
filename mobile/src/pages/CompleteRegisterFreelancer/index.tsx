@@ -5,12 +5,12 @@ import WavyBackground from "react-native-wavy-background";
 import { CompleteRegisterFreelancer } from "../../components/ CompleteRegisterFreelancer";
 
 
-interface IForgetPassword {
+interface ICompleteRegisterFreelancerPage {
     navigation: any
     route: any
 }
 
-export default function CompleteRegisterFreelancerPage({ navigation, route }: IForgetPassword) {
+export default function CompleteRegisterFreelancerPage({ navigation, route }: ICompleteRegisterFreelancerPage) {
 
     return (
         <KeyboardAvoidingView
@@ -37,7 +37,7 @@ export default function CompleteRegisterFreelancerPage({ navigation, route }: IF
                 </View>
 
                 <View style={styles.container}>
-                    <CompleteRegisterFreelancer />
+                    <CompleteRegisterFreelancer navigation={navigation} userId={route?.params?.userId} />
                 </View>
 
             </View>

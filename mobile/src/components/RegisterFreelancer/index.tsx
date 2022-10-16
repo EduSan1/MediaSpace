@@ -17,7 +17,6 @@ export const RegisterFreelancer = ({ navigation, userId }: IRegisterFreelancer) 
             <Image style={styles.icon} source={require('../../../assets/icons/IconFreelancer.png')} />
             <Text style={styles.text1}>Perfil de prestador de serviço</Text>
             <View style={styles.areaContainer1}>
-                <Text style={styles.text2}>&#8226; </Text>
                 <Text style={styles.text2}>&#8226; Publicação de portfólio</Text>
                 <Text style={styles.text2}>&#8226; Inscrição em projetos</Text>
                 <Text style={styles.text2}>&#8226;  Venda de produtos</Text>
