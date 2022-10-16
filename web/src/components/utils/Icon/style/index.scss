@@ -1,26 +1,53 @@
 @import "../../../../styles/vars.scss";
 #IconBar{
     display: flex;
+    height: clamp(3rem,4vw, 2rem) ;
     margin-bottom: 1%;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    gap: 5%;
 
+    
+    div{
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 3%;
+       
+
+        
     span{
         display: flex;
-        justify-content: center;
+        width: auto;
+        justify-content: start;
         align-items: center;
-        width: 90%;
         height: 100%;
         flex-direction: row;
-
+    
+               
+        svg{
+            width: 85%;
+            height: 85%;
+            cursor: pointer;
+        }
     }
 
-    h3{
+     h3{
+        display: flex;
         font-family: $light-font ;
-        width: 10%;
-        height: 10%;
-        font-size: clamp(0.8rem, 2vw, 1.2rem);
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        cursor: pointer;
     }
+        
+        
+    }
+     
+ 
+
+
+   
 
 }

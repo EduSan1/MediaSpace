@@ -1,22 +1,28 @@
 import React, { ReactNode } from "react";
 
 
-interface Iconbar{
-      Icon: JSX.Element,
-      text:string,
-      className:string
+interface Iconbar {
+    Icon: JSX.Element,
+    text: string,
+    className: string
 }
 
-const IconBar = ({Icon,text,className}:Iconbar) =>{
+const IconBar = ({ Icon, text, className }: Iconbar) => {
 
 
-    return(
+    return (
 
 
-    <span id="IconBar" className={className}>
-    <span>{Icon} </span>
-    <h3>{text}</h3>
-   </span>
+        <span id="IconBar" className={className}>
+            <div>
+                <span>{Icon} </span>
+                <h3>{text}</h3>
+               
+            </div>
+
+            
+
+        </span>
 
     )
 
