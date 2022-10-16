@@ -1,5 +1,6 @@
 import { CategoryORM } from "../entity/Category"
 import { InterestMemberORM } from "../entity/Interest"
+import { ProjectAttachmentORM } from "../entity/ProjectAttachment"
 import { ProjectImageORM } from "../entity/ProjectImage"
 import { ProjectManagementORM } from "../entity/ProjectManagment"
 import { SubCategoryORM } from "../entity/SubCategory"
@@ -22,6 +23,7 @@ export default class ProjectDomain {
     images: ProjectImageORM[]
     management: ProjectManagementORM[]
     interest: InterestMemberORM[]
+    attachments: ProjectAttachmentORM[]
 
 
 
@@ -40,6 +42,7 @@ export default class ProjectDomain {
         this.images = props.images
         this.management = props.management
         this.interest = props.interest
+        this.attachments = props.attachments
 
     }
 }

@@ -1,104 +1,99 @@
-import ProjectDomain from "../domain/Project"
-import { ProjectORM } from "../entity/Project"
-import { ProjectRepository } from "../repository/Project"
+import ProjectDomain from "../domain/Project";
+import { ProjectRepository } from "../repository/Project";
+import { ProjectAttachmentRepository } from "../repository/ProjectAtachment";
+import { ProjectImageRepository } from "../repository/ProjectImage";
+
+interface IImage {
+    url: string
+}
+interface IAttachment {
+    url: string
+}
 
 export class ProjectService {
     private _: ProjectRepository
+    private projectImageRepository: ProjectImageRepository
+    private projectAttachmentRepository: ProjectAttachmentRepository
 
     constructor(repo: ProjectRepository) {
         this._ = repo
+        this.projectImageRepository = new ProjectImageRepository()
+        this.projectAttachmentRepository = new ProjectAttachmentRepository()
     }
 
     create = async (entity: ProjectDomain) => {
         try {
             const project = await this._.create(entity)
 
+
+            entity.images?.map(async (image: IImage) => {
+                const imageToRegister = {
+                    ...image, project: {
+                        id: project.id
+                    }
+                }
+                await this.projectImageRepository.create(imageToRegister)
+            })
+
+            entity.attachments?.map(async (attachment: IAttachment) => {
+                const attachmentToRegister = {
+                    ...attachment, project: {
+                        id: project.id
+                    }
+                }
+                await this.projectAttachmentRepository.create(attachmentToRegister)
+            })
+
             return {
                 message: "Projeto cadastrado com sucesso!",
                 data: project,
                 statusCode: 201,
             };
-
         } catch (error) {
             return {
-                message: error.message,
-                error: error.code,
-                statusCode: 400
-            }
+                message: "Não foi possivel cadastrar o projeto!",
+                error: error,
+                statusCode: 200,
+            };
         }
-    }
 
-    getOne = async (id: string) => {
-        try {
-            return await this._.findById(id)
-        } catch (error) {
-            return {
-                message: error.message,
-                error: error.code,
-                statusCode: 400
-            }
-        }
     }
 
     list = async () => {
         try {
-            return await this._.list()
+            const projects = await this._.list()
 
+            return {
+                message: "projetos listados com sucesso",
+                data: projects,
+                statusCode: 200,
+            };
         } catch (error) {
             return {
                 message: error.message,
                 error: error.code,
-                statusCode: 400
-            }
+                statusCode: 400,
+            };
         }
     }
 
-    update = async (id: string, entity: ProjectORM) => {
-        try {
-            const entityExists = await this._.findById(id)
+    getById = async (id: string) => {
+        const project = await this._.getById(id)
 
-            if (!entityExists) {
-                return {
-                    message: "Não foi possivel encontrar o projeto",
-                    statusCode: 200
-                }
-            }
-
-            for (const [key, value] of Object.entries(entity)) {
-                entityExists[key] = value
-            }
-
-            await this._.update(entityExists)
-
+        if (project) {
             return {
-                message: "Dados atualizados com sucesso",
-                statusCode: 200
-            }
-        } catch (error) {
+                message: "projeto encontrado com sucesso",
+                data: project,
+                statusCode: 200,
+            };
+        } else {
             return {
-                message: error.message,
-                error: error.code,
-                statusCode: 400
-            }
-        }
-    }
-
-    remove = async (_id: string) => {
-        try {
-
-            await this._.remove(_id)
-
-            return {
-                message: "Dados removidos com sucesso",
-                statusCode: 200
-            }
-        } catch (error) {
-            return {
-                message: error.message,
-                error: error.code,
-                statusCode: 400
-            }
+                message: "Não foi possivel encontrar o projeto",
+                statusCode: 200,
+            };
         }
 
     }
+
+
 }

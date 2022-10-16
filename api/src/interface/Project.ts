@@ -1,5 +1,6 @@
 import { CategoryORM } from "../entity/Category"
 import { InterestMemberORM } from "../entity/Interest"
+import { ProjectAttachmentORM } from "../entity/ProjectAttachment"
 import { ProjectImageORM } from "../entity/ProjectImage"
 import { ProjectManagementORM } from "../entity/ProjectManagment"
 import { SubCategoryORM } from "../entity/SubCategory"
@@ -21,5 +22,6 @@ export interface IDomainProjectProps {
     images: ProjectImageORM[]
     management: ProjectManagementORM[]
     interest: InterestMemberORM[]
+    attachments: ProjectAttachmentORM[]
 
 }

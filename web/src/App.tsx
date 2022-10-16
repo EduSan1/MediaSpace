@@ -12,6 +12,7 @@ import ChangePasswordPage from './pages/RecoveringPasswordPage';
 import SpaceBackground from './components/SpaceBackground';
 import PasswordWarningPage from './pages/PasswordWarningPage';
 import RegisterFreelancer from './pages/RegisterFreelancer';
+import HomePage from './pages/Home';
 //import SpaceBackground from './components/SpaceBackground';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
+        <Route path='/home' element={<HomePage  />}  />
         <Route path='/changePassword' element={<SpaceBackground component={<RecoveringPasswordPage />} />} />
         <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />

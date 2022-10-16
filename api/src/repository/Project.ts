@@ -10,7 +10,6 @@ export class ProjectRepository {
     }
 
     create = async (entity: ProjectDomain) => {
-
         return await this._.save(entity)
     }
 
@@ -18,7 +17,7 @@ export class ProjectRepository {
         return await this._.find(ProjectORM)
     }
 
-    listWhere = async (key: keyof typeof ProjectORM, value: any) => {
+    listWhere = async (key: keyof typeof ProjectORM, value: string) => {
         return await this._.find({
             where: {
                 [key]: value
@@ -26,8 +25,7 @@ export class ProjectRepository {
         })
     }
 
-
-    findByWhere = async (key: keyof typeof ProjectORM, value: any) => {
+    getByWhere = async (key: keyof typeof ProjectORM, value: string) => {
         return await this._.findOne({
             where: {
                 [key]: value
@@ -35,19 +33,11 @@ export class ProjectRepository {
         })
     }
 
-    findById = async (id: string) => {
+    getById = async (id: string) => {
         return await this._.findOne({
             where: {
                 id
             }
         })
-    }
-
-    update = async (entity: ProjectORM) => {
-        return await this._.save(entity)
-    }
-
-    remove = async (id: string) => {
-        return await this._.delete({ id })
     }
 }

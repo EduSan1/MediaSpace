@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { CategoryORM } from "./Category";
 import { InterestMemberORM } from "./Interest";
+import { ProjectAttachmentORM } from "./ProjectAttachment";
 import { ProjectImageORM } from "./ProjectImage";
 import { ProjectManagementORM } from "./ProjectManagment";
 import { SubCategoryORM } from "./SubCategory";
@@ -18,20 +19,20 @@ export class ProjectORM {
     @Column({ length: 800 })
     description: string
 
-    @Column()
+    @Column({ type: "double" })
     estimated_value: number
 
     @Column()
     estimated_deadline: Date
 
-    @Column()
+    @Column({ nullable: true })
     finish_project_date: Date
 
-    @Column()
+    @Column({ nullable: true })
     start_project_date: Date
 
-    @Column()
-    status: "AWAITING_START" | "IN EXECUTION" | "COMPLETE" | "CANCELED"
+    @Column({ default: "AWAITING_START" })
+    status: "AWAITING_START" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
 
     @ManyToOne(() => UserORM, user => user.projects)
     user: UserORM
@@ -44,8 +45,11 @@ export class ProjectORM {
     @JoinTable()
     sub_categories: SubCategoryORM[]
 
-    @OneToMany(() => ProjectImageORM, image => image.project)
+    @OneToMany(() => ProjectImageORM, image => image.project, { eager: true })
     images: ProjectImageORM[]
+
+    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project, { eager: true })
+    attachments: ProjectAttachmentORM[]
 
     @OneToMany(() => ProjectManagementORM, managment => managment.project)
     management: ProjectManagementORM[]
