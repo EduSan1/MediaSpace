@@ -142,21 +142,21 @@ export const Register = ({ navigation }: IRegister) => {
                 phone: onlyNumbers(phone)
             }
         }
-         setRegisterLoad(true)
+        setRegisterLoad(true)
 
         api.post("/user", user).then((res: any) => {
-           
+
             if (res.data.statusCode === 201) {
-                navigation.navigate("RegisterFreelancer", { 
-                    userId: res.data.data.id, 
-                  })
+                navigation.navigate("RegisterFreelancer", {
+                    userId: res.data.data.id,
+                })
             } else {
                 if (res.data.cpf) {
                     setHasErrorCpf(res.data.cpf)
                     setHasErrorMail(res.data.mail)
                     setHasErrorNickname(res.data.nickname)
                     ToastAndroid.show(res.data.message, 10)
-                }else {
+                } else {
                     ToastAndroid.show("res.data.message", 10)
 
                 }

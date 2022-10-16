@@ -10,11 +10,11 @@ import { RegisterFreelancer } from "../../components/RegisterFreelancer";
 
 
 interface IRegisterFreelancerPage {
-    navigation : any
-
+    navigation: any
+    route: any
 }
 
-export default function RegisterFreelancerPage({navigation} : IRegisterFreelancerPage) {
+export default function RegisterFreelancerPage({ navigation, route }: IRegisterFreelancerPage) {
 
     return (
         <KeyboardAvoidingView
@@ -41,7 +41,7 @@ export default function RegisterFreelancerPage({navigation} : IRegisterFreelance
                 </View>
 
                 <View style={styles.container}>
-                    <RegisterFreelancer navigation={navigation}/>
+                    <RegisterFreelancer userId={route?.params?.userId} navigation={navigation} />
                 </View>
 
             </View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         position: "relative"
-        
+
 
     },
     starfield: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.7,
         position: "relative",
-        backgroundColor:"#fff",
+        backgroundColor: "#fff",
         alignContent: "center",
         alignItems: "flex-start"
     },

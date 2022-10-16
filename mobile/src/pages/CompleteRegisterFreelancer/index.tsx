@@ -6,10 +6,11 @@ import { CompleteRegisterFreelancer } from "../../components/ CompleteRegisterFr
 
 
 interface IForgetPassword {
-    navigation : any
+    navigation: any
+    route: any
 }
 
-export default function CompleteRegisterFreelancerPage({navigation} : IForgetPassword) {
+export default function CompleteRegisterFreelancerPage({ navigation, route }: IForgetPassword) {
 
     return (
         <KeyboardAvoidingView
@@ -36,7 +37,7 @@ export default function CompleteRegisterFreelancerPage({navigation} : IForgetPas
                 </View>
 
                 <View style={styles.container}>
-                    <CompleteRegisterFreelancer/>
+                    <CompleteRegisterFreelancer nav />
                 </View>
 
             </View>
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         position: "relative"
-        
+
 
     },
     starfield: {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.7,
         position: "relative",
-        backgroundColor:"#fff",
+        backgroundColor: "#fff",
         alignContent: "center",
         alignItems: "flex-start"
     },
