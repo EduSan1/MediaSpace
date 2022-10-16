@@ -15,7 +15,6 @@ export class ProjectManagementORM {
     @Column({ type: "double" })
     value: number
 
-    @Column()
     request_number: number
 
     @Column()
@@ -36,5 +35,4 @@ export class ProjectManagementORM {
 
     @UpdateDateColumn()
     update_at: Timestamp
-
 }

@@ -37,7 +37,7 @@ export default function CompleteRegisterFreelancerPage({ navigation, route }: IF
                 </View>
 
                 <View style={styles.container}>
-                    <CompleteRegisterFreelancer nav />
+                    <CompleteRegisterFreelancer />
                 </View>
 
             </View>

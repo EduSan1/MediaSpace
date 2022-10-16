@@ -10,14 +10,9 @@ export const CompleteRegisterFreelancer = () => {
     const [check, setCheck] = useState("")
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
-
     const [freelancer, setFreelancer] = useState({
-        categories: [
-
-        ],
-        sub_categories: [
-
-        ],
+        categories: [],
+        sub_categories: [],
         userId: "be630814-7236-4d49-b076-5603efa2f21c"
     })
 
@@ -41,9 +36,7 @@ export const CompleteRegisterFreelancer = () => {
         if (action === "ADD") {
             setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
             addToFreelancer(categoryFilter.id, "categories")
-        }
-        else {
-
+        } else {
             const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
             setSubategoriesToRender(categoryFilter)
             RemoveFromFreelancer(categoryFilter.map((category: any) => { id: category.id }), "categories")
@@ -70,17 +63,11 @@ export const CompleteRegisterFreelancer = () => {
                     }
                 </ScrollView>
             </View>
-
-
-
-
             <View style={styles.textArea}>
                 <Text style={styles.text1}>Sub-Categorais</Text>
             </View>
-
             <View style={styles.areaContainer2}>
                 <ScrollView style={styles.sectionSubCategory}>
-
                     {
                         subcategoriesToRender?.map((category: any) => {
                             return category.sub_categories.map((subcategory: any) => {
@@ -88,12 +75,9 @@ export const CompleteRegisterFreelancer = () => {
                             })
                         })
                     }
-
                 </ScrollView>
             </View>
-
             <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar" />
-
         </View>
     )
 }
