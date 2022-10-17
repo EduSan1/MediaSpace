@@ -12,8 +12,46 @@ const CreateProject = () => {
          <HeaderPages />
          <div className="testeTeste">
 
-            <div>
-               <input type="file" name="files[]" multiple />
+            <div className="container_files">
+               <div className="container_text">
+                  <label className="subtitulo_projects">Imagens</label>
+                  <div>
+                     <p className="paragraph_projects">Imagens de referências ao projeto</p>
+                     <span className="paragraph_projects">0/4</span>
+                  </div>
+
+               </div>
+
+               <div className="container_images">
+                  <div className="aligment_images">
+                     <div className="images">
+                        <img src="" />
+                     </div>
+                     <div className="images">
+                        <img src="" />
+                     </div>
+                  </div>
+
+                  <div className="aligment_images" >
+                     <div className="images">
+                        <img src="" />
+                     </div>
+                     <div className="images">
+                        <img src="" />
+                     </div>
+                  </div>
+
+
+               </div>
+               <div>
+                  <p className="paragraph_projects" >Extensões permitidas: .png, .jpg, .jpeg, .gifs</p>
+               </div>
+               <div>
+                  {/* <input type="file" id="" className='input_btn_upload_photo_project' /> */}
+                  <InputBtn typeInput={'submit'} name={'btn_add_photo'} className={'input_btn_upload_photo_project'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+               </div>
+
+
             </div>
             {/* <div className="page_create_project">
                <div className="container_informations">

@@ -1,8 +1,10 @@
 .testeTeste {
    display: flex;
    flex-direction: column;
-   background-color: steelblue;
-
+   //background-color: steelblue;
+   height: 100vh;
+   align-items: center;
+   justify-content: center;
 }
 
 .page_create_project {
@@ -50,13 +52,12 @@
 .subtitulo_projects {
    font-family: $light-font;
    font-size: 1rem;
-   font-weight: bold;
 }
 
 .paragraph_projects {
    font-family: $light-font;
    font-weight: lighter;
-   font-size: 1rem;
+   font-size: 0.8rem;
    color: #BFBFBF;
 }
 
@@ -88,4 +89,50 @@
    display: flex;
    align-items: center;
    justify-content: center;
+}
+
+/* Style da div de carregar imagens*/
+.container_files{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   width: 80%;
+   height: 25%;
+   border-radius: 10px;
+   border: 1px solid $lavander;
+}
+
+.container_text{
+   padding-left: 20px;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.container_text div{
+   display: flex;
+   justify-content: space-around;
+}
+
+.container_images{
+   display: flex;
+   width: 50%;
+   height: 50%;
+   flex-direction: column;
+   gap: 5px;
+}
+
+.aligment_images{ 
+   width: 100%;
+   height: 50%;
+   display: flex;
+   gap: 5px;
+}
+
+.images{
+   background-color: crimson;
+   width: 50%;
+   height: 100%;
 }
