@@ -4,6 +4,7 @@ import { InterestMemberORM } from "./Interest";
 import { ProjectAttachmentORM } from "./ProjectAttachment";
 import { ProjectImageORM } from "./ProjectImage";
 import { ProjectManagementORM } from "./ProjectManagment";
+import { ProjectRequirementORM } from "./ProjectRequirement";
 import { SubCategoryORM } from "./SubCategory";
 import { UserORM } from "./User";
 
@@ -56,6 +57,9 @@ export class ProjectORM {
 
     @OneToMany(() => InterestMemberORM, interestMember => interestMember.project)
     interest: InterestMemberORM[]
+
+    @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project, { eager: true })
+    requirements: ProjectRequirementORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

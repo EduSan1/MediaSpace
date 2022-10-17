@@ -9,6 +9,8 @@ import { ProjectORM } from "./entity/Project"
 import { ProjectAttachmentORM } from "./entity/ProjectAttachment"
 import { ProjectImageORM } from "./entity/ProjectImage"
 import { ProjectManagementORM } from "./entity/ProjectManagment"
+import { ProjectMemberORM } from "./entity/ProjectMember"
+import { ProjectRequirementORM } from "./entity/ProjectRequirement"
 import { SubCategoryORM } from "./entity/SubCategory"
 import { TeamORM } from "./entity/team"
 import { TeamProjectManagementORM } from "./entity/TeamProjectManagment"
@@ -21,7 +23,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "BcdSenai127",
+    password: "12345678",
     database: "db_media_space",
     synchronize: true,
     logging: false,
@@ -32,15 +34,17 @@ export const AppDataSource = new DataSource({
         CategoryORM,
         SubCategoryORM,
         TeamORM,
-        ProjectORM,
-        ProjectImageORM,
-        ProjectManagementORM,
-        TeamProjectManagementORM,
+        UserTeamORM,
         InterestMemberORM,
         MemberORM,
         TypePaymentORM,
         ProjectAttachmentORM,
-        UserTeamORM
+        ProjectRequirementORM,
+        ProjectMemberORM,
+        ProjectORM,
+        ProjectImageORM,
+        ProjectManagementORM,
+        TeamProjectManagementORM
     ],
     migrations: [],
     subscribers: [],

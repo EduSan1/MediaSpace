@@ -3,6 +3,7 @@ import { GenderORM } from "./Gender"
 import { MemberORM } from "./Member"
 import { PhoneORM } from "./Phone"
 import { ProjectORM } from "./Project"
+import { ProjectMemberORM } from "./ProjectMember"
 import { UserTeamORM } from "./UserTeam"
 
 @Entity({ name: "tb_user" })
@@ -58,6 +59,9 @@ export class UserORM {
 
     @OneToMany(() => MemberORM, member => member.user)
     interest: MemberORM[]
+
+    @OneToMany(() => ProjectMemberORM, projectMember => projectMember.member, { eager: true })
+    project_member: ProjectMemberORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

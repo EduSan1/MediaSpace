@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm"
 import { ProjectORM } from "./Project"
+import { ProjectMemberORM } from "./ProjectMember"
 import { TeamProjectManagementORM } from "./TeamProjectManagment"
 import { TypePaymentORM } from "./TypePayment"
 
@@ -29,6 +30,8 @@ export class ProjectManagementORM {
     @OneToMany(() => TeamProjectManagementORM, teamProjectManagment => teamProjectManagment.projectManagement)
     team_project_managment: TeamProjectManagementORM[]
 
+    @OneToMany(() => ProjectMemberORM, projectMember => projectMember.member, { eager: true })
+    members: ProjectMemberORM[]
 
     @CreateDateColumn()
     create_at: Timestamp
