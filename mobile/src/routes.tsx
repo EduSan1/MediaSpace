@@ -7,23 +7,21 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Feed from "./pages/Feed";
 import {View, StyleSheet, Image, } from "react-native";
 
-
 const Tab = createBottomTabNavigator();
 export default function Routes(){
     return(
 
         <Tab.Navigator
         screenOptions={{
-
-        tabBarActiveTintColor:"#d40e00",
         tabBarStyle:{
             position:'absolute',
             borderTopStartRadius:21,
             borderTopEndRadius:21,
-        height:50,},
-            headerShown:false,
-            tabBarShowLabel:false,
-            tabBarInactiveTintColor:"#360069", 
+            height:50,
+        },
+        headerShown:false,
+        tabBarShowLabel:false,
+        tabBarInactiveTintColor:"#360069", 
     }}>
         <Tab.Screen name="Home" component={Home} 
         options={{ tabBarIcon:({focused}) =>(
@@ -33,14 +31,12 @@ export default function Routes(){
                 style={{
                     width:30,
                     height:30,
-                    tintColor: focused ? '#75A5FF' : '#C6D2FF'
-                }}
-                />
+                    tintColor: focused ? '#75A5FF' : '#C6D2FF'}}/>
             </View>
-        )
+                )
+            }
+        }/>
 
-        }}
-        />
         <Tab.Screen name="Project" component={Project}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
@@ -50,30 +46,12 @@ export default function Routes(){
                     width:25,
                     height:25,
                     tintColor: focused ? '#75A5FF' : '#C6D2FF',
-                    marginBottom:7,
-                }}
-                />
+                    marginBottom:7}}/>
             </View>
-        )
+                )
+            }
+        }/>
 
-        }}
-        />
-        <Tab.Screen name="Messages" component={Messages}
-        options={{ tabBarIcon:({focused}) =>(
-            <View style={{alignItems:"center",justifyContent:"center"}}>
-                <Image source={require('../assets/icons/ChatIcon.png')}
-                resizeMode="contain"
-                style={{
-                    width:40,
-                    height:30,
-                    tintColor: focused ? '#75A5FF' : '#C6D2FF'
-                }}
-                />
-            </View>
-        )
-
-        }}
-        />
         <Tab.Screen name="Feed" component={Feed}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
@@ -82,14 +60,27 @@ export default function Routes(){
                 style={{
                     width:30,
                     height:30,
-                    tintColor: focused ? '#75A5FF' : '#C6D2FF'
-                }}
-                />
+                    tintColor: focused ? '#75A5FF' : '#C6D2FF'}}/>
             </View>
-        )
+                )
+            }
+        }/>
 
-        }}
-        />
+        <Tab.Screen name="Messages" component={Messages}
+        options={{ tabBarIcon:({focused}) =>(
+            <View style={{alignItems:"center",justifyContent:"center"}}>
+                <Image source={require('../assets/icons/ChatIcon.png')}
+                resizeMode="contain"
+                style={{
+                    width:40,
+                    height:30,
+                    tintColor: focused ? '#75A5FF' : '#C6D2FF'}}/>
+            </View>
+                )
+
+            }
+        }/>
+
         <Tab.Screen name="Profile" component={Profile}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
@@ -98,14 +89,12 @@ export default function Routes(){
                 style={{
                     width:30,
                     height:30,
-                    tintColor: focused ? '#75A5FF' : '#C6D2FF'
-                }}
-                />
+                    tintColor: focused ? '#75A5FF' : '#C6D2FF'}}/>
             </View>
-        )
+                )
 
-        }}
-        />
+            }
+        }/>
     </Tab.Navigator>
     )
 
