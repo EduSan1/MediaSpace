@@ -139,6 +139,7 @@
                     display: flex;
                     width: 100%;
                     height: 100%;
+                    justify-content: center;
 
                     svg{
                         width: 100%;
@@ -162,10 +163,11 @@
             justify-content: center;
             align-items: center;
             gap: 10%;
+            margin-bottom: 10px;
 
             img {
-                width: 90%;
-                height: 90%;
+                width: 80%;
+                height: 80%;
             }
         }
 
@@ -183,7 +185,7 @@
                 align-items: flex-end;
                 flex-direction: column;
                 width: 100%;
-                height: 60%;
+                height: 100%;
                 list-style: none;
                 text-decoration: none;
                
@@ -192,6 +194,7 @@
                     display: flex;
                     width: 100%;
                     height: 100%;
+                    justify-content: center;
 
                     svg{
                         width: 100%;
@@ -243,7 +246,7 @@
 //open
 .Container_navegation_Open {
     display: flex;
-    width: 20%;
+    width: 15%;
     height: 1080px;
     flex-direction: column;
     align-items: center;
