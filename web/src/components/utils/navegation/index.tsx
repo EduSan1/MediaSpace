@@ -4,6 +4,7 @@ import { BsChatText } from "react-icons/bs";
 import { BiRocket, BiUser } from "react-icons/bi";
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import {MdRssFeed} from "react-icons/md";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -64,6 +65,7 @@ const NavegationBar = () => {
                         <li> <Link to={'/'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} /></Link></li>
                         <li> <Link to={'/'}className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                         <li> <Link to={'/'}className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                        <li> <Link to={'/'}className='Link_NextPage'><IconBar Icon={<MdRssFeed />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                         <li> <Link to={'/'}className='Link_NextPage'><IconBar Icon={<BiUser />} text={'teste'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
 
                     </ul>
