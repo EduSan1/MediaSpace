@@ -2,7 +2,7 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CategoryORM } from "./entity/Category"
 import { GenderORM } from "./entity/Gender"
-import { InterestMemberORM } from "./entity/Interest"
+import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
 import { ProjectORM } from "./entity/Project"
@@ -35,7 +35,7 @@ export const AppDataSource = new DataSource({
         SubCategoryORM,
         TeamORM,
         UserTeamORM,
-        InterestMemberORM,
+        InterestORM,
         MemberORM,
         TypePaymentORM,
         ProjectAttachmentORM,

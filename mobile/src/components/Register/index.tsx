@@ -39,7 +39,7 @@ export const Register = ({ navigation }: IRegister) => {
 
         return onlyNumbers(value)
             .replace(/\D/g, '')
-            .replace(/(\d{2})(\d{2})(\d{4})/, "$3-$1-$2")
+            .replace(/(\d{2})(\d{2})(\d{4})/, "$3-$2-$1")
     }
 
     const cpfMask = (value: string) => {

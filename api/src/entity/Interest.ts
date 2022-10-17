@@ -6,21 +6,21 @@ import { TeamORM } from "./team";
 import { UserORM } from "./User";
 
 @Entity({ name: "tb_interest" })
-export class InterestMemberORM {
+export class InterestORM {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column({ default: false })
+    @Column()
     all_members_accept: boolean
 
-    @ManyToOne(() => TeamORM, team => team.interest)
+    @ManyToOne(() => TeamORM, team => team.interest, { eager: true })
     team: TeamORM
 
     @ManyToOne(() => ProjectORM, project => project.interest)
     project: ProjectORM
 
-    @OneToMany(() => MemberORM, member => member.interest)
+    @OneToMany(() => MemberORM, member => member.interest, { eager: true })
     members: MemberORM[]
 
 }

@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { CategoryORM } from "./Category";
-import { InterestMemberORM } from "./Interest";
+import { InterestORM } from "./Interest";
 import { ProjectAttachmentORM } from "./ProjectAttachment";
 import { ProjectImageORM } from "./ProjectImage";
 import { ProjectManagementORM } from "./ProjectManagment";
@@ -32,6 +32,9 @@ export class ProjectORM {
     @Column({ nullable: true })
     start_project_date: Date
 
+    @Column({ default: true })
+    is_active: boolean
+
     @Column({ default: "AWAITING_START" })
     status: "AWAITING_START" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
 
@@ -55,8 +58,8 @@ export class ProjectORM {
     @OneToMany(() => ProjectManagementORM, managment => managment.project)
     management: ProjectManagementORM[]
 
-    @OneToMany(() => InterestMemberORM, interestMember => interestMember.project)
-    interest: InterestMemberORM[]
+    @OneToMany(() => InterestORM, interestMember => interestMember.project, { eager: true })
+    interest: InterestORM[]
 
     @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project, { eager: true })
     requirements: ProjectRequirementORM[]

@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, OneToMany, ManyToMany, JoinTable } from "typeorm"
 import { CategoryORM } from "./Category"
-import { InterestMemberORM } from "./Interest"
+import { InterestORM } from "./Interest"
 import { SubCategoryORM } from "./SubCategory"
 import { TeamProjectManagementORM } from "./TeamProjectManagment"
 import { UserTeamORM } from "./UserTeam"
@@ -32,7 +32,7 @@ export class TeamORM {
     @Column({ default: true })
     is_active: boolean
 
-    @Column({ default: false })
+    @Column({ default: true })
     is_freelancer: boolean
 
     @OneToMany(() => UserTeamORM, userTeam => userTeam.team)
@@ -49,8 +49,8 @@ export class TeamORM {
     @OneToMany(() => TeamProjectManagementORM, teamProjectManagment => teamProjectManagment.team)
     team_project_managment: TeamProjectManagementORM[]
 
-    @OneToMany(() => InterestMemberORM, interestMember => interestMember.project)
-    interest: InterestMemberORM[]
+    @OneToMany(() => InterestORM, interestMember => interestMember.project)
+    interest: InterestORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

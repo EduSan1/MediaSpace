@@ -40,4 +40,12 @@ export class ProjectRepository {
             }
         })
     }
+
+    update = async (entity: ProjectORM) => {
+        return await this._.save(entity)
+    }
+
+    remove = async (id: string) => {
+        return await this._.delete({ id })
+    }
 }

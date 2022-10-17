@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { InterestMemberORM } from "./Interest";
+import { InterestORM } from "./Interest";
 import { UserORM } from "./User";
 
 @Entity({ name: "tb_member_interest" })
@@ -11,10 +11,10 @@ export class MemberORM {
     @Column({ default: false })
     accept: boolean
 
-    @ManyToOne(() => UserORM, user => user.interest)
+    @ManyToOne(() => UserORM, user => user.interest, { eager: true })
     user: UserORM
 
-    @ManyToOne(() => InterestMemberORM, interestMember => interestMember.members)
-    interest: InterestMemberORM
+    @ManyToOne(() => InterestORM, interestMember => interestMember.members)
+    interest: InterestORM
 
 }

@@ -1,5 +1,5 @@
 import { CategoryORM } from "../entity/Category"
-import { InterestMemberORM } from "../entity/Interest"
+import { InterestORM } from "../entity/Interest"
 import { ProjectAttachmentORM } from "../entity/ProjectAttachment"
 import { ProjectImageORM } from "../entity/ProjectImage"
 import { ProjectManagementORM } from "../entity/ProjectManagment"
@@ -22,7 +22,7 @@ export default class ProjectDomain {
     sub_categories: SubCategoryORM[]
     images: ProjectImageORM[]
     management: ProjectManagementORM[]
-    interest: InterestMemberORM[]
+    interest: InterestORM[]
     attachments: ProjectAttachmentORM[]
 
 

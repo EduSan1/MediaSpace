@@ -32,4 +32,26 @@ export class ProjectController {
         })
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar o projeto"))
     }
+
+    update = (request: Request, response: Response) => {
+        this.service.update(request.params.projectId, request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao atualizar o projeto"))
+    }
+
+    disable = (request: Request, response: Response) => {
+        this.service.disable(request.params.projectId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o projeto"))
+    }
+
+    registerInterest = (request: Request, response: Response) => {
+        this.service.registerInterest(request.params.projectId, request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao declarar interesse no projeto"))
+    }
+
 }
