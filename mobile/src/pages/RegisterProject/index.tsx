@@ -6,13 +6,17 @@ import { LoginTextArea } from "../../components/utils/LoginTextArea"
 import { CheckboxComponent } from "../../components/utils/subCategory"
 import { LoginInputNumber } from "../../components/utils/LoginInputNumber"
 import { LoginImage } from "../../components/utils/LoginImage"
-
+import { LoginImageProject } from "../../components/utils/LoginImageProject"
+import { Attachment } from "../../components/utils/Attachment"
+import { LoginBoost } from "../../components/utils/LoginBoost"
 export const RegisterPreject = () => {
 
+    const [check, setCheck] = useState("")
     const [registerProject, setRegisterProject] = (useState)({
         nameProject: "",
         describle: "",
         date: "",
+        price:"",
         profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae",
     })
     const handleChange = (text: string, name: string) => {
@@ -89,11 +93,21 @@ export const RegisterPreject = () => {
                         </ScrollView>
                     </View>
 
-                    <LoginImage userImage={registerProject.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
-                    <LoginInput name="first_name" iconName="person-outline" value={registerProject.nameProject} handleChange={handleChange} hasError={hasError} title="Anexo" maxLength={100} />
+                    <LoginImageProject userImage={registerProject.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
+                    <Attachment userAttachment={registerProject.profile_picture} setUserAttachment={(image: string) => handleUserPicture(image)}/>
                     <LoginInputNumber name="date" keuboardType="numeric" iconName="today" value={registerProject.date} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={8} />
-                    <LoginInputNumber name="date" keuboardType="numeric" iconName="today" value={registerProject.date} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={8} />
-                    <LoginImage userImage={registerProject.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
+                    <LoginInputNumber name="price" keuboardType="numeric" iconName="today" value={registerProject.price} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={40} />
+                   
+                    <View style={styles.checkBoost}>
+                        <View style={styles.checkBoostView}>
+                            <Text>Gratuito</Text>
+                            <LoginBoost check={check} setCheck={setCheck}  value="G" />
+                        </View>
+                        <View style={styles.checkBoostView}>
+                        <Text>R$50</Text>
+                            <LoginBoost check={check} setCheck={setCheck} value="P" />
+                        </View>              
+                    </View>
                 </View>
 
                 <View style={styles.button}>
@@ -146,7 +160,7 @@ const styles = StyleSheet.create({
     },
     view: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2,
+        height: Dimensions.get('window').height * 2.7,
         justifyContent: "space-between",
         alignItems: "center",
         padding: 20
@@ -165,22 +179,21 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#DEDEDE",
         display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center"
+        justifyContent: "space-around",
+        alignItems: "center",
+        flexWrap:'wrap'
     },
     sectionSubCategory: {
         flexDirection: "row",
-        width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.3,
-        flexWrap: "wrap",
+        width: Dimensions.get('window').width * 0.7,
 
     },
     sectionCategory: {
-        flexDirection: "row",
-        width: Dimensions.get('window').width * 0.90,
-        height: Dimensions.get('window').height * 0.3,
-        flexWrap: "wrap",
-        elevation: 10
+        width: Dimensions.get('window').width * 0.85,
+        display:'flex',
+        flexWrap:'wrap',
+        flexDirection:'row',
+    
     },
     button: {
         width: Dimensions.get('window').width,
@@ -189,5 +202,22 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 10
 
+    },
+    checkBoost:{
+        width: Dimensions.get('window').width * 0.79,
+        height: Dimensions.get("window").width * 0.7,
+        justifyContent: 'space-between',
+        display:'flex',
+        flexWrap:'wrap',
+        flexDirection:'row',  
+    },
+    checkBoostView:{
+        width: Dimensions.get('window').width * 0.38,
+        height: Dimensions.get("window").width * 0.7,
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor:"#B275FF",
+        alignItems: 'center',
+        justifyContent:'center'
     }
 })
