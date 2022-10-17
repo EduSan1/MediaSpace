@@ -36,6 +36,7 @@ export default function App() {
     <NavigationContainer>
       <Routes/>
     </NavigationContainer>
+    
     // <View style={styles.container}>
     //     <StackNavigation />
     // </View>
