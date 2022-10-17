@@ -1,8 +1,14 @@
-.page_create_project {
-   width: 90vw;
-   height: 90vh;
+.testeTeste {
    display: flex;
+   flex-direction: column;
+   background-color: steelblue;
 
+}
+
+.page_create_project {
+   width: 100%;
+   height: auto;
+   display: flex;
 }
 
 .title_page_project {
@@ -13,11 +19,13 @@
 
 .container_informations {
    width: 50%;
-   height: 100%;
+   height: auto;
    display: flex;
+   background-color: crimson;
    align-items: flex-start;
    justify-content: space-between;
    flex-direction: column;
+   gap: 10%;
 }
 
 .container_imagens {
@@ -63,6 +71,21 @@
 }
 
 .inputs_projects {
+   height: 150px;
+   width: 300px;
    display: flex;
    flex-direction: column;
+   background-color: cornflowerblue;
+}
+
+.container_projects {
+   height: 20%;
+}
+
+.aligment_button {
+   height: 10vh;
+   background-color: crimson;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
