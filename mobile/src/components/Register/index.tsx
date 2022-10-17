@@ -58,7 +58,7 @@ export const Register = ({navigation} : IRegister) => {
 
     const confirm = async () => {
         setRegisterLoad(!registerLoad)
-
+        
         console.log(userRegister)
         navigation.navigate("CheckMail")
     }

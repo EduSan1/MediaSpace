@@ -21,18 +21,17 @@
     @import "./pages/ConfirmEmailWarningPage/index.scss";
     @import "./pages/PasswordWarningPage/index.scss";
     @import "./pages/RecoveringPasswordPage/index.scss";
+    @import "../pages/Home/Style/indedx.scss";
 
 
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
     @import "./components/SpacebackgroundLogin/indexLogin.scss";
-    @import "./components/utils/Button/btnInput.scss";
     @import "./components/ConcludeRegister/titleMain.scss";
     @import "./components/ConcludeRegister/indexConclude.scss";
     @import "./components/SendingEmailRecovery/indexContainerDiv.scss";
     @import "./components/ProviderUserRegister/indes.scss";
     @import "./components/RecoveryPassWord/index.scss";
-    @import "./components/Register/alignmentInputs.scss";
     @import "./components/ConfirmEmailWarningPage/index.scss";
     @import "./components/PasswordWarningPage/index.scss";
     @import "./components/RecoveringPassword/index.scss";
@@ -40,10 +39,22 @@
     @import "../components/utils/navegation/Style/index.scss";
     @import "../components/utils/Icon/style/index.scss";
    
-
-
-    
+    @import "../pages/RegisterFreelancer/style/resgisterFreelancer.scss";
+    @import "./components/utils/Input/radio.scss";
+    @import "../components/utils/Button/Categories/style/btnCategories.scss";
+    @import "../components/Register/style/alignmentInputs.scss";
+    @import "../components/utils/Button/style/btnInput.scss";
+    @import "../components/utils/Input/checkbox/style/checkbox.scss";
+    @import "../pages/CreateProject/style/createProject.scss";
+    @import "../components/HeaderPage/ToggleButton/toggle.scss";
+    @import "../components/HeaderPage/Search/search.scss";
+    @import "../components/HeaderPage/headerPages.scss";
  
-   
-}
 
+
+
+
+
+
+
+}

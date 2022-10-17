@@ -28,10 +28,14 @@ const ProviderUserRegister = () => {
             </div>
 
             <div className="Conatiner_bnt_User_Provider">
-                <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como prestador'}
-                    onClick={() => {
-                        console.log('next page')
-                    }} />
+
+                <Link to='/register/registerFreelancer'>
+                    <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como prestador'}
+                        onClick={() => {
+                            console.log('next page')
+                        }} />
+                </Link>
+                
 
                 <Link to='/register/registered'>
                     <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnProviderUser'} valueBtn={'Continuar como cliente'}

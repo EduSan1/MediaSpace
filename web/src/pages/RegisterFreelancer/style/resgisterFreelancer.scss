@@ -1,0 +1,58 @@
+.page_register_freelancer {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-evenly;
+}
+
+.title_page_register_freelancer {
+   height: 20%;
+   text-align: center;
+   font-size: 0.9rem;
+   font-family: $light-font;
+   font-weight: bold;
+   color: $primary-purple;
+}
+
+.subtitulo {
+   margin-bottom: 5px;
+   font-family: $light-font;
+   color: #979797;
+   font-size: 1rem;
+}
+
+.container_categories_subcategories {
+   display: flex;
+   height: 80%;
+   width: 100%;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.container_categories {
+   width: 45%;
+   height: 100%;
+}
+
+.categories,
+.sub_categories {
+   height: 70%;
+   overflow-y: auto;
+   box-shadow: inset 0px 4px 15px #DEDEDE;
+   border-radius: 0.625rem;
+   display: flex;
+   flex-wrap: wrap;
+   padding: 10px;
+}
+
+.container_subcategories {
+   width: 45%;
+   height: 100%;
+}
+
+.container_button_finish {
+   height: 20%;
+   align-self: flex-end;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register';
 import ProviderUserRegisterPage from './pages/ProviderUserRegister';
@@ -12,6 +12,8 @@ import ChangePasswordPage from './pages/RecoveringPasswordPage';
 import SpaceBackground from './components/SpaceBackground';
 import PasswordWarningPage from './pages/PasswordWarningPage';
 import HomePage from './pages/Home';
+import RegisterFreelancer from './pages/RegisterFreelancer';
+import CreateProject from './pages/CreateProject';
 //import SpaceBackground from './components/SpaceBackground';
 
 function App() {
@@ -20,22 +22,23 @@ function App() {
     <>
 
       <Routes>
-        <Route path='/'                                 element={<LoginPage/>}/>
-        <Route path='/register'                         element={<RegisterPage/>}/>
-        <Route path='/register/provideruserregister'    element={<ProviderUserRegisterPage/>}/>
-        <Route path='/confirmRegister'                  element={<MailConfirmedPage/>}/>
-        {/* <Route path='/register/categoryregister'    element={<CategoryRegisterPage/>}/> */}
-        <Route path='/register/registered'              element={<RegisteredPage/>}/>
-        <Route path='/recoverpassword'                  element={<RecoveryPasswordPage/>}/>
-        <Route path='/changePassword'                   element={<SpaceBackground component={<RecoveringPasswordPage/>}/>}/>
-        <Route path='/changePassword/sucess'            element={<SpaceBackground component={<PasswordWarningPage/>}/>}/>
-        <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage/>}/>
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/register/provideruserregister' element={<ProviderUserRegisterPage />} />
+        <Route path='/confirmRegister' element={<MailConfirmedPage />} />
+        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        <Route path='/register/registered' element={<RegisteredPage />} />
+        <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home'                             element={<HomePage/>}/>
+        <Route path='/changePassword' element={<SpaceBackground component={<RecoveringPasswordPage />} />} />
+        <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
+        <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
+        <Route path='/projects/createProjects' element={<CreateProject />} />
+
       </Routes>
 
-      {/* <PageLogin/> */}
-      {/* <SpaceBackground/>      */}
-    
+
+
     </>
   );
 }
