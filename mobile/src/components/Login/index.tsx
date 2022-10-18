@@ -7,10 +7,10 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 interface ILogin {
-    navigation : any
+    navigation: any
 }
 
-export const Login = ({navigation} : ILogin) => {
+export const Login = ({ navigation }: ILogin) => {
 
     const [isLoad, setIsLoad] = useState(false)
     const [userLogin, setUserLogin] = useState({
@@ -37,7 +37,7 @@ export const Login = ({navigation} : ILogin) => {
         Keyboard.dismiss()
         setIsLoad(true)
 
-        api.post("/User/login", userLogin).then((res: any) => {
+        api.post("/user/login", userLogin).then((res: any) => {
 
             if (res.data.is_logged)
                 ToastAndroid.show(res.data.message, 10)
@@ -45,7 +45,7 @@ export const Login = ({navigation} : ILogin) => {
                 setHasError(true)
                 ToastAndroid.show(res.data.message, 10)
             }
-            
+
         }).catch((error) => {
             console.log(error)
         })
@@ -60,17 +60,17 @@ export const Login = ({navigation} : ILogin) => {
             <Text style={styles.title}>Entre em sua conta</Text>
 
             <View style={styles.inputContainer}>
-                <LoginInput maxLength={50} name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} hasError={hasError} title="Email" />
-                <LoginInput maxLength={50} onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userLogin.password} handleChange={handleChange} title="Senha" />
+                <LoginInput type="default" maxLength={50} name="mail" iconName="mail-outline" value={userLogin.mail} handleChange={handleChange} hasError={hasError} title="Email" />
+                <LoginInput type="default" maxLength={50} onClickIcon={changeVisibilityPassword} isPassword={visibilityPassword} name="password" hasError={hasError} iconName={visibilityPassword ? "lock-outline" : "lock-open"} value={userLogin.password} handleChange={handleChange} title="Senha" />
             </View>
 
-                <Text onPress={() => navigation.navigate('ForgetPassword')} style={styles.textForgetPassword}>Esqueci minha senha</Text>
+            <Text onPress={() => navigation.navigate('ForgetPassword')} style={styles.textForgetPassword}>Esqueci minha senha</Text>
 
             <View style={styles.buttonContainer}>
-                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar"/>
-                
+                <LoginButton isLoad={isLoad} type="light" action={login} title="Entrar" />
 
-                    <LoginButton isLoad={isLoad} type="dark" action={() => navigation.navigate('Register')} title="Cadastre-se" />
+
+                <LoginButton isLoad={isLoad} type="dark" action={() => navigation.navigate('Register')} title="Cadastre-se" />
 
             </View>
 
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         flexDirection: "column"
     },
     title: {
-        marginHorizontal:70,
+        marginHorizontal: 70,
         height: Dimensions.get('window').height * 0.07,
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.05,

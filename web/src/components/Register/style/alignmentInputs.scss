@@ -10,6 +10,8 @@
 
 .title_page {
     width: 100%;
+    margin-left: 44px;
+    //font-size: clamp(3.5rem, 1.1rem, 2.5rem);
     font-size: 1.1rem;
     font-family: $light-font;
     font-weight: bold;
@@ -36,12 +38,10 @@
     color: $dark-purple;
     background-color: transparent;
     cursor: pointer;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-.teste{
-    //display: none;
-}
 
 .alignment-inputs-by-divs {
     width: 33%;
@@ -104,4 +104,8 @@
 .alignment_buttons_photo_profile {
     display: flex;
     flex-direction: column;
+}
+
+.container_button {
+    margin-inline: auto;
 }

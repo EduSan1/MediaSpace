@@ -9,25 +9,27 @@ import RegisterPage from './src/pages/ResgisterPage';
 import ForgetPasswordPage from './src/pages/ForgetPasswordPage';
 import SendMailPasswordRecoverPage from './src/pages/SendMailPasswordRecoverPage';
 import CheckMailPage from './src/pages/CheckMailPage';
+import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelancer';
+import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterPreject } from './src/pages/RegisterProject';
 
 export default function App() {
 
-  function StackNavigation(){
-  
+  function StackNavigation() {
+
     const Stack = createNativeStackNavigator();
-    
-    return(
+
+    return (
       <NavigationContainer >
-          <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-              <Stack.Screen  name="Login"                        component={RegisterPreject}/>
-              <Stack.Screen name="Register"                     component={RegisterPage}/>
-              <Stack.Screen name="ForgetPassword"                     component={ForgetPasswordPage}/>
-              <Stack.Screen name="SendMailPasswordRecover"                     component={SendMailPasswordRecoverPage}/>
-              <Stack.Screen name="CheckMail"                     component={CheckMailPage}/>
-              {/* <Stack.Screen name="RegisterFreelancer"           component={RegisterFreelancer}/>
-              <Stack.Screen name="RegisterFreelancerComplete"   component={RegisterFreelancerComplete}/>  */}
-          </Stack.Navigator>
+        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={RegisterPreject} />
+          <Stack.Screen name="Register" component={RegisterPage} />
+          <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
+          <Stack.Screen name="SendMailPasswordRecover" component={SendMailPasswordRecoverPage} />
+          <Stack.Screen name="CheckMail" component={CheckMailPage} />
+          <Stack.Screen name="RegisterFreelancer" component={RegisterFreelancerPage} />
+          <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }
@@ -35,7 +37,7 @@ export default function App() {
   return (
 
     <View style={styles.container}>
-        <StackNavigation />
+      <StackNavigation />
     </View>
 
   );

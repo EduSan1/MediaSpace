@@ -1,12 +1,11 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { MdFacebook, MdEmail, MdLock, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
+import { MdFacebook, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
 import { Link } from 'react-router-dom';
-import { kMaxLength } from "buffer";
 
 const LoginSpace = () => {
 
@@ -68,12 +67,12 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    } 
+    }
 
     if (validate) {
       loginUser();
 
-    } 
+    }
 
 
 
@@ -90,7 +89,7 @@ const LoginSpace = () => {
       if (res.data.is_logged) {
         logIntUser(res.data.userDetails);
         window.alert("usuario logado!")
-      }else {
+      } else {
         window.alert("senha incorreta")
       }
 
