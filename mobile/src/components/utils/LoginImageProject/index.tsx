@@ -3,15 +3,14 @@ import { View, Text, Image, StyleSheet, Dimensions, Alert, Pressable, ActivityIn
 import * as ImagePicker from 'expo-image-picker'
 import { firebase } from '../../../constants/firebase'
 import { LoginButtonUpload } from '../LoginButtonUpload'
-import { async } from '@firebase/util'
 
 interface ILoadImage {
-    userImage: string,
+    userImage: { url: string; }[],
     setUserImage: (image: string) => void
+    isActive : boolean
 }
 
-export const LoginImageProject = ({ userImage, setUserImage }: ILoadImage) => {
-    // https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57
+export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadImage) => {
     const [uploading, setUploading] = useState(false)
 
 
@@ -38,15 +37,16 @@ export const LoginImageProject = ({ userImage, setUserImage }: ILoadImage) => {
         const response = await fetch(source.uri);
         const blob = await response.blob();
         const fileName = source.uri.substring(source.uri.lastIndexOf("/") + 1)
-        var ref = firebase.storage().ref("profilePicture/").child(fileName).put(blob)
+        var ref = firebase.storage().ref("projectImages/").child(fileName).put(blob)
 
         try {
             const status = await ref
-
         } catch (error) {
             console.log(error)
         }
-        setUserImage(await firebase.storage().ref("profilePicture/").child(fileName).getDownloadURL())
+
+      
+        setUserImage(await firebase.storage().ref("projectImages/").child(fileName).getDownloadURL())
 
         setUploading(false)
 
@@ -57,21 +57,28 @@ export const LoginImageProject = ({ userImage, setUserImage }: ILoadImage) => {
         <View style={styles.container}>
             <Text style={styles.inputTitle}>Imagens de referências</Text>
             <View style={styles.containerImage}>
-            <Image style={styles.image} source={{ uri: userImage }} />
-            <Image style={styles.image} source={{ uri: userImage }} />
-            <Image style={styles.image} source={{ uri: userImage }} />
-            <Image style={styles.image} source={{ uri: userImage }} />
+            <Image style={styles.image} source={{ uri: userImage[0].url }} />
+            <Image style={styles.image} source={{ uri: userImage[1].url }} />
+            <Image style={styles.image} source={{ uri: userImage[2].url }} />
+            <Image style={styles.image} source={{ uri: userImage[3].url }} />
             </View>
-            <Text style={styles.text}>Escolha um arquivo jpg, png, gif...</Text>
+            {
+                  isActive ?
+                  <Text style={styles.text}>Escolha um arquivo jpg, png, gif...</Text>
+                  : null
+            }
+         
             
             {uploading ?
                 <ActivityIndicator size='large' color="#B275FF"/>
                 :
+                isActive ?
                 <LoginButtonUpload type="dark" action={() => searchImage()} title="Selecionar Imagem" />
+                : null
             }
-            <Pressable onPress={() => setUserImage("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57")}>
+            {/* <Pressable onPress={() => setUserImage("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57")}>
                 <Text style={styles.textButton}>Remover imagem</Text>
-            </Pressable>
+            </Pressable> */}
            
         </View>
     )
@@ -109,8 +116,9 @@ const styles = StyleSheet.create({
         flexDirection:'row',        
     },
     image: {
-        width: Dimensions.get("window").width * 0.38,
-        height: Dimensions.get("window").width * 0.22,
+        width: Dimensions.get("window").width * 0.39,
+        height: Dimensions.get("window").width * 0.25,
+        resizeMode: 'contain',
         display: 'flex',
         alignItems:'center',
         marginBottom: 10,

@@ -6,8 +6,8 @@ import { LoginButtonUpload } from '../LoginButtonUpload'
 import { async } from '@firebase/util'
 
 interface ILoadAttachment {
-    userAttachment: string,
-    setUserAttachment: (attachment: string) => void
+    userAttachment: { url: string; }[],
+    setUserAttachment: (attachment: string, index: number) => void
 }
 
 export const Attachment = ({userAttachment, setUserAttachment}: ILoadAttachment) => {

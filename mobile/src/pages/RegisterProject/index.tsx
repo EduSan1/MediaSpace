@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from "react-native"
 import { LoginInput } from "../../components/utils/LoginInput"
 import { LoginButton } from "../../components/utils/LoginButton"
@@ -9,15 +9,57 @@ import { LoginImage } from "../../components/utils/LoginImage"
 import { LoginImageProject } from "../../components/utils/LoginImageProject"
 import { Attachment } from "../../components/utils/Attachment"
 import { LoginBoost } from "../../components/utils/LoginBoost"
+
 export const RegisterPreject = () => {
 
     const [check, setCheck] = useState("")
+    const [imageIndex, setImageIndex] = useState(0)
     const [registerProject, setRegisterProject] = (useState)({
-        nameProject: "",
-        describle: "",
-        date: "",
-        price:"",
-        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae",
+        name: "dasdasd",
+        description: "asdasdasd",
+        estimated_value: 10.50,
+        estimated_deadline: "2022-12-31",
+        images: [
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
+            },
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
+            },
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
+            },
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
+            }
+        ],
+        attachments: [
+            {
+                url: "Jorge"
+            },
+            {
+                url: "Cleiton"
+            },
+            {
+                url: "Jordania"
+            }
+        ],
+        categories: [
+            {
+                id: "859c7fb7-9c8e-4bb2-88ef-605502ebbeaa"
+            }
+        ],
+        sub_categories: [
+            {
+                id: "4b99388f-1f15-4dca-a2e1-33e6f5d9a69b"
+            },
+            {
+                id: "56dd13ae-7f62-4c35-8e65-d44f374f747c"
+            }
+        ],
+        user: {
+            id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+        }
     })
     const handleChange = (text: string, name: string) => {
         setRegisterProject(
@@ -28,17 +70,28 @@ export const RegisterPreject = () => {
         )
     }
 
-    const handleUserPicture = (text: string) => {
-        setRegisterProject(
-            {
+    const handleUserPicture = (text: any) => {
+
+        console.log("images => ", text)
+        let newImages = registerProject.images
+
+        newImages[imageIndex] = {url : text}
+
+        setRegisterProject({
+                
                 ...registerProject,
-                profile_picture: text
-            }
-        )
+                images: newImages
+        })
+
+        setImageIndex(imageIndex + 1)
     }
 
     const [hasError, setHasError] = useState(false)
     const [registerProjectLoad, setRegisterProjectLoad] = useState(false)
+
+    useEffect(() => {
+        console.log("imag1231232e =>", registerProject.images)
+    },[registerProject])
 
     return (
     <>
@@ -51,8 +104,8 @@ export const RegisterPreject = () => {
                 style={styles.container}>
                 <Text style={styles.title}>{`Criação de projeto`}</Text>
                 <View style={styles.view}>
-                    <LoginInput name="first_name" iconName="person-outline" value={registerProject.nameProject} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
-                    <LoginTextArea name="describle" value={registerProject.describle} handleChange={handleChange} title="Descrição" maxLength={800} />
+                    <LoginInput name="name" iconName="person-outline" value={registerProject.name} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
+                    <LoginTextArea name="description" value={registerProject.description} handleChange={handleChange} title="Descrição" maxLength={800} />
 
                     <View style={styles.textArea}>
                         <Text style={styles.text1}>Categorais</Text>
@@ -93,20 +146,44 @@ export const RegisterPreject = () => {
                         </ScrollView>
                     </View>
 
-                    <LoginImageProject userImage={registerProject.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
-                    <Attachment userAttachment={registerProject.profile_picture} setUserAttachment={(image: string) => handleUserPicture(image)}/>
-                    <LoginInputNumber name="date" keuboardType="numeric" iconName="today" value={registerProject.date} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={8} />
-                    <LoginInputNumber name="price" keuboardType="numeric" iconName="today" value={registerProject.price} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={40} />
+                    <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={registerProject.images} setUserImage={(image: string) => handleUserPicture(image)} />
+                    {/* <Attachment userAttachment={registerProject.attachments} setUserAttachment={(attachment: string, index : number) => handleUserPicture(attachment, index)}/> */}
+                    <LoginInputNumber name="estimated_deadline" keuboardType="numeric" iconName="today" value={registerProject.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
+                    <LoginInputNumber name="estimated_value" keuboardType="numeric" iconName="today" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={400} />
                    
+
+                   <View style={styles.titleChecked}>
+                        <Text style={styles.textTitle}>Impulsionamento</Text>
+                        <Text style={styles.textTitle2}>(recurso pago)</Text>
+                        <Text style={styles.textTitle3}>Tenha um alcance maior com sua publicação.</Text>
+
+                   </View>
                     <View style={styles.checkBoost}>
                         <View style={styles.checkBoostView}>
-                            <Text>Gratuito</Text>
+                            <Text style={styles.titleCheck}>Padrão</Text>
+                            <Text style={styles.subtitleCheck}>Gratuito</Text>
+                            <Image style={styles.image} source={require("../../../assets/img/ellipse.png")} />
                             <LoginBoost check={check} setCheck={setCheck}  value="G" />
                         </View>
+
                         <View style={styles.checkBoostView}>
-                        <Text>R$50</Text>
+                            <Text style={styles.titleCheck}>Impulsionado</Text>
+                            <Text style={styles.subtitleCheck}>R$50</Text>
+                            <Image style={styles.image} source={require("../../../assets/img/ellipses.png")} />
                             <LoginBoost check={check} setCheck={setCheck} value="P" />
-                        </View>              
+                        </View> 
+
+                        <View style={styles.describleCheck}>
+                            <Text style={styles.describleText}>Com a opção ‘’impulsionado‘’ você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. 
+                            </Text>
+                            <Text style={styles.describleText}>
+                                Incluídos no impulsionamento:
+                                Pagamento único (uma vez para cada publicação);
+                                Maior visibilidade;
+                                Destaque na exibição
+                            </Text>
+                        </View>
+
                     </View>
                 </View>
 
@@ -133,7 +210,6 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.07,
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.05,
-        fontWeight: 'bold',
         color: "#B275FF",
         textAlignVertical: "center",
         backgroundColor:"#fff"
@@ -197,7 +273,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.1 ,
+        height: Dimensions.get('window').height * 0.18 ,
         justifyContent: "flex-end",
         alignItems: "center",
         padding: 10
@@ -219,5 +295,48 @@ const styles = StyleSheet.create({
         borderColor:"#B275FF",
         alignItems: 'center',
         justifyContent:'center'
+    },
+    subtitleCheck:{
+        fontSize: 26,
+        color:"#808080",
+        fontWeight:'300'
+    },
+    titleCheck:{
+        fontSize: 14,
+        fontWeight:'300'
+    },
+    image:{
+        width: Dimensions.get('window').width * 0.25,
+        height: Dimensions.get("window").width * 0.25,
+    },
+    describleCheck:{
+        height: Dimensions.get("window").width * 0.2,
+        alignItems: 'center',
+        justifyContent:'center'
+    },
+    describleText:{
+        fontSize: 10,
+        fontWeight:'300'
+    },
+    titleChecked:{
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get("window").width * 0.08,
+        display:"flex",
+        flexDirection:'row',
+        alignItems:'center',
+        flexWrap:'wrap'
+    },
+    textTitle:{
+        fontSize: 20,
+        paddingEnd: 5,
+    },
+    textTitle2:{
+        fontSize: 20,
+        color:'#ff6666',
+    },
+    textTitle3:{
+        fontSize: 12,
+        color:'#808080',
     }
+
 })
