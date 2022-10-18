@@ -1,13 +1,13 @@
 import React from "react";
-import InputLogin from "../../components/utils/Input/LoginInput";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
-import { RiCalendar2Line } from "react-icons/ri";
+
 
 
 
 const CreateProject = () => {
+
    return (
       <>
          <div className="testeTeste">
@@ -16,34 +16,55 @@ const CreateProject = () => {
                   <div className="title_page_project" >
                      <h1>Criação de projeto</h1>
                   </div>
-                  <div>
-                     <InputLogin valueLogin={""} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"text"} placeholder={"Nome"} icon={""} name={"first_name"} label={"Nome"} className={"input_register"} maxlength={50} />
-                  </div>
-
-
-                  <div className="container_text_area">
-                     <div className="container_label">
-                        <label>Descrição</label>
-                     </div>
+                  <div className="container_input_project">
+                     <label className="subtitulo_projects"> Nome do projeto <span> * </span></label>
                      <div>
-                        <textarea className="description_project" />
+                        <input type="text" maxLength={100} name="teste" />
+                        <span>0/100</span>
+                     </div>
+                  </div>
+
+
+                  <div className="container_description_project">
+                     <label className="subtitulo_projects">Descrição <span> * </span></label>
+                     <div>
+                        <textarea/>
+                        <span>0/800</span>
                      </div>
 
                   </div>
 
-                  <div className="container_categories  container_projects">
+                  <div className="container_categories_projects">
                      <div className="subtitulo_projects">
                         <label> Categorias </label>
                         <p className="paragraph_projects">Selecione a categoria do projeto</p>
                      </div>
                      <div className="categories projects">
                         <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
+                        <ButtonCategories category="teste" name="teste" icon="" id="3" action={() => console.log("testando")} />
 
 
                      </div>
                   </div>
 
-                  <div className="container_subcategories container_projects">
+                  <div className="container_subacategories_projects">
                      <div className="subtitulo_projects">
                         <label> Sub-categorias </label>
                         <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
@@ -52,20 +73,57 @@ const CreateProject = () => {
                         <Checkbox nameOption="teste" />
                         <Checkbox nameOption="outroteste" />
                         <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
+                        <Checkbox nameOption="maisumteste" />
                      </div>
                   </div>
 
-                  <div className="inputs_projects">
-                     <InputLogin valueLogin={""} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"deadline_project"} label={"Prazo estimado de entrega"} className={"input_register"} maxlength={8} />
-                     <p className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto, você pode negociá-la com um prestador depois.</p>
-
-                  </div>
-
-                  <div className="inputs_projects">
+                  <div className="container_input_project">
+                     <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
                      <div>
-                        <InputLogin valueLogin={""} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"number"} placeholder={""} icon={""} name={"value_project"} label={"Valor estimado (BRL)"} className={"input_register"} maxlength={8} />
-                        <p className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</p>
+                        <input type="date" maxLength={100} name="teste" />
                      </div>
+                     <div>
+                        <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto, 
+                           você pode negociá-la com um prestador depois.</label>
+                     </div>
+                  </div>
+
+                  <div className="container_input_project">
+                     <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
+                     <div>
+                        <input  className="input_value_project" type="number" min={0} name="teste" />
+                     </div>
+                     <span>
+                        <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
+                     </span>
                   </div>
 
                </div>

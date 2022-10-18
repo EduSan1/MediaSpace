@@ -8,8 +8,8 @@
 }
 
 .page_create_project {
-   width: 100%;
-   height: auto;
+   width: 80vw;
+   height: 80vh;
    display: flex;
 }
 
@@ -24,7 +24,8 @@
    min-height: 100vh;
    display: flex;
    align-items: flex-start;
-   justify-content: space-between;
+   //justify-content: space-between;
+   gap: 30px;
    flex-direction: column;
 
 }
@@ -61,7 +62,7 @@
 }
 
 .projects {
-   width: 90%;
+   width: 100%;
    height: 100px;
    overflow-x: auto;
    display: flex;
@@ -78,8 +79,14 @@
    background-color: cornflowerblue;
 }
 
-.container_projects {
-   height: 20%;
+.container_categories_projects{
+   height: 10vh;
+   width: 30vw;
+}
+
+.container_subacategories_projects{
+  
+   width: 30vw;
 }
 
 .aligment_button {
@@ -146,8 +153,78 @@
    opacity: 0;
 }
 
-.description_project {
-   resize: none;
-   width: 80%;
-   height: 170px;
+/*INPUT PROJECTS*/
+
+.container_input_project{
+   width: 30vw;
+   display: flex;
+   gap: 5px;
+   flex-direction: column;
+   
+   span{
+      color: #FF6666;
+      font-size: 1.5rem;
+   }
+
+   div{
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+
+      span{
+         padding: 5px;
+         position: absolute;
+         color:#BFBFBF;
+         font-size: 1rem;
+      }
+
+      input{
+         width: 100%;
+         height: 40px;
+         border-radius: 5px;
+         border: 1px solid #BCA7F4
+      }
+   }
+
+  
+}
+
+.container_description_project{
+   width: 30vw;
+   height: 15vh;
+   span{
+      color: #FF6666;
+      font-size: 1.5rem;
+   }
+
+   div{
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+
+      span{
+         padding: 5px;
+         position: absolute;
+         color:#BFBFBF;
+         font-size: 1rem;
+      }
+
+      textarea{
+         resize: none;
+         width: 100%;    
+         height: 170px;
+         border-radius: 5px;
+         border: 1px solid #BCA7F4
+      }
+   }
+}
+
+.input_value_project:after, .input_value_project:before{
+   position: absolute;
+   display: flex;
+   width: 25px;
+   height: 10px;
+   font-size: 10px;
+   pointer-events: none;
+   background: #000;
 }
