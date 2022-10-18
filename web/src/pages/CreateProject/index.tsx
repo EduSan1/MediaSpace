@@ -2,79 +2,33 @@ import React from "react";
 import InputLogin from "../../components/utils/Input/LoginInput";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
-import HeaderPages from "../../components/HeaderPage";
 import InputBtn from "../../components/utils/Button/InputBtn";
+import { RiCalendar2Line } from "react-icons/ri";
+
 
 
 const CreateProject = () => {
    return (
       <>
-         <HeaderPages />
          <div className="testeTeste">
-
-            <div className="container_files">
-               <div className="container_text">
-                  <label className="subtitulo_projects">Imagens</label>
-                  <div>
-                     <p className="paragraph_projects">Imagens de referências ao projeto</p>
-                     <span className="paragraph_projects">0/4</span>
-                  </div>
-
-               </div>
-
-               <div className="container_images">
-                  <div className="aligment_images">
-                     <div className="images">
-                        <img src="" />
-                     </div>
-                     <div className="images">
-                        <img src="" />
-                     </div>
-                  </div>
-
-                  <div className="aligment_images" >
-                     <div className="images">
-                        <img src="" />
-                     </div>
-                     <div className="images">
-                        <img src="" />
-                     </div>
-                  </div>
-
-
-               </div>
-               <div>
-                  <p className="paragraph_projects" >Extensões permitidas: .png, .jpg, .jpeg, .gifs</p>
-               </div>
-               <div>
-                  {/* <input type="file" id="" className='input_btn_upload_photo_project' /> */}
-                  <InputBtn typeInput={'submit'} name={'btn_add_photo'} className={'input_btn_upload_photo_project'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
-               </div>
-
-
-            </div>
-            {/* <div className="page_create_project">
+            <div className="page_create_project">
                <div className="container_informations">
                   <div className="title_page_project" >
                      <h1>Criação de projeto</h1>
                   </div>
-
-                  <div className="inputs_projects">
-                     <label className="subtitulo_projects">
-                        Nome do projeto
-                     </label>
-
-                     <div>
-                        <input type="text" />
-                     </div>
+                  <div>
+                     <InputLogin valueLogin={""} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"text"} placeholder={"Nome"} icon={""} name={"first_name"} label={"Nome"} className={"input_register"} maxlength={50} />
                   </div>
-                  <div className="inputs_projects">
-                     <label className="subtitulo_projects">
-                        Descrição
-                     </label>
-                     <div>
-                        <textarea></textarea>
+
+
+                  <div className="container_text_area">
+                     <div className="container_label">
+                        <label>Descrição</label>
                      </div>
+                     <div>
+                        <textarea className="description_project" />
+                     </div>
+
                   </div>
 
                   <div className="container_categories  container_projects">
@@ -102,39 +56,75 @@ const CreateProject = () => {
                   </div>
 
                   <div className="inputs_projects">
-                     <label className="subtitulo_projects">
-                        Prazo estimado de entrega
-                     </label>
-                     <div>
-                        <input type="date" />
-                        <p className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto, você pode negociá-la com um prestador depois.</p>
-                     </div>
+                     <InputLogin valueLogin={""} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"deadline_project"} label={"Prazo estimado de entrega"} className={"input_register"} maxlength={8} />
+                     <p className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto, você pode negociá-la com um prestador depois.</p>
+
                   </div>
 
                   <div className="inputs_projects">
-                     <label className="subtitulo_projects">
-                        Valor estimado (BRL)
-                     </label>
-                     <p className="paragraph_projects">Defina seu orçamento</p>
                      <div>
-
-                        <input type="date" name="" id="" />
+                        <InputLogin valueLogin={""} hasError={false} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"number"} placeholder={""} icon={""} name={"value_project"} label={"Valor estimado (BRL)"} className={"input_register"} maxlength={8} />
                         <p className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</p>
                      </div>
                   </div>
 
                </div>
+
                <div className="container_informations teste">
-                  <div className="container_imagens"></div>
+                  <div className="container_files">
+                     <div className="container_text">
+                        <label className="subtitulo_projects">Imagens</label>
+                        <div>
+                           <p className="paragraph_projects">Imagens de referências ao projeto</p>
+                           <span className="paragraph_projects">0/4</span>
+                        </div>
+
+                     </div>
+
+                     <div className="container_images">
+                        <div className="aligment_images">
+                           <div className="images">
+                              <img src="" />
+                           </div>
+                           <div className="images">
+                              <img src="" />
+                           </div>
+                        </div>
+
+                        <div className="aligment_images" >
+                           <div className="images">
+                              <img src="" />
+                           </div>
+                           <div className="images">
+                              <img src="" />
+                           </div>
+                        </div>
+
+
+                     </div>
+                     <div>
+                        <p className="paragraph_projects" >Extensões permitidas: .png, .jpg, .jpeg, .gifs</p>
+                     </div>
+                     <div>
+                        <label className="inputFotoTeste">
+                           <input type="file" id="" />
+                        </label>
+
+                        {/* <InputBtn typeInput={'submit'} name={'btn_add_photo'} className={'input_btn_upload_photo_project'} valueBtn={'Selecionar imagem'} onClick={() => { }} /> */}
+                     </div>
+
+
+                  </div>
                   <div className="container_anexos"></div>
                   <div className="container_impulsionamento"></div>
                </div>
-            </div> */}
-            {/* <div className="aligment_button">
-               <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => { }} />
-            </div> */}
+            </div> </div>
 
-         </div>
+         {/* 
+            <div className="aligment_button">
+               <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => { }} />
+            </div>
+         */}
       </>
    )
 }

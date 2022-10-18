@@ -21,13 +21,12 @@
 
 .container_informations {
    width: 50%;
-   height: auto;
+   min-height: 100vh;
    display: flex;
-   background-color: crimson;
    align-items: flex-start;
    justify-content: space-between;
    flex-direction: column;
-   gap: 10%;
+
 }
 
 .container_imagens {
@@ -92,7 +91,7 @@
 }
 
 /* Style da div de carregar imagens*/
-.container_files{
+.container_files {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -104,19 +103,19 @@
    border: 1px solid $lavander;
 }
 
-.container_text{
+.container_text {
    padding-left: 20px;
    width: 100%;
    display: flex;
    flex-direction: column;
 }
 
-.container_text div{
+.container_text div {
    display: flex;
    justify-content: space-around;
 }
 
-.container_images{
+.container_images {
    display: flex;
    width: 50%;
    height: 50%;
@@ -124,15 +123,31 @@
    gap: 5px;
 }
 
-.aligment_images{ 
+.aligment_images {
    width: 100%;
    height: 50%;
    display: flex;
    gap: 5px;
 }
 
-.images{
+.images {
    background-color: crimson;
    width: 50%;
    height: 100%;
+}
+
+.inputFotoTeste {
+   background-color: chocolate;
+   height: 50px;
+   width: 100px;
+}
+
+.inputFotoTeste input {
+   opacity: 0;
+}
+
+.description_project {
+   resize: none;
+   width: 80%;
+   height: 170px;
 }
