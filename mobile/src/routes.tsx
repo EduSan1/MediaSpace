@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Project from "./pages/Project";
 import Messages from "./pages/Messages";
+import TechnicalRequirements from "./pages/TechnicalRequirements";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Feed from "./pages/Feed";
 import {View, StyleSheet, Image, } from "react-native";
@@ -95,6 +96,7 @@ export default function Routes(){
 
             }
         }/>
+        <Tab.Screen name="cwnfopwe" component={TechnicalRequirements}/>
     </Tab.Navigator>
     )
 

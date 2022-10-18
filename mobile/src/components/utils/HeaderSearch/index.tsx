@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View, Image} from "react-native"
+import { Text, TextInput, StyleSheet, Dimensions, Pressable, ActivityIndicator, View, Image} from "react-native"
 
 
 interface IHeaderSearch{
@@ -11,7 +11,7 @@ export default function HeaderSearch({label}:IHeaderSearch){
         <View style={styles.style}>
             <View style={styles.formContainer}>
                 <Image style={styles.iconSearch} source={require('../../../../assets/icons/searchIcon.png')}/>
-            <Text>{label}</Text>
+            <TextInput placeholder="Pesquisar..."></TextInput>
             </View>
             <Image style={styles.iconProfile }source={require('../../../../assets/icons/ProfileTestIcon.png')} />
             <View>
@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
         height:Dimensions.get('window').width * 0.08,
         borderRadius:100,
         marginHorizontal:Dimensions.get('window').height * 0.01,
+        
+    },
+    placeholder:{
         
     }
 })
