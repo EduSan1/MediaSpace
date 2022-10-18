@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 const projectRequirementRoute = Router()
+//const projectRequirementController = new ProjectRequirementController()
 
 projectRequirementRoute.get("/", () => "rota de getAll")
 projectRequirementRoute.get("/:projectRequirementId", () => "rota de getById")
