@@ -9,16 +9,29 @@ import { LoginImage } from "../../components/utils/LoginImage"
 import { LoginImageProject } from "../../components/utils/LoginImageProject"
 import { Attachment } from "../../components/utils/Attachment"
 import { LoginBoost } from "../../components/utils/LoginBoost"
+import RegisterFreelancerPage from "../RegisterFreelancerPage"
+import { RegisterProjectDriven } from "../../components/utils/RegisterProjectDriven"
 
-export const RegisterPreject = () => {
+interface IRegisterProject {
+    navigation : any
+}
 
-    const [check, setCheck] = useState("")
+export const RegisterPreject = ({navigation} : IRegisterProject) => {
     const [imageIndex, setImageIndex] = useState(0)
+
+    const dateMask = (value: string) =>{
+        return value
+        .replace(/\D/g, '')
+        .replace(/(\d{2})(\d)/, "$1/$2")
+        .replace(/(\d{2})(\d{4})/, "$1/$2")
+    }
+
+
     const [registerProject, setRegisterProject] = (useState)({
-        name: "dasdasd",
-        description: "asdasdasd",
-        estimated_value: 10.50,
-        estimated_deadline: "2022-12-31",
+        name: "",
+        description: "",
+        estimated_value: "",
+        estimated_deadline: "",
         images: [
             {
                 url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
@@ -61,13 +74,23 @@ export const RegisterPreject = () => {
             id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
         }
     })
+
     const handleChange = (text: string, name: string) => {
-        setRegisterProject(
-            {
-                ...registerProject,
-                [name]: text
-            }
-        )
+        if (name == "estimated_deadline") {
+            setRegisterProject(
+                {
+                    ...registerProject,
+                    [name]: dateMask(text)
+                }
+            )
+        }else{
+            setRegisterProject(
+                {
+                    ...registerProject,
+                    [name]: text
+                }
+            )
+        }
     }
 
     const handleUserPicture = (text: any) => {
@@ -89,9 +112,7 @@ export const RegisterPreject = () => {
     const [hasError, setHasError] = useState(false)
     const [registerProjectLoad, setRegisterProjectLoad] = useState(false)
 
-    useEffect(() => {
-        console.log("imag1231232e =>", registerProject.images)
-    },[registerProject])
+    useEffect(() => {},[registerProject])
 
     return (
     <>
@@ -104,87 +125,61 @@ export const RegisterPreject = () => {
                 style={styles.container}>
                 <Text style={styles.title}>{`Criação de projeto`}</Text>
                 <View style={styles.view}>
-                    <LoginInput name="name" iconName="person-outline" value={registerProject.name} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
+                    <LoginInputNumber type="default" name="name" iconName="person-outline" value={registerProject.name} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
                     <LoginTextArea name="description" value={registerProject.description} handleChange={handleChange} title="Descrição" maxLength={800} />
 
-                    <View style={styles.textArea}>
-                        <Text style={styles.text1}>Categorais</Text>
-                    </View>
 
-                    <View style={styles.areaContainer1}>
+                    <View style={styles.areaContainer}>
+
+                    <View style={styles.textArea}>
+                        <Text style={styles.text}>Categorais</Text>
+                    </View>
                         <ScrollView
                             horizontal={true}
                             style={styles.sectionCategory}>
 
-                            <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent title="Figma" id="Figma" />
-                            <CheckboxComponent title="3D" id="3d" />
-                            <CheckboxComponent title="JavaScrpit" id="js" />
-                            <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent title="Figma" id="Figma" />
-                            <CheckboxComponent title="3D" id="3d" />
-                            <CheckboxComponent title="JavaScrpit" id="js" />
-                            <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
+                            <CheckboxComponent onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
                         </ScrollView>
                     </View>
 
+
+
+                    <View style={styles.areaContainer}>
+
                     <View style={styles.textArea}>
-                        <Text style={styles.text1}>Sub-Categorais</Text>
+                        <Text style={styles.text}>Sub-Categorais</Text>
                     </View>
 
-                    <View style={styles.areaContainer1}>
-                        <ScrollView style={styles.sectionSubCategory}>
-                            <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent title="Figma" id="Figma" />
-                            <CheckboxComponent title="3D" id="3d" />
-                            <CheckboxComponent title="JavaScrpit" id="js" />
-                            <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent title="Figma" id="Figma" />
-                            <CheckboxComponent title="3D" id="3d" />
-                            <CheckboxComponent title="JavaScrpit" id="js" />
-                            <CheckboxComponent title="Adobe Photoshop" id="Adobe Photoshop" />
+                        <ScrollView 
+                            horizontal={true}
+                            style={styles.sectionCategory}>
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
+                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
                         </ScrollView>
                     </View>
 
                     <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={registerProject.images} setUserImage={(image: string) => handleUserPicture(image)} />
                     {/* <Attachment userAttachment={registerProject.attachments} setUserAttachment={(attachment: string, index : number) => handleUserPicture(attachment, index)}/> */}
-                    <LoginInputNumber name="estimated_deadline" keuboardType="numeric" iconName="today" value={registerProject.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
-                    <LoginInputNumber name="estimated_value" keuboardType="numeric" iconName="today" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={400} />
+                    <LoginInputNumber type="numeric" name="estimated_deadline"  iconName="today" value={registerProject.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
+                    <LoginInputNumber type="numeric" name="estimated_value"  iconName="today" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={400} />
                    
-
-                   <View style={styles.titleChecked}>
-                        <Text style={styles.textTitle}>Impulsionamento</Text>
-                        <Text style={styles.textTitle2}>(recurso pago)</Text>
-                        <Text style={styles.textTitle3}>Tenha um alcance maior com sua publicação.</Text>
-
-                   </View>
-                    <View style={styles.checkBoost}>
-                        <View style={styles.checkBoostView}>
-                            <Text style={styles.titleCheck}>Padrão</Text>
-                            <Text style={styles.subtitleCheck}>Gratuito</Text>
-                            <Image style={styles.image} source={require("../../../assets/img/ellipse.png")} />
-                            <LoginBoost check={check} setCheck={setCheck}  value="G" />
-                        </View>
-
-                        <View style={styles.checkBoostView}>
-                            <Text style={styles.titleCheck}>Impulsionado</Text>
-                            <Text style={styles.subtitleCheck}>R$50</Text>
-                            <Image style={styles.image} source={require("../../../assets/img/ellipses.png")} />
-                            <LoginBoost check={check} setCheck={setCheck} value="P" />
-                        </View> 
-
-                        <View style={styles.describleCheck}>
-                            <Text style={styles.describleText}>Com a opção ‘’impulsionado‘’ você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. 
-                            </Text>
-                            <Text style={styles.describleText}>
-                                Incluídos no impulsionamento:
-                                Pagamento único (uma vez para cada publicação);
-                                Maior visibilidade;
-                                Destaque na exibição
-                            </Text>
-                        </View>
-
-                    </View>
+                    <RegisterProjectDriven/>
+     
                 </View>
 
                 <View style={styles.button}>
@@ -207,7 +202,7 @@ export const RegisterPreject = () => {
 const styles = StyleSheet.create({
     title: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.07,
+        height: Dimensions.get('window').height * 0.1,
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.05,
         color: "#B275FF",
@@ -236,7 +231,7 @@ const styles = StyleSheet.create({
     },
     view: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2.7,
+        height: Dimensions.get('window').height * 2.2,
         justifyContent: "space-between",
         alignItems: "center",
         padding: 20
@@ -244,24 +239,24 @@ const styles = StyleSheet.create({
     textArea: {
         width: "100%"
     },
-    text1: {
-        fontSize: Dimensions.get("window").width * 0.04,
-        color: "#000",
+    text: {
+        backgroundColor: "#fff",
+        position: "absolute",
+        paddingLeft: 5,
+        paddingRight: 5,
+        color: "#979797",
+        top: -14,
+        left: 10,
+        fontSize: 14
     },
-    areaContainer1: {
+    areaContainer: {
         width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.20,
-        marginBottom: 15,
+        height: Dimensions.get('window').height * 0.2,
         borderWidth: 1,
-        borderColor: "#DEDEDE",
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        flexWrap:'wrap'
-    },
-    sectionSubCategory: {
-        flexDirection: "row",
-        width: Dimensions.get('window').width * 0.7,
+        borderColor: "#D3C5F8",
+        borderRadius: 10,
+        display: 'flex',
+        flexWrap: 'wrap'
 
     },
     sectionCategory: {
@@ -269,7 +264,6 @@ const styles = StyleSheet.create({
         display:'flex',
         flexWrap:'wrap',
         flexDirection:'row',
-    
     },
     button: {
         width: Dimensions.get('window').width,

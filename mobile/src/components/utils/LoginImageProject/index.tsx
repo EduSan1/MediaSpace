@@ -87,11 +87,9 @@ export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadIm
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.4,
+        height: Dimensions.get('window').height * 0.5,
         borderWidth: 1,
         borderRadius: 10,
-        paddingLeft: 10,
-        marginBottom: 10,
         display: "flex",
         justifyContent: "space-evenly",
         position: "relative",
@@ -109,19 +107,20 @@ const styles = StyleSheet.create({
         left: 10
     },
     containerImage:{
-        width: Dimensions.get('window').width * 0.79,
-        justifyContent: 'space-between',
+        width: Dimensions.get('window').width * 0.8,
         display:'flex',
         flexWrap:'wrap',
         flexDirection:'row',        
     },
     image: {
-        width: Dimensions.get("window").width * 0.39,
-        height: Dimensions.get("window").width * 0.25,
+        width: Dimensions.get("window").width * 0.4,
+        height: Dimensions.get("window").width * 0.35,
         resizeMode: 'contain',
         display: 'flex',
         alignItems:'center',
         marginBottom: 10,
+        borderColor: '#000',
+        
     },
     text: {
         fontSize: 10,

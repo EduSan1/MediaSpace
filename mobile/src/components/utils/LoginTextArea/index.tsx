@@ -27,9 +27,9 @@ export const LoginTextArea = ({ title, value, name, handleChange, maxLength }: I
 
 const styles = StyleSheet.create({
     container: {
-        width: Dimensions.get('window').width * 0.7,
+        width: Dimensions.get('window').width * 0.9,
         height: Dimensions.get('window').height * 0.239 ,
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 10,
         paddingLeft: 10,
         marginBottom: 5,
@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
         left: 10
     },
     input: {
-        width: Dimensions.get('window').width * 0.6,
-        height: Dimensions.get('window').height * 0.18,
+        width: Dimensions.get('window').width * 0.2,
+        height: Dimensions.get('window').height * 0.9,
         color: "#979797",
         textAlignVertical: "top"
     },
