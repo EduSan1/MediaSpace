@@ -37,6 +37,12 @@ export class ProjectRepository {
         return await this._.findOne({
             where: {
                 id
+            },
+            relations: {
+                interest: true,
+                sub_categories: true,
+                attachments: true,
+                requirements: true
             }
         })
     }

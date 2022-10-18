@@ -14,6 +14,9 @@ export class InterestORM {
     @Column()
     all_members_accept: boolean
 
+    @Column({ default: false })
+    is_selected: boolean
+
     @ManyToOne(() => TeamORM, team => team.interest, { eager: true })
     team: TeamORM
 

@@ -45,23 +45,23 @@ export class ProjectORM {
     @JoinTable()
     categories: CategoryORM[]
 
-    @ManyToMany(() => SubCategoryORM, { eager: true })
+    @ManyToMany(() => SubCategoryORM)
     @JoinTable()
     sub_categories: SubCategoryORM[]
 
     @OneToMany(() => ProjectImageORM, image => image.project, { eager: true })
     images: ProjectImageORM[]
 
-    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project, { eager: true })
+    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project)
     attachments: ProjectAttachmentORM[]
 
     @OneToMany(() => ProjectManagementORM, managment => managment.project)
     management: ProjectManagementORM[]
 
-    @OneToMany(() => InterestORM, interestMember => interestMember.project, { eager: true })
+    @OneToMany(() => InterestORM, interestMember => interestMember.project)
     interest: InterestORM[]
 
-    @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project, { eager: true })
+    @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project)
     requirements: ProjectRequirementORM[]
 
     @CreateDateColumn()

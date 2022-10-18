@@ -12,4 +12,8 @@ export class MemberRepository {
     create = async (entity: any) => {
         return await this._.save(entity)
     }
+
+    update = async (entity: MemberORM) => {
+        return await this._.save(entity)
+    }
 }

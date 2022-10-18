@@ -11,7 +11,7 @@ projectRoute.put("/:projectId", projectController.update)
 projectRoute.post("/disable/:projectId", projectController.disable)
 projectRoute.post("/registerInterest/:projectId", projectController.registerInterest)
 projectRoute.post("/freelancersIntersted/:projectId", () => "rota de listar os freelancer interessados  no projeto")
-projectRoute.post("/setFreelancer/:projectId", () => "rota de selecionar freelancer do projeto")
+projectRoute.post("/selectFreelancer/:projectId", projectController.selectFreelancer)
 projectRoute.post("/confirm/:projectRequirementId", () => "rota de confirmação de requisito")
 projectRoute.post("/startProject/:projectRequirementId", () => "rota de confirmação de inicio de projeto")
 

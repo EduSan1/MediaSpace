@@ -20,7 +20,7 @@ export class CategoryORM {
     @ManyToMany(() => TeamORM)
     teams: TeamORM[]
 
-    @OneToMany(() => SubCategoryORM, subCategory => subCategory.category, { eager: true })
+    @OneToMany(() => SubCategoryORM, subCategory => subCategory.category)
     sub_categories: SubCategoryORM[]
 
     @CreateDateColumn()

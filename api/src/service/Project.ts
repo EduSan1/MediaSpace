@@ -230,4 +230,29 @@ export class ProjectService {
         }
     }
 
+    selectFreelancer = async (projectId: string, body: { freelancerId: string }) => {
+
+        const project = await this.getById(projectId)
+
+        // cosnt freelancer = await this.
+
+        const interest = project.data.interest.find((interest) => body.freelancerId === interest.team.id)
+
+
+        interest.members.map(async (member: any) => {
+            member.is_selected === true
+            await this.memberRepository.update(member)
+        })
+
+
+        return {
+            message: "Função de times não continue",
+            interest: interest,
+            memberId: interest.members,
+            statusCode: 200
+
+        };
+
+    }
+
 }
