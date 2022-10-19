@@ -1,10 +1,8 @@
 import React from "react";
 import SearchBar from "../../components/HeaderPage/Search";
-import LoginSpace from "../../components/Login";
-import SpaceBackground from "../../components/SpaceBackground/index";
 import NavegationBar from "../../components/utils/navegation";
 
-const HomePage = () => {
+const Menssagens = () => {
 
     return (
 
@@ -14,14 +12,8 @@ const HomePage = () => {
                 <NavegationBar />
                 <div className="Container">
                     <SearchBar />
-                    <section className="section_main"> main</section>
+                    <section className="section_main"> Messagens</section>
                 </div>
-
-
-
-
-
-
             </main>
 
         
@@ -29,4 +21,4 @@ const HomePage = () => {
     );
 }
 
-export default HomePage;
+export default Menssagens;

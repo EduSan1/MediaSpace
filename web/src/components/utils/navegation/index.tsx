@@ -62,11 +62,11 @@ const NavegationBar = () => {
                 <div className={!open ? "Container_icon_nav" : "Container_icon_nav_open"}>
                     <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
                         <ul>
-                            <li> <Link to={'/'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '}  /></Link></li>
-                            <li> <Link to={'/'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
-                            <li> <Link to={'/'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
-                            <li> <Link to={'/'} className='Link_NextPage'><IconBar Icon={<MdRssFeed />} text={'Mensagens'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
-                            <li> <Link to={'/'} className='Link_NextPage'><IconBar Icon={<BiUser />} text={'Perfil'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '}  /></Link></li>
+                            <li> <Link to={'/projects'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/Menssagens'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Mensagens'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed/>} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/Perfil'} className='Link_NextPage'><IconBar Icon={<BiUser />} text={'Perfil'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
 
                         </ul>
                     </div>
