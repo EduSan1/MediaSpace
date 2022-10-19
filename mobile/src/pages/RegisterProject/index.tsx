@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react"
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from "react-native"
-import { LoginInput } from "../../components/utils/LoginInput"
 import { LoginButton } from "../../components/utils/LoginButton"
 import { LoginTextArea } from "../../components/utils/LoginTextArea"
-import { CheckboxComponent } from "../../components/utils/subCategory"
 import { LoginInputNumber } from "../../components/utils/LoginInputNumber"
-import { LoginImage } from "../../components/utils/LoginImage"
 import { LoginImageProject } from "../../components/utils/LoginImageProject"
-import { Attachment } from "../../components/utils/Attachment"
-import { LoginBoost } from "../../components/utils/LoginBoost"
-import RegisterFreelancerPage from "../RegisterFreelancerPage"
 import { RegisterProjectDriven } from "../../components/utils/RegisterProjectDriven"
+import { CheckboxComponent } from "../../components/utils/subCategory";
+import { CategoryButton } from "../../components/utils/CategoryButton";
+import api from "../../../service";
 
 interface IRegisterProject {
     navigation : any
+    userId: any
 }
 
-export const RegisterPreject = ({navigation} : IRegisterProject) => {
+export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
     const [imageIndex, setImageIndex] = useState(0)
+    const [categories, setCategories] = useState([])
 
     const dateMask = (value: string) =>{
         return value
@@ -29,7 +28,7 @@ export const RegisterPreject = ({navigation} : IRegisterProject) => {
 
     const [registerProject, setRegisterProject] = (useState)({
         name: "",
-        description: "",
+        description: "vfddh6y",
         estimated_value: "",
         estimated_deadline: "",
         images: [
@@ -71,9 +70,54 @@ export const RegisterPreject = ({navigation} : IRegisterProject) => {
             }
         ],
         user: {
-            id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+            id:""
         }
     })
+    const addToProject = (id: string, name: "sub_categories" | "categories") => {
+        setRegisterProject({
+            ...registerProject, [name]: [
+                ...registerProject[name], { id: id }
+            ]
+        })
+    }
+
+    const removeFromProject = (object: [{}], name: "sub_categories" | "categories") => {
+        setRegisterProject({ ...registerProject, [name]: object })
+    }
+    const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
+
+    const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
+        const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
+
+        if (action === "ADD") {
+            setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
+            addToProject(categoryFilter.id, "categories")
+        } else {
+            const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
+            setSubategoriesToRender(categoryFilter)
+            const categoryToRemove = categoryFilter.map((category: any) => {
+                return { id: category.id }
+            })
+            removeFromProject(categoryToRemove, "categories")
+        }
+    }
+
+    const removeSubcategory = (id: string) => {
+        // console.log(id)
+        const subCategoriesFilter = registerProject.sub_categories.filter((subcategory: any) => subcategory.id !== id)
+        setRegisterProject({ ...registerProject, sub_categories: subCategoriesFilter })
+    }
+
+    // useEffect(() => {
+    //     console.log("registerProject => ", registerProject)
+    // }, [registerProject])
+
+    // useEffect(() => {
+    //     api.get("/category").then((res: any) => {
+    //         setCategories(res.data)
+    //     })
+    //     console.log(userId)
+    // }, [])
 
     const handleChange = (text: string, name: string) => {
         if (name == "estimated_deadline") {
@@ -129,52 +173,8 @@ export const RegisterPreject = ({navigation} : IRegisterProject) => {
                     <LoginTextArea name="description" value={registerProject.description} handleChange={handleChange} title="Descrição" maxLength={800} />
 
 
-                    <View style={styles.areaContainer}>
-
-                    <View style={styles.textArea}>
-                        <Text style={styles.text}>Categorais</Text>
-                    </View>
-                        <ScrollView
-                            horizontal={true}
-                            style={styles.sectionCategory}>
-
-                            <CheckboxComponent onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
-                        </ScrollView>
-                    </View>
-
-
-
-                    <View style={styles.areaContainer}>
-
-                    <View style={styles.textArea}>
-                        <Text style={styles.text}>Sub-Categorais</Text>
-                    </View>
-
-                        <ScrollView 
-                            horizontal={true}
-                            style={styles.sectionCategory}>
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Figma" id="Figma" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="3D" id="3d" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="JavaScrpit" id="js" />
-                            <CheckboxComponent  onClickFunction={(check : boolean) => console.log("")} title="Adobe Photoshop" id="Adobe Photoshop" />
-                        </ScrollView>
-                    </View>
-
                     <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={registerProject.images} setUserImage={(image: string) => handleUserPicture(image)} />
-                    {/* <Attachment userAttachment={registerProject.attachments} setUserAttachment={(attachment: string, index : number) => handleUserPicture(attachment, index)}/> */}
+                    {/* <Attachment isActive={imageIndex == 4 ? false : true} userAttachment={registerProject.attachments} setUserAttachment={(attachment: string) => handleUserPicture(attachment)}/> */}
                     <LoginInputNumber type="numeric" name="estimated_deadline"  iconName="today" value={registerProject.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
                     <LoginInputNumber type="numeric" name="estimated_value"  iconName="today" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={400} />
                    

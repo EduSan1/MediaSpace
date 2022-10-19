@@ -4,40 +4,26 @@ import * as ImagePicker from 'expo-image-picker'
 import { firebase } from '../../../constants/firebase'
 import { LoginButtonUpload } from '../LoginButtonUpload'
 import { async } from '@firebase/util'
+import * as DocumentPicker from 'expo-document-picker';
 
 interface ILoadAttachment {
     userAttachment: { url: string; }[],
-    setUserAttachment: (attachment: string, index: number) => void
+    setUserAttachment: (attachment: string) => void
+    isActive : boolean
 }
 
-export const Attachment = ({userAttachment, setUserAttachment}: ILoadAttachment) => {
+export const Attachment = ({userAttachment, setUserAttachment, isActive}: ILoadAttachment) => {
+    const [singleFile, setSingleFile] = useState(false)
     
-    const [uploading, setUploading] = useState(false)
-    
-    const serachAttachment = async () => {
+    const uploadFiles = async() => {
+        if(singleFile != null){
+            const fileToUpload = singleFile;
+            const data = new FormData();
+            data.append('name', 'File Upload');
 
-
-
+        }
     }
 
-    return(
-        <View style={styles.container}>
-            <Text style={styles.inputTitle}>Anexos</Text>
-
-            <View style={styles.view}> 
-
-            <ScrollView style={styles.scroll}>   
-            <View></View>            
-            </ScrollView>
-
-            </View>
-                        {uploading ?
-                <ActivityIndicator size='large' color="#B275FF"/>
-                :
-                <LoginButtonUpload type="dark" action={() => serachAttachment()} title="Selecionar Arquivo" />
-            }
-        </View>
-    )
 }
 
 const styles = StyleSheet.create({
@@ -66,7 +52,6 @@ const styles = StyleSheet.create({
     view:{
         width: Dimensions.get('window').width * 0.8,
         height: Dimensions.get('window').height * 0.30,
-        backgroundColor:'#232323',
         display:'flex',
     },
     scroll:{
