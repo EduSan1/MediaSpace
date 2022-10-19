@@ -28,7 +28,7 @@ const CreateProject = () => {
                   <div className="container_description_project">
                      <label className="subtitulo_projects">Descrição <span> * </span></label>
                      <div>
-                        <textarea/>
+                        <textarea />
                         <span>0/800</span>
                      </div>
 
@@ -111,7 +111,7 @@ const CreateProject = () => {
                         <input type="date" maxLength={100} name="teste" />
                      </div>
                      <div>
-                        <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto, 
+                        <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
                            você pode negociá-la com um prestador depois.</label>
                      </div>
                   </div>
@@ -119,7 +119,7 @@ const CreateProject = () => {
                   <div className="container_input_project">
                      <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
                      <div>
-                        <input  className="input_value_project" type="number" min={0} name="teste" />
+                        <input className="input_value_project" type="number" min={0} name="teste" />
                      </div>
                      <span>
                         <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
