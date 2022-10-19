@@ -57,11 +57,6 @@ export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegi
         setFreelancer({ ...freelancer, sub_categories: subCategoriesFilter })
     }
 
-    useEffect(() => {
-        console.log("freelancer => ", freelancer)
-    }, [freelancer])
-
-
     const registerFreelancer = () => {
         setIsLoad(true)
         api.post("/freelancer", freelancer).then((res: any) => {
@@ -79,7 +74,6 @@ export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegi
         api.get("/category").then((res: any) => {
             setCategories(res.data)
         })
-        console.log(userId)
     }, [])
 
     return (

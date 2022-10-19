@@ -31,10 +31,6 @@ const LoginSpace = () => {
 
   };
 
-  useEffect(() => {
-    console.log(diceLogin)
-  }, [diceLogin]);
-
 
   const [hasError, setHasError] = React.useState(false);
 
@@ -82,9 +78,6 @@ const LoginSpace = () => {
   const loginUser = async () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
-      console.log(res.data)
-      const data = res.data;
-      console.log(res.data.is_logged)
 
       if (res.data.is_logged) {
         logIntUser(res.data.userDetails);
