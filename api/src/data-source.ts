@@ -8,12 +8,12 @@ import { PhoneORM } from "./entity/Phone"
 import { ProjectORM } from "./entity/Project"
 import { ProjectAttachmentORM } from "./entity/ProjectAttachment"
 import { ProjectImageORM } from "./entity/ProjectImage"
-import { ProjectManagementORM } from "./entity/ProjectManagment"
+import { ProjectManagementORM } from "./entity/ProjectManagement"
 import { ProjectMemberORM } from "./entity/ProjectMember"
 import { ProjectRequirementORM } from "./entity/ProjectRequirement"
 import { SubCategoryORM } from "./entity/SubCategory"
 import { TeamORM } from "./entity/team"
-import { TeamProjectManagementORM } from "./entity/TeamProjectManagment"
+import { TeamProjectManagementORM } from "./entity/TeamProjectManagement"
 import { TypePaymentORM } from "./entity/TypePayment"
 import { UserORM } from "./entity/User"
 import { UserTeamORM } from "./entity/UserTeam"
@@ -23,7 +23,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "052214100309",
+    password: "12345678",
     database: "db_media_space",
     synchronize: true,
     logging: false,

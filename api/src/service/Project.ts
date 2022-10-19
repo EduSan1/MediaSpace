@@ -9,6 +9,7 @@ import { ProjectRepository } from "../repository/Project";
 import { ProjectAttachmentRepository } from "../repository/ProjectAtachment";
 import { ProjectImageRepository } from "../repository/ProjectImage";
 import { ProjectManagementRepository } from "../repository/ProjectManagement";
+import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
 
 interface IImage {
     url: string
@@ -28,7 +29,8 @@ export class ProjectService {
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
-    private projectManagement: ProjectManagementRepository
+    private projectManagementRepository: ProjectManagementRepository
+    private teamProjectMemberRepository: TeamProjectManagementRepository
 
     constructor(repo: ProjectRepository) {
         this._ = repo
@@ -37,7 +39,8 @@ export class ProjectService {
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
-        this.projectManagement = new ProjectManagementRepository()
+        this.projectManagementRepository = new ProjectManagementRepository()
+        this.teamProjectMemberRepository = new TeamProjectManagementRepository()
     }
 
     create = async (entity: ProjectDomain) => {
@@ -243,7 +246,7 @@ export class ProjectService {
 
         const interest: InterestORM = project.data.interest.find((interest) => body.freelancerId === interest.team.id)
 
-        const members = interest.members.map(async (member: MemberORM) => {
+        interest.members.map(async (member: MemberORM) => {
             member.is_selected = true
             return await this.memberRepository.update(member)
         })
@@ -263,18 +266,51 @@ export class ProjectService {
             };
         } else {
 
-            // await this.projectManagement.update()
+            const timeElapsed = Date.now();
+            const today = new Date(timeElapsed);
 
+            // const projectManagementToSend = {
+            //     payment_confirmed: true,
+            //     payment_date: today.toISOString(),
+            //     project: {
+            //         id: project.data.id
+            //     },
+            //     payment_type: {
+            //         id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
+            //     }
+            // }
+
+            // const projectManagement = await this.projectManagementRepository.create(projectManagementToSend)
+
+            // const teamProjectManagementToSend = {
+            //     payment_confirmed: true,
+            //     payment_date: today.toISOString(),
+            //     project: {
+            //         id: project.data.id
+            //     },
+            //     payment_type: {
+            //         id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
+            //     }
+            // }
+
+            // const teamProjectManagement = await this.teamProjectMemberRepository.create(teamProjectManagementToSend)
+
+            const members = interests.members.map(async (member: any) => await this.memberRepository.getById(member.id))
+
+
+
+            return {
+                message: "Prestador escolhido com sucesso",
+                // projectManagement: projectManagement,
+                // teamProjectManagement: teamProjectManagement,
+                haveManagement: haveManagement,
+                interest: interests,
+                memberId: members,
+                statusCode: 200
+            };
         }
 
-        return {
-            message: "Função de times não continue",
-            haveManagement: haveManagement,
-            interest: interests,
-            memberId: members,
-            statusCode: 200
 
-        };
 
     }
 

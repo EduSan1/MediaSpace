@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { MemberORM } from "./Member";
 import { ProjectORM } from "./Project";
-import { ProjectManagementORM } from "./ProjectManagment";
+import { ProjectManagementORM } from "./ProjectManagement";
 import { TeamORM } from "./team";
 import { UserORM } from "./User";
 

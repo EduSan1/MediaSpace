@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, Up
 import { CategoryORM } from "./Category"
 import { InterestORM } from "./Interest"
 import { SubCategoryORM } from "./SubCategory"
-import { TeamProjectManagementORM } from "./TeamProjectManagment"
+import { TeamProjectManagementORM } from "./TeamProjectManagement"
 import { UserTeamORM } from "./UserTeam"
 
 @Entity({ name: "tb_team" })
@@ -46,8 +46,8 @@ export class TeamORM {
     @JoinTable()
     sub_categories: SubCategoryORM[]
 
-    @OneToMany(() => TeamProjectManagementORM, teamProjectManagment => teamProjectManagment.team)
-    team_project_managment: TeamProjectManagementORM[]
+    @OneToMany(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.team)
+    team_project_management: TeamProjectManagementORM[]
 
     @OneToMany(() => InterestORM, interestMember => interestMember.project)
     interest: InterestORM[]

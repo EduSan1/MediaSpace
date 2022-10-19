@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { ProjectManagementORM } from "../entity/ProjectManagment";
+import { ProjectManagementORM } from "../entity/ProjectManagement";
 
 export class ProjectManagementRepository {
     private _: any

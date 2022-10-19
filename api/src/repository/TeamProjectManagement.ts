@@ -1,0 +1,18 @@
+import { AppDataSource } from "../data-source";
+import { TeamProjectManagementORM } from "../entity/TeamProjectManagement";
+
+export class TeamProjectManagementRepository {
+    private _: any
+
+    constructor() {
+        this._ = AppDataSource.getRepository(TeamProjectManagementORM)
+    }
+
+    create = async (entity: any) => {
+        return await this._.save(entity)
+    }
+
+    update = async (entity: TeamProjectManagementORM) => {
+        return await this._.save(entity)
+    }
+}
