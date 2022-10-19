@@ -2,6 +2,7 @@ import React from "react";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
+import BoostButton from "./components/BoostButton";
 
 
 
@@ -128,7 +129,7 @@ const CreateProject = () => {
 
                </div>
 
-               <div className="container_informations teste">
+               <div className="container_informations">
                   <div className="container_files">
                      <div className="container_text">
                         <label className="subtitulo_projects">Imagens</label>
@@ -174,7 +175,30 @@ const CreateProject = () => {
 
                   </div>
                   <div className="container_anexos"></div>
-                  <div className="container_impulsionamento"></div>
+                  <div className="container_boost">
+                     <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
+                     <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
+                     <div className="teste">
+                        <div className="container_boost_buttons">
+                           <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={""} label={""} />
+                           <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={""} label={""} />
+                        </div>
+                        <div className="container_texts_boost">
+                           <p>Com a opção "impulsionado" você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. </p>
+                           <p>Incluídos no Impulsionamento
+                              <ul>
+                                 <li>Pagamento único (uma vez para cada publicação)</li>
+                                 <li>Maior visibilidade</li>
+                                 <li>Destaque na exibição</li>
+                              </ul>
+                           </p>
+
+                           <p>Recomendado para grandes projetos.</p>
+                        </div>
+
+                     </div>
+
+                  </div>
                </div>
             </div> </div>
 
