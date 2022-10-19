@@ -5,7 +5,7 @@ import subCategoryRoute from "./routes/SubCategory"
 import freelancerRoute from "./routes/Freelancer"
 import userRouter from "./routes/user"
 import projectRoute from "./routes/Project"
-//import projectRequirementRoute from "./routes/projectRequirementRoute"
+import projectRequirementsRoute from "./routes/ProjectRequirements"
 
 const router = Router()
 
@@ -21,7 +21,7 @@ router.use("/category", categoryRoute)
 router.use("/subCategory", subCategoryRoute)
 router.use("/freelancer", freelancerRoute)
 router.use("/project", projectRoute)
-//router.use("/requirement", projectRequirementRoute)
+router.use("/requirement", projectRequirementsRoute)
 
 
 export default router

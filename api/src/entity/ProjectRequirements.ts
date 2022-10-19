@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ProjectORM } from "./Project";
 
 @Entity({ name: "tb_project_requirement" })
-export class ProjectRequirementORM {
+export class ProjectRequirementsORM {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
@@ -15,6 +15,9 @@ export class ProjectRequirementORM {
 
     @Column({ type: "double" })
     gain_percentage: number
+
+    @Column({ type: "boolean" })
+    is_accepted: null
 
     @ManyToOne(() => ProjectORM, project => project.requirements)
     project: ProjectORM

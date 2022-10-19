@@ -16,7 +16,7 @@ export class ProjectController {
         this.service.create(request.body).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
-            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar os projetos"))
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao criar os projetos"))
     }
 
     getAll = (request: Request, response: Response) => {
