@@ -12,4 +12,8 @@ export class InterestRepository {
     create = async (entity: any) => {
         return await this._.save(entity)
     }
+
+    update = async (entity: InterestORM) => {
+        return await this._.save(entity)
+    }
 }

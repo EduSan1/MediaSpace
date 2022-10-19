@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { ProjectManagementORM } from "./ProjectManagment";
+import { ProjectManagementORM } from "./ProjectManagement";
 import { UserORM } from "./User";
 
 @Entity({ name: " tb_project_member" })

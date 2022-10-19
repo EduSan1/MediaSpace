@@ -54,4 +54,11 @@ export class ProjectController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao declarar interesse no projeto"))
     }
 
+    selectFreelancer = (request: Request, response: Response) => {
+        this.service.selectFreelancer(request.params.projectId, request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao selecionar o freelancer projeto"))
+    }
+
 }

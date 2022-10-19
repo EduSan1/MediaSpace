@@ -11,6 +11,9 @@ export class MemberORM {
     @Column({ default: false })
     accept: boolean
 
+    @Column({ default: false })
+    is_selected: boolean
+
     @ManyToOne(() => UserORM, user => user.interest, { eager: true })
     user: UserORM
 

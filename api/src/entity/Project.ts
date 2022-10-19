@@ -3,7 +3,7 @@ import { CategoryORM } from "./Category";
 import { InterestORM } from "./Interest";
 import { ProjectAttachmentORM } from "./ProjectAttachment";
 import { ProjectImageORM } from "./ProjectImage";
-import { ProjectManagementORM } from "./ProjectManagment";
+import { ProjectManagementORM } from "./ProjectManagement";
 import { ProjectRequirementORM } from "./ProjectRequirement";
 import { SubCategoryORM } from "./SubCategory";
 import { UserORM } from "./User";
@@ -21,7 +21,7 @@ export class ProjectORM {
     description: string
 
     @Column({ type: "double" })
-    estimated_value: number
+    value: number
 
     @Column()
     estimated_deadline: Date
@@ -45,23 +45,23 @@ export class ProjectORM {
     @JoinTable()
     categories: CategoryORM[]
 
-    @ManyToMany(() => SubCategoryORM, { eager: true })
+    @ManyToMany(() => SubCategoryORM)
     @JoinTable()
     sub_categories: SubCategoryORM[]
 
     @OneToMany(() => ProjectImageORM, image => image.project, { eager: true })
     images: ProjectImageORM[]
 
-    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project, { eager: true })
+    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project)
     attachments: ProjectAttachmentORM[]
 
-    @OneToMany(() => ProjectManagementORM, managment => managment.project)
+    @OneToMany(() => ProjectManagementORM, management => management.project)
     management: ProjectManagementORM[]
 
-    @OneToMany(() => InterestORM, interestMember => interestMember.project, { eager: true })
+    @OneToMany(() => InterestORM, interestMember => interestMember.project)
     interest: InterestORM[]
 
-    @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project, { eager: true })
+    @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project)
     requirements: ProjectRequirementORM[]
 
     @CreateDateColumn()
