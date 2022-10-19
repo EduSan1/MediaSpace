@@ -1,4 +1,6 @@
 import ProjectDomain from "../domain/Project";
+import { InterestORM } from "../entity/Interest";
+import { MemberORM } from "../entity/Member";
 import { ProjectORM } from "../entity/Project";
 import { FreelancerRepository } from "../repository/Freelancer";
 import { InterestRepository } from "../repository/Interest";
@@ -6,6 +8,7 @@ import { MemberRepository } from "../repository/Member";
 import { ProjectRepository } from "../repository/Project";
 import { ProjectAttachmentRepository } from "../repository/ProjectAtachment";
 import { ProjectImageRepository } from "../repository/ProjectImage";
+import { ProjectManagementRepository } from "../repository/ProjectManagement";
 
 interface IImage {
     url: string
@@ -25,6 +28,7 @@ export class ProjectService {
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
+    private projectManagement: ProjectManagementRepository
 
     constructor(repo: ProjectRepository) {
         this._ = repo
@@ -33,6 +37,7 @@ export class ProjectService {
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
+        this.projectManagement = new ProjectManagementRepository()
     }
 
     create = async (entity: ProjectDomain) => {
@@ -236,19 +241,37 @@ export class ProjectService {
 
         // cosnt freelancer = await this.
 
-        const interest = project.data.interest.find((interest) => body.freelancerId === interest.team.id)
+        const interest: InterestORM = project.data.interest.find((interest) => body.freelancerId === interest.team.id)
 
-
-        interest.members.map(async (member: any) => {
-            member.is_selected === true
-            await this.memberRepository.update(member)
+        const members = interest.members.map(async (member: MemberORM) => {
+            member.is_selected = true
+            return await this.memberRepository.update(member)
         })
 
+        interest.is_selected = true
+        const interests = await this.interestRepository.update(interest)
+
+
+        const haveManagement = project.data.management.length === 0 ? false : true
+
+        if (haveManagement) {
+
+            //TODO : freelancer do projeto
+            return {
+                message: "Inplementar função para substituir o freelancer do projeto",
+                statusCode: 200
+            };
+        } else {
+
+            // await this.projectManagement.update()
+
+        }
 
         return {
             message: "Função de times não continue",
-            interest: interest,
-            memberId: interest.members,
+            haveManagement: haveManagement,
+            interest: interests,
+            memberId: members,
             statusCode: 200
 
         };

@@ -42,7 +42,9 @@ export class ProjectRepository {
                 interest: true,
                 sub_categories: true,
                 attachments: true,
-                requirements: true
+                requirements: true,
+                management: true
+
             }
         })
     }

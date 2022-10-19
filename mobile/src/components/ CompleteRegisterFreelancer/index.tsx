@@ -35,6 +35,7 @@ export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegi
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
+
         const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
 
         if (action === "ADD") {
