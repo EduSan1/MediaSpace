@@ -6,6 +6,6 @@ export interface IDomainProjectRequirementsProps {
     title: string
     description: string
     gain_percentage: number
-    is_accepted: boolean
+    is_accepted: null
     project: ProjectORM
 }
