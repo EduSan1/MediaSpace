@@ -1,0 +1,264 @@
+.testeTeste {
+   display: flex;
+   flex-direction: column;
+   //background-color: steelblue;
+   height: 100vh;
+   align-items: center;
+   justify-content: center;
+}
+
+.page_create_project {
+   width: 80vw;
+   height: 80vh;
+   display: flex;
+}
+
+.title_page_project {
+   color: $primary-blue;
+   font-family: $light-font;
+   font-weight: normal;
+}
+
+.container_informations {
+   width: 50%;
+   min-height: 100vh;
+   display: flex;
+   align-items: flex-start;
+   //justify-content: space-between;
+   gap: 30px;
+   flex-direction: column;
+
+}
+
+.container_imagens {
+   background-color: brown;
+   height: 30%;
+}
+
+.container_anexos {
+   height: 30%;
+   background-color: chartreuse;
+}
+
+.container_boost {
+   width: 100%;
+   height: 40%;
+   display: flex;
+   flex-direction: column;
+
+   span{
+      color: #FF6666;
+   }
+
+   .container_boost_buttons{
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+   }
+
+   .container_texts_boost{
+      width: 40%;
+      color: #808080;
+      font-family: $light-font;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+   }
+
+   .teste{
+      width: 100%;
+      display: flex;
+      width: 100%;
+      height: 80%;
+      
+  
+   }
+}
+
+
+
+.subtitulo_projects {
+   font-family: $light-font;
+   font-size: 1rem;
+}
+
+.paragraph_projects {
+   font-family: $light-font;
+   font-weight: lighter;
+   font-size: 0.8rem;
+   color: #BFBFBF;
+}
+
+.projects {
+   width: 100%;
+   height: 100px;
+   overflow-x: auto;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.inputs_projects {
+   height: 150px;
+   width: 300px;
+   display: flex;
+   flex-direction: column;
+   background-color: cornflowerblue;
+}
+
+.container_categories_projects {
+   height: 10vh;
+   width: 30vw;
+}
+
+.container_subacategories_projects {
+
+   width: 30vw;
+}
+
+.aligment_button {
+   height: 10vh;
+   background-color: crimson;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+/* Style da div de carregar imagens*/
+.container_files {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   width: 80%;
+   height: 25%;
+   border-radius: 10px;
+   border: 1px solid $lavander;
+}
+
+.container_text {
+   padding-left: 20px;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.container_text div {
+   display: flex;
+   justify-content: space-around;
+}
+
+.container_images {
+   display: flex;
+   width: 50%;
+   height: 50%;
+   flex-direction: column;
+   gap: 5px;
+}
+
+.aligment_images {
+   width: 100%;
+   height: 50%;
+   display: flex;
+   gap: 5px;
+}
+
+.images {
+   background-color: crimson;
+   width: 50%;
+   height: 100%;
+}
+
+.inputFotoTeste {
+   background-color: chocolate;
+   height: 50px;
+   width: 100px;
+}
+
+.inputFotoTeste input {
+   opacity: 0;
+}
+
+/*INPUT PROJECTS*/
+
+.container_input_project {
+   width: 30vw;
+   display: flex;
+   gap: 5px;
+   flex-direction: column;
+
+   span {
+      color: #FF6666;
+      font-size: 1.5rem;
+   }
+
+   div {
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+
+      span {
+         padding: 5px;
+         position: absolute;
+         color: #BFBFBF;
+         font-size: 1rem;
+      }
+
+      input {
+         width: 100%;
+         height: 40px;
+         border-radius: 5px;
+         border: 1px solid #BCA7F4
+      }
+   }
+
+
+}
+
+.container_description_project {
+   width: 30vw;
+   height: 15vh;
+
+   span {
+      color: #FF6666;
+      font-size: 1.5rem;
+   }
+
+   div {
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+
+      span {
+         padding: 5px;
+         position: absolute;
+         color: #BFBFBF;
+         font-size: 1rem;
+      }
+
+      textarea {
+         resize: none;
+         width: 100%;
+         height: 170px;
+         border-radius: 5px;
+         border: 1px solid #BCA7F4
+      }
+   }
+}
+
+.input_value_project:after,
+.input_value_project:before {
+   position: absolute;
+   display: flex;
+   width: 25px;
+   height: 10px;
+   font-size: 10px;
+   pointer-events: none;
+   background: #000;
+}
+
