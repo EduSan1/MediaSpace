@@ -19,6 +19,9 @@ export class ProjectRequirementsORM {
     @Column({ nullable: true })
     is_accepted: boolean
 
+    @Column({ default: true })
+    is_active: boolean
+
     @ManyToOne(() => ProjectORM, project => project.requirements)
     project: ProjectORM
 

@@ -7,8 +7,8 @@ const projectRequirementsController = new ProjectRequirementsController()
 projectRequirementsRoute.get("/", projectRequirementsController.getAll)
 projectRequirementsRoute.get("/:projectRequirementId", projectRequirementsController.getById)
 projectRequirementsRoute.post("/", projectRequirementsController.create)
-projectRequirementsRoute.post("/disable/:projectRequirementId", () => "rota de desativação")
-projectRequirementsRoute.delete("/:projectRequirementId", () => "rota de exclução")
-projectRequirementsRoute.put("/:projectRequirementId", () => "rota de edição")
+projectRequirementsRoute.post("/disable/:projectRequirementId", projectRequirementsController.disable)
+projectRequirementsRoute.delete("/:projectRequirementId", projectRequirementsController.delete)
+projectRequirementsRoute.put("/:projectRequirementId", projectRequirementsController.update)
 
 export default projectRequirementsRoute

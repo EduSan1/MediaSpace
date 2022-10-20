@@ -36,4 +36,25 @@ export class ProjectRequirementsController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar o requisito"))
     }
 
+    update = (request: Request, response: Response) => {
+        this.service.update(request.params.projectRequirementId, request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao atualizar o projeto"))
+    }
+
+    delete = (request: Request, response: Response) => {
+        this.service.delete(request.params.projectRequirementId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o projeto"))
+    }
+
+    disable = (request: Request, response: Response) => {
+        this.service.disable(request.params.projectRequirementId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o projeto"))
+    }
+
 }

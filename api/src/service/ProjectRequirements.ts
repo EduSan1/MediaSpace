@@ -66,6 +66,85 @@ export class ProjectRequirementsService {
 
     }
 
+    update = async (id: string, entity: ProjectRequirementsORM) => {
+        try {
+
+            const projectRequirement = await this._.findById(id)
+
+            if (!projectRequirement) {
+                return {
+                    message: "Não foi possivel encontrar o requisito",
+                    statusCode: 200
+                };
+            }
+
+            for (const [key, value] of Object.entries(entity)) {
+                projectRequirement[key] = value;
+            }
+
+            const projectRequirementUpdated = await this._.update(projectRequirement)
+
+            return {
+                message: "Dados atualizados com sucesso",
+                data: projectRequirementUpdated,
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
+
+    delete = async (_id: string) => {
+        try {
+
+            await this._.delete(_id)
+
+            return {
+                message: "Dados removidos com sucesso",
+            }
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode : 400
+            }
+        }
+
+    }
+
+    disable = async (id: string) => {
+        try {
+            const projectRequirement = await this._.findById(id);
+
+            if (!projectRequirement) {
+                return {
+                    message: "Não foi possivel encontrar o requisito",
+                    statusCode: 200
+                };
+            }
+
+            projectRequirement.is_active = false;
+
+            await this._.update(projectRequirement);
+
+            return {
+                message: "Requisito desabilitado com sucesso",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 
 
 }

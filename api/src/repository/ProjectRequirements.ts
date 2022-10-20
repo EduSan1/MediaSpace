@@ -43,5 +43,14 @@ export class ProjectRequirementsRepository {
             }
         })
     }
+
+    update = async (entity: ProjectRequirementsORM) => {
+        return await this._.save(entity)
+    }
+
+    delete = async (id: string) => {
+        return await this._.delete({ id })
+    }
+
 }
 
