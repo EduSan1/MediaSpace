@@ -269,59 +269,24 @@ export class ProjectService {
             };
         } else {
 
-            const timeElapsed = Date.now();
-            const today = new Date(timeElapsed);
-            const projectManagementToSend = {
-                payment_confirmed: true,
-                payment_date: today.toISOString(),
-                project: {
-                    id: project.data.id
-                },
-                payment_type: {
-                    id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
-                }
+            const projectManagement = await this.createProjectManagement(projectId)
+
+            const teamProjectManagement = await this.createTeamProjectManagement(projectManagement.id, body.freelancerId)
+
+            const projectMember = interests.members.map(async (member: any) => {
+                const user = await this.memberRepository.getById(member.id)
+                return await this.createProjectMember(teamProjectManagement.id, user.user.id)
             }
+            )
 
-
-
-
-            const projectManagement = await this.projectManagementRepository.create(projectManagementToSend)
 
             return {
                 message: "Prestador escolhido com sucesso",
                 updateProject: projectManagement,
+                teamProjectManagement: teamProjectManagement,
+                projectMember: projectMember,
                 statusCode: 200
             };
-            const teamProjectManagementToSend = {
-                payment_confirmed: true,
-                payment_date: today.toISOString(),
-                team: {
-                    id: body.freelancerId
-                },
-                projectManagement: {
-                    id: projectManagement.id
-                },
-                payment_type: {
-                    id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
-                }
-            }
-
-            const teamProjectManagement = await this.teamProjectMemberRepository.create(teamProjectManagementToSend)
-
-            await interests.members.map(async (member: any) => {
-                const user = await this.memberRepository.getById(member.id)
-                const projectMemberToSend = {
-                    user: {
-                        id: user.user.id
-                    },
-                    teamProjectManagement: {
-                        id: teamProjectManagement.id
-                    }
-                }
-
-                await this.projectMemberRepository.create(projectMemberToSend)
-            }
-            )
 
             project.data.status = "VALIDATING_REQUIREMENTS"
             const projectToUpdate = project.data
@@ -337,6 +302,59 @@ export class ProjectService {
 
 
 
+    }
+
+    createProjectManagement = async (projectId: string) => {
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+
+        const projectManagementToSend = {
+            payment_confirmed: true,
+            payment_date: today.toISOString(),
+            project: {
+                id: projectId
+            },
+            payment_type: {
+                id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
+            }
+        }
+
+
+
+
+        return await this.projectManagementRepository.create(projectManagementToSend)
+    }
+
+    createTeamProjectManagement = async (projectManagementId: string, freelancerId: string) => {
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+        const teamProjectManagementToSend = {
+            payment_confirmed: true,
+            payment_date: today.toISOString(),
+            team: {
+                id: freelancerId
+            },
+            projectManagement: {
+                id: projectManagementId
+            }
+        }
+
+        return await this.teamProjectMemberRepository.create(teamProjectManagementToSend)
+    }
+
+    createProjectMember = async (teamProjectManagementID: string, userId: string) => {
+
+
+        const projectMemberToSend = {
+            user: {
+                id: userId
+            },
+            teamProjectManagement: {
+                id: teamProjectManagementID
+            }
+        }
+
+        return await this.projectMemberRepository.create(projectMemberToSend)
     }
 
 }
