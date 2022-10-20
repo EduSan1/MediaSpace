@@ -16,8 +16,8 @@ export class ProjectRequirementsORM {
     @Column({ type: "double" })
     gain_percentage: number
 
-    @Column({ nullable: true, type: "double" })
-    is_accepted: null
+    @Column({ nullable: true })
+    is_accepted: boolean
 
     @ManyToOne(() => ProjectORM, project => project.requirements)
     project: ProjectORM
