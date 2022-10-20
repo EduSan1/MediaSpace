@@ -68,6 +68,7 @@ const LoginSpace = () => {
     if (validate) {
       loginUser();
 
+
     }
 
 
@@ -81,11 +82,17 @@ const LoginSpace = () => {
 
       if (res.data.is_logged) {
         logIntUser(res.data.userDetails);
+
+        // next page home
         window.alert("usuario logado!")
+
       } else {
-        window.alert("senha incorreta")
+        //FAZ NADA
+        // window.alert("senha incorreta")
+        setHasError(true);
       }
 
+      return res;
 
 
     })
@@ -93,6 +100,8 @@ const LoginSpace = () => {
         setHasError(true);
         console.log(error)
       });
+
+
   }
 
 

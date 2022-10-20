@@ -11,14 +11,6 @@ const HeaderPages = () => {
             <div>
                <SearchBar />
             </div>
-            <div>
-               <ToggleButton />
-            </div>
-
-            <div>
-               <IoSettingsOutline />
-            </div>
-
          </div>
       </>
    )

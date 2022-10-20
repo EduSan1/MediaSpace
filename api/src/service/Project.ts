@@ -270,8 +270,6 @@ export class ProjectService {
 
         if (project.data.management) {
 
-            //TODO : freelancer do projeto
-
             projectManagement = await this.projectManagementRepository.getById(project.data.management.id)
 
             projectManagement.team_project_management.map(async (team_project_management: TeamProjectManagementORM) => {
