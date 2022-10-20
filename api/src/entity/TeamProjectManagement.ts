@@ -1,8 +1,9 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProjectManagementORM } from "./ProjectManagement";
+import { ProjectMemberORM } from "./ProjectMember";
 import { TeamORM } from "./team";
 
-@Entity({ name: "tb_management_project" })
+@Entity({ name: "tb_team_project_management" })
 export class TeamProjectManagementORM {
 
     @PrimaryGeneratedColumn("uuid")
@@ -16,5 +17,8 @@ export class TeamProjectManagementORM {
 
     @ManyToOne(() => ProjectManagementORM, project => project.team_project_management)
     projectManagement: ProjectManagementORM
+
+    @OneToMany(() => ProjectMemberORM, projectMember => projectMember.teamProjectManagement)
+    members: ProjectMemberORM[]
 
 }

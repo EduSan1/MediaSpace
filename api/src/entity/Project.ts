@@ -36,7 +36,7 @@ export class ProjectORM {
     is_active: boolean
 
     @Column({ default: "AWAITING_START" })
-    status: "AWAITING_START" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
+    status: "AWAITING_START" | "VALIDATING_REQUIREMENTS" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
 
     @ManyToOne(() => UserORM, user => user.projects)
     user: UserORM
