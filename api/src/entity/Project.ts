@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { CategoryORM } from "./Category";
 import { InterestORM } from "./Interest";
 import { ProjectAttachmentORM } from "./ProjectAttachment";
@@ -55,7 +55,7 @@ export class ProjectORM {
     @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project)
     attachments: ProjectAttachmentORM[]
 
-    @OneToMany(() => ProjectManagementORM, management => management.project)
+    @OneToOne(() => ProjectManagementORM, management => management.project)
     management: ProjectManagementORM[]
 
     @OneToMany(() => InterestORM, interestMember => interestMember.project)

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ProjectManagementORM } from "./ProjectManagement";
 import { TeamProjectManagementORM } from "./TeamProjectManagement";
 import { UserORM } from "./User";
@@ -12,7 +12,8 @@ export class ProjectMemberORM {
     @Column({ default: true })
     is_active: boolean
 
-    @ManyToOne(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.members)
+    @OneToOne(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.members)
+    @JoinColumn()
     teamProjectManagement: TeamProjectManagementORM
 
     @ManyToOne(() => UserORM, user => user.project_member)

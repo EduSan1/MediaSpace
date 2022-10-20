@@ -257,10 +257,7 @@ export class ProjectService {
         interest.is_selected = true
         const interests = await this.interestRepository.update(interest)
 
-
-        const haveManagement = project.data.management.length === 0 ? false : true
-
-        if (haveManagement) {
+        if (project.data.management) {
 
             //TODO : freelancer do projeto
             return {
@@ -273,29 +270,27 @@ export class ProjectService {
 
             const teamProjectManagement = await this.createTeamProjectManagement(projectManagement.id, body.freelancerId)
 
-            const projectMember = interests.members.map(async (member: any) => {
+            interests.members.map(async (member: any) => {
                 const user = await this.memberRepository.getById(member.id)
                 return await this.createProjectMember(teamProjectManagement.id, user.user.id)
             }
             )
 
-
-            return {
-                message: "Prestador escolhido com sucesso",
-                updateProject: projectManagement,
-                teamProjectManagement: teamProjectManagement,
-                projectMember: projectMember,
-                statusCode: 200
-            };
-
             project.data.status = "VALIDATING_REQUIREMENTS"
-            const projectToUpdate = project.data
-            const updateProject = await this._.update(projectToUpdate)
+            // project.data.status = "VALIDATING_REQUIREMENTS"
+
+            const updatedProjectStatus = {
+                ...project.data,
+                status: "VALIDATING_REQUIREMENTS",
+                management: projectManagement
+            }
+
+            const updatedProject = await this._.update(updatedProjectStatus)
 
 
             return {
                 message: "Prestador escolhido com sucesso",
-                updateProject: "updateProject",
+                updateProject: updatedProject,
                 statusCode: 200
             };
         }
@@ -318,9 +313,6 @@ export class ProjectService {
                 id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
             }
         }
-
-
-
 
         return await this.projectManagementRepository.create(projectManagementToSend)
     }
@@ -346,7 +338,7 @@ export class ProjectService {
 
 
         const projectMemberToSend = {
-            user: {
+            member: {
                 id: userId
             },
             teamProjectManagement: {
