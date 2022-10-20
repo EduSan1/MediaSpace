@@ -2,6 +2,9 @@ import ProjectDomain from "../domain/Project";
 import { InterestORM } from "../entity/Interest";
 import { MemberORM } from "../entity/Member";
 import { ProjectORM } from "../entity/Project";
+import { ProjectManagementORM } from "../entity/ProjectManagement";
+import { ProjectMemberORM } from "../entity/ProjectMember";
+import { TeamProjectManagementORM } from "../entity/TeamProjectManagement";
 import { FreelancerRepository } from "../repository/Freelancer";
 import { InterestRepository } from "../repository/Interest";
 import { MemberRepository } from "../repository/Member";
@@ -31,7 +34,7 @@ export class ProjectService {
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
     private projectManagementRepository: ProjectManagementRepository
-    private teamProjectMemberRepository: TeamProjectManagementRepository
+    private teamProjectManagementRepository: TeamProjectManagementRepository
     private projectMemberRepository: ProjectMemberRepository
 
     constructor(repo: ProjectRepository) {
@@ -42,7 +45,7 @@ export class ProjectService {
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
         this.projectManagementRepository = new ProjectManagementRepository()
-        this.teamProjectMemberRepository = new TeamProjectManagementRepository()
+        this.teamProjectManagementRepository = new TeamProjectManagementRepository()
         this.projectMemberRepository = new ProjectMemberRepository()
     }
 
@@ -242,8 +245,14 @@ export class ProjectService {
     }
 
     selectFreelancer = async (projectId: string, body: { freelancerId: string }) => {
-
         const project = await this.getById(projectId)
+
+        const updatedProjectStatus = {
+            ...project.data,
+            status: "VALIDATING_REQUIREMENTS",
+        }
+        const updatedProject = await this._.update(updatedProjectStatus)
+
 
         // cosnt freelancer = await this.
 
@@ -257,44 +266,45 @@ export class ProjectService {
         interest.is_selected = true
         const interests = await this.interestRepository.update(interest)
 
+        let projectManagement: ProjectManagementORM
+
         if (project.data.management) {
 
             //TODO : freelancer do projeto
-            return {
-                message: "Inplementar função para substituir o freelancer do projeto",
-                statusCode: 200
-            };
+
+            projectManagement = await this.projectManagementRepository.getById(project.data.management.id)
+
+            projectManagement.team_project_management.map(async (team_project_management: TeamProjectManagementORM) => {
+                team_project_management.is_active = false
+                await this.teamProjectManagementRepository.update(team_project_management)
+
+                const teamProjectManagement = await this.teamProjectManagementRepository.getById(team_project_management.id)
+
+                teamProjectManagement.members.map(async (projectMember: ProjectMemberORM) => {
+                    projectMember.is_active = false
+                    await this.projectMemberRepository.update(projectMember)
+                })
+            })
+
         } else {
 
-            const projectManagement = await this.createProjectManagement(projectId)
-
-            const teamProjectManagement = await this.createTeamProjectManagement(projectManagement.id, body.freelancerId)
-
-            interests.members.map(async (member: any) => {
-                const user = await this.memberRepository.getById(member.id)
-                return await this.createProjectMember(teamProjectManagement.id, user.user.id)
-            }
-            )
-
-            project.data.status = "VALIDATING_REQUIREMENTS"
-            // project.data.status = "VALIDATING_REQUIREMENTS"
-
-            const updatedProjectStatus = {
-                ...project.data,
-                status: "VALIDATING_REQUIREMENTS",
-                management: projectManagement
-            }
-
-            const updatedProject = await this._.update(updatedProjectStatus)
+            projectManagement = await this.createProjectManagement(projectId)
 
 
-            return {
-                message: "Prestador escolhido com sucesso",
-                updateProject: updatedProject,
-                statusCode: 200
-            };
         }
+        const teamProjectManagement = await this.createTeamProjectManagement(projectManagement.id, body.freelancerId)
 
+        interests.members.map(async (member: any) => {
+            const user = await this.memberRepository.getById(member.id)
+            return await this.createProjectMember(teamProjectManagement.id, user.user.id)
+        }
+        )
+
+        return {
+            message: "Prestador escolhido com sucesso",
+            updateProject: updatedProject,
+            statusCode: 200
+        };
 
 
     }
@@ -331,7 +341,7 @@ export class ProjectService {
             }
         }
 
-        return await this.teamProjectMemberRepository.create(teamProjectManagementToSend)
+        return await this.teamProjectManagementRepository.create(teamProjectManagementToSend)
     }
 
     createProjectMember = async (teamProjectManagementID: string, userId: string) => {

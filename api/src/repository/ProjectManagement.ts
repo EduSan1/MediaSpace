@@ -15,4 +15,17 @@ export class ProjectManagementRepository {
     update = async (entity: ProjectManagementORM) => {
         return await this._.save(entity)
     }
+
+    getById = async (id: string) => {
+        return await this._.findOne({
+            where: {
+                id
+            },
+            relations: {
+                team_project_management: true,
+                members: true
+
+            }
+        })
+    }
 }

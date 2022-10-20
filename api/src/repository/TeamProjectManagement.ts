@@ -15,4 +15,16 @@ export class TeamProjectManagementRepository {
     update = async (entity: TeamProjectManagementORM) => {
         return await this._.save(entity)
     }
+
+    getById = async (id: string) => {
+        return await this._.findOne({
+            where: {
+                id
+            },
+            relations: {
+                members: true
+
+            }
+        })
+    }
 }
