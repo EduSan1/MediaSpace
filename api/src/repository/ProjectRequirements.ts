@@ -12,5 +12,36 @@ export class ProjectRequirementsRepository {
     create = async (entity: ProjectRequirementsDomain) => {
         return await this._.save(entity)
     }
+
+    list = async () => {
+        return await this._.find(ProjectRequirementsORM)
+    }
+
+    listWhere = async (key: keyof typeof ProjectRequirementsORM, value: string) => {
+        return await this._.find({
+            where: {
+                [key]: value
+            }
+        })
+    }
+
+    findByWhere = async (key: keyof typeof ProjectRequirementsORM, value: string) => {
+        return await this._.findOne({
+            where: {
+                [key]: value
+            }
+        })
+    }
+
+    findById = async (id: string) => {
+        return await this._.findOne({
+            where: {
+                id
+            },
+            relations: {
+                project: false,
+            }
+        })
+    }
 }
 

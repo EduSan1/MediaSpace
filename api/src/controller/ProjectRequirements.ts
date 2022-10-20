@@ -18,8 +18,22 @@ export class ProjectRequirementsController {
         this.service.create(request.body).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
-            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao criar os projetos"))
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao criar os requisitos"))
 
+    }
+
+    getAll = (request: Request, response: Response) => {
+        this.service.list().then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar os requisitos"))
+    }
+
+    getById = (request: Request, response: Response) => {
+        this.service.getById(request.params.projectRequirementId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar o requisito"))
     }
 
 }

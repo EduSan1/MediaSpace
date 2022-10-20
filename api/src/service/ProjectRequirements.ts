@@ -3,10 +3,6 @@ import { ProjectRequirementsORM } from "../entity/ProjectRequirements";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 import { ProjectRepository } from "../repository/Project";
 
-interface IProject {
-    url: string
-}
-
 export class ProjectRequirementsService {
     private _: ProjectRequirementsRepository
     private projectRepository: ProjectRepository
@@ -33,5 +29,43 @@ export class ProjectRequirementsService {
             };
         }
     }
+
+    list = async () => {
+        try {
+            const projectRequirements = await this._.list()
+
+            return {
+                message: "requisitos listados com sucesso",
+                data: projectRequirements,
+                statusCode: 200,
+            };
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 400,
+            };
+        }
+    }
+
+    getById = async (id: string) => {
+        const projectRequirement = await this._.findById(id)
+
+        if (projectRequirement) {
+            return {
+                message: "requisito encontrado com sucesso",
+                data: projectRequirement,
+                statusCode: 200,
+            };
+        } else {
+            return {
+                message: "Não foi possivel encontrar o requisito",
+                statusCode: 200,
+            };
+        }
+
+    }
+
+
 
 }

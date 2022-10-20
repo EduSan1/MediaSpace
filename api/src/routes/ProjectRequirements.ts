@@ -4,8 +4,8 @@ import { ProjectRequirementsController } from "../controller/ProjectRequirements
 const projectRequirementsRoute = Router()
 const projectRequirementsController = new ProjectRequirementsController()
 
-projectRequirementsRoute.get("/", () => "rota de getAll")
-projectRequirementsRoute.get("/:projectRequirementId", () => "rota de getById")
+projectRequirementsRoute.get("/", projectRequirementsController.getAll)
+projectRequirementsRoute.get("/:projectRequirementId", projectRequirementsController.getById)
 projectRequirementsRoute.post("/", projectRequirementsController.create)
 projectRequirementsRoute.post("/disable/:projectRequirementId", () => "rota de desativação")
 projectRequirementsRoute.delete("/:projectRequirementId", () => "rota de exclução")
