@@ -1,52 +1,77 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Text, Dimensions, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Dimensions, Image, ToastAndroid } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
 import { CheckboxComponent } from "../utils/subCategory";
 import { CategoryButton } from "../utils/CategoryButton";
 import api from "../../../service";
 
-export const CompleteRegisterFreelancer = () => {
+interface ICompleteRegisterFreelancer {
+    navigation: any
+    userId: any
+}
 
-    const [check, setCheck] = useState("")
+export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegisterFreelancer) => {
+
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
-    const [userRegister, setUserRegister] = useState({
-        name: {
-            "id": check
-        },
-
+    const [freelancer, setFreelancer] = useState({
+        categories: [],
+        sub_categories: [],
+        userId: userId
     })
+
+    const addToFreelancer = (id: string, name: "sub_categories" | "categories") => {
+        setFreelancer({
+            ...freelancer, [name]: [
+                ...freelancer[name], { id: id }
+            ]
+        })
+    }
+
+    const removeFromFreelancer = (object: [{}], name: "sub_categories" | "categories") => {
+        setFreelancer({ ...freelancer, [name]: object })
+    }
 
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
 
-        const categoryFilter : any = categories.find((category: any) => category.id === idCategory)
+        const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
 
         if (action === "ADD") {
-            setSubategoriesToRender([ ...subcategoriesToRender, categoryFilter ])
-        }else {
-            let subcategoriesFilter = subcategoriesToRender.filter((category : any) => category.id !== idCategory )
-            setSubategoriesToRender(subcategoriesFilter)
+            setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
+            addToFreelancer(categoryFilter.id, "categories")
+        } else {
+            const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
+            setSubategoriesToRender(categoryFilter)
+            const categoryToRemove = categoryFilter.map((category: any) => {
+                return { id: category.id }
+            })
+            removeFromFreelancer(categoryToRemove, "categories")
         }
-
     }
 
+    const removeSubcategory = (id: string) => {
+        console.log(id)
+        const subCategoriesFilter = freelancer.sub_categories.filter((subcategory: any) => subcategory.id !== id)
+        setFreelancer({ ...freelancer, sub_categories: subCategoriesFilter })
+    }
 
-
-    useEffect(() => {
-        setUserRegister({
-            ...userRegister,
-            name: {
-                "id": check
+    const registerFreelancer = () => {
+        setIsLoad(true)
+        api.post("/freelancer", freelancer).then((res: any) => {
+            if (res.data.statusCode === 200) {
+                navigation.navigate("CheckMail")
+            } else {
+                ToastAndroid.show(res.data.message, 10)
             }
         })
+        setIsLoad(false)
+
     }
-        , [check]
-    )
 
     useEffect(() => {
-        api.get("/category").then((res : any) => {
+        api.get("/category").then((res: any) => {
             setCategories(res.data)
         })
     }, [])
@@ -57,7 +82,6 @@ export const CompleteRegisterFreelancer = () => {
             <View style={styles.textArea}>
                 <Text style={styles.text1}>Categorais</Text>
             </View>
-
             <View style={styles.areaContainer1}>
                 <ScrollView horizontal={true} style={styles.sectionCategory}>
                     {
@@ -67,30 +91,21 @@ export const CompleteRegisterFreelancer = () => {
                     }
                 </ScrollView>
             </View>
-
-
-
-
             <View style={styles.textArea}>
                 <Text style={styles.text1}>Sub-Categorais</Text>
             </View>
-
             <View style={styles.areaContainer2}>
                 <ScrollView style={styles.sectionSubCategory}>
-
                     {
                         subcategoriesToRender?.map((category: any) => {
-                            return category.sub_categories.map((subcategory : any) => {
-                                return <CheckboxComponent key={subcategory.id} title={subcategory.name} id={subcategory.id} />
+                            return category.sub_categories.map((subcategory: any) => {
+                                return <CheckboxComponent key={subcategory.id} onClickFunction={(check: boolean) => check ? removeSubcategory(subcategory.id) : addToFreelancer(subcategory.id, "sub_categories")} title={subcategory.name} id={subcategory.id} />
                             })
                         })
                     }
-
                 </ScrollView>
             </View>
-
-            <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar" />
-
+            <LoginButton isLoad={isLoad} action={() => registerFreelancer()} type="dark" title="Continuar" />
         </View>
     )
 }

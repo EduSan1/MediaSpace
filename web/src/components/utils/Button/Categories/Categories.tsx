@@ -6,19 +6,19 @@ interface IButtonCategories {
    name: string,
    category: string,
    icon: string,
-   //setSubCategories: (id: string, action: "REMOVE" | "ADD") => void
+   setSubCategories: (id: string, action: "REMOVE" | "ADD") => void
 }
 
 //setSubCategories
 
-const ButtonCategories = ({ name, category, icon, action, id }: IButtonCategories) => {
+const ButtonCategories = ({ name, category, icon, action, setSubCategories, id }: IButtonCategories) => {
 
    const [isSelected, setIsSelected] = React.useState(false);
 
    const onClick = () => {
       setIsSelected(!isSelected)
 
-      //setSubCategories(id, isSelected ? "REMOVE" : "ADD")
+      setSubCategories(id, isSelected ? "REMOVE" : "ADD")
    }
 
 

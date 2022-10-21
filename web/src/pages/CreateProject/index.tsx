@@ -1,9 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import BoostButton from "./components/BoostButton";
 import InputProject from "./components/Input";
+import SearchBar from "../../components/HeaderPage/Search";
+import NavegationBar from "../../components/utils/navegation";
 
 
 
@@ -11,7 +13,7 @@ import InputProject from "./components/Input";
 const CreateProject = () => {
 
    const [project, setProject] = useState({
-      
+
    })
 
    // const [image, setImagem] = React.useState({
@@ -28,7 +30,7 @@ const CreateProject = () => {
    // }
 
 
-   const [subCategorias, setSubCategorias]= React.useState([])
+   const [subCategorias, setSubCategorias] = React.useState([])
 
    const categories = [
       {
@@ -136,10 +138,10 @@ const CreateProject = () => {
 
    const [subcategoriesToRender, setSubCategoriesToRender] = useState<any>([])
 
-   const findSubCategories = (idCategory: string) => {
-      const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
-      setSubCategoriesToRender([...subcategoriesToRender, categoryFilter])
-   }
+   // const findSubCategories = (idCategory: string) => {
+   //    const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
+   //    setSubCategoriesToRender([...subcategoriesToRender, categoryFilter])
+   // }
 
 
 
@@ -151,18 +153,42 @@ const CreateProject = () => {
       setCaracteres({
          ...caracteres, caracteres: event.target.value.length
       })
-      console.log(caracteres.caracteres)
+   }
+
+   const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
+
+      const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
+
+      if (action === "ADD") {
+         // setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
+         // addToFreelancer(categoryFilter.id, "categories")
+      }
+      else {
+
+         const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
+         setSubCategoriesToRender(categoryFilter)
+         const categoryToRemove = categoryFilter.map((category: any) => {
+            return { id: category.id }
+         })
+         // removeFromFreelancer(categoryToRemove, "categories")
+      }
    }
 
    return (
       <>
-         <div className="testeTeste">
+<main>
+   <NavegationBar/>
+   <div className="Container">
+      <SearchBar/>
+      <section className="section_main">
+      <div className="testeTeste">
             <div className="page_create_project">
                <div className="container_informations">
                   <div className="title_page_project" >
                      <h1>Criação de projeto</h1>
                   </div>
                   <InputProject label={"Nome do projeto"} maxLenght={100} name={"teste"} />
+
                   <div className="container_description_project">
                      <label className="subtitulo_projects">Descrição <span> * </span></label>
                      <div>
@@ -180,7 +206,7 @@ const CreateProject = () => {
                      <div className="categories projects">
                         {
                            categories.map((category: any) => {
-                              return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")}/>
+                              return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories}/>
                            })
                         }
 
@@ -195,14 +221,14 @@ const CreateProject = () => {
                      </div>
                      <div className="sub_categories">
                         {
-                           subcategoriesToRender.map((category: any) =>{
-                              return category.sub_categories.map((subCategory: any)=>{
-                                 return <Checkbox nameOption={subCategory.name} />
+                           subcategoriesToRender.map((category: any) => {
+                              return category.sub_categories.map((subCategory: any) => {
+                                 return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? "oi":"choro e desesperp"}/>
                               })
                            })
                         }
-                        
-                        
+
+
                      </div>
                   </div>
                </div>
@@ -229,89 +255,83 @@ const CreateProject = () => {
                         <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
                      </span>
                   </div>
+
                   <div className="container_files">
-                     <div className="container_text">
-                        <label className="subtitulo_projects">Imagens</label>
-                        <div>
-                           <p className="paragraph_projects">Imagens de referências ao projeto</p>
-                           <span className="paragraph_projects">0/4</span>
-                        </div>
+                              <div className="container_text">
+                                 <label className="subtitulo_projects">Imagens</label>
+                                 <div>
+                                    <p className="paragraph_projects">Imagens de referências ao projeto</p>
+                                    <span className="paragraph_projects">0/4</span>
+                                 </div>
 
-                     </div>
+                              </div>
 
-                     <div className="container_images">
-                        <div className="aligment_images">
-                           <div className="images">
-                              <img src="" />
-                           </div>
-                           <div className="images">
-                              <img src="" />
-                           </div>
-                        </div>
+                              <div className="container_images">
+                                 <div className="aligment_images">
+                                    <div className="images">
+                                       <img src="" />
+                                    </div>
+                                    <div className="images">
+                                       <img src="" />
+                                    </div>
+                                 </div>
 
-                        <div className="aligment_images" >
-                           <div className="images">
-                              <img src="" />
-                           </div>
-                           <div className="images">
-                              <img src="" />
-                           </div>
-                        </div>
-
-
-                     </div>
-                     <div>
-                        <p className="paragraph_projects" >Extensões permitidas: .png, .jpg, .jpeg, .gifs</p>
-                     </div>
-                     <div>
-                        <label className="inputFotoTeste" htmlFor="inputTeste">
-
-                        </label>
-                        <input type="file" accept=".png, .jpg, .jpeg, .gif" id="inputTeste" multiple={true} name="images{}" />
-                        {/* <InputBtn typeInput={'submit'} name={'btn_add_photo'} className={'input_btn_upload_photo_project'} valueBtn={'Selecionar imagem'} onClick={() => { }} /> */}
-                     </div>
+                                 <div className="aligment_images" >
+                                    <div className="images">
+                                       <img src="" />
+                                    </div>
+                                    <div className="images">
+                                       <img src="" />
+                                    </div>
+                                 </div>
 
 
-                  </div>
+                              </div>
+                  </div> 
+
+
                   <div className="container_boost">
-                     <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
-                     <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
-                     <div className="teste">
-                        <div className="container_boost_buttons">
-                           <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={"../../public/assets/img/project/boosted.png"} label={""} />
-                           <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={""} label={""} />
+                              <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
+                              <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
+                              <div className="teste">
+                                 <div className="container_boost_buttons">
+                                    <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={""} label={""} />
+                                    <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={""} label={""} />
+                                 </div>
+                                 <div className="container_texts_boost">
+                                    <p>Com a opção "impulsionado" você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. </p>
+                                    <p>Incluídos no Impulsionamento
+                                       <ul>
+                                          <li>Pagamento único (uma vez para cada publicação)</li>
+                                          <li>Maior visibilidade</li>
+                                          <li>Destaque na exibição</li>
+                                       </ul>
+                                    </p>
+
+                                    <p>Recomendado para grandes projetos.</p>
+                                 </div>
+
+                              </div></div>
+                              </div>
+                 
 
 
-                        </div>
-                        <div className="container_texts_boost">
-                           <p>Com a opção "impulsionado" você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. </p>
-                           <p>Incluídos no Impulsionamento
-                              <ul>
-                                 <li>Pagamento único (uma vez para cada publicação)</li>
-                                 <li>Maior visibilidade</li>
-                                 <li>Destaque na exibição</li>
-                              </ul>
-                           </p>
+               </div> 
 
-                           <p>Recomendado para grandes projetos.</p>
-                        </div>
-
-                     </div>
-
-                  </div>
+               <div className="aligment_button">
+                  <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
                </div>
+
             </div>
-
-            <div className="aligment_button">
-               <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
-            </div>
+      </section>
+   </div>
 
 
-         </div>
+  
 
-
-      </>
-   )
+            </main>
+         </>
+         )
 }
 
-export default CreateProject
+         export default CreateProject

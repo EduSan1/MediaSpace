@@ -9,8 +9,8 @@ const ConfirmEmailWarningPage = () => {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get("user")
-        api.post(`/user/authentication/${userId}`).then((res : any) => {
-            console.log(res.data)
+        api.post(`/user/authentication/${userId}`).then((res: any) => {
+
         })
     }, [])
 

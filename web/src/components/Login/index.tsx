@@ -1,12 +1,11 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { MdFacebook, MdEmail, MdLock, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
+import { MdFacebook, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
 import { Link } from 'react-router-dom';
-import { kMaxLength } from "buffer";
 
 const LoginSpace = () => {
 
@@ -31,10 +30,6 @@ const LoginSpace = () => {
     })
 
   };
-
-  useEffect(() => {
-    console.log(diceLogin)
-  }, [diceLogin]);
 
 
   const [hasError, setHasError] = React.useState(false);
@@ -68,12 +63,13 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    } 
+    }
 
     if (validate) {
       loginUser();
 
-    } 
+
+    }
 
 
 
@@ -83,17 +79,20 @@ const LoginSpace = () => {
   const loginUser = async () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
-      console.log(res.data)
-      const data = res.data;
-      console.log(res.data.is_logged)
 
       if (res.data.is_logged) {
         logIntUser(res.data.userDetails);
+
+        // next page home
         window.alert("usuario logado!")
-      }else {
-        window.alert("senha incorreta")
+
+      } else {
+        //FAZ NADA
+        // window.alert("senha incorreta")
+        setHasError(true);
       }
 
+      return res;
 
 
     })
@@ -101,6 +100,8 @@ const LoginSpace = () => {
         setHasError(true);
         console.log(error)
       });
+
+
   }
 
 

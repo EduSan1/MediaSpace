@@ -65,9 +65,9 @@ export class TeamService {
         is_freelancer: true,
       };
 
-       await this.userTeamRepository.create(userTeam);
+      await this.userTeamRepository.create(userTeam);
 
-       return {
+      return {
         data: freelancer,
         message: "Prestador cadastrado com sucesso",
         statusCode: 200,
@@ -85,11 +85,6 @@ export class TeamService {
     try {
       const entityExists = await this.userRepository.findById(id);
       if (entityExists) {
-        entityExists.teams.map((userteam: any) => {
-          userteam.team.categories.map((category: any) => {
-            category.sub_categories = undefined;
-          });
-        });
 
         return {
           data: entityExists,
@@ -116,13 +111,7 @@ export class TeamService {
     try {
       const freelancers = await this.userRepository.listWhere("teams", "");
 
-      freelancers.map((freelancer : any) => {
-        freelancer.teams.map((userteam: any) => {
-          userteam.team.categories.map((category: any) => {
-            category.sub_categories = undefined;
-          });
-        });
-      })
+
       return {
         data: freelancers,
         message: "Prestadores encontrados com sucesso",

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet,View, ScrollView,Text,Dimensions, Image,  } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Dimensions, Image, } from "react-native";
 import { LoginButton } from "../utils/LoginButton";
 
-export const RegisterFreelancer = () => {
+interface IRegisterFreelancer {
+    navigation: any
+    userId: any
+}
+
+
+export const RegisterFreelancer = ({ navigation, userId }: IRegisterFreelancer) => {
     const [isLoad, setIsLoad] = useState(false)
-    return(
+
+    return (
         <View style={styles.container}>
             <Text style={styles.title}>{`Deseja cadastrar-se como prestador?`}</Text>
             <Image style={styles.icon} source={require('../../../assets/icons/IconFreelancer.png')} />
@@ -16,9 +23,9 @@ export const RegisterFreelancer = () => {
                 <Text style={styles.text2}>&#8226; Formação de equipes</Text>
             </View>
             <View style={styles.areaContainer2}>
-                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="dark" title="Continuar como prestador"/>
+                <LoginButton isLoad={isLoad} action={() => navigation.navigate('RegisterFreelancerComplete', { userId: userId })} type="dark" title="Continuar como prestador" />
             </View>
-                <LoginButton isLoad={isLoad} action={() => console.log("a")} type="light" title="Continuar como cliente"/>
+            <LoginButton isLoad={isLoad} action={() => navigation.navigate('CheckMail')} type="light" title="Continuar como cliente" />
 
         </View>
     )
@@ -29,10 +36,10 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.7,
         // backgroundColor: "#34f45f",
-        alignItems:"center",
+        alignItems: "center",
     },
     title: {
-        marginHorizontal:70,
+        marginHorizontal: 70,
         height: Dimensions.get('window').height * 0.07,
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.05,
@@ -52,15 +59,15 @@ const styles = StyleSheet.create({
         color: "#46307B",
         textAlignVertical: "center"
     },
-    icon:{
-        width: Dimensions.get('window').width * 0.25 , 
-        height: Dimensions.get('window').height * 0.1329 ,
-        marginVertical:15,
+    icon: {
+        width: Dimensions.get('window').width * 0.25,
+        height: Dimensions.get('window').height * 0.1329,
+        marginVertical: 15,
     },
-    areaContainer1:{
-        marginBottom:30,
+    areaContainer1: {
+        marginBottom: 30,
     },
-    areaContainer2:{
-        marginBottom:15,
+    areaContainer2: {
+        marginBottom: 15,
     }
 })

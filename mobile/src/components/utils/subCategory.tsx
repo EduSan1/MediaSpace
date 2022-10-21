@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { CheckBox, Icon } from '@rneui/themed';
 import { StyleSheet } from 'react-native';
-import {} from 'react-native';
+import { } from 'react-native';
 
-type CheckboxComponentProps = {};
-
-interface ILoginCheckBox {
+interface ICheckboxComponentProps {
   title: string,
-  id : string
+  id: string
+  onClickFunction: (check: boolean) => void
+
 }
 
-export const CheckboxComponent = ({ title  }: ILoginCheckBox) => {
+export const CheckboxComponent = ({ title, id, onClickFunction }: ICheckboxComponentProps) => {
 
-    const [check, setCheck] = useState(false)
+  const [check, setCheck] = useState(false)
+
+  const onClickAction = () => {
+    setCheck(!check)
+    onClickFunction(check)
+  }
 
   return (
 
@@ -24,7 +29,7 @@ export const CheckboxComponent = ({ title  }: ILoginCheckBox) => {
       checkedColor='#D3C5F8'
       size={18}
       checked={check}
-      onPress={() => setCheck(!check)}
+      onPress={() => onClickAction()}
       textStyle={{ fontSize: 12 }}
 
     />
@@ -32,8 +37,8 @@ export const CheckboxComponent = ({ title  }: ILoginCheckBox) => {
   );
 };
 const styles = StyleSheet.create({
-    check:{
-        fontSize:10,
-        
-    },
+  check: {
+    fontSize: 10,
+
+  },
 })

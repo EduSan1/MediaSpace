@@ -4,13 +4,9 @@
     box-sizing: border-box;
 }
 
-
-
 :root {
     //
     @import "./vars.scss";
-
-
 
     //pages
     @import "./pages/SpaceBackground/index.scss";
@@ -21,7 +17,8 @@
     @import "./pages/ConfirmEmailWarningPage/index.scss";
     @import "./pages/PasswordWarningPage/index.scss";
     @import "./pages/RecoveringPasswordPage/index.scss";
-
+    @import "../pages/Home/Style/indedx.scss";
+    @import "../pages/Projects/style/index.scss";
 
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
@@ -35,6 +32,9 @@
     @import "./components/PasswordWarningPage/index.scss";
     @import "./components/RecoveringPassword/index.scss";
     @import "./components/RecoveringPassword/index.scss";
+    @import "../components/utils/navegation/Style/index.scss";
+    @import "../components/utils/Icon/style/index.scss";
+
     @import "../pages/RegisterFreelancer/style/resgisterFreelancer.scss";
     @import "./components/utils/Input/radio.scss";
     @import "../components/utils/Button/Categories/style/btnCategories.scss";
@@ -46,7 +46,6 @@
     @import "../components/HeaderPage/Search/search.scss";
     @import "../components/HeaderPage/headerPages.scss";
     @import "../pages/CreateProject/components/boostButton.scss";
-    //@import "../../public/assets/img/project/free.svg"
 
 
 

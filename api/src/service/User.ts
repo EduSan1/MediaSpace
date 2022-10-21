@@ -57,7 +57,7 @@ export class UserService {
                     nickname: nickname !== null ? true : false,
                     statusCode: 200,
                 };
-         
+
 
             const hashPassword = await bcrypt.hash(entity.password, 10);
             entity.password = hashPassword;
@@ -80,6 +80,7 @@ export class UserService {
 
             return {
                 message: "Usuário cadastrado com sucesso!",
+                data: user,
                 statusCode: 201,
             };
         } catch (error) {
@@ -93,7 +94,13 @@ export class UserService {
 
     getOne = async (id: string) => {
         try {
-            return await this._.findById(id);
+            const user = await this._.findById(id);
+
+            return {
+                message: "usuário encontrado com sucesso",
+                data: user,
+                statusCode: 200,
+            };
         } catch (error) {
             return {
                 message: error.message,
@@ -105,10 +112,18 @@ export class UserService {
 
     list = async (query: any) => {
         try {
-            if (query.showDisabled === undefined)
-                return await this._.listWhere("is_active", true);
-            else
-                return await this._.list();
+            let users = null
+            if (query.showDisabled === undefined) {
+                users = await this._.listWhere("is_active", true);
+            } else {
+                users = await this._.list();
+            }
+
+            return {
+                message: "usuários encontrados com sucesso",
+                data: users,
+                statusCode: 200,
+            };
         } catch (error) {
             return {
                 message: error.message,
@@ -160,6 +175,12 @@ export class UserService {
             if (userDetails === null)
                 return {
                     message: "Não foi possivel encontrar o usuário",
+                    statusCode: 200
+                };
+
+            if (userDetails.is_authenticated === false)
+                return {
+                    message: "Para continuar confirme seu e-mail",
                     statusCode: 200
                 };
 
@@ -225,7 +246,7 @@ export class UserService {
     authentication = async (idJwt: string) => {
         try {
 
-            const user : any = jwt.decode(idJwt)
+            const user: any = jwt.decode(idJwt)
 
             const entityExists = await this._.findById(user.id);
 
@@ -297,9 +318,9 @@ export class UserService {
         }
     };
 
-    changePassword = async (idJwt : string, entity : UserORM) => {
+    changePassword = async (idJwt: string, entity: UserORM) => {
         try {
-            const user : any = jwt.decode(idJwt)
+            const user: any = jwt.decode(idJwt)
             const status = await this.update(user.id, entity)
             return status
         } catch (error) {
