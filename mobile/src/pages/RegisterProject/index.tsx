@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from "react-native"
+import { View, Text, StyleSheet, Dimensions, Image, ScrollView, ToastAndroid } from "react-native"
 import { LoginButton } from "../../components/utils/LoginButton"
 import { LoginTextArea } from "../../components/utils/LoginTextArea"
 import { LoginInputNumber } from "../../components/utils/LoginInputNumber"
@@ -16,7 +16,8 @@ interface IRegisterProject {
 
 export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
     const [imageIndex, setImageIndex] = useState(0)
-    const [categories, setCategories] = useState([])
+    const [isLoad, setIsLoad] = useState(false)
+    const [categories, setCategories] = useState([{}])
 
     const dateMask = (value: string) =>{
         return value
@@ -28,7 +29,7 @@ export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
 
     const [registerProject, setRegisterProject] = (useState)({
         name: "",
-        description: "vfddh6y",
+        description: "",
         estimated_value: "",
         estimated_deadline: "",
         images: [
@@ -58,32 +59,33 @@ export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
         ],
         categories: [
             {
-                id: "859c7fb7-9c8e-4bb2-88ef-605502ebbeaa"
+                id:""
             }
         ],
         sub_categories: [
             {
-                id: "4b99388f-1f15-4dca-a2e1-33e6f5d9a69b"
+                id: ""
             },
-            {
-                id: "56dd13ae-7f62-4c35-8e65-d44f374f747c"
-            }
         ],
         user: {
             id:""
         }
     })
-    const addToProject = (id: string, name: "sub_categories" | "categories") => {
+
+
+
+
+    const addToCategories = (id: string, name: "sub_categories" | "categories") => {
         setRegisterProject({
             ...registerProject, [name]: [
                 ...registerProject[name], { id: id }
             ]
         })
     }
-
-    const removeFromProject = (object: [{}], name: "sub_categories" | "categories") => {
+    const removeFromCategories = (object: [{}], name: "sub_categories" | "categories") => {
         setRegisterProject({ ...registerProject, [name]: object })
     }
+
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
@@ -91,33 +93,171 @@ export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
 
         if (action === "ADD") {
             setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
-            addToProject(categoryFilter.id, "categories")
+            addToCategories(categoryFilter.id, "categories")
         } else {
             const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
             setSubategoriesToRender(categoryFilter)
             const categoryToRemove = categoryFilter.map((category: any) => {
                 return { id: category.id }
             })
-            removeFromProject(categoryToRemove, "categories")
+            removeFromCategories(categoryToRemove, "categories")
         }
     }
 
     const removeSubcategory = (id: string) => {
-        // console.log(id)
+        console.log(id)
         const subCategoriesFilter = registerProject.sub_categories.filter((subcategory: any) => subcategory.id !== id)
         setRegisterProject({ ...registerProject, sub_categories: subCategoriesFilter })
     }
+    useEffect(() => {
+        console.log("freelancer => ", registerProject)
+    }, [registerProject])
 
-    // useEffect(() => {
-    //     console.log("registerProject => ", registerProject)
-    // }, [registerProject])
+    const registerFreelancer = () => {
+        setIsLoad(true)
+        api.post("/freelancer", registerProject).then((res: any) => {
+            if (res.data.statusCode === 200) {
+                navigation.navigate("CheckMail")
+            } else {
+                ToastAndroid.show(res.data.message, 10)
+            }
+        })
+        setIsLoad(false)
 
-    // useEffect(() => {
+    }
+
+    useEffect(() => {
     //     api.get("/category").then((res: any) => {
     //         setCategories(res.data)
     //     })
     //     console.log(userId)
-    // }, [])
+    setCategories([
+        {
+            id: "29a6f6c8-552e-41b5-b7ec-c26f59b85144",
+            "name": "Programação",
+            "icon": "aaaaaa",
+            "is_active": true,
+            "create_at": "2022-10-03T16:03:47.814Z",
+            "update_at": "2022-10-11T18:50:00.000Z",
+            "sub_categories": [
+                {
+                    "id": "d44094c0-204d-409f-82a0-d7bfa30cea6c",
+                    "name": "Java",
+                    "is_active": true,
+                    "create_at": "2022-10-03T16:04:36.730Z",
+                    "update_at": "2022-10-11T18:50:55.000Z"
+                },
+                {
+                    "id": "7d5008cc-f901-4f82-abed-67618045dd82",
+                    "name": "JavaScript",
+                    "is_active": true,
+                    "create_at": "2022-10-03T16:04:31.999Z",
+                    "update_at": "2022-10-11T18:50:16.000Z"
+                }
+            ]
+        },
+        {
+            "id": "35a1debd-45ea-4151-8c38-9bfc1a0328d0",
+            "name": "Design",
+            "icon": "teste",
+            "is_active": true,
+            "create_at": "2022-09-28T19:28:39.352Z",
+            "update_at": "2022-10-11T18:47:24.000Z",
+            "sub_categories": [
+                {
+                    "id": "bde617c5-3c4f-4f96-9d03-131e07fd1b54",
+                    "name": "Logo",
+                    "is_active": true,
+                    "create_at": "2022-10-11T18:49:30.152Z",
+                    "update_at": "2022-10-11T18:49:30.152Z"
+                },
+                {
+                    "id": "9796fbed-13f0-49a6-bb29-442abdd4a8a8",
+                    "name": "3d",
+                    "is_active": true,
+                    "create_at": "2022-10-11T18:47:50.604Z",
+                    "update_at": "2022-10-11T18:47:50.604Z"
+                },
+                {
+                    "id": "9283e980-4fa9-458a-be10-aa86327184db",
+                    "name": "Adobe Photoshop",
+                    "is_active": true,
+                    "create_at": "2022-10-11T18:49:26.249Z",
+                    "update_at": "2022-10-11T18:53:40.000Z"
+                },
+                {
+                    "id": "8921ad8a-5580-442c-ac87-3dea9f2b2ad5",
+                    "name": "Ícones",
+                    "is_active": true,
+                    "create_at": "2022-10-11T18:49:35.832Z",
+                    "update_at": "2022-10-11T18:49:35.832Z"
+                }
+            ]
+        },
+        {
+            "id": "f7b6ae02-b5e8-4ed6-8984-b629eb293796",
+            "name": "Arte",
+            "icon": "aaaaaa",
+            "is_active": true,
+            "create_at": "2022-09-28T19:29:01.880Z",
+            "update_at": "2022-10-11T18:52:03.000Z",
+            "sub_categories": [
+                {
+                    "id": "c9e1072a-5717-4c12-b864-09bfa784784b",
+                    "name": "Realista",
+                    "is_active": true,
+                    "create_at": "2022-09-28T19:47:51.513Z",
+                    "update_at": "2022-10-11T18:52:45.000Z"
+                },
+                {
+                    "id": "aea06656-a732-44df-80c6-69ec361da75f",
+                    "name": "Anime",
+                    "is_active": true,
+                    "create_at": "2022-09-28T19:47:55.887Z",
+                    "update_at": "2022-10-11T18:52:19.000Z"
+                },
+                {
+                    "id": "47f592c0-5a95-4dc5-9167-453e3f06219e",
+                    "name": "Cartoon",
+                    "is_active": true,
+                    "create_at": "2022-09-28T19:47:59.990Z",
+                    "update_at": "2022-10-11T18:54:46.000Z"
+                },
+                {
+                    "id": "2f96a279-258c-4ec5-adc9-10df528c491b",
+                    "name": "Retrato",
+                    "is_active": true,
+                    "create_at": "2022-09-28T19:47:36.820Z",
+                    "update_at": "2022-10-11T18:54:08.000Z"
+                }
+            ]
+        }
+    ])
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     const handleChange = (text: string, name: string) => {
         if (name == "estimated_deadline") {
@@ -173,10 +313,38 @@ export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
                     <LoginTextArea name="description" value={registerProject.description} handleChange={handleChange} title="Descrição" maxLength={800} />
 
 
+                    <View style={styles.textArea}>
+                <Text style={styles.text1}>Categorais</Text>
+            </View>
+            <View style={styles.areaContainer1}>
+                <ScrollView horizontal={true} style={styles.sectionCategory}>
+                    {
+                        categories?.map((category: any) => {
+                            return <CategoryButton key={category.id} id={category.id} setSubCategories={findSubCategories} icon="s" action={() => console.log("a")} category={category.name} />
+                        })
+                    }
+                </ScrollView>
+            </View>
+            <View style={styles.textArea}>
+                <Text style={styles.text1}>Sub-Categorais</Text>
+            </View>
+            <View style={styles.areaContainer2}>
+                <ScrollView horizontal={true} style={styles.sectionSubCategory}>
+                    {
+                        subcategoriesToRender?.map((category: any) => {
+                            return category.sub_categories.map((subcategory: any) => {
+                                return <CheckboxComponent key={subcategory.id} onClickFunction={(check: boolean) => check ? removeSubcategory(subcategory.id) : addToCategories(subcategory.id, "sub_categories")} title={subcategory.name} id={subcategory.id} />
+                            })
+                        })
+                    }
+                </ScrollView>
+            </View>
+
+
                     <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={registerProject.images} setUserImage={(image: string) => handleUserPicture(image)} />
                     {/* <Attachment isActive={imageIndex == 4 ? false : true} userAttachment={registerProject.attachments} setUserAttachment={(attachment: string) => handleUserPicture(attachment)}/> */}
                     <LoginInputNumber type="numeric" name="estimated_deadline"  iconName="today" value={registerProject.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
-                    <LoginInputNumber type="numeric" name="estimated_value"  iconName="today" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={400} />
+                    <LoginInputNumber type="numeric" name="estimated_value"  iconName="today" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={1} />
                    
                     <RegisterProjectDriven/>
      
@@ -259,12 +427,6 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
 
     },
-    sectionCategory: {
-        width: Dimensions.get('window').width * 0.85,
-        display:'flex',
-        flexWrap:'wrap',
-        flexDirection:'row',
-    },
     button: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.18 ,
@@ -331,6 +493,37 @@ const styles = StyleSheet.create({
     textTitle3:{
         fontSize: 12,
         color:'#808080',
-    }
+    },
+
+
+
+    sectionSubCategory: {
+        width: Dimensions.get('window').width * 0.90,
+        height: Dimensions.get('window').height,
+        flexWrap: "wrap",
+    },
+    sectionCategory: {
+        width: Dimensions.get('window').width * 0.90,
+        height: Dimensions.get('window').height * 0.3,
+        flexDirection: "row",
+    },
+    text1: {
+        fontSize: Dimensions.get("window").width * 0.04,
+        color: "#979797",
+    },
+    areaContainer1: {
+        display: "flex",
+        height: Dimensions.get('window').height * 0.10,
+        // width: Dimensions.get('window').width * 0.90,    
+        marginBottom: 35,
+
+    },
+    areaContainer2: {
+        height: Dimensions.get('window').height * 0.20,
+        marginBottom: 50,
+        borderWidth: 2,
+        borderColor: "#DEDEDE"
+        // elevation:7,
+    },
 
 })

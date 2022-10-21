@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: Dimensions.get("window").width * 0.4,
-        height: Dimensions.get("window").width * 0.35,
+        height: Dimensions.get("window").width * 0.3,
         resizeMode: 'contain',
         display: 'flex',
         alignItems:'center',
