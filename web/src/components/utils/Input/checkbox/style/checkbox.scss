@@ -1,0 +1,25 @@
+.container_checkbox {
+   display: flex;
+   gap: 5px;
+   align-items: center;
+}
+
+.item_checkbox {
+   margin-left: 10px;
+   cursor: pointer;
+   border-radius: 100%;
+   height: 15px;
+   width: 15px;
+   background-color: #FFFFFF;
+   border: 0.5px solid #000000;
+}
+
+input:checked {
+   background-color: $primary-blue ;
+   border: 0.5px solid $primary-blue;
+}
+
+input[type="checkbox"] {
+   appearance: none;
+
+}

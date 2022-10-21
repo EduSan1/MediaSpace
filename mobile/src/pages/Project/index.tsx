@@ -6,7 +6,7 @@ export default function Project(){
         <SafeAreaView style={style.body}>
         <ScrollView style={style.Scroll}>
             <HeaderSearch label={"Pesquisar..."}  />
-            <Text style={style.text}>Feed</Text>
+            <Text style={style.text}>Project</Text>
             </ScrollView>
         </SafeAreaView>
         )

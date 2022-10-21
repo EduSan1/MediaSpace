@@ -39,10 +39,6 @@ export default function RegisterPage({navigation} : IRegisterPage) {
                 </View>
 
                 <View style={styles.container}>
-                    {/* <StackNavigation/> */}
-                    {/* <RegisterFreelancerComplete/> */}
-                    {/* <RegisterFreelancer/> */}
-                    {/* <Register /> */}
                     <SendMailPasswordRecover navigation={navigation}/>
                 </View>
 
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.7,
+        height: Dimensions.get('window').height,
         position: "relative",
         backgroundColor:"#fff",
         alignContent: "center",
