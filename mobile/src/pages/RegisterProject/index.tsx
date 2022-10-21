@@ -11,10 +11,9 @@ import api from "../../../service";
 
 interface IRegisterProject {
     navigation : any
-    userId: any
 }
 
-export const RegisterPreject = ({navigation, userId} : IRegisterProject) => {
+export const RegisterProject = ({navigation} : IRegisterProject) => {
     const [imageIndex, setImageIndex] = useState(0)
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([{}])

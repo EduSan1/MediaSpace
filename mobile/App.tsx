@@ -11,12 +11,10 @@ import SendMailPasswordRecoverPage from './src/pages/SendMailPasswordRecoverPage
 import CheckMailPage from './src/pages/CheckMailPage';
 import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelancer';
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
-import { RegisterPreject } from './src/pages/RegisterProject';
+import { RegisterProject } from './src/pages/RegisterProject';
 import { NavigationScreen } from './src/pages/NavigationScreen';
 
 export default function App() {
-
-  function StackNavigation() {
 
     const Stack = createNativeStackNavigator();
 
@@ -31,18 +29,11 @@ export default function App() {
           <Stack.Screen name="RegisterFreelancer" component={RegisterFreelancerPage} />
           <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
           <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
+          <Stack.Screen name="RegisterProject" component={RegisterProject} />
         </Stack.Navigator>
       </NavigationContainer>
     );
-  }
-
-  return (
-
-    <View style={styles.container}>
-      <StackNavigation />
-    </View>
-
-  );
+  
 }
 
 const styles = StyleSheet.create({
