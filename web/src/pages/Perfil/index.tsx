@@ -1,15 +1,19 @@
 import React from "react";
+import { useJwt } from "react-jwt";
 import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
 
 const Perfil = () => {
+
+    const user = localStorage.getItem('userDetailes');
+    const { decodedToken, isExpired } = useJwt(user ? user : "");
 
     return (
 
         
             <main id="ContentPage">
 
-                <NavegationBar />
+                <NavegationBar user={user} />
                 <div className="Container">
                     <SearchBar />
                     <section className="section_main"> Perfil</section>

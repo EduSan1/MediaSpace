@@ -5,11 +5,15 @@ import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-i
 import { MdFacebook, MdEmail, MdLock, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
-import { Link } from 'react-router-dom';
+import { useJwt } from "react-jwt";
+import { Link, Route, useNavigate } from 'react-router-dom';
 import { kMaxLength } from "buffer";
+import HomePage from "../../pages/Home";
+
 
 const LoginSpace = () => {
 
+  const navegation = useNavigate();
   const [diceLogin, setDiceLogin] = useState({
 
     "mail": "",
@@ -33,7 +37,6 @@ const LoginSpace = () => {
   };
 
   useEffect(() => {
-    console.log(diceLogin)
   }, [diceLogin]);
 
 
@@ -47,7 +50,7 @@ const LoginSpace = () => {
   };
 
   const logIntUser = (diceUser: string) => {
-    localStorage.setItem('userDetailes', diceUser);
+    localStorage.setItem('userDetails', diceUser);
 
   }
 
@@ -68,38 +71,37 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    } 
+    }
 
     if (validate) {
-      loginUser();
-        
 
-    } 
+      loginUser();
+
+    }
 
 
 
 
   }
 
+
+
   const loginUser = async () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
-      console.log(res.data)
       const data = res.data;
-      console.log(res.data.is_logged)
+
 
       if (res.data.is_logged) {
-        logIntUser(res.data.userDetails);
+        logIntUser(res.data.userDetails)
+        navegation('/home');
 
-        // next page home
-        window.alert("usuario logado!")
-        
-      }else {
+      } else {
         //FAZ NADA
         // window.alert("senha incorreta")
         setHasError(true);
       }
-           
+
       return data;
 
 
@@ -109,7 +111,7 @@ const LoginSpace = () => {
         console.log(error)
       });
 
-      
+
   }
 
 
@@ -159,7 +161,7 @@ const LoginSpace = () => {
           <div className="btn_AutomaticLogin">
             <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}
               onClick={() => {
-                validate();
+                validate()
               }} />
 
             <div className="LoginIcons-container">
