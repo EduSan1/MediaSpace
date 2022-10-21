@@ -12,6 +12,7 @@ import CheckMailPage from './src/pages/CheckMailPage';
 import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelancer';
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterPreject } from './src/pages/RegisterProject';
+import { Project } from './src/pages/Project';
 
 export default function App() {
 
