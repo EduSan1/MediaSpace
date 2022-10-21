@@ -15,8 +15,6 @@ import api from "../../service";
 
 const RegisterSpace = () => {
 
-    // const navigate = useNavigate()
-
     const [user, setUser] = React.useState({
         first_name: '',
         last_name: '',
@@ -36,6 +34,18 @@ const RegisterSpace = () => {
         biography: '',
     })
 
+
+
+    // const imageHandler = (event: any) => {
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //         if (reader.readyState === 2) {
+    //             //console.log(reader.result)
+    //             setUser({ profile_picture: reader.result })
+    //         }
+    //     }
+    //     console.log(reader.readAsDataURL(event.target.files[0]))
+    // }
 
     const navigate = useNavigate()
 
@@ -241,7 +251,7 @@ const RegisterSpace = () => {
                                     <img className="picture" src={user.profile_picture} alt="" />
                                 </div>
 
-                                <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
+                                <p className="preview-text">Escolha um arquivo jpg, jpeg ,png ou gif</p>
 
                                 <div className="alignment_buttons_photo_profile">
 
@@ -249,7 +259,7 @@ const RegisterSpace = () => {
                                         upload
                                     </label>
 
-                                    <input type="file" id="image" />
+                                    <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" />
 
                                     <InputBtn typeInput={'submit'}
                                         name={'btn_add_photo'}

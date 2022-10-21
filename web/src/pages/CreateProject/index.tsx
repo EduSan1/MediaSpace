@@ -3,11 +3,35 @@ import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import BoostButton from "./components/BoostButton";
+import InputProject from "./components/Input";
 
 
 
 
 const CreateProject = () => {
+   // const [image, setImagem] = React.useState({
+   // });
+   // const imageHandler = (event: any) => {
+   //    const reader = new FileReader();
+   //    reader.onload = () => {
+   //       if (reader.readyState === 2) {
+   //          //console.log(reader.result)
+   //          setImagem({ setImagem: reader.result })
+   //       }
+   //    }
+   //    console.log(reader.readAsDataURL(event.target.files[0]))
+   // }
+
+   const [caracteres, setCaracteres] = React.useState({
+      caracteres: 0
+   })
+
+   const numberCaracteres = (event: any) => {
+      setCaracteres({
+         ...caracteres, caracteres: event.target.value.length
+      })
+      console.log(caracteres.caracteres)
+   }
 
    return (
       <>
@@ -17,20 +41,12 @@ const CreateProject = () => {
                   <div className="title_page_project" >
                      <h1>Criação de projeto</h1>
                   </div>
-                  <div className="container_input_project">
-                     <label className="subtitulo_projects"> Nome do projeto <span> * </span></label>
-                     <div>
-                        <input type="text" maxLength={100} name="teste" />
-                        <span>0/100</span>
-                     </div>
-                  </div>
-
-
+                  <InputProject label={"Nome do projeto"} maxLenght={100} name={"teste"} />
                   <div className="container_description_project">
                      <label className="subtitulo_projects">Descrição <span> * </span></label>
                      <div>
-                        <textarea />
-                        <span>0/800</span>
+                        <textarea onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} />
+                        <span>{caracteres.caracteres}/800</span>
                      </div>
 
                   </div>
@@ -105,6 +121,9 @@ const CreateProject = () => {
                         <Checkbox nameOption="maisumteste" />
                      </div>
                   </div>
+               </div>
+
+               <div className="container_informations">
 
                   <div className="container_input_project">
                      <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
@@ -126,10 +145,6 @@ const CreateProject = () => {
                         <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
                      </span>
                   </div>
-
-               </div>
-
-               <div className="container_informations">
                   <div className="container_files">
                      <div className="container_text">
                         <label className="subtitulo_projects">Imagens</label>
@@ -165,23 +180,24 @@ const CreateProject = () => {
                         <p className="paragraph_projects" >Extensões permitidas: .png, .jpg, .jpeg, .gifs</p>
                      </div>
                      <div>
-                        <label className="inputFotoTeste">
-                           <input type="file" id="" />
-                        </label>
+                        <label className="inputFotoTeste" htmlFor="inputTeste">
 
+                        </label>
+                        <input type="file" accept=".png, .jpg, .jpeg, .gif" id="inputTeste" multiple={true} name="images{}" />
                         {/* <InputBtn typeInput={'submit'} name={'btn_add_photo'} className={'input_btn_upload_photo_project'} valueBtn={'Selecionar imagem'} onClick={() => { }} /> */}
                      </div>
 
 
                   </div>
-                  <div className="container_anexos"></div>
                   <div className="container_boost">
                      <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
                      <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
                      <div className="teste">
                         <div className="container_boost_buttons">
-                           <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={""} label={""} />
+                           <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={"../../public/assets/img/free.svg"} label={""} />
                            <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={""} label={""} />
+
+
                         </div>
                         <div className="container_texts_boost">
                            <p>Com a opção "impulsionado" você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. </p>
@@ -200,13 +216,16 @@ const CreateProject = () => {
 
                   </div>
                </div>
-            </div> </div>
-
-         {/* 
-            <div className="aligment_button">
-               <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => { }} />
             </div>
-         */}
+
+            <div className="aligment_button">
+               <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
+            </div>
+
+
+         </div>
+
+
       </>
    )
 }
