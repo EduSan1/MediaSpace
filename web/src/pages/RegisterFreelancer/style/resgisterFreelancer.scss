@@ -43,6 +43,8 @@
    box-shadow: inset 0px 4px 15px #DEDEDE;
    border-radius: 0.625rem;
    display: flex;
+   gap:2%;
+   align-content: flex-start;
    flex-wrap: wrap;
    padding: 10px;
 }

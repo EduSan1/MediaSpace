@@ -2,9 +2,19 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CategoryORM } from "./entity/Category"
 import { GenderORM } from "./entity/Gender"
+import { InterestORM } from "./entity/Interest"
+import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
+import { ProjectORM } from "./entity/Project"
+import { ProjectAttachmentORM } from "./entity/ProjectAttachment"
+import { ProjectImageORM } from "./entity/ProjectImage"
+import { ProjectManagementORM } from "./entity/ProjectManagement"
+import { ProjectMemberORM } from "./entity/ProjectMember"
+import { ProjectRequirementORM } from "./entity/ProjectRequirement"
 import { SubCategoryORM } from "./entity/SubCategory"
 import { TeamORM } from "./entity/team"
+import { TeamProjectManagementORM } from "./entity/TeamProjectManagement"
+import { TypePaymentORM } from "./entity/TypePayment"
 import { UserORM } from "./entity/User"
 import { UserTeamORM } from "./entity/UserTeam"
 
@@ -24,7 +34,17 @@ export const AppDataSource = new DataSource({
         CategoryORM,
         SubCategoryORM,
         TeamORM,
-        UserTeamORM
+        UserTeamORM,
+        InterestORM,
+        MemberORM,
+        TypePaymentORM,
+        ProjectAttachmentORM,
+        ProjectRequirementORM,
+        ProjectMemberORM,
+        ProjectORM,
+        ProjectImageORM,
+        ProjectManagementORM,
+        TeamProjectManagementORM
     ],
     migrations: [],
     subscribers: [],

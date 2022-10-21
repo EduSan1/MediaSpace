@@ -69,7 +69,7 @@ const RegisterSpace = () => {
         setUser({
             // ...user, [event.target.name]: phoneMask(event.target.value)
             ...user, phone: {
-                ddd: "11",
+                ddd: "",
                 phone: phoneMask(event.target.value)
 
             }
@@ -86,58 +86,10 @@ const RegisterSpace = () => {
             })
         }
     }
-    const validation = () => {
-        if (!user.first_name) {
-            return true
-        } else {
-
-        }
-
-        if (!user.last_name) {
-            return setHasErros
-        } else {
-
-        }
-
-        // if (!user.nickname) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-
-        // if (!user.cpf) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-        // if (!user.birth_date) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-
-        // if (!user.mail) {
-        //     return setHasErros(true)
-        // } else {
-
-        // }
-
-        if (!passwordMask.test(user.password)) {
-
-            //return setHasErros(true)
-            return console.log("Senha formato errado")
-            //console.log('bota o formato de senha certo meu parceiro')
-        } else {
-
-        }
-
-    }
 
     const uploadImage = (event: any) => {
         event.preventDefault();
         const file = event.target[0].files[0]
-
-        console.log(file)
 
         if (!file) return
 
@@ -174,11 +126,10 @@ const RegisterSpace = () => {
 
         api.post("/user", userToSend).then((res) => {
 
-            console.log(res.data)
             if (res.data.statusCode !== 201) {
                 window.alert("não foi possivel cadastrar o usuário")
             } else {
-                navigate("provideruserregister")
+                navigate(`provideruserregister/${res.data.data.id}`)
             }
         })
     }

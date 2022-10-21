@@ -1,8 +1,8 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserORM } from "./User";
 
 
-@Entity({name : "tb_phone"})
+@Entity({ name: "tb_phone" })
 export class PhoneORM {
 
     @PrimaryGeneratedColumn("uuid")
@@ -14,7 +14,7 @@ export class PhoneORM {
     @Column()
     phone: string
 
-    @Column({nullable : true})
+    @Column({ nullable: true })
     ddi: string
 
     @ManyToOne(() => UserORM, user => user.phone)

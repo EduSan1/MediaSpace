@@ -2,13 +2,11 @@ import React, { useEffect, useState, Component } from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { MdFacebook, MdEmail, MdLock, MdOutlineAlternateEmail, MdLockOutline } from "react-icons/md";
+import { MdFacebook, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
-import { useJwt } from "react-jwt";
-import { Link, Route, useNavigate } from 'react-router-dom';
-import { kMaxLength } from "buffer";
-import HomePage from "../../pages/Home";
+import { Link, Route, useNavigate} from 'react-router-dom';
+
 
 
 const LoginSpace = () => {
@@ -37,6 +35,7 @@ const LoginSpace = () => {
   };
 
   useEffect(() => {
+    console.log(diceLogin)
   }, [diceLogin]);
 
 
@@ -71,20 +70,19 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    }
+    } 
 
     if (validate) {
-
       loginUser();
+     
+    } 
 
-    }
-
-
-
-
-  }
+     
 
 
+  }  
+
+  
 
   const loginUser = async () => {
 
@@ -93,15 +91,15 @@ const LoginSpace = () => {
 
 
       if (res.data.is_logged) {
-        logIntUser(res.data.userDetails)
-        navegation('/home');
+            console.log(res.data)
+          logIntUser(res.data.is_logged)
+          navegation('/home');
 
-      } else {
-        //FAZ NADA
-        // window.alert("senha incorreta")
+      }else {
+ 
         setHasError(true);
       }
-
+           
       return data;
 
 
@@ -111,9 +109,9 @@ const LoginSpace = () => {
         console.log(error)
       });
 
-
+      
   }
-
+   
 
   return (
 
@@ -160,8 +158,8 @@ const LoginSpace = () => {
 
           <div className="btn_AutomaticLogin">
             <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}
-              onClick={() => {
-                validate()
+              onClick={() => {  
+                validate()  
               }} />
 
             <div className="LoginIcons-container">
@@ -169,7 +167,7 @@ const LoginSpace = () => {
               <div className="loginIcons">
 
                 <span>
-                  <MdFacebook onClick={() => { console.log('Facebook') }} />
+                  <MdFacebook onClick={() => { }} />
                 </span>
 
                 <span>

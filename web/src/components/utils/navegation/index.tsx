@@ -8,11 +8,13 @@ import { MdRssFeed } from "react-icons/md";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useJwt } from "react-jwt";
+
 
 interface INavigationBar {
     user : any
 }
+
+
 
 const NavegationBar = ({user} : INavigationBar) => {
 
