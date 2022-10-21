@@ -12,9 +12,9 @@ export const Project = () =>{
         <View style= {styles.container}>
         <ScrollImage/>
         
-        <View>
-            <Text>Criado em:</Text>
-            <Text>Prazo término:</Text>
+        <View style={styles.date}>
+            <Text>Criado em: {'data'}</Text>
+            <Text>Prazo término: {'data'}</Text>
         </View>
 
         <View>
@@ -48,9 +48,9 @@ export const Project = () =>{
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#546789',
+        backgroundColor: '#fff',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height *0.8 
+        height: Dimensions.get('window').height *0.8  
     },
     bar : {
         height: Dimensions.get('window').height * .08,
@@ -62,5 +62,13 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         backgroundColor:"#f3fff1"
     },
+    date:{
+        width: Dimensions.get('window').width,
+        height:Dimensions.get('window').height * 0.3,
+        display: 'flex',
+        flexDirection:'row',
+        justifyContent: 'space-around',
+        marginBottom: 20
+    }
    
 })

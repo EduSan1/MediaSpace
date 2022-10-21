@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-import  {View, StyleSheet, Dimensions, ScrollView, Animated, ImageStore, useWindowDimensions, SafeAreaView, Image} from "react-native"
+import  {View, StyleSheet, Dimensions, ScrollView,} from "react-native"
 
 
 
@@ -13,7 +13,8 @@ export const ScrollImage = () =>{
 
                 <ScrollView 
                 style={styles.container}
-                horizontal={true}>
+                horizontal={true}
+                pagingEnabled={true}>
           
 
                 <View style={styles.imageView}></View>
@@ -31,24 +32,23 @@ export const ScrollImage = () =>{
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#546789',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height ,
+        height: Dimensions.get('window').height * 0.9,
         
     },
     imageView:{
         backgroundColor: '#212677',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height *0.4
+        height: Dimensions.get('window').height 
     },
     imageView2:{
         backgroundColor: '#765633',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height *0.4
+        height: Dimensions.get('window').height 
     },
     imageView3:{
         backgroundColor: '#787873',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height *0.4
+        height: Dimensions.get('window').height 
     }
 })
