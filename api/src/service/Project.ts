@@ -6,6 +6,7 @@ import { MemberRepository } from "../repository/Member";
 import { ProjectRepository } from "../repository/Project";
 import { ProjectAttachmentRepository } from "../repository/ProjectAtachment";
 import { ProjectImageRepository } from "../repository/ProjectImage";
+import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 
 interface IImage {
     url: string
@@ -22,6 +23,7 @@ export class ProjectService {
     private _: ProjectRepository
     private projectImageRepository: ProjectImageRepository
     private projectAttachmentRepository: ProjectAttachmentRepository
+    private projectRequirement: ProjectRequirementsRepository
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
@@ -30,6 +32,7 @@ export class ProjectService {
         this._ = repo
         this.projectImageRepository = new ProjectImageRepository()
         this.projectAttachmentRepository = new ProjectAttachmentRepository()
+        this.projectRequirement = new ProjectRequirementsRepository()
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
@@ -254,5 +257,34 @@ export class ProjectService {
         };
 
     }
+
+    // accept = async (id: string) => {
+    //     try {
+    //         const project = await this._.getById(id);
+
+    //         if (project.is_active == false) {
+    //             return {
+    //                 message: "Não é possivel aceitar os requisitos de um projeto inativo",
+    //                 statusCode: 200
+    //             };
+    //         }
+
+    //         this.projectRequirement.is_accepted = true;
+    //         await this._.update(projectRequirement);
+
+    //         return {
+    //             message: "Requisito aceito com sucesso",
+    //             statusCode: 200
+    //         };   
+
+    //     } catch (error) {
+    //         return {
+    //             message: error.message,
+    //             error: error.code,
+    //             statusCode: 200,
+    //         };
+    //     }
+
+    // }
 
 }

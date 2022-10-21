@@ -12,7 +12,8 @@ projectRoute.post("/disable/:projectId", projectController.disable)
 projectRoute.post("/registerInterest/:projectId", projectController.registerInterest)
 projectRoute.post("/freelancersIntersted/:projectId", () => "rota de listar os freelancer interessados  no projeto")
 projectRoute.post("/selectFreelancer/:projectId", projectController.selectFreelancer)
-projectRoute.post("/confirm/:projectRequirementId", () => "rota de confirmação de requisito")
+projectRequirementsRoute.post("/accept/:projectId", projectRequirementsController.accept)
+projectRequirementsRoute.post("/accept/:projectId", projectRequirementsController.deny)
 projectRoute.post("/startProject/:projectRequirementId", () => "rota de confirmação de inicio de projeto")
 
 export default projectRoute

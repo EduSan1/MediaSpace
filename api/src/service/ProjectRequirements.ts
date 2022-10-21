@@ -146,5 +146,60 @@ export class ProjectRequirementsService {
         }
     }
 
+    accept = async (id: string) => {
+        try {
+            const projectRequirement = await this._.findById(id);
+
+            if (projectRequirement.is_active == false) {
+                return {
+                    message: "Não é possivel aceitar um requisito inativo",
+                    statusCode: 200
+                };
+            }
+
+            projectRequirement.is_accepted = true;
+            await this._.update(projectRequirement);
+
+            return {
+                message: "Requisito aceito com sucesso",
+                statusCode: 200
+            };   
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
+
+    deny = async (id: string) => {
+        try {
+            const projectRequirement = await this._.findById(id);
+
+            if (projectRequirement.is_active == false) {
+                return {
+                    message: "Não é possivel recusar um requisito inativo",
+                    statusCode: 200
+                };
+            }
+
+            projectRequirement.is_accepted = false;
+            await this._.update(projectRequirement);
+
+            return {
+                message: "Requisito recusado com sucesso",
+                statusCode: 200
+            };   
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 
 }
