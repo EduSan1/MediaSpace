@@ -12,7 +12,7 @@ import CheckMailPage from './src/pages/CheckMailPage';
 import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelancer';
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterPreject } from './src/pages/RegisterProject';
-import { Project } from './src/pages/Project';
+import { ProjectOwner } from './src/pages/ProjectOwner';
 
 export default function App() {
 
@@ -23,7 +23,7 @@ export default function App() {
     return (
       <NavigationContainer >
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={RegisterPreject} />
+          <Stack.Screen name="Login" component={ProjectOwner} />
           <Stack.Screen name="Register" component={RegisterPage} />
           <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
           <Stack.Screen name="SendMailPasswordRecover" component={SendMailPasswordRecoverPage} />
