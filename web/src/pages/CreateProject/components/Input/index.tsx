@@ -5,10 +5,10 @@ interface IInputProject {
    label: string
    maxLenght: number
    name: string;
-
+   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-const InputProject = ({ label, maxLenght, name }: IInputProject) => {
+const InputProject = ({ label, maxLenght, name, handleChange }: IInputProject) => {
 
    const [caracteres, setCaracteres] = React.useState({
       caracteres: 0
@@ -18,14 +18,13 @@ const InputProject = ({ label, maxLenght, name }: IInputProject) => {
       setCaracteres({
          ...caracteres, caracteres: event.target.value.length
       })
-      console.log(caracteres.caracteres)
    }
 
    return (
       <div className="container_input_project">
          <label className="subtitulo_projects">{label}<span> * </span></label>
          <div>
-            <input type="text" maxLength={maxLenght} name={name} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { numberCaracteres(event) }} />
+            <input type="text" maxLength={maxLenght} name={name} onChangeCapture={(event: React.ChangeEvent<HTMLInputElement>) => { numberCaracteres(event) }} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} />
             <span>{caracteres.caracteres}/{maxLenght}</span>
          </div>
       </div>

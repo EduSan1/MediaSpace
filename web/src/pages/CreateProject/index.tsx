@@ -6,15 +6,42 @@ import BoostButton from "./components/BoostButton";
 import InputProject from "./components/Input";
 import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
-
-
+import { storage } from "../../constants/firebase";
+import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
+import Projects from "../Projects";
 
 
 const CreateProject = () => {
 
    const [project, setProject] = useState({
+      name: "",
+      description: "",
+      estimated_value: 0,
+      estimated_deadline: "",
+      images: [
+         {
+            "url": "Jorge"
+         },
+         {
+            "url": "Cleiton"
+         },
+         {
+            "url": "Jordania"
+         }
+      ],
+      categories: [
+
+      ],
+      sub_categories: [
+
+      ],
+      user: {
+         "id": "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+      }
 
    })
+
+
 
    // const [image, setImagem] = React.useState({
    // });
@@ -28,6 +55,14 @@ const CreateProject = () => {
    //    }
    //    console.log(reader.readAsDataURL(event.target.files[0]))
    // }
+
+
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setProject({
+         ...project, [event.target.name]: event.target.value
+      })
+      console.log(project)
+   }
 
 
    const [subCategorias, setSubCategorias] = React.useState([])
@@ -135,16 +170,6 @@ const CreateProject = () => {
       }
    ]
 
-
-   const [subcategoriesToRender, setSubCategoriesToRender] = useState<any>([])
-
-   // const findSubCategories = (idCategory: string) => {
-   //    const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
-   //    setSubCategoriesToRender([...subcategoriesToRender, categoryFilter])
-   // }
-
-
-
    const [caracteres, setCaracteres] = React.useState({
       caracteres: 0
    })
@@ -155,13 +180,33 @@ const CreateProject = () => {
       })
    }
 
+   const addToProject = (id: string, name: "sub_categories" | "categories") => {
+      setProject({
+         ...project, [name]: [
+            ...project[name], { id: id }
+         ]
+      })
+   }
+
+   const removeFromProject = (object: [{}], name: "sub_categories" | "categories") => {
+      setProject({ ...project, [name]: object })
+   }
+
+   const removeSubcategory = (id: string) => {
+      console.log(id)
+      const subCategoriesFilter = project.sub_categories.filter((subcategory: any) => subcategory.id !== id)
+      setProject({ ...project, sub_categories: subCategoriesFilter })
+   }
+
+   const [subcategoriesToRender, setSubCategoriesToRender] = useState<any>([])
+
    const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
 
       const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
 
       if (action === "ADD") {
-         // setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
-         // addToFreelancer(categoryFilter.id, "categories")
+         setSubCategoriesToRender([...subcategoriesToRender, categoryFilter])
+         addToProject(categoryFilter.id, "categories")
       }
       else {
 
@@ -170,93 +215,144 @@ const CreateProject = () => {
          const categoryToRemove = categoryFilter.map((category: any) => {
             return { id: category.id }
          })
-         // removeFromFreelancer(categoryToRemove, "categories")
+         removeFromProject(categoryToRemove, "categories")
       }
    }
 
+   const uploadImage = (event: any) => {
+      event.preventDefault();
+      const file = event.target[0].files[0]
+
+      if (!file) return
+
+      const storageRef = ref(storage, `profilePicture/${file.name}`)
+      const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+
+      uploadTask.on(
+         "state_changed",
+         snapshot => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+
+         },
+         error => { alert(error) },
+         () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+               setProject({ ...project, })
+            })
+         }
+      )
+   }
+
+   const [errors, setErrors] = React.useState({})
+
+   const handleErrors = (errorMessage: string, input: string) => {
+      setErrors((prevState) => ({ ...prevState, [input]: errorMessage }))
+   }
+
+   const validate = () => {
+      let validate = true;
+
+      if (!project.name) {
+         validate = false;
+         //console.log("TITULO EM BRANCO");
+         handleErrors('Informe o nome do projeto.', 'name')
+      }
+
+      if (!project.description) {
+         validate = false;
+         //console.log("COMO ASSIM VC NÃO SABE A DESCRIÇÃO");
+         handleErrors('Informe o descrição do livro.', 'descricao')
+      }
+
+      if (!project.estimated_value) {
+         validate = false;
+         //console.log("ISSO AI COLOCA UMA CAPA MSM NÃO");
+         handleErrors('Informe a capa do livro.', 'capa')
+      }
+   }
+
+
    return (
       <>
-<main>
-   <NavegationBar/>
-   <div className="Container">
-      <SearchBar/>
-      <section className="section_main">
-      <div className="testeTeste">
-            <div className="page_create_project">
-               <div className="container_informations">
-                  <div className="title_page_project" >
-                     <h1>Criação de projeto</h1>
-                  </div>
-                  <InputProject label={"Nome do projeto"} maxLenght={100} name={"teste"} />
+         <main>
+            <NavegationBar />
+            <div className="Container">
+               <SearchBar />
+               <section className="section_main">
+                  <div className="container_page_create_project">
+                     <div></div>
+                     <div className="page_create_project">
+                        <div className="container_informations">
+                           <div className="title_page_project" >
+                              <h1>Criação de projeto</h1>
+                           </div>
+                           <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
 
-                  <div className="container_description_project">
-                     <label className="subtitulo_projects">Descrição <span> * </span></label>
-                     <div>
-                        <textarea onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} />
-                        <span>{caracteres.caracteres}/800</span>
-                     </div>
+                           <div className="container_description_project">
+                              <label className="subtitulo_projects">Descrição <span> * </span></label>
+                              <div>
+                                 <textarea onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} name={"description"} onChange={({ target }) => { project.description = target.value }} />
+                                 <span>{caracteres.caracteres}/800</span>
+                              </div>
 
-                  </div>
+                           </div>
 
-                  <div className="container_categories_projects">
-                     <div className="subtitulo_projects">
-                        <label> Categorias </label>
-                        <p className="paragraph_projects">Selecione a categoria do projeto</p>
-                     </div>
-                     <div className="categories projects">
-                        {
-                           categories.map((category: any) => {
-                              return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories}/>
-                           })
-                        }
-
-
-                     </div>
-                  </div>
-
-                  <div className="container_subacategories_projects">
-                     <div className="subtitulo_projects">
-                        <label> Sub-categorias </label>
-                        <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
-                     </div>
-                     <div className="sub_categories">
-                        {
-                           subcategoriesToRender.map((category: any) => {
-                              return category.sub_categories.map((subCategory: any) => {
-                                 return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? "oi":"choro e desesperp"}/>
-                              })
-                           })
-                        }
+                           <div className="container_categories_projects">
+                              <div className="subtitulo_projects">
+                                 <label> Categorias </label>
+                                 <p className="paragraph_projects">Selecione a categoria do projeto</p>
+                              </div>
+                              <div className="categories projects">
+                                 {
+                                    categories.map((category: any) => {
+                                       return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                                    })
+                                 }
 
 
-                     </div>
-                  </div>
-               </div>
+                              </div>
+                           </div>
 
-               <div className="container_informations">
+                           <div className="container_subacategories_projects">
+                              <div className="subtitulo_projects">
+                                 <label> Sub-categorias </label>
+                                 <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
+                              </div>
+                              <div className="sub_categories">
+                                 {
+                                    subcategoriesToRender.map((category: any) => {
+                                       return category.sub_categories.map((subCategory: any) => {
+                                          return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? removeSubcategory(subCategory.id) : addToProject(subCategory.id, "sub_categories")} />
+                                       })
+                                    })
+                                 }
+                              </div>
+                           </div>
+                        </div>
 
-                  <div className="container_input_project">
-                     <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
-                     <div>
-                        <input type="date" maxLength={100} name="teste" />
-                     </div>
-                     <div>
-                        <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
-                           você pode negociá-la com um prestador depois.</label>
-                     </div>
-                  </div>
+                        <div className="container_informations">
+                           <div className="container_input_project">
+                              <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
+                              <div>
+                                 <input type="date" maxLength={100} name="estimated_deadline" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                              </div>
+                              <div>
+                                 <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
+                                    você pode negociá-la com um prestador depois.</label>
+                              </div>
+                           </div>
 
-                  <div className="container_input_project">
-                     <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
-                     <div>
-                        <input className="input_value_project" type="number" min={0} name="teste" />
-                     </div>
-                     <span>
-                        <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
-                     </span>
-                  </div>
+                           <div className="container_input_project">
+                              <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
+                              <div>
+                                 <input className="input_value_project" type="number" min={0} name="estimated_value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                              </div>
+                              <span>
+                                 <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
+                              </span>
+                           </div>
 
-                  <div className="container_files">
+                           <div className="container_files">
                               <div className="container_text">
                                  <label className="subtitulo_projects">Imagens</label>
                                  <div>
@@ -284,19 +380,18 @@ const CreateProject = () => {
                                        <img src="" />
                                     </div>
                                  </div>
-
-
                               </div>
-                  </div> 
+                           </div>
 
 
-                  <div className="container_boost">
+                           <div className="container_boost">
                               <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
                               <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
                               <div className="teste">
+                                 <img src="." />
                                  <div className="container_boost_buttons">
-                                    <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={""} label={""} />
-                                    <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={""} label={""} />
+                                    <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={"../../../public/assets/img/project/free.png"} label={""} />
+                                    <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={"../../../public/assets/img/project/boosted.png"} label={""} />
                                  </div>
                                  <div className="container_texts_boost">
                                     <p>Com a opção "impulsionado" você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. </p>
@@ -307,31 +402,22 @@ const CreateProject = () => {
                                           <li>Destaque na exibição</li>
                                        </ul>
                                     </p>
-
+                                    <span></span>
                                     <p>Recomendado para grandes projetos.</p>
                                  </div>
 
                               </div></div>
-                              </div>
-                 
-
-
-               </div> 
-
-               <div className="aligment_button">
-                  <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
-               </div>
-
+                        </div>
+                     </div>
+                     <div className="aligment_button">
+                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
+                     </div>
+                  </div>
+               </section>
             </div>
-      </section>
-   </div>
-
-
-  
-
-            </main>
-         </>
-         )
+         </main>
+      </>
+   )
 }
 
-         export default CreateProject
+export default CreateProject
