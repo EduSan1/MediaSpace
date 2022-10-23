@@ -4,37 +4,37 @@ import { BtnNewProject } from "../../components/utils/BtnNewProject";
 import HeaderSearch from "../../components/utils/HeaderSearch";
 
 
-interface IProject{
+interface IProject {
     navigation: any
 }
-export default function Project({navigation}:IProject){
-        // navigation.navigate("NavigationScreen")
-        // const [isLoad, setIsLoad] = useState(false)
-        return (
+export default function Project({ navigation }: IProject) {
+    // navigation.navigate("NavigationScreen")
+    // const [isLoad, setIsLoad] = useState(false)
+    return (
         <>
-        <BtnNewProject  action={() => navigation.navigate('RegisterProject')}/>
-        <ScrollView style={style.Scroll}>
-            <SafeAreaView style={style.body}>
-                <HeaderSearch label={"Pesquisar..."}  />
+            <BtnNewProject action={() => navigation.navigate('RegisterProject')} />
+            <ScrollView style={style.Scroll}>
+                <SafeAreaView style={style.body}>
+                    <HeaderSearch label={"Pesquisar..."} />
                     <Text style={style.text}>Project</Text>
-            </SafeAreaView>
-        </ScrollView>
+                </SafeAreaView>
+            </ScrollView>
         </>
-        )
-    
+    )
+
 }
 const style = StyleSheet.create({
     body: {
         width: Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
+        height: Dimensions.get('window').height,
     },
-    Scroll:{
+    Scroll: {
         width: Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
+        height: Dimensions.get('window').height,
     },
-    text:{
-        textAlign:"center",
-        fontSize:50,
-        fontWeight:"500",
+    text: {
+        textAlign: "center",
+        fontSize: 50,
+        fontWeight: "500",
     }
 })

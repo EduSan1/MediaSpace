@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, Image, Dimensions, ToastAndroid, Keyboard, Touc
 import { LoginInput } from "../utils/LoginInput";
 import api from "../../../service";
 import { LoginButton } from "../utils/LoginButton";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -36,20 +37,24 @@ export const Login = ({ navigation }: ILogin) => {
     const login = () => {
         Keyboard.dismiss()
         setIsLoad(true)
-        navigation.navigate("NavigationScreen")
 
-        // api.post("/user/login", userLogin).then((res: any) => {
+        api.post("/user/login", userLogin).then(async (res: any) => {
 
-        //     if (res.data.is_logged)
-        //         navigation.navigate("NavigationScreen")
-        //     else {
-        //         setHasError(true)
-        //         ToastAndroid.show(res.data.message, 10)
-        //     }
+            if (res.data.is_logged) {
+                await AsyncStorage.setItem('userDetails', res.data.user.profile_picture)
 
-        // }).catch((error) => {
-        //     console.log(error)
-        // })
+                navigation.navigate("NavigationScreen")
+
+            }
+
+            else {
+                setHasError(true)
+                ToastAndroid.show(res.data.message, 10)
+            }
+
+        }).catch((error) => {
+            console.log(error)
+        })
 
         setIsLoad(false)
 
