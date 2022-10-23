@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: Dimensions.get('window').width * 0.8,
-        height: Dimensions.get('window').height * 0.40,
+        height: Dimensions.get('window').height * 0.35,
         color: "#979797",
         textAlignVertical: "top",
         left: 10,

@@ -7,6 +7,7 @@ import { LoginImageProject } from "../../components/utils/LoginImageProject"
 import { RegisterProjectDriven } from "../../components/utils/RegisterProjectDriven"
 import { CheckboxComponent } from "../../components/utils/subCategory";
 import { CategoryButton } from "../../components/utils/CategoryButton";
+import { SubcategoryButton } from "../../components/utils/SubcategoryButton"
 import api from "../../../service";
 
 interface IRegisterProject {
@@ -74,7 +75,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
 
 
-    const addToCategories = (id: string, name: "sub_categories" | "categories") => {
+    const addToProject = (id: string, name: "sub_categories" | "categories") => {
         setRegisterProject({
             ...registerProject, [name]: [
                 ...registerProject[name], { id: id }
@@ -92,7 +93,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
         if (action === "ADD") {
             setSubategoriesToRender([...subcategoriesToRender, categoryFilter])
-            addToCategories(categoryFilter.id, "categories")
+            addToProject(categoryFilter.id, "categories")
         } else {
             const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
             setSubategoriesToRender(categoryFilter)
@@ -236,28 +237,6 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     const handleChange = (text: string, name: string) => {
         if (name == "estimated_deadline") {
             setRegisterProject(
@@ -355,10 +334,56 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
 
 
+                    <View style={styles.textArea}>
+                        <Text style={styles.text1}>Categorais</Text>
+                    </View>
+                    <View style={styles.areaContainer1}>
+                        <ScrollView horizontal={true} style={styles.sectionCategory}>
+                            {
+                                categories?.map((category: any) => {
+                                    return <CategoryButton key={category.id} id={category.id} setSubCategories={findSubCategories} icon="s" action={() => console.log("a")} category={category.name} />
+                                })
+                            }
+                        </ScrollView>
+                    </View>
+                    <View style={styles.textArea}>
+                        <Text style={styles.text1}>Sub-Categorais</Text>
+                    </View>
+                    <View style={styles.areaContainer2}>
+                        <ScrollView horizontal={true} style={styles.sectionSubCategory}>
+                            {
+                                subcategoriesToRender?.map((category: any) => {
+                                    return category.sub_categories.map((subcategory: any) => {
+                                        return <SubcategoryButton key={subcategory.id} id={subcategory.id} setSubCategories={(check: boolean) => check ? removeSubcategory(subcategory.id) : addToProject(subcategory.id, "sub_categories")} subcategory={subcategory.name} />
+                                    })
+                                })
+                            }
+                        </ScrollView>
+
+
+                    </View>
+
+                    <View style={styles.bar}></View>
+
+                    <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={registerProject.images} setUserImage={(image: string) => handleUserPicture(image)} />
+                    {/* <Attachment isActive={imageIndex == 4 ? false : true} userAttachment={registerProject.attachments} setUserAttachment={(attachment: string) => handleUserPicture(attachment)}/> */}
+                    <LoginInputNumber type="numeric" name="estimated_deadline" iconName="today" value={registerProject.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
+                    <LoginInputNumber type="numeric" name="estimated_value" iconName="attach-money" value={registerProject.estimated_value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={12} />
+
+                    <RegisterProjectDriven />
+
+
+
+                    <View style={styles.button}>
+                        <LoginButton type="light" action={() => console.log(registerProject)} isLoad={registerProjectLoad} title="Publicar" />
+                    </View>
+
+
+
                 </ScrollView>
 
 
-            </View>
+            </View >
 
             <View style={styles.bar}></View>
 
@@ -518,9 +543,8 @@ const styles = StyleSheet.create({
 
     },
     areaContainer2: {
-        height: Dimensions.get('window').height * 0.20,
+        height: Dimensions.get('window').height * 0.10,
         marginBottom: 50,
-        borderWidth: 2,
         borderColor: "#DEDEDE"
         // elevation:7,
     },

@@ -7,17 +7,16 @@ import api from "../../../service";
 
 interface IProject {
     navigation: any
-    userId: any
 }
 
-export const Project = ({ navigation, userId }: IProject) => {
+export const ProjectOwner = ({ navigation }: IProject) => {
 
     const [imageIndex, setImageIndex] = useState(0)
     const [projectLoad, setProjectLoad] = useState(false)
     const [categories, setCategories] = useState([{}])
     const [hasError, setHasError] = useState(false)
 
-    const [project, setProject] = (useState)({
+    const [projectOwner, setProjectOwner] = (useState)({
         images: [
             {
                 url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
@@ -50,63 +49,65 @@ export const Project = ({ navigation, userId }: IProject) => {
     const handleUserPicture = (text: any) => {
 
         console.log("images => ", text)
-        let newImages = project.images
+        let newImages = projectOwner.images
 
         newImages[imageIndex] = { url: text }
 
-        setProject({
+        setProjectOwner({
 
-            ...project,
+            ...projectOwner,
             images: newImages
         })
 
         setImageIndex(imageIndex + 1)
     }
 
-    useEffect(() => { }, [project])
+    useEffect(() => { }, [projectOwner])
 
 
     return (
         <>
             <View style={styles.navigationBar}></View>
 
-            <View style={styles.fix}>
-                <ScrollView style={styles.container}>
-                    <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string) => handleUserPicture(image)} />
 
-                    <View style={styles.containerFilho}>
-                        <View style={styles.containerDate}>
-                            <Text style={styles.title}>Criado em: {project.dataInico} </Text>
-                            <Text style={styles.title}>Prazo término: {project.dataTermino}</Text>
-                        </View>
+            <ScrollView style={styles.container}>
+                <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={projectOwner.images} setUserImage={(image: string) => handleUserPicture(image)} />
 
-                        <View style={styles.containerProfile}>
-                            <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} />
-                            <Text style={styles.title}>Valor estiamdo: {project.valor}</Text>
-                        </View>
-
-                        <View style={styles.containerTitle}>
-                            <Text style={styles.title2}>{project.titulo}</Text>
-                            <Text style={styles.describle}> {project.descricao}</Text>
-
-                            <View style={styles.categories}>
-                                <Text style={styles.title}>Categoria</Text>
-                                <Text style={styles.categorySelected}>{project.categoria}</Text>
-
-                                <Text style={styles.title}>Subcategoria</Text>
-                                <Text style={styles.categorySelected}>{project.subCategoria}</Text>
-                            </View>
-
-                            <View style={styles.button}>
-                                <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Participar" />
-                            </View>
-                        </View>
-
-
-
+                <View style={styles.containerFilho}>
+                    <View style={styles.containerDate}>
+                        <Text style={styles.title}>Criado em: {projectOwner.dataInico} </Text>
+                        <Text style={styles.title}>Prazo término: {projectOwner.dataTermino}</Text>
                     </View>
-                </ScrollView>
-            </View>
+
+                    <View style={styles.containerProfile}>
+                        <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} />
+                        <Text style={styles.title}>Valor estiamdo: {projectOwner.valor}</Text>
+                    </View>
+
+                    <View style={styles.containerTitle}>
+                        <Text style={styles.title2}>{projectOwner.titulo}</Text>
+                        <Text style={styles.describle}> {projectOwner.descricao}</Text>
+
+                        <View style={styles.categories}>
+                            <Text style={styles.title}>Categoria</Text>
+                            <Text style={styles.categorySelected}>{projectOwner.categoria}</Text>
+
+                            <Text style={styles.title}>Subcategoria</Text>
+                            <Text style={styles.categorySelected}>{projectOwner.subCategoria}</Text>
+                        </View>
+
+                        <View style={styles.button}>
+                            <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Executar Projeto" />
+                        </View>
+
+                        <Text style={styles.title}>Prestadores que se candidataram</Text>
+                    </View>
+
+
+
+                </View>
+            </ScrollView>
+
 
             <View style={styles.bar}></View>
         </>
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     },
     fix: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2,
+
     },
     containerFilho: {
         width: Dimensions.get('window').width,
@@ -199,7 +200,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         justifyContent: "center",
         alignItems: "center",
-        padding: 10
 
     },
 
