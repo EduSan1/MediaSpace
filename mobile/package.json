@@ -45,10 +45,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-wavy-background": "^0.2.0",
     "react-native-web": "~0.18.7",
-<<<<<<< HEAD
     "save": "^2.9.0",
-=======
->>>>>>> fa5e98570bebef827a15388cde60f346e9aa3a02
     "uuid": "^9.0.0"
   },
   "devDependencies": {

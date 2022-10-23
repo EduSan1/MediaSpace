@@ -7,10 +7,9 @@ import api from "../../../service";
 
 interface IProject {
     navigation: any
-    userId: any
 }
 
-export const Project = ({ navigation, userId }: IProject) => {
+export const Project = ({ navigation }: IProject) => {
 
     const [imageIndex, setImageIndex] = useState(0)
     const [projectLoad, setProjectLoad] = useState(false)

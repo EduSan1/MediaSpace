@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Project from "./pages/Project";
+import { Project } from "./pages/Project";
 import Messages from "./pages/Messages";
 import TechnicalRequirements from "./pages/TechnicalRequirements";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
