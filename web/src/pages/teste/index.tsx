@@ -8,8 +8,8 @@ const teste = () =>{
     <>
     
         <div className="main">
-             <Interestedserver type="checkbox" name="teste" nickname="tantfaz"/>
-             <Interestedserver type="submit" name="teste" nickname="testeeee"/>
+             <Interestedserver type="checkbox" name="teste" nickname="tantfaz" photo=""/>
+             <Interestedserver type="submit" name="teste" nickname="testeeee" photo=""/>
         </div>
     
     
