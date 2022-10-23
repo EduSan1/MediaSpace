@@ -32,24 +32,26 @@
           align-items: flex-start;
           justify-content: start;
           flex-direction: column;
-          background-color: aqua;
+          
+          gap: 20px;
 
 
           .Big_Tittle{
             width: 100%;
             height: 30%;
-            background-color: antiquewhite;
+            
             h1{
-
+                
+               font-family: $light-font;
             }
           }
 
           .small_Tittle{
             width: 100%;
             height: 70%;
-            background-color: rgb(47, 29, 4);
+           
             h3{
-                
+                font: 1em sans-serif;
             }
           }
     }
@@ -58,8 +60,9 @@
        .SearchBar_candidates{
         display: flex;
         width: 90%;
-        height: 3%;
-        background-color: aqua;
+        height: 10%;
+        align-items: center;
+        justify-content: center;
         div{
             width: 100%;
             height: 100%;
@@ -77,18 +80,21 @@
         display: flex;
         width: 95%;
         height: 100%;
-        background-color: bisque;
+      
         flex-direction: column;
 
-        div{
+        .item_perfil{
             width: 100%;
             height: 100px;
-            background-color: aliceblue;
+            
+           
         }
 
-        div:nth-child(odd){
-               background-color: $light-purple ;
+        .item_perfil:nth-child(odd){
+            background-color: $light-purple;
         }
+
+      
 
        }
 

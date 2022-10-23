@@ -1,6 +1,7 @@
 import React from "react";
 import { useJwt } from "react-jwt";
 import SearchBar from "../../components/HeaderPage/Search";
+import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
 
 const ProjectsrequirementsFreelancer = () => {
@@ -20,7 +21,7 @@ const ProjectsrequirementsFreelancer = () => {
                              
                              <header className="Tittles_Description">
                                 <span className="Big_Tittle">  <h1> Nome do projeto - Candidatos </h1>  </span>
-                                <span className="small_Tittle"> <h3> tse</h3>   </span>
+                                <span className="small_Tittle"> <h3> tsegsdasfasfuhasfasfasfjh</h3>   </span>
                              </header>
 
                              <div className="SearchBar_candidates">
@@ -28,10 +29,13 @@ const ProjectsrequirementsFreelancer = () => {
                              </div>
 
                              <div className="candidates">
-                                   <div>marcus</div>
-                                   <div>laise</div>
-                                   <div>eduardo</div>
-                                   <div>gabriel</div>
+                                <div className="item_perfil"><Interestedserver type={"checkbox"} name="gean" nickname="@gean"/></div>
+                                <div className="item_perfil"><Interestedserver type={"checkbox"} name="gean" nickname="@gean"/></div>
+                                <div className="item_perfil"><Interestedserver type={"checkbox"} name="gean" nickname="@gean"/></div>
+                                <div className="item_perfil"><Interestedserver type={"checkbox"} name="gean" nickname="@gean"/></div>
+                                        
+                                   
+                                  
                              </div>
                         
                   
@@ -45,4 +49,4 @@ const ProjectsrequirementsFreelancer = () => {
     );
 }
 
-export default ProjectsrequirementsFreelancer        ;
+export default ProjectsrequirementsFreelancer ;
