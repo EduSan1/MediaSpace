@@ -8,8 +8,6 @@ import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
 import { storage } from "../../constants/firebase";
 import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
-import Projects from "../Projects";
-
 
 const CreateProject = () => {
 

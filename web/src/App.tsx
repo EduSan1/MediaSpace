@@ -19,6 +19,7 @@ import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 //import SpaceBackground from './components/SpaceBackground';
+import PreviewProject from './pages/PreviewProject';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
         <Route path='/projects/createProjects' element={<CreateProject />} />
         <Route path='/projects' element={<Projects />} />
+        <Route path='/projects/previewProject' element={<PreviewProject />} />
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
