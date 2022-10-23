@@ -143,8 +143,8 @@
         transition: 0.5s;
 
         &:hover {
-            border: 1px solid $dark-blue;
-            box-shadow: 2px 2px 10px #999;
+            border: 1px solid $primary-blue;
+            box-shadow: 2px 2px 10px $primary-blue;
         }
     }
     .project-card-image-container {

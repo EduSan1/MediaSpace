@@ -100,6 +100,8 @@ const ProjectsrequirementsFreelancer = () => {
 
 
     );
+
+
 }
 
 export default ProjectsrequirementsFreelancer;

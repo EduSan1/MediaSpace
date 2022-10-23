@@ -5,6 +5,8 @@ import NavegationBar from "../../components/utils/navegation";
 
 const HomePage = () => {
 
+    const user = localStorage.getItem('userDetails');
+    const { decodedToken, isExpired } = useJwt(user ? user : "");
 
     return (
 

@@ -1,16 +1,16 @@
 import React from "react";
 
 
-const teste = () =>{
-   
-    return(<>
-    
+const teste = () => {
+
+    return (<>
+
         <div>
-          
+
         </div>
-    
-    
-    
+
+
+
     </>);
 
 }

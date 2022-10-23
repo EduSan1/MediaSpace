@@ -14,6 +14,7 @@ import { useJwt } from "react-jwt";
 const NavegationBar = () => {
 
 
+
     // for (var key in localStorage) {
     //     console.log(key, " => ", localStorage.getItem(key))
     // }

@@ -49,7 +49,6 @@ const LoginSpace = () => {
   };
 
   const logIntUser = async (diceUser: string) => {
-    console.log("deice => ", diceUser)
     await localStorage.setItem('userDetails', diceUser);
 
   }
@@ -80,8 +79,9 @@ const LoginSpace = () => {
 
 
 
-
   }
+
+
 
 
 
@@ -92,7 +92,6 @@ const LoginSpace = () => {
 
 
       if (res.data.is_logged) {
-        console.log(res.data)
         logIntUser(res.data.userDetails)
         navigation('/home');
 

@@ -42,10 +42,15 @@ function App() {
         <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
         <Route path='/projects/createProjects' element={<CreateProject />} />
-        {/* <Route path='/projects/requirementsFreelancer' element={<Projects/>} /> */}
+        <Route path='/projects/requirementsFreelancer' element={<Projects />} />
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
+
+
+
+        {/* */}
+        <Route path='/teste' element={<Teste />} />
 
 
 
