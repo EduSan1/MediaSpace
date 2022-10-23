@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View, ScrollView,} from "react-native"
+import { Image, Text, StyleSheet, Dimensions, View,} from "react-native"
 
 
 export const CardRequirements= () => {
@@ -58,7 +58,7 @@ const style = StyleSheet.create({
         borderRadius:10,
     },
     TextCardRequirements:{
-        marginTop:10,
+        marginTop:8,
         marginLeft:Dimensions.get('window').width * 0.02,
         fontSize:17,
         color:"#756DE6",

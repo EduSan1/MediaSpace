@@ -7,11 +7,18 @@ import TechnicalRequirements from "./pages/TechnicalRequirements";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Feed from "./pages/Feed";
 import {View, StyleSheet, Image, } from "react-native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RegisterProject } from "./pages/RegisterProject";
+import TechnicalRequirementsFrelancer from "./pages/TechnicalRequirementsFreelancer";
+import WorkersAppliedPage from "./pages/WorkersAppliedPage";
+import WorkersSelectedPage from "./pages/WorkersSelectedPage";
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Routes(){
     return(
 
+    
         <Tab.Navigator
         screenOptions={{
         tabBarStyle:{
@@ -52,6 +59,9 @@ export default function Routes(){
                 )
             }
         }/>
+        {/* <Tab.Screen name="RegisterProject" component={RegisterProject}
+        options={{tabBarStyle:{display:"none"}
+        }}/> */}
 
         <Tab.Screen name="Feed" component={Feed}
         options={{ tabBarIcon:({focused}) =>(
@@ -93,11 +103,11 @@ export default function Routes(){
                     tintColor: focused ? '#75A5FF' : '#C6D2FF'}}/>
             </View>
                 )
-
+                
             }
         }/>
-        <Tab.Screen name="cwnfopwe" component={TechnicalRequirements}/>
+        <Tab.Screen name="cwnfopwe" component={WorkersSelectedPage}/>
     </Tab.Navigator>
+  
     )
-
 }
