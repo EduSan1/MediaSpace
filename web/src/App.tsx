@@ -21,6 +21,7 @@ import Perfil from './pages/Perfil';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
+import PreviewProject from './pages/PreviewProject';
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
         <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
         <Route path='/projects/createProjects' element={<CreateProject />} />
-        <Route path='/projects/requirementsFreelancer' element={<Projects />} />
+        <Route path='/projects/:projectId' element={<PreviewProject />} />
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />

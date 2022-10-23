@@ -1,4 +1,5 @@
 import React from "react";
+import { Value } from "sass";
 
 export const cpfMask = (value: string) => {
     return value
@@ -24,3 +25,15 @@ export const phoneMask = (value: string) => {
 export const onlyLetters = new RegExp("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ']+$");
 
 export const passwordMask = new RegExp('^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$');
+
+export const formatDate = (value: string) => {
+    const orderDate = value.split("-")
+    const formatDate = `${orderDate[1]}/${orderDate[2]}/${orderDate[0]} `
+    return formatDate
+}
+
+export const formatMoney = (value: number) => {
+    const moneyString = value.toString(value)
+    return moneyString.replace(/\./g, ',')
+
+}

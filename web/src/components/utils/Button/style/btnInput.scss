@@ -113,3 +113,15 @@
     color: #fff;
     border: none;
 }
+
+.input_btn_project {
+    display: flex;
+    width: 15%;
+    height: 50%;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #B275FF;
+    border: 1px solid #B275FF;
+}

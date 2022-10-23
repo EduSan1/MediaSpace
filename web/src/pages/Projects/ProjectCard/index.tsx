@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ButtonCategories from "../../../components/utils/Button/Categories/Categories";
 import CategoryCard from "../../../components/utils/CategoryCard";
 
@@ -16,10 +17,12 @@ interface IProject {
     }
 }
 
-const ProjectCard = ({ name, description, value, image, categories, user }: IProject) => {
+const ProjectCard = ({ id, name, description, value, image, categories, user }: IProject) => {
+
+    const navigate = useNavigate()
 
     return (
-        <div className="project-card">
+        <div onClick={() => navigate(`/projects/${id}`)} className="project-card">
             <div className="project-card-image-container">
                 <img src={image[0].url} alt="" />
             </div>

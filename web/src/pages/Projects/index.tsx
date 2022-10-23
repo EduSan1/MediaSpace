@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/HeaderPage/Search";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import NavegationBar from "../../components/utils/navegation";
@@ -8,6 +9,7 @@ import ProjectCard from "./ProjectCard";
 
 const ProjectsrequirementsFreelancer = () => {
 
+    const navigate = useNavigate()
     const [categories, setCategories] = useState([])
     const [projects, setProjects] = useState([])
 
@@ -55,8 +57,8 @@ const ProjectsrequirementsFreelancer = () => {
                         <div className="project-page-create-container">
                             <div className="project-page-crete-options">
                                 <h1>Inicie seu lançamento</h1>
-                                <p>Crie sua ideia para que od freelnacers da plataforma possam executa-la</p>
-                                <button>Crie seu projeto</button>
+                                <p>Crie sua ideia para que os freelnacers da plataforma possam executa-la</p>
+                                <button onClick={() => navigate("/projects/createProjects")}>Crie seu projeto</button>
                             </div>
 
                         </div>
@@ -69,7 +71,7 @@ const ProjectsrequirementsFreelancer = () => {
                             </div>
                             {
                                 categories.map((category: any) =>
-                                    <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                                    <ButtonCategories category={category.name} name={category} icon={category.icon} id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
                                 )
                             }
 
