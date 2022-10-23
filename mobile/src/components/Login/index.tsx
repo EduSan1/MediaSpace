@@ -36,19 +36,20 @@ export const Login = ({ navigation }: ILogin) => {
     const login = () => {
         Keyboard.dismiss()
         setIsLoad(true)
+        navigation.navigate("NavigationScreen")
 
-        api.post("/user/login", userLogin).then((res: any) => {
+        // api.post("/user/login", userLogin).then((res: any) => {
 
-            if (res.data.is_logged)
-                ToastAndroid.show(res.data.message, 10)
-            else {
-                setHasError(true)
-                ToastAndroid.show(res.data.message, 10)
-            }
+        //     if (res.data.is_logged)
+        //         navigation.navigate("NavigationScreen")
+        //     else {
+        //         setHasError(true)
+        //         ToastAndroid.show(res.data.message, 10)
+        //     }
 
-        }).catch((error) => {
-            console.log(error)
-        })
+        // }).catch((error) => {
+        //     console.log(error)
+        // })
 
         setIsLoad(false)
 
