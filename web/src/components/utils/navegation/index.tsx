@@ -8,12 +8,22 @@ import { MdRssFeed } from "react-icons/md";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import { useJwt } from "react-jwt";
 
 
 const NavegationBar = () => {
 
+
+    // for (var key in localStorage) {
+    //     console.log(key, " => ", localStorage.getItem(key))
+    // }
+
     const [open, setOpen] = useState(false);
+
+    const userJwt = localStorage.getItem('userDetails');
+    const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
+
+    // console.log("token => ", decodedToken)
 
     return (
 
@@ -33,10 +43,10 @@ const NavegationBar = () => {
                 </span>
 
                 <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
-                    <ImageComponent src="../assets/img/profileTeste.svg" alt="" className="photo_user_img" />
+                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img" />
                     <span className="InfoName_user">
-                        <h2>Cardmon</h2>
-                        <h4>@CardamonViolet</h4>
+                        <h2>{decodedToken?.userDetails?.first_name}</h2>
+                        <h4>@{decodedToken?.userDetails?.nickname}</h4>
                     </span>
                     <div className="Info_data">
                         <span>
@@ -53,19 +63,19 @@ const NavegationBar = () => {
                         </span>
                     </div>
 
-                    <div className="btns">
+                    {/* <div className="btns">
                         button
-                    </div>
+                    </div> */}
 
                 </div>
 
                 <div className={!open ? "Container_icon_nav" : "Container_icon_nav_open"}>
                     <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
                         <ul>
-                            <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '}  /></Link></li>
+                            <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} /></Link></li>
                             <li> <Link to={'/projects'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Menssagens'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Mensagens'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
-                            <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed/>} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed />} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Perfil'} className='Link_NextPage'><IconBar Icon={<BiUser />} text={'Perfil'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
 
                         </ul>
@@ -77,7 +87,7 @@ const NavegationBar = () => {
 
                         <ul>
                             <li>
-                                <Link to={'/'} className='Link_NextPage'><IconBar Icon={<AiOutlineLogout />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link>
+                                <Link to={'/'} className='Link_NextPage'><IconBar Icon={<AiOutlineLogout onClick={() => { localStorage.removeItem('userDetails'); }} />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link>
                             </li>
                         </ul>
 

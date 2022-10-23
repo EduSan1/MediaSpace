@@ -19,6 +19,7 @@
     @import "./pages/RecoveringPasswordPage/index.scss";
     @import "../pages/Home/Style/indedx.scss";
     @import "../pages/Projects/style/index.scss";
+    @import "../pages/Projects/ProjectsStyle//index.scss";
 
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
@@ -46,11 +47,4 @@
     @import "../components/HeaderPage/Search/search.scss";
     @import "../components/HeaderPage/headerPages.scss";
     @import "../pages/CreateProject/components/boostButton.scss";
-
-
-
-
-
-
-
 }

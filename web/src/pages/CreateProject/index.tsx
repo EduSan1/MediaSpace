@@ -9,6 +9,7 @@ import NavegationBar from "../../components/utils/navegation";
 import { storage } from "../../constants/firebase";
 import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import Projects from "../Projects";
+import { useJwt } from "react-jwt";
 
 
 const CreateProject = () => {
@@ -63,9 +64,6 @@ const CreateProject = () => {
       })
       console.log(project)
    }
-
-
-   const [subCategorias, setSubCategorias] = React.useState([])
 
    const categories = [
       {
@@ -388,7 +386,7 @@ const CreateProject = () => {
                               <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
                               <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
                               <div className="teste">
-                                 <img src="." />
+                                 <img src="./boosted.png" />
                                  <div className="container_boost_buttons">
                                     <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={"../../../public/assets/img/project/free.png"} label={""} />
                                     <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={"../../../public/assets/img/project/boosted.png"} label={""} />

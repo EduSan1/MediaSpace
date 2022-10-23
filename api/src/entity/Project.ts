@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { CategoryORM } from "./Category";
 import { InterestORM } from "./Interest";
-import { ProjectAttachmentORM } from "./ProjectAttachment";
 import { ProjectImageORM } from "./ProjectImage";
 import { ProjectManagementORM } from "./ProjectManagement";
 import { ProjectRequirementORM } from "./ProjectRequirement";
@@ -51,9 +50,6 @@ export class ProjectORM {
 
     @OneToMany(() => ProjectImageORM, image => image.project, { eager: true })
     images: ProjectImageORM[]
-
-    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project)
-    attachments: ProjectAttachmentORM[]
 
     @OneToOne(() => ProjectManagementORM, management => management.project)
     management: ProjectManagementORM[]

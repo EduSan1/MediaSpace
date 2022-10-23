@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { MdFacebook, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
-import { Link } from 'react-router-dom';
+import { Link, Route, useNavigate } from 'react-router-dom';
+
+
 
 const LoginSpace = () => {
 
+  const navigation = useNavigate();
   const [diceLogin, setDiceLogin] = useState({
 
     "mail": "",
@@ -31,6 +34,10 @@ const LoginSpace = () => {
 
   };
 
+  useEffect(() => {
+    console.log(diceLogin)
+  }, [diceLogin]);
+
 
   const [hasError, setHasError] = React.useState(false);
 
@@ -41,8 +48,9 @@ const LoginSpace = () => {
 
   };
 
-  const logIntUser = (diceUser: string) => {
-    localStorage.setItem('userDetailes', diceUser);
+  const logIntUser = async (diceUser: string) => {
+    console.log("deice => ", diceUser)
+    await localStorage.setItem('userDetails', diceUser);
 
   }
 
@@ -68,7 +76,6 @@ const LoginSpace = () => {
     if (validate) {
       loginUser();
 
-
     }
 
 
@@ -76,23 +83,25 @@ const LoginSpace = () => {
 
   }
 
+
+
   const loginUser = async () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
+      const data = res.data;
+
 
       if (res.data.is_logged) {
-        logIntUser(res.data.userDetails);
-
-        // next page home
-        window.alert("usuario logado!")
+        console.log(res.data)
+        logIntUser(res.data.userDetails)
+        navigation('/home');
 
       } else {
-        //FAZ NADA
-        // window.alert("senha incorreta")
+
         setHasError(true);
       }
 
-      return res;
+      return data;
 
 
     })
@@ -151,7 +160,7 @@ const LoginSpace = () => {
           <div className="btn_AutomaticLogin">
             <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}
               onClick={() => {
-                validate();
+                validate()
               }} />
 
             <div className="LoginIcons-container">
@@ -159,7 +168,7 @@ const LoginSpace = () => {
               <div className="loginIcons">
 
                 <span>
-                  <MdFacebook onClick={() => { console.log('Facebook') }} />
+                  <MdFacebook onClick={() => { }} />
                 </span>
 
                 <span>
