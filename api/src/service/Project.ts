@@ -21,7 +21,7 @@ interface IRegisterInterest {
 
 export class ProjectService {
     private _: ProjectRepository
-    private projectDomain: ProjectDomain
+    private projectORM: ProjectORM
     private projectImageRepository: ProjectImageRepository
     private projectAttachmentRepository: ProjectAttachmentRepository
     private projectRequirementRepository: ProjectRequirementsRepository
@@ -271,12 +271,12 @@ export class ProjectService {
                 };
             }
 
-            this.projectDomain.requirements?.map(async () => {
+            this.projectORM.requirements.map(async () => {
                 if ({requirement: { is_active: true }}) {
                     {requirement: { is_accepted: true }}
                     const projectUpdated = await this.projectRequirementRepository.update(project)
                     return{
-                        message: "Dados atualizados",
+                        message: "Requisitos aceitos",
                         data: projectUpdated,
                         statusCode: 200
                     };
