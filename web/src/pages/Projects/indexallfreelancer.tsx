@@ -11,42 +11,42 @@ const ProjectsrequirementsFreelancer = () => {
 
     return (
 
-        
-            <main id="ContentPage">
 
-                <NavegationBar user={user} />
-                <div className="Container">
-                    <SearchBar />
-                    <section className="section_main_Project">
-                             
-                             <header className="Tittles_Description">
-                                <span className="Big_Tittle">  <h1> Nome do projeto - Candidatos </h1>  </span>
-                                <span className="small_Tittle"> <h3> tsegsdasfasfuhasfasfasfjh</h3>   </span>
-                             </header>
+        <main id="ContentPage">
 
-                             <div className="SearchBar_candidates">
-                             <SearchBar />
-                             </div>
+            <NavegationBar />
+            <div className="Container">
+                <SearchBar />
+                <section className="section_main_Project">
 
-                             <div className="candidates">
-                                <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo=""/></div>
-                                <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo=""/></div>
-                                <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo=""/></div>
-                                <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo=""/></div>
-                                        
-                                   
-                                  
-                             </div>
-                        
-                  
+                    <header className="Tittles_Description">
+                        <span className="Big_Tittle">  <h1> Nome do projeto - Candidatos </h1>  </span>
+                        <span className="small_Tittle"> <h3> tsegsdasfasfuhasfasfasfjh</h3>   </span>
+                    </header>
 
-                    </section>
-                </div>
-            </main>
+                    <div className="SearchBar_candidates">
+                        <SearchBar />
+                    </div>
 
-        
+                    <div className="candidates">
+                        <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo="" /></div>
+                        <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo="" /></div>
+                        <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo="" /></div>
+                        <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo="" /></div>
+
+
+
+                    </div>
+
+
+
+                </section>
+            </div>
+        </main>
+
+
 
     );
 }
 
-export default ProjectsrequirementsFreelancer ;
+export default ProjectsrequirementsFreelancer;

@@ -5,13 +5,13 @@ import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-i
 import { MdFacebook, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
-import { Link, Route, useNavigate} from 'react-router-dom';
+import { Link, Route, useNavigate } from 'react-router-dom';
 
 
 
 const LoginSpace = () => {
 
-  const navegation = useNavigate();
+  const navigation = useNavigate();
   const [diceLogin, setDiceLogin] = useState({
 
     "mail": "",
@@ -48,8 +48,8 @@ const LoginSpace = () => {
 
   };
 
-  const logIntUser = (diceUser: string) => {
-    localStorage.setItem('userDetails', diceUser);
+  const logIntUser = async (diceUser: string) => {
+    await localStorage.setItem('userDetails', diceUser);
 
   }
 
@@ -70,19 +70,20 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    } 
+    }
 
     if (validate) {
       loginUser();
-     
-    } 
 
-     
+    }
 
 
-  }  
 
-  
+  }
+
+
+
+
 
   const loginUser = async () => {
 
@@ -91,15 +92,14 @@ const LoginSpace = () => {
 
 
       if (res.data.is_logged) {
-            console.log(res.data)
-          logIntUser(res.data.is_logged)
-          navegation('/home');
+        logIntUser(res.data.userDetails)
+        navigation('/home');
 
-      }else {
- 
+      } else {
+
         setHasError(true);
       }
-           
+
       return data;
 
 
@@ -109,9 +109,9 @@ const LoginSpace = () => {
         console.log(error)
       });
 
-      
+
   }
-   
+
 
   return (
 
@@ -158,8 +158,8 @@ const LoginSpace = () => {
 
           <div className="btn_AutomaticLogin">
             <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}
-              onClick={() => {  
-                validate()  
+              onClick={() => {
+                validate()
               }} />
 
             <div className="LoginIcons-container">

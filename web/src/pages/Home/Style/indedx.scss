@@ -1,24 +1,22 @@
-#ContentPage
-{
+#ContentPage {
     width: 100vw;
-    height: 100vh;
+    height: 98vh;
     display: flex;
     flex-direction: row;
-    gap: 100px;
-    justify-content:center;
+    gap: 2vw;
+    justify-content: center;
     align-items: flex-start;
 
-
-    .Container{
-        width: 100%;
+    .Container {
+        width: 98%;
         height: 100%;
     }
-   .section_main{
-        height: 95%;
+    .section_main {
+        height: 90%;
         width: auto;
+
         display: flex;
         justify-content: center;
         align-items: center;
     }
 }
-
