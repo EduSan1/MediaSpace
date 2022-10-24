@@ -194,7 +194,8 @@ export class UserService {
                     message: "Login realizado com sucesso",
                     is_logged: true,
                     statusCode: 200,
-                    userDetails: userJwt
+                    userDetails: userJwt,
+                    user: userDetails
                 }
             } else {
                 return {

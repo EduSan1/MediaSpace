@@ -63,7 +63,7 @@ export const Register = ({ navigation }: IRegister) => {
             ddd: "",
             phone: ""
         },
-        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
         gender: {
             "id": check
         },
@@ -172,6 +172,7 @@ export const Register = ({ navigation }: IRegister) => {
             gender: {
                 "id": check
             }
+
         })
     }
         , [check]
@@ -237,7 +238,7 @@ export const Register = ({ navigation }: IRegister) => {
                         <View style={styles.checkboxContainer}>
                             {
                                 gender.map((gender: any) => {
-                                    return <CheckboxComponent key={gender.id} check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
+                                    return <CheckboxComponent check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
                                 })
                             }
                         </View>
@@ -275,7 +276,6 @@ export const Register = ({ navigation }: IRegister) => {
 }
 
 const styles = StyleSheet.create({
-
     title: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.07,
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.20,
+        height: Dimensions.get('window').height * 0.4,
         display: 'flex',
     },
 
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text2: {
-        width: Dimensions.get('window').width * 0.6,
+        width: Dimensions.get('window').width * 0.4,
         fontSize: Dimensions.get("window").width * 0.03,
         marginTop: Dimensions.get("window").height * 0.02,
         textAlign: "center",
@@ -337,8 +337,8 @@ const styles = StyleSheet.create({
 
     // },
     scrollIcon: {
-        width: Dimensions.get('window').width * 0.064,
-        height: Dimensions.get('window').height * 0.04,
+        width: Dimensions.get('window').width * 0.059,
+        height: Dimensions.get('window').height * 0.0439,
 
     },
     iconViewStart: {

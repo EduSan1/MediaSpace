@@ -6,7 +6,6 @@ import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
 import { ProjectORM } from "./entity/Project"
-import { ProjectAttachmentORM } from "./entity/ProjectAttachment"
 import { ProjectImageORM } from "./entity/ProjectImage"
 import { ProjectManagementORM } from "./entity/ProjectManagement"
 import { ProjectMemberORM } from "./entity/ProjectMember"
@@ -38,7 +37,6 @@ export const AppDataSource = new DataSource({
         InterestORM,
         MemberORM,
         TypePaymentORM,
-        ProjectAttachmentORM,
         ProjectRequirementORM,
         ProjectMemberORM,
         ProjectORM,
