@@ -1,17 +1,18 @@
-#LoginPage {
+#Navegationbar {
     .Container_navegation {
         display: flex;
         width: 4%;
-        height: 1080px;
+        height: 100%;
         flex-direction: column;
         align-items: center;
-        // position: fixed;
+        position: fixed;
         display: block;
         box-shadow: 0px 0px 6px #979797;
         border-radius: 0px 8px 0px;
         transition: 0.20s;
         position: absolute;
         z-index: 1;
+        margin-right: 10%;
 
         .Menu_bar_icon {
             display: flex;
@@ -139,6 +140,7 @@
                     display: flex;
                     width: 100%;
                     height: 100%;
+                    justify-content: center;
 
                     svg{
                         width: 100%;
@@ -162,10 +164,11 @@
             justify-content: center;
             align-items: center;
             gap: 10%;
+            margin-bottom: 10px;
 
             img {
-                width: 90%;
-                height: 90%;
+                width: 80%;
+                height: 80%;
             }
         }
 
@@ -183,7 +186,7 @@
                 align-items: flex-end;
                 flex-direction: column;
                 width: 100%;
-                height: 60%;
+                height: 100%;
                 list-style: none;
                 text-decoration: none;
                
@@ -192,6 +195,7 @@
                     display: flex;
                     width: 100%;
                     height: 100%;
+                    justify-content: center;
 
                     svg{
                         width: 100%;
@@ -243,8 +247,8 @@
 //open
 .Container_navegation_Open {
     display: flex;
-    width: 20%;
-    height: 1080px;
+    width: 15%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     padding-left: 5px;
@@ -253,6 +257,7 @@
     border-radius: 0px 20px 20px 0px;
     position: absolute;
     z-index: 1;
+    background-color: white;
 
 
 

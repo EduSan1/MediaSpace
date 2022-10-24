@@ -1,0 +1,102 @@
+@import "../../../styles/vars.scss";
+
+#ContentPage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    justify-content: center;
+    align-items: flex-start;
+
+
+    .Container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .section_main_Project {
+        height: 95%;
+        width: auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+    .Tittles_Description
+    {
+          width: 95%;
+          height: 10%;
+          padding: 3px;
+          display: flex; 
+          align-items: flex-start;
+          justify-content: start;
+          flex-direction: column;
+          
+          gap: 20px;
+
+
+          .Big_Tittle{
+            width: 100%;
+            height: 30%;
+            
+            h1{
+                
+               font-family: $light-font;
+            }
+          }
+
+          .small_Tittle{
+            width: 100%;
+            height: 70%;
+           
+            h3{
+                font: 1em sans-serif;
+            }
+          }
+    }
+
+
+       .SearchBar_candidates{
+        display: flex;
+        width: 90%;
+        height: 10%;
+        align-items: center;
+        justify-content: center;
+        div{
+            width: 100%;
+            height: 100%;
+
+            input{
+                width: 100%;
+                height: 90%;
+            }
+            
+        }
+       }
+          
+     
+       .candidates{
+        display: flex;
+        width: 95%;
+        height: 100%;
+      
+        flex-direction: column;
+
+        .item_perfil{
+            width: 100%;
+            height: 100px;
+            
+           
+        }
+
+        .item_perfil:nth-child(odd){
+            background-color: $light-purple;
+        }
+
+      
+
+       }
+
+    }
+}

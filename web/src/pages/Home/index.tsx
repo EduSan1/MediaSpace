@@ -1,21 +1,29 @@
 import React from "react";
-import LoginSpace from "../../components/Login";
-import SpaceBackground from "../../components/SpaceBackground/index";
+import { useJwt } from "react-jwt";
+import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
 
-const HomePage = () =>{
+const HomePage = () => {
 
-    return(
-   
-        <>
-        <main id="LoginPage">
-
-        <NavegationBar/>
-
-        </main>
-         
-        </>
+    const user = localStorage.getItem('userDetails');
+    const { decodedToken, isExpired } = useJwt(user ? user : "");
   
+    return (
+
+        
+            <main id="ContentPage">
+
+                <NavegationBar user={decodedToken}/>
+                <div className="Container">
+                    <SearchBar />
+                    <section className="section_main"> main</section>
+                </div>
+
+
+            </main>
+
+        
+
     );
 }
 

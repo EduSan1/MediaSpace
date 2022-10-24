@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, Generated, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm"
 import { ProjectORM } from "./Project"
 import { ProjectMemberORM } from "./ProjectMember"
-import { TeamProjectManagementORM } from "./TeamProjectManagment"
+import { TeamProjectManagementORM } from "./TeamProjectManagement"
 import { TypePaymentORM } from "./TypePayment"
 
 @Entity({ name: "tb_project_management" })
@@ -13,9 +13,7 @@ export class ProjectManagementORM {
     @Column()
     payment_confirmed: boolean
 
-    @Column({ type: "double" })
-    value: number
-
+    @Generated("increment")
     request_number: number
 
     @Column()
@@ -27,8 +25,8 @@ export class ProjectManagementORM {
     @ManyToOne(() => TypePaymentORM, typePayment => typePayment.project_management)
     payment_type: TypePaymentORM
 
-    @OneToMany(() => TeamProjectManagementORM, teamProjectManagment => teamProjectManagment.projectManagement)
-    team_project_managment: TeamProjectManagementORM[]
+    @OneToMany(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.projectManagement)
+    team_project_management: TeamProjectManagementORM[]
 
     @OneToMany(() => ProjectMemberORM, projectMember => projectMember.member, { eager: true })
     members: ProjectMemberORM[]

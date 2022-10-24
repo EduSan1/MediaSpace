@@ -105,7 +105,6 @@ export const Register = ({ navigation }: IRegister) => {
     }
 
     const handlePhone = (text: string, name: string) => {
-        // console.log(user.phone.phone.split)
         setUserRegister({
             // ...user, [event.target.name]: phoneMask(event.target.value)
             ...userRegister, phone: {

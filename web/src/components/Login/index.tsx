@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import InputLoign from "../utils/Input/LoginInput";
 import InputBtn from "../utils/Button/InputBtn";
 import { AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { MdFacebook, MdLockOutline } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import api from "../../service";
-import { Link } from 'react-router-dom';
+import { Link, Route, useNavigate} from 'react-router-dom';
+
+
 
 const LoginSpace = () => {
 
+  const navegation = useNavigate();
   const [diceLogin, setDiceLogin] = useState({
 
     "mail": "",
@@ -46,7 +49,7 @@ const LoginSpace = () => {
   };
 
   const logIntUser = (diceUser: string) => {
-    localStorage.setItem('userDetailes', diceUser);
+    localStorage.setItem('userDetails', diceUser);
 
   }
 
@@ -67,32 +70,37 @@ const LoginSpace = () => {
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
-    }
+    } 
 
     if (validate) {
       loginUser();
+     
+    } 
 
-    }
+     
 
 
+  }  
 
-
-  }
+  
 
   const loginUser = async () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
-      console.log(res.data)
       const data = res.data;
-      console.log(res.data.is_logged)
+
 
       if (res.data.is_logged) {
-        logIntUser(res.data.userDetails);
-        window.alert("usuario logado!")
-      } else {
-        window.alert("senha incorreta")
-      }
+            console.log(res.data)
+          logIntUser(res.data.is_logged)
+          navegation('/home');
 
+      }else {
+ 
+        setHasError(true);
+      }
+           
+      return data;
 
 
     })
@@ -100,8 +108,10 @@ const LoginSpace = () => {
         setHasError(true);
         console.log(error)
       });
-  }
 
+      
+  }
+   
 
   return (
 
@@ -148,8 +158,8 @@ const LoginSpace = () => {
 
           <div className="btn_AutomaticLogin">
             <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnLogin'} valueBtn={'Login'}
-              onClick={() => {
-                validate();
+              onClick={() => {  
+                validate()  
               }} />
 
             <div className="LoginIcons-container">
@@ -157,7 +167,7 @@ const LoginSpace = () => {
               <div className="loginIcons">
 
                 <span>
-                  <MdFacebook onClick={() => { console.log('Facebook') }} />
+                  <MdFacebook onClick={() => { }} />
                 </span>
 
                 <span>

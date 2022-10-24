@@ -91,8 +91,6 @@ const RegisterSpace = () => {
         event.preventDefault();
         const file = event.target[0].files[0]
 
-        console.log(file)
-
         if (!file) return
 
         const storageRef = ref(storage, `profilePicture/${file.name}`)
@@ -128,7 +126,6 @@ const RegisterSpace = () => {
 
         api.post("/user", userToSend).then((res) => {
 
-            console.log(res.data)
             if (res.data.statusCode !== 201) {
                 window.alert("não foi possivel cadastrar o usuário")
             } else {
