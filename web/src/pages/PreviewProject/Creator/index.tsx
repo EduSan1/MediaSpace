@@ -14,7 +14,7 @@ import CategoryCard from '../../../components/utils/CategoryCard';
 const PreviewProject = () => {
 
    const { projectId } = useParams()
-   console.log(projectId)
+   // console.log(projectId)
 
    const [project, setProject] = useState({
       "name": "dasdasd",
