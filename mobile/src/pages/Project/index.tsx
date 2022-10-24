@@ -67,42 +67,6 @@ export const Project = ({ navigation }: IProject) => {
 
     return (
         <>
-<<<<<<< HEAD
-        <View style={styles.navigationBar}></View>
-        
-        <View style= {styles.container}>
-        <ScrollImage/>
-        
-        <View style={styles.date}>
-            <Text>Criado em: {'data'}</Text>
-            <Text>Prazo término: {'data'}</Text>
-        </View>
-
-        <View>
-            <Text>Perfil</Text>
-            <Text>Valor estiamdo:</Text>
-        </View>
-
-
-        <View>
-            <Text>Titulo</Text>
-        </View>
-
-        <View>
-            <Text>Descrião</Text>
-        </View>
-
-        <View>
-            <Text>Documentos em anexos</Text>
-        </View>
-
-        <View>
-            <Text>Categoria e sub-categoria</Text>
-        </View>
-        </View>
-
-        <View style={styles.bar}></View>
-=======
             <View style={styles.navigationBar}></View>
 
             <View style={styles.fix}>
@@ -144,19 +108,12 @@ export const Project = ({ navigation }: IProject) => {
             </View>
 
             <View style={styles.bar}></View>
->>>>>>> 0821643529e9271815d86e1470a98bfb48ccd823
         </>
     )
 
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
-    container:{
-        backgroundColor: '#fff',
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height *0.8  
-=======
     container: {
         backgroundColor: '#fff',
         display: "flex",
@@ -169,7 +126,6 @@ const styles = StyleSheet.create({
     containerFilho: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 2,
->>>>>>> 0821643529e9271815d86e1470a98bfb48ccd823
     },
     bar: {
         height: Dimensions.get('window').height * .08,
@@ -208,17 +164,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.2,
         height: Dimensions.get("window").width * 0.2,
     },
-<<<<<<< HEAD
-    date:{
-        width: Dimensions.get('window').width,
-        height:Dimensions.get('window').height * 0.3,
-        display: 'flex',
-        flexDirection:'row',
-        justifyContent: 'space-around',
-        marginBottom: 20
-    }
-   
-=======
     title: {
         fontSize: 16,
         fontWeight: 'bold',
@@ -258,5 +203,4 @@ const styles = StyleSheet.create({
     },
 
 
->>>>>>> 0821643529e9271815d86e1470a98bfb48ccd823
 })

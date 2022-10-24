@@ -13,7 +13,7 @@ import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelanc
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterProject } from './src/pages/RegisterProject';
 import { NavigationScreen } from './src/pages/NavigationScreen';
-import { ProjectOwner } from './src/pages/ProjectOwner';
+import { ListProject} from './src/pages/ListProject';
 
 export default function App() {
 
@@ -22,7 +22,7 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Login" component={ListProject} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
         <Stack.Screen name="SendMailPasswordRecover" component={SendMailPasswordRecoverPage} />
@@ -31,7 +31,7 @@ export default function App() {
         <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
         <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
         <Stack.Screen name="RegisterProject" component={RegisterProject} />
-        <Stack.Screen name="ProjectOwner" component={ProjectOwner} />
+        {/* <Stack.Screen name="ProjectOwner" component={ProjectOwner} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>
