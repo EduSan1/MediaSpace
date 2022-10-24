@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { ProjectRepository } from "../repository/Project"
 import { ProjectService } from "../service/Project"
+import { ProjectORM } from "../entity/Project"
 
 export class ProjectController {
     private repository: ProjectRepository
@@ -61,12 +62,12 @@ export class ProjectController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao selecionar o freelancer projeto"))
     }
 
-    // accept = (request: Request, response: Response) => {
-    //     this.service.accept(request.params.projectId).then((res) => {
-    //         response.status(res.statusCode || 200).json(res)
-    //     })
-    //         .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao aceitar o projeto"))
-    // }
+     accept = (request: Request, response: Response) => {
+         this.service.accept(request.params.projectId).then((res) => {
+             response.status(res.statusCode || 200).json(res)
+         })
+             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao aceitar o projeto"))
+    }
 
     // deny = (request: Request, response: Response) => {
     //     this.service.deny(request.params.projectId).then((res) => {

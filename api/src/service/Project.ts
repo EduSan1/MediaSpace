@@ -21,9 +21,10 @@ interface IRegisterInterest {
 
 export class ProjectService {
     private _: ProjectRepository
+    private projectDomain: ProjectDomain
     private projectImageRepository: ProjectImageRepository
     private projectAttachmentRepository: ProjectAttachmentRepository
-    private projectRequirement: ProjectRequirementsRepository
+    private projectRequirementRepository: ProjectRequirementsRepository
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
@@ -32,7 +33,7 @@ export class ProjectService {
         this._ = repo
         this.projectImageRepository = new ProjectImageRepository()
         this.projectAttachmentRepository = new ProjectAttachmentRepository()
-        this.projectRequirement = new ProjectRequirementsRepository()
+        this.projectRequirementRepository = new ProjectRequirementsRepository()
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
@@ -258,33 +259,43 @@ export class ProjectService {
 
     }
 
-    // accept = async (id: string) => {
-    //     try {
-    //         const project = await this._.getById(id);
+     accept = async (id: string) => {
+        try {
 
-    //         if (project.is_active == false) {
-    //             return {
-    //                 message: "Não é possivel aceitar os requisitos de um projeto inativo",
-    //                 statusCode: 200
-    //             };
-    //         }
+            const project = await this._.getById(id);
 
-    //         this.projectRequirement.is_accepted = true;
-    //         await this._.update(projectRequirement);
+            if (project.is_active == false) {
+                return {
+                    message: "Não é possivel aceitar os requisitos de um projeto inativo",
+                    statusCode: 200
+                };
+            }
 
-    //         return {
-    //             message: "Requisito aceito com sucesso",
-    //             statusCode: 200
-    //         };   
+            this.projectDomain.requirements?.map(async () => {
+                if ({requirement: { is_active: true }}) {
+                    {requirement: { is_accepted: true }}
+                    const projectUpdated = await this.projectRequirementRepository.update(project)
+                    return{
+                        message: "Dados atualizados",
+                        data: projectUpdated,
+                        statusCode: 200
+                    };
+                }
+            });
 
-    //     } catch (error) {
-    //         return {
-    //             message: error.message,
-    //             error: error.code,
-    //             statusCode: 200,
-    //         };
-    //     }
+            return{
+                message: "Dados não atualizados",
+                statusCode: 200
+            };
 
-    // }
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+
+    }
 
 }
