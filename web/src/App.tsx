@@ -19,7 +19,8 @@ import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 //import SpaceBackground from './components/SpaceBackground';
-import PreviewProject from './pages/PreviewProject';
+import PreviewProject from './pages/PreviewProject/Creator';
+import PreviewProjectFreelancer from './pages/PreviewProject/Freelancer';
 
 function App() {
 

@@ -1,11 +1,11 @@
 import React from 'react'
-import SearchBar from "../../components/HeaderPage/Search";
-import NavegationBar from "../../components/utils/navegation";
-import { formatDate, formatMoney } from '../../service/Regex/regex';
-import InputBtn from "../../components/utils/Button/InputBtn";
+import SearchBar from "../../../components/HeaderPage/Search";
+import NavegationBar from "../../../components/utils/navegation";
+import { formatDate, formatMoney } from '../../../service/Regex/regex';
+import InputBtn from "../../../components/utils/Button/InputBtn";
 import { RiDeleteBinLine, RiEditBoxLine } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
-import ButtonCategories from '../../components/utils/Button/Categories/Categories';
+import ButtonCategories from '../../../components/utils/Button/Categories/Categories';
 
 
 const PreviewProject = () => {
@@ -46,8 +46,6 @@ const PreviewProject = () => {
          }
       ],
    }
-
-   const teste = project.estimated_value.toString
 
    return (
       <>

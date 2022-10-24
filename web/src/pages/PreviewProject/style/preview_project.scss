@@ -136,6 +136,7 @@
    gap: 10px;
 
 
+
    div {
       width: 100%;
       height: 80%;
@@ -156,5 +157,22 @@
    p {
       width: 100%;
       text-align: end;
+   }
+}
+
+.slides {
+   width: 100%;
+   height: 100%;
+
+   .testeste {
+      width: 100%;
+      height: 100%;
+
+      div {
+         background-color: #30A851;
+         width: 100%;
+         height: 100%;
+      }
+
    }
 }
