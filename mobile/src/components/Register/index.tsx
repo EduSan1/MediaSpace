@@ -204,71 +204,64 @@ export const Register = ({ navigation }: IRegister) => {
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
+                </View>
 
-                    <View style={styles.View}>
+                <View style={styles.View}>
 
 
-                        <View style={styles.iconViewStart}>
-                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                        </View>
-
-                        <LoginInput type="default" name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasErrorNickname} title="Nickname" maxLength={25} />
-                        <LoginInput type="numeric" name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasErrorCpf} title="CPF" maxLength={14} />
-                        <LoginInput type="numeric" name="birth_date" iconName="today" value={userRegister.birth_date} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={10} />
-                        <LoginInput type="numeric" name="phone" iconName="phone" value={userRegister.phone.phone} handleChange={handlePhone} hasError={hasError} title="Celular" maxLength={15} />
-
-                        <View style={styles.iconViewEnd}>
-                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                        </View>
+                    <View style={styles.iconViewStart}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
 
+                    <LoginInput type="default" name="nickname" iconName="person-outline" value={userRegister.nickname} handleChange={handleChange} hasError={hasErrorNickname} title="Nickname" maxLength={25} />
+                    <LoginInput type="numeric" name="cpf" iconName="person-outline" value={userRegister.cpf} handleChange={handleChange} hasError={hasErrorCpf} title="CPF" maxLength={14} />
+                    <LoginInput type="numeric" name="birth_date" iconName="today" value={userRegister.birth_date} handleChange={handleChange} hasError={hasError} title="Data de nascmento" maxLength={10} />
+                    <LoginInput type="numeric" name="phone" iconName="phone" value={userRegister.phone.phone} handleChange={handlePhone} hasError={hasError} title="Celular" maxLength={15} />
 
-                    <View style={styles.View}>
-
-                        <View style={styles.iconViewStart}>
-                            <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                            <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                        </View>
-
-                        <View>
-                            <Text>Gênero</Text>
-                            <View style={styles.checkboxContainer}>
-                                {
-                                    gender.map((gender: any) => {
-                                        return <CheckboxComponent key={gender.id} check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
-                                    })
-                                }
-                            </View>
-
-                            <View>
-                                <Text>Gênero</Text>
-                                <View style={styles.checkboxContainer}>
-                                    <CheckboxComponent check={check} setCheck={setCheck} title="Masculino" value="M" />
-                                    <CheckboxComponent check={check} setCheck={setCheck} title="Feminino" value="F" />
-                                    <CheckboxComponent check={check} setCheck={setCheck} title="Outro" value="O" />
-                                </View>
-
-                            </View>
-                            <LoginTextArea name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
-
-                            <View style={styles.iconViewEnd}>
-                                <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                                <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
-                            </View>
-                        </View>
-
-                        <View style={styles.View}>
-
-                            <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
-
-                            <View style={styles.iconViewStart}>
-                                <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
-                            </View>
-                        </View>
+                    <View style={styles.iconViewEnd}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
                     </View>
                 </View>
+
+
+                <View style={styles.View}>
+
+                    <View style={styles.iconViewStart}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                    </View>
+
+                    <View>
+                        <Text>Gênero</Text>
+                        <View style={styles.checkboxContainer}>
+                            {
+                                gender.map((gender: any) => {
+                                    return <CheckboxComponent check={check} setCheck={setCheck} title={gender.gender} value={gender.id} />
+                                })
+                            }
+                        </View>
+
+                    </View>
+                    <LoginTextArea name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
+
+                    <View style={styles.iconViewEnd}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                    </View>
+                </View>
+
+                <View style={styles.View}>
+
+                    <LoginImage userImage={userRegister.profile_picture} setUserImage={(image: string) => handleUserPicture(image)} />
+
+                    <View style={styles.iconViewStart}>
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
+                        <Image style={styles.scrollIcon} source={require("../../../assets/img/hintscroll.png")} />
+                    </View>
+                </View>
+
             </ScrollView>
 
 

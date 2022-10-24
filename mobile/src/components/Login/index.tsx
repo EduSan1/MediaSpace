@@ -42,7 +42,6 @@ export const Login = ({ navigation }: ILogin) => {
 
             if (res.data.is_logged) {
                 await AsyncStorage.setItem('userDetails', res.data.user.profile_picture)
-
                 navigation.navigate("NavigationScreen")
 
             }
