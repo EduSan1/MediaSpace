@@ -62,18 +62,18 @@ export class ProjectController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao selecionar o freelancer projeto"))
     }
 
-     accept = (request: Request, response: Response) => {
-         this.service.accept(request.params.projectId).then((res) => {
+     acceptRequirements = (request: Request, response: Response) => {
+         this.service.acceptRequirements(request.params.projectId).then((res) => {
              response.status(res.statusCode || 200).json(res)
          })
              .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao aceitar o projeto"))
     }
 
-    // deny = (request: Request, response: Response) => {
-    //     this.service.deny(request.params.projectId).then((res) => {
-    //         response.status(res.statusCode || 200).json(res)
-    //     })
-    //         .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar o projeto"))
-    // }
+    denyRequirements = (request: Request, response: Response) => {
+        this.service.denyRequirements(request.params.projectId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar o projeto"))
+    }
 
 }

@@ -21,7 +21,6 @@ interface IRegisterInterest {
 
 export class ProjectService {
     private _: ProjectRepository
-    private projectORM: ProjectORM
     private projectImageRepository: ProjectImageRepository
     private projectAttachmentRepository: ProjectAttachmentRepository
     private projectRequirementRepository: ProjectRequirementsRepository
@@ -242,8 +241,15 @@ export class ProjectService {
 
         const interest = project.data.interest.find((interest) => body.freelancerId === interest.team.id)
 
+        const funcao = (membro : string) => {
+            console.log(membro)
+        }
 
-        interest.members.map(async (member: any) => {
+        interest.members.map(async (member : any) => {
+            funcao(member)
+        })
+
+        interest.members.map(async (member : any) => {
             member.is_selected === true
             await this.memberRepository.update(member)
         })
@@ -259,7 +265,7 @@ export class ProjectService {
 
     }
 
-     accept = async (id: string) => {
+     acceptRequirements = async (id: string) => {
         try {
 
             const project = await this._.getById(id);
@@ -271,20 +277,49 @@ export class ProjectService {
                 };
             }
 
-            this.projectORM.requirements.map(async () => {
-                if ({requirement: { is_active: true }}) {
-                    {requirement: { is_accepted: true }}
-                    const projectUpdated = await this.projectRequirementRepository.update(project)
-                    return{
-                        message: "Requisitos aceitos",
-                        data: projectUpdated,
-                        statusCode: 200
-                    };
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {
+                    requirement.is_accepted = true
+                    await this.projectRequirementRepository.update(requirement)
                 }
             });
 
             return{
-                message: "Dados não atualizados",
+                message: "Requisitos aceitos",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+
+    }
+
+    denyRequirements = async (id: string) => {
+        try {
+
+            const project = await this._.getById(id);
+
+            if (project.is_active == false) {
+                return {
+                    message: "Não é possivel recusar os requisitos de um projeto inativo",
+                    statusCode: 200
+                };
+            }
+
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {
+                    requirement.is_accepted = false
+                    await this.projectRequirementRepository.update(requirement)
+                }
+            });
+
+            return{
+                message: "Requisitos recusados",
                 statusCode: 200
             };
 
