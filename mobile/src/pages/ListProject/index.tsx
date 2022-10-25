@@ -1,141 +1,93 @@
-import React from "react"
-import { Text, View, StyleSheet, Dimensions, ScrollView } from "react-native"
+import React, { useEffect, useState } from "react"
+import { Text, View, StyleSheet, Dimensions, ScrollView,Image, ToastAndroid } from "react-native"
+import api from "../../../service";
+import { ListProjectCard } from "../../components/utils/ListProjectCard";
+import { CategoryButton } from "../../components/utils/CategoryButton";
+import { LoginButton } from "../../components/utils/LoginButton";
 
-interface IProject {
-    id: string
-    name: string,
-    description: string
-    value: number
-    image: [{ "url": string }]
-    categories: any
-    user: {
-        first_name: string
-        nickname: string
-        profile_picture: string
-    }
-}
+export const ListProject = ()=> {
 
-export const ListProject = ({ id, name, description, value, image, categories, user }: IProject) => {
+    const [categories, setCategories] = useState([])
+    const [projects, setProjects] = useState ([])
 
+    const findSubCategories = () => {}
+    
+    useEffect(() => {
+        api.get("/category").then((res: any)=>{
+            setCategories(res.data)
+        })
 
-    return (
+        api.get("/project").then((res: any) => {
+            setProjects(res.data.data)
+        })
+    }, [])
+
+    return(
         <>
+        <ScrollView>
+
+        <View style={styles.container}>
+        <Image style={styles.image} source={require("../../../assets/img/boostad.png")}/>
        
-
-        <View style={styles.container}></View>
-
-        <View style={styles.scroll}>
-        <View style={styles.containerCard}>
-            
-            
-            <View style={styles.image}>
-                {image}           
-            </View>
-            
-            <View style={styles.profile}>
-                {/* <Text> {user.profile_picture}</Text>           
-                <Text> @{user.nickname}</Text>            */}
-            </View>
-
-            <View style={styles.describle}>
-                <Text> {name}</Text>           
-                <Text> {description}</Text>           
-            </View>
- 
-            <View style={styles.value}>
-                <Text> Valor estimado:</Text>           
-                <Text> {value}</Text>           
-            </View>
-            <View style={styles.category}>
-                       
-            </View>
-
+        </View>
+        
+        <View style={styles.category}>
+        {
+            categories.map((category: any) =>
+                <CategoryButton category={category.name} icon={category.icon} id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                )
+        }
         </View>
 
-        <View style={styles.containerCard}>
-            
-            
-            <View>
-                <Text> {image}</Text>           
-            </View>
-            
-            <View>
-                {/* <Text> {user.profile_picture}</Text>           
-                <Text> @{user.nickname}</Text>            */}
-            </View>
-
-            <View>
-                <Text> {name}</Text>           
-                <Text> {description}</Text>           
-            </View>
- 
-            <View>
-                <Text> Valor estimado:</Text>           
-                <Text> {value}</Text>           
-            </View>
-
+        <View style={styles.card}>
+            {
+                projects.map((project:any)=>{
+                    return <ListProjectCard key={project.id} user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images[0].url} categories={project.categories}/>
+                })
+            }
         </View>
-        </View>
+
+        </ScrollView>
 
         </>
     )
+
 }
 
 const styles = StyleSheet.create({
     container:{
-        width: Dimensions.get('window').width ,
-        height: Dimensions.get("window").height * 0.35,
-        alignItems:'center',
-        justifyContent: 'center',
-        backgroundColor: '#657832'
+        backgroundColor:'#212345',
+        width: Dimensions.get('window').width,
+        height:Dimensions.get('window').height * 0.3,
+        alignItems: 'center',
+        justifyContent:'center'
+        
     },
-    containerCard:{
-        width: Dimensions.get('window').width * 0.45,
-        height: Dimensions.get("window").height * 0.3,
-        alignItems:'center',
-        justifyContent: 'space-around',
-        borderColor: '#B6565f',
-        borderRadius: 10,
-        borderWidth: 1,
-        // backgroundColor:"blue"
-
-    },
-    scroll:{
+    card:{
         width: Dimensions.get('window').width ,
-        height: Dimensions.get("window").height * 2,
-        display: 'flex',
+        height:Dimensions.get('window').height ,
         flexDirection:'row',
+        flexWrap:'wrap',
+        display:'flex',
         justifyContent:'space-around',
-        paddingTop: 10
+        alignContent:'space-around',
+        paddingTop: 10,
         
-    },
-    image:{
-        backgroundColor:'#211983',
-        width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.12,
         
-    },
-    profile:{
-        backgroundColor:'#767543',
-        width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.05,
-    },
-    describle:{
-        backgroundColor:'#343564',
-        width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.05,
-    },
-    value:{
-        backgroundColor:'#ffb345',
-        width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.03,
     },
     category:{
-        backgroundColor:'#116544',
-        // width: Dimensions.get('window').width * 0.44 ,
-        // height: Dimensions.get("window").height * 0.03,
-        width:"100%",
-        height: "30%",
-
+        width: Dimensions.get('window').width * 0.5  ,
+    },
+    image: {
+        alignItems: "center",
+        width: Dimensions.get("window").width * 1,
+        height: Dimensions.get("window").width * 0.6,
+    },
+    text: {
+       fontSize: 20,
+       fontWeight:'bold'
+    },
+    text1: {
+        fontSize: 12
     }
 })
