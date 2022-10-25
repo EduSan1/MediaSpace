@@ -14,7 +14,7 @@ const BoostButton = ({ type, valueBoost, imageBoost, label }: IBoostButton) => {
             <label>{type}</label>
             <p>{valueBoost}</p>
             <div>
-               <img />
+               <img src={imageBoost} />
             </div>
             <label>{label}</label>
             <span>

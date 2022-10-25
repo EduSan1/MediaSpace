@@ -9,7 +9,6 @@ import { FreelancerRepository } from "../repository/Freelancer";
 import { InterestRepository } from "../repository/Interest";
 import { MemberRepository } from "../repository/Member";
 import { ProjectRepository } from "../repository/Project";
-import { ProjectAttachmentRepository } from "../repository/ProjectAtachment";
 import { ProjectImageRepository } from "../repository/ProjectImage";
 import { ProjectManagementRepository } from "../repository/ProjectManagement";
 import { ProjectMemberRepository } from "../repository/ProjectMember";
@@ -29,7 +28,6 @@ interface IRegisterInterest {
 export class ProjectService {
     private _: ProjectRepository
     private projectImageRepository: ProjectImageRepository
-    private projectAttachmentRepository: ProjectAttachmentRepository
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
@@ -40,7 +38,6 @@ export class ProjectService {
     constructor(repo: ProjectRepository) {
         this._ = repo
         this.projectImageRepository = new ProjectImageRepository()
-        this.projectAttachmentRepository = new ProjectAttachmentRepository()
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
@@ -63,14 +60,7 @@ export class ProjectService {
                 await this.projectImageRepository.create(imageToRegister)
             })
 
-            entity.attachments?.map(async (attachment: IAttachment) => {
-                const attachmentToRegister = {
-                    ...attachment, project: {
-                        id: project.id
-                    }
-                }
-                await this.projectAttachmentRepository.create(attachmentToRegister)
-            })
+
 
             return {
                 message: "Projeto cadastrado com sucesso!",

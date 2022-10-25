@@ -3,11 +3,11 @@ import { BiSearchAlt } from "react-icons/bi"
 
 const SearchBar = () => {
 
- 
+
 
 
    const [diceSearch, setDiceSearch] = useState({
-      "pesquisar" : ""
+      "pesquisar": ""
    });
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,16 +17,11 @@ const SearchBar = () => {
       })
    };
 
-   useEffect(() => {
-      console.log(diceSearch)
-    }, [diceSearch]);
-
-
-  let hadleKey = (event:any) =>{
-           if(event.key == 'Enter'){
-               console.log('enter')
-           }
-  }
+   let hadleKey = (event: any) => {
+      if (event.key == 'Enter') {
+         console.log('enter')
+      }
+   }
 
 
 
@@ -37,7 +32,7 @@ const SearchBar = () => {
             <div className="icone_serach">
                {/* <BiSearchAlt /> */}
             </div>
-            <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} onKeyDown={hadleKey} className="bar_search" type="search" name="pesquisar" placeholder="Pesquisar..." value={diceSearch.pesquisar}/>
+            <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} onKeyDown={hadleKey} className="bar_search" type="search" name="pesquisar" placeholder="Pesquisar..." value={diceSearch.pesquisar} />
          </div>
       </>
    )

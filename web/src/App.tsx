@@ -21,6 +21,7 @@ import Perfil from './pages/Perfil';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
+import PreviewProject from './pages/PreviewProject';
 
 function App() {
 
@@ -37,19 +38,25 @@ function App() {
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
+        <Route path='/projects' element={<Projects />} />
         <Route path='/changePassword' element={<SpaceBackground component={<RecoveringPasswordPage />} />} />
         <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
         <Route path='/projects/createProjects' element={<CreateProject />} />
-        <Route path='/projects/requirementsFreelancer' element={<Projects/>} />
-        <Route path='/Eventes' element={<Eventes/>} />
-        <Route path='/Menssagens' element={<Menssagens/>} />
-        <Route path='/Perfil' element={<Perfil/>} /> 
+        <Route path='/projects/:projectId' element={<PreviewProject />} />
+        <Route path='/Eventes' element={<Eventes />} />
+        <Route path='/Menssagens' element={<Menssagens />} />
+        <Route path='/Perfil' element={<Perfil />} />
 
 
 
         {/* */}
-        <Route path='/teste' element={<Teste/>} />
+        <Route path='/teste' element={<Teste />} />
+
+
+
+        {/* */}
+        <Route path='/teste' element={<Teste />} />
 
       </Routes>
 

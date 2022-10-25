@@ -27,17 +27,18 @@ export const LoginTextArea = ({ title, value, name, handleChange, maxLength }: I
 
 const styles = StyleSheet.create({
     container: {
-        width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').height * 0.239 ,
-        borderWidth: 2,
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.4 ,
+        borderWidth: 1,
         borderRadius: 10,
-        paddingLeft: 10,
+        paddingLeft: 5,
         marginBottom: 5,
         borderColor: "#D3C5F8",
         display: "flex",
         justifyContent: "center",
         position: "relative",
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        color: '#000'
     },
     inputContainer: {
         display: "flex",
@@ -55,10 +56,12 @@ const styles = StyleSheet.create({
         left: 10
     },
     input: {
-        width: Dimensions.get('window').width * 0.6,
-        height: Dimensions.get('window').height * 0.18,
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').height * 0.35,
         color: "#979797",
-        textAlignVertical: "top"
+        textAlignVertical: "top",
+        left: 10,
+        top: 10
     },
     inputIcon: {
         width: Dimensions.get('window').width * 0.06,

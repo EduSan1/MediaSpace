@@ -7,22 +7,22 @@ const HomePage = () => {
 
     const user = localStorage.getItem('userDetails');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
-  
+
     return (
 
-        
-            <main id="ContentPage">
 
-                <NavegationBar user={decodedToken}/>
-                <div className="Container">
-                    <SearchBar />
-                    <section className="section_main"> main</section>
-                </div>
+        <main id="ContentPage">
+
+            <NavegationBar />
+            <div className="Container">
+                <SearchBar />
+                <section className="section_main"> main</section>
+            </div>
 
 
-            </main>
+        </main>
 
-        
+
 
     );
 }

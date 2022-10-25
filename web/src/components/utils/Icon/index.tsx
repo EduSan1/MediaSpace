@@ -15,12 +15,12 @@ const IconBar = ({ Icon, text, className }: Iconbar) => {
 
         <span id="IconBar" className={className}>
             <div>
-                <span>{Icon} </span>
-                <h3>{text}</h3>
-               
+                <span className="iconBar-image">{Icon} </span>
+                <h3 className="iconBar-text">{text}</h3>
+
             </div>
 
-            
+
 
         </span>
 

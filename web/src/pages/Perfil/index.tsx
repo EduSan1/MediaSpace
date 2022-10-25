@@ -5,22 +5,19 @@ import NavegationBar from "../../components/utils/navegation";
 
 const Perfil = () => {
 
-    const user = localStorage.getItem('userDetailes');
-    const { decodedToken, isExpired } = useJwt(user ? user : "");
-
     return (
 
-        
-            <main id="ContentPage">
 
-                <NavegationBar user={user} />
-                <div className="Container">
-                    <SearchBar />
-                    <section className="section_main"> Perfil</section>
-                </div>
-            </main>
+        <main id="ContentPage">
 
-        
+            <NavegationBar />
+            <div className="Container">
+                <SearchBar />
+                <section className="section_main"> Perfil</section>
+            </div>
+        </main>
+
+
 
     );
 }

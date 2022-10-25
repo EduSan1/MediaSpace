@@ -8,18 +8,23 @@ import { MdRssFeed } from "react-icons/md";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useJwt } from "react-jwt";
 
 
-interface INavigationBar {
-    user : any
-}
+const NavegationBar = () => {
 
 
 
-const NavegationBar = ({user} : INavigationBar) => {
-
+    // for (var key in localStorage) {
+    //     console.log(key, " => ", localStorage.getItem(key))
+    // }
 
     const [open, setOpen] = useState(false);
+
+    const userJwt = localStorage.getItem('userDetails');
+    const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
+
+    // console.log("token => ", decodedToken)
 
     return (
 
@@ -39,10 +44,10 @@ const NavegationBar = ({user} : INavigationBar) => {
                 </span>
 
                 <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
-                    <ImageComponent  src={user?.userDetails?.profile_picture} alt="" className="photo_user_img" />
+                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img" />
                     <span className="InfoName_user">
-                        <h2>{user?.userDetails?.first_name}</h2>
-                        <h4>{user?.userDetails?.nickname}</h4>
+                        <h2>{decodedToken?.userDetails?.first_name}</h2>
+                        <h4>@{decodedToken?.userDetails?.nickname}</h4>
                     </span>
                     <div className="Info_data">
                         <span>
@@ -59,19 +64,19 @@ const NavegationBar = ({user} : INavigationBar) => {
                         </span>
                     </div>
 
-                    <div className="btns">
+                    {/* <div className="btns">
                         button
-                    </div>
+                    </div> */}
 
                 </div>
 
                 <div className={!open ? "Container_icon_nav" : "Container_icon_nav_open"}>
                     <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
                         <ul>
-                            <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '}  /></Link></li>
-                            <li> <Link to={'/projects/requirementsFreelancer'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} /></Link></li>
+                            <li> <Link to={'/projects'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Menssagens'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Mensagens'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
-                            <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed/>} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed />} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Perfil'} className='Link_NextPage'><IconBar Icon={<BiUser />} text={'Perfil'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
 
                         </ul>
@@ -83,7 +88,7 @@ const NavegationBar = ({user} : INavigationBar) => {
 
                         <ul>
                             <li>
-                                <Link to={'/'} className='Link_NextPage'><IconBar Icon={<AiOutlineLogout onClick={() => {localStorage.removeItem('userDetails'); }}/>} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link>
+                                <Link to={'/'} className='Link_NextPage'><IconBar Icon={<AiOutlineLogout onClick={() => { localStorage.removeItem('userDetails'); }} />} text={'Logout'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link>
                             </li>
                         </ul>
 
