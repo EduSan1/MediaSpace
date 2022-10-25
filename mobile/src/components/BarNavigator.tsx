@@ -1,36 +1,12 @@
 import React from "react";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import Project from "./pages/Project";
-import Messages from "./pages/Messages";
-import TechnicalRequirements from "./pages/TechnicalRequirements";
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import Feed from "./pages/Feed";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MainStackNavigator from './StackComponent';
 import {View, StyleSheet, Image, } from "react-native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RegisterProject } from "./pages/RegisterProject";
-import TechnicalRequirementsFrelancer from "./pages/TechnicalRequirementsFreelancer";
-import WorkersAppliedPage from "./pages/WorkersAppliedPage";
-import WorkersSelectedPage from "./pages/WorkersSelectedPage";
-import StartHome from './pages/StartHome';
-import LoginPage from './pages/Login/Login';
-import { NavigationContainer } from '@react-navigation/native';
-import RegisterPage from './pages/ResgisterPage';
-import ForgetPasswordPage from './pages/ForgetPasswordPage';
-import SendMailPasswordRecoverPage from './pages/SendMailPasswordRecoverPage';
-import CheckMailPage from './pages/CheckMailPage';
-import CompleteRegisterFreelancerPage from './pages/CompleteRegisterFreelancer';
-import RegisterFreelancerPage from './pages/RegisterFreelancerPage';
-import { NavigationScreen } from './pages/NavigationScreen';
 
 
-
-
-export default function Routes(){
+const BarNavigator = () => {
     const Tab = createBottomTabNavigator();
     return(
-
-    
         <Tab.Navigator 
         screenOptions={{
         tabBarStyle:{
@@ -43,10 +19,10 @@ export default function Routes(){
         tabBarShowLabel:false,
         tabBarInactiveTintColor:"#360069", 
     }}>
-        <Tab.Screen name="Home" component={Home} 
+        <Tab.Screen name="Home" component={MainStackNavigator} 
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
-                <Image source={require('../assets/icons/homeIcon.png')}
+                <Image source={require('../../assets/icons/homeIcon.png')}
                 resizeMode="contain"
                 style={{
                     width:30,
@@ -57,10 +33,10 @@ export default function Routes(){
             }
         }/>
 
-        <Tab.Screen name="Project" component={Project}
+        <Tab.Screen name="Project" component={MainStackNavigator}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
-                <Image source={require('../assets/icons/graphicsIcon.png')}
+                <Image source={require('../../assets/icons/graphicsIcon.png')}
                 resizeMode="contain"
                 style={{
                     width:25,
@@ -71,10 +47,10 @@ export default function Routes(){
                 )
             }
         }/>
-        <Tab.Screen name="Feed" component={Feed}
+        <Tab.Screen name="Feed" component={MainStackNavigator}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
-                <Image source={require('../assets/icons/feedIcon.png')}
+                <Image source={require('../../assets/icons/feedIcon.png')}
                 resizeMode="contain"
                 style={{
                     width:30,
@@ -85,10 +61,10 @@ export default function Routes(){
             }
         }/>
 
-        <Tab.Screen name="Messages" component={Messages}
+        <Tab.Screen name="Messages" component={MainStackNavigator}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
-                <Image source={require('../assets/icons/ChatIcon.png')}
+                <Image source={require('../../assets/icons/ChatIcon.png')}
                 resizeMode="contain"
                 style={{
                     width:40,
@@ -100,10 +76,10 @@ export default function Routes(){
             }
         }/>
 
-        <Tab.Screen name="Profile" component={Profile}
+        <Tab.Screen name="Profile" component={MainStackNavigator}
         options={{ tabBarIcon:({focused}) =>(
             <View style={{alignItems:"center",justifyContent:"center"}}>
-                <Image source={require('../assets/icons/profileIcon.png')}
+                <Image source={require('../../assets/icons/profileIcon.png')}
                 resizeMode="contain"
                 style={{
                     width:30,
@@ -116,6 +92,7 @@ export default function Routes(){
         }/>
         {/* <Tab.Screen name="cwnfopwe" component={WorkersAppliedPage}/> */}
     </Tab.Navigator>
-  
     )
 }
+
+export default BarNavigator

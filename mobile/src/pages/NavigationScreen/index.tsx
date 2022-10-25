@@ -11,7 +11,6 @@ export const NavigationScreen = () => {
     return (
         <NavigationContainer independent={true}>
             <Routes />
-            
         </NavigationContainer>
     )
 
