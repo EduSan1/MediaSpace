@@ -1,0 +1,40 @@
+.ContainerPage{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 100%;
+    background-color: aqua;
+    
+    .TesteRequesito{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        gap: 5px;
+        background-color: blanchedalmond;
+      
+
+    .Components_projeteste{
+        width: 100%;
+        height: 50px;
+        background-color: antiquewhite;
+        
+        
+
+        p{
+            width: auto;
+            height: auto;
+        }
+
+    }
+
+
+    }
+
+
+  .ContainerTecnicos{
+    width: 100%;
+    height: 50%;
+    background-color: blue;
+  }
+}
