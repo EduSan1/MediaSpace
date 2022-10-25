@@ -20,6 +20,7 @@ import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsPage';
 import AllFreelancerInteration from './pages/AllProjectInterasion';
+import ProjectsSelecetFreelancer from './pages/Projectsallfrelancer';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
@@ -50,7 +51,8 @@ function App() {
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
         <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
-        <Route path='/project/all-Interation'  element={<AllFreelancerInteration/>}/>
+        <Route path='/projects/all-Interation'  element={<AllFreelancerInteration/>}/>
+        <Route path='/projects/selectFreelancer'  element={<ProjectsSelecetFreelancer/>}/>
         
 
 

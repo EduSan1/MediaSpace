@@ -1,23 +1,26 @@
+@import "../../../styles/vars.scss";
 .ContainerPage{
     display: flex;
     flex-direction: column;
     width: 95%;
     height: 100%;
     background-color: aqua;
+    overflow-y:auto ;
     
-    .TesteRequesito{
+    .Requesit_name{
         display: flex;
         flex-direction: column;
         width: 100%;
         height: auto;
         gap: 5px;
+        margin-bottom: 10px;
         background-color: blanchedalmond;
       
 
     .Components_projeteste{
         width: 100%;
         height: 50px;
-        background-color: antiquewhite;
+      
         
         
 
@@ -28,13 +31,21 @@
 
     }
 
+    .Tittle_name_project{
+      h1{
+        font-size: 2rem;
+        font-family: $light-font;
+        color: $primary-blue;
+      }
+
+    }
 
     }
 
 
   .ContainerTecnicos{
     width: 100%;
-    height: 50%;
-    background-color: blue;
+    height: auto;
+    background-color: rgb(255, 255, 255);
   }
 }
