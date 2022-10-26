@@ -13,11 +13,9 @@ import { ProjectImageRepository } from "../repository/ProjectImage";
 import { ProjectManagementRepository } from "../repository/ProjectManagement";
 import { ProjectMemberRepository } from "../repository/ProjectMember";
 import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
+import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 
 interface IImage {
-    url: string
-}
-interface IAttachment {
     url: string
 }
 
@@ -28,6 +26,7 @@ interface IRegisterInterest {
 export class ProjectService {
     private _: ProjectRepository
     private projectImageRepository: ProjectImageRepository
+    private projectRequirementRepository: ProjectRequirementsRepository
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
@@ -38,6 +37,7 @@ export class ProjectService {
     constructor(repo: ProjectRepository) {
         this._ = repo
         this.projectImageRepository = new ProjectImageRepository()
+        this.projectRequirementRepository = new ProjectRequirementsRepository()
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
@@ -251,6 +251,7 @@ export class ProjectService {
         interest.members.map(async (member: MemberORM) => {
             member.is_selected = true
             return await this.memberRepository.update(member)
+
         })
 
         interest.is_selected = true
@@ -345,6 +346,74 @@ export class ProjectService {
         }
 
         return await this.projectMemberRepository.create(projectMemberToSend)
+    }
+
+     acceptRequirements = async (id: string) => {
+        try {
+
+            const project = await this._.getById(id);
+
+            if (project.is_active == false) {
+                return {
+                    message: "Não é possivel aceitar os requisitos de um projeto inativo",
+                    statusCode: 200
+                };
+            }
+
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {
+                    requirement.is_accepted = true
+                    await this.projectRequirementRepository.update(requirement)
+                }
+            });
+
+            return{
+                message: "Requisitos aceitos",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+
+    }
+
+    denyRequirements = async (id: string) => {
+        try {
+
+            const project = await this._.getById(id);
+
+            if (project.is_active == false) {
+                return {
+                    message: "Não é possivel recusar os requisitos de um projeto inativo",
+                    statusCode: 200
+                };
+            }
+
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {
+                    requirement.is_accepted = false
+                    await this.projectRequirementRepository.update(requirement)
+                }
+            });
+
+            return{
+                message: "Requisitos recusados",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+
     }
 
 }

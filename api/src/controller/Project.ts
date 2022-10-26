@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { ProjectRepository } from "../repository/Project"
 import { ProjectService } from "../service/Project"
+import { ProjectORM } from "../entity/Project"
 
 export class ProjectController {
     private repository: ProjectRepository
@@ -16,7 +17,7 @@ export class ProjectController {
         this.service.create(request.body).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
-            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar os projetos"))
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao criar os projetos"))
     }
 
     getAll = (request: Request, response: Response) => {
@@ -59,6 +60,20 @@ export class ProjectController {
             response.status(res.statusCode || 200).json(res)
         })
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao selecionar o freelancer projeto"))
+    }
+
+     acceptRequirements = (request: Request, response: Response) => {
+         this.service.acceptRequirements(request.params.projectId).then((res) => {
+             response.status(res.statusCode || 200).json(res)
+         })
+             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao aceitar o projeto"))
+    }
+
+    denyRequirements = (request: Request, response: Response) => {
+        this.service.denyRequirements(request.params.projectId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar o projeto"))
     }
 
 }
