@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CategoryORM } from "./entity/Category"
+import { DeliveryORM } from "./entity/Delivery"
 import { GenderORM } from "./entity/Gender"
 import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
@@ -43,7 +44,8 @@ export const AppDataSource = new DataSource({
         ProjectORM,
         ProjectImageORM,
         ProjectManagementORM,
-        TeamProjectManagementORM
+        TeamProjectManagementORM,
+        DeliveryORM
     ],
     migrations: [],
     subscribers: [],
