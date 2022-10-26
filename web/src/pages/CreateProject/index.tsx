@@ -21,13 +21,16 @@ const CreateProject = () => {
       estimated_deadline: "",
       images: [
          {
-            "url": "Jorge"
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
          },
          {
-            "url": "Cleiton"
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
          },
          {
-            "url": "Jordania"
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
+         },
+         {
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
          }
       ],
       categories: [
@@ -278,119 +281,133 @@ const CreateProject = () => {
                <SearchBar />
                <section className="container_page_create_project">
                   <div className="page_create_project">
-                     <div className="container_informations">
+                     <div className="container">
                         <div className="title_page_project" >
                            <h1>Criação de projeto</h1>
                         </div>
-                        <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
 
-                        <div className="container_description_project">
-                           <label className="subtitulo_projects">Descrição <span> * </span></label>
-                           <div>
-                              <textarea onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} name={"description"} onChange={({ target }) => { project.description = target.value }} />
-                              <span>{caracteres.caracteres}/800</span>
+                        <div className="teste">
+
+                           <div className="container_informations">
+                              <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+
+                              <div className="container_description_project">
+                                 <label className="subtitulo_projects">Descrição <span> * </span></label>
+                                 <div>
+                                    <textarea onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} name={"description"} onChange={({ target }) => { project.description = target.value }} />
+                                    <span>{caracteres.caracteres}/800</span>
+                                 </div>
+
+                              </div>
+
+                              <div className="container_categories_projects">
+                                 <div className="subtitulo_projects">
+                                    <label> Categorias </label>
+                                    <p className="paragraph_projects">Selecione a categoria do projeto</p>
+                                 </div>
+                                 <div className="categories projects">
+                                    {
+                                       categories.map((category: any) => {
+                                          return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                                       })
+                                    }
+
+
+                                 </div>
+                              </div>
+
+                              <div className="container_subacategories_projects">
+                                 <div className="subtitulo_projects">
+                                    <label> Sub-categorias </label>
+                                    <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
+                                 </div>
+                                 <div className="sub_categories">
+                                    {
+                                       subcategoriesToRender.map((category: any) => {
+                                          return category.sub_categories.map((subCategory: any) => {
+                                             return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? removeSubcategory(subCategory.id) : addToProject(subCategory.id, "sub_categories")} />
+                                          })
+                                       })
+                                    }
+                                 </div>
+                              </div>
+
+                              <div className="container_input_project">
+                                 <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
+                                 <div>
+                                    <input type="date" maxLength={100} name="estimated_deadline" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                                 </div>
+                                 <div>
+                                    <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
+                                       você pode negociá-la com um prestador depois.</label>
+                                 </div>
+                              </div>
+
+                              <div className="container_input_project">
+                                 <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
+                                 <div>
+                                    <input className="input_value_project" type="number" min={0} name="estimated_value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                                 </div>
+                                 <span>
+                                    <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
+                                 </span>
+                              </div>
                            </div>
+
+
+                           <div className="container_informations">
+
+
+
+                              <div className="container_files">
+                                 <label className="subtitulo_projects">Imagens</label>
+                                 <div className="container_aligment_images">
+                                    <div className="container_text">
+
+                                       <div>
+                                          <p className="paragraph_projects">Imagens de referências ao projeto</p>
+                                          <span className="paragraph_projects">0/4</span>
+                                       </div>
+
+                                    </div>
+
+                                    <div className="container_images">
+                                       <div className="aligment_images">
+                                          {
+                                             project.images.map((image: any) => {
+                                                return <div className="images">
+                                                   <img src={image.url} />
+                                                </div>
+                                             })
+                                          }
+
+
+         
+                                       </div>
+
+                                      
+                                    </div>
+
+                                    <div className="aligment_button">
+                                       <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_select_image'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+                                    </div>
+                                 </div>
+
+                              </div>
+
+
+
+
+                           </div>
+
 
                         </div>
 
-                        <div className="container_categories_projects">
-                           <div className="subtitulo_projects">
-                              <label> Categorias </label>
-                              <p className="paragraph_projects">Selecione a categoria do projeto</p>
-                           </div>
-                           <div className="categories projects">
-                              {
-                                 categories.map((category: any) => {
-                                    return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
-                                 })
-                              }
-
-
-                           </div>
-                        </div>
-
-                        <div className="container_subacategories_projects">
-                           <div className="subtitulo_projects">
-                              <label> Sub-categorias </label>
-                              <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
-                           </div>
-                           <div className="sub_categories">
-                              {
-                                 subcategoriesToRender.map((category: any) => {
-                                    return category.sub_categories.map((subCategory: any) => {
-                                       return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? removeSubcategory(subCategory.id) : addToProject(subCategory.id, "sub_categories")} />
-                                    })
-                                 })
-                              }
-                           </div>
-                        </div>
-
-                        <div className="container_input_project">
-                           <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
-                           <div>
-                              <input type="date" maxLength={100} name="estimated_deadline" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
-                           </div>
-                           <div>
-                              <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
-                                 você pode negociá-la com um prestador depois.</label>
-                           </div>
-                        </div>
-
-                        <div className="container_input_project">
-                           <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
-                           <div>
-                              <input className="input_value_project" type="number" min={0} name="estimated_value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
-                           </div>
-                           <span>
-                              <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
-                           </span>
+                        <div className="aligment_button">
+                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
                         </div>
                      </div>
 
-                     <div className="container_informations">
-
-
-                        <div className="container_files">
-                           <div className="container_text">
-                              <label className="subtitulo_projects">Imagens</label>
-                              <div>
-                                 <p className="paragraph_projects">Imagens de referências ao projeto</p>
-                                 <span className="paragraph_projects">0/4</span>
-                              </div>
-
-                           </div>
-
-                           <div className="container_images">
-                              <div className="aligment_images">
-                                 <div className="images">
-                                    <img src="" />
-                                 </div>
-                                 <div className="images">
-                                    <img src="" />
-                                 </div>
-                              </div>
-
-                              <div className="aligment_images" >
-                                 <div className="images">
-                                    <img src="" />
-                                 </div>
-                                 <div className="images">
-                                    <img src="" />
-                                 </div>
-                              </div>
-                           </div>
-
-                           <div className="aligment_button">
-                              <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_select_image'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
-                           </div>
-                        </div>
-
-
-
-                     </div>
-                  </div>
-                  <div className="aligment_button">
-                     <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
                   </div>
 
                </section>
