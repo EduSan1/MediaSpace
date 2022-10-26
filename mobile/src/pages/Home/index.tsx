@@ -1,13 +1,14 @@
 import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
-import { NavigationContainer} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import HeaderSearch from "../../components/utils/HeaderSearch";
-export default function Home(){
+export default function Home() {
+
     return (
         <SafeAreaView style={style.body}>
             <ScrollView style={style.Scroll}>
-            <HeaderSearch label={"Pesquisar..."}  />
-            <Text style={style.text}>Home</Text>
+                <HeaderSearch label={"Pesquisar..."} />
+                <Text style={style.text}>Home</Text>
             </ScrollView>
         </SafeAreaView>
     )
@@ -15,16 +16,16 @@ export default function Home(){
 const style = StyleSheet.create({
     body: {
         width: Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
+        height: Dimensions.get('window').height,
     },
-    Scroll:{
+    Scroll: {
         width: Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
-        
+        height: Dimensions.get('window').height,
+
     },
-    text:{
-        textAlign:"center",
-        fontSize:50,
-        fontWeight:"500",
+    text: {
+        textAlign: "center",
+        fontSize: 50,
+        fontWeight: "500",
     }
 })
