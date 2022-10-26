@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions, ScrollView, Text, Image } from "react-nat
 import { ScrollImage } from "../../components/utils/ScrollImage";
 import { LoginButton } from "../../components/utils/LoginButton";
 import api from "../../../service";
-
+import { BtnNewProject } from "../../components/utils/BtnNewProject";
 
 interface IProject {
     navigation: any
@@ -67,9 +67,10 @@ export const Project = ({ navigation }: IProject) => {
 
     return (
         <>
+        <BtnNewProject  action={() => navigation.navigate('RegisterProject')}/>
             <View style={styles.navigationBar}></View>
-
-            <View style={styles.fix}>
+            <Text>Project</Text>
+            {/* <View style={styles.fix}>
                 <ScrollView style={styles.container}>
                     <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string) => handleUserPicture(image)} />
 
@@ -105,7 +106,7 @@ export const Project = ({ navigation }: IProject) => {
 
                     </View>
                 </ScrollView>
-            </View>
+            </View> */}
 
             <View style={styles.bar}></View>
         </>

@@ -2,7 +2,11 @@ import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
 import { NavigationContainer} from "@react-navigation/native";
 import HeaderSearch from "../../components/utils/HeaderSearch";
-export default function Home(){
+interface IHome {
+    navigation: any
+    userId: any
+}
+export default function Home({navigation}:IHome){
     return (
         <SafeAreaView style={style.body}>
             <ScrollView style={style.Scroll}>

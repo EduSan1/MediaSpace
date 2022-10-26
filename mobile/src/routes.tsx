@@ -30,7 +30,8 @@ export default function Routes() {
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarInactiveTintColor: "#360069",
-            }}>
+            }
+            }>
             <Tab.Screen name="Home" component={Home}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -46,25 +47,6 @@ export default function Routes() {
                     )
                 }
                 } />
-
-            <Tab.Screen name="RegisterProject" component={RegisterProject}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: "center", justifyContent: "center" }}>
-                            <Image source={require('../assets/icons/homeIcon.png')}
-                                resizeMode="contain"
-                                style={{
-                                    width: 30,
-                                    height: 30,
-                                    tintColor: focused ? '#75A5FF' : '#C6D2FF'
-                                }} />
-                        </View>
-                    )
-                }
-                } />
-
-
-
             <Tab.Screen name="Project" component={Project}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -81,10 +63,6 @@ export default function Routes() {
                     )
                 }
                 } />
-            {/* <Tab.Screen name="RegisterProject" component={RegisterProject}
-        options={{tabBarStyle:{display:"none"}
-        }}/> */}
-
             <Tab.Screen name="Feed" component={Feed}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -99,7 +77,7 @@ export default function Routes() {
                         </View>
                     )
                 }
-                } />
+} />
 
             <Tab.Screen name="Messages" component={Messages}
                 options={{
@@ -135,6 +113,10 @@ export default function Routes() {
                 }
                 } />
             <Tab.Screen name="cwnfopwe" component={WorkersSelectedPage} />
+            {/* <Tab.Screen name="RegisterProject" component={RegisterProject}
+            options={{tabBarStyle:{display:"none",},tabBarIconStyle:{display:"none"}
+        }}
+        /> */}
         </Tab.Navigator>
 
     )

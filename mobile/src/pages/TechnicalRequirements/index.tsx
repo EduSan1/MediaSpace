@@ -27,7 +27,7 @@ export default function TechnicalRequirements() {
                         <Text style={style.TextRequirements}>Caso esteja interessado em fazer mudanças ou adaptações nos requisitos, solicite uma revisão, só é permitido a edição assim que o cliente e o(s) prestador(es) aceitarem a solicitação.</Text>
                     </View>
                     <View style={style.btnSection}>
-                        <BtnRequirements/>
+                        <BtnRequirements title="dfs"/>
                         <BtnConfirmRequirements/>
                     </View>          
                 </SafeAreaView>

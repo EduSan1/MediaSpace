@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Pressable } from "react-native";
 import { BtnRequirementsOpenProfile } from "../btnRequerimentsOpenProfile";
 
+interface IBtnWorkersSelectedProfile {
+    name: string,
+    nickname: string,
+    id: string
+    onClickFunction: (check: boolean) => void
+  
+  }
 export default function BtnWorkerSelectdProfile() {
     const [isSelected, setIsSelected] = useState(false)
 
