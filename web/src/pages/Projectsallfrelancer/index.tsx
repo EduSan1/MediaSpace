@@ -29,7 +29,11 @@ const ProjectsSelecetFreelancer = () => {
                              </div>
 
                              <div className="candidates">
-                             <div className="item_perfil"><Interestedserver type={"submit"} name="gean" nickname="@gean" photo="" /></div>
+                                
+                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
                              </div>
                         
                   
