@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, StyleSheet, Dimensions,Image, ScrollView, ToastAndroid } from "react-native"
+import { Text, View, StyleSheet, Dimensions,Image, ScrollView, ToastAndroid, Pressable } from "react-native"
 import api from "../../../../service";
 import { CategoryButton } from "../CategoryButton";
 import { CategoryCard } from "../CategoryCard";
@@ -15,13 +15,15 @@ interface IProject {
         first_name: string
         nickname: string
         profile_picture: string
-    }
+    },
+    navigation: any
 }
 
-export const ListProjectCard = ({ id, name, description, value, image, categories, user }: IProject) => {
+export const ListProjectCard = ({ id, name, description, value, image, categories, user, navigation }: IProject) => {
     
     return (
         
+        <Pressable onPress={() => navigation.navigate('Project')}>
         <View style={styles.containerCard}  >
             
             
@@ -30,7 +32,7 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
             </View>
             
             <View style={styles.profile}>
-                <Text> {user.profile_picture}</Text>            
+            <Image style={{width: "12%", height: "100%", borderRadius: 100}} source={{uri : user.profile_picture}}/>          
                  <Text style={styles.nameArroba}> @{user.nickname}</Text>           
             </View>
 
@@ -51,11 +53,12 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
 
                 }
                 {
-                    categories.length > 2 ? <p>...</p> : null
+                    categories.length > 2 ? <Text>...</Text> : null
                 }
             </View>
 
         </View>
+        </Pressable>
 
 
     )
@@ -70,8 +73,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#D3C5F8'
+        borderColor: '#D3C5F8',
         // backgroundColor:"blue"
+        marginBottom:20
 
     },
 
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
     },
     profile:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.025,
+        height: Dimensions.get("window").height * 0.03,
         display:'flex',
         flexDirection:'row',
         alignItems: 'center'
@@ -104,7 +108,9 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.44 ,
         height: Dimensions.get("window").height * 0.03,
         borderBottomEndRadius: 10,
-        borderBottomStartRadius: 10
+        borderBottomStartRadius: 10,
+        display:'flex',
+        flexDirection:'row'
 
     },
     nameArroba:{
