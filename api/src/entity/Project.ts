@@ -2,13 +2,8 @@ import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, One
 import { CategoryORM } from "./Category";
 import { InterestORM } from "./Interest";
 import { ProjectImageORM } from "./ProjectImage";
-<<<<<<< HEAD
 import { ProjectManagementORM } from "./ProjectManagement";
-import { ProjectRequirementORM } from "./ProjectRequirement";
-=======
-import { ProjectManagementORM } from "./ProjectManagment";
 import { ProjectRequirementsORM } from "./ProjectRequirements";
->>>>>>> e9805c033f9df12800bba7619bc3e40082ce1a57
 import { SubCategoryORM } from "./SubCategory";
 import { UserORM } from "./User";
 
