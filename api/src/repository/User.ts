@@ -21,6 +21,7 @@ export class UserRepository {
     }
 
     listWhere = async (key: keyof typeof UserORM | keyof typeof TeamORM, value: any) => {
+        console.log(key, " => ", value)
         return await this._.find({
             where: {
                 [key]: value
@@ -31,12 +32,14 @@ export class UserRepository {
     listPage = async (take: number, skip: number, search: string) => {
         return await this._.findAndCount({
             where:
-                [{
-                    first_name: Like('%' + search + '%')
-                },
-                {
-                    nickname: Like('%' + search + '%')
-                }],
+                [[
+                    { first_name: Like('%' + search + '%') },
+                    { teams: "" }
+                ],
+                [
+                    { nickname: Like('%' + search + '%') },
+                    { teams: "" }
+                ]],
             take: take,
             skip: skip
 

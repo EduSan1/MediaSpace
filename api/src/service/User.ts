@@ -116,10 +116,10 @@ export class UserService {
             let response = null
 
             if (query.take !== undefined) {
-                let user = await this._.listPage(query.take, (query.page - 1) * query.take, query.search);
+                let user = await this._.listPage(query.take, (query.page - 1) * query.take, query.search || "");
                 response = {
                     page: query.page,
-                    numberOfPages: (user[user.length - 1] / query.take),
+                    numberOfPages: Math.ceil((user[user.length - 1] / query.take)),
                     count: user[user.length - 1],
                     data: user
                 }
