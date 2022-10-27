@@ -4,7 +4,7 @@ import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
 
-const ProjectsrequirementsFreelancer = () => {
+const AllFreelancerInteration = () => {
 
     const user = localStorage.getItem('userDetailes');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
@@ -49,4 +49,4 @@ const ProjectsrequirementsFreelancer = () => {
     );
 }
 
-export default ProjectsrequirementsFreelancer;
+export default AllFreelancerInteration;
