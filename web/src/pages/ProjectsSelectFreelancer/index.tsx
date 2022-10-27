@@ -21,7 +21,7 @@ const ProjectsSelecetFreelancer = () => {
                              
                              <header className="Tittles_Description">
                                 <span className="Big_Tittle">  <h1> Nome do projeto - Candidatos </h1>  </span>
-                                <span className="small_Tittle"> <h3> tse</h3>   </span>
+                                <span className="small_Tittle"> <h3> O Batman (inicialmente chamado o Bat-Man) também conhecido pelas alcunhas Homem-Morcego, Cavaleiro das Trevas, Cruzado Encapuzado, Maior Detetive do Mundo, ...</h3>   </span>
                              </header>
 
                              <div className="SearchBar_candidates">
@@ -30,10 +30,12 @@ const ProjectsSelecetFreelancer = () => {
 
                              <div className="candidates">
                                 
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"radio"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"radio"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"radio"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"radio"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             <Interestedserver type={"radio"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
+                             
                              </div>
                         
                   
