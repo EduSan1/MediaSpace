@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, ManyToMany, JoinTable, PrimaryGeneratedColumn, Timestamp, CreateDateColumn } from "typeorm";
 import { ProjectRequirementsORM } from "./ProjectRequirements";
 import { ProjectMemberORM } from "./ProjectMember";
-import { RequirementFileORM } from "./RequirementFile";
+import { DeliveryFileORM } from "./DeliveryFile";
 
 @Entity({ name: "tb_delivery" })
 export class DeliveryORM {
@@ -15,8 +15,8 @@ export class DeliveryORM {
     @Column()
     description: string
 
-    @OneToMany(() => RequirementFileORM, files => files.delivery, { eager: true })
-    files: RequirementFileORM[]
+    @OneToMany(() => DeliveryFileORM, files => files.delivery, { eager: true })
+    files: DeliveryFileORM[]
 
     @Column({ nullable: true })
     is_accepted: boolean

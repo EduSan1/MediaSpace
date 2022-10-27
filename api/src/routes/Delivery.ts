@@ -1,13 +1,14 @@
 import { Router } from "express"
-import { ProjectController } from "../controller/Project"
+import { DeliveryController } from "../controller/Delivery"
 
-const projectRoute = Router()
-const projectController = new ProjectController()
+const deliveryRoute = Router()
+const deliveryController = new DeliveryController()
 
-projectRoute.post("/", () => "Rota de criação de entrega")
-projectRoute.get("/:projectRequirementId", () => "Rota de listagem por id do requisito")
-projectRoute.post("/disable/:projectRequirementId", () => "Rota de desabilitar entrega")
-projectRoute.post("/acceptDelivery/:projectRequirementId", () => "Rota de aceitar a entrega")
-projectRoute.post("/denyDelivery/:projectRequirementId", () => "Rota de recusar a entrega")
+deliveryRoute.post("/", deliveryController.create)
+deliveryRoute.get("/:deliveryId", deliveryController.getById)
+deliveryRoute.post("/disable/:deliveryId", deliveryController.disable)
+deliveryRoute.delete("/:deliveryId", deliveryController.delete)
+deliveryRoute.post("/acceptDelivery/:deliveryId", deliveryController.accept)
+deliveryRoute.post("/denyDelivery/:deliveryId", deliveryController.deny)
 
-export default projectRoute
+export default deliveryRoute

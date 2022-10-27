@@ -62,7 +62,7 @@ export class ProjectController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao selecionar o freelancer projeto"))
     }
 
-     acceptRequirements = (request: Request, response: Response) => {
+    acceptRequirements = (request: Request, response: Response) => {
          this.service.acceptRequirements(request.params.projectId).then((res) => {
              response.status(res.statusCode || 200).json(res)
          })

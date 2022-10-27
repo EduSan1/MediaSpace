@@ -1,1 +1,36 @@
-() => "äaaa"
+import { AppDataSource } from "../data-source"
+import DeliveryDomain from "../domain/Delivery"
+import { DeliveryORM } from "../entity/Delivery"
+
+export class DeliveryRepository {
+    private _: any
+
+    constructor() {
+        this._ = AppDataSource.getRepository(DeliveryORM)
+    }
+
+    create = async (entity: DeliveryDomain) => {
+        return await this._.save(entity)
+    }
+
+    findById = async (id: string) => {
+        return await this._.findOne({
+            where: {
+                id
+            },
+            relations: {
+                requirement: true,
+            }
+        })
+    }
+
+    update = async (entity: DeliveryORM) => {
+        return await this._.save(entity)
+    }
+
+    delete = async (id: string) => {
+        return await this._.delete({ id })
+    }
+
+}
+
