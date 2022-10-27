@@ -20,7 +20,7 @@ import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelancer';
 import AllFreelancerInteration from './pages/AllProjectInterasion';
-import ProjectsSelecetFreelancer from './pages/Projectsallfrelancer';
+import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
 
 import Teste from './pages/teste';
