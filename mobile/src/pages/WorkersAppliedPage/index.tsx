@@ -15,7 +15,14 @@ import api from "../../../service";
 export default function WorkersAppliedPage({navigation}:IWorkersAppliedPafe) {
     
     const [isModalVisible, setModalVisible] = useState(false);
-    const [interest, setInterest] = useState([{}])
+    const [interest, setInterest] = useState([{
+        team : {
+                  name: "",
+        profile_picture : "",
+        nickname: ""
+        }
+  
+    }])
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
     };
