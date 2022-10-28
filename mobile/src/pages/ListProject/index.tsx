@@ -37,7 +37,7 @@ export const ListProject = ({ navigation }: IListProject)=> {
     return(
         <>
         
-        <TabBar currentScreen="Project" navigateTo={navigateTo} />
+        <TabBar currentScreen="ListProject" navigateTo={navigateTo} />
         <ScrollView>
         <HeaderSearch label={"Pesquisar..."} />
         <View style={styles.container}>
