@@ -2,52 +2,49 @@ import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button, Pressable } from "react-native";
 
 
+// interface ITabBar {
+//     action: () => void
+//     type: "Unselected" | "Selected"
+//     Home: boolean
+//     Feed: boolean
+//     Project: boolean
+//     Messages: boolean
+//     Profile: boolean
+//     navigation:any
+// }
+
+
 interface ITabBar {
-    action: () => void
-    type: "light" | "dark"
-    Home: boolean
-    Feed: boolean
-    Project: boolean
-    Messages: boolean
-    Profile: boolean
-    navigation:any
+    navigateTo : (screen : string) => void
+    currentScreen : string
 }
 
-
-export default function TabBar({navigation:any}:ITabBar){
+export default function TabBar({navigateTo, currentScreen} : ITabBar){
     return(
         <View style={styles.bar}>
-            <View style={styles.sectionBar}>
+            <View  style={styles.sectionBar}>
 
-            <Pressable>
+            <Pressable onPress={() => currentScreen === "Home" ? null : navigateTo("Home")}>
                 <Image source={require('../../../../assets/icons/homeIcon.png')}
-                                style={{
-                                    width:30,
-                                    height:30}}/>
+                                style={currentScreen === "Home" ? styles.iconSelected : styles.icon}/>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={() => currentScreen === "Project" ? null :navigateTo("Project")}>
                 <Image source={require('../../../../assets/icons/graphicsIcon.png')}
                                 style={{
                                     width:25,
                                     height:20}}/>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={() => currentScreen === "Feed" ? null :navigateTo("Feed")}>
                 <Image source={require('../../../../assets/icons/feedIcon.png')}
-                                style={{
-                                    width:30,
-                                    height:30}}/>
+                                style={currentScreen === "Feed" ? styles.iconSelected : styles.icon}/>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={() => currentScreen === "Messages" ? null :navigateTo("Messages")}>
                 <Image source={require('../../../../assets/icons/ChatIcon.png')}
-                                style={{
-                                    width:30,
-                                    height:30}}/>
+                                 style={currentScreen === "Messages" ? styles.iconSelected : styles.icon}/>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={() => currentScreen === "Profile" ? null :navigateTo("Profile")}>
                 <Image source={require('../../../../assets/icons/profileIcon.png')}
-                                style={{
-                                    width:30,
-                                    height:30}}/>
+                                  style={currentScreen === "Profile" ? styles.iconSelected : styles.icon}/>
             </Pressable>
             </View>
         </View>
@@ -56,12 +53,13 @@ export default function TabBar({navigation:any}:ITabBar){
 const styles = StyleSheet.create({
     bar:{
         position:'absolute',
+        zIndex: 1,
         borderTopStartRadius:21,
         borderTopEndRadius:21,
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.1,
+        marginTop:Dimensions.get('window').height * 0.93,
         backgroundColor:"#fff",
-        marginTop:Dimensions.get('window').height * 0.98,
         flexDirection:"row",
         justifyContent:"space-evenly",
         alignItems:"center"
@@ -74,5 +72,15 @@ const styles = StyleSheet.create({
         justifyContent:"space-evenly",
         alignItems:"center",
         marginBottom:Dimensions.get('window').height * 0.03,
-    }
+    },
+    icon : {
+        width:30,
+        height:30
+    },
+    iconSelected:{
+        width:25,
+        height:20,
+        tintColor:"#75A5FF"
+    },
+    iconUnselected:{}
 })
