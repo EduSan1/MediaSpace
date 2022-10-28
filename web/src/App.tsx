@@ -1,4 +1,4 @@
-ximport React from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register';
@@ -36,8 +36,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/register/provideruserregister/:userId' element={<ProviderUserRegisterPage />} />
         <Route path='/confirmRegister' element={<MailConfirmedPage />} />
-        <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
-        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        {/* <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} /> */}
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
