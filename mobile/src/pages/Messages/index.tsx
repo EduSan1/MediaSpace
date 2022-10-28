@@ -1,15 +1,28 @@
 import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView ,Dimensions} from "react-native";
 import HeaderSearch from "../../components/utils/HeaderSearch";
-export default function Messages(){
+import TabBar from "../../components/utils/TabBar";
+
+interface IMassages {
+    navigation : any
+}
+
+
+export default function Messages({navigation}:IMassages){
+    const navigateTo = (screen : string) => {
+        navigation.navigate(screen)
+    }
+
     return (
-     
+     <>
+     <TabBar currentScreen="Messages" navigateTo={navigateTo}/>
         <SafeAreaView style={style.body}>
         <ScrollView style={style.Scroll}>
             <HeaderSearch label={"Pesquisar..."}  />
             <Text style={style.text}>Messages</Text>
             </ScrollView>
         </SafeAreaView>
+     </>
         )
     
 }

@@ -15,7 +15,7 @@ import { RegisterProject } from './src/pages/RegisterProject';
 import { NavigationScreen } from './src/pages/NavigationScreen';
 import { ProjectOwner } from './src/pages/ProjectOwner';
 import Home from './src/pages/Home';
-import Project from './src/pages/Project';
+import { Project } from './src/pages/Project';
 import Profile from './src/pages/Profile';
 import Feed from './src/pages/Feed';
 import Messages from './src/pages/Messages';
@@ -27,25 +27,7 @@ export default function App() {
 
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={ListProject} />
-        <Stack.Screen name="Register" component={RegisterPage} />
-        <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
-        <Stack.Screen name="SendMailPasswordRecover" component={SendMailPasswordRecoverPage} />
-        <Stack.Screen name="CheckMail" component={CheckMailPage} />
-        <Stack.Screen name="RegisterFreelancer" component={RegisterFreelancerPage} />
-        <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
-        <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
-        <Stack.Screen name="RegisterProject" component={RegisterProject} />
-        {/* <Stack.Screen name="ProjectOwner" component={ProjectOwner} /> */}
-
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-
-  return (
-    <NavigationContainer >
-      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, animation: 'none' }}>
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
@@ -60,6 +42,7 @@ export default function App() {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Messages" component={Messages} />
+        {/* <Stack.Screen name="ProjectOwner" component={ProjectOwner} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
