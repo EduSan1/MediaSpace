@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
-import BoostButton from "./components/BoostButton";
 import InputProject from "./components/Input";
 import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
@@ -11,6 +10,7 @@ import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/
 import Projects from "../Projects";
 import { useJwt } from "react-jwt";
 import api from "../../service";
+import { ImageProject } from "./components/ImagesProjects";
 
 
 const CreateProject = () => {
@@ -46,11 +46,23 @@ const CreateProject = () => {
 
    })
 
-   console.log(project)
+   const [imageIndex, setImageIndex] = useState(0)
 
+   console.log(imageIndex)
+   
 
-   const [image, setImagem] = React.useState({ image: [] });
-   const handleChangeImage = () => { }
+   const handleChangeImage = (url:any) => { 
+      let newImagem = project.images
+
+      newImagem[imageIndex] = {url: url}
+
+      setProject({
+         ...project, 
+         images: newImagem
+      })
+
+      setImageIndex(imageIndex + 1)
+   }
 
    // const imageHandler = (event: any) => {
    //    const reader = new FileReader();
@@ -225,32 +237,29 @@ const CreateProject = () => {
 
    const uploadImage = (event: any) => {
       event.preventDefault();
-      const file = event.target[0].files
+      const file = event.target[0].files[0]
       console.log(file)
 
-      // if (!file) return
-      // for (let index = 0; index < file.length; index++) {
-      //    const storageRef = ref(storage, `profilePicture/${file[index].name}`)
+      if (!file) return
+      for (let index = 0; index < file.length; index++) {
+         const storageRef = ref(storage, `profilePicture/${file[index].name}`)
 
-      //    const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+         const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
 
-      //    uploadTask.on(
-      //       "state_changed",
-      //       snapshot => {
-      //          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+         uploadTask.on(
+            "state_changed",
+            snapshot => {
+               const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
-      //       },
-      //       error => { alert(error) },
-      //       () => {
-      //          getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-      //             setProject({ ...project, })
-      //          })
-      //       }
-      //    )
-      // }
-
-
-
+            },
+            error => { alert(error) },
+            () => {
+               getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+                  setProject({ ...project, })
+               })
+            }
+         )
+      }
    }
 
    const [errors, setErrors] = React.useState({})
@@ -381,40 +390,17 @@ const CreateProject = () => {
                                  <label className="subtitulo_projects">Imagens</label>
                                  <div className="container_aligment_images">
                                     <div className="container_text">
-
                                        <div>
                                           <p className="paragraph_projects">Imagens de referências ao projeto</p>
                                           <span className="paragraph_projects">0/4</span>
                                        </div>
-
                                     </div>
 
                                     <div className="container_images">
-                                       <div className="aligment_images">
-                                          {
-                                             project.images.map((image: any) => {
-                                                return <div className="images">
-                                                   <img src={image.url} />
-                                                </div>
-                                             })
-                                          }
-                                       </div>
+                                      <ImageProject imageProjects={project.images} setImageProjects={(image:string)=>handleChangeImage(image)} maxImage={imageIndex === 4? false:true}/>
                                     </div>
 
-                                    <form className="aligment_button" onSubmit={uploadImage} >
-                                       <div>
-                                          <label className="input_btn_select_image" htmlFor="image">
-                                             input
-                                          </label>
-
-                                          <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif"
-                                             name="image[]" multiple />
-
-
-
-                                          <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_select_image'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
-                                       </div>
-                                    </form>
+                                   
                                  </div>
 
                               </div>
