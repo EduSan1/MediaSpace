@@ -3,10 +3,20 @@ import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } f
 import { NavigationContainer} from "@react-navigation/native";
 import HeaderSearch from "../../components/utils/HeaderSearch";
 import TabBar from "../../components/utils/TabBar";
-export default function Home(){
+
+interface IHome {
+    navigation : any
+}
+
+export default function Home({navigation} : IHome){
+
+    const navigateTo = (screen : string) => {
+        navigation.navigate(screen)
+    }
+
     return (
         <>
-        <TabBar/>
+        <TabBar currentScreen="Home" navigateTo={navigateTo}/>
         <SafeAreaView style={style.body}>
             <ScrollView style={style.Scroll}>
             <HeaderSearch label={"Pesquisar..."}  />

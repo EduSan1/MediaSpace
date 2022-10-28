@@ -2,16 +2,20 @@ import React from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
 import { BtnNewProject } from "../../components/utils/BtnNewProject";
 import HeaderSearch from "../../components/utils/HeaderSearch";
+import TabBar from "../../components/utils/TabBar";
 
 
 interface IProject{
     navigation: any
 }
 export default function Project({navigation}:IProject){
-        // navigation.navigate("NavigationScreen")
-        // const [isLoad, setIsLoad] = useState(false)
+        const navigateTo = (screen : string) => {
+            navigation.navigate(screen)
+        }
+
         return (
         <>
+        <TabBar currentScreen="Project"  navigateTo={navigateTo}/>
         <BtnNewProject  action={() => navigation.navigate('RegisterProject')}/>
         <ScrollView style={style.Scroll}>
             <SafeAreaView style={style.body}>
