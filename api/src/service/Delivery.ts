@@ -1,14 +1,17 @@
 import DeliveryDomain from "../domain/Delivery";
 import { DeliveryORM } from "../entity/Delivery";
+import { ProjectRepository } from "../repository/Project";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 import { DeliveryRepository } from "../repository/Delivery";
 
 export class DeliveryService {
     private _: DeliveryRepository
+    private projectRepository: ProjectRepository
     private projectRequirementsRepository: ProjectRequirementsRepository
 
     constructor(repo: DeliveryRepository) {
         this._ = repo
+        this.projectRepository = new ProjectRepository()
         this.projectRequirementsRepository = new ProjectRequirementsRepository()
     }
 
@@ -52,6 +55,7 @@ export class DeliveryService {
         try {
 
             const delivery = await this._.findById(id);
+            const project = await this.projectRepository.getById(delivery.requirements.projectId);
 
             if (delivery.is_active === false) {
                 return {
@@ -60,8 +64,30 @@ export class DeliveryService {
                 };
             }
 
-            delivery.is_accepted = true
-            const uptadedDelivery = await this._.update(delivery)
+            delivery.is_accepted = true;
+            const uptadedDelivery = await this._.update(delivery);
+
+            // delivery.requirements.map(async (requirement : any) => {
+            //     requirement.is_delivered = true
+            //     await this.projectRequirementsRepository.update(delivery);
+            // });
+
+            project.status = "COMPLETE";
+            await this.projectRepository.update(project);
+
+            // delivery.map(async (delivery : any) => {
+            //     if (delivery.is_accepted === false && delivery.is_active === false) {
+            //         project.status = "IN EXECUTION";
+            //         await this.projectRepository.update(project);
+            //     }
+            // });
+
+            // project.requirements.map(async (requirement : any) => {
+            //     if (requirement.is_delivered === false || requirement.is_delivered === null) {
+            //         project.status = "IN EXECUTION";
+            //         await this.projectRepository.update(project);
+            //     }
+            // });
 
             return{
                 message: "Requisitos aceitos",
@@ -94,6 +120,11 @@ export class DeliveryService {
             delivery.is_accepted = false
             delivery.is_active = false
             const uptadedDelivery = await this._.update(delivery)
+
+            delivery.requirements.map(async (requirement : any) => {
+                requirement.is_delivered = false
+                await this.projectRequirementsRepository.update(delivery);
+            });
 
             return{
                 message: "Requisitos recusados",

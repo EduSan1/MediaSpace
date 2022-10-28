@@ -367,6 +367,9 @@ export class ProjectService {
                 }
             });
 
+            project.status = "IN EXECUTION";
+            await this._.update(project)
+
             return{
                 message: "Requisitos aceitos",
                 statusCode: 200

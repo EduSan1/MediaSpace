@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, ManyToMany, JoinTable, PrimaryGeneratedColumn } from "typeorm";
 import { ProjectORM } from "./Project";
+import { DeliveryORM } from "./Delivery";
 
 @Entity({ name: "tb_project_requirement" })
 export class ProjectRequirementsORM {
@@ -19,10 +20,17 @@ export class ProjectRequirementsORM {
     @Column({ nullable: true })
     is_accepted: boolean
 
+    // @Column({ nullable: true })
+    // is_delivered: boolean
+
     @Column({ default: true })
     is_active: boolean
 
     @ManyToOne(() => ProjectORM, project => project.requirements)
     project: ProjectORM
+
+    @ManyToMany(() => DeliveryORM, { eager: true })
+    @JoinTable()
+    delivery: DeliveryORM[]
 
 }

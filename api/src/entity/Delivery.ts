@@ -27,9 +27,9 @@ export class DeliveryORM {
     @CreateDateColumn()
     create_at: Timestamp
 
-    @ManyToMany(() => ProjectRequirementsORM, { eager: true })
+    @ManyToMany(() => ProjectRequirementsORM)
     @JoinTable()
-    ProjectRequirement: ProjectRequirementsORM[]
+    ProjectRequirements: ProjectRequirementsORM[]
 
     @ManyToMany(() => ProjectMemberORM, { eager: true })
     @JoinTable()
