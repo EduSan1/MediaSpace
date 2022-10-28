@@ -30,9 +30,7 @@ export default function TabBar({navigateTo, currentScreen} : ITabBar){
             </Pressable>
             <Pressable onPress={() => currentScreen === "Project" ? null :navigateTo("Project")}>
                 <Image source={require('../../../../assets/icons/graphicsIcon.png')}
-                                style={{
-                                    width:25,
-                                    height:20}}/>
+                                style={currentScreen === "Project" ? styles.iconProjectSelected : styles.iconProject}/>
             </Pressable>
             <Pressable onPress={() => currentScreen === "Feed" ? null :navigateTo("Feed")}>
                 <Image source={require('../../../../assets/icons/feedIcon.png')}
@@ -75,12 +73,21 @@ const styles = StyleSheet.create({
     },
     icon : {
         width:30,
-        height:30
+        height:30,
+        tintColor:"#C6D2FF",
     },
     iconSelected:{
+        width:30,
+        height:30,
+        tintColor:"#75A5FF"
+    },
+    iconProject:{
+        width:25,
+        height:20,
+    },
+    iconProjectSelected:{
         width:25,
         height:20,
         tintColor:"#75A5FF"
     },
-    iconUnselected:{}
 })
