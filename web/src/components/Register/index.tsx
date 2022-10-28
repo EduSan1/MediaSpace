@@ -210,7 +210,7 @@ const RegisterSpace = () => {
                                         upload
                                     </label>
 
-                                    <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" />
+                                    <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" name="image" />
 
                                     <InputBtn typeInput={'submit'}
                                         name={'btn_add_photo'}

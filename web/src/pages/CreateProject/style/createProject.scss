@@ -12,7 +12,7 @@
    display: flex;
    overflow-y: auto;
 
-   .container{
+   .container {
       width: 100%;
       display: flex;
       align-items: center;
@@ -81,10 +81,11 @@
    height: 10vh;
    width: 30vw;
 }
-.teste{
+
+.teste {
    display: flex;
    width: 100%;
-   
+
 }
 
 .container_subacategories_projects {
@@ -108,7 +109,7 @@
    flex-direction: column;
    gap: 10px;
 
-   .container_aligment_images{
+   .container_aligment_images {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -119,7 +120,7 @@
       height: 100%;
       border-radius: 10px;
       border: 1px solid $lavander;
- 
+
    }
 
    .aligment_button {
@@ -155,21 +156,23 @@
    width: 100%;
    height: 50%;
    display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
    gap: 5px;
 
-}
-
-.images {
-   // background-color: crimson;
-   
-   width: 50%;
-   height: 100%;
-
-   img {
-      width: 100%;
+   .images {
+      width: 48%;
       height: 100%;
+
+      img {
+         width: 100%;
+         height: 100%;
+      }
    }
+
 }
+
+
 
 .inputFotoTeste {
    background-color: chocolate;

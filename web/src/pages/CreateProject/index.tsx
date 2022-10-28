@@ -10,6 +10,7 @@ import { storage } from "../../constants/firebase";
 import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import Projects from "../Projects";
 import { useJwt } from "react-jwt";
+import api from "../../service";
 
 
 const CreateProject = () => {
@@ -40,15 +41,17 @@ const CreateProject = () => {
 
       ],
       user: {
-         "id": "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+         id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
       }
 
    })
 
+   console.log(project)
 
 
-   // const [image, setImagem] = React.useState({
-   // });
+   const [image, setImagem] = React.useState({ image: [] });
+   const handleChangeImage = () => { }
+
    // const imageHandler = (event: any) => {
    //    const reader = new FileReader();
    //    reader.onload = () => {
@@ -222,26 +225,32 @@ const CreateProject = () => {
 
    const uploadImage = (event: any) => {
       event.preventDefault();
-      const file = event.target[0].files[0]
+      const file = event.target[0].files
+      console.log(file)
 
-      if (!file) return
+      // if (!file) return
+      // for (let index = 0; index < file.length; index++) {
+      //    const storageRef = ref(storage, `profilePicture/${file[index].name}`)
 
-      const storageRef = ref(storage, `profilePicture/${file.name}`)
-      const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+      //    const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
 
-      uploadTask.on(
-         "state_changed",
-         snapshot => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      //    uploadTask.on(
+      //       "state_changed",
+      //       snapshot => {
+      //          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
-         },
-         error => { alert(error) },
-         () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-               setProject({ ...project, })
-            })
-         }
-      )
+      //       },
+      //       error => { alert(error) },
+      //       () => {
+      //          getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+      //             setProject({ ...project, })
+      //          })
+      //       }
+      //    )
+      // }
+
+
+
    }
 
    const [errors, setErrors] = React.useState({})
@@ -270,6 +279,18 @@ const CreateProject = () => {
          //console.log("ISSO AI COLOCA UMA CAPA MSM NÃO");
          handleErrors('Informe a capa do livro.', 'capa')
       }
+   }
+
+   const createProject = () => {
+
+      api.post("/project", project).then((res) => {
+         if (res.data.statusCode !== 201) {
+            window.alert("Não foi possível criar o projeto")
+         } else {
+            console.log("deu certo")
+         }
+      })
+
    }
 
 
@@ -356,9 +377,6 @@ const CreateProject = () => {
 
 
                            <div className="container_informations">
-
-
-
                               <div className="container_files">
                                  <label className="subtitulo_projects">Imagens</label>
                                  <div className="container_aligment_images">
@@ -380,17 +398,23 @@ const CreateProject = () => {
                                                 </div>
                                              })
                                           }
-
-
-         
                                        </div>
-
-                                      
                                     </div>
 
-                                    <div className="aligment_button">
-                                       <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_select_image'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
-                                    </div>
+                                    <form className="aligment_button" onSubmit={uploadImage} >
+                                       <div>
+                                          <label className="input_btn_select_image" htmlFor="image">
+                                             input
+                                          </label>
+
+                                          <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif"
+                                             name="image[]" multiple />
+
+
+
+                                          <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_select_image'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+                                       </div>
+                                    </form>
                                  </div>
 
                               </div>
