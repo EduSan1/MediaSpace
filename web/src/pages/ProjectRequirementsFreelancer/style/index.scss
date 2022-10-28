@@ -1,0 +1,152 @@
+@import "../../../styles/vars.scss";
+.ContainerPage{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 100%;
+    overflow-y:auto ;
+    ::-webkit-scrollbar {
+      display: block;
+      color: $light-purple;
+      background-color: $light-purple;
+  }
+    
+    .Requesit_name{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        gap: 5px;
+        margin-bottom: 10px;
+
+      
+
+    .Components_projeteste{
+        width: 100%;
+        height: 50px;
+      
+        
+        
+
+        p{
+            width: auto;
+            height: auto;
+        }
+
+    }
+
+    .Tittle_name_project{
+      h1{
+        font-size: 2rem;
+        font-family: $light-font;
+        color: $primary-blue;
+      }
+
+    }
+
+    }
+
+
+  .ContainerTecnicos{
+    width: 100%;
+    height: auto;
+
+  }
+
+
+  .footer{
+    width: 100%;
+    height: 25%;
+    margin-bottom: 20px;
+
+    .tittle_Value_text{
+      display: flex;
+      width: 100%;
+      height: 50px;
+      margin-bottom: 50px;
+
+
+      h1{
+        font-size: 2rem;
+        font-family: $light-font;
+        color: $primary-blue;
+        font-weight: 600;
+       
+
+      }
+    }
+
+
+    .revision_requisition{
+      width: 100%;
+      height: auto;
+      
+
+      h1{
+        font-size: 1.5rem;
+        font-family: $light-font;
+        letter-spacing: 2px;
+       
+      }
+
+      p{
+        font-size: 1rem;
+        font-family: $light-font;
+        letter-spacing: 2px;
+      }
+    }
+
+
+
+   
+  }
+
+  .btn_requirements{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: end;
+    padding-right: 50px;
+    gap: 10px;
+
+
+    .Btn_send,
+    .Btn_Add{
+      display: flex;
+      width: 12%;
+      height: 45px;
+      justify-content: center;
+      align-items: center;
+      background-color: $light-purple;
+      border-radius: 5px;
+
+      .submit_add,
+      .submit_send{
+          width: 100%;
+          height: 100%;
+          background-color: $light-purple;
+          border: none;
+          border-radius: 5px;
+          color: #fff;
+          font-size: 1.4rem;
+      }
+
+      .submit_add:hover, 
+      .submit_send:hover{
+        background-color: $dark-purple;
+        cursor: pointer;
+        transition: 0.40s;
+      }
+
+    }
+  }
+
+  
+}
+
+
+// .section_main:-webkit-scrollbar-thumb {
+//   background-color: blue;    /* color of the scroll thumb */
+//   border-radius: 20px;       /* roundness of the scroll thumb */
+//   border: 3px solid orange;  /* creates padding around scroll thumb */
+// }

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Dimensions, ScrollView, Text, Image } from "react-native"
-import { ScrollImage } from "../../components/utils/ScrollImage";
+import React, { useEffect, useState } from "react";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import { BtnNewProject } from "../../components/utils/BtnNewProject";
+import HeaderSearch from "../../components/utils/HeaderSearch";
 import { LoginButton } from "../../components/utils/LoginButton";
-import api from "../../../service";
+import { ScrollImage } from "../../components/utils/ScrollImage";
+import TabBar from "../../components/utils/TabBar";
 
 
 interface IProject {
@@ -10,6 +12,10 @@ interface IProject {
 }
 
 export const Project = ({ navigation }: IProject) => {
+    const navigateTo = (screen: string) => {
+        navigation.navigate(screen)
+    }
+
 
     const [imageIndex, setImageIndex] = useState(0)
     const [projectLoad, setProjectLoad] = useState(false)
@@ -67,6 +73,7 @@ export const Project = ({ navigation }: IProject) => {
 
     return (
         <>
+            <TabBar currentScreen="Project" navigateTo={navigateTo} />
             <View style={styles.navigationBar}></View>
 
             <View style={styles.fix}>
