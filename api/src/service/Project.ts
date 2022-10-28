@@ -49,15 +49,16 @@ export class ProjectService {
     create = async (entity: ProjectDomain) => {
         try {
             const project = await this._.create(entity)
-
-
             entity.images?.map(async (image: IImage) => {
-                const imageToRegister = {
-                    ...image, project: {
-                        id: project.id
+                if (image.url !== "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f") {
+                    const imageToRegister = {
+                        ...image, project: {
+                            id: project.id
+                        }
                     }
+                    await this.projectImageRepository.create(imageToRegister)
+
                 }
-                await this.projectImageRepository.create(imageToRegister)
             })
 
 

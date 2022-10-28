@@ -1,4 +1,4 @@
-import React from 'react';
+ximport React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register';
@@ -19,8 +19,7 @@ import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelancer';
-import AllFreelancerInteration from './pages/AllProjectInterasion';
-import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
+import ProjectsViewallFreelancer from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
 
 import Teste from './pages/teste';
@@ -52,14 +51,13 @@ function App() {
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
         <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
-        <Route path='/projects/requirements/visualizationFreelancers'  element={<ProjectsvisualizationFreelancersAll/>}/>
-        <Route path='/projects/all-Interation'  element={<AllFreelancerInteration/>}/>
-        <Route path='/projects/selectFreelancer'  element={<ProjectsSelecetFreelancer/>}/>
-        
-        
+        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
+        <Route path='/projects/selectFreelancer' element={<ProjectsViewallFreelancer />} />
 
 
-      
+
+
+
 
 
 

@@ -40,6 +40,7 @@ export class ProjectRequirementsRepository {
             },
             relations: {
                 project: false,
+                delivery: true
             }
         })
     }
