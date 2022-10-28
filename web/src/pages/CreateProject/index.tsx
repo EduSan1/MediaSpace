@@ -10,6 +10,7 @@ import { storage } from "../../constants/firebase";
 import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import Projects from "../Projects";
 import { useJwt } from "react-jwt";
+import api from "../../service";
 
 
 const CreateProject = () => {
@@ -21,13 +22,16 @@ const CreateProject = () => {
       estimated_deadline: "",
       images: [
          {
-            "url": "Jorge"
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
          },
          {
-            "url": "Cleiton"
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
          },
          {
-            "url": "Jordania"
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
+         },
+         {
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
          }
       ],
       categories: [
@@ -37,15 +41,17 @@ const CreateProject = () => {
 
       ],
       user: {
-         "id": "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+         id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
       }
 
    })
 
+   console.log(project)
 
 
-   // const [image, setImagem] = React.useState({
-   // });
+   const [image, setImagem] = React.useState({ image: [] });
+   const handleChangeImage = () => { }
+
    // const imageHandler = (event: any) => {
    //    const reader = new FileReader();
    //    reader.onload = () => {
@@ -219,26 +225,32 @@ const CreateProject = () => {
 
    const uploadImage = (event: any) => {
       event.preventDefault();
-      const file = event.target[0].files[0]
+      const file = event.target[0].files
+      console.log(file)
 
-      if (!file) return
+      // if (!file) return
+      // for (let index = 0; index < file.length; index++) {
+      //    const storageRef = ref(storage, `profilePicture/${file[index].name}`)
 
-      const storageRef = ref(storage, `profilePicture/${file.name}`)
-      const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+      //    const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
 
-      uploadTask.on(
-         "state_changed",
-         snapshot => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      //    uploadTask.on(
+      //       "state_changed",
+      //       snapshot => {
+      //          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
-         },
-         error => { alert(error) },
-         () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-               setProject({ ...project, })
-            })
-         }
-      )
+      //       },
+      //       error => { alert(error) },
+      //       () => {
+      //          getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+      //             setProject({ ...project, })
+      //          })
+      //       }
+      //    )
+      // }
+
+
+
    }
 
    const [errors, setErrors] = React.useState({})
@@ -269,6 +281,18 @@ const CreateProject = () => {
       }
    }
 
+   const createProject = () => {
+
+      api.post("/project", project).then((res) => {
+         if (res.data.statusCode !== 201) {
+            window.alert("Não foi possível criar o projeto")
+         } else {
+            console.log("deu certo")
+         }
+      })
+
+   }
+
 
    return (
       <>
@@ -276,141 +300,140 @@ const CreateProject = () => {
             <NavegationBar />
             <div className="Container">
                <SearchBar />
-               <section className="section_main">
-                  <div className="container_page_create_project">
-                     <div></div>
-                     <div className="page_create_project">
-                        <div className="container_informations">
-                           <div className="title_page_project" >
-                              <h1>Criação de projeto</h1>
-                           </div>
-                           <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
-
-                           <div className="container_description_project">
-                              <label className="subtitulo_projects">Descrição <span> * </span></label>
-                              <div>
-                                 <textarea onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} name={"description"} onChange={({ target }) => { project.description = target.value }} />
-                                 <span>{caracteres.caracteres}/800</span>
-                              </div>
-
-                           </div>
-
-                           <div className="container_categories_projects">
-                              <div className="subtitulo_projects">
-                                 <label> Categorias </label>
-                                 <p className="paragraph_projects">Selecione a categoria do projeto</p>
-                              </div>
-                              <div className="categories projects">
-                                 {
-                                    categories.map((category: any) => {
-                                       return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
-                                    })
-                                 }
-
-
-                              </div>
-                           </div>
-
-                           <div className="container_subacategories_projects">
-                              <div className="subtitulo_projects">
-                                 <label> Sub-categorias </label>
-                                 <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
-                              </div>
-                              <div className="sub_categories">
-                                 {
-                                    subcategoriesToRender.map((category: any) => {
-                                       return category.sub_categories.map((subCategory: any) => {
-                                          return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? removeSubcategory(subCategory.id) : addToProject(subCategory.id, "sub_categories")} />
-                                       })
-                                    })
-                                 }
-                              </div>
-                           </div>
+               <section className="container_page_create_project">
+                  <div className="page_create_project">
+                     <div className="container">
+                        <div className="title_page_project" >
+                           <h1>Criação de projeto</h1>
                         </div>
 
-                        <div className="container_informations">
-                           <div className="container_input_project">
-                              <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
-                              <div>
-                                 <input type="date" maxLength={100} name="estimated_deadline" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
-                              </div>
-                              <div>
-                                 <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
-                                    você pode negociá-la com um prestador depois.</label>
-                              </div>
-                           </div>
+                        <div className="teste">
 
-                           <div className="container_input_project">
-                              <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
-                              <div>
-                                 <input className="input_value_project" type="number" min={0} name="estimated_value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
-                              </div>
-                              <span>
-                                 <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
-                              </span>
-                           </div>
+                           <div className="container_informations">
+                              <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
 
-                           <div className="container_files">
-                              <div className="container_text">
-                                 <label className="subtitulo_projects">Imagens</label>
+                              <div className="container_description_project">
+                                 <label className="subtitulo_projects">Descrição <span> * </span></label>
                                  <div>
-                                    <p className="paragraph_projects">Imagens de referências ao projeto</p>
-                                    <span className="paragraph_projects">0/4</span>
+                                    <textarea onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} maxLength={800} name={"description"} onChange={({ target }) => { project.description = target.value }} />
+                                    <span>{caracteres.caracteres}/800</span>
                                  </div>
 
                               </div>
 
-                              <div className="container_images">
-                                 <div className="aligment_images">
-                                    <div className="images">
-                                       <img src="" />
-                                    </div>
-                                    <div className="images">
-                                       <img src="" />
-                                    </div>
+                              <div className="container_categories_projects">
+                                 <div className="subtitulo_projects">
+                                    <label> Categorias </label>
+                                    <p className="paragraph_projects">Selecione a categoria do projeto</p>
                                  </div>
+                                 <div className="categories projects">
+                                    {
+                                       categories.map((category: any) => {
+                                          return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                                       })
+                                    }
 
-                                 <div className="aligment_images" >
-                                    <div className="images">
-                                       <img src="" />
-                                    </div>
-                                    <div className="images">
-                                       <img src="" />
-                                    </div>
+
                                  </div>
+                              </div>
+
+                              <div className="container_subacategories_projects">
+                                 <div className="subtitulo_projects">
+                                    <label> Sub-categorias </label>
+                                    <p className="paragraph_projects">Selecione a sub-categoria do projeto</p>
+                                 </div>
+                                 <div className="sub_categories">
+                                    {
+                                       subcategoriesToRender.map((category: any) => {
+                                          return category.sub_categories.map((subCategory: any) => {
+                                             return <Checkbox nameOption={subCategory.name} onClickFunction={(check) => check ? removeSubcategory(subCategory.id) : addToProject(subCategory.id, "sub_categories")} />
+                                          })
+                                       })
+                                    }
+                                 </div>
+                              </div>
+
+                              <div className="container_input_project">
+                                 <label className="subtitulo_projects">  Prazo estimado de entrega <span> * </span></label>
+                                 <div>
+                                    <input type="date" maxLength={100} name="estimated_deadline" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                                 </div>
+                                 <div>
+                                    <label className="paragraph_projects">Obs: Sugerimos que essa data seja uma estimativa crível de acordo com seu projeto,
+                                       você pode negociá-la com um prestador depois.</label>
+                                 </div>
+                              </div>
+
+                              <div className="container_input_project">
+                                 <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
+                                 <div>
+                                    <input className="input_value_project" type="number" min={0} name="estimated_value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                                 </div>
+                                 <span>
+                                    <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
+                                 </span>
                               </div>
                            </div>
 
 
-                           <div className="container_boost">
-                              <label className="subtitulo_projects"> Impulsionamento <span> (recurso pago) </span></label>
-                              <p className="paragraph_projects">Tenha um alcance maior com sua publicação</p>
-                              <div className="teste">
-                                 <img src="./boosted.png" />
-                                 <div className="container_boost_buttons">
-                                    <BoostButton type={"Padrão"} valueBoost={"Gratuito"} imageBoost={"../../../public/assets/img/project/free.png"} label={""} />
-                                    <BoostButton type={"Impulsionado"} valueBoost={"R$ 50,00"} imageBoost={"../../../public/assets/img/project/boosted.png"} label={""} />
-                                 </div>
-                                 <div className="container_texts_boost">
-                                    <p>Com a opção "impulsionado" você tem a sua publicação divulgada com um maior alcance, sendo anunciada nos primeiros resultados de exibição na plataforma. </p>
-                                    <p>Incluídos no Impulsionamento
-                                       <ul>
-                                          <li>Pagamento único (uma vez para cada publicação)</li>
-                                          <li>Maior visibilidade</li>
-                                          <li>Destaque na exibição</li>
-                                       </ul>
-                                    </p>
-                                    <span></span>
-                                    <p>Recomendado para grandes projetos.</p>
+                           <div className="container_informations">
+                              <div className="container_files">
+                                 <label className="subtitulo_projects">Imagens</label>
+                                 <div className="container_aligment_images">
+                                    <div className="container_text">
+
+                                       <div>
+                                          <p className="paragraph_projects">Imagens de referências ao projeto</p>
+                                          <span className="paragraph_projects">0/4</span>
+                                       </div>
+
+                                    </div>
+
+                                    <div className="container_images">
+                                       <div className="aligment_images">
+                                          {
+                                             project.images.map((image: any) => {
+                                                return <div className="images">
+                                                   <img src={image.url} />
+                                                </div>
+                                             })
+                                          }
+                                       </div>
+                                    </div>
+
+                                    <form className="aligment_button" onSubmit={uploadImage} >
+                                       <div>
+                                          <label className="input_btn_select_image" htmlFor="image">
+                                             input
+                                          </label>
+
+                                          <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif"
+                                             name="image[]" multiple />
+
+
+
+                                          <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_select_image'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+                                       </div>
+                                    </form>
                                  </div>
 
-                              </div></div>
+                              </div>
+
+
+
+
+                           </div>
+
+
+                        </div>
+
+                        <div className="aligment_button">
+                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
                         </div>
                      </div>
-                     <div className="aligment_button">
-                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
-                     </div>
+
                   </div>
+
                </section>
             </div>
          </main>
