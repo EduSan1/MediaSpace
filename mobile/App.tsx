@@ -19,6 +19,7 @@ import Project from './src/pages/Project';
 import Profile from './src/pages/Profile';
 import Feed from './src/pages/Feed';
 import Messages from './src/pages/Messages';
+import { ListProject } from './src/pages/ListProject';
 
 export default function App() {
 
@@ -27,7 +28,7 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Login" component={ListProject} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
         <Stack.Screen name="SendMailPasswordRecover" component={SendMailPasswordRecoverPage} />
@@ -36,7 +37,7 @@ export default function App() {
         <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
         <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
         <Stack.Screen name="RegisterProject" component={RegisterProject} />
-        <Stack.Screen name="ProjectOwner" component={ProjectOwner} />
+        {/* <Stack.Screen name="ProjectOwner" component={ProjectOwner} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>
