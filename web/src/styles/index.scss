@@ -18,9 +18,10 @@
     @import "./pages/PasswordWarningPage/index.scss";
     @import "./pages/RecoveringPasswordPage/index.scss";
     @import "../pages/Home/Style/indedx.scss";
-    @import "../pages/Projects/style/index.scss";
     @import "../pages/Projects/ProjectsStyle//index.scss";
     @import "../pages/teste/index.scss";
+    @import "../pages/ProjectRequirementsFreelancer/style/index.scss";
+    @import "../pages/ProjectsViewallfrelancer/style/index.scss";
 
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
@@ -50,4 +51,9 @@
     @import "../pages/CreateProject/components/boostButton.scss";
     @import "../components/project/style/index.scss";
     @import "../pages/PreviewProject/style/preview_project.scss";
+    @import "../pages/ProjectRequirementsFreelancer/style/index.scss";
+    @import "../pages/ProjectRequirementsClient/style/index.scss";
+    @import "../components/utils/HistoryTrack/style/index.scss";
+    @import "../pages/teste/index.scss";
+    @import "../components/ProjectRequiremens/CardShip/style/index.scss"; 
 }
