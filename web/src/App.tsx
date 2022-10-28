@@ -1,4 +1,4 @@
-import React from 'react';
+ximport React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register';
@@ -51,13 +51,13 @@ function App() {
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
         <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
-        <Route path='/projects/requirements/visualizationFreelancers'  element={<ProjectsvisualizationFreelancersAll/>}/>
-        <Route path='/projects/selectFreelancer'  element={<ProjectsViewallFreelancer/>}/>
-        
-        
+        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
+        <Route path='/projects/selectFreelancer' element={<ProjectsViewallFreelancer />} />
 
 
-      
+
+
+
 
 
 
