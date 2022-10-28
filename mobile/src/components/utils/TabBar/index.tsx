@@ -28,9 +28,9 @@ export default function TabBar({navigateTo, currentScreen} : ITabBar){
                 <Image source={require('../../../../assets/icons/homeIcon.png')}
                                 style={currentScreen === "Home" ? styles.iconSelected : styles.icon}/>
             </Pressable>
-            <Pressable onPress={() => currentScreen === "Project" ? null :navigateTo("Project")}>
+            <Pressable onPress={() => currentScreen === "ListProject" ? null :navigateTo("ListProject")}>
                 <Image source={require('../../../../assets/icons/graphicsIcon.png')}
-                                style={currentScreen === "Project" ? styles.iconProjectSelected : styles.iconProject}/>
+                                style={currentScreen === "ListProject" ? styles.iconProjectSelected : styles.iconProject}/>
             </Pressable>
             <Pressable onPress={() => currentScreen === "Feed" ? null :navigateTo("Feed")}>
                 <Image source={require('../../../../assets/icons/feedIcon.png')}

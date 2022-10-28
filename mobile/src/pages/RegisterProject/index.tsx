@@ -10,6 +10,7 @@ import { CategoryButton } from "../../components/utils/CategoryButton";
 import { SubcategoryButton } from "../../components/utils/SubcategoryButton"
 import api from "../../../service";
 import G from "glob"
+import  BtnBackPage  from "../../components/utils/BtnBackPage"
 
 interface IRegisterProject {
     navigation: any
@@ -284,6 +285,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
     return (
         <>
+        <BtnBackPage action={() => navigation.navigate("ListProject")}/>
             <View style={styles.scrollContainer}>
 
 

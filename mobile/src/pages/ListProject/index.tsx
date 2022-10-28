@@ -4,6 +4,8 @@ import api from "../../../service";
 import { ListProjectCard } from "../../components/utils/ListProjectCard";
 import { CategoryButton } from "../../components/utils/CategoryButton";
 import { BtnList } from "../../components/utils/BtnList";
+import TabBar from "../../components/utils/TabBar";
+import HeaderSearch from "../../components/utils/HeaderSearch";
 
 
 interface IListProject {
@@ -11,6 +13,10 @@ interface IListProject {
 }
 
 export const ListProject = ({ navigation }: IListProject)=> {
+
+    const navigateTo = (screen: string) => {
+        navigation.navigate(screen)
+    }
 
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
@@ -30,8 +36,10 @@ export const ListProject = ({ navigation }: IListProject)=> {
 
     return(
         <>
+        
+        <TabBar currentScreen="Project" navigateTo={navigateTo} />
         <ScrollView>
-
+        <HeaderSearch label={"Pesquisar..."} />
         <View style={styles.container}>
         <ImageBackground style={styles.image} resizeMode="cover"  source={require("../../../assets/img/boostad.png")}>
 

@@ -38,7 +38,7 @@ export default function App() {
         <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
         <Stack.Screen name="RegisterProject" component={RegisterProject} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Project" component={Project} />
+        <Stack.Screen name="ListProject" component={ListProject} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Messages" component={Messages} />

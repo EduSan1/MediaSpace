@@ -1,11 +1,16 @@
 import React from "react"
 import { Image, Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View} from "react-native"
 
-export const BtnBackPage = () => {
+interface IBtnBackPage {
+
+    action : () => void
+}
+
+export default function BtnBackPage({action}:IBtnBackPage){
     return (
         <View style={styles.headerNav}>
 
-        <Pressable style={styles.btnStyle}>
+        <Pressable style={styles.btnStyle} onPress={()=> action()}>
             <Image style={styles.icon} source={require('../../../../assets/icons/previous.png')}/>
         </Pressable>
         </View>
