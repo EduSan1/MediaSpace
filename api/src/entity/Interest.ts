@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { MemberORM } from "./Member";
 import { ProjectORM } from "./Project";
-import { ProjectManagementORM } from "./ProjectManagment";
+import { ProjectManagementORM } from "./ProjectManagement";
 import { TeamORM } from "./team";
 import { UserORM } from "./User";
 
@@ -13,6 +13,9 @@ export class InterestORM {
 
     @Column()
     all_members_accept: boolean
+
+    @Column({ default: false })
+    is_selected: boolean
 
     @ManyToOne(() => TeamORM, team => team.interest, { eager: true })
     team: TeamORM

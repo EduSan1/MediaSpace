@@ -35,6 +35,7 @@ export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegi
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
 
     const findSubCategories = (idCategory: string, action: "REMOVE" | "ADD") => {
+
         const categoryFilter: any = categories.find((category: any) => category.id === idCategory)
 
         if (action === "ADD") {
@@ -56,11 +57,6 @@ export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegi
         setFreelancer({ ...freelancer, sub_categories: subCategoriesFilter })
     }
 
-    useEffect(() => {
-        console.log("freelancer => ", freelancer)
-    }, [freelancer])
-
-
     const registerFreelancer = () => {
         setIsLoad(true)
         api.post("/freelancer", freelancer).then((res: any) => {
@@ -78,7 +74,6 @@ export const CompleteRegisterFreelancer = ({ navigation, userId }: ICompleteRegi
         api.get("/category").then((res: any) => {
             setCategories(res.data)
         })
-        console.log(userId)
     }, [])
 
     return (

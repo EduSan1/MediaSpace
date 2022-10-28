@@ -1,5 +1,3 @@
-//@import "../../vars.scss";
-
 .InputBtnLogin {
 
     display: flex;
@@ -18,10 +16,11 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
- 
-  
+
+
 
 }
+
 .input_btn_cadastrar {
     display: flex;
     width: 164px;
@@ -34,9 +33,20 @@
     border: none;
 }
 
+.input_btn_upload_photo {
+    width: auto;
+    height: 25px;
+    border-radius: 10px;
+    padding-inline: 15px;
+    border: 3px solid $dark-purple;
+    color: $dark-purple;
+    background-color: transparent;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
-
-.input_btn_remove_photo{
+.input_btn_remove_photo {
     width: 100px;
     height: 25px;
     background-color: transparent;
@@ -45,37 +55,85 @@
     cursor: pointer;
 }
 
+.input_btn_upload_photo_project {
+    width: auto;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid $lavander;
+    color: $primary-purple;
+    font-weight: 600;
+    background-color: transparent;
+    cursor: pointer;
+    padding-inline: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
-
-.Container_btnIcon{
+.Container_btnIcon {
     display: flex;
-     width: 5%;
-     height: 100%;
-     justify-content: center;
-     align-items: center;
-     position: relative;
-     background-color: transparent;
-     
-     
+    width: 5%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: transparent;
 
-     span{
+
+
+    span {
         width: 100%;
         display: flex;
         border: none;
         position: absolute;
         justify-content: center;
         align-items: center;
-        
-     }
 
-     input{
+    }
+
+    input {
         width: 100%;
         height: 100%;
         border: none;
         cursor: pointer;
         transition: 40s;
         background-color: transparent;
-        
-     }
-    
+
+    }
+
+}
+
+.input_btn_publicar_project {
+    display: flex;
+    width: 100%;
+    height: 35%;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    background-color: $primary-purple;
+    color: #fff;
+    border: none;
+}
+
+.input_btn_project {
+    display: flex;
+    width: 15%;
+    height: 50%;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #B275FF;
+    border: 1px solid #B275FF;
+}
+
+.input_btn_select_image {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #B275FF;
+    border: 1px solid #B275FF;
 }

@@ -14,7 +14,11 @@ export class ProjectRepository {
     }
 
     list = async () => {
-        return await this._.find(ProjectORM)
+        return await this._.find({
+            relations: {
+                user: true
+            }
+        })
     }
 
     listWhere = async (key: keyof typeof ProjectORM, value: string) => {
@@ -37,6 +41,13 @@ export class ProjectRepository {
         return await this._.findOne({
             where: {
                 id
+            },
+            relations: {
+                interest: true,
+                sub_categories: true,
+                requirements: true,
+                management: true
+
             }
         })
     }

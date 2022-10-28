@@ -1,19 +1,20 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CategoryORM } from "./entity/Category"
+import { DeliveryORM } from "./entity/Delivery"
+import { DeliveryFileORM } from "./entity/DeliveryFile"
 import { GenderORM } from "./entity/Gender"
 import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
 import { ProjectORM } from "./entity/Project"
-import { ProjectAttachmentORM } from "./entity/ProjectAttachment"
 import { ProjectImageORM } from "./entity/ProjectImage"
-import { ProjectManagementORM } from "./entity/ProjectManagment"
+import { ProjectManagementORM } from "./entity/ProjectManagement"
 import { ProjectMemberORM } from "./entity/ProjectMember"
-import { ProjectRequirementORM } from "./entity/ProjectRequirement"
+import { ProjectRequirementsORM } from "./entity/ProjectRequirements"
 import { SubCategoryORM } from "./entity/SubCategory"
 import { TeamORM } from "./entity/team"
-import { TeamProjectManagementORM } from "./entity/TeamProjectManagment"
+import { TeamProjectManagementORM } from "./entity/TeamProjectManagement"
 import { TypePaymentORM } from "./entity/TypePayment"
 import { UserORM } from "./entity/User"
 import { UserTeamORM } from "./entity/UserTeam"
@@ -38,13 +39,15 @@ export const AppDataSource = new DataSource({
         InterestORM,
         MemberORM,
         TypePaymentORM,
-        ProjectAttachmentORM,
-        ProjectRequirementORM,
+        ProjectRequirementsORM,
+        ProjectRequirementsORM,
         ProjectMemberORM,
         ProjectORM,
         ProjectImageORM,
         ProjectManagementORM,
-        TeamProjectManagementORM
+        TeamProjectManagementORM,
+        DeliveryORM,
+        DeliveryFileORM
     ],
     migrations: [],
     subscribers: [],
