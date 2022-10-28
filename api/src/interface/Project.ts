@@ -2,6 +2,7 @@ import { CategoryORM } from "../entity/Category"
 import { InterestORM } from "../entity/Interest"
 import { ProjectImageORM } from "../entity/ProjectImage"
 import { ProjectManagementORM } from "../entity/ProjectManagement"
+import { ProjectRequirementsORM } from "../entity/ProjectRequirements"
 import { SubCategoryORM } from "../entity/SubCategory"
 import { UserORM } from "../entity/User"
 
@@ -21,5 +22,6 @@ export interface IDomainProjectProps {
     images: ProjectImageORM[]
     management: ProjectManagementORM[]
     interest: InterestORM[]
+    requirements: ProjectRequirementsORM[]
 
 }
