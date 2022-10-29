@@ -1,8 +1,8 @@
 import { CategoryORM } from "../entity/Category"
 import { InterestORM } from "../entity/Interest"
-import { ProjectAttachmentORM } from "../entity/ProjectAttachment"
 import { ProjectImageORM } from "../entity/ProjectImage"
 import { ProjectManagementORM } from "../entity/ProjectManagement"
+import { ProjectRequirementsORM } from "../entity/ProjectRequirements"
 import { SubCategoryORM } from "../entity/SubCategory"
 import { UserORM } from "../entity/User"
 import { IDomainProjectProps } from "../interface/Project"
@@ -23,7 +23,7 @@ export default class ProjectDomain {
     images: ProjectImageORM[]
     management: ProjectManagementORM[]
     interest: InterestORM[]
-    attachments: ProjectAttachmentORM[]
+    requirements: ProjectRequirementsORM[]
 
 
 
@@ -42,7 +42,7 @@ export default class ProjectDomain {
         this.images = props.images
         this.management = props.management
         this.interest = props.interest
-        this.attachments = props.attachments
+        this.requirements = props.requirements
 
     }
 }

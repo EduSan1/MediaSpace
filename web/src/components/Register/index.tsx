@@ -15,8 +15,6 @@ import api from "../../service";
 
 const RegisterSpace = () => {
 
-    // const navigate = useNavigate()
-
     const [user, setUser] = React.useState({
         first_name: '',
         last_name: '',
@@ -26,7 +24,7 @@ const RegisterSpace = () => {
             phone: ""
         },
         birth_date: '',
-        profile_picture: 'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae',
+        profile_picture: 'https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8',
         cpf: '',
         mail: '',
         gender: {
@@ -36,6 +34,18 @@ const RegisterSpace = () => {
         biography: '',
     })
 
+
+
+    // const imageHandler = (event: any) => {
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //         if (reader.readyState === 2) {
+    //             //console.log(reader.result)
+    //             setUser({ profile_picture: reader.result })
+    //         }
+    //     }
+    //     console.log(reader.readAsDataURL(event.target.files[0]))
+    // }
 
     const navigate = useNavigate()
 
@@ -192,7 +202,7 @@ const RegisterSpace = () => {
                                     <img className="picture" src={user.profile_picture} alt="" />
                                 </div>
 
-                                <p className="preview-text">Escolha um arquivo jpg, png, gif...</p>
+                                <p className="preview-text">Escolha um arquivo jpg, jpeg ,png ou gif</p>
 
                                 <div className="alignment_buttons_photo_profile">
 
@@ -200,7 +210,7 @@ const RegisterSpace = () => {
                                         upload
                                     </label>
 
-                                    <input type="file" id="image" />
+                                    <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" name="image" />
 
                                     <InputBtn typeInput={'submit'}
                                         name={'btn_add_photo'}

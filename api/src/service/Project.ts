@@ -9,16 +9,13 @@ import { FreelancerRepository } from "../repository/Freelancer";
 import { InterestRepository } from "../repository/Interest";
 import { MemberRepository } from "../repository/Member";
 import { ProjectRepository } from "../repository/Project";
-import { ProjectAttachmentRepository } from "../repository/ProjectAtachment";
 import { ProjectImageRepository } from "../repository/ProjectImage";
 import { ProjectManagementRepository } from "../repository/ProjectManagement";
 import { ProjectMemberRepository } from "../repository/ProjectMember";
 import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
+import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 
 interface IImage {
-    url: string
-}
-interface IAttachment {
     url: string
 }
 
@@ -29,7 +26,7 @@ interface IRegisterInterest {
 export class ProjectService {
     private _: ProjectRepository
     private projectImageRepository: ProjectImageRepository
-    private projectAttachmentRepository: ProjectAttachmentRepository
+    private projectRequirementRepository: ProjectRequirementsRepository
     private freelancerRepository: FreelancerRepository
     private interestRepository: InterestRepository
     private memberRepository: MemberRepository
@@ -40,7 +37,7 @@ export class ProjectService {
     constructor(repo: ProjectRepository) {
         this._ = repo
         this.projectImageRepository = new ProjectImageRepository()
-        this.projectAttachmentRepository = new ProjectAttachmentRepository()
+        this.projectRequirementRepository = new ProjectRequirementsRepository()
         this.freelancerRepository = new FreelancerRepository()
         this.interestRepository = new InterestRepository()
         this.memberRepository = new MemberRepository()
@@ -52,25 +49,19 @@ export class ProjectService {
     create = async (entity: ProjectDomain) => {
         try {
             const project = await this._.create(entity)
-
-
             entity.images?.map(async (image: IImage) => {
-                const imageToRegister = {
-                    ...image, project: {
-                        id: project.id
+                if (image.url !== "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f") {
+                    const imageToRegister = {
+                        ...image, project: {
+                            id: project.id
+                        }
                     }
+                    await this.projectImageRepository.create(imageToRegister)
+
                 }
-                await this.projectImageRepository.create(imageToRegister)
             })
 
-            entity.attachments?.map(async (attachment: IAttachment) => {
-                const attachmentToRegister = {
-                    ...attachment, project: {
-                        id: project.id
-                    }
-                }
-                await this.projectAttachmentRepository.create(attachmentToRegister)
-            })
+
 
             return {
                 message: "Projeto cadastrado com sucesso!",
@@ -261,6 +252,7 @@ export class ProjectService {
         interest.members.map(async (member: MemberORM) => {
             member.is_selected = true
             return await this.memberRepository.update(member)
+
         })
 
         interest.is_selected = true
@@ -355,6 +347,74 @@ export class ProjectService {
         }
 
         return await this.projectMemberRepository.create(projectMemberToSend)
+    }
+
+     acceptRequirements = async (id: string) => {
+        try {
+
+            const project = await this._.getById(id);
+
+            if (project.is_active == false) {
+                return {
+                    message: "Não é possivel aceitar os requisitos de um projeto inativo",
+                    statusCode: 200
+                };
+            }
+
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {
+                    requirement.is_accepted = true
+                    await this.projectRequirementRepository.update(requirement)
+                }
+            });
+
+            return{
+                message: "Requisitos aceitos",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+
+    }
+
+    denyRequirements = async (id: string) => {
+        try {
+
+            const project = await this._.getById(id);
+
+            if (project.is_active == false) {
+                return {
+                    message: "Não é possivel recusar os requisitos de um projeto inativo",
+                    statusCode: 200
+                };
+            }
+
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {
+                    requirement.is_accepted = false
+                    await this.projectRequirementRepository.update(requirement)
+                }
+            });
+
+            return{
+                message: "Requisitos recusados",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+
     }
 
 }
