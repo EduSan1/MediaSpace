@@ -35,8 +35,6 @@ export class FreelancerRepository {
     }
 
     listPageCategories = async (take: number, skip: number, search: string, categories: any) => {
-        const arrayii = []
-        console.log(categories.map((category: string) => { return { id: category } }))
         return await this._.findAndCount({
             where:
                 [[

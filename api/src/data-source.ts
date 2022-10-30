@@ -7,6 +7,8 @@ import { GenderORM } from "./entity/Gender"
 import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
+import { PostORM } from "./entity/Post"
+import { PostImageORM } from "./entity/PostImage"
 import { ProjectORM } from "./entity/Project"
 import { ProjectImageORM } from "./entity/ProjectImage"
 import { ProjectManagementORM } from "./entity/ProjectManagement"
@@ -24,7 +26,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "052214100309",
+    password: "BcdSenai127",
     database: "db_media_space",
     synchronize: true,
     logging: false,
@@ -47,7 +49,9 @@ export const AppDataSource = new DataSource({
         ProjectManagementORM,
         TeamProjectManagementORM,
         DeliveryORM,
-        DeliveryFileORM
+        DeliveryFileORM,
+        PostORM,
+        PostImageORM
     ],
     migrations: [],
     subscribers: [],
