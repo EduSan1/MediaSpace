@@ -34,6 +34,7 @@ export class FreelancerRepository {
         })
     }
 
+
     listPageCategories = async (take: number, skip: number, search: string, categories: any) => {
         return await this._.findAndCount({
             where:

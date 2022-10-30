@@ -21,7 +21,7 @@ export class ProjectController {
     }
 
     getAll = (request: Request, response: Response) => {
-        this.service.list().then((res) => {
+        this.service.list(request.query).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao listar os projetos"))
@@ -63,10 +63,10 @@ export class ProjectController {
     }
 
     acceptRequirements = (request: Request, response: Response) => {
-         this.service.acceptRequirements(request.params.projectId).then((res) => {
-             response.status(res.statusCode || 200).json(res)
-         })
-             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao aceitar o projeto"))
+        this.service.acceptRequirements(request.params.projectId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao aceitar o projeto"))
     }
 
     denyRequirements = (request: Request, response: Response) => {

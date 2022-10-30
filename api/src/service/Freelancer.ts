@@ -112,13 +112,10 @@ export class TeamService {
       let response = null
       if (query.take !== undefined) {
         let user = null
-        if (query.categories) {
-          const categories = query.categories.split(",")
-          user = await this._.listPageCategories(query.take, (query.page - 1) * query.take, query.search || "", categories);
-        } else {
-          user = await this._.list();
 
-        }
+        const categories = query.categories.split(",")
+        user = await this._.listPageCategories(query.take, (query.page - 1) * query.take, query.search || "", categories[0] === "" ? [] : categories);
+
 
         response = {
           page: query.page,

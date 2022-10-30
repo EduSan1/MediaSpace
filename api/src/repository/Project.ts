@@ -1,3 +1,4 @@
+import { Like } from "typeorm"
 import { AppDataSource } from "../data-source"
 import ProjectDomain from "../domain/Project"
 import { ProjectORM } from "../entity/Project"
@@ -18,6 +19,26 @@ export class ProjectRepository {
             relations: {
                 user: true
             }
+        })
+    }
+
+    listPerPage = async (take: number, skip: number, search: string, categories: any) => {
+        console.log(categories)
+        return await this._.findAndCount({
+            where:
+
+            {
+                is_active: true,
+                name: Like('%' + search + '%'),
+                categories: categories.map((category: string) => { return { id: category } }),
+            },
+
+
+            relations: {
+                user: true,
+            },
+            take: take,
+            skip: skip
         })
     }
 

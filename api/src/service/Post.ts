@@ -55,7 +55,7 @@ export class PostService {
             let response = null
             if (query.take !== undefined) {
                 const categories = query.categories.split(",")
-                const post = await this._.listPerPage(query.take, query.skip, query.search, categories)
+                const post = await this._.listPerPage(query.take, query.skip, query.search, categories[0] === "" ? [] : categories)
 
                 response = {
                     page: query.page,
