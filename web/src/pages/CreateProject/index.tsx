@@ -106,44 +106,6 @@ const CreateProject = () => {
          ]
       },
       {
-         "id": "35a1debd-45ea-4151-8c38-9bfc1a0328d0",
-         "name": "Design",
-         "icon": "teste",
-         "is_active": true,
-         "create_at": "2022-09-28T19:28:39.352Z",
-         "update_at": "2022-10-11T18:47:24.000Z",
-         "sub_categories": [
-            {
-               "id": "bde617c5-3c4f-4f96-9d03-131e07fd1b54",
-               "name": "Logo",
-               "is_active": true,
-               "create_at": "2022-10-11T18:49:30.152Z",
-               "update_at": "2022-10-11T18:49:30.152Z"
-            },
-            {
-               "id": "9796fbed-13f0-49a6-bb29-442abdd4a8a8",
-               "name": "3d",
-               "is_active": true,
-               "create_at": "2022-10-11T18:47:50.604Z",
-               "update_at": "2022-10-11T18:47:50.604Z"
-            },
-            {
-               "id": "9283e980-4fa9-458a-be10-aa86327184db",
-               "name": "Adobe Photoshop",
-               "is_active": true,
-               "create_at": "2022-10-11T18:49:26.249Z",
-               "update_at": "2022-10-11T18:53:40.000Z"
-            },
-            {
-               "id": "8921ad8a-5580-442c-ac87-3dea9f2b2ad5",
-               "name": "Ícones",
-               "is_active": true,
-               "create_at": "2022-10-11T18:49:35.832Z",
-               "update_at": "2022-10-11T18:49:35.832Z"
-            }
-         ]
-      },
-      {
          "id": "f7b6ae02-b5e8-4ed6-8984-b629eb293796",
          "name": "Arte",
          "icon": "aaaaaa",
@@ -251,13 +213,13 @@ const CreateProject = () => {
       if (!project.description) {
          validate = false;
          //console.log("COMO ASSIM VC NÃO SABE A DESCRIÇÃO");
-         handleErrors('Informe o descrição do livro.', 'descricao')
+         handleErrors('Informe o descrição do projeto.', 'description')
       }
 
       if (!project.estimated_value) {
          validate = false;
          //console.log("ISSO AI COLOCA UMA CAPA MSM NÃO");
-         handleErrors('Informe a capa do livro.', 'capa')
+         handleErrors('Informe um data.', 'estimated_value')
       }
    }
 
@@ -309,6 +271,7 @@ const CreateProject = () => {
                                     {
                                        categories.map((category: any) => {
                                           return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+
                                        })
                                     }
 
@@ -377,7 +340,9 @@ const CreateProject = () => {
                         </div>
 
                         <div className="aligment_button">
-                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
+                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => {
+                              createProject()
+                           }} />
                         </div>
                      </div>
 
