@@ -2,13 +2,14 @@
 
 #ContentPage {
     width: 100vw;
-    height: 98vh;
+    height: 100vh;
     display: flex;
     flex-direction: row;
-    gap: 4vw;
-    overflow: hidden;
+    gap: 100px;
     justify-content: center;
     align-items: flex-start;
+    margin-top: 5px;
+
 
     .Container {
         width: 100%;
@@ -31,31 +32,48 @@
             align-items: flex-start;
             justify-content: start;
             flex-direction: column;
-            background-color: aqua;
+
+
 
             .Big_Tittle {
                 width: 100%;
-                height: 30%;
-                background-color: antiquewhite;
+                height: 50%;
+               
+
                 h1 {
+                    font-size: clamp(1.5rem,4vw,1rem);
+                    font-family: $light-font;
+                    color: $primary-blue;
                 }
             }
 
             .small_Tittle {
                 width: 100%;
                 height: 70%;
-                background-color: rgb(47, 29, 4);
+               
+
                 h3 {
+
+                    font-size: clamp(0.5rem,3vw,0.8rem) ;
+                    font-family: $light-font;
+                    opacity: 80%;
+                    font-weight: 200;
                 }
             }
         }
 
+
         .SearchBar_candidates {
             display: flex;
-            width: 90%;
-            height: 3%;
-            background-color: aqua;
+            width: 100%;
+            height: 7%;
+            justify-content: center;
+            align-items: center;
+            padding-right: 100px;
+ 
+
             div {
+                
                 width: 100%;
                 height: 100%;
 
@@ -63,25 +81,30 @@
                     width: 100%;
                     height: 90%;
                 }
+
             }
         }
 
-        .candidates {
-            display: flex;
-            width: 95%;
-            height: 100%;
-            background-color: bisque;
-            flex-direction: column;
 
-            div {
-                width: 100%;
-                height: 100px;
-                background-color: aliceblue;
-            }
-
-            div:nth-child(odd) {
-                background-color: $light-purple;
-            }
-        }
     }
+
+    .candidates {
+        width: 95%;
+        height: auto;
+
+        .Container_selection:nth-child(odd){
+            background-color: $light-blue;
+           }
+        
+    }
+    
+    .select_candidates{
+        width: 95%;
+        height: auto;
+    }
+       
 }
+
+
+
+

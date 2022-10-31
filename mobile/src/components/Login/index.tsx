@@ -37,6 +37,7 @@ export const Login = ({ navigation }: ILogin) => {
     const login = () => {
         Keyboard.dismiss()
         setIsLoad(true)
+        navigation.navigate("Home")
 
         api.post("/user/login", userLogin).then(async (res: any) => {
 
