@@ -13,6 +13,5 @@ projectRoute.post("/registerInterest/:projectId", projectController.registerInte
 projectRoute.post("/selectFreelancer/:projectId", projectController.selectFreelancer)
 projectRoute.post("/acceptRequirement/:projectId", projectController.acceptRequirements)
 projectRoute.post("/denyRequirement/:projectId", projectController.denyRequirements)
-projectRoute.post("./finishProject/:projectId", () => "rota de finalização de projeto")
 
 export default projectRoute

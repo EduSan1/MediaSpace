@@ -13,13 +13,17 @@ export class DeliveryRepository {
         return await this._.save(entity)
     }
 
+    list = async () => {
+        return await this._.find(DeliveryORM)
+    }
+
     findById = async (id: string) => {
         return await this._.findOne({
             where: {
                 id
             },
             relations: {
-                requirement: true,
+                requirements: true,
             }
         })
     }

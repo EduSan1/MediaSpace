@@ -33,6 +33,24 @@ export class DeliveryService {
         }
     }
 
+    list = async () => {
+        try {
+            const delivery = await this._.list()
+
+            return {
+                message: "entrega listados com sucesso",
+                data: delivery,
+                statusCode: 200,
+            };
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 400,
+            };
+        }
+    }
+
     getById = async (id: string) => {
         const delivery = await this._.findById(id)
 
@@ -55,7 +73,8 @@ export class DeliveryService {
         try {
 
             const delivery = await this._.findById(id);
-            const project = await this.projectRepository.getById(delivery.requirements.projectId);
+            const requirements = await this.projectRequirementsRepository.findById(delivery.requirements.id)
+            const project = await this.projectRepository.getById(requirements.project.id);
 
             if (delivery.is_active === false) {
                 return {
@@ -67,30 +86,25 @@ export class DeliveryService {
             delivery.is_accepted = true;
             const uptadedDelivery = await this._.update(delivery);
 
-            // delivery.requirements.map(async (requirement : any) => {
-            //     requirement.is_delivered = true
-            //     await this.projectRequirementsRepository.update(delivery);
-            // });
+            delivery.requirements.map(async (requirement : any) => {
+                requirement.is_delivered = true
+                await this.projectRequirementsRepository.update(requirement);
+            });
 
-            project.status = "COMPLETE";
-            await this.projectRepository.update(project);
-
-            // delivery.map(async (delivery : any) => {
-            //     if (delivery.is_accepted === false && delivery.is_active === false) {
-            //         project.status = "IN EXECUTION";
-            //         await this.projectRepository.update(project);
-            //     }
-            // });
-
-            // project.requirements.map(async (requirement : any) => {
-            //     if (requirement.is_delivered === false || requirement.is_delivered === null) {
-            //         project.status = "IN EXECUTION";
-            //         await this.projectRepository.update(project);
-            //     }
-            // });
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_delivered === false || requirement.is_delivered === null) {
+                    project.status = "IN EXECUTION";
+                    project.is_active = true
+                    await this.projectRepository.update(project);
+                } else {
+                    project.status = "COMPLETE";
+                    project.is_active = false
+                    await this.projectRepository.update(project);
+                }
+            });
 
             return{
-                message: "Requisitos aceitos",
+                message: "Entrega aceita",
                 data: uptadedDelivery,
                 statusCode: 200
             };
@@ -123,11 +137,12 @@ export class DeliveryService {
 
             delivery.requirements.map(async (requirement : any) => {
                 requirement.is_delivered = false
-                await this.projectRequirementsRepository.update(delivery);
+                await this.projectRequirementsRepository.update(requirement);
             });
 
             return{
-                message: "Requisitos recusados",
+                message: "Entrega recusada",
+                data: uptadedDelivery,
                 statusCode: 200
             };
 

@@ -8,7 +8,7 @@ export interface IDomainProjectRequirementsProps {
     description: string
     gain_percentage: number
     is_accepted: null
-    // is_delivered: null
+    is_delivered: null
     project: ProjectORM
     delivery: DeliveryORM[]
 }

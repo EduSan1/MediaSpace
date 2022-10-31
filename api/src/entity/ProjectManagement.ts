@@ -17,7 +17,7 @@ export class ProjectManagementORM {
     request_number: number
 
     @Column()
-    payment_date: Date
+    payment_date: Date 
 
     @ManyToOne(() => ProjectORM, project => project.management)
     project: ProjectORM

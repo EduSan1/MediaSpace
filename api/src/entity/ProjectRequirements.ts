@@ -20,8 +20,8 @@ export class ProjectRequirementsORM {
     @Column({ nullable: true })
     is_accepted: boolean
 
-    // @Column({ nullable: true })
-    // is_delivered: boolean
+    @Column({ nullable: true })
+    is_delivered: boolean
 
     @Column({ default: true })
     is_active: boolean

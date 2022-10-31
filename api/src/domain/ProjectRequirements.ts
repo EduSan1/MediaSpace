@@ -9,7 +9,7 @@ export default class ProjectRequirementsDomain {
     description:     string
     gain_percentage: number
     is_accepted:     null
-    // is_delivered:    null
+    is_delivered:    null
     project:         ProjectORM
     delivery:        DeliveryORM[]
 
@@ -19,7 +19,7 @@ export default class ProjectRequirementsDomain {
         this.description     = props.description
         this.gain_percentage = props.gain_percentage
         this.is_accepted     = props.is_accepted
-        // this.is_delivered    = props.is_delivered
+        this.is_delivered    = props.is_delivered
         this.project         = props.project
         this.delivery        = props.delivery
     }
