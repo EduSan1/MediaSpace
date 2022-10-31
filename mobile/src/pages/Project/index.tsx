@@ -18,6 +18,13 @@ export const Project = ({ navigation, route }: IProject) => {
     const navigateTo = (screen: string) => {
         navigation.navigate(screen)
     }
+
+    const dateMask = (value: string) => {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, "$1/$2")
+            .replace(/(\d{2})(\d{4})/, "$1/$2")
+    }
     const {projectId} = route.params
 
 
@@ -52,10 +59,27 @@ export const Project = ({ navigation, route }: IProject) => {
         ]
     })
 
+    const handleChange = (text : string, name : string) => {
+        if ( name === "create_at" ) {
+            setProject(
+                {
+                    ...project,
+                    [name]: dateMask(text)               
+                }
+            )
+        }else {
+            setProject(
+                {
+                    ...project,
+                    [name] : text
+                }
+            )
+        }
+    }
+
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any)=>{
             setProject(res.data.data)
-            console.log(res.data.data)
          })
      }, [])
 
@@ -70,9 +94,9 @@ export const Project = ({ navigation, route }: IProject) => {
                  <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string)  => {} } /> 
 
                     <View style={styles.containerFilho}>
-                           <View style={styles.containerDate}>
-                            <Text style={styles.title}>Criado em: {project.create_at} </Text>
-                            <Text style={styles.title}>Prazo término: {project.estimated_deadline}</Text>
+                           <View style={styles.containerDate} >
+                            <Text style={styles.title3} >Criado em: {project.create_at} </Text>
+                            <Text style={styles.title3}>Prazo término: {project.estimated_deadline}</Text>
                         </View>
 
                    <View style={styles.containerProfile}>
@@ -92,7 +116,9 @@ export const Project = ({ navigation, route }: IProject) => {
 
                                     })
                                 }
+                             </View>
 
+                                
                                 <Text style={styles.title}>Subcategoria</Text>
                                 {
                                     project.sub_categories.map((sub_category : any) => {
@@ -100,7 +126,7 @@ export const Project = ({ navigation, route }: IProject) => {
 
                                     })
                                 }
-                            </View>
+                            
 
                              <View style={styles.button}>
                                 <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Participar" />
@@ -169,11 +195,15 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").width * 0.2,
     },
     title: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
     },
     title2: {
         fontSize: 26,
+        fontWeight: 'bold'
+    },
+    title3: {
+        fontSize: 10,
         fontWeight: 'bold'
     },
     describle: {
@@ -181,19 +211,20 @@ const styles = StyleSheet.create({
     },
     categories: {
         margin: Dimensions.get('window').width * 0.02,
-        height: Dimensions.get('window').height * 0.25,
+        height: Dimensions.get('window').height * 0.05,
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        flexDirection: 'row'
     },
     categorySelected: {
         paddingHorizontal: Dimensions.get('window').width * 0.06,
-        margin: Dimensions.get('window').width * 0.02,
+        margin: Dimensions.get('window').width * 0.01,
         height: Dimensions.get('window').height * 0.04,
         backgroundColor: "#75A5FF",
         borderRadius: 100,
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "flex-start",
         justifyContent: "flex-end",
         textAlign: 'center'
 
