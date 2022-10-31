@@ -262,7 +262,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     const [projectLoad, setprojectLoad] = useState(false)
 
     const registerProject = () => {
-        const projectApi = { ...project, estimated_deadline: "10-10-2022" }
+        const projectApi = { ...project, estimated_deadline: "" }
         setprojectLoad(true)
         api.post("/project", projectApi).then((res: any) => {
 
@@ -295,47 +295,6 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                         <LoginInputNumber type="default" name="name" iconName="person-outline" value={project.name} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
                         <LoginTextArea name="description" value={project.description} handleChange={handleChange} title="Descrição" maxLength={800} />
 
-
-                        {/* <View style={styles.textArea}>
-                            <Text style={styles.text1}>Categorais</Text>
-                        </View>
-                        <View style={styles.areaContainer1}>
-                            <ScrollView horizontal={true} style={styles.sectionCategory}>
-                                {
-                                    categories?.map((category: any) => {
-                                        return <CategoryButton key={category.id} id={category.id} setSubCategories={findSubCategories} icon="s" action={() => console.log("a")} category={category.name} />
-                                    })
-                                }
-                            </ScrollView>
-                        </View>
-                        <View style={styles.textArea}>
-                            <Text style={styles.text1}>Sub-Categorais</Text>
-                        </View>
-                        <View style={styles.areaContainer2}>
-                            <ScrollView horizontal={true} style={styles.sectionSubCategory}>
-                                {
-                                    subcategoriesToRender?.map((category: any) => {
-                                        return category.sub_categories.map((subcategory: any) => {
-                                            return <CheckboxComponent key={subcategory.id} onClickFunction={(check: boolean) => check ? removeSubcategory(subcategory.id) : addToProject(subcategory.id, "sub_categories")} title={subcategory.name} id={subcategory.id} />
-                                        })
-                                    })
-                                }
-                            </ScrollView>
-                        </View>
-
-
-                        <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string) => handleUserPicture(image)} />
-                         <Attachment isActive={imageIndex == 4 ? false : true} userAttachment={project.attachments} setUserAttachment={(attachment: string) => handleUserPicture(attachment)}/> 
-                        <LoginInputNumber type="numeric" name="estimated_deadline" iconName="today" value={project.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
-                        <LoginInputNumber type="numeric" name="value" iconName="today" value={project.value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={1} />
-
-                        <projectDriven />
-
-                    </View>
-
-                    <View style={styles.button}>
-                        <LoginButton type="light" action={() => { console.log('teste') }} isLoad={projectLoad} title="Publicar" />
-                    </View> */}
 
                         <View style={styles.textArea}>
                             <Text style={styles.text1}>Categorais</Text>

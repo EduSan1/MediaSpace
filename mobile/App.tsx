@@ -22,7 +22,7 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={ListProject} />
+        <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
         <Stack.Screen name="SendMailPasswordRecover" component={SendMailPasswordRecoverPage} />
