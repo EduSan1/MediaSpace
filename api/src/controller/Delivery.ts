@@ -13,7 +13,6 @@ export class DeliveryController {
     }
 
     create = (request: Request, response: Response) => {
-
         this.service.create(request.body).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
@@ -47,13 +46,6 @@ export class DeliveryController {
        })
            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar a entrega"))
    }
-
-    delete = (request: Request, response: Response) => {
-        this.service.delete(request.params.deliveryId).then((res) => {
-            response.status(res.statusCode || 200).json(res)
-        })
-            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar a entrega"))
-    }
 
     disable = (request: Request, response: Response) => {
         this.service.disable(request.params.deliveryId).then((res) => {

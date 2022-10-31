@@ -20,8 +20,8 @@ export class ProjectMemberORM {
     @ManyToOne(() => UserORM, user => user.project_member)
     member: UserORM
 
-    /*@ManyToMany(() => DeliveryORM)
+    @ManyToMany(() => DeliveryORM)
     @JoinTable()
-    delivery: DeliveryORM[]*/
+    delivery: DeliveryORM[] 
 
 }

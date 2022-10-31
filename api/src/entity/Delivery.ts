@@ -31,8 +31,8 @@ export class DeliveryORM {
     @JoinTable()
     requirements: ProjectRequirementsORM[]
 
-    /*@ManyToMany(() => ProjectMemberORM, { eager: true })
+    @ManyToMany(() => ProjectMemberORM, { eager: true })
     @JoinTable()
-    projectMember: ProjectMemberORM[]*/
+    projectMember: ProjectMemberORM[]
 
 }

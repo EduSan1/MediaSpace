@@ -3,21 +3,39 @@ import { DeliveryORM } from "../entity/Delivery";
 import { ProjectRepository } from "../repository/Project";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 import { DeliveryRepository } from "../repository/Delivery";
+import { DeliveryFileRepository } from "../repository/DeliveryFile";
+
+interface IFile {
+    url: string
+}
 
 export class DeliveryService {
     private _: DeliveryRepository
+    private deliveryFileRepository: DeliveryFileRepository
     private projectRepository: ProjectRepository
     private projectRequirementsRepository: ProjectRequirementsRepository
 
     constructor(repo: DeliveryRepository) {
         this._ = repo
+        this.deliveryFileRepository = new DeliveryFileRepository()
         this.projectRepository = new ProjectRepository()
         this.projectRequirementsRepository = new ProjectRequirementsRepository()
     }
 
     create = async (entity: DeliveryDomain) => {
         try {
+            
             const delivery = await this._.create(entity)
+
+            entity.files?.map(async (file: IFile) => {                
+                const fileToRegister = {
+                    ...file, 
+                    delivery: {
+                        id: delivery.id
+                    }
+                }
+                await this.deliveryFileRepository.create(fileToRegister)
+            })
     
             return {
                 message: "Entrega cadastrada com sucesso!",
@@ -93,7 +111,7 @@ export class DeliveryService {
 
             project.requirements.map(async (requirement : any) => {
                 if (requirement.is_delivered === false || requirement.is_delivered === null) {
-                    project.status = "IN EXECUTION";
+                    project.status = "IN_EXECUTION";
                     project.is_active = true
                     await this.projectRepository.update(project);
                 } else {
@@ -152,24 +170,6 @@ export class DeliveryService {
                 error: error.code,
                 statusCode: 200,
             };
-        }
-
-    }
-
-    delete = async (_id: string) => {
-        try {
-
-            await this._.delete(_id)
-
-            return {
-                message: "Dados removidos com sucesso",
-            }
-        } catch (error) {
-            return {
-                message: error.message,
-                error: error.code,
-                statusCode : 400
-            }
         }
 
     }
