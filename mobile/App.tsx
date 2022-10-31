@@ -13,7 +13,14 @@ import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelanc
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterProject } from './src/pages/RegisterProject';
 import { NavigationScreen } from './src/pages/NavigationScreen';
-import { ListProject} from './src/pages/ListProject';
+import { ProjectOwner } from './src/pages/ProjectOwner';
+import Home from './src/pages/Home';
+import { Project } from './src/pages/Project';
+import Profile from './src/pages/Profile';
+import Feed from './src/pages/Feed';
+import Messages from './src/pages/Messages';
+import { ListProject } from './src/pages/ListProject';
+import WorkersAppliedPage from './src/pages/WorkersAppliedPage';
 
 export default function App() {
 
@@ -21,7 +28,7 @@ export default function App() {
 
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, animation: 'none' }}>
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordPage} />
@@ -31,8 +38,14 @@ export default function App() {
         <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
         <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
         <Stack.Screen name="RegisterProject" component={RegisterProject} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="ListProject" component={ListProject} />
+        <Stack.Screen name="Project" component={Project} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Feed" component={Feed} />
+        <Stack.Screen name="Messages" component={Messages} />
         {/* <Stack.Screen name="ProjectOwner" component={ProjectOwner} /> */}
-
+        <Stack.Screen name='WorkersAppliedPage' component={WorkersAppliedPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

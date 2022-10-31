@@ -23,7 +23,7 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
     
     return (
         
-        <Pressable onPress={() => navigation.navigate('Project')}>
+        <Pressable onPress={() => navigation.navigate('Project', {projectId : id})}>
         <View style={styles.containerCard}  >
             
             
@@ -32,7 +32,7 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
             </View>
             
             <View style={styles.profile}>
-            <Image style={{width: "12%", height: "100%", borderRadius: 100}} source={{uri : user.profile_picture}}/>          
+            <Image style={{width: "15%", height: "100%", borderRadius: 100}} source={{uri : user.profile_picture}}/>          
                  <Text style={styles.nameArroba}> @{user.nickname}</Text>           
             </View>
 
@@ -68,9 +68,9 @@ const styles = StyleSheet.create({
 
     containerCard:{
         width: Dimensions.get('window').width * 0.45,
-        height: Dimensions.get("window").height * 0.3,
+        height: Dimensions.get("window").height * 0.4,
         alignItems:'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#D3C5F8',
@@ -81,14 +81,14 @@ const styles = StyleSheet.create({
 
     imagecontainer:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.13,
+        height: Dimensions.get("window").height * 0.15,
         borderTopStartRadius: 10,
         borderTopEndRadius: 10
         
     },
     profile:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.03,
+        height: Dimensions.get("window").height * 0.035,
         display:'flex',
         flexDirection:'row',
         alignItems: 'center'
@@ -96,13 +96,15 @@ const styles = StyleSheet.create({
     },
     describle:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.05,
+        height: Dimensions.get("window").height * 0.06,
+        
     },
     value:{
         width: Dimensions.get('window').width * 0.44 ,
         height: Dimensions.get("window").height * 0.03,
         display:'flex',
         flexDirection:'row',
+        paddingTop: 10
     },
     category:{
         width: Dimensions.get('window').width * 0.44 ,
@@ -110,14 +112,14 @@ const styles = StyleSheet.create({
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
         display:'flex',
-        flexDirection:'row'
+        flexDirection:'row',
 
     },
     nameArroba:{
-        fontSize: 10
+        fontSize: 12
     },
     nameProject:{
-        fontSize: 12,
+        fontSize: 14,
         fontWeight:'bold'
     },
     description:{

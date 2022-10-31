@@ -10,6 +10,7 @@ import { CategoryButton } from "../../components/utils/CategoryButton";
 import { SubcategoryButton } from "../../components/utils/SubcategoryButton"
 import api from "../../../service";
 import G from "glob"
+import  BtnBackPage  from "../../components/utils/BtnBackPage"
 
 interface IRegisterProject {
     navigation: any
@@ -28,7 +29,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     }
 
 
-    const [project, setproject] = (useState)({
+    const [projectRegister, setProjectRegister] = (useState)({
         name: "",
         description: "",
         value: "",
@@ -77,14 +78,14 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
 
     const addToProject = (id: string, name: "sub_categories" | "categories") => {
-        setproject({
-            ...project, [name]: [
-                ...project[name], { id: id }
+        setProjectRegister({
+            ...projectRegister, [name]: [
+                ...projectRegister[name], { id: id }
             ]
         })
     }
     const removeFromCategories = (object: [{}], name: "sub_categories" | "categories") => {
-        setproject({ ...project, [name]: object })
+        setProjectRegister({ ...projectRegister, [name]: object })
     }
 
     const [subcategoriesToRender, setSubategoriesToRender] = useState<any>([])
@@ -106,8 +107,8 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     }
 
     const removeSubcategory = (id: string) => {
-        const subCategoriesFilter = project.sub_categories.filter((subcategory: any) => subcategory.id !== id)
-        setproject({ ...project, sub_categories: subCategoriesFilter })
+        const subCategoriesFilter = projectRegister.sub_categories.filter((subcategory: any) => subcategory.id !== id)
+        setProjectRegister({ ...projectRegister, sub_categories: subCategoriesFilter })
     }
 
     useEffect(() => {
@@ -225,16 +226,16 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
         console.log(name)
         if (name == "estimated_deadline") {
-            setproject(
+            setProjectRegister(
                 {
-                    ...project,
+                    ...projectRegister,
                     [name]: dateMask(text)
                 }
             )
         } else {
-            setproject(
+            setProjectRegister(
                 {
-                    ...project,
+                    ...projectRegister,
                     [name]: text
                 }
             )
@@ -244,13 +245,13 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     const handleUserPicture = (text: any) => {
 
         console.log("images => ", text)
-        let newImages = project.images
+        let newImages = projectRegister.images
 
         newImages[imageIndex] = { url: text }
 
-        setproject({
+        setProjectRegister({
 
-            ...project,
+            ...projectRegister,
             images: newImages
         })
 
@@ -262,7 +263,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     const [projectLoad, setprojectLoad] = useState(false)
 
     const registerProject = () => {
-        const projectApi = { ...project, estimated_deadline: "" }
+        const projectApi = { ...projectRegister, estimated_deadline: "" }
         setprojectLoad(true)
         api.post("/project", projectApi).then((res: any) => {
 
@@ -273,8 +274,8 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     }
 
     useEffect(() => {
-        console.log(project.estimated_deadline)
-    }, [project])
+        console.log(projectRegister.estimated_deadline)
+    }, [projectRegister])
 
     useEffect(() => {
         api.get("/category").then((res: any) => {
@@ -284,6 +285,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
     return (
         <>
+        <BtnBackPage action={() => navigation.navigate("ListProject")}/>
             <View style={styles.scrollContainer}>
 
 
@@ -292,8 +294,8 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                     style={styles.container}>
                     <Text style={styles.title}>{`Criação de projeto`}</Text>
                     <View style={styles.view}>
-                        <LoginInputNumber type="default" name="name" iconName="person-outline" value={project.name} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
-                        <LoginTextArea name="description" value={project.description} handleChange={handleChange} title="Descrição" maxLength={800} />
+                        <LoginInputNumber type="default" name="name" iconName="person-outline" value={projectRegister.name} handleChange={handleChange} hasError={hasError} title="Nome do Projeto" maxLength={100} />
+                        <LoginTextArea name="description" value={projectRegister.description} handleChange={handleChange} title="Descrição" maxLength={800} />
 
 
                         <View style={styles.textArea}>
@@ -327,10 +329,9 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
 
 
-                        <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string) => handleUserPicture(image)} />
-                        {/* <Attachment isActive={imageIndex == 4 ? false : true} userAttachment={project.attachments} setUserAttachment={(attachment: string) => handleUserPicture(attachment)}/> */}
-                        <LoginInputNumber type="numeric" name="estimated_deadline" iconName="today" value={project.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
-                        <LoginInputNumber type="numeric" name="value" iconName="attach-money" value={project.value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={12} />
+                        <LoginImageProject isActive={imageIndex == 4 ? false : true} userImage={projectRegister.images} setUserImage={(image: string) => handleUserPicture(image)} />
+                        <LoginInputNumber type="numeric" name="estimated_deadline" iconName="today" value={projectRegister.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
+                        <LoginInputNumber type="numeric" name="value" iconName="attach-money" value={projectRegister.value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={12} />
 
                         <RegisterProjectDriven />
 
@@ -389,7 +390,7 @@ const styles = StyleSheet.create({
     view: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 2.2,
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "center",
         padding: 20
     },

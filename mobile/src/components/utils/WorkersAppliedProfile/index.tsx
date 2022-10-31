@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button } from "react-native";
 import { BtnRequirementsOpenProfile } from "../btnRequerimentsOpenProfile";
 
-export default function WorkersAppliedProfile() {
+interface IWorkersAppliedProfile{
+    
+    name:string
+    nickname:string
+    icon:string
+}
+export default function WorkersAppliedProfile({name, nickname, icon} : IWorkersAppliedProfile) {
     return(
         <View style={style.cardProfile}>
-            <View style={style.iconProfile}></View>
+            <Image source={{uri : icon}} style={style.iconProfile}/>
+
             <View style={style.textBox}>
-            <Text style={style.textName}>UserProfile</Text>
-            <Text style={style.textNick}>@User</Text>
+            
+            <Text style={style.textName}>{name}</Text>
+            <Text style={style.textNick}>@{nickname}</Text>
             </View>
             <BtnRequirementsOpenProfile/>
         </View>

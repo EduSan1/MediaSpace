@@ -19,6 +19,4 @@ export class ProjectMemberORM {
     @ManyToOne(() => UserORM, user => user.project_member)
     member: UserORM
 
-
-
 }
