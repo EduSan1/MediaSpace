@@ -1,5 +1,27 @@
 import React from 'react'
 
-const CarouselImages = () => {
+interface ICarouselImage {
+   images: string[]
+}
+
+export const CarouselImages = ({ images }: ICarouselImage) => {
+
+   return (
+      <>
+         <div>
+            <div>
+               {
+                  images.map((image: any) => {
+                     return (
+                        <div>
+                           <img src={image.url} alt="" />
+                        </div>)
+                  })
+               }
+            </div>
+         </div>
+      </>
+   )
 
 }
+

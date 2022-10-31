@@ -9,13 +9,10 @@ import ButtonCategories from '../../../components/utils/Button/Categories/Catego
 import { useParams } from 'react-router-dom';
 import api from '../../../service';
 import CategoryCard from '../../../components/utils/CategoryCard';
-import CarouselItem from '../components/carousel/carouselItem';
+//import { CarouselImages } from '../components/carousel';
 
 
 const PreviewProject = () => {
-
-
-
    const { projectId } = useParams()
    // console.log(projectId)
 
@@ -71,12 +68,20 @@ const PreviewProject = () => {
             "update_at": "2022-10-24T19:16:34.763Z"
          }
       ],
-      "images": []
+      "images": [
+         {
+            "url": "https://gdartes.com.br/wp-content/uploads/2022/02/2-10.jpeg"
+         },
+         {
+            "url": "https://i0.wp.com/arteref.com/wp-content/uploads/2018/07/capa-mate%CC%81ria.jpg?fit=900%2C700&ssl=1"
+         },
+         {
+            "url": "https://gdartes.com.br/wp-content/uploads/2022/02/2-10.jpeg"
+         },
+
+      ]
    }
    )
-
-
-   //console.log(project.images)
 
    useEffect(() => {
       api.get(`/project/${projectId}`).then((res: any) => {
@@ -84,6 +89,9 @@ const PreviewProject = () => {
          //console.log(res.data.data)
       })
    })
+
+   /********slide */
+   const [currentIndex, setCurrent] = useState(0)
 
    return (
       <>
@@ -94,7 +102,28 @@ const PreviewProject = () => {
                <section className='container_preview_project'>
 
                   <div className='preview_project'>
-                     <div className='container_images_from_project'></div>
+                     <div className='container_images_from_project'>
+                        <div className='container_slide'>
+                           <div className='container_images'>
+                              {
+                                 project.images.map((image: any) => {
+                                    return (
+                                       <div>
+                                          <img src={image.url} alt="" />
+                                       </div>)
+                                 })
+                              }
+                           </div>
+                           <div className='container_dots'>
+                              {
+                                 project.images.map((slide, slideIndex) => {
+                                    return (
+                                       <div key={slideIndex}></div>)
+                                 })
+                              }
+                           </div>
+                        </div>
+                     </div>
 
                      <div className='container_dates'>
                         <p><span>Criado em:   </span>{formatDate(project.estimated_deadline)}</p>

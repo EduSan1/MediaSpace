@@ -59,13 +59,6 @@ function App() {
 
 
 
-<<<<<<< HEAD
-        {/* */}
-        <Route path='/teste' element={<Teste />} />
-        {/* <Route path='/projects/preview' element={<PreviewProject />} /> */}
-=======
-
->>>>>>> 0f2733a67f611fc618575ddb69c144e460bc6151
 
 
         {/* */}
