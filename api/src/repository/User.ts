@@ -29,12 +29,6 @@ export class UserRepository {
         })
     }
 
-
-
-
-
-
-
     listPage = async (take: number, skip: number, search: string) => {
         return await this._.findAndCount({
             where:
