@@ -19,8 +19,9 @@ import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelancer';
-import ProjectsViewallFreelancer from './pages/ProjectsViewallfrelancer';
+import AllFreelancerView from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
+import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
@@ -52,7 +53,8 @@ function App() {
         <Route path='/Perfil' element={<Perfil />} />
         <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
         <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
-        <Route path='/projects/selectFreelancer' element={<ProjectsViewallFreelancer />} />
+        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
+        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />
 
 
 

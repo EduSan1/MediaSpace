@@ -9,11 +9,11 @@ const teste = () => {
 
         <main className="Divetste">
 
+            {/* <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
             <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
             <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
             <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
-            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
-            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
+            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" /> */}
 
 
       </main>

@@ -30,11 +30,8 @@ const ProjectsSelecetFreelancer = () => {
 
                              <div className="select_candidates">
                                 
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-
+                             <Interestedserver action={()=>{console.log("italia")}} type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
+                            
                              </div>
                         
                   

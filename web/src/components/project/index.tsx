@@ -6,9 +6,10 @@ interface IInputserve{
     name:string,
     photo:string
     nickname:string
+    action: () => void
 }
 
-const Interestedserver = ({type,name,nickname,photo}:IInputserve) =>{
+const Interestedserver = ({type,name,nickname,photo, action}:IInputserve) =>{
 
     return(
 
@@ -24,7 +25,7 @@ const Interestedserver = ({type,name,nickname,photo}:IInputserve) =>{
                    <h5>@{nickname}</h5>
                </div>
                <div className="option_select">
-                  <input type={type} id="Radio_select" name="select_user" value="Abrir perfil" />
+                  <input onClick={() => action()} type={type} id="Radio_select" name="select_user" value="Abrir perfil" />
                </div>
            </div>
          
