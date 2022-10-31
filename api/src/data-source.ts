@@ -8,6 +8,7 @@ import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
 import { PostORM } from "./entity/Post"
+import { PostCommentORM } from "./entity/PostComment"
 import { PostImageORM } from "./entity/PostImage"
 import { ProjectORM } from "./entity/Project"
 import { ProjectImageORM } from "./entity/ProjectImage"
@@ -51,7 +52,8 @@ export const AppDataSource = new DataSource({
         DeliveryORM,
         DeliveryFileORM,
         PostORM,
-        PostImageORM
+        PostImageORM,
+        PostCommentORM
     ],
     migrations: [],
     subscribers: [],

@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, Up
 import { GenderORM } from "./Gender"
 import { MemberORM } from "./Member"
 import { PhoneORM } from "./Phone"
+import { PostCommentORM } from "./PostComment"
 import { ProjectORM } from "./Project"
 import { ProjectMemberORM } from "./ProjectMember"
 import { UserTeamORM } from "./UserTeam"
@@ -62,6 +63,9 @@ export class UserORM {
 
     @OneToMany(() => ProjectMemberORM, projectMember => projectMember.member, { eager: true })
     project_member: ProjectMemberORM[]
+
+    @OneToMany(() => PostCommentORM, comment => comment.post)
+    comments: PostCommentORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

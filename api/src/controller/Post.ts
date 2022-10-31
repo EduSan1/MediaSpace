@@ -47,4 +47,24 @@ export class PostController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o post"))
     }
 
+    createComment = (request: Request, response: Response) => {
+        this.service.createComment(request.body).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao adicionar o comentario"))
+    }
+
+    listCommentByPost = (request: Request, response: Response) => {
+        this.service.listComment(request.params.postId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao adicionar o comentario"))
+    }
+
+    disableComment = (request: Request, response: Response) => {
+        this.service.disableComment(request.params.commentId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao desabilitar o comentario"))
+    }
 }

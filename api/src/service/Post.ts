@@ -1,22 +1,30 @@
-import { query } from "express";
 import PostDomain from "../domain/Post";
-import ProjectDomain from "../domain/Project";
 import { PostORM } from "../entity/Post";
+import { UserORM } from "../entity/User";
 import { PostRepository } from "../repository/Post";
+import { PostCommentRepository } from "../repository/PostComment";
 import { PostImageRepository } from "../repository/PostImage";
 
 interface IImage {
     url: string
 }
 
+interface IComment {
+    post: PostORM
+    user: UserORM,
+    comment: string
+}
+
 
 export class PostService {
     private _: PostRepository
     private PostImageRepository: PostImageRepository
+    private PostCommentRepository: PostCommentRepository
 
     constructor(repo: PostRepository) {
         this._ = repo
         this.PostImageRepository = new PostImageRepository()
+        this.PostCommentRepository = new PostCommentRepository()
 
     }
 
@@ -47,8 +55,6 @@ export class PostService {
         }
 
     }
-
-
 
     list = async (query: any) => {
         try {
@@ -161,4 +167,71 @@ export class PostService {
         }
     }
 
+    createComment = async (entity: IComment) => {
+        try {
+
+            const comment = await this.PostCommentRepository.create(entity)
+
+            return {
+                message: "Comentario realizado com sucesso!",
+                data: comment,
+                statusCode: 200,
+            };
+        } catch (error) {
+            return {
+                message: "Não foi possivel realizar o post!",
+                error: error,
+                statusCode: 200,
+            };
+        }
+
+    }
+
+    listComment = async (postId: string) => {
+        try {
+            const comments = await this.PostCommentRepository.listByPost(postId)
+
+            return {
+                message: "Comentarios listados com sucesso!",
+                data: comments,
+                statusCode: 200,
+            };
+        } catch (error) {
+            console.log(error)
+            return {
+                message: "Não foi possivel realizar o post!",
+                error: error,
+                statusCode: 200,
+            };
+        }
+    }
+
+    disableComment = async (id: string) => {
+        try {
+            const comment = await this.PostCommentRepository.getById(id);
+
+            if (!comment) {
+                return {
+                    message: "Não foi possivel encontrar o comentário",
+                    statusCode: 200
+                };
+            }
+
+            comment.is_active = false;
+
+            await this.PostCommentRepository.update(comment);
+
+            return {
+                message: "comentário desabilitado com sucesso",
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 }

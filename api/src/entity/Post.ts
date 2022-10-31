@@ -1,5 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CategoryORM } from "./Category";
+import { PostCommentORM } from "./PostComment";
 import { PostImageORM } from "./PostImage";
 import { SubCategoryORM } from "./SubCategory";
 import { TeamORM } from "./team";
@@ -24,6 +25,9 @@ export class PostORM {
 
     @OneToMany(() => PostImageORM, image => image.post, { eager: true })
     images: PostImageORM[]
+
+    @OneToMany(() => PostCommentORM, comment => comment.post)
+    comments: PostCommentORM[]
 
     @ManyToMany(() => CategoryORM, { eager: true })
     @JoinTable()
