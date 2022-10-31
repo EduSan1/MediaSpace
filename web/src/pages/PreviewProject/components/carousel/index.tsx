@@ -1,21 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface ICarouselImage {
-   images: string[]
+   images: {
+      url: string
+   }[]
 }
 
 export const CarouselImages = ({ images }: ICarouselImage) => {
 
+   const [slideIndex, setSlideIndex] = useState(1)
+
+   const moveDot = (index:number)=>{
+      setSlideIndex(index)
+      console.log(index)   
+   }
+
    return (
       <>
-         <div>
-            <div>
+         <div className='container_slide'>
+            <div className='container_images'>
                {
-                  images.map((image: any) => {
+                  images.map((image: any, index) => {
                      return (
-                        <div>
-                           <img src={image.url} alt="" />
-                        </div>)
+                        <>
+                           <div className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
+                              <img src={image.url}/>
+                              <p>{index}</p>
+                           </div>
+                        </>)
+                  })
+               }
+            </div>
+
+            <div className='container_dots'>
+               {
+                  images.map((item,index) => {
+                     return (
+                        <div onClick={()=>{moveDot(index + 1)}} className={slideIndex === index + 1? "dot active" : "dot"}>
+                          <p>{index}</p>
+                        </div>
+                        // <label htmlFor="image1"> uai</label>
+                     )
                   })
                }
             </div>
