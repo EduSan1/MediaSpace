@@ -48,16 +48,13 @@ const CreateProject = () => {
 
    const [imageIndex, setImageIndex] = useState(0)
 
-   console.log(imageIndex)
-   
-
-   const handleChangeImage = (url:any) => { 
+   const handleChangeImage = (url: any) => {
       let newImagem = project.images
 
-      newImagem[imageIndex] = {url: url}
+      newImagem[imageIndex] = { url: url }
 
       setProject({
-         ...project, 
+         ...project,
          images: newImagem
       })
 
@@ -235,32 +232,6 @@ const CreateProject = () => {
       }
    }
 
-   const uploadImage = (event: any) => {
-      event.preventDefault();
-      const file = event.target[0].files[0]
-      console.log(file)
-
-      if (!file) return
-      for (let index = 0; index < file.length; index++) {
-         const storageRef = ref(storage, `profilePicture/${file[index].name}`)
-
-         const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
-
-         uploadTask.on(
-            "state_changed",
-            snapshot => {
-               const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-
-            },
-            error => { alert(error) },
-            () => {
-               getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-                  setProject({ ...project, })
-               })
-            }
-         )
-      }
-   }
 
    const [errors, setErrors] = React.useState({})
 
@@ -301,7 +272,6 @@ const CreateProject = () => {
       })
 
    }
-
 
    return (
       <>
@@ -392,22 +362,15 @@ const CreateProject = () => {
                                     <div className="container_text">
                                        <div>
                                           <p className="paragraph_projects">Imagens de referências ao projeto</p>
-                                          <span className="paragraph_projects">0/4</span>
+                                          <span className="paragraph_projects">{imageIndex}/4</span>
                                        </div>
                                     </div>
 
-                                    <div className="container_images">
-                                      <ImageProject imageProjects={project.images} setImageProjects={(image:string)=>handleChangeImage(image)} maxImage={imageIndex === 4? false:true}/>
+                                    <div className="container_upload_images">
+                                       <ImageProject imageProjects={project.images} setImageProjects={(image: string) => handleChangeImage(image)} maxImage={imageIndex === 4 ? false : true} />
                                     </div>
-
-                                   
                                  </div>
-
                               </div>
-
-
-
-
                            </div>
 
 

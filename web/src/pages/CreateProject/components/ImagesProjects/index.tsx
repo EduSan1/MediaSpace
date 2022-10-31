@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { storage } from "../../../../constants/firebase";
 import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import InputBtn from "../../../../components/utils/Button/InputBtn";
@@ -14,46 +14,51 @@ export const ImageProject = ({ imageProjects, setImageProjects, maxImage }: IIma
 
     const uploadImage = (event: any) => {
         event.preventDefault();
-        const file = event.target[0].files
-        console.log(file)
-        console.log(setImageProjects)
+        const file = event.target[0].files[0]
 
-        // if (!file) return
-        // for (let index = 0; index < file.length; index++) {
-        //     const storageRef = ref(storage, `profilePicture/${file[index].name}`)
 
-        //     const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+        console.log(file.name)
 
-        //     uploadTask.on(
-        //         "state_changed",
-        //         snapshot => {
-        //             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        if (!file) return
 
-        //         },
-        //         error => { alert(error) },
-        //         () => {
-        //             getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-        //                 console.log("Deu ruim");
-        //             })
-        //         }
-        //     )
-        // }
+        const storageRef = ref(storage, `projectImages/${file.name}`)
+
+        const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+
+        uploadTask.on(
+            "state_changed",
+            snapshot => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+
+            },
+            error => { alert(error) },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+                    setImageProjects(url)
+                })
+            }
+        )
+
     }
+
+
 
     return (
         <>
-            <div className="aligment_images">
-                <div className="images">
-                    <img src={imageProjects[0].url} />
-                </div>
-                <div className="images">
-                    <img src={imageProjects[1].url} />
-                </div>
-                <div className="images">
-                    <img src={imageProjects[2].url} />
-                </div>
-                <div className="images">
-                    <img src={imageProjects[3].url} />
+            <div className="container_images">
+                <div className="aligment_images">
+                    <div className="images">
+                        <img src={imageProjects[0].url} />
+                    </div>
+                    <div className="images">
+                        <img src={imageProjects[1].url} />
+                    </div>
+                    <div className="images">
+                        <img src={imageProjects[2].url} />
+                    </div>
+                    <div className="images">
+                        <img src={imageProjects[3].url} />
+                    </div>
                 </div>
             </div>
 
@@ -61,8 +66,10 @@ export const ImageProject = ({ imageProjects, setImageProjects, maxImage }: IIma
                 <div>
                     <label className="input_btn_select_image" htmlFor="image"> Input </label>
 
-                    <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" name="image[]" multiple />
-                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={maxImage?'input_btn_select_image':'input_btn_select_image_limit'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+                    <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" name="image" />
+                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={maxImage ? 'input_btn_select_image' : 'input_btn_select_image_limit'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+
+
                 </div>
             </form>
 
