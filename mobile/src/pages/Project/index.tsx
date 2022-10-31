@@ -1,5 +1,7 @@
+import { StackRouterOptions } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import api from "../../../service";
 import { BtnNewProject } from "../../components/utils/BtnNewProject";
 import HeaderSearch from "../../components/utils/HeaderSearch";
 import { LoginButton } from "../../components/utils/LoginButton";
@@ -9,12 +11,14 @@ import TabBar from "../../components/utils/TabBar";
 
 interface IProject {
     navigation: any
+    route : any
 }
 
-export const Project = ({ navigation }: IProject) => {
+export const Project = ({ navigation, route }: IProject) => {
     const navigateTo = (screen: string) => {
         navigation.navigate(screen)
     }
+    const {projectId} = route.params
 
 
     const [imageIndex, setImageIndex] = useState(0)
@@ -23,52 +27,37 @@ export const Project = ({ navigation }: IProject) => {
     const [hasError, setHasError] = useState(false)
 
     const [project, setProject] = (useState)({
+        id: "",
+        name: "",
+        description: "",
+        value: "",
+        estimated_deadline: "",
+        finish_project_date: "",
+        start_project_date: "",
+        is_active: "",
+        status: "",
+        create_at: "",
+        update_at: "",
+        interest: [],
+        sub_categories: [
+       
+        ],
+        requirements: [],
+        management: "",
+        categories: [{}],
         images: [
             {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            },
-            {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            },
-            {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            },
-            {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
+                url : ""
             }
-        ],
-        dataInico: "02/02/2022",
-        dataTermino: "02/02/2023",
-        imagemPerfil: { url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae" },
-        valor: "19.650,00",
-        titulo: "MediaSpace",
-        descricao: " teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste",
-        anexos: "",
-        categoria: "PROGRAMAÇÃO",
-        subCategoria: "JAVA",
-
-
-
+        ]
     })
 
-
-    const handleUserPicture = (text: any) => {
-
-        console.log("images => ", text)
-        let newImages = project.images
-
-        newImages[imageIndex] = { url: text }
-
-        setProject({
-
-            ...project,
-            images: newImages
-        })
-
-        setImageIndex(imageIndex + 1)
-    }
-
-    useEffect(() => { }, [project])
+    useEffect(() => {
+        api.get(`/project/${projectId}`).then((res: any)=>{
+            setProject(res.data.data)
+            console.log(res.data.data)
+         })
+     }, [])
 
 
     return (
@@ -77,41 +66,51 @@ export const Project = ({ navigation }: IProject) => {
             <View style={styles.navigationBar}></View>
 
             <View style={styles.fix}>
-                <ScrollView style={styles.container}>
-                    <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string) => handleUserPicture(image)} />
+                <ScrollView style={styles.container}> 
+                 <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string)  => {} } /> 
 
                     <View style={styles.containerFilho}>
-                        <View style={styles.containerDate}>
-                            <Text style={styles.title}>Criado em: {project.dataInico} </Text>
-                            <Text style={styles.title}>Prazo término: {project.dataTermino}</Text>
+                           <View style={styles.containerDate}>
+                            <Text style={styles.title}>Criado em: {project.create_at} </Text>
+                            <Text style={styles.title}>Prazo término: {project.estimated_deadline}</Text>
                         </View>
 
-                        <View style={styles.containerProfile}>
-                            <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} />
-                            <Text style={styles.title}>Valor estiamdo: {project.valor}</Text>
+                   <View style={styles.containerProfile}>
+                            <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} /> 
+                            <Text style={styles.title}>Valor estiamdo: {project.value}</Text>
                         </View>
 
                         <View style={styles.containerTitle}>
-                            <Text style={styles.title2}>{project.titulo}</Text>
-                            <Text style={styles.describle}> {project.descricao}</Text>
+                            <Text style={styles.title2}>{project.name}</Text>
+                            <Text style={styles.describle}> {project.description}</Text>
 
-                            <View style={styles.categories}>
+                             <View style={styles.categories}>
                                 <Text style={styles.title}>Categoria</Text>
-                                <Text style={styles.categorySelected}>{project.categoria}</Text>
+                                {
+                                    project.categories.map((category : any) => {
+                                        return <Text style={styles.categorySelected}>{category.name}</Text>
+
+                                    })
+                                }
 
                                 <Text style={styles.title}>Subcategoria</Text>
-                                <Text style={styles.categorySelected}>{project.subCategoria}</Text>
+                                {
+                                    project.sub_categories.map((sub_category : any) => {
+                                        return <Text style={styles.categorySelected}>{sub_category.name}</Text>
+
+                                    })
+                                }
                             </View>
 
-                            <View style={styles.button}>
+                             <View style={styles.button}>
                                 <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Participar" />
                             </View>
                         </View>
 
 
 
-                    </View>
-                </ScrollView>
+                    </View> 
+                </ScrollView>  
             </View>
 
             <View style={styles.bar}></View>
@@ -150,7 +149,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         fontSize: 34,
-        padding: 20,
         justifyContent: 'space-around'
     },
     containerProfile: {
@@ -158,7 +156,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 20,
         justifyContent: 'space-around'
     },
     containerTitle: {

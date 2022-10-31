@@ -1,23 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { BtnBackPage } from "../../components/utils/BtnBackPage";
+import  BtnBackPage from "../../components/utils/BtnBackPage";
 import { CardRequirements } from "../../components/utils/CardRequirements";
 import { BtnRequirements } from "../../components/utils/BtnRequeriments";
 import { BtnConfirmRequirements } from "../../components/utils/btnConfirmRequeriments";
 import { BtnCardRequirements } from "../../components/utils/BtnCardRequirements";
 import WorkersAppliedProfile from "../../components/utils/WorkersAppliedProfile";
+import api from "../../../service";
 
-  
-export default function WorkersAppliedPage() {
+  interface IWorkersAppliedPafe{
+    navigation:any
+  }
+export default function WorkersAppliedPage({navigation}:IWorkersAppliedPafe) {
+    
     const [isModalVisible, setModalVisible] = useState(false);
+    const [interest, setInterest] = useState([{
+        team : {
+                  name: "",
+        profile_picture : "",
+        nickname: ""
+        }
   
+    }])
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
     };
+
+    useEffect(() =>{
+
+        api.get("/project/d2b6956f-b653-4d1d-b1eb-c50f9b371871").then((res) => {
+            setInterest(res.data.data.interest)
+        })
+        
+    },[])
+
     return (
         <>
-            <BtnBackPage />
+            <BtnBackPage action={()=> navigation.navigate("Home")}/>
             <ScrollView style={style.Scroll}>
                 <SafeAreaView>
                     <View style={style.titleSection}>
@@ -27,13 +47,12 @@ export default function WorkersAppliedPage() {
                         <Text style={style.TextRequirements}>Obs: recomendamos que abra um bate-papo com o prestador para que você possa conversar, esclarecer e tirar dúvidas sobre o projeto antes de executá-lo.</Text>
                     </View>
                     </View>
-                        <WorkersAppliedProfile/>
-                        <WorkersAppliedProfile/>
-                        <WorkersAppliedProfile/>
-                        <WorkersAppliedProfile/>
-                        <WorkersAppliedProfile/>
-                        <WorkersAppliedProfile/>
-                        <WorkersAppliedProfile/>
+                    {
+                        interest.map((interest : any) => {
+                            return  <WorkersAppliedProfile icon={interest.team.profile_picture} name={interest.team.name} nickname={interest.team.nickname}/>
+                        })
+                    }
+                
                 </SafeAreaView>
             </ScrollView>
         </>
@@ -42,12 +61,11 @@ export default function WorkersAppliedPage() {
 const style = StyleSheet.create({
     body: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-        
-    },
+        height: Dimensions.get('window').height,    },
     Scroll: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
+        marginBottom:Dimensions.get('window').height * 0.03,
     },
     text: {
         color:"#75A5FF",
