@@ -53,8 +53,8 @@ function App() {
         <Route path='/Perfil' element={<Perfil />} />
         <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
         <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
-        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
-        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />
+        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />{/*nice*/}
+        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  {/*not nice*/}
 
 
 
