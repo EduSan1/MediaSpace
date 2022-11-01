@@ -68,26 +68,27 @@ const styles = StyleSheet.create({
 
     containerCard:{
         width: Dimensions.get('window').width * 0.45,
-        height: Dimensions.get("window").height * 0.4,
+        height: Dimensions.get("window").height * 0.45,
         alignItems:'center',
         justifyContent: 'space-between',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#D3C5F8',
-        // backgroundColor:"blue"
+        backgroundColor:"#fff",
         marginBottom:20
 
     },
 
     imagecontainer:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.15,
+        height: Dimensions.get("window").height * 0.2,
         borderTopStartRadius: 10,
-        borderTopEndRadius: 10
+        borderTopEndRadius: 10,
+        
         
     },
     profile:{
-        width: Dimensions.get('window').width * 0.44 ,
+        width: Dimensions.get('window').width * 0.4 ,
         height: Dimensions.get("window").height * 0.035,
         display:'flex',
         flexDirection:'row',
@@ -96,12 +97,12 @@ const styles = StyleSheet.create({
     },
     describle:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.06,
+        height: Dimensions.get("window").height * 0.045,
         
     },
     value:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.03,
+        height: Dimensions.get("window").height * 0.035,
         display:'flex',
         flexDirection:'row',
         paddingTop: 10
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 10,
         display:'flex',
         flexDirection:'row',
+        marginBottom: 5
 
     },
     nameArroba:{

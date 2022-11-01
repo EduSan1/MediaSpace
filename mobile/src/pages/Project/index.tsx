@@ -1,5 +1,5 @@
 import { StackRouterOptions } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
 import api from "../../../service";
 import { BtnNewProject } from "../../components/utils/BtnNewProject";
@@ -51,6 +51,36 @@ export const Project = ({ navigation, route }: IProject) => {
         ],
         requirements: [],
         management: "",
+        user: {
+            id: "",
+            first_name: "",
+            last_name: "",
+            nickname: "",
+            birth_date: "",
+            cpf: "",
+            mai: "",
+            password: "",
+            biography: "",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FWhatsApp%20Image%202022-10-17%20at%2017.49.13.jpeg?alt=media&token=7cde0a87-0125-45b1-b4e9-e86979334194",
+            is_active: true,
+            is_authenticated: true,
+            create_at: "",
+            update_at: "",
+            gender: {
+                id: "",
+                gender: "",
+                create_at: "",
+                update_at: ""
+            },
+            phone: {
+                id: "",
+                ddd: "",
+                phone: "",
+                ddi: null
+            },
+            teams: [],
+            project_member: []
+        },
         categories: [{}],
         images: [
             {
@@ -60,7 +90,7 @@ export const Project = ({ navigation, route }: IProject) => {
     })
 
     const handleChange = (text : string, name : string) => {
-        if ( name === "create_at" ) {
+        if ( name === "update_at" ) {
             setProject(
                 {
                     ...project,
@@ -100,7 +130,7 @@ export const Project = ({ navigation, route }: IProject) => {
                         </View>
 
                    <View style={styles.containerProfile}>
-                            <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} /> 
+                            <Image style={styles.image} source={{uri : project.user.profile_picture }} /> 
                             <Text style={styles.title}>Valor estiamdo: {project.value}</Text>
                         </View>
 
@@ -193,6 +223,7 @@ const styles = StyleSheet.create({
     image: {
         width: Dimensions.get('window').width * 0.2,
         height: Dimensions.get("window").width * 0.2,
+        borderRadius: 100
     },
     title: {
         fontSize: 14,

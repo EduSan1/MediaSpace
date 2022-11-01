@@ -92,8 +92,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height:Dimensions.get('window').height * 0.3,
         alignItems: 'center',
-        justifyContent:'center'
-        
+        justifyContent:'center',
     },
     card:{
         width: Dimensions.get('window').width ,
@@ -108,13 +107,15 @@ const styles = StyleSheet.create({
         
     },
     category:{
-        width: Dimensions.get('window').width   ,
+        width: Dimensions.get('window').width ,
         flexDirection:'row',
+        paddingTop: 20,
+      
     },
     image: {
         
         width: Dimensions.get("window").width * 1,
-        height: Dimensions.get("window").width * 0.6,
+        height: Dimensions.get("window").width * 0.55,
     },
     text: {
        fontSize: 20,

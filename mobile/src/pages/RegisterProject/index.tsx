@@ -28,6 +28,18 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
             .replace(/(\d{2})(\d{4})/, "$1/$2")
     }
 
+    const onlyNumbers = (value: string) => {
+        return value
+            .replace(/\.|\(|\)|\-|\//g, '');
+    }
+
+    const dateToSend = (value: string) => {
+
+        return onlyNumbers(value)
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d{2})(\d{4})/, "$3-$2-$1")
+    }
+
 
     const [projectRegister, setProjectRegister] = (useState)({
         name: "",
@@ -46,17 +58,6 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
             },
             {
                 url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            }
-        ],
-        attachments: [
-            {
-                url: "Jorge"
-            },
-            {
-                url: "Cleiton"
-            },
-            {
-                url: "Jordania"
             }
         ],
         categories: [
@@ -112,10 +113,10 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     }
 
     useEffect(() => {
-        //     api.get("/category").then((res: any) => {
-        //         setCategories(res.data)
-        //     })
-        //     console.log(userId)
+            api.get("/category").then((res: any) => {
+                setCategories(res.data)
+            })
+            console.log(projectRegister)
         setCategories([
             {
                 id: "29a6f6c8-552e-41b5-b7ec-c26f59b85144",
@@ -224,7 +225,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
     const handleChange = (text: string, name: string) => {
 
-        console.log(name)
+        
         if (name == "estimated_deadline") {
             setProjectRegister(
                 {
@@ -260,16 +261,29 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
 
     const [hasError, setHasError] = useState(false)
-    const [projectLoad, setprojectLoad] = useState(false)
+    const [projectLoad, setProjectLoad] = useState(false)
 
-    const registerProject = () => {
-        const projectApi = { ...projectRegister, estimated_deadline: "" }
-        setprojectLoad(true)
+    const registerProject = async () => {
+
+        const projectApi = { 
+            ...projectRegister,
+            estimated_deadline: dateToSend(projectRegister.estimated_deadline)
+        }
+        setProjectLoad(true)
+        // console.log(projectApi)
         api.post("/project", projectApi).then((res: any) => {
 
+            if(res.data.statusCode === 201){
+                navigation.navigate("ListProject", {
+                    projectId: res.data.data.id,
+                })
+            } else {
+                ToastAndroid.show("res.data.message", 10)
+            }
             console.log(res.data)
+            setProjectLoad(false)
         })
-        setprojectLoad(false)
+       
 
     }
 
@@ -333,7 +347,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                         <LoginInputNumber type="numeric" name="estimated_deadline" iconName="today" value={projectRegister.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
                         <LoginInputNumber type="numeric" name="value" iconName="attach-money" value={projectRegister.value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={12} />
 
-                        <RegisterProjectDriven />
+                 
 
 
 
@@ -383,13 +397,13 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: "100%",
+        // height: Dimensions.get('window').height * 2,
         backgroundColor: "#fff",
         display: 'flex',
     },
     view: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2.2,
+        height: Dimensions.get('window').height * 2 ,
         justifyContent: "space-around",
         alignItems: "center",
         padding: 20

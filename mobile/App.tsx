@@ -44,7 +44,7 @@ export default function App() {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Messages" component={Messages} />
-        {/* <Stack.Screen name="ProjectOwner" component={ProjectOwner} /> */}
+        <Stack.Screen name="ProjectOwner" component={ProjectOwner} />
         <Stack.Screen name='WorkersAppliedPage' component={WorkersAppliedPage}/>
       </Stack.Navigator>
     </NavigationContainer>
