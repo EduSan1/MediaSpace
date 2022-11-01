@@ -287,6 +287,8 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
     }
 
+
+
     useEffect(() => {
         console.log(projectRegister.estimated_deadline)
     }, [projectRegister])
