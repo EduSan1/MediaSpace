@@ -42,15 +42,18 @@ export class ProjectRepository {
         })
     }
 
-    listWhere = async (key: keyof typeof ProjectORM, value: string) => {
+    listWhere = async (key: any, value: any) => {
         return await this._.find({
             where: {
                 [key]: value
+            },
+            relations: {
+                management: true
             }
         })
     }
 
-    getByWhere = async (key: keyof typeof ProjectORM, value: string) => {
+    getByWhere = async (key: any, value: any) => {
         return await this._.findOne({
             where: {
                 [key]: value
@@ -67,8 +70,8 @@ export class ProjectRepository {
                 interest: true,
                 sub_categories: true,
                 requirements: true,
-                management: true
-
+                management: true,
+                user: true
             }
         })
     }

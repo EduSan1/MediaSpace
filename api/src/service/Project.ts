@@ -14,6 +14,7 @@ import { ProjectManagementRepository } from "../repository/ProjectManagement";
 import { ProjectMemberRepository } from "../repository/ProjectMember";
 import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
+import { IDomainProjectProps } from "../interface/Project";
 
 interface IImage {
     url: string
@@ -432,4 +433,50 @@ export class ProjectService {
 
     }
 
+    getAllUserProjects = async (userId: string) => {
+        try {
+            const projects = await this._.listWhere("user", { id: userId })
+            const userProjects = {
+                AWAITING_START: projects.filter((project: IDomainProjectProps) => project.status === "AWAITING_START"),
+                VALIDATING_REQUIREMENTS: projects.filter((project: IDomainProjectProps) => project.status === "VALIDATING_REQUIREMENTS"),
+                IN_EXECUTION: projects.filter((project: IDomainProjectProps) => project.status === "IN_EXECUTION"),
+                COMPLETE: projects.filter((project: IDomainProjectProps) => project.status === "COMPLETE"),
+                CANCELED: projects.filter((project: IDomainProjectProps) => project.status === "CANCELED")
+            }
+
+            return {
+                message: "Projetos listados com sucesso",
+                data: userProjects,
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
+
+    getAllFreelancerProjects = async (freelancerId: string) => {
+        try {
+            // const projects = await this.fre.listWhere("team", { id: freelancerId })
+
+            const freelancerProjects = []
+            return {
+                message: "Requisitos recusados",
+                // data: projects,
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 }
+
