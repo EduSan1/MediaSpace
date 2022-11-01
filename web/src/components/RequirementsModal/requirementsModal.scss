@@ -1,0 +1,14 @@
+.container_modal_requirements{
+    width: 100%;
+   height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
