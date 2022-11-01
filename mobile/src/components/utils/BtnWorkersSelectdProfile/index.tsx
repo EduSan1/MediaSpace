@@ -8,15 +8,19 @@ interface IBtnWorkersSelectedProfile{
     name:string
     nickname:string
     icon:string
+    selected : string
+    id : string
+    setSelectedFreelancer : React.Dispatch<React.SetStateAction<{freelancerId: string;}>>
+
 }
-export default function BtnWorkerSelectdProfile({name, nickname, icon}:IBtnWorkersSelectedProfile) {
+export default function BtnWorkerSelectdProfile({id ,name, nickname, icon, selected, setSelectedFreelancer}:IBtnWorkersSelectedProfile) {
     const [isSelected, setIsSelected] = useState(false)
 
     const onSelected = () => {
-        setIsSelected(!isSelected)
+        setSelectedFreelancer({freelancerId : id})
     }
     return(
-        <Pressable onPress={() => onSelected()} style={isSelected ? style.cardProfile : style.cardProfileSelected}>
+        <Pressable onPress={() => onSelected()} style={selected === id ? style.cardProfile : style.cardProfileSelected}>
             <Image source={{uri : icon}} style={style.iconProfile}></Image>
             <View style={style.textBox}>
             <Text style={style.textName}>{name}</Text>

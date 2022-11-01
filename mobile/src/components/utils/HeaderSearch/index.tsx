@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import * as SecureStore from"expo-secure-store"
 import { Text, TextInput, StyleSheet, Dimensions, Pressable, ActivityIndicator, View, Image } from "react-native"
 
 
@@ -6,6 +7,19 @@ interface IHeaderSearch {
     label: string
 }
 export default function HeaderSearch({ label }: IHeaderSearch) {
+
+    const [userImage, setUserImage] =  useState("")
+
+    const setImage = async () => {
+        const userImage = await SecureStore.getItemAsync('userImage')
+        setUserImage(userImage? userImage : "")
+    }
+
+    useEffect(() => {
+        setImage()
+
+    },[])
+
     return (
 
         <View style={styles.style}>
@@ -15,7 +29,7 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
             </View>
             <Image style={styles.iconProfile} source={require('../../../../assets/icons/ProfileTestIcon.png')} />
             <View>
-                <Image style={styles.iconSubMenu} source={require('../../../../assets/icons/MenuSlideIcon.png')} />
+                <Image style={styles.iconSubMenu} source={{uri : userImage}} />
             </View>
         </View>
     )

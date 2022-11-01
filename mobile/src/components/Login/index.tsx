@@ -4,6 +4,7 @@ import { LoginInput } from "../utils/LoginInput";
 import api from "../../../service";
 import { LoginButton } from "../utils/LoginButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -37,12 +38,15 @@ export const Login = ({ navigation }: ILogin) => {
     const login = () => {
         Keyboard.dismiss()
         setIsLoad(true)
-        navigation.navigate("Home")
+        // navigation.navigate("Home")      
 
         api.post("/user/login", userLogin).then(async (res: any) => {
 
             if (res.data.is_logged) {
-                await AsyncStorage.setItem('userDetails', res.data.user.profile_picture)
+                await SecureStore.setItemAsync('userImage', res.data.user.profile_picture)
+                await SecureStore.setItemAsync('userId', res.data.user.id)
+                await SecureStore.setItemAsync('userName', res.data.user.first_name)
+                await SecureStore.setItemAsync('userNickname', res.data.user.nickname)
                 navigation.navigate("NavigationScreen")
 
             }

@@ -15,7 +15,9 @@ interface IWorkersSelectedPage{
   }
   
 export default function WorkersSelectedPage({navigation}:IWorkersSelectedPage) {
-    const [isModalVisible, setModalVisible] = useState(false);
+
+    const [selectedFreelancer, setSelectedFreelancer] = useState({freelancerId: ""})
+
     const [interest, setInterest] = useState([{
         team : {
                   name: "",
@@ -24,15 +26,31 @@ export default function WorkersSelectedPage({navigation}:IWorkersSelectedPage) {
         }
   
     }])
+    const [selected, setSelected] = useState([{
+        team : {
+                  name: "",
+        profile_picture : "",
+        nickname: ""
+        }
+  
+    }])
+
+    const sendSelectedFreelancer = async () => {
+        
+        api.post("/project/selectFreelancer/d2b6956f-b653-4d1d-b1eb-c50f9b371871", selectedFreelancer).then((res) =>{
+            console.log(res.data)
+        })
+        
+    }
 
     useEffect(() =>{
 
         api.get("/project/d2b6956f-b653-4d1d-b1eb-c50f9b371871").then((res) => {
             setInterest(res.data.data.interest)
         })
-        
-    },[])
 
+
+        },[])
     return (
         <>
             <BtnBackPage action={()=> navigation.navigate("Home")} />
@@ -45,14 +63,15 @@ export default function WorkersSelectedPage({navigation}:IWorkersSelectedPage) {
                         <Text style={style.TextRequirements}>Obs: recomendamos que abra um bate-papo com o prestador para que você possa conversar, esclarecer e tirar dúvidas sobre o projeto antes de executá-lo.</Text>
                     </View>
                     </View>
+                    
                     {
                         interest.map((interest : any) => {
-                            return  <BtnWorkerSelectdProfile icon={interest.team.profile_picture} name={interest.team.name} nickname={interest.team.nickname}/>
+                            return  <BtnWorkerSelectdProfile id={interest.team.id} setSelectedFreelancer={setSelectedFreelancer} selected={selectedFreelancer.freelancerId}  icon={interest.team.profile_picture} name={interest.team.name} nickname={interest.team.nickname}/>
                         })
                     }
                         <View style={style.BoxBtn}>
 
-                        <BtnRequirements title="Selecionar"/>
+                        <BtnRequirements action={sendSelectedFreelancer} title="Selecionar"/>
                         </View>
                 </SafeAreaView>
             </ScrollView>
