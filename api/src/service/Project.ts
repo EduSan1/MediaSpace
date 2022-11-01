@@ -79,13 +79,28 @@ export class ProjectService {
 
     }
 
-    list = async () => {
+    list = async (query: any) => {
         try {
-            const projects = await this._.list()
+            let response = null
+            if (query.take !== undefined) {
+                const categories = query.categories.split(",")
+                const projects = await this._.listPerPage(query.take, query.skip, query.search, categories[0] === "" ? [] : categories)
+
+                response = {
+                    page: query.page,
+                    numberOfPages: Math.ceil((projects[projects.length - 1] / query.take)),
+                    count: projects[projects.length - 1],
+                    data: projects
+                }
+
+            } else {
+                response = await this._.list()
+
+            }
 
             return {
                 message: "projetos listados com sucesso",
-                data: projects,
+                data: response,
                 statusCode: 200,
             };
         } catch (error) {
@@ -350,7 +365,7 @@ export class ProjectService {
         return await this.projectMemberRepository.create(projectMemberToSend)
     }
 
-     acceptRequirements = async (id: string) => {
+    acceptRequirements = async (id: string) => {
         try {
 
             const project = await this._.getById(id);
@@ -362,7 +377,7 @@ export class ProjectService {
                 };
             }
 
-            project.requirements.map(async (requirement : any) => {
+            project.requirements.map(async (requirement: any) => {
                 if (requirement.is_active === true) {
                     requirement.is_accepted = true
                     await this.projectRequirementRepository.update(requirement)
@@ -372,9 +387,7 @@ export class ProjectService {
             project.status = "IN_EXECUTION";
             await this._.update(project)
 
-            
-
-            return{
+            return {
                 message: "Requisitos aceitos",
                 statusCode: 200
             };
@@ -411,7 +424,7 @@ export class ProjectService {
                 }
             });
 
-            return{
+            return {
                 message: "Requisitos recusados",
                 statusCode: 200
             };

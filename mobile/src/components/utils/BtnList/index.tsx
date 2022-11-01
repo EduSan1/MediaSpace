@@ -3,11 +3,11 @@ import { Image, Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View
 
 interface IBtnList {
     title: string
-    onPress : ()=>{}
+    onPress : () => void
 }
 export const BtnList = ({title, onPress}:IBtnList) => {
     return (
-        <Pressable style={styles.btnStyle}>
+        <Pressable onPress={() => onPress()} style={styles.btnStyle}>
             <Text style={styles.text}>{title}</Text>
         </Pressable>
 

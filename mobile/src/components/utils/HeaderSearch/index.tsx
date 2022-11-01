@@ -23,7 +23,7 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
 const styles = StyleSheet.create({
     style: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.17,
+        height: Dimensions.get('window').height * 0.13,
         // backgroundColor:"#CDCDCD",
         justifyContent: "center",
         alignItems: "center",
@@ -53,13 +53,12 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         marginHorizontal: Dimensions.get('window').height * 0.015,
     },
-
+    
     iconSubMenu: {
         width: Dimensions.get('window').width * 0.08,
         height: Dimensions.get('window').width * 0.08,
         borderRadius: 100,
         marginHorizontal: Dimensions.get('window').height * 0.01,
-
     },
     placeholder: {
 

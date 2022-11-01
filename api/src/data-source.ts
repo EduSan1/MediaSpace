@@ -7,6 +7,9 @@ import { GenderORM } from "./entity/Gender"
 import { InterestORM } from "./entity/Interest"
 import { MemberORM } from "./entity/Member"
 import { PhoneORM } from "./entity/Phone"
+import { PostORM } from "./entity/Post"
+import { PostCommentORM } from "./entity/PostComment"
+import { PostImageORM } from "./entity/PostImage"
 import { ProjectORM } from "./entity/Project"
 import { ProjectImageORM } from "./entity/ProjectImage"
 import { ProjectManagementORM } from "./entity/ProjectManagement"
@@ -47,7 +50,10 @@ export const AppDataSource = new DataSource({
         ProjectManagementORM,
         TeamProjectManagementORM,
         DeliveryORM,
-        DeliveryFileORM
+        DeliveryFileORM,
+        PostORM,
+        PostImageORM,
+        PostCommentORM
     ],
     migrations: [],
     subscribers: [],
