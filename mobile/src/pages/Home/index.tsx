@@ -17,7 +17,7 @@ export default function Home({ navigation }: IHome) {
 
     return (
         <>
-        <BtnBackPage action={()=> navigation.navigate("WorkersAppliedPage")}/>
+        <BtnBackPage action={()=> navigation.navigate("TechnicalRequirementsFrelancer")}/>
             <TabBar currentScreen="Home" navigateTo={navigateTo} />
             <SafeAreaView style={style.body}>
                 <ScrollView style={style.Scroll}>
