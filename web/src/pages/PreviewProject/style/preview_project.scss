@@ -189,17 +189,18 @@
       }
 
       .dot {
-         width: 20px;
-         height: 20px;
+         width: 15px;
+         height: 15px;
          border-radius: 50%;
          border: 3px solid #f1f1f1;
          margin: 0 5px;
          background: #f1f1f1;
+         margin-bottom: 10px;
       }
 
       .dot.active {
-         height: 25px;
-         width: 25px;
+         height: 20px;
+         width: 20px;
       }
    }
 
