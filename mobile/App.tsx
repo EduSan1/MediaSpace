@@ -21,6 +21,8 @@ import Feed from './src/pages/Feed';
 import Messages from './src/pages/Messages';
 import { ListProject } from './src/pages/ListProject';
 import WorkersAppliedPage from './src/pages/WorkersAppliedPage';
+import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFreelancer';
+import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 
 export default function App() {
 
@@ -46,6 +48,8 @@ export default function App() {
         <Stack.Screen name="Messages" component={Messages} />
         <Stack.Screen name="ProjectOwner" component={ProjectOwner} />
         <Stack.Screen name='WorkersAppliedPage' component={WorkersAppliedPage}/>
+        <Stack.Screen name='WorkersSelectedPage' component={WorkersSelectedPage}/>
+        <Stack.Screen name='TechnicalRequirementsFrelancer' component={TechnicalRequirementsFrelancer}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

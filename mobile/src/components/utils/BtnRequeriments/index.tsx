@@ -3,10 +3,11 @@ import { Image, Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View
 
 interface IBtnRequirements {
     title: string
+    action : () => void
 }
-export const BtnRequirements = ({title}:IBtnRequirements) => {
+export const BtnRequirements = ({title, action}:IBtnRequirements) => {
     return (
-        <Pressable style={styles.btnStyle}>
+        <Pressable onPress={() => action()} style={styles.btnStyle}>
             <Text style={styles.text}>{title}</Text>
         </Pressable>
 
