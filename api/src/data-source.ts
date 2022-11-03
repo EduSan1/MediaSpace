@@ -18,7 +18,6 @@ import { ProjectRequirementsORM } from "./entity/ProjectRequirements"
 import { SubCategoryORM } from "./entity/SubCategory"
 import { TeamORM } from "./entity/team"
 import { TeamProjectManagementORM } from "./entity/TeamProjectManagement"
-import { TypePaymentORM } from "./entity/TypePayment"
 import { UserORM } from "./entity/User"
 import { UserTeamORM } from "./entity/UserTeam"
 
@@ -41,7 +40,6 @@ export const AppDataSource = new DataSource({
         UserTeamORM,
         InterestORM,
         MemberORM,
-        TypePaymentORM,
         ProjectRequirementsORM,
         ProjectRequirementsORM,
         ProjectMemberORM,

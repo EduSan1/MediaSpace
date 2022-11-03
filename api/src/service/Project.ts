@@ -325,9 +325,7 @@ export class ProjectService {
             project: {
                 id: projectId
             },
-            payment_type: {
-                id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
-            }
+            payment_type: "Cartão de crédito"
         }
 
         return await this.projectManagementRepository.create(projectManagementToSend)

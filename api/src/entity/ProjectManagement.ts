@@ -2,7 +2,6 @@ import { Column, CreateDateColumn, Entity, Generated, ManyToOne, OneToMany, Prim
 import { ProjectORM } from "./Project"
 import { ProjectMemberORM } from "./ProjectMember"
 import { TeamProjectManagementORM } from "./TeamProjectManagement"
-import { TypePaymentORM } from "./TypePayment"
 
 @Entity({ name: "tb_project_management" })
 export class ProjectManagementORM {
@@ -22,8 +21,8 @@ export class ProjectManagementORM {
     @ManyToOne(() => ProjectORM, project => project.management)
     project: ProjectORM
 
-    @ManyToOne(() => TypePaymentORM, typePayment => typePayment.project_management)
-    payment_type: TypePaymentORM
+    @Column()
+    payment_type: "Cartão de crédito" | "Boleto"
 
     @OneToMany(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.projectManagement, { eager: true })
     team_project_management: TeamProjectManagementORM[]
