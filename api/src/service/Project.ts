@@ -461,12 +461,19 @@ export class ProjectService {
 
     getAllFreelancerProjects = async (freelancerId: string) => {
         try {
-            // const projects = await this.fre.listWhere("team", { id: freelancerId })
+            const teamManagement = await this.teamProjectManagementRepository.getAllByFreelancerId(freelancerId)
 
-            const freelancerProjects = []
+            const projects = teamManagement.map((teamManagement: any) => teamManagement.projectManagement.project)
+
+            const freelancerProjects = {
+                VALIDATING_REQUIREMENTS: projects.filter((project: IDomainProjectProps) => project.status === "VALIDATING_REQUIREMENTS"),
+                IN_EXECUTION: projects.filter((project: IDomainProjectProps) => project.status === "IN_EXECUTION"),
+                COMPLETE: projects.filter((project: IDomainProjectProps) => project.status === "COMPLETE"),
+                CANCELED: projects.filter((project: IDomainProjectProps) => project.status === "CANCELED")
+            }
             return {
-                message: "Requisitos recusados",
-                // data: projects,
+                message: "Projetos listados com sucesso",
+                data: freelancerProjects,
                 statusCode: 200
             };
 

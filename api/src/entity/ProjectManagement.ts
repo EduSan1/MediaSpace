@@ -25,7 +25,7 @@ export class ProjectManagementORM {
     @ManyToOne(() => TypePaymentORM, typePayment => typePayment.project_management)
     payment_type: TypePaymentORM
 
-    @OneToMany(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.projectManagement)
+    @OneToMany(() => TeamProjectManagementORM, teamProjectManagement => teamProjectManagement.projectManagement, { eager: true })
     team_project_management: TeamProjectManagementORM[]
 
     @OneToMany(() => ProjectMemberORM, projectMember => projectMember.member, { eager: true })
