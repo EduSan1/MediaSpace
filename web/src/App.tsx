@@ -66,7 +66,7 @@ function App() {
         <Route path='/teste' element={<Teste />} />
 
 
-        <Route path='/testeRequisito' element={<ModalRequirements/>} />
+        {/* <Route path='/testeRequisito' element={<ModalRequirements action={"Editar"} />} /> */}
 
       </Routes>
 

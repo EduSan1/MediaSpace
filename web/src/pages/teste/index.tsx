@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Interestedserver from "../../components/project";
+import ModalRequirements from "../../components/RequirementsModal";
 import HistoryTrack from "../../components/utils/HistoryTrack";
 
 
-const teste = () => {
+const Teste = () => {
+
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
     return (
 
@@ -16,10 +19,20 @@ const teste = () => {
             <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
 
 
-      </main>
-    
-                     
-      
+
+
+
+
+
+
+            <button onClick={() => { setIsModalVisible(true) }}>open</button>
+            {isModalVisible ? <ModalRequirements action={"Criar"} onClose={() => setIsModalVisible(false)} /> : null}
+
+
+        </main>
+
+
+
 
 
 
@@ -29,4 +42,4 @@ const teste = () => {
 
 
 
-export default teste;
+export default Teste;

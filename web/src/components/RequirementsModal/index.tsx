@@ -1,22 +1,45 @@
 import React, { useState } from "react";
 import InputProject from "../../pages/CreateProject/components/Input";
 import { MdClose } from "react-icons/md"
+import InputBtn from "../utils/Button/InputBtn"
+import api from "../../service";
+
+interface IModalRequirements {
+    action: "Criar" | "Editar",
+    onClose: () => void
+}
 
 
-
-const ModalRequirements = () => {
+const ModalRequirements = ({ action, onClose }: IModalRequirements) => {
 
     const [requirements, setRequirements] = useState(
         {
             id: "",
-            title: "Nill",
-            description: "Won",
-            gain_percentage: 0.2,
+            title: "",
+            description: "",
+            gain_percentage: 0,
             project: {
-                id: "4c72d504-5e51-490d-a831-a3ad9c3fbed8"
+                id: ""
             }
         }
     )
+
+    const funcao = () => {
+        if (action === "Criar") {
+            api.post("/requirement", requirements).then((res) => {
+                if (res.data.statusCode !== 201) {
+                    window.alert("Não foi possível criar o requisito")
+                } else {
+                    console.log("deu certo")
+                }
+            })
+        }
+        else if (action === "Editar") {
+            console.log("Rota editar")
+        } else {
+            console.log("Deu ruim")
+        }
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRequirements({
@@ -25,15 +48,21 @@ const ModalRequirements = () => {
         console.log(requirements)
     }
 
+    const handleOutsideClick = (event: any) => {
+        if (event.target.id === "container_modal") {
+            onClose()
+        }
+    }
+
 
     return (
         <>
-            <div className="container_modal_requirements">
+            <div id="container_modal" className="container_modal_requirements" onClick={(event) => { handleOutsideClick(event) }}>
 
                 <div className="modal_requirements">
                     <div className="header_modal">
-                        <h1>Criar requisito</h1>
-                        <span><MdClose /></span>
+                        <h1>{action} requisito</h1>
+                        <span onClick={() => { onClose() }}><MdClose /></span>
                     </div>
                     <div className="alignment_inputs_requirements">
                         <div className="alignment_name_percentage_requirements">
@@ -56,6 +85,11 @@ const ModalRequirements = () => {
 
                         </div>
                     </div>
+
+                    <div className="footer_modal">
+                        <InputBtn typeInput={'submit'} name={'btnCadastrarRequisito'} className={'btn_register_requirements'} valueBtn={action} onClick={() => { funcao() }} />
+                    </div>
+
 
                 </div>
             </div>
