@@ -69,7 +69,7 @@ export default function TechnicalRequirementsFrelancer({navigation}:ITechnicalRe
                                 <View style={style.TextBoxModal}>
                                 <Text style={style.TextInputModal}>Porcentual</Text>
                                 </View>
-                                <TextInput maxLength={10} keyboardType = 'numeric' style={style.InputTitleModal} placeholder="Porcentual..."></TextInput>
+                                <TextInput maxLength={3} keyboardType = 'numeric' style={style.InputTitleModal} placeholder="Porcentual..."></TextInput>
                                 
                                 <View style={style.boxBtn}>
                                     <BtnConfirmRequirements/>

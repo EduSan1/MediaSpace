@@ -47,7 +47,7 @@ export const Login = ({ navigation }: ILogin) => {
                 await SecureStore.setItemAsync('userId', res.data.user.id)
                 await SecureStore.setItemAsync('userName', res.data.user.first_name)
                 await SecureStore.setItemAsync('userNickname', res.data.user.nickname)
-                navigation.navigate("NavigationScreen")
+                navigation.navigate("Home")
 
             }
 

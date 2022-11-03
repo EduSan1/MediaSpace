@@ -27,9 +27,9 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
                 <Image style={styles.iconSearch} source={require('../../../../assets/icons/searchIcon.png')} />
                 <TextInput placeholder="Pesquisar..."></TextInput>
             </View>
-            <Image style={styles.iconProfile} source={require('../../../../assets/icons/ProfileTestIcon.png')} />
+            <Image style={styles.iconProfile} source={{uri : userImage}}/>
             <View>
-                <Image style={styles.iconSubMenu} source={{uri : userImage}} />
+            <Image style={styles.iconSubMenu} source={require('../../../../assets/icons/MenuSlideIcon.png')} />
             </View>
         </View>
     )
