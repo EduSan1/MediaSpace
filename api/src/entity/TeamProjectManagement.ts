@@ -19,6 +19,6 @@ export class TeamProjectManagementORM {
     projectManagement: ProjectManagementORM
 
     @OneToMany(() => ProjectMemberORM, projectMember => projectMember.teamProjectManagement)
-    members: ProjectMemberORM[]
+    members: ProjectMemberORM[] 
 
 }

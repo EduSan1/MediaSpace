@@ -53,7 +53,8 @@ export class ProjectService {
             entity.images?.map(async (image: IImage) => {
                 if (image.url !== "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f") {
                     const imageToRegister = {
-                        ...image, project: {
+                        ...image, 
+                        project: {
                             id: project.id
                         }
                     }
@@ -382,6 +383,9 @@ export class ProjectService {
                 }
             });
 
+            project.status = "IN_EXECUTION";
+            await this._.update(project)
+
             return {
                 message: "Requisitos aceitos",
                 statusCode: 200
@@ -409,10 +413,13 @@ export class ProjectService {
                 };
             }
 
-            project.requirements.map(async (requirement: any) => {
-                if (requirement.is_active === true) {
-                    requirement.is_accepted = false
-                    await this.projectRequirementRepository.update(requirement)
+            project.requirements.map(async (requirement : any) => {
+                if (requirement.is_active === true) {                    
+                    await this.projectRequirementRepository.delete(requirement)
+                    
+                    // requirement.is_accepted = false
+                    // requirement.is_active = false
+                    // await this.projectRequirementRepository.update(requirement)
                 }
             });
 
