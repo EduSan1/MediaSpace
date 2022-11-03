@@ -20,6 +20,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     const [imageIndex, setImageIndex] = useState(0)
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([{}])
+    const [user, setUser] = useState()
 
     const dateMask = (value: string) => {
         return value
@@ -296,6 +297,12 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     useEffect(() => {
         api.get("/category").then((res: any) => {
             setCategories(res.data)
+        })
+    }, [])
+
+    useEffect (()=>{
+        api.get("/user").then((res:any)=>{
+            setUser(res.data)
         })
     }, [])
 
