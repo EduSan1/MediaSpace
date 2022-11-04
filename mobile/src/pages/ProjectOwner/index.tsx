@@ -108,7 +108,7 @@ export const ProjectOwner = ({navigation, userId} : IProject) =>{
 
         </View>
         </ScrollView>
-        
+        7u
 
         <View style={styles.bar}></View>
         </>
