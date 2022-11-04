@@ -7,7 +7,7 @@ import { LoginButtonUpload } from '../LoginButtonUpload'
 interface ILoadImage {
     userImage: { url: string; }[],
     setUserImage: (image: string) => void
-    isActive : boolean
+    isActive: boolean
 }
 
 export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadImage) => {
@@ -19,12 +19,12 @@ export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadIm
         let result: any = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 4],
+            aspect: [8, 4],
             quality: 1
         })
 
         const source = { uri: result.uri }
-        
+
         if (source.uri != undefined)
             uploadImage(source)
 
@@ -45,7 +45,7 @@ export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadIm
             console.log(error)
         }
 
-      
+
         setUserImage(await firebase.storage().ref("projectImages/").child(fileName).getDownloadURL())
 
         setUploading(false)
@@ -57,29 +57,29 @@ export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadIm
         <View style={styles.container}>
             <Text style={styles.inputTitle}>Imagens de referências</Text>
             <View style={styles.containerImage}>
-            <Image style={styles.image} source={{ uri: userImage[0].url }} />
-            <Image style={styles.image} source={{ uri: userImage[1].url }} />
-            <Image style={styles.image} source={{ uri: userImage[2].url }} />
-            <Image style={styles.image} source={{ uri: userImage[3].url }} />
+                <Image style={styles.image} source={{ uri: userImage[0].url }} />
+                <Image style={styles.image} source={{ uri: userImage[1].url }} />
+                <Image style={styles.image} source={{ uri: userImage[2].url }} />
+                <Image style={styles.image} source={{ uri: userImage[3].url }} />
             </View>
             {
-                  isActive ?
-                  <Text style={styles.text}>Escolha um arquivo jpg, png, gif...</Text>
-                  : null
+                isActive ?
+                    <Text style={styles.text}>Escolha um arquivo jpg, png, gif...</Text>
+                    : null
             }
-         
-            
+
+
             {uploading ?
-                <ActivityIndicator size='large' color="#B275FF"/>
+                <ActivityIndicator size='large' color="#B275FF" />
                 :
                 isActive ?
-                <LoginButtonUpload type="dark" action={() => searchImage()} title="Selecionar Imagem" />
-                : null
+                    <LoginButtonUpload type="dark" action={() => searchImage()} title="Selecionar Imagem" />
+                    : null
             }
             {/* <Pressable onPress={() => setUserImage("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FIconFreelancer.png?alt=media&token=ee6655ad-113c-40e0-9c3e-ef10b9c9bb57")}>
                 <Text style={styles.textButton}>Remover imagem</Text>
             </Pressable> */}
-           
+
         </View>
     )
 }
@@ -106,21 +106,21 @@ const styles = StyleSheet.create({
         top: -14,
         left: 10
     },
-    containerImage:{
+    containerImage: {
         width: Dimensions.get('window').width * 0.8,
-        display:'flex',
-        flexWrap:'wrap',
-        flexDirection:'row',        
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
     },
     image: {
         width: Dimensions.get("window").width * 0.4,
         height: Dimensions.get("window").width * 0.3,
         resizeMode: 'contain',
         display: 'flex',
-        alignItems:'center',
+        alignItems: 'center',
         marginBottom: 10,
         borderColor: '#000',
-        
+
     },
     text: {
         fontSize: 10,

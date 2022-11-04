@@ -7,7 +7,7 @@ import { LoginButtonUpload } from '../LoginButtonUpload'
 interface ILoadImage {
     userImage: { url: string; }[],
     setUserImage: (image: string) => void
-    isActive : boolean
+    isActive: boolean
 }
 
 export const ScrollImage = ({ userImage, setUserImage, isActive }: ILoadImage) => {
@@ -24,7 +24,7 @@ export const ScrollImage = ({ userImage, setUserImage, isActive }: ILoadImage) =
         })
 
         const source = { uri: result.uri }
-        
+
         if (source.uri != undefined)
             uploadImage(source)
 
@@ -45,7 +45,7 @@ export const ScrollImage = ({ userImage, setUserImage, isActive }: ILoadImage) =
             console.log(error)
         }
 
-      
+
         setUserImage(await firebase.storage().ref("projectImages/").child(fileName).getDownloadURL())
 
         setUploading(false)
@@ -55,21 +55,23 @@ export const ScrollImage = ({ userImage, setUserImage, isActive }: ILoadImage) =
 
     return (
         <>
- 
-            
-            <ScrollView 
-            style={styles.containerImage}
-            horizontal={true}
-            pagingEnabled>
 
-            <Image style={styles.image} source={{ uri: userImage[0].url }} />
-            <Image style={styles.image} source={{ uri: userImage[1].url }} />
-            <Image style={styles.image} source={{ uri: userImage[2].url }} />
-            <Image style={styles.image} source={{ uri: userImage[3].url }} />
+
+            <ScrollView
+                style={styles.containerImage}
+                horizontal={true}
+                pagingEnabled>
+
+                {
+                    userImage.map((image: any) => {
+                        return <Image style={styles.image} source={{ uri: image.url }} />
+
+                    })
+                }
             </ScrollView>
-           
-     
-           
+
+
+
 
         </>
     )
@@ -77,7 +79,7 @@ export const ScrollImage = ({ userImage, setUserImage, isActive }: ILoadImage) =
 
 const styles = StyleSheet.create({
     containerImage: {
-        width: Dimensions.get('window').width ,
+        width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.4,
 
     },
@@ -86,9 +88,9 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").width,
         resizeMode: 'contain',
         display: 'flex',
-        alignItems:'center',
+        alignItems: 'center',
         marginBottom: 10,
         borderColor: '#000',
-        
+
     },
 })

@@ -1,17 +1,18 @@
-#LoginPage {
+#Navegationbar {
     .Container_navegation {
         display: flex;
         width: 4%;
-        height: 1080px;
+        height: 100%;
         flex-direction: column;
         align-items: center;
-        // position: fixed;
+        position: fixed;
         display: block;
         box-shadow: 0px 0px 6px #979797;
         border-radius: 0px 8px 0px;
-        transition: 0.20s;
+        transition: 0.2s;
         position: absolute;
         z-index: 1;
+        margin-right: 2%;
 
         .Menu_bar_icon {
             display: flex;
@@ -21,8 +22,6 @@
             justify-content: center;
             align-content: center;
             margin-bottom: 30%;
-
-
 
             .logo_img {
                 visibility: hidden;
@@ -50,17 +49,10 @@
                         width: 80%;
                         height: 80%;
                         color: #000000;
-
                     }
                 }
-
             }
-
         }
-
-
-
-
 
         .photo_User_container {
             display: flex;
@@ -71,18 +63,17 @@
             align-items: flex-start;
             flex-direction: column;
 
-
             .photo_user_img {
                 display: flex;
                 width: 100%;
-                height: 40%;
+                height: 45%;
                 justify-content: center;
                 align-items: center;
 
-
                 img {
-                    width: 100%;
+                    width: 80%;
                     height: 100%;
+                    border-radius: 20vw;
                 }
             }
 
@@ -98,30 +89,24 @@
             visibility: hidden;
             display: none;
         }
-
     }
-
-
 
     .Container_icon_nav {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 80%;
+        height: 75%;
+        overflow: hidden;
         align-items: flex-end;
         justify-content: end;
-
-
-
 
         .icons_all_navBar {
             display: flex;
             justify-content: end;
-            align-items: flex-end;
+            align-items: flex-start;
             width: 100%;
             height: 90%;
             flex-direction: column;
-            padding-top: 200px;
             margin-bottom: 10px;
 
             ul {
@@ -130,30 +115,29 @@
                 align-items: flex-end;
                 flex-direction: column;
                 width: 100%;
+                // background-color: #d9d9d9;
+
                 height: 60%;
                 list-style: none;
                 text-decoration: none;
-             
 
                 li {
                     display: flex;
                     width: 100%;
                     height: 100%;
+                    justify-content: center;
 
-                    svg{
+                    svg {
                         width: 100%;
                         height: 100%;
                     }
                 }
             }
 
-
-
             h3 {
                 visibility: hidden;
                 display: none;
             }
-
         }
 
         .rocket_icon {
@@ -162,10 +146,11 @@
             justify-content: center;
             align-items: center;
             gap: 10%;
+            margin-bottom: 10px;
 
             img {
-                width: 90%;
-                height: 90%;
+                width: 80%;
+                height: 80%;
             }
         }
 
@@ -183,83 +168,67 @@
                 align-items: flex-end;
                 flex-direction: column;
                 width: 100%;
-                height: 60%;
+                height: 100%;
                 list-style: none;
                 text-decoration: none;
-               
 
                 li {
                     display: flex;
                     width: 100%;
                     height: 100%;
+                    justify-content: center;
 
-                    svg{
+                    svg {
                         width: 100%;
                         height: 100%;
                     }
                 }
             }
-
         }
-
 
         .icon_navBar {
             width: 90%;
             height: 60%;
             margin-bottom: 2%;
-            color: #D9D9D9;
+            transition: 0.5s;
+            color: #d9d9d9;
 
             svg {
                 width: 90%;
                 height: 90%;
             }
 
-
             h3 {
                 display: none;
                 visibility: hidden;
-
             }
         }
 
         .icon_navBar:hover {
-            color: purple;
+            color: $primary-blue;
             cursor: pointer;
-            transition: 0.30s;
+            transition: 0.3s;
         }
     }
-
-
-
 }
-
-
-
-
-
-
-
 
 //open
 .Container_navegation_Open {
     display: flex;
-    width: 20%;
-    height: 1080px;
+    width: 15%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     padding-left: 5px;
-    transition: 0.20s;
+    transition: 0.2s;
     box-shadow: 1px 1px 6px #979797;
     border-radius: 0px 20px 20px 0px;
     position: absolute;
     z-index: 1;
-
-
-
+    background-color: white;
 
     .visible_open_img {
         display: block;
-
     }
 
     .photo_User_container_open {
@@ -267,19 +236,19 @@
         width: 100%;
         height: auto;
         flex-direction: column;
-        margin-bottom: 1%;
+        margin-bottom: 2%;
 
         div {
             display: flex;
             width: 100%;
-            height: 90%;
+            height: 100%;
             justify-content: center;
             align-items: center;
 
-
             img {
                 width: 70%;
-                height: 70%;
+                height: 85%;
+                border-radius: 30vw;
             }
         }
 
@@ -287,6 +256,9 @@
             display: flex;
             width: 100%;
             height: 30%;
+            margin-top: 2%;
+            padding-top: 7%;
+
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -295,7 +267,6 @@
             margin-top: -10%;
 
             h2 {
-
                 font: 1.2em sans-serif;
                 font-weight: 500;
                 text-align: justify;
@@ -305,7 +276,7 @@
             h4 {
                 font-size: clamp(0.8em, 1vw, 1em);
                 font-family: sans-serif;
-                color: #D9D9D9;
+                color: #d9d9d9;
                 letter-spacing: 1.2px;
             }
         }
@@ -322,9 +293,8 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                border-right: 1px solid #D9D9D9;
+                border-right: 1px solid #d9d9d9;
                 gap: 4px;
-
 
                 h2 {
                     font: 1em sans-serif;
@@ -340,8 +310,7 @@
                     font-weight: 300;
                     text-align: justify;
                     letter-spacing: 1.2px;
-                    color: #D9D9D9;
-
+                    color: #d9d9d9;
                 }
             }
         }
@@ -351,9 +320,7 @@
             height: 20%;
             margin-bottom: 80px;
         }
-
     }
-
 
     .Menu_bar_icon {
         display: flex;
@@ -363,9 +330,6 @@
         justify-content: flex-start;
         align-content: space-between;
         margin-bottom: 10%;
-
-
-
 
         .logo_img {
             visibility: visible;
@@ -379,7 +343,6 @@
             img {
                 width: 100%;
                 height: 100%;
-
             }
         }
 
@@ -391,7 +354,6 @@
             justify-content: center;
             align-items: center;
             background-color: #fff;
-
 
             .Span_icon {
                 display: flex;
@@ -406,15 +368,9 @@
                     color: #000000;
                     cursor: pointer;
                 }
-
             }
-
-
-
         }
-
     }
-
 
     .photo_User_container {
         display: flex;
@@ -431,22 +387,12 @@
         }
     }
 
-
-
-
-
-
-
-
-
-
     .Container_icon_nav_open {
         display: flex;
         width: 100%;
-        height: 70%;
+        height: 45%;
         flex-direction: column;
         gap: 1%;
-
 
         .icons_all_navBar_open {
             display: flex;
@@ -456,13 +402,10 @@
             justify-content: space-around;
 
             ul {
-
                 display: flex;
                 width: 100%;
                 height: 100%;
                 flex-direction: column;
-
-
 
                 li {
                     display: flex;
@@ -472,28 +415,34 @@
                     justify-content: space-around;
                     list-style: none;
 
+                    a {
+                        span {
+                            div {
+                                h1 {
+                                }
+                            }
+                        }
+                    }
                     .Link_NextPage {
+                        width: 50%;
                         text-decoration: none;
                     }
                 }
             }
-
-
-
-
         }
 
         .icon_navBar_open {
-            color: #D9D9D9;
+            color: #bbb;
+            transition: 0.5s;
+            font-size: clamp(12px, 4vw, 32px);
         }
 
         .icon_navBar_open:hover {
-            color: purple;
+            color: $primary-blue;
             cursor: pointer;
-            transition: 0.50s;
+            transition: 0.5s;
             text-decoration: none;
         }
-
 
         .rocket_icon {
             display: flex;
@@ -514,13 +463,10 @@
         }
     }
 
-
     .Logout_icon_nav {
         .Link_NextPage {
+            width: 50%;
             text-decoration: none;
         }
-
     }
-
-
 }

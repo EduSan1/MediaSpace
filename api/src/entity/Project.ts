@@ -1,10 +1,9 @@
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { CategoryORM } from "./Category";
 import { InterestORM } from "./Interest";
-import { ProjectAttachmentORM } from "./ProjectAttachment";
 import { ProjectImageORM } from "./ProjectImage";
-import { ProjectManagementORM } from "./ProjectManagment";
-import { ProjectRequirementORM } from "./ProjectRequirement";
+import { ProjectManagementORM } from "./ProjectManagement";
+import { ProjectRequirementsORM } from "./ProjectRequirements";
 import { SubCategoryORM } from "./SubCategory";
 import { UserORM } from "./User";
 
@@ -36,7 +35,7 @@ export class ProjectORM {
     is_active: boolean
 
     @Column({ default: "AWAITING_START" })
-    status: "AWAITING_START" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
+    status: "AWAITING_START" | "VALIDATING_REQUIREMENTS" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
 
     @ManyToOne(() => UserORM, user => user.projects)
     user: UserORM
@@ -45,24 +44,21 @@ export class ProjectORM {
     @JoinTable()
     categories: CategoryORM[]
 
-    @ManyToMany(() => SubCategoryORM, { eager: true })
+    @ManyToMany(() => SubCategoryORM)
     @JoinTable()
     sub_categories: SubCategoryORM[]
 
     @OneToMany(() => ProjectImageORM, image => image.project, { eager: true })
     images: ProjectImageORM[]
 
-    @OneToMany(() => ProjectAttachmentORM, attachments => attachments.project, { eager: true })
-    attachments: ProjectAttachmentORM[]
-
-    @OneToMany(() => ProjectManagementORM, managment => managment.project)
+    @OneToOne(() => ProjectManagementORM, management => management.project)
     management: ProjectManagementORM[]
 
-    @OneToMany(() => InterestORM, interestMember => interestMember.project, { eager: true })
+    @OneToMany(() => InterestORM, interestMember => interestMember.project)
     interest: InterestORM[]
 
-    @OneToMany(() => ProjectRequirementORM, projectRequirement => projectRequirement.project, { eager: true })
-    requirements: ProjectRequirementORM[]
+    @OneToMany(() => ProjectRequirementsORM, projectRequirements => projectRequirements.project)
+    requirements: ProjectRequirementsORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

@@ -8,8 +8,14 @@ export class MemberORM {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
+    @Column({ nullable: true })
+    is_active: boolean
+
     @Column({ default: false })
     accept: boolean
+
+    @Column({ default: false })
+    is_selected: boolean
 
     @ManyToOne(() => UserORM, user => user.interest, { eager: true })
     user: UserORM

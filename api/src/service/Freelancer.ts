@@ -65,9 +65,9 @@ export class TeamService {
         is_freelancer: true,
       };
 
-       await this.userTeamRepository.create(userTeam);
+      await this.userTeamRepository.create(userTeam);
 
-       return {
+      return {
         data: freelancer,
         message: "Prestador cadastrado com sucesso",
         statusCode: 200,
@@ -85,11 +85,6 @@ export class TeamService {
     try {
       const entityExists = await this.userRepository.findById(id);
       if (entityExists) {
-        entityExists.teams.map((userteam: any) => {
-          userteam.team.categories.map((category: any) => {
-            category.sub_categories = undefined;
-          });
-        });
 
         return {
           data: entityExists,
@@ -112,19 +107,31 @@ export class TeamService {
     }
   };
 
-  list = async () => {
+  list = async (query: any) => {
     try {
-      const freelancers = await this.userRepository.listWhere("teams", "");
+      let response = null
+      if (query.take !== undefined) {
+        let user = null
 
-      freelancers.map((freelancer : any) => {
-        freelancer.teams.map((userteam: any) => {
-          userteam.team.categories.map((category: any) => {
-            category.sub_categories = undefined;
-          });
-        });
-      })
+        const categories = query.categories.split(",")
+        user = await this._.listPageCategories(query.take, (query.page - 1) * query.take, query.search || "", categories[0] === "" ? [] : categories);
+
+
+        response = {
+          page: query.page,
+          numberOfPages: Math.ceil((user[user.length - 1] / query.take)),
+          count: user[user.length - 1],
+          data: user
+        }
+
+      } else {
+        response = await this.userRepository.listWhere("teams", "");
+
+      }
+
+
       return {
-        data: freelancers,
+        data: response,
         message: "Prestadores encontrados com sucesso",
         statusCode: 200,
       };

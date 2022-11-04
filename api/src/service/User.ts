@@ -7,6 +7,7 @@ import { PhoneRepository } from "../repository/Phone";
 import { Mail } from "./helpers/Mail";
 import * as jwt from "jsonwebtoken";
 import { APP_SECRET } from "../constants/consts";
+import { takeCoverage } from "v8";
 
 export class UserService {
     private _: any;
@@ -63,14 +64,14 @@ export class UserService {
             entity.password = hashPassword;
             const user: UserORM = await this._.create(entity);
 
-            const hasSend = await mailer.confirmRegister(user.mail, user.id, user.first_name)
+            mailer.confirmRegister(user.mail, user.id, user.first_name)
 
-            if (!hasSend.accepted) {
-                return {
-                    message: "Não foi possivel enviar o email",
-                    statusCode: 200,
-                };
-            }
+            // if (!hasSend.accepted) {
+            //     return {
+            //         message: "Não foi possivel enviar o email",
+            //         statusCode: 200,
+            //     };
+            // }
 
             if (entity.phone) {
                 let phone: PhoneORM = entity.phone;
@@ -112,16 +113,26 @@ export class UserService {
 
     list = async (query: any) => {
         try {
-            let users = null
-            if (query.showDisabled === undefined) {
-                users = await this._.listWhere("is_active", true);
+            let response = null
+
+            if (query.take !== undefined) {
+                let user = await this._.listPage(query.take, (query.page - 1) * query.take, query.search || "");
+                response = {
+                    page: query.page,
+                    numberOfPages: Math.ceil((user[user.length - 1] / query.take)),
+                    count: user[user.length - 1],
+                    data: user
+                }
+
+            } else if (query.showDisabled === undefined) {
+                response = await this._.listWhere("is_active", true);
             } else {
-                users = await this._.list();
+                response = await this._.list();
             }
 
             return {
                 message: "usuários encontrados com sucesso",
-                data: users,
+                data: response,
                 statusCode: 200,
             };
         } catch (error) {
@@ -194,7 +205,8 @@ export class UserService {
                     message: "Login realizado com sucesso",
                     is_logged: true,
                     statusCode: 200,
-                    userDetails: userJwt
+                    userDetails: userJwt,
+                    user: userDetails
                 }
             } else {
                 return {
@@ -247,7 +259,6 @@ export class UserService {
         try {
 
             const user: any = jwt.decode(idJwt)
-
             const entityExists = await this._.findById(user.id);
 
             if (!entityExists)
