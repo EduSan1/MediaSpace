@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useJwt } from "react-jwt";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/HeaderPage/Search";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";

@@ -259,7 +259,6 @@ export class UserService {
         try {
 
             const user: any = jwt.decode(idJwt)
-
             const entityExists = await this._.findById(user.id);
 
             if (!entityExists)

@@ -4,6 +4,8 @@ import api from "../../../service";
 import { ListProjectCard } from "../../components/utils/ListProjectCard";
 import { CategoryButton } from "../../components/utils/CategoryButton";
 import { BtnList } from "../../components/utils/BtnList";
+import TabBar from "../../components/utils/TabBar";
+import HeaderSearch from "../../components/utils/HeaderSearch";
 
 
 interface IListProject {
@@ -11,6 +13,10 @@ interface IListProject {
 }
 
 export const ListProject = ({ navigation }: IListProject)=> {
+
+    const navigateTo = (screen: string) => {
+        navigation.navigate(screen)
+    }
 
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
@@ -30,8 +36,10 @@ export const ListProject = ({ navigation }: IListProject)=> {
 
     return(
         <>
+        
+        <TabBar currentScreen="ListProject" navigateTo={navigateTo} />
         <ScrollView>
-
+        <HeaderSearch label={"Pesquisar..."} />
         <View style={styles.container}>
         <ImageBackground style={styles.image} resizeMode="cover"  source={require("../../../assets/img/boostad.png")}>
 
@@ -67,7 +75,7 @@ export const ListProject = ({ navigation }: IListProject)=> {
         <View style={styles.card}>
             {
                 projects.map((project:any)=>{
-                    return <ListProjectCard key={project.id} user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images[0].url} categories={project.categories} navigation/>
+                    return <ListProjectCard key={project.id} user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images[0].url} categories={project.categories} navigation={navigation}/>
                 })
             }
         </View>
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
     },
     card:{
         width: Dimensions.get('window').width ,
-        height:Dimensions.get('window').height ,
+        height:Dimensions.get('window').height  ,
         flexDirection:'row',
         flexWrap:'wrap',
         display:'flex',

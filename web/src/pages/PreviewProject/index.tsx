@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
+import { decodeToken, useJwt } from "react-jwt";
+import api from "../../service";
 
-const PreviewProject = () => {
+
+const PreviewProject = async () => {
     const { projectId } = useParams()
     console.log(projectId)
 
-    if(projectId === "e7049e0e-2243-4d20-987c-382fee430e2a"){
-        console.log("teste")
-    }
+    const [createrProject, setCreaterProject] = useState([])
+
+    //const user = await localStorage.getItem('userDetails');
+    //const { decodedToken, isExpired } = useJwt(user ? user : "");
+    
+    //console.log(decodedToken)
+     
+    
+    useEffect(()=>{
+        api.get(`/project/${projectId}`).then((res: any) => {
+            setCreaterProject(res.data.data.user.id)
+        
+        })},[])
+
+        const typeProjectPreview = () => {
+            //if(createrProject === decodedToken){}
+            
+        }
 
     
     return(

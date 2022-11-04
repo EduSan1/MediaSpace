@@ -13,23 +13,25 @@ export class DeliveryRepository {
         return await this._.save(entity)
     }
 
+    list = async () => {
+        return await this._.find(DeliveryORM)
+    }
+
     findById = async (id: string) => {
         return await this._.findOne({
             where: {
                 id
             },
             relations: {
-                requirement: true,
+                files: true,
+                requirements: true,
+                projectMember: true
             }
         })
     }
 
     update = async (entity: DeliveryORM) => {
         return await this._.save(entity)
-    }
-
-    delete = async (id: string) => {
-        return await this._.delete({ id })
     }
 
 }
