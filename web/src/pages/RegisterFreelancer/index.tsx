@@ -61,7 +61,7 @@ const RegisterFreelancer = () => {
          removeFromFreelancer(categoryToRemove, "categories")
       }
    }
-
+ 
    const registerFreelancer = () => {
       api.post("/freelancer", freelancer).then((res: any) => {
          if (res.data.statusCode === 200) {

@@ -35,11 +35,7 @@ const ProjectsSelecetFreelancer = () => {
    .catch()
  },[])
 
- useEffect(() => {
 
-    console.log(selecetFreelancer)
-
-}, [selecetFreelancer])
 
 const selectidFreelancer  =  (idFreelancer:any) =>{
 

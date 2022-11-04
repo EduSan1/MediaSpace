@@ -51,7 +51,7 @@ function App() {
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
-        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer id={''}/>} />
+        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer id={'47063063-3330-4f53-8372-b71ef426f720'}/>} />
         <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
 
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />

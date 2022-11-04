@@ -13,12 +13,28 @@ const ProjectsrequirementsFreelancer = (id:any) => {
 
 
     const [modal, setmodal] = useState(false);
-    const [idproject, setIdpropject] = useState();
+    const [requerimenteproject, setRequerimenteproject] = useState({
+        name:"",
+    });
+
+    const [requerimente, setRequerimente] = useState({});
+    
 
     useEffect(() => {
-    api.get(`/requirement/${id}`);
+    api.get(`/requirement/47063063-3330-4f53-8372-b71ef426f720`)
+    .then((res)=>{
+        setRequerimenteproject(res.data.data.project);
+        setRequerimente(res.data.data);
+    })
 
     }, [])
+
+
+    useEffect(() => {
+
+        console.log(requerimenteproject)
+    
+    }, [requerimenteproject])
 
     return (
         <main id="ContentPage">
@@ -31,20 +47,24 @@ const ProjectsrequirementsFreelancer = (id:any) => {
                     <div className="ContainerPage" >
                         <div className="Requesit_name">
                             <span className="Components_projeteste"> <HistoryTrack name="Perfil > Projeto em execução > Requisitos técnicos" link={'/home'} classSpanDiv={"historyTrack"} /> </span>
-                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - Nome do projeto </h1></span>
+
+                        
+                               
+
+                                    <span className="Tittle_name_project"> <h1>Requisitos técnicos - {requerimenteproject.name} </h1></span>
+                                
+                            
+                        
+                            
                         </div>
 
 
                         <div className="ContainerTecnicos">
                             <div>
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
-                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={25} value={20} />
+
+                               
+                                <CardShip CardClasse="" desciption="O layout define como o app inteiro será representado bla bla bla " issue="" layout="" numberissue={1} percentage={20} value={20} />
+
 
 
                             </div>
@@ -77,9 +97,7 @@ const ProjectsrequirementsFreelancer = (id:any) => {
 
 }
 
-const id = "47063063-3330-4f53-8372-b71ef426f720";
 
-ProjectsrequirementsFreelancer(id);
 
 
 export default ProjectsrequirementsFreelancer;

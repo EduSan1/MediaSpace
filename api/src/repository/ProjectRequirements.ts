@@ -39,7 +39,7 @@ export class ProjectRequirementsRepository {
                 id
             },
             relations: {
-                project: false,
+                project: true,
                 delivery: true
             }
         })
