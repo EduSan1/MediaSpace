@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/HeaderPage/Search";
 import CardShip from "../../components/ProjectRequiremens/CardShip";
 import HistoryTrack from "../../components/utils/HistoryTrack";
 import NavegationBar from "../../components/utils/navegation";
 import InputBtn from "../../components/utils/Button/InputBtn";
+import api from "../../service";
 
 
 
-const ProjectsrequirementsFreelancer = () => {
+
+const ProjectsrequirementsFreelancer = (id:any) => {
+
+
+    const [modal, setmodal] = useState(false);
+    const [idproject, setIdpropject] = useState();
+
+    useEffect(() => {
+    api.get(`/requirement/${id}`);
+
+    }, [])
 
     return (
         <main id="ContentPage">
@@ -65,6 +76,10 @@ const ProjectsrequirementsFreelancer = () => {
     )
 
 }
+
+const id = "47063063-3330-4f53-8372-b71ef426f720";
+
+ProjectsrequirementsFreelancer(id);
 
 
 export default ProjectsrequirementsFreelancer;

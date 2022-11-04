@@ -51,10 +51,11 @@ function App() {
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
-        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
+        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer id={''}/>} />
         <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
-        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />{/*nice*/}
-        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  {/*not nice*/}
+
+        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
+        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  
 
 
 
