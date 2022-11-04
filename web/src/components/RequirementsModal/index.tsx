@@ -7,10 +7,11 @@ import api from "../../service";
 interface IModalRequirements {
     action: "Criar" | "Editar",
     onClose: () => void
+    requirementId?: string
 }
 
 
-const ModalRequirements = ({ action, onClose }: IModalRequirements) => {
+const ModalRequirements = ({ action, onClose, requirementId }: IModalRequirements) => {
 
     const [requirements, setRequirements] = useState(
         {
