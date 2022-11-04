@@ -1,6 +1,7 @@
+import { async } from "@firebase/util";
 import { StackRouterOptions } from "@react-navigation/native";
 import React, { useEffect, useReducer, useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, ToastAndroid } from "react-native";
 import api from "../../../service";
 import { BtnNewProject } from "../../components/utils/BtnNewProject";
 import HeaderSearch from "../../components/utils/HeaderSearch";
@@ -89,6 +90,24 @@ export const Project = ({ navigation, route }: IProject) => {
         ]
     })
 
+    const freelancerProject = async () => {
+        const projectApi = {
+            ...project.user
+        }
+        console.log(projectApi)
+
+        api.post(`/project/registerInterest/${project.user}`).then((res:any)=>{
+            if(res.data.statusCode === 201){
+                navigation.navigate("WorkersAppliedPage", {
+                    projectId: res.data.data.id,
+                })
+            } else {
+                ToastAndroid.show("res.data.message", 10)
+            }
+            console.log(res.data)
+        })
+    }
+
     const handleChange = (text : string, name : string) => {
         if ( name === "update_at" ) {
             setProject(
@@ -138,17 +157,17 @@ export const Project = ({ navigation, route }: IProject) => {
                             <Text style={styles.title2}>{project.name}</Text>
                             <Text style={styles.describle}> {project.description}</Text>
 
-                             <View style={styles.categories}>
+                        <View>                        
                                 <Text style={styles.title}>Categoria</Text>
                                 {
                                     project.categories.map((category : any) => {
                                         return <Text style={styles.categorySelected}>{category.name}</Text>
 
                                     })
-                                }
-                             </View>
+                                }                        
+                        </View>
 
-                                
+                        <View>       
                                 <Text style={styles.title}>Subcategoria</Text>
                                 {
                                     project.sub_categories.map((sub_category : any) => {
@@ -156,10 +175,11 @@ export const Project = ({ navigation, route }: IProject) => {
 
                                     })
                                 }
+                        </View> 
                             
 
                              <View style={styles.button}>
-                                <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Participar" />
+                                <LoginButton type="light" action={() => freelancerProject()} isLoad={projectLoad} title="Participar" />
                             </View>
                         </View>
 
@@ -187,7 +207,7 @@ const styles = StyleSheet.create({
     },
     containerFilho: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2,
+        height: Dimensions.get('window').height * 1.9,
     },
     bar: {
         height: Dimensions.get('window').height * .08,
@@ -252,6 +272,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Dimensions.get('window').width * 0.06,
         margin: Dimensions.get('window').width * 0.01,
         height: Dimensions.get('window').height * 0.04,
+        width: Dimensions.get('window').width * 0.5,
         backgroundColor: "#75A5FF",
         borderRadius: 100,
         display: "flex",

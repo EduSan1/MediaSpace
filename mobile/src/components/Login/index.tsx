@@ -39,8 +39,8 @@ export const Login = ({ navigation }: ILogin) => {
         Keyboard.dismiss()
         setIsLoad(true)
         // navigation.navigate("Home")      
-
         api.post("/user/login", userLogin).then(async (res: any) => {
+            console.log("adsa")
 
             if (res.data.is_logged) {
                 await SecureStore.setItemAsync('userImage', res.data.user.profile_picture)

@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, Dimensions,Image, ScrollView, ToastAndroid, Pre
 import api from "../../../../service";
 import { CategoryButton } from "../CategoryButton";
 import { CategoryCard } from "../CategoryCard";
+import * as SecureStore from"expo-secure-store"
+
 
 interface IProject {
     id: string
@@ -12,6 +14,7 @@ interface IProject {
     image: string 
     categories: any
     user: {
+        id : string
         first_name: string
         nickname: string
         profile_picture: string
@@ -21,9 +24,26 @@ interface IProject {
 
 export const ListProjectCard = ({ id, name, description, value, image, categories, user, navigation }: IProject) => {
     
+    const userProject = async () => {
+
+            const userId = await SecureStore.getItemAsync('userId')
+
+        api.get(`/project/${id}`).then((res:any)=>{
+            if(user.id === userId ) {
+                navigation.navigate("ProjectOwner", {
+                    projectId: res.data.data.id
+                })
+            } else{
+                navigation.navigate("Project",{
+                    projectId : res.data.data.id
+                })
+            }
+            console.log(res.data)
+        })
+    }
     return (
         
-        <Pressable onPress={() => navigation.navigate('Project', {projectId : id})}>
+        <Pressable onPress={() => userProject()}>
         <View style={styles.containerCard}  >
             
             

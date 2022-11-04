@@ -72,7 +72,8 @@ export default function TechnicalRequirementsFrelancer({navigation}:ITechnicalRe
                                 <TextInput maxLength={3} keyboardType = 'numeric' style={style.InputTitleModal} placeholder="Porcentual..."></TextInput>
                                 
                                 <View style={style.boxBtn}>
-                                    <BtnConfirmRequirements/>
+                                    <BtnConfirmRequirements />
+                                    
                                 </View>
                         </View>
                     </View>
