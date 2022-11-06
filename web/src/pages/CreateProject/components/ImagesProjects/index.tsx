@@ -62,7 +62,7 @@ export const ImageProject = ({ imageProjects, setImageProjects, maxImage }: IIma
                     <label className="input_btn_select_image" htmlFor="image"> Input </label>
 
                     <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif" name="image[]" multiple />
-                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={maxImage?'input_btn_select_image':'input_btn_select_image_limit'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
+                    <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={maxImage ? 'input_btn_select_image' : 'input_btn_select_image_limit'} valueBtn={'Selecionar imagem'} onClick={() => { }} />
                 </div>
             </form>
 
