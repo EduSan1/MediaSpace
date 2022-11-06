@@ -76,4 +76,18 @@ export class ProjectController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar o projeto"))
     }
 
+    getAllUserProjects = (request: Request, response: Response) => {
+        this.service.getAllUserProjects(request.params.userId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar o projeto"))
+    }
+
+    getAllFreelancerProjects = (request: Request, response: Response) => {
+        this.service.getAllFreelancerProjects(request.params.freelancerId).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao recusar o projeto"))
+    }
+
 }

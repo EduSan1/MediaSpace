@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     headerNav:{
         position:"absolute",
         width: Dimensions.get('window').width,
-        height:Dimensions.get('window').height * 0.16,
+        height:Dimensions.get('window').height * 0.26,
         justifyContent:"center",
 
         zIndex: 1

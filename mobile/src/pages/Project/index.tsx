@@ -1,6 +1,7 @@
+import { async } from "@firebase/util";
 import { StackRouterOptions } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import React, { useEffect, useReducer, useState } from "react";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, ToastAndroid } from "react-native";
 import api from "../../../service";
 import { BtnNewProject } from "../../components/utils/BtnNewProject";
 import HeaderSearch from "../../components/utils/HeaderSearch";
@@ -17,6 +18,13 @@ interface IProject {
 export const Project = ({ navigation, route }: IProject) => {
     const navigateTo = (screen: string) => {
         navigation.navigate(screen)
+    }
+
+    const dateMask = (value: string) => {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, "$1/$2")
+            .replace(/(\d{2})(\d{4})/, "$1/$2")
     }
     const {projectId} = route.params
 
@@ -44,6 +52,36 @@ export const Project = ({ navigation, route }: IProject) => {
         ],
         requirements: [],
         management: "",
+        user: {
+            id: "",
+            first_name: "",
+            last_name: "",
+            nickname: "",
+            birth_date: "",
+            cpf: "",
+            mai: "",
+            password: "",
+            biography: "",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FWhatsApp%20Image%202022-10-17%20at%2017.49.13.jpeg?alt=media&token=7cde0a87-0125-45b1-b4e9-e86979334194",
+            is_active: true,
+            is_authenticated: true,
+            create_at: "",
+            update_at: "",
+            gender: {
+                id: "",
+                gender: "",
+                create_at: "",
+                update_at: ""
+            },
+            phone: {
+                id: "",
+                ddd: "",
+                phone: "",
+                ddi: null
+            },
+            teams: [],
+            project_member: []
+        },
         categories: [{}],
         images: [
             {
@@ -52,10 +90,45 @@ export const Project = ({ navigation, route }: IProject) => {
         ]
     })
 
+    const freelancerProject = async () => {
+        const projectApi = {
+            ...project.user
+        }
+        console.log(projectApi)
+
+        api.post(`/project/registerInterest/${project.user}`).then((res:any)=>{
+            if(res.data.statusCode === 201){
+                navigation.navigate("WorkersAppliedPage", {
+                    projectId: res.data.data.id,
+                })
+            } else {
+                ToastAndroid.show("res.data.message", 10)
+            }
+            console.log(res.data)
+        })
+    }
+
+    const handleChange = (text : string, name : string) => {
+        if ( name === "update_at" ) {
+            setProject(
+                {
+                    ...project,
+                    [name]: dateMask(text)               
+                }
+            )
+        }else {
+            setProject(
+                {
+                    ...project,
+                    [name] : text
+                }
+            )
+        }
+    }
+
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any)=>{
             setProject(res.data.data)
-            console.log(res.data.data)
          })
      }, [])
 
@@ -70,13 +143,13 @@ export const Project = ({ navigation, route }: IProject) => {
                  <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string)  => {} } /> 
 
                     <View style={styles.containerFilho}>
-                           <View style={styles.containerDate}>
-                            <Text style={styles.title}>Criado em: {project.create_at} </Text>
-                            <Text style={styles.title}>Prazo término: {project.estimated_deadline}</Text>
+                           <View style={styles.containerDate} >
+                            <Text style={styles.title3} >Criado em: {project.create_at} </Text>
+                            <Text style={styles.title3}>Prazo término: {project.estimated_deadline}</Text>
                         </View>
 
                    <View style={styles.containerProfile}>
-                            <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} /> 
+                            <Image style={styles.image} source={{uri : project.user.profile_picture }} /> 
                             <Text style={styles.title}>Valor estiamdo: {project.value}</Text>
                         </View>
 
@@ -84,15 +157,17 @@ export const Project = ({ navigation, route }: IProject) => {
                             <Text style={styles.title2}>{project.name}</Text>
                             <Text style={styles.describle}> {project.description}</Text>
 
-                             <View style={styles.categories}>
+                        <View>                        
                                 <Text style={styles.title}>Categoria</Text>
                                 {
                                     project.categories.map((category : any) => {
                                         return <Text style={styles.categorySelected}>{category.name}</Text>
 
                                     })
-                                }
+                                }                        
+                        </View>
 
+                        <View>       
                                 <Text style={styles.title}>Subcategoria</Text>
                                 {
                                     project.sub_categories.map((sub_category : any) => {
@@ -100,10 +175,11 @@ export const Project = ({ navigation, route }: IProject) => {
 
                                     })
                                 }
-                            </View>
+                        </View> 
+                            
 
                              <View style={styles.button}>
-                                <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Participar" />
+                                <LoginButton type="light" action={() => freelancerProject()} isLoad={projectLoad} title="Participar" />
                             </View>
                         </View>
 
@@ -131,7 +207,7 @@ const styles = StyleSheet.create({
     },
     containerFilho: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2,
+        height: Dimensions.get('window').height * 1.9,
     },
     bar: {
         height: Dimensions.get('window').height * .08,
@@ -167,13 +243,18 @@ const styles = StyleSheet.create({
     image: {
         width: Dimensions.get('window').width * 0.2,
         height: Dimensions.get("window").width * 0.2,
+        borderRadius: 100
     },
     title: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
     },
     title2: {
         fontSize: 26,
+        fontWeight: 'bold'
+    },
+    title3: {
+        fontSize: 10,
         fontWeight: 'bold'
     },
     describle: {
@@ -181,19 +262,21 @@ const styles = StyleSheet.create({
     },
     categories: {
         margin: Dimensions.get('window').width * 0.02,
-        height: Dimensions.get('window').height * 0.25,
+        height: Dimensions.get('window').height * 0.05,
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        flexDirection: 'row'
     },
     categorySelected: {
         paddingHorizontal: Dimensions.get('window').width * 0.06,
-        margin: Dimensions.get('window').width * 0.02,
+        margin: Dimensions.get('window').width * 0.01,
         height: Dimensions.get('window').height * 0.04,
+        width: Dimensions.get('window').width * 0.5,
         backgroundColor: "#75A5FF",
         borderRadius: 100,
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "flex-start",
         justifyContent: "flex-end",
         textAlign: 'center'
 
