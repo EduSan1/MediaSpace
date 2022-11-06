@@ -64,6 +64,7 @@
             display: flex;
             justify-content: end;
             align-items: flex-end;
+            flex-direction: column;
 
             span {
                 padding: 5px;
@@ -99,5 +100,25 @@
     .btn_register_requirements:hover {
         color: #FFFFFF;
         background-color: #B275FF;
+    }
+
+    .input_gain_requirement:after {
+        position: absolute;
+        display: flex;
+        width: 25px;
+        height: 10px;
+        font-size: 10px;
+        pointer-events: none;
+        background: #000;
+    }
+
+    .input_gain_requirement_error {
+        border: 1px solid #ff6666;
+    }
+
+    .conatainer_input_message_error {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
     }
 }

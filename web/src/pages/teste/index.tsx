@@ -26,7 +26,7 @@ const Teste = () => {
 
 
             <button onClick={() => { setIsModalVisible(true) }}>open</button>
-            {isModalVisible ? <ModalRequirements action={"Criar"} onClose={() => setIsModalVisible(false)} /> : null}
+            {isModalVisible ? <ModalRequirements onClose={() => setIsModalVisible(false)} /> : null}
 
 
         </main>

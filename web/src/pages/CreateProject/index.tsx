@@ -310,7 +310,7 @@ const CreateProject = () => {
                         <div className="teste">
 
                            <div className="container_informations">
-                              <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                              {/* <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} /> */}
 
                               <div className="container_description_project">
                                  <label className="subtitulo_projects">Descrição <span> * </span></label>
