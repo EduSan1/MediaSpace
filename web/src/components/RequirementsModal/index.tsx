@@ -19,10 +19,25 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             description: "",
             gain_percentage: 0,
             project: {
-                id: projectId
+                id: "eaae1d8d-8756-4b27-83ef-b1a47aa87b28"
             }
         }
     )
+
+    console.log(requirements)
+
+    useEffect(() => {
+        api.get(`/requirement/${requirementId}`).then((res: any) => {
+            // setRequirements({
+            //     ...requirements, title: res.data.data.title
+            // })
+
+            console.log(res)
+
+        })
+    }, [])
+
+    console.log(requirements)
 
     const [error, setError] = useState({
         title: "",
@@ -78,8 +93,10 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
 
     const createEditRequirements = () => {
         if (defineAction() === "Criar") {
+
             api.post("/requirement", requirements).then((res) => {
                 if (res.data.statusCode !== 201) {
+                    console.log(res.data.statusCode)
                     window.alert("Não foi possível criar o requisito")
                 } else {
                     console.log("deu certo")
@@ -108,6 +125,8 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             onClose()
         }
     }
+
+
 
 
     return (
