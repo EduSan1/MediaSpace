@@ -9,7 +9,7 @@ interface IInputBtn {
   enable?: boolean
 }
 
-const inputBtn = ({ typeInput, name, className, valueBtn, onClick, enable }: IInputBtn) => {
+const InputBtn = ({ typeInput, name, className, valueBtn, onClick, enable }: IInputBtn) => {
 
   return (
 
@@ -24,4 +24,4 @@ const inputBtn = ({ typeInput, name, className, valueBtn, onClick, enable }: IIn
 
 }
 
-export default inputBtn;
+export default InputBtn;
