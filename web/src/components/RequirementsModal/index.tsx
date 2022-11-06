@@ -19,25 +19,20 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             description: "",
             gain_percentage: 0,
             project: {
-                id: "eaae1d8d-8756-4b27-83ef-b1a47aa87b28"
+                id: projectId
             }
         }
     )
 
-    console.log(requirements)
+    const [caracteres, setCaracteres] = React.useState({
+        caracteres: 0
+    })
 
-    useEffect(() => {
-        api.get(`/requirement/${requirementId}`).then((res: any) => {
-            // setRequirements({
-            //     ...requirements, title: res.data.data.title
-            // })
-
-            console.log(res)
-
+    const numberCaracteres = (event: any) => {
+        setCaracteres({
+            ...caracteres, caracteres: event.target.value.length
         })
-    }, [])
-
-    console.log(requirements)
+    }
 
     const [error, setError] = useState({
         title: "",
@@ -54,12 +49,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
 
     }
 
-    useEffect(() => {
-        api.get(`/project/${projectId}`).then((res: any) => {
-            // (res.data.data.gain_percentage)
 
-        })
-    }, [])
 
     const validation = () => {
         let validate = true;
@@ -104,8 +94,14 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             })
         }
         else if (defineAction() === "Editar") {
-            api.put(`/requirement/${requirementId}`, requirements).then((res) => {
-                if (res.data.statusCode !== 201) {
+            const requirementToSend = {
+                tittle: requirements.title,
+                description: requirements.description,
+                gain_percentage: requirements.gain_percentage
+            }
+            api.put(`/requirement/${requirementId}`, requirementToSend).then((res) => {
+                if (res.data.statusCode !== 200) {
+                    console.log(res.data)
                     window.alert("Não foi possível editar o requisito")
                 } else {
                     console.log("deu certo")
@@ -126,6 +122,24 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         }
     }
 
+    useEffect(() => {
+        api.get(`/requirement/${requirementId}`).then((res: any) => {
+            setRequirements({
+                ...requirements, gain_percentage: res.data.data.gain_percentage,
+                description: res.data.data.description,
+                title: res.data.data.title
+            })
+
+
+        })
+    }, [])
+
+    useEffect(() => {
+        api.get(`/requirements/${requirementId}`).then((res: any) => {
+            console.log(res.data.data.gain_percentage)
+
+        })
+    }, [])
 
 
 
@@ -140,12 +154,12 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                     </div>
                     <div className="alignment_inputs_requirements">
                         <div className="alignment_name_percentage_requirements">
-                            <InputProject onBlur={(event: React.ChangeEvent<HTMLInputElement>) => { }} label={"Nome do requisito"} maxLenght={100} name={"title"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                            <InputProject value={requirements.title} onFocus={() => { handleErrors("", "title") }} label={"Nome do requisito"} maxLenght={100} name={"title"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
 
                             <div className="container_input_project">
                                 <label className="subtitulo_projects">Percentual de ganho<span> * </span></label>
                                 <div className="conatainer_input_message_error">
-                                    <input className={"input_gain_requirement"} type="number" min={0} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
+                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
 
                                     <p>{error.gain_percentage}</p>
                                 </div>
@@ -155,8 +169,8 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                         <div className="container_description_requirement">
                             <label className="subtitulo_projects">Descrição <span> * </span></label>
                             <div>
-                                <textarea name="description" onChange={({ target }) => { requirements.description = target.value }} onBlur={({ target }) => { console.log(target) }} onFocus={() => { handleErrors("", "description") }} />
-                                <span>0/800</span>
+                                <textarea name="description" onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} onChange={({ target }) => { requirements.description = target.value }} onFocus={() => { handleErrors("", "description") }} />
+                                <span>{caracteres.caracteres}/800</span>
 
                                 <p>{error.description}</p>
 
