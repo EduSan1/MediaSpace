@@ -2,18 +2,29 @@ import React, { useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Pressable } from "react-native";
 import { BtnRequirementsOpenProfile } from "../btnRequerimentsOpenProfile";
 
-export default function BtnWorkerSelectdProfile() {
+
+interface IBtnWorkersSelectedProfile{
+    
+    name:string
+    nickname:string
+    icon:string
+    selected : string
+    id : string
+    setSelectedFreelancer : React.Dispatch<React.SetStateAction<{freelancerId: string;}>>
+
+}
+export default function BtnWorkerSelectdProfile({id ,name, nickname, icon, selected, setSelectedFreelancer}:IBtnWorkersSelectedProfile) {
     const [isSelected, setIsSelected] = useState(false)
 
     const onSelected = () => {
-        setIsSelected(!isSelected)
+        setSelectedFreelancer({freelancerId : id})
     }
     return(
-        <Pressable onPress={() => onSelected()} style={isSelected ? style.cardProfile : style.cardProfileSelected}>
-            <View style={style.iconProfile}></View>
+        <Pressable onPress={() => onSelected()} style={selected === id ? style.cardProfile : style.cardProfileSelected}>
+            <Image source={{uri : icon}} style={style.iconProfile}></Image>
             <View style={style.textBox}>
-            <Text style={style.textName}>UserProfile</Text>
-            <Text style={style.textNick}>@User</Text>
+            <Text style={style.textName}>{name}</Text>
+            <Text style={style.textNick}>@{nickname}</Text>
             </View>
             {/* <View style={style.checked}>
                 <View style={style.checkedCirlce}/>

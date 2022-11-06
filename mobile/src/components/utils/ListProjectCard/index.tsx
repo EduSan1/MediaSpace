@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, Dimensions,Image, ScrollView, ToastAndroid, Pre
 import api from "../../../../service";
 import { CategoryButton } from "../CategoryButton";
 import { CategoryCard } from "../CategoryCard";
+import * as SecureStore from"expo-secure-store"
+
 
 interface IProject {
     id: string
@@ -12,6 +14,7 @@ interface IProject {
     image: string 
     categories: any
     user: {
+        id : string
         first_name: string
         nickname: string
         profile_picture: string
@@ -21,9 +24,26 @@ interface IProject {
 
 export const ListProjectCard = ({ id, name, description, value, image, categories, user, navigation }: IProject) => {
     
+    const userProject = async () => {
+
+            const userId = await SecureStore.getItemAsync('userId')
+
+        api.get(`/project/${id}`).then((res:any)=>{
+            if(user.id === userId ) {
+                navigation.navigate("ProjectOwner", {
+                    projectId: res.data.data.id
+                })
+            } else{
+                navigation.navigate("Project",{
+                    projectId : res.data.data.id
+                })
+            }
+            console.log(res.data)
+        })
+    }
     return (
         
-        <Pressable onPress={() => navigation.navigate('Project', {projectId : id})}>
+        <Pressable onPress={() => userProject()}>
         <View style={styles.containerCard}  >
             
             
@@ -68,26 +88,27 @@ const styles = StyleSheet.create({
 
     containerCard:{
         width: Dimensions.get('window').width * 0.45,
-        height: Dimensions.get("window").height * 0.4,
+        height: Dimensions.get("window").height * 0.45,
         alignItems:'center',
         justifyContent: 'space-between',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#D3C5F8',
-        // backgroundColor:"blue"
+        backgroundColor:"#fff",
         marginBottom:20
 
     },
 
     imagecontainer:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.15,
+        height: Dimensions.get("window").height * 0.2,
         borderTopStartRadius: 10,
-        borderTopEndRadius: 10
+        borderTopEndRadius: 10,
+        
         
     },
     profile:{
-        width: Dimensions.get('window').width * 0.44 ,
+        width: Dimensions.get('window').width * 0.4 ,
         height: Dimensions.get("window").height * 0.035,
         display:'flex',
         flexDirection:'row',
@@ -96,12 +117,12 @@ const styles = StyleSheet.create({
     },
     describle:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.06,
+        height: Dimensions.get("window").height * 0.045,
         
     },
     value:{
         width: Dimensions.get('window').width * 0.44 ,
-        height: Dimensions.get("window").height * 0.03,
+        height: Dimensions.get("window").height * 0.035,
         display:'flex',
         flexDirection:'row',
         paddingTop: 10
@@ -113,6 +134,7 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 10,
         display:'flex',
         flexDirection:'row',
+        marginBottom: 5
 
     },
     nameArroba:{

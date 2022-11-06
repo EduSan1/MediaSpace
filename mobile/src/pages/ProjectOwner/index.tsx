@@ -3,47 +3,82 @@ import { View, StyleSheet, Dimensions, ScrollView, Text, Image } from "react-nat
 import { ScrollImage } from "../../components/utils/ScrollImage";
 import { LoginButton } from "../../components/utils/LoginButton";
 import api from "../../../service";
+import TabBar from "../../components/utils/TabBar";
 
 
 interface IProject {
     navigation: any
+    route: any
 }
 
-export const ProjectOwner = ({ navigation }: IProject) => {
+export const ProjectOwner = ({ navigation, route }: IProject) => {
+    const navigateTo = (screen: string) => {
+        navigation.navigate(screen)
+    }
 
     const [imageIndex, setImageIndex] = useState(0)
     const [projectLoad, setProjectLoad] = useState(false)
     const [categories, setCategories] = useState([{}])
     const [hasError, setHasError] = useState(false)
+    const {projectId} = route.params
 
     const [projectOwner, setProjectOwner] = (useState)({
+        id: "",
+        name: "",
+        description: "",
+        value: "",
+        estimated_deadline: "",
+        finish_project_date: "",
+        start_project_date: "",
+        is_active: "",
+        status: "",
+        create_at: "",
+        update_at: "",
+        interest: [],
+        sub_categories: [
+       
+        ],
+        requirements: [],
+        management: "",
+        user: {
+            id: "",
+            first_name: "",
+            last_name: "",
+            nickname: "",
+            birth_date: "",
+            cpf: "",
+            mai: "",
+            password: "",
+            biography: "",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FWhatsApp%20Image%202022-10-17%20at%2017.49.13.jpeg?alt=media&token=7cde0a87-0125-45b1-b4e9-e86979334194",
+            is_active: true,
+            is_authenticated: true,
+            create_at: "",
+            update_at: "",
+            gender: {
+                id: "",
+                gender: "",
+                create_at: "",
+                update_at: ""
+            },
+            phone: {
+                id: "",
+                ddd: "",
+                phone: "",
+                ddi: null
+            },
+            teams: [],
+            project_member: []
+        },
+        categories: [{}],
         images: [
             {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            },
-            {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            },
-            {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
-            },
-            {
-                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae"
+                url : ""
             }
-        ],
-        dataInico: "02/02/2022",
-        dataTermino: "02/02/2023",
-        imagemPerfil: { url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FIconFreelancer.png?alt=media&token=eff6a703-bdf0-46d4-a136-c31a31f37eae" },
-        valor: "19.650,00",
-        titulo: "MediaSpace",
-        descricao: " teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste",
-        anexos: "",
-        categoria: "PROGRAMAÇÃO",
-        subCategoria: "JAVA",
-
-
-
+        ]
     })
+
+
 
 
     const handleUserPicture = (text: any) => {
@@ -67,6 +102,7 @@ export const ProjectOwner = ({ navigation }: IProject) => {
 
     return (
         <>
+            <TabBar currentScreen="ProjectOwner" navigateTo={navigateTo}/>
             <View style={styles.navigationBar}></View>
 
 
@@ -75,25 +111,35 @@ export const ProjectOwner = ({ navigation }: IProject) => {
 
                 <View style={styles.containerFilho}>
                     <View style={styles.containerDate}>
-                        <Text style={styles.title}>Criado em: {projectOwner.dataInico} </Text>
-                        <Text style={styles.title}>Prazo término: {projectOwner.dataTermino}</Text>
+                        <Text style={styles.title}>Criado em: {projectOwner.create_at} </Text>
+                        <Text style={styles.title}>Prazo término: {projectOwner.estimated_deadline}</Text>
                     </View>
 
                     <View style={styles.containerProfile}>
-                        <Image style={styles.image} source={require("../../../assets/icons/facebook.png")} />
-                        <Text style={styles.title}>Valor estiamdo: {projectOwner.valor}</Text>
+                        <Image style={styles.image} source={{uri : projectOwner.user.profile_picture}} />
+                        <Text style={styles.title}>Valor estiamdo: {projectOwner.value}</Text>
                     </View>
 
                     <View style={styles.containerTitle}>
-                        <Text style={styles.title2}>{projectOwner.titulo}</Text>
-                        <Text style={styles.describle}> {projectOwner.descricao}</Text>
+                        <Text style={styles.title2}>{projectOwner.name}</Text>
+                        <Text style={styles.describle}> {projectOwner.description}</Text>
 
                         <View style={styles.categories}>
                             <Text style={styles.title}>Categoria</Text>
-                            <Text style={styles.categorySelected}>{projectOwner.categoria}</Text>
+                            {
+                                    projectOwner.categories.map((category : any) => {
+                                        return <Text style={styles.categorySelected}>{category.name}</Text>
+
+                                    })
+                            }
 
                             <Text style={styles.title}>Subcategoria</Text>
-                            <Text style={styles.categorySelected}>{projectOwner.subCategoria}</Text>
+                            {
+                                    projectOwner.sub_categories.map((sub_category : any) => {
+                                        return <Text style={styles.categorySelected}>{sub_category.name}</Text>
+
+                                    })
+                            }
                         </View>
 
                         <View style={styles.button}>

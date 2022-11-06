@@ -21,6 +21,9 @@ interface ITabBar {
 
 export default function TabBar({navigateTo, currentScreen} : ITabBar){
     return(
+        <SafeAreaView>
+            <View style={styles.ContainerTab}>
+
         <View style={styles.bar}>
             <View  style={styles.sectionBar}>
 
@@ -46,9 +49,20 @@ export default function TabBar({navigateTo, currentScreen} : ITabBar){
             </Pressable>
             </View>
         </View>
+        </View>
+
+        </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
+    ContainerTab:{
+        flex:1,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 1,        
+        // backgroundColor:"black",
+        justifyContent:"flex-end",
+        position:"absolute"
+    },
     bar:{
         position:'absolute',
         zIndex: 1,
@@ -56,7 +70,6 @@ const styles = StyleSheet.create({
         borderTopEndRadius:21,
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.1,
-        marginTop:Dimensions.get('window').height * 0.93,
         backgroundColor:"#fff",
         flexDirection:"row",
         justifyContent:"space-evenly",
@@ -64,12 +77,10 @@ const styles = StyleSheet.create({
     },
     sectionBar:{
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.05,
-        // backgroundColor:"green",
         flexDirection:"row",
         justifyContent:"space-evenly",
         alignItems:"center",
-        marginBottom:Dimensions.get('window').height * 0.03,
+
     },
     icon : {
         width:30,
