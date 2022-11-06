@@ -1,52 +1,90 @@
-import React from "react";
+import { stringify } from "querystring";
+import React, { useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
 import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
+import api from "../../service";
 
-const ProjectsViewallfrelancer = () => {
 
-    const user = localStorage.getItem('userDetailes');
+
+
+
+const AllfreelancerView = () => {
+
+    const user = localStorage.getItem('userDetails');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
+
+    const [allFreelancerView, setllFreelancerView] = useState({
+        name : '',
+        description : "",
+        interest: [],
+         
+    });
+
+
+
+    useEffect(() => {
+        api.get(`/project/9a4b14b9-61f9-44c0-8c67-7e727cfc7f62`)
+            .then((res) => {
+                setllFreelancerView(res.data.data)
+            })
+            .catch()
+    }, [])
+
+    useEffect(() => {
+
+        console.log(allFreelancerView)
+
+    }, [allFreelancerView])
 
     return (
 
-        
-            <main id="ContentPage">
 
-                <NavegationBar />
-                <div className="Container">
-                    <SearchBar />
-                    <section className="section_main_Project">
-                             
-                             <header className="Tittles_Description">
-                                <span className="Big_Tittle">  <h1> Nome do projeto - Candidatos </h1>  </span>
-                                <span className="small_Tittle"> <h3> O Batman (inicialmente chamado o Bat-Man) também conhecido pelas alcunhas Homem-Morcego, Cavaleiro das Trevas, Cruzado Encapuzado, Maior Detetive do Mundo, ...</h3>   </span>
-                             </header>
+        <main id="ContentPage">
 
-                             <div className="SearchBar_candidates">
-                             <SearchBar />
-                             </div>
+            <NavegationBar />
+            <div className="Container">
+                <SearchBar />
+                <section className="section_main_Project">
 
-                             <div className="candidates">
-                                
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="@gean" photo="../assets/img/astronaut.svg"/>
-                             
-                             </div>
+                    <header className="Tittles_Description">
+
+                   
+                                    <span className="Big_Tittle">  <h1> {allFreelancerView.name} </h1>  </span>
+                                    <span className="small_Tittle"> <h3> {allFreelancerView.description}</h3>   </span>
+
+               
                         
-                  
 
-                    </section>
-                </div>
-            </main>
+                    </header>
 
-        
+                    <div className="SearchBar_candidates">
+                        <SearchBar />
+                    </div>
+
+                    <div className="candidates">
+
+                        {
+                            allFreelancerView.interest.map((intereest: any) => {
+                                return <Interestedserver action={() => console.log("navigate perfil ")} type={"submit"} name={intereest.team.name} nickname={`${intereest.team.nickname}`} photo={intereest.team.profile_picture} />
+
+                            })}
+
+                    </div>
+
+
+
+                </section>
+            </div>
+        </main>
+
+
 
     );
 }
 
-export default ProjectsViewallfrelancer;
+
+
+
+export default AllfreelancerView;

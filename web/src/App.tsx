@@ -19,8 +19,9 @@ import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
 import Perfil from './pages/Perfil';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelancer';
-import ProjectsViewallFreelancer from './pages/ProjectsViewallfrelancer';
+import AllFreelancerView from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
+import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
@@ -36,8 +37,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/register/provideruserregister/:userId' element={<ProviderUserRegisterPage />} />
         <Route path='/confirmRegister' element={<MailConfirmedPage />} />
-        <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
-        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        {/* <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} /> */}
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
@@ -50,9 +51,11 @@ function App() {
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
         <Route path='/Perfil' element={<Perfil />} />
-        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
-        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
-        <Route path='/projects/selectFreelancer' element={<ProjectsViewallFreelancer />} />
+        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer id={"dc55eb4f-79e9-4381-9df6-d3a5f6d759f6"}/>} />
+        {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll  />} /> */}
+
+        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
+        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  
 
 
 

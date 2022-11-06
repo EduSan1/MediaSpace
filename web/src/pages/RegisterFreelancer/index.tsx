@@ -56,13 +56,20 @@ const RegisterFreelancer = () => {
          const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
          setSubategoriesToRender(categoryFilter)
 
+
          // const categoryToRemove = categoryFilter((category: any) => {
          //    return { id: category.id }
          // })
          // removeFromFreelancer(categoryToRemove, "categories")
+
+         const categoryToRemove = categoryFilter((category: any) => {
+            return { id: category.id }
+         })
+         removeFromFreelancer(categoryToRemove, "categories")
+
       }
    }
-
+ 
    const registerFreelancer = () => {
       api.post("/freelancer", freelancer).then((res: any) => {
          if (res.data.statusCode === 200) {
@@ -129,7 +136,6 @@ const RegisterFreelancer = () => {
 
       </div>
    )
-
 
 }
 
