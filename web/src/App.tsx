@@ -25,7 +25,9 @@ import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
-import PreviewProject from './pages/PreviewProject';
+import PreviewProject from './pages/PreviewProject/Creator';
+import PreviewProjectFreelancer from './pages/PreviewProject/Freelancer';
+import ModalRequirements from './components/RequirementsModal';
 
 function App() {
 
@@ -63,9 +65,11 @@ function App() {
 
 
 
-
         {/* */}
         <Route path='/teste' element={<Teste />} />
+
+
+        {/* <Route path='/testeRequisito' element={<ModalRequirements action={"Editar"} />} /> */}
 
       </Routes>
 
