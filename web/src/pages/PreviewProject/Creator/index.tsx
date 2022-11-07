@@ -118,8 +118,8 @@ const PreviewProjectCreator = () => {
                               {/* <img src={project.user.profile_picture} /> */}
                            </div>
                            <div>
-                              {/* <label>{project.user.first_name}</label>
-                              <span>@{project.user.nickname}</span> */}
+                              <label>{project.user.first_name}</label>
+                              <span>@{project.user.nickname}</span>
                            </div>
                         </div>
                         <div className='container_value'>

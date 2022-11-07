@@ -13,7 +13,6 @@ const PreviewProject = () => {
 
     const [createrProject, setCreaterProject] = useState("")
 
-
     const userJwt = localStorage.getItem('userDetails');
     const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
 

@@ -1,10 +1,15 @@
 import React from "react"
 import { Image, Text, StyleSheet, Dimensions,Pressable, View,} from "react-native"
 
+interface IBtnCardRequiremenst {
 
-export const BtnCardRequirements= () => {
+    action : () => void
+}
+
+
+export const BtnCardRequirements= ({action}:IBtnCardRequiremenst) => {
     return (
-        <Pressable style={style.sectionProject}>
+        <Pressable style={style.sectionProject} onPress={() => action()}>
             <Text style={style.titleRequeriments}>Novo Requisito</Text>
                 <View style={style.IconBox}>
                     <Image style={style.icon} source={require('../../../../assets/icons/MoreIcon.png')}/>
