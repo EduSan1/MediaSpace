@@ -25,6 +25,7 @@ import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClie
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
 import PreviewProject from './pages/PreviewProject';
+import PreviewProjectCreator from './pages/PreviewProject/Creator';
 
 
 function App() {
@@ -63,6 +64,12 @@ function App() {
 
         {/* */}
         <Route path='/teste' element={<Teste />} />
+
+
+
+
+
+
 
       </Routes>
 

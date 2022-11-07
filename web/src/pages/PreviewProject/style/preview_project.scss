@@ -143,21 +143,17 @@
       height: 80%;
    }
 
-   .teste {
-      height: 25%;
-      width: 100%;
-      background-color: aqua;
+
+   .container_card_freelancer:nth-child(odd) {
+      background-color: #F1F4FF;
    }
 
-   .outroTeste {
-      height: 25%;
-      width: 100%;
-      background-color: #30A851;
-   }
+
 
    p {
       width: 100%;
       text-align: end;
+      cursor: pointer;
    }
 }
 

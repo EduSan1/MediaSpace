@@ -81,16 +81,14 @@ const PreviewProjectCreator = () => {
    }
    )
 
+   /********slide */
+   const [currentIndex, setCurrent] = useState(0)
    useEffect(() => {
       api.get(`/project/${projectId}`).then((res: any) => {
          setProject(res.data.data)
          //console.log(res.data.data)
       })
    })
-
-   /********slide */
-   const [currentIndex, setCurrent] = useState(0)
-
    return (
       <>
          <main>
@@ -154,7 +152,12 @@ const PreviewProjectCreator = () => {
                            <span><RiEditBoxLine /></span>
                         </h1>
                         <div className='freelancers_interested'>
+                           {
+
+                           }
                            <FreelancerInterest image_profile={""} name={"teste"} nickname={"testeee"} />
+
+
                         </div>
 
                         <p>Ver todos</p>

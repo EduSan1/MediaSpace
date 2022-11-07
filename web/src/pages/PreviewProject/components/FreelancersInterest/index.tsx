@@ -11,10 +11,10 @@ const FreelancerInterest = ({ image_profile, name, nickname }: IFreelancerIntere
     return (
         <>
             <div className='container_card_freelancer'>
-                <div>
+                <div className='freelancer_image_profile'>
                     <img src={image_profile} />
                 </div>
-                <div>
+                <div className='dates_freelancer'>
                     <p>{name}</p>
                     <span>@{nickname}</span>
                 </div>
