@@ -25,8 +25,7 @@ import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClie
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
 import PreviewProject from './pages/PreviewProject';
-import PreviewProjectCreator from './pages/PreviewProject/Creator';
-import PreviewProjectFreelancer from './pages/PreviewProject/Freelancer';
+
 
 function App() {
 

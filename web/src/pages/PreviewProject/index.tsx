@@ -7,11 +7,12 @@ import PreviewProjectCreator from "./Creator";
 import PreviewProjectFreelancer from "./Freelancer";
 
 
-const PreviewProject = async () => {
+const PreviewProject = () => {
     const { projectId } = useParams()
     console.log(projectId)
 
-    const [createrProject, setCreaterProject] = useState([])
+    const [createrProject, setCreaterProject] = useState("")
+
 
     const userJwt = localStorage.getItem('userDetails');
     const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
@@ -21,12 +22,16 @@ const PreviewProject = async () => {
 
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any) => {
-            setCreaterProject(res.data.data.user.id)
+            // setCreaterProject(res.data.data.user.id)
+            console.log(res.data)
 
         })
     }, [])
+    console.log(createrProject)
 
     const typeProjectPreview = (createrProject: string) => {
+
+        console.log(createrProject)
         let isCreater = false
         if (createrProject === decodedToken?.userDetails?.id) {
             isCreater = true
@@ -38,7 +43,7 @@ const PreviewProject = async () => {
     return (
         <>
             {
-                typeProjectPreview(createrProject) ? <PreviewProjectCreator /> : <PreviewProjectFreelancer />
+                typeProjectPreview(createrProject) ? <PreviewProjectFreelancer /> : <PreviewProjectCreator />
             }
         </>
     )

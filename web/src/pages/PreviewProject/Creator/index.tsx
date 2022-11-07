@@ -9,12 +9,12 @@ import { useParams } from 'react-router-dom';
 import api from '../../../service';
 import CategoryCard from '../../../components/utils/CategoryCard';
 import { CarouselImages } from '../components/carousel';
+import FreelancerInterest from '../components/FreelancersInterest/index';
 
 
 
 const PreviewProjectCreator = () => {
    const { projectId } = useParams()
-   console.log(projectId)
 
    const [project, setProject] = useState({
       "id": "bc028552-017b-48e1-a5dc-cf4709fe41a5",
@@ -75,7 +75,7 @@ const PreviewProjectCreator = () => {
          {
             "url": "https://i0.wp.com/arteref.com/wp-content/uploads/2018/07/capa-mate%CC%81ria.jpg?fit=900%2C700&ssl=1"
          },
-        
+
 
       ]
    }
@@ -117,11 +117,11 @@ const PreviewProjectCreator = () => {
                      <div className='container_creator_value'>
                         <div className='container_profile'>
                            <div className='picture_profile'>
-                              <img src={project.user.profile_picture} />
+                              {/* <img src={project.user.profile_picture} /> */}
                            </div>
                            <div>
-                              <label>{project.user.first_name}</label>
-                              <span>@{project.user.nickname}</span>
+                              {/* <label>{project.user.first_name}</label>
+                              <span>@{project.user.nickname}</span> */}
                            </div>
                         </div>
                         <div className='container_value'>
@@ -153,11 +153,8 @@ const PreviewProjectCreator = () => {
                         <h1>Prestadores que se candidataram
                            <span><RiEditBoxLine /></span>
                         </h1>
-                        <div>
-                           <div className='teste'></div>
-                           <div className='outroTeste'></div>
-                           <div className='teste'></div>
-                           <div className='outroTeste'></div>
+                        <div className='freelancers_interested'>
+                           <FreelancerInterest image_profile={""} name={"teste"} nickname={"testeee"} />
                         </div>
 
                         <p>Ver todos</p>
