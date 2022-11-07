@@ -40,8 +40,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/register/provideruserregister/:userId' element={<ProviderUserRegisterPage />} />
         <Route path='/confirmRegister' element={<MailConfirmedPage />} />
-        {/* <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
-        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} /> */}
+         <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        {/* <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />  */}
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
@@ -58,7 +58,7 @@ function App() {
         {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll  />} /> */}
 
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
-        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  
+        <Route path='/projects/selectFreelancer/:projectId' element={<ProjectsSelecetFreelancer/>} />  
 
 
 
