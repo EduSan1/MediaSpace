@@ -1,5 +1,4 @@
 .container_page_create_project {
-
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -9,12 +8,14 @@
 
 .page_create_project {
    width: 80vw;
+   height: 90vh;
    display: flex;
-   overflow-y: auto;
 
    .container {
       width: 100%;
-      display: flex;
+      height: 100%;
+      overflow-y: auto;
+
       align-items: center;
       flex-direction: column;
    }
@@ -70,7 +71,7 @@
 }
 
 .container_categories_projects {
-   margin-top: 4%;
+   margin-top: 20%;
    height: 10vh;
    width: 30vw;
 }
@@ -82,13 +83,14 @@
 }
 
 .container_subacategories_projects {
-   margin-top: 45px;
+   margin-top: 15%;
    width: 30vw;
+   margin-bottom: 15%;
 }
 
 .aligment_button {
-   height: 10vh;
-   width: 15%;
+   height: 5%;
+   width: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -214,7 +216,7 @@
 
       span {
          padding: 5px;
-         position: absolute;
+         position: relative;
          color: #bfbfbf;
          font-size: 1rem;
       }
@@ -244,7 +246,7 @@
 
       span {
          padding: 5px;
-         position: absolute;
+         position: relative;
          color: #bfbfbf;
          font-size: 1rem;
       }

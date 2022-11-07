@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import InputProject from "./components/Input";
 import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
-import { storage } from "../../constants/firebase";
-import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import Projects from "../Projects";
 import { useJwt } from "react-jwt";
 import api from "../../service";
@@ -14,6 +12,9 @@ import { ImageProject } from "./components/ImagesProjects";
 
 
 const CreateProject = () => {
+
+   const userJwt = localStorage.getItem('userDetails');
+   const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
 
    const [project, setProject] = useState({
       name: "",
@@ -41,10 +42,12 @@ const CreateProject = () => {
 
       ],
       user: {
-         id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+         id: decodedToken?.userDetails?.id
       }
 
    })
+
+   const [categories, setCategories] = useState([])
 
    const [imageIndex, setImageIndex] = useState(0)
 
@@ -79,71 +82,6 @@ const CreateProject = () => {
       })
       console.log(project)
    }
-
-   const categories = [
-      {
-         "id": "29a6f6c8-552e-41b5-b7ec-c26f59b85144",
-         "name": "Programação",
-         "icon": "aaaaaa",
-         "is_active": true,
-         "create_at": "2022-10-03T16:03:47.814Z",
-         "update_at": "2022-10-11T18:50:00.000Z",
-         "sub_categories": [
-            {
-               "id": "d44094c0-204d-409f-82a0-d7bfa30cea6c",
-               "name": "Java",
-               "is_active": true,
-               "create_at": "2022-10-03T16:04:36.730Z",
-               "update_at": "2022-10-11T18:50:55.000Z"
-            },
-            {
-               "id": "7d5008cc-f901-4f82-abed-67618045dd82",
-               "name": "JavaScript",
-               "is_active": true,
-               "create_at": "2022-10-03T16:04:31.999Z",
-               "update_at": "2022-10-11T18:50:16.000Z"
-            }
-         ]
-      },
-      {
-         "id": "f7b6ae02-b5e8-4ed6-8984-b629eb293796",
-         "name": "Arte",
-         "icon": "aaaaaa",
-         "is_active": true,
-         "create_at": "2022-09-28T19:29:01.880Z",
-         "update_at": "2022-10-11T18:52:03.000Z",
-         "sub_categories": [
-            {
-               "id": "c9e1072a-5717-4c12-b864-09bfa784784b",
-               "name": "Realista",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:51.513Z",
-               "update_at": "2022-10-11T18:52:45.000Z"
-            },
-            {
-               "id": "aea06656-a732-44df-80c6-69ec361da75f",
-               "name": "Anime",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:55.887Z",
-               "update_at": "2022-10-11T18:52:19.000Z"
-            },
-            {
-               "id": "47f592c0-5a95-4dc5-9167-453e3f06219e",
-               "name": "Cartoon",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:59.990Z",
-               "update_at": "2022-10-11T18:54:46.000Z"
-            },
-            {
-               "id": "2f96a279-258c-4ec5-adc9-10df528c491b",
-               "name": "Retrato",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:36.820Z",
-               "update_at": "2022-10-11T18:54:08.000Z"
-            }
-         ]
-      }
-   ]
 
    const [caracteres, setCaracteres] = React.useState({
       caracteres: 0
@@ -235,6 +173,12 @@ const CreateProject = () => {
 
    }
 
+   useEffect(() => {
+      api.get("/category").then((res: any) => {
+         setCategories(res.data)
+      })
+   }, [])
+
    return (
       <>
          <main>
@@ -251,7 +195,7 @@ const CreateProject = () => {
                         <div className="teste">
 
                            <div className="container_informations">
-                              <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                              <InputProject value={""} onFocus={() => { }} label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
 
                               <div className="container_description_project">
                                  <label className="subtitulo_projects">Descrição <span> * </span></label>

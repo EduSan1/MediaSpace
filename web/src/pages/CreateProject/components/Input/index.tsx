@@ -6,9 +6,11 @@ interface IInputProject {
    maxLenght: number
    name: string;
    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+   onFocus: (event: React.ChangeEvent<HTMLInputElement>) => void,
+   value: string
 }
 
-const InputProject = ({ label, maxLenght, name, handleChange }: IInputProject) => {
+const InputProject = ({ label, maxLenght, name, handleChange, onFocus, value }: IInputProject) => {
 
    const [caracteres, setCaracteres] = React.useState({
       caracteres: 0
@@ -24,8 +26,10 @@ const InputProject = ({ label, maxLenght, name, handleChange }: IInputProject) =
       <div className="container_input_project">
          <label className="subtitulo_projects">{label}<span> * </span></label>
          <div>
-            <input type="text" maxLength={maxLenght} name={name} onChangeCapture={(event: React.ChangeEvent<HTMLInputElement>) => { numberCaracteres(event) }} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} />
+            <input value={value} onFocus={(event: React.ChangeEvent<HTMLInputElement>) => { onFocus(event) }} type="text" maxLength={maxLenght} name={name} onChangeCapture={(event: React.ChangeEvent<HTMLInputElement>) => { numberCaracteres(event) }} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)} />
+
             <span>{caracteres.caracteres}/{maxLenght}</span>
+
          </div>
       </div>
    )
