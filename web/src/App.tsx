@@ -25,7 +25,8 @@ import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
-import PreviewProject from './pages/PreviewProject/Creator';
+import PreviewProject from './pages/PreviewProject';
+import PreviewProjectCreator from './pages/PreviewProject/Creator';
 import PreviewProjectFreelancer from './pages/PreviewProject/Freelancer';
 import ModalRequirements from './components/RequirementsModal';
 
@@ -39,8 +40,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/register/provideruserregister/:userId' element={<ProviderUserRegisterPage />} />
         <Route path='/confirmRegister' element={<MailConfirmedPage />} />
-        {/* <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
-        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} /> */}
+         <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        {/* <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />  */}
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
@@ -57,7 +58,7 @@ function App() {
         {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll  />} /> */}
 
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
-        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  
+        <Route path='/projects/selectFreelancer/:projectId' element={<ProjectsSelecetFreelancer/>} />  
 
 
 

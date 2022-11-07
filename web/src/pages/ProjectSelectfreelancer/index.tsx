@@ -28,7 +28,7 @@ const ProjectsSelecetFreelancer = () => {
     
 
  useEffect(()=>{
-   api.get(`/project/9a4b14b9-61f9-44c0-8c67-7e727cfc7f62`)
+   api.get(`/project/c2f1c3d1-e515-421d-a2ff-203f0ded07eb`)
    .then((res)=>{
         setSelectFreelancerView(res.data.data)
    })
@@ -39,7 +39,7 @@ const ProjectsSelecetFreelancer = () => {
 
 const selectidFreelancer  =  (idFreelancer:any) =>{
 
-api.post(`/project/registerInterest/9a4b14b9-61f9-44c0-8c67-7e727cfc7f62`, idFreelancer)
+api.post(`/project/registerInterest/c2f1c3d1-e515-421d-a2ff-203f0ded07eb`, idFreelancer)
 .then(()=>{
     window.alert('freelancer selecionado com sucesso')
 })
