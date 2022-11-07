@@ -21,9 +21,6 @@ const ButtonCategories = ({ name, category, icon, action, setSubCategories, id }
       setSubCategories(id, isSelected ? "REMOVE" : "ADD")
    }
 
-
-
-
    return (
       <>
          <button name={name} value={category} onClick={() => onClick()} className={isSelected ? "category_selected" : "button_category"} >

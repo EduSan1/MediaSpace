@@ -12,9 +12,9 @@ import { CarouselImages } from '../components/carousel';
 
 
 
-const PreviewProject = () => {
+const PreviewProjectCreator = () => {
    const { projectId } = useParams()
-   // console.log(projectId)
+   console.log(projectId)
 
    const [project, setProject] = useState({
       "id": "bc028552-017b-48e1-a5dc-cf4709fe41a5",
@@ -171,4 +171,4 @@ const PreviewProject = () => {
    )
 }
 
-export default PreviewProject;
+export default PreviewProjectCreator;
