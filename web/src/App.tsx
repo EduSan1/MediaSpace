@@ -25,7 +25,8 @@ import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
-import PreviewProject from './pages/PreviewProject/Creator';
+import PreviewProject from './pages/PreviewProject';
+import PreviewProjectCreator from './pages/PreviewProject/Creator';
 import PreviewProjectFreelancer from './pages/PreviewProject/Freelancer';
 import ModalRequirements from './components/RequirementsModal';
 
