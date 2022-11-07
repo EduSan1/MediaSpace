@@ -7,11 +7,11 @@ import PreviewProjectCreator from "./Creator";
 import PreviewProjectFreelancer from "./Freelancer";
 
 
-const PreviewProject = async () => {
+const PreviewProject = () => {
     const { projectId } = useParams()
     console.log(projectId)
 
-    const [createrProject, setCreaterProject] = useState([])
+    const [createrProject, setCreaterProject] = useState("")
 
     const userJwt = localStorage.getItem('userDetails');
     const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
