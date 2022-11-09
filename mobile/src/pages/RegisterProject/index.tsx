@@ -310,13 +310,13 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        // height: Dimensions.get('window').height * 2,
+        height: Dimensions.get('window').height * 1,
         backgroundColor: "#fff",
         display: 'flex',
     },
     view: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 5,
+        height: Dimensions.get('window').height * 2,
         justifyContent: "space-around",
         alignItems: "center",
         padding: 20
@@ -346,7 +346,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.18,
+        height: Dimensions.get('window').height * 0.1,
         justifyContent: "flex-end",
         alignItems: "center",
         padding: 10
