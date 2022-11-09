@@ -4,6 +4,9 @@ import { ProjectRepository } from "../repository/Project";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 import { DeliveryRepository } from "../repository/Delivery";
 import { DeliveryFileRepository } from "../repository/DeliveryFile";
+import { UserRepository } from "../repository/User";
+import { ProjectMemberRepository } from "../repository/ProjectMember"
+import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
 
 interface IFile {
     url: string
@@ -14,17 +17,26 @@ export class DeliveryService {
     private deliveryFileRepository: DeliveryFileRepository
     private projectRepository: ProjectRepository
     private projectRequirementsRepository: ProjectRequirementsRepository
+    private userRepository: UserRepository
+    private projectMemberRepository: ProjectMemberRepository
+    private teamProjectMemberRepository: TeamProjectManagementRepository
 
     constructor(repo: DeliveryRepository) {
         this._ = repo
         this.deliveryFileRepository = new DeliveryFileRepository()
         this.projectRepository = new ProjectRepository()
         this.projectRequirementsRepository = new ProjectRequirementsRepository()
+        this.userRepository = new UserRepository()
+        this.projectMemberRepository = new ProjectMemberRepository()
+        this.teamProjectMemberRepository = new TeamProjectManagementRepository()
     }
 
-    create = async (entity: DeliveryDomain) => {
+    create = async (userId: any, entity: DeliveryDomain) => {
         try {
-            
+            const user = await this.userRepository.findById(userId)
+            const projectMember = await this.projectMemberRepository.findById(user.project_member.id)
+            const teamProjectMember = await this.teamProjectMemberRepository.getById(projectMember.teamProjectManagement.id)
+
             const delivery = await this._.create(entity)
 
             entity.files?.map(async (file: IFile) => {                
