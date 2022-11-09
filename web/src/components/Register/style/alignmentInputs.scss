@@ -37,6 +37,14 @@
     flex-direction: column;
     align-items: flex-start;
     margin-left: 25px;
+    gap: 6px;
+
+
+    .input_register {
+        height: 50px;
+        margin-bottom: 2px;
+
+    }
 }
 
 .profile-picture {
@@ -73,6 +81,10 @@
 .container_text_area {
     width: 70%;
     height: 150px;
+
+    .biography {
+        padding: 10px;
+    }
 }
 
 .biography {
@@ -95,4 +107,16 @@
 
 .container_button {
     margin-inline: auto;
+}
+
+.back_link_login {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    width: 100%;
+
+    .link_to_back_login{
+         font: 1em sans-serif;
+    }
+
 }

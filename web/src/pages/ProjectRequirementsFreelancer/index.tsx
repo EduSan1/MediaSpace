@@ -21,7 +21,8 @@ const ProjectsrequirementsFreelancer = (id:any) => {
     
 
     useEffect(() => {
-    api.get(`/requirement/47063063-3330-4f53-8372-b71ef426f720`)
+    api.get(`/requirement/47063063-3330-4f53-8372-b71ef426f720`)     
+    // trocar url da api {id}
     .then((res)=>{
         setRequerimenteproject(res.data.data.project);
         setRequerimente(res.data.data);
