@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { decodeToken, useJwt } from "react-jwt";
+import jwt from "jwt-decode"
 import api from "../../service";
-import { TRUE } from "sass";
 import PreviewProjectCreator from "./Creator";
 import PreviewProjectFreelancer from "./Freelancer";
 
@@ -12,37 +11,31 @@ const PreviewProject = () => {
     console.log(projectId)
 
     const [createrProject, setCreaterProject] = useState("")
-
-    const userJwt = localStorage.getItem('userDetails');
-    const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
-
-    // console.log(decodedToken)
-
-
-    useEffect(() => {
-        api.get(`/project/${projectId}`).then((res: any) => {
-            // setCreaterProject(res.data.data.user.id)
-            console.log(res.data)
-
-        })
-    }, [])
-    console.log(createrProject)
-
+ 
     const typeProjectPreview = (createrProject: string) => {
 
-        console.log(createrProject)
+        const userJwt = localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "")
+        const userId = user.userDetails.id
         let isCreater = false
-        if (createrProject === decodedToken?.userDetails?.id) {
+
+        if (createrProject === userId) {
             isCreater = true
         }
         return isCreater
     }
 
+    useEffect(() => {
+        api.get(`/project/${projectId}`).then((res: any) => {
+            setCreaterProject(res.data.data.user.id)
+
+        })
+    }, [])
 
     return (
         <>
             {
-                typeProjectPreview(createrProject) ? <PreviewProjectFreelancer /> : <PreviewProjectCreator />
+                typeProjectPreview(createrProject) ? <PreviewProjectCreator/> : <PreviewProjectFreelancer />
             }
         </>
     )

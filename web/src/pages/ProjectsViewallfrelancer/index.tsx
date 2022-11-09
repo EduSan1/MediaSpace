@@ -5,13 +5,10 @@ import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
 import api from "../../service";
-
-
-
-
+import { useParams} from 'react-router-dom';
 
 const AllfreelancerView = () => {
-
+    const { projectId } = useParams()
     const user = localStorage.getItem('userDetails');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
 
@@ -25,7 +22,7 @@ const AllfreelancerView = () => {
 
 
     useEffect(() => {
-        api.get(`/project/9a4b14b9-61f9-44c0-8c67-7e727cfc7f62`)
+        api.get(`/project/${projectId}`)
             .then((res) => {
                 setllFreelancerView(res.data.data)
             })
