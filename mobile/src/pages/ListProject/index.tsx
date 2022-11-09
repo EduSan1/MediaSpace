@@ -76,7 +76,7 @@ export const ListProject = ({ navigation }: IListProject) => {
                     {
                         projects.map((project: any) => {
                             console.log(project.images[0])
-                            return <ListProjectCard key={project.id} user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images.url} categories={project.categories} navigation={navigation} />
+                            return <ListProjectCard key={project.id} user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images[0].url} categories={project.categories} navigation={navigation} />
                         })
                     }
                 </View>
@@ -97,13 +97,14 @@ const styles = StyleSheet.create({
     },
     card: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: "auto",
         flexDirection: 'row',
         flexWrap: 'wrap',
         display: 'flex',
         justifyContent: 'space-around',
         paddingTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        paddingBottom: 100
 
 
     },
