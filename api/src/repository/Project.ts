@@ -23,7 +23,6 @@ export class ProjectRepository {
     }
 
     listPerPage = async (take: number, skip: number, search: string, categories: any) => {
-        console.log(categories)
         return await this._.findAndCount({
             where:
 
