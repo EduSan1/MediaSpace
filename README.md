@@ -21,11 +21,11 @@ A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, 
 ### Tecnologias usadas
 <table>
 <tr>
-<td align="center"><a href="https://crisp.chat/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" width="64" /></a></td>
-<td align="center"><img src="https://walde.co/wp-content/uploads/2016/09/nodejs_logo.png" width="64" /></a></td>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="64" /></a></td>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="64" /></a></td>
-<td align="center"><img src="https://seeklogo.com/images/T/typeorm-logo-F243B34DEE-seeklogo.com.png" width="64" /></a></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" width="64" /></td>
+<td align="center"><img src="https://walde.co/wp-content/uploads/2016/09/nodejs_logo.png" width="64" /></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="64" /></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="64" /></td>
+<td align="center"><img src="https://seeklogo.com/images/T/typeorm-logo-F243B34DEE-seeklogo.com.png" width="64" /></td>
 </tr>
 <tr>
 <td align="center">Typescript</td>
@@ -39,12 +39,12 @@ A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, 
 ### Também usamos essas ferramentas
 <table>
 <tr>
-<td align="center"><img src="https://cdn.iconscout.com/icon/free/png-256/azure-devops-3628645-3029870.png" width="64" /></a></td>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" width="64" /></a></td>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" width="44" /></a></td>
-<td align="center"><img src="https://www.vectorlogo.zone/logos/mysql/mysql-official.svg" width="64" /></a></td>
-<td align="center"><img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1629869194/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" width="64" /></a></td>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Apache_JMeter.png" width="94" /></a></td>
+<td align="center"><img src="https://cdn.iconscout.com/icon/free/png-256/azure-devops-3628645-3029870.png" width="64" /></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" width="64" /></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" width="44" /></td>
+<td align="center"><img src="https://www.vectorlogo.zone/logos/mysql/mysql-official.svg" width="64" /></td>
+<td align="center"><img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1629869194/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" width="64" /></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Apache_JMeter.png" width="94" /></td>
 </tr>
 <tr>
 <td align="center">Azure Devops</td>
