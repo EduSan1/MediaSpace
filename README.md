@@ -1,9 +1,14 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:F151FF,100:5196FF&height=220&section=header&text=Em%20órbita%20de:%20MediaSpace&fontColor=FFF&fontSize=56&animation=fadeIn&fontAlignY=38&desc=Você%20está%20entrando%20em%20nosso%20horizonte%20de%20eventos!&descAlignY=55&descAlign=62"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:F151FF,100:5196FF&height=220&section=header&text=Em%20órbita%20de:%20MediaSpace&fontColor=FFF&fontSize=56&animation=fadeIn&fontAlignY=38&desc=Você%20está%20entrando%20em%20nosso%20horizonte%20de%20eventos💫&descAlignY=55&descAlign=62"/>
+
+<img src="https://github.com/EduSan1/MediaSpace/blob/main/mobile/assets/light-illustration.svg#gh-light-mode-only" width="850" />
+<img src="https://github.com/EduSan1/MediaSpace/blob/main/mobile/assets/dark-illustration.svg#gh-dark-mode-only" width="850" />
+
+---
 
 # O que é a ✨MediaSpace✨?
 > **Note** projeto de TCC realizado no curso de desenvolvimento de sistemas do <a href="https://jandira.sp.senai.br/">Senai Jandira<a/>
 
-A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, voltada apenas as prestações de serviços que resultam em produtos digitais. Visamos atender demandas de diversas áreas como programação, design, arte digital, edição de imagens e vídeos ou qualquer outra área de atuação de segmento tecnológico.
+A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, voltada apenas as prestações de serviços que resultam em produtos digitais. Visamos atender demandas de diversas áreas como programação, design, arte digital, edição de imagens e vídeos ou qualquer outra área de atuação de segmento tecnológico!
 
 ## Funcionalidades
 > Status do projeto: `Em andamento`
@@ -13,7 +18,7 @@ A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, 
 - [ ] Formação de equipes
 - [ ] Eventos de premiação
 
-## Tecnologias usadas
+### Tecnologias usadas
 <table>
 <tr>
 <td align="center"><a href="https://crisp.chat/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" width="64" /></a></td>
@@ -53,14 +58,14 @@ A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, 
 
 <details><summary><ruby><p></ruby>
   
-## Web Preview (Prototype)
+## Web Preview (Protótipo)
   </p></summary>
   
 </details>
 
 <details><summary><ruby><p></ruby>
   
-## Mobile Preview (Prototype)
+## Mobile Preview (Protótipo)
   </p></summary>
   
 </details>
@@ -89,6 +94,8 @@ A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, 
   
 </details>
 
+---
+
 # Apreciamos caso queira nos dar uma ⭐ nesse repositório ;)
 
 ```Typescript
@@ -115,7 +122,7 @@ export class EndReadme {
            .-|   /:.       | |   |                             '       \  \ __ ,
            |  \  |:.      /.-'-./          °               *          +  ' --'  *
            | .-'-;:_  _ .'    =/                              +   /\
-           .'=* |MediaSpace_..'                   +              .'  '.   *
+           .'=* |MediaSpace_..'                  +              .'  '.   *
           /   _.|        ;                              *      /======\      +
          ;-.-'|  \       |     *                              ;:.  _   ;
         /   | \   _\     _\                                   |:. (_)  |
@@ -128,3 +135,5 @@ export class EndReadme {
         ")
     }
 }
+```
+---
