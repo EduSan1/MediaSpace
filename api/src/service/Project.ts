@@ -253,7 +253,7 @@ export class ProjectService {
 
     selectFreelancer = async (projectId: string, body: { freelancerId: string }) => {
         const project = await this.getById(projectId)
-
+        // console.log(body.freelancerId)
         const updatedProjectStatus = {
             ...project.data,
             status: "VALIDATING_REQUIREMENTS",

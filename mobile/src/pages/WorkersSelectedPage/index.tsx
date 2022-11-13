@@ -1,24 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { BtnBackPage } from "../../components/utils/BtnBackPage";
+import BtnBackPage from "../../components/utils/BtnBackPage";
 import { CardRequirements } from "../../components/utils/CardRequirements";
 import { BtnRequirements } from "../../components/utils/BtnRequeriments";
 import { BtnConfirmRequirements } from "../../components/utils/btnConfirmRequeriments";
 import { BtnCardRequirements } from "../../components/utils/BtnCardRequirements";
 import WorkersAppliedProfile from "../../components/utils/WorkersAppliedProfile";
 import BtnWorkerSelectdProfile from "../../components/utils/BtnWorkersSelectdProfile";
+import api from "../../../service";
 
+interface IWorkersSelectedPage{
+    navigation:any
+  }
   
-export default function WorkersSelectedPage() {
-    const [isModalVisible, setModalVisible] = useState(false);
+export default function WorkersSelectedPage({navigation}:IWorkersSelectedPage) {
+
+    const [selectedFreelancer, setSelectedFreelancer] = useState({freelancerId: ""})
+
+    const [interest, setInterest] = useState([{
+        team : {
+                  name: "",
+        profile_picture : "",
+        nickname: ""
+        }
   
-    const toggleModal = () => {
-      setModalVisible(!isModalVisible);
-    };
+    }])
+    const [selected, setSelected] = useState([{
+        team : {
+                  name: "",
+        profile_picture : "",
+        nickname: ""
+        }
+  
+    }])
+
+    const sendSelectedFreelancer = async () => {
+        
+        api.post("/project/selectFreelancer/d2b6956f-b653-4d1d-b1eb-c50f9b371871", selectedFreelancer).then((res) =>{
+            console.log(res.data)
+        })
+        
+    }
+
+    useEffect(() =>{
+
+        api.get("/project/d2b6956f-b653-4d1d-b1eb-c50f9b371871").then((res) => {
+            setInterest(res.data.data.interest)
+        })
+
+
+        },[])
     return (
         <>
-            <BtnBackPage />
+            <BtnBackPage action={()=> navigation.navigate("Home")} />
             <ScrollView style={style.Scroll}>
                 <SafeAreaView>
                     <View style={style.titleSection}>
@@ -28,14 +63,15 @@ export default function WorkersSelectedPage() {
                         <Text style={style.TextRequirements}>Obs: recomendamos que abra um bate-papo com o prestador para que você possa conversar, esclarecer e tirar dúvidas sobre o projeto antes de executá-lo.</Text>
                     </View>
                     </View>
-                        <BtnWorkerSelectdProfile/>
-                        <BtnWorkerSelectdProfile/>
-                        <BtnWorkerSelectdProfile/>
-                        <BtnWorkerSelectdProfile/>
-                      
+                    
+                    {
+                        interest.map((interest : any) => {
+                            return  <BtnWorkerSelectdProfile id={interest.team.id} setSelectedFreelancer={setSelectedFreelancer} selected={selectedFreelancer.freelancerId}  icon={interest.team.profile_picture} name={interest.team.name} nickname={interest.team.nickname}/>
+                        })
+                    }
                         <View style={style.BoxBtn}>
 
-                        <BtnRequirements title="Selecionar"/>
+                        <BtnRequirements action={sendSelectedFreelancer} title="Selecionar"/>
                         </View>
                 </SafeAreaView>
             </ScrollView>
