@@ -36,11 +36,12 @@ interface IProject {
 const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
 
     const [hasOpen, setHasOpen] = useState(false)
+    const [title, setTitle] = useState("Aguardando inicio")
 
     return (
         <>
             <Pressable onPress={() => setHasOpen(!hasOpen)} style={styles.container}>
-                <Text style={styles.title} >Aguardando Inicio</Text>
+                <Text style={styles.title} >{title}</Text>
                 {/* <Icon size={Dimensions.get('window').height * 0.025} name={"caretup"} /> */}
                 <Icon size={Dimensions.get('window').height * 0.025} name={hasOpen ? "caretup" : "caretdown"} />
             </Pressable>
@@ -50,6 +51,7 @@ const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
                 <Option action={() => {
                     setSelectedProjects(userProjects.AWAITING_START)
                     setHasOpen(false)
+                    setTitle("Aguardando inicio")
                 }} title="Aguardando inicio" />
             }
             {
@@ -57,6 +59,8 @@ const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
                 <Option action={() => {
                     setSelectedProjects(userProjects.VALIDATING_REQUIREMENTS)
                     setHasOpen(false)
+                    setTitle("Validando Requisitos")
+
                 }} title="Validando Requisitos" />
             }
             {
@@ -64,6 +68,8 @@ const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
                 <Option action={() => {
                     setSelectedProjects(userProjects.IN_EXECUTION)
                     setHasOpen(false)
+                    setTitle("Em execução")
+
                 }} title="Em execução" />
             }
 
@@ -72,6 +78,8 @@ const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
                 <Option action={() => {
                     setSelectedProjects(userProjects.COMPLETE)
                     setHasOpen(false)
+                    setTitle("Completo")
+
                 }} title="Completo" />
             }
 
@@ -80,6 +88,8 @@ const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
                 <Option action={() => {
                     setSelectedProjects(userProjects.CANCELED)
                     setHasOpen(false)
+                    setTitle("Cancelado")
+
                 }} title="Cancelado" />
             }
         </>
