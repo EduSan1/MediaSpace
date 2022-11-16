@@ -34,9 +34,7 @@ const LoginSpace = () => {
 
   };
 
-  useEffect(() => {
-    console.log(diceLogin)
-  }, [diceLogin]);
+
 
 
   const [hasError, setHasError] = React.useState(false);
@@ -66,7 +64,7 @@ const LoginSpace = () => {
     }
 
     if (!diceLogin.password) {
-
+       window.alert('Senha ou Email invalido')
       handleChangeErro('Senha ou Email invalido');
       validate = false;
       setHasError(true);
@@ -89,7 +87,7 @@ const LoginSpace = () => {
 
     await api.post("/user/login", diceLogin).then((res) => {
       const data = res.data;
-
+      
 
       if (res.data.is_logged) {
         logIntUser(res.data.userDetails)
