@@ -8,15 +8,15 @@ interface IModalRequirements {
     
     onClose: () => void
     requirementId?: string
-    navigation : any
-    route: any
+    // // navigation : any
+    // route: any
 
 }
-export default function ModalRequirements({navigation, route, requirementId, onClose}:IModalRequirements) {
+export default function ModalRequirements({ requirementId, onClose}:IModalRequirements) {
     const [isModalVisible, setModalVisible] = useState(false);
     const [hasError, setHasError] = useState(false)
     const [requirementLoad, setRequirementLoad] = useState(false)
-    const {requirementModalId}= route.params
+    // const {requirementModalId}= route.params
 
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
@@ -27,7 +27,7 @@ export default function ModalRequirements({navigation, route, requirementId, onC
         description: "",
         gain_percentage: 0.2,
         project: {
-            id: "4c72d504-5e51-490d-a831-a3ad9c3fbed8"
+            id: "064a7324-0a36-4ae5-9008-a142b6f13057"
         }
     })
 
@@ -42,13 +42,13 @@ export default function ModalRequirements({navigation, route, requirementId, onC
         console.log(createModal)
         api.post("/requirement", modalApi).then((res: any)=>{
 
-            if(res.data.statusCode === 201){
-                navigation.navigate("Requirements", {
-                    modalId: res.data.data.id
-                })
-            }else{
-                ToastAndroid.show("res.data.message", 10)
-            }
+            // if(res.data.statusCode === 201){
+            //     navigation.navigate("Requirements", {
+            //         modalId: res.data.data.id
+            //     })
+            // }else{
+            //     ToastAndroid.show("res.data.message", 10)
+            // }
             console.log(res.data)
         })
         setRequirementLoad(false)
@@ -90,7 +90,7 @@ export default function ModalRequirements({navigation, route, requirementId, onC
                                 <TextInput maxLength={3} keyboardType = 'numeric' style={style.InputTitleModal} placeholder="Porcentual...">{createModal.gain_percentage}</TextInput>
                                 
                                 <View style={style.boxBtn}>
-                                    <BtnConfirmRequirements action={() => toggleModal()}/>
+                                    <BtnConfirmRequirements action={() => modalCreate()}/>
                                 </View>
                         </View>
                     </View>
