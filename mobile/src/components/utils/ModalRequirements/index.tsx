@@ -56,7 +56,7 @@ export default function ModalRequirements({navigation, route, requirementId, onC
     return(
                     <Modal
                     animationType="fade"
-                    visible={isModalVisible}
+                    visible={!isModalVisible}
                     transparent={true}
                     onRequestClose={() => {
                         setModalVisible(!isModalVisible);
