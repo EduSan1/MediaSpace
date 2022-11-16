@@ -17,7 +17,7 @@ export default function ModalRequirements({requirementId, onClose}:IModalRequire
     return(
                     <Modal
                     animationType="fade"
-                    visible={isModalVisible}
+                    visible={!isModalVisible}
                     transparent={true}
                     onRequestClose={() => {
                         setModalVisible(!isModalVisible);
