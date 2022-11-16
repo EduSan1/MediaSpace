@@ -63,8 +63,6 @@ const style = StyleSheet.create({
 modalView: {
     width: Dimensions.get('window').width * 0.9,
     height: Dimensions.get('window').height * 0.8,
-    position:"absolute",
-    zIndex:1,
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
