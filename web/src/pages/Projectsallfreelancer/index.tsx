@@ -30,10 +30,8 @@ const ProjectsSelecetAllFreelancer = () => {
 
                              <div className="candidates">
                                 
-                             <Interestedserver type={"submit"} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={"submit"} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
+                             {/* <Interestedserver onclick type={"submit"} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/> */}
+
 
                              </div>
                         

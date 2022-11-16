@@ -17,7 +17,7 @@ const RecoveryPassword = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target)
-    setUser({ mail : event.target.value})
+    setUser({ mail: event.target.value })
 
   };
 
@@ -43,7 +43,8 @@ const RecoveryPassword = () => {
 
     if (validate) {
 
-      console.log('next');
+      // console.log('next');
+
 
     }
 
@@ -54,12 +55,16 @@ const RecoveryPassword = () => {
   }
 
   const mailPasswordRecovery = async () => {
-   
-    await api.post("/user/recoverPassword", user).then((res : any) => {
-      if (res.data.hasSend === true ) {
+
+    await api.post("/user/recoverPassword", user).then((res: any) => {
+      if (res.data.hasSend === true) {
         // navigate("recoveryemailsent")
         console.log(res)
-      }else {
+        window.alert("email enviado com sucesso!")
+        navigate(`/`)
+
+        // console.log('next');
+      } else {
         window.alert("não foi possivel encontrar o email")
       }
 
@@ -111,10 +116,10 @@ const RecoveryPassword = () => {
 
         <span className="btn_Send">
           {/* <Link to="recoveryemailsent"> */}
-            <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnPassWord'} valueBtn={'Enviar'}
-              onClick={() => {
-                validate();
-              }} />
+          <InputBtn typeInput={'submit'} name={'btnLogin'} className={'InputBtnPassWord'} valueBtn={'Enviar'}
+            onClick={() => {
+              validate();
+            }} />
           {/* </Link> */}
 
 

@@ -8,6 +8,6 @@ export interface IDomainDeliveryProps {
     description: string
     files: DeliveryFileORM[]
     is_accepted: null
-    requirement: ProjectRequirementsORM
+    requirements: ProjectRequirementsORM[]
 
 }

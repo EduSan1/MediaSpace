@@ -22,8 +22,30 @@ export class TeamProjectManagementRepository {
                 id
             },
             relations: {
-                members: true
+                members: true,
+                team: true
 
+            }
+        })
+    }
+
+    getAllByFreelancerId = async (freelancerId: string) => {
+        return await this._.find({
+            where: [{
+                team: {
+                    id: freelancerId
+                },
+                is_active: null
+            }, {
+                team: {
+                    id: freelancerId
+                },
+                is_active: true
+            }],
+            relations: {
+                projectManagement: {
+                    project: true
+                }
             }
         })
     }

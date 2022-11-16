@@ -36,6 +36,7 @@
     align-items: center;
     
     
+    
   }
 
 
@@ -86,12 +87,12 @@
   justify-content: center;
   flex-direction: column;
   height: clamp(40%, 4vh, 30%);
-  gap: 2%;
+  gap: 10%;
 
 
   div{
     width: 100%;
-    height: 50%;
+    height: 80%;
 
     .input_icon_login{
       .IconNormal{
@@ -105,7 +106,7 @@
 
 .LoginSpace .btnLogin {
   display: flex;
-  height: clamp(50%,4vh,30%);
+  height: clamp(200px,4vh,30%);
   flex-direction: column;
   justify-content: start;
   gap: clamp(2%,3vh,1%);
@@ -126,7 +127,7 @@
   flex-direction: column;
   padding: 10px;
   gap: 30px;
-  width: 100%;
+  width: 50%;
   height: 100%;
 
 
@@ -295,6 +296,7 @@
 @media (max-width:1600px){
 
   .SpaceLogin {
+    
 
    
     .LoginSpace{

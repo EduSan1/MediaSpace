@@ -1,8 +1,12 @@
 import React from "react"
 import { Image, Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View} from "react-native"
-export const BtnConfirmRequirements = () => {
+
+interface IBtnConfirmRequirements{
+    action: () => void 
+}
+export const BtnConfirmRequirements = ({action}:IBtnConfirmRequirements) => {
     return (
-        <Pressable style={styles.btnStyle}>
+        <Pressable onPress={() => action()} style={styles.btnStyle}>
             <Text style={styles.text}>Confirmar</Text>
         </Pressable>
 

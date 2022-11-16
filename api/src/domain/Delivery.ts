@@ -9,7 +9,7 @@ export default class DeliveryDomain {
     description: string
     files: DeliveryFileORM[]
     is_accepted: null
-    requirement: ProjectRequirementsORM
+    requirements: ProjectRequirementsORM[]
 
     constructor(props: IDomainDeliveryProps) {
         this.id = props.id
@@ -17,7 +17,7 @@ export default class DeliveryDomain {
         this.description = props.description
         this.files = props.files
         this.is_accepted = props.is_accepted
-        this.requirement = props.requirement
+        this.requirements = props.requirements
 
     }
 }

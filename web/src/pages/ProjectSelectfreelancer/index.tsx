@@ -1,14 +1,52 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useJwt } from "react-jwt";
 import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
+import api from "../../service";
+import InputBtn from "../../components/utils/Button/InputBtn";
 
 const ProjectsSelecetFreelancer = () => {
 
     const user = localStorage.getItem('userDetailes');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
- const radio = "radio"
+
+
+    const [selecetFreelancerView, setSelectFreelancerView] = useState({
+        name : '',
+        description : "",
+        interest: [],
+        id:""
+         
+    });
+
+
+
+    const [selecetFreelancer, setSelectFreelancer] = useState({      
+
+    });
+    
+
+ useEffect(()=>{
+   api.get(`/project/c2f1c3d1-e515-421d-a2ff-203f0ded07eb`)
+   .then((res)=>{
+        setSelectFreelancerView(res.data.data)
+   })
+   .catch()
+ },[])
+
+
+
+const selectidFreelancer  =  (idFreelancer:any) =>{
+
+api.post(`/project/registerInterest/c2f1c3d1-e515-421d-a2ff-203f0ded07eb`, idFreelancer)
+.then(()=>{
+    window.alert('freelancer selecionado com sucesso')
+})
+
+}
+
+
     return (
 
         
@@ -20,8 +58,8 @@ const ProjectsSelecetFreelancer = () => {
                     <section className="section_main_Project">
                              
                              <header className="Tittles_Description">
-                                <span className="Big_Tittle">  <h1> Nome do projeto - Candidatos </h1>  </span>
-                                <span className="small_Tittle"> <h3> O Batman (inicialmente chamado o Bat-Man) também conhecido pelas alcunhas Homem-Morcego, Cavaleiro das Trevas, Cruzado Encapuzado, Maior Detetive do Mundo, </h3>   </span>
+                                <span className="Big_Tittle">  <h1>{selecetFreelancerView.name}</h1>  </span>
+                                <span className="small_Tittle"> <h3> {selecetFreelancerView.description} </h3>   </span>
                              </header>
 
                              <div className="SearchBar_candidates">
@@ -29,23 +67,42 @@ const ProjectsSelecetFreelancer = () => {
                              </div>
 
                              <div className="select_candidates">
+                                { 
+                                selecetFreelancerView.interest.map((intereest:any)=>{
+                                             
+                                           
+                                        return <Interestedserver action={()=>{
+                                            setSelectFreelancer(intereest.id);
+                                        }} type={"radio"} name={intereest.team.name} nickname={intereest.team.nickname} photo={intereest.team.profile_picture}/>
+                                        
+                                })
+                               
+                                }
                                 
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-                             <Interestedserver type={radio} name="gean" nickname="gean" photo="../assets/img/astronaut.svg"/>
-
+                             
+                            
                              </div>
                         
                   
 
+                             <div className="send_freelance_selecet"> 
+                          <InputBtn className="btn_selecet_freelancer" name="" onClick={()=>{
+                               
+                              selectidFreelancer(selecetFreelancer);
+                              console.log('mandar outra tela')
+
+                          }} typeInput={'button'} valueBtn={'Selecionar'} enable={false}/>
+                    </div>
                     </section>
+
+
                 </div>
             </main>
 
         
 
     );
-}
+ }
+
 
 export default ProjectsSelecetFreelancer;

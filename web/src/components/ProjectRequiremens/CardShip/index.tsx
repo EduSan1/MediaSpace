@@ -4,7 +4,7 @@ import { FaCheck } from "react-icons/fa";
 
 interface IIcard {
     CardClasse: string,
-    percentage:number,
+    percentage:string,
     desciption:string,
     layout:string,
     issue:string,

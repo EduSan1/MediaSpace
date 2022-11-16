@@ -12,13 +12,13 @@ export class TeamProjectManagementORM {
     @Column({ nullable: true })
     is_active: boolean
 
-    @ManyToOne(() => TeamORM, team => team.team_project_management)
+    @ManyToOne(() => TeamORM, team => team.team_project_management, { eager: true })
     team: TeamORM
 
     @ManyToOne(() => ProjectManagementORM, project => project.team_project_management)
     projectManagement: ProjectManagementORM
 
     @OneToMany(() => ProjectMemberORM, projectMember => projectMember.teamProjectManagement)
-    members: ProjectMemberORM[]
+    members: ProjectMemberORM[] 
 
 }
