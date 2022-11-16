@@ -5,12 +5,15 @@ import { formatDate, formatMoney } from '../../../service/Regex/regex';
 import InputBtn from "../../../components/utils/Button/InputBtn";
 import ButtonCategories from '../../../components/utils/Button/Categories/Categories';
 import { CarouselImages } from '../components/carousel';
-
+import { useParams } from 'react-router-dom';
+import api from '../../../service';
+import jwt from "jwt-decode"
 
 const PreviewProjectFreelancer = () => {
+   const { projectId } = useParams()
 
    const [project, setProject] = useState({
-      "id": "bc028552-017b-48e1-a5dc-cf4709fe41a5",
+      "id": "",
       "name": "",
       "description": "",
       "value": 0,
@@ -22,30 +25,30 @@ const PreviewProjectFreelancer = () => {
       "create_at": "",
       "update_at": "",
       "user": {
-         "id": "4b408f96-8b6c-4126-b0a7-89aa80ac10a8",
-         "first_name": "Eduardo",
-         "last_name": "Santos",
-         "nickname": "1231312",
-         "birth_date": "2022-10-10T03:00:00.000Z",
-         "cpf": "12341231901",
-         "mail": "edusan3456@gmail.com",
-         "password": "$2b$10$CpMtEbCWE40bejsW6m3unO38s2GkBKhHj01Jd/tpyDC8n84tPh6v2",
+         "id": "",
+         "first_name": "",
+         "last_name": "",
+         "nickname": "",
+         "birth_date": "",
+         "cpf": "",
+         "mail": "",
+         "password": "",
          "biography": "",
-         "profile_picture": "teste",
+         "profile_picture": "",
          "is_active": true,
          "is_authenticated": false,
-         "create_at": "2022-10-24T19:15:57.396Z",
-         "update_at": "2022-10-24T19:15:57.396Z",
+         "create_at": "",
+         "update_at": "",
          "gender": {
-            "id": "e6217fb3-6ee2-4f1e-8987-51e6622d9445",
-            "gender": "teste",
-            "create_at": "2022-09-27T17:03:18.918Z",
-            "update_at": "2022-09-27T17:03:18.918Z"
+            "id": "",
+            "gender": "",
+            "create_at": "",
+            "update_at": ""
          },
          "phone": {
-            "id": "84464cf1-0d47-474c-99dd-df0bffd50bf9",
-            "ddd": "11",
-            "phone": "912345678",
+            "id": "",
+            "ddd": "",
+            "phone": "",
             "ddi": null
          },
          "teams": [],
@@ -53,20 +56,20 @@ const PreviewProjectFreelancer = () => {
       },
       "categories": [
          {
-            "id": "92997090-f960-45b9-9f7a-4cb9f0e430a1",
-            "name": "Jorge",
-            "icon": "aaaaaa",
+            "id": "",
+            "name": "",
+            "icon": "",
             "is_active": true,
-            "create_at": "2022-10-24T19:16:34.763Z",
-            "update_at": "2022-10-24T19:16:34.763Z"
+            "create_at": "",
+            "update_at": ""
          }
       ],
       "images": [
          {
-            "url": "https://gdartes.com.br/wp-content/uploads/2022/02/2-10.jpeg"
+            "url": ""
          },
          {
-            "url": "https://i0.wp.com/arteref.com/wp-content/uploads/2018/07/capa-mate%CC%81ria.jpg?fit=900%2C700&ssl=1"
+            "url": ""
          },
        
 
@@ -74,6 +77,34 @@ const PreviewProjectFreelancer = () => {
    }
    )
 
+   const freelancersInterest = async () =>{
+
+      const userJwt = await localStorage.getItem('userDetails');
+      const user: any = jwt(userJwt ? userJwt : "")
+      const userId = user.userDetails.id
+      console.log(userId)
+
+      const freelancersInterestedToSend = {
+         freelacerId: userId
+      }
+
+      api.post(`/project/registerInterest/${projectId}`, freelancersInterestedToSend).then((res) => {
+         if (res.data.statusCode !== 200) {
+            window.alert("Não foi possível registrar interesse")
+            console.log(res.data)
+         } else {
+            console.log("deu certo")
+            window.alert("Interesse registrado com sucesso")
+         }
+      })
+   }
+
+   useEffect(() => {
+      api.get(`/project/${projectId}`).then((res: any) => {
+         setProject(res.data.data)
+        
+      })
+   },[])
 
    return (
       <>
@@ -116,7 +147,7 @@ const PreviewProjectFreelancer = () => {
                      </div>
 
                      <div className='container_buttons_project'>
-                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_project'} valueBtn={'Executar projeto'} onClick={() => { }} />
+                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_project'} valueBtn={'Candidatar-se'} onClick={() => {freelancersInterest()}} />
                      </div>
 
                      <div className='container_categories_project'>
