@@ -23,6 +23,7 @@ import { ListProject } from './src/pages/ListProject';
 import WorkersAppliedPage from './src/pages/WorkersAppliedPage';
 import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFreelancer';
 import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
+import ModalRequirements from './src/components/utils/ModalRequirements';
 
 export default function App() {
 
