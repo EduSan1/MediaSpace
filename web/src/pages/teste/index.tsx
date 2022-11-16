@@ -1,4 +1,5 @@
 import React from "react";
+import ModalPassword from "../../components/perfil/ModalPassword";
 import Interestedserver from "../../components/project";
 import HistoryTrack from "../../components/utils/HistoryTrack";
 
@@ -9,13 +10,8 @@ const teste = () => {
 
         <main className="Divetste">
 
-            {/* <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
-            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
-            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
-            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" />
-            <Interestedserver name="marcus" nickname="fernadno dqa silva" photo="../assets/img/astronaut.svg" type="submit" /> */}
-
-
+           <ModalPassword/>
+           
       </main>
     
                      
