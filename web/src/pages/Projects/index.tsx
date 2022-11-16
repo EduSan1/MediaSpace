@@ -28,9 +28,7 @@ const ProjectsrequirementsFreelancer = () => {
 
     return (
 
-
         <main id="ContentPage">
-
             <NavegationBar />
             <div className="Container">
                 <SearchBar />

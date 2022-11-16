@@ -163,24 +163,10 @@ const LoginSpace = () => {
               }} />
 
             <div className="LoginIcons-container">
-              <h5> login com </h5>
+             
               <div className="loginIcons">
 
-                <span>
-                  <MdFacebook onClick={() => { }} />
-                </span>
-
-                <span>
-                  <AiFillGoogleCircle />
-                </span>
-
-                <span>
-                  <AiFillLinkedin />
-                </span>
-
-                <span>
-                  <AiFillTwitterCircle />
-                </span>
+              
               </div>
             </div>
           </div>

@@ -36,26 +36,18 @@ const RegisterSpace = () => {
 
 
 
-    // const imageHandler = (event: any) => {
-    //     const reader = new FileReader();
-    //     reader.onload = () => {
-    //         if (reader.readyState === 2) {
-    //             //console.log(reader.result)
-    //             setUser({ profile_picture: reader.result })
-    //         }
-    //     }
-    //     console.log(reader.readAsDataURL(event.target.files[0]))
-    // }
 
     const navigate = useNavigate()
 
     const [genders, setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
+    
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
             ...user, [event.target.name]: event.target.value
         })
+        console.log(user);
 
     }
     const handleGender = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,6 +73,8 @@ const RegisterSpace = () => {
             ...user, phone: {
                 ddd: "",
                 phone: phoneMask(event.target.value)
+                
+                
 
             }
             //...user, [event.target.name]: onlyNumbers(event.target.value)
@@ -95,6 +89,56 @@ const RegisterSpace = () => {
                 ...user, [event.target.name]: event.target.value
             })
         }
+    }
+
+
+    const validation = () => {
+    
+        let validate =  true;
+
+        if (!user.first_name) {
+             validate = false;
+             setHasErros(true);
+        } else {
+            
+        }
+
+        if (!user.last_name) {
+            validate = false;
+             setHasErros(true);
+        } else {
+
+        }
+
+        if (!user.nickname) {
+            validate = false;
+           setHasErros(true)
+        } else {
+
+        }
+
+        if (!user.cpf) {
+            validate = false;
+           setHasErros(true)
+        } else {
+
+        }
+        if (!user.birth_date) {
+            validate = false;
+            setHasErros(true)
+        } else {
+
+        }
+
+        if (!user.mail) {
+            validate = false;
+            setHasErros(true)
+        } else {
+
+        }
+
+        return validate;
+
     }
 
     const uploadImage = (event: any) => {
@@ -134,15 +178,40 @@ const RegisterSpace = () => {
             },
         }
 
+     
+
         api.post("/user", userToSend).then((res) => {
 
             if (res.data.statusCode !== 201) {
-                window.alert("não foi possivel cadastrar o usuário")
+                 console.log(res.data);
+                window.alert(res.data.message)
+                   
+                if(res.data.mail){
+                    window.alert("Email já existente")
+                    setHasErros(true);
+                }
+                if(res.data.cpf){
+                    window.alert("CPF já existente")
+                    setHasErros(true);
+                }
+                if(res.data.phone){
+                    window.alert("Telefone já existente")
+                    setHasErros(true);
+                }
+                if(res.data.nickname){
+                    window.alert("nickname já existente")
+                    setHasErros(true);
+                }
+
+                
+                
             } else {
                 navigate(`provideruserregister/${res.data.data.id}`)
             }
         })
     }
+
+  
 
     useEffect(() => {
         api.get("/gender").then((res) => {
@@ -232,14 +301,14 @@ const RegisterSpace = () => {
                         </div>
                         <div className="container_button">
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                                //    if(validation()){
-                                //         console.log("Campos não preenchidos")
-                                //    }else{
-                                registerUser();
-                                // }
-
-                                // validation()
-
+                               
+                                 if(validation()){
+                                    registerUser();
+                                 }  
+                                
+                             
+                               
+                            
                             }} />
                         </div>
 

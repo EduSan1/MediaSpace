@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import InputProject from "./components/Input";
 import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
-import { storage } from "../../constants/firebase";
-import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import Projects from "../Projects";
 import { useJwt } from "react-jwt";
 import api from "../../service";
+import jwt from "jwt-decode"
 import { ImageProject } from "./components/ImagesProjects";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateProject = () => {
 
+
+   // const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
+
+   const navigate = useNavigate()
    const [project, setProject] = useState({
       name: "",
       description: "",
-      estimated_value: 0,
+      value: 0,
       estimated_deadline: "",
       images: [
          {
@@ -41,23 +45,22 @@ const CreateProject = () => {
 
       ],
       user: {
-         id: "71e89063-c775-4c13-bd29-7ee9ba2c4847"
+         id: ""
       }
 
    })
 
+   const [categories, setCategories] = useState([])
+
    const [imageIndex, setImageIndex] = useState(0)
 
-   console.log(imageIndex)
-   
-
-   const handleChangeImage = (url:any) => { 
+   const handleChangeImage = (url: any) => {
       let newImagem = project.images
 
-      newImagem[imageIndex] = {url: url}
+      newImagem[imageIndex] = { url: url }
 
       setProject({
-         ...project, 
+         ...project,
          images: newImagem
       })
 
@@ -77,114 +80,13 @@ const CreateProject = () => {
 
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(event.target.name)
+      console.log(project.user.id)
       setProject({
          ...project, [event.target.name]: event.target.value
       })
       console.log(project)
    }
-
-   const categories = [
-      {
-         "id": "29a6f6c8-552e-41b5-b7ec-c26f59b85144",
-         "name": "Programação",
-         "icon": "aaaaaa",
-         "is_active": true,
-         "create_at": "2022-10-03T16:03:47.814Z",
-         "update_at": "2022-10-11T18:50:00.000Z",
-         "sub_categories": [
-            {
-               "id": "d44094c0-204d-409f-82a0-d7bfa30cea6c",
-               "name": "Java",
-               "is_active": true,
-               "create_at": "2022-10-03T16:04:36.730Z",
-               "update_at": "2022-10-11T18:50:55.000Z"
-            },
-            {
-               "id": "7d5008cc-f901-4f82-abed-67618045dd82",
-               "name": "JavaScript",
-               "is_active": true,
-               "create_at": "2022-10-03T16:04:31.999Z",
-               "update_at": "2022-10-11T18:50:16.000Z"
-            }
-         ]
-      },
-      {
-         "id": "35a1debd-45ea-4151-8c38-9bfc1a0328d0",
-         "name": "Design",
-         "icon": "teste",
-         "is_active": true,
-         "create_at": "2022-09-28T19:28:39.352Z",
-         "update_at": "2022-10-11T18:47:24.000Z",
-         "sub_categories": [
-            {
-               "id": "bde617c5-3c4f-4f96-9d03-131e07fd1b54",
-               "name": "Logo",
-               "is_active": true,
-               "create_at": "2022-10-11T18:49:30.152Z",
-               "update_at": "2022-10-11T18:49:30.152Z"
-            },
-            {
-               "id": "9796fbed-13f0-49a6-bb29-442abdd4a8a8",
-               "name": "3d",
-               "is_active": true,
-               "create_at": "2022-10-11T18:47:50.604Z",
-               "update_at": "2022-10-11T18:47:50.604Z"
-            },
-            {
-               "id": "9283e980-4fa9-458a-be10-aa86327184db",
-               "name": "Adobe Photoshop",
-               "is_active": true,
-               "create_at": "2022-10-11T18:49:26.249Z",
-               "update_at": "2022-10-11T18:53:40.000Z"
-            },
-            {
-               "id": "8921ad8a-5580-442c-ac87-3dea9f2b2ad5",
-               "name": "Ícones",
-               "is_active": true,
-               "create_at": "2022-10-11T18:49:35.832Z",
-               "update_at": "2022-10-11T18:49:35.832Z"
-            }
-         ]
-      },
-      {
-         "id": "f7b6ae02-b5e8-4ed6-8984-b629eb293796",
-         "name": "Arte",
-         "icon": "aaaaaa",
-         "is_active": true,
-         "create_at": "2022-09-28T19:29:01.880Z",
-         "update_at": "2022-10-11T18:52:03.000Z",
-         "sub_categories": [
-            {
-               "id": "c9e1072a-5717-4c12-b864-09bfa784784b",
-               "name": "Realista",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:51.513Z",
-               "update_at": "2022-10-11T18:52:45.000Z"
-            },
-            {
-               "id": "aea06656-a732-44df-80c6-69ec361da75f",
-               "name": "Anime",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:55.887Z",
-               "update_at": "2022-10-11T18:52:19.000Z"
-            },
-            {
-               "id": "47f592c0-5a95-4dc5-9167-453e3f06219e",
-               "name": "Cartoon",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:59.990Z",
-               "update_at": "2022-10-11T18:54:46.000Z"
-            },
-            {
-               "id": "2f96a279-258c-4ec5-adc9-10df528c491b",
-               "name": "Retrato",
-               "is_active": true,
-               "create_at": "2022-09-28T19:47:36.820Z",
-               "update_at": "2022-10-11T18:54:08.000Z"
-            }
-         ]
-      }
-   ]
 
    const [caracteres, setCaracteres] = React.useState({
       caracteres: 0
@@ -235,32 +137,6 @@ const CreateProject = () => {
       }
    }
 
-   const uploadImage = (event: any) => {
-      event.preventDefault();
-      const file = event.target[0].files[0]
-      console.log(file)
-
-      if (!file) return
-      for (let index = 0; index < file.length; index++) {
-         const storageRef = ref(storage, `profilePicture/${file[index].name}`)
-
-         const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
-
-         uploadTask.on(
-            "state_changed",
-            snapshot => {
-               const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-
-            },
-            error => { alert(error) },
-            () => {
-               getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-                  setProject({ ...project, })
-               })
-            }
-         )
-      }
-   }
 
    const [errors, setErrors] = React.useState({})
 
@@ -280,28 +156,49 @@ const CreateProject = () => {
       if (!project.description) {
          validate = false;
          //console.log("COMO ASSIM VC NÃO SABE A DESCRIÇÃO");
-         handleErrors('Informe o descrição do livro.', 'descricao')
+         handleErrors('Informe o descrição do projeto.', 'description')
       }
 
-      if (!project.estimated_value) {
+      if (!project.value) {
          validate = false;
          //console.log("ISSO AI COLOCA UMA CAPA MSM NÃO");
-         handleErrors('Informe a capa do livro.', 'capa')
+         handleErrors('Informe um data.', 'value')
       }
    }
 
-   const createProject = () => {
+   const createProject = async () => {
 
-      api.post("/project", project).then((res) => {
+      const userJwt = await localStorage.getItem('userDetails');
+
+      const user: any = jwt(userJwt ? userJwt : "")
+      const userId = user.userDetails.id
+      console.log(userId)
+
+      const projectSend = {
+         ...project,
+         user: {
+            id: userId
+         }
+      }
+
+      api.post("/project", projectSend).then((res) => {
          if (res.data.statusCode !== 201) {
             window.alert("Não foi possível criar o projeto")
+            console.log(res.data)
          } else {
             console.log("deu certo")
+            window.alert("Projeto criado com sucesso")
+            navigate("/projects")
          }
       })
 
    }
 
+   useEffect(() => {
+      api.get("/category").then((res: any) => {
+         setCategories(res.data)
+      })
+   }, [])
 
    return (
       <>
@@ -319,7 +216,7 @@ const CreateProject = () => {
                         <div className="teste">
 
                            <div className="container_informations">
-                              <InputProject label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                              <InputProject value={project.name} onFocus={() => { }} label={"Nome do projeto"} maxLenght={100} name={"name"} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
 
                               <div className="container_description_project">
                                  <label className="subtitulo_projects">Descrição <span> * </span></label>
@@ -339,6 +236,7 @@ const CreateProject = () => {
                                     {
                                        categories.map((category: any) => {
                                           return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+
                                        })
                                     }
 
@@ -376,7 +274,7 @@ const CreateProject = () => {
                               <div className="container_input_project">
                                  <label className="subtitulo_projects">Valor estimado (BRL)<span> * </span></label>
                                  <div>
-                                    <input className="input_value_project" type="number" min={0} name="estimated_value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
+                                    <input className="input_value_project" type="number" min={0} name="value" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} />
                                  </div>
                                  <span>
                                     <label className="paragraph_projects">Obs: Sugerimos um valor mínimo de R$15,00. Você pode negociá-lo com um prestador depois.</label>
@@ -392,29 +290,24 @@ const CreateProject = () => {
                                     <div className="container_text">
                                        <div>
                                           <p className="paragraph_projects">Imagens de referências ao projeto</p>
-                                          <span className="paragraph_projects">0/4</span>
+                                          <span className="paragraph_projects">{imageIndex}/4</span>
                                        </div>
                                     </div>
 
-                                    <div className="container_images">
-                                      <ImageProject imageProjects={project.images} setImageProjects={(image:string)=>handleChangeImage(image)} maxImage={imageIndex === 4? false:true}/>
+                                    <div className="container_upload_images">
+                                       <ImageProject imageProjects={project.images} setImageProjects={(image: string) => handleChangeImage(image)} maxImage={imageIndex === 4 ? false : true} />
                                     </div>
-
-                                   
                                  </div>
-
                               </div>
-
-
-
-
                            </div>
 
 
                         </div>
 
                         <div className="aligment_button">
-                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => { }} />
+                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_publicar_project'} valueBtn={'Publicar'} onClick={() => {
+                              createProject()
+                           }} />
                         </div>
                      </div>
 

@@ -15,7 +15,7 @@ export interface IDomainProjectProps {
     estimated_deadline: Date
     finish_project_date: Date
     start_project_date: Date
-    status: "AWAITING_START" | "VALIDATING_REQUIREMENTS" | "IN EXECUTION" | "COMPLETE" | "CANCELED"
+    status: "AWAITING_START" | "VALIDATING_REQUIREMENTS" | "IN_EXECUTION" | "COMPLETE" | "CANCELED"
     user: UserORM
     categories: CategoryORM[]
     sub_categories: SubCategoryORM[]
