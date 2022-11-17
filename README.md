@@ -1,7 +1,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:F151FF,100:5196FF&height=220&section=header&text=Em%20órbita%20de:%20MediaSpace&fontColor=FFF&fontSize=56&animation=fadeIn&fontAlignY=38&desc=Você%20está%20entrando%20em%20nosso%20horizonte%20de%20eventos💫&descAlignY=55&descAlign=62"/>
 
-<img src="https://github.com/EduSan1/MediaSpace/blob/main/mobile/assets/light-illustration.svg#gh-dark-mode-only" width="850" />
-<img src="https://github.com/EduSan1/MediaSpace/blob/main/mobile/assets/dark-illustration.svg#gh-light-mode-only" width="850" />
+<img src="https://github.com/EduSan1/MediaSpace/blob/main/mobile/assets/light-illustration.svg#gh-light-mode-only" width="850" />
+<img src="https://github.com/EduSan1/MediaSpace/blob/main/mobile/assets/dark-illustration.svg#gh-dark-mode-only" width="850" />
 
 ---
 
