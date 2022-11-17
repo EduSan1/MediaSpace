@@ -1,3 +1,4 @@
+import { DeliveryORM } from "../entity/Delivery"
 import { GenderORM } from "../entity/Gender"
 import { PhoneORM } from "../entity/Phone"
 
@@ -16,4 +17,5 @@ export interface IDomainUserProps {
     is_authenticated: boolean
     gender : GenderORM
     phone : PhoneORM
+    delivery : DeliveryORM[]
 }

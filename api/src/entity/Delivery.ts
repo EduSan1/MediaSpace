@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, ManyToMany, JoinTable, PrimaryGeneratedColumn, Timestamp, CreateDateColumn } from "typeorm";
+import { Column, Entity, OneToMany, ManyToMany, ManyToOne, JoinTable, PrimaryGeneratedColumn, Timestamp, CreateDateColumn } from "typeorm";
 import { ProjectRequirementsORM } from "./ProjectRequirements";
 import { ProjectMemberORM } from "./ProjectMember";
 import { DeliveryFileORM } from "./DeliveryFile";
@@ -32,7 +32,7 @@ export class DeliveryORM {
     @JoinTable()
     requirements: ProjectRequirementsORM[]
 
-    @ManyToMany(() => UserORM, { eager: true})
+    @ManyToMany(() => UserORM, user => user.delivery, { eager: true}) 
     @JoinTable()
     user: UserORM[]
 

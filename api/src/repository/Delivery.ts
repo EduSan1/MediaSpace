@@ -25,8 +25,7 @@ export class DeliveryRepository {
             relations: {
                 files: true,
                 requirements: true,
-                user: true,
-                // projectMember: true
+                user: true
             }
         })
     }
