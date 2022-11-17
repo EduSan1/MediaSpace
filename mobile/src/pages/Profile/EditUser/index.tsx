@@ -1,16 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Pressable } from "react-native";
-import api from "../../../service";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import api from "../../../../service";
 import * as SecureStore from 'expo-secure-store';
-import HeaderSearch from "../../components/utils/HeaderSearch";
-import TabBar from "../../components/utils/TabBar";
-import ProfileNavigation from "./Body";
-import Selector from "../../components/utils/Selector";
-import { ListProjectCard } from "../../components/utils/ListProjectCard";
-import { ProfileCardProject } from "./ProfileCardProject";
+import TabBar from "../../../components/utils/TabBar";
 
-interface IProfile {
+interface IEditUser {
     navigation: any
 }
 
@@ -46,7 +41,7 @@ interface IProject {
     navigation: any
 }
 
-const Profile = ({ navigation }: IProfile) => {
+const EditUser = ({ navigation }: IEditUser) => {
 
     const navigateTo = (screen: string) => {
         navigation.navigate(screen)
@@ -99,56 +94,15 @@ const Profile = ({ navigation }: IProfile) => {
             <TabBar currentScreen="Profile" navigateTo={navigateTo} />
             <SafeAreaView style={styles.main}>
                 <ScrollView style={styles.Scroll}>
-                    <LinearGradient style={styles.header} colors={['#1B2469', '#31418D', '#5A5BB4', '#6C5CBB', '#6C5CBB', '#6C5CBB']}>
-                        <View style={styles.profileNavigationContainer}></View>
-                        <Pressable onPress={() => navigation.navigate("EditUser", {
-                            user: user
-                        })} style={styles.profileImageContainer}>
-                            <Image source={{ uri: user.profile_picture }} style={styles.profileImage}></Image>
-                        </Pressable>
-                        <View style={styles.profileDetailsContainer}>
-                            <View style={styles.details}>
-                                <Text style={styles.name}>{user.first_name}</Text>
-                                <Text style={styles.nickname}>@{user.nickname}</Text>
-                            </View>
-                            <Text style={styles.biography}>{user.biography}</Text>
-                        </View>
-
-                        <View style={styles.profileCategoriesContainer}>
-                            <ScrollView horizontal={true} >
-                                {
-                                    userCategories.map((category: ICategory) => {
-                                        return (
-                                            <View style={styles.categoryCard}>
-                                                <Text style={styles.categoryName}>{category.name}</Text>
-                                                <Image style={styles.categoryIcon} source={{ uri: category.icon }} />
-                                            </View>
-                                        )
-                                    })
-                                }
-
-
-                            </ScrollView>
-                        </View>
-
-                        <View style={styles.body}>
-                            <ProfileNavigation />
-                            <Text style={styles.title}>Projetos</Text>
-                            <Selector setSelectedProjects={setSelectedProjects} userProjects={userProject} />
-                            <View style={styles.projectContainer}>
-                                {
-                                    selectedProjects.map((project: IProject) => {
-                                        return (
-                                            <ProfileCardProject name={project.name} navigation={navigation} user={user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
-
-                                        )
-                                    })
-                                }
-                            </View>
-
-                        </View>
-
+                    <LinearGradient style={styles.header} colors={['#1B2469', '#31418D', '#5A5BB4']}>
                     </LinearGradient>
+                    <View style={styles.ediContainer}></View>
+                    <View style={styles.profileImageContainer}>
+                        <Image source={{ uri: user.profile_picture }} style={styles.profileImage}></Image>
+                    </View>
+
+
+
                 </ScrollView>
             </SafeAreaView>
         </>
@@ -162,7 +116,8 @@ const styles = StyleSheet.create({
     },
     Scroll: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.9
+        height: Dimensions.get('window').height * 0.9,
+        position: "relative"
 
     },
     text: {
@@ -172,11 +127,10 @@ const styles = StyleSheet.create({
     },
     header: {
         width: Dimensions.get('window').width,
-        height: "auto",
-        minHeight: Dimensions.get('window').height,
+        height: Dimensions.get('window').height * 0.25,
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "flex-end",
         flexDirection: "column"
 
     },
@@ -185,9 +139,17 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.1,
         // backgroundColor: "#d3d4d390"
     },
+    ediContainer: {
+        width: "100%",
+        height: Dimensions.get('window').height * 0.75,
+        backgroundColor: "#fff"
+    },
     profileImageContainer: {
-        width: "90%",
-        height: Dimensions.get('window').height * 0.13,
+        width: "100%",
+        height: Dimensions.get('window').height * 0.1,
+        position: "absolute",
+        top: Dimensions.get('window').height * 0.15,
+        left: Dimensions.get('window').height * 0.17,
         // backgroundColor: "#a3f4d390"
     },
     profileDetailsContainer: {
@@ -221,8 +183,8 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     profileImage: {
-        width: Dimensions.get('window').height * 0.13,
-        height: Dimensions.get('window').height * 0.13,
+        width: Dimensions.get('window').height * 0.2,
+        height: Dimensions.get('window').height * 0.2,
         borderRadius: 100,
         borderColor: "#fff",
         borderWidth: 3
@@ -293,4 +255,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Profile
+export default EditUser
