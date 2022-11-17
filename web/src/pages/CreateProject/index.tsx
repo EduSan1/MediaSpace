@@ -64,18 +64,6 @@ const CreateProject = () => {
       setImageIndex(imageIndex + 1)
    }
 
-   // const imageHandler = (event: any) => {
-   //    const reader = new FileReader();
-   //    reader.onload = () => {
-   //       if (reader.readyState === 2) {
-   //          //console.log(reader.result)
-   //          setImagem({ setImagem: reader.result })
-   //       }
-   //    }
-   //    console.log(reader.readAsDataURL(event.target.files[0]))
-   // }
-
-
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setProject({
          ...project, [event.target.name]: event.target.value
@@ -144,19 +132,16 @@ const CreateProject = () => {
 
       if (!project.name) {
          validate = false;
-         //console.log("TITULO EM BRANCO");
          handleErrors('Informe o nome do projeto.', 'name')
       }
 
       if (!project.description) {
          validate = false;
-         //console.log("COMO ASSIM VC NÃO SABE A DESCRIÇÃO");
          handleErrors('Informe o descrição do projeto.', 'description')
       }
 
       if (!project.estimated_value) {
          validate = false;
-         //console.log("ISSO AI COLOCA UMA CAPA MSM NÃO");
          handleErrors('Informe um data.', 'estimated_value')
       }
    }
@@ -274,7 +259,7 @@ const CreateProject = () => {
                                     </div>
 
                                     <div className="container_upload_images">
-                                       <ImageProject imageProjects={project.images} setImageProjects={(image: string) => handleChangeImage(image)} maxImage={imageIndex === 4 ? false : true} />
+                                       <ImageProject imageProjects={project.images} setImageProjects={(image: string) => handleChangeImage(image)} maxImage={imageIndex === 4 ? true:false} />
                                     </div>
                                  </div>
                               </div>
