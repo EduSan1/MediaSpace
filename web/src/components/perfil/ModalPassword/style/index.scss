@@ -1,20 +1,42 @@
+@import "../../../../styles/vars.scss";
+
+
 .Modal_all {
     display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.267);
+    width: 50%;
+    height: 50%;
+    background-color: #ffffff;
 
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
+    padding: 50px;
 
+   h1{
+    font-family: $light-font;
+    font-weight: 500;
+    margin-left: 5px;
+    white-space: nowrap;
+   font-size: clamp(2.5rem,2vw,1rem);
+   }
 
+   h4{
+    font-family: $light-font;
+    font-weight: 300;
+    margin-left: 5px;
+    color: $primary-purple;
+    white-space: nowrap;
+   }
 
     .InputModalPerfil{
-        display: flex;
-     width: 50%;
-    background-color: aqua;
+     display: flex;
+     width: 60%;
+     height: 30px;
+     border: 1.5px solid $light-purple;
+     margin-left: 20%;
+     border-radius: 5px;
+
+    
     }
 
 }
