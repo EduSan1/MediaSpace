@@ -4,6 +4,8 @@ import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } f
 import api from "../../../../service";
 import * as SecureStore from 'expo-secure-store';
 import TabBar from "../../../components/utils/TabBar";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 interface IEditUser {
     navigation: any
@@ -93,12 +95,23 @@ const EditUser = ({ navigation }: IEditUser) => {
         <>
             <TabBar currentScreen="Profile" navigateTo={navigateTo} />
             <SafeAreaView style={styles.main}>
-                <ScrollView style={styles.Scroll}>
+                <ScrollView style={styles.scroll}>
                     <LinearGradient style={styles.header} colors={['#1B2469', '#31418D', '#5A5BB4']}>
                     </LinearGradient>
-                    <View style={styles.ediContainer}></View>
+                    <View style={styles.editContainer}>
+
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>Suas Informações</Text>
+                            <Icon size={Dimensions.get('window').height * 0.04} name={"lock-outline"} style={{ color: "#75A5FF" }} />
+                        </View>
+
+
+
+                    </View>
                     <View style={styles.profileImageContainer}>
                         <Image source={{ uri: user.profile_picture }} style={styles.profileImage}></Image>
+                        <Text style={styles.name}>{user.first_name} {user.last_name}</Text>
+                        <Text style={styles.nickname}>@{user.nickname}</Text>
                     </View>
 
 
@@ -114,16 +127,11 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.9
     },
-    Scroll: {
+    scroll: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.9,
         position: "relative"
 
-    },
-    text: {
-        textAlign: "center",
-        fontSize: 50,
-        fontWeight: "500",
     },
     header: {
         width: Dimensions.get('window').width,
@@ -134,14 +142,10 @@ const styles = StyleSheet.create({
         flexDirection: "column"
 
     },
-    profileNavigationContainer: {
+    editContainer: {
         width: "100%",
-        height: Dimensions.get('window').height * 0.1,
-        // backgroundColor: "#d3d4d390"
-    },
-    ediContainer: {
-        width: "100%",
-        height: Dimensions.get('window').height * 0.75,
+        minHeight: Dimensions.get('window').height * 0.75,
+        height: "auto",
         backgroundColor: "#fff"
     },
     profileImageContainer: {
@@ -149,109 +153,45 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.1,
         position: "absolute",
         top: Dimensions.get('window').height * 0.15,
-        left: Dimensions.get('window').height * 0.17,
-        // backgroundColor: "#a3f4d390"
-    },
-    profileDetailsContainer: {
-        width: "90%",
-        minHeight: Dimensions.get('window').height * 0.1,
-        height: "auto",
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
-        flexDirection: "column",
-        paddingTop: 20
-        // backgroundColor: "#f3f4d390"
-    },
-    profileCategoriesContainer: {
-        width: "100%",
-        height: "auto",
-        padding: 15
-        // display: "flex",
-        // alignItems: "center",
-        // justifyContent: "flex-start",
-        // flexDirection: "row",
-
-    },
-    projectContainer: {
-        width: "100%",
-        height: "auto",
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
-        flexDirection: "column",
-        paddingTop: 20
     },
     profileImage: {
         width: Dimensions.get('window').height * 0.2,
         height: Dimensions.get('window').height * 0.2,
         borderRadius: 100,
         borderColor: "#fff",
-        borderWidth: 3
+        borderWidth: 3,
+
     },
     title: {
-        width: "100%",
+        width: "auto",
         height: Dimensions.get('window').height * 0.1,
         display: "flex",
         textAlignVertical: "center",
         paddingLeft: 20,
-        fontWeight: "800",
+        color: "#75A5FF",
+        fontWeight: "400",
         fontSize: 26,
+        marginRight: 10,
     },
-    details: {
-        // height: Dimensions.get('window').height * 0.13,
-        marginBottom: 20
-
+    titleContainer: {
+        width: "100%",
+        paddingTop: Dimensions.get('window').height * 0.2,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        flexDirection: 'row'
     },
     name: {
-        fontWeight: "500",
+        fontWeight: "300",
         fontSize: 22,
-        color: "#fff"
+        color: "#000"
     },
     nickname: {
         fontWeight: "300",
         fontSize: 14,
-        color: "#ccc"
-    },
-    biography: {
-        fontWeight: "500",
-        // backgroundColor: "#fff",
-
-        fontSize: 14,
-        color: "#fff"
-    },
-    categoryCard: {
-        width: "auto",
-        height: Dimensions.get('window').height * 0.05,
-        backgroundColor: "#75A5FF",
-        display: "flex",
-        alignItems: "center",
-        padding: 10,
-        borderRadius: 30,
-        borderWidth: 1,
-        borderColor: "#fff",
-        justifyContent: "space-between",
-        flexDirection: "row",
-        marginRight: 10
-    },
-    categoryName: {
-        marginRight: 10,
-        fontWeight: "600",
-        color: "#fff"
-    },
-    categoryIcon: {
-        width: 20,
-        // backgroundColor: "#3a4",
-        height: 20,
-
-    },
-    body: {
-        width: "100%",
-        minHeight: "100%",
-        height: "auto",
-        backgroundColor: "#fff",
-        borderTopEndRadius: 80,
-        borderTopStartRadius: 80
+        color: "#b3b3b3"
     }
 })
 

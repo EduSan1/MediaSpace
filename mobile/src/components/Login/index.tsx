@@ -17,7 +17,7 @@ export const Login = ({ navigation }: ILogin) => {
     const [isLoad, setIsLoad] = useState(false)
     const [userLogin, setUserLogin] = useState({
         mail: "edusan3456@gmail.com",
-        password: "Edu123@"
+        password: "123"
     })
     const [hasError, setHasError] = useState(false)
 
