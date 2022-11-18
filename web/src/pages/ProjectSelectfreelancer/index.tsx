@@ -41,11 +41,15 @@ const ProjectsSelecetFreelancer = () => {
 
     const selectidFreelancer = () => {
 
-        api.post(`/project/registerInterest/${projectId}`, selecetFreelancer)
-            .then(() => {
-                window.alert('freelancer selecionado com sucesso')
+        api.post(`/project/selectFreelancer/${projectId}`, selecetFreelancer)
+            .then((res) => {
+                if (res.data.statusCode !== 200) {
+                    window.alert("Não foi possível selecionar o freelancer")
+                    console.log(res.data)
+                 } else {
+                    window.alert(res.data.message)
+                 }
             })
-
     }
 
 
