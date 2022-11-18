@@ -85,7 +85,7 @@ export class ProjectService {
             let response = null
             if (query.take !== undefined) {
                 const categories = query.categories.split(",")
-                const projects = await this._.listPerPage(query.take, query.skip, query.search, categories[0] === "" ? [] : categories)
+                const projects = await this._.listPerPage(query.take, (query.page - 1) * query.take, query.search, categories[0] === "" ? [] : categories)
 
                 response = {
                     page: query.page,

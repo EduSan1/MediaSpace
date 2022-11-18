@@ -1,8 +1,7 @@
 import React from "react"
 import { Text, View, StyleSheet, Dimensions, Image, ScrollView, ToastAndroid, Pressable } from "react-native"
 import api from "../../../../service";
-import { CategoryButton } from "../CategoryButton";
-import { CategoryCard } from "../CategoryCard";
+import { CategoryCard } from "../../../components/utils/CategoryCard";
 import * as SecureStore from "expo-secure-store"
 
 
@@ -22,8 +21,7 @@ interface IProject {
     navigation: any
 }
 
-export const ListProjectCard = ({ id, name, description, value, image, categories, user, navigation }: IProject) => {
-    console.log(user)
+export const ProfileCardProject = ({ id, name, description, value, image, categories, user, navigation }: IProject) => {
 
     const userProject = async () => {
 
@@ -39,7 +37,6 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
                     projectId: res.data.data.id
                 })
             }
-            console.log(res.data)
         })
     }
     return (
@@ -53,7 +50,7 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
                 </View>
 
                 <View style={styles.profile}>
-                    <Image style={{ width: "15%", height: "100%", borderRadius: 100 }} source={{ uri: user.profile_picture }} />
+                    <Image style={{ width: "10%", height: "100%", borderRadius: 100 }} source={{ uri: user.profile_picture }} />
                     <Text style={styles.nameArroba}> @{user.nickname}</Text>
                 </View>
 
@@ -88,7 +85,7 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
 const styles = StyleSheet.create({
 
     containerCard: {
-        width: Dimensions.get('window').width * 0.45,
+        width: Dimensions.get('window').width * 0.9,
         height: Dimensions.get("window").height * 0.45,
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -101,7 +98,7 @@ const styles = StyleSheet.create({
     },
 
     imagecontainer: {
-        width: Dimensions.get('window').width * 0.44,
+        width: Dimensions.get('window').width * 0.89,
         height: Dimensions.get("window").height * 0.2,
         borderTopStartRadius: 10,
         borderTopEndRadius: 10,
@@ -109,7 +106,7 @@ const styles = StyleSheet.create({
 
     },
     profile: {
-        width: Dimensions.get('window').width * 0.4,
+        width: Dimensions.get('window').width * 0.86,
         height: Dimensions.get("window").height * 0.035,
         display: 'flex',
         flexDirection: 'row',
@@ -117,19 +114,19 @@ const styles = StyleSheet.create({
 
     },
     describle: {
-        width: Dimensions.get('window').width * 0.44,
+        width: Dimensions.get('window').width * 0.86,
         height: Dimensions.get("window").height * 0.045,
 
     },
     value: {
-        width: Dimensions.get('window').width * 0.44,
+        width: Dimensions.get('window').width * 0.86,
         height: Dimensions.get("window").height * 0.035,
         display: 'flex',
         flexDirection: 'row',
         paddingTop: 10
     },
     category: {
-        width: Dimensions.get('window').width * 0.44,
+        width: Dimensions.get('window').width * 0.86,
         height: Dimensions.get("window").height * 0.03,
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,

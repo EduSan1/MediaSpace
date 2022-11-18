@@ -24,7 +24,7 @@ const NavegationBar = () => {
     const userJwt = localStorage.getItem('userDetails');
     const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
 
-    console.log("token => ", decodedToken)
+    //console.log("token => ", decodedToken)
 
     return (
 

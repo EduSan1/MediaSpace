@@ -1,522 +1,417 @@
 @import "../../../styles/vars.scss";
 
 .SpaceLogin {
-  display: flex;
-  width: 90%;
-  height: 75%;
-  margin-top: 5%;
-  left: 6%;
-  border-radius: 1rem;
-  border: solid 2px #d3d3d3d7;
-  background-color: #fff;
-  align-items: center;
-  justify-content: end;
-  position: absolute;
-  padding: 20px;
-  filter: drop-shadow(1px 1px 10px $primary-purple);
-  // border-image: linear-gradient($primary-purple, $dark-blue) 30;
-  // box-shadow: 0px 0px 4px;
+    display: flex;
+    width: 90%;
+    height: 75%;
+    margin-top: 5%;
+    left: 6%;
+    border-radius: 1rem;
+    border: solid 2px #d3d3d3d7;
+    background-color: #fff;
+    align-items: center;
+    justify-content: end;
+    position: absolute;
+    padding: 20px;
+    filter: drop-shadow(1px 1px 10px $primary-purple);
+    // border-image: linear-gradient($primary-purple, $dark-blue) 30;
+    // box-shadow: 0px 0px 4px;
 
-
-
-  //div {
-   // display: flex;
-   // width: 50%;
+    //div {
+    // display: flex;
+    // width: 50%;
     //justify-content: center;
     //align-items: center;
 
+    //}
 
-  //}
-
-  section{
-    display: flex;
-    width: 50%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    
-    
-    
-  }
-
-
-
-
+    section {
+        display: flex;
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .ImageSpaceLogin {
-
-  img {
-    width: 80%;
-    height: auto;
-  }
-
+    img {
+        width: 80%;
+        height: auto;
+    }
 }
 
-
-
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap");
 
 .LoginSpace .newHere {
-  height: 80px;
-  display: flex;
-  justify-content: end;
-  align-items: flex-start;
-  padding: 10px;
-  width: 100%;
-  
- 
+    height: 80px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+    padding: 10px;
+    width: 100%;
 }
 
 .LoginSpace .TittleWelcomeBack {
-  display: flex;
-  height: 15%;
-  flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
-  
-
+    display: flex;
+    height: 15%;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
 }
 
 .LoginSpace .inputLogin {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  height: clamp(40%, 4vh, 30%);
-  gap: 10%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: clamp(40%, 4vh, 30%);
+    gap: 10%;
 
+    div {
+        width: 100%;
+        height: 80%;
 
-  div{
-    width: 100%;
-    height: 80%;
-
-    .input_icon_login{
-      .IconNormal{
-       font-size: 20px;
-      }
+        .input_icon_login {
+            .IconNormal {
+                font-size: 20px;
+            }
+        }
     }
-  }
-
 }
-
 
 .LoginSpace .btnLogin {
-  display: flex;
-  height: clamp(200px,4vh,30%);
-  flex-direction: column;
-  justify-content: start;
-  gap: clamp(2%,3vh,1%);
-   
-  .forguetPass{
-    h5{
-      cursor: pointer;
-      font-family: $light-font;
-      font: 0.8em sans-serif;
+    display: flex;
+    height: clamp(50%, 4vh, 30%);
+    flex-direction: column;
+    justify-content: start;
+    gap: clamp(2%, 3vh, 1%);
+
+    .forguetPass {
+        h5 {
+            cursor: pointer;
+            font-family: $light-font;
+            font: 0.8em sans-serif;
+        }
     }
-  }
 }
 
-
-
 .LoginSpace {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 30px;
-  width: 50%;
-  height: 100%;
-
-
-  div {
     display: flex;
-    width: 90%;
+    flex-direction: column;
+    padding: 10px;
+    gap: 30px;
+    width: 50%;
+    height: 100%;
 
-  }
-
-  .newHere span:nth-child(1) {
-    display: flex;
-    font-family: $light-font;
-    font-style: normal;
-    font: 1.3em sans-serif;
-  }
-
-  .newHere span:nth-child(2) {
-    display: flex;
-    font-family: $light-font;
-    font-style: normal;
-    color: $dark-purple;
-    cursor: pointer;
-    font-size: 1.3rem;
-
-
-  }
-
-
-  .TittleWelcomeBack h1 {
-    display: flex;
-    height: 50%;
-    width: 100%;
-    font-size: 2.5rem;
-    font-family: $light-font;
-    font-weight: bold;
-    color: $primary-purple;
-    margin-bottom: 10px;
-
-  }
-
-  .TittleWelcomeBack p {
-    display: flex;
-    height: 50%;
-    width: 100%;
-    font-size: 1.25rem;
-    font-family: $light-font;
-    font-weight: bold;
-    color: $dark-purple;
-
-  }
-
-
-  .btnLogin {
-    width: 90%;
-
-
-
-    span {
-      display: flex;
-      margin-bottom: 10px;
+    div {
+        display: flex;
+        width: 90%;
     }
 
+    .newHere span:nth-child(1) {
+        display: flex;
+        font-family: $light-font;
+        font-style: normal;
+        font: 1.3em sans-serif;
+    }
 
-    .btn_AutomaticLogin {
-      width: 100%;
-      height: 100%;
-      justify-content: space-between;
-      padding: 0px;
-      color: $light-purple;
-      flex-direction: column;
-      align-items: flex-start;
-      
+    .newHere span:nth-child(2) {
+        display: flex;
+        font-family: $light-font;
+        font-style: normal;
+        color: $dark-purple;
+        cursor: pointer;
+        font-size: 1.3rem;
+    }
 
+    .TittleWelcomeBack h1 {
+        display: flex;
+        height: 50%;
+        width: 100%;
+        font-size: 2.5rem;
+        font-family: $light-font;
+        font-weight: bold;
+        color: $primary-purple;
+        margin-bottom: 10px;
+    }
 
-      .InputBtnLogin{
-        font-size: 1rem;
-      }
-    
+    .TittleWelcomeBack p {
+        display: flex;
+        height: 50%;
+        width: 100%;
+        font-size: 1.25rem;
+        font-family: $light-font;
+        font-weight: bold;
+        color: $dark-purple;
+    }
 
+    .btnLogin {
+        width: 90%;
 
-      .LoginIcons-container{
-        width: 60%;
-        flex-direction: row;
-        justify-content: start;
-        align-items: center;
-        padding: 2px;
-
-        span{
-          width: 10%;
-          height: 10%;
-          margin-right: 10px;
-
-   
-          
+        span {
+            display: flex;
+            margin-bottom: 10px;
         }
-        
-      }
 
+        .btn_AutomaticLogin {
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+            padding: 0px;
+            color: $light-purple;
+            flex-direction: column;
+            align-items: flex-start;
 
-      h5 {
+            .InputBtnLogin {
+                font-size: 1rem;
+            }
+
+            .LoginIcons-container {
+                width: 60%;
+                flex-direction: row;
+                justify-content: start;
+                align-items: center;
+                padding: 2px;
+
+                span {
+                    width: 10%;
+                    height: 10%;
+                    margin-right: 10px;
+                }
+            }
+
+            h5 {
+                font-family: $light-font;
+                font-style: normal;
+                font-weight: 100;
+                font-size: 20px;
+                line-height: 24px;
+                letter-spacing: 0.03em;
+                width: auto;
+            }
+
+            .loginIcons {
+                display: flex;
+                width: 50%;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+                padding-top: 5px;
+
+                span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    width: 20%;
+                    cursor: pointer;
+                    font-size: 1.7rem;
+                }
+            }
+        }
+    }
+
+    .btnLogin span:nth-child(1) {
+        width: 100%;
+        justify-content: end;
+        padding: 1px;
 
         font-family: $light-font;
         font-style: normal;
         font-weight: 100;
         font-size: 20px;
         line-height: 24px;
-        letter-spacing: 0.03em;
-        width: auto;
-
-
-
-
-
-      }
-
-      .loginIcons {
-        display: flex;
-        width: 50%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        padding-top: 5px;
-
-
-        span {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          width: 20%;
-          cursor: pointer;
-          font-size: 1.7rem;
-
-        }
-
-      }
-
-
-
-
+        letter-spacing: 0.05em;
     }
-
-
-
-  }
-
-  .btnLogin span:nth-child(1) {
-
-    width: 100%;
-    justify-content: end;
-    padding: 1px;
-
-
-    font-family: $light-font;
-    font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 0.05em;
-
-  }
-
-
 }
 
-@media (max-width:1600px){
+@media (max-width: 1600px) {
+    .SpaceLogin {
+        .LoginSpace {
+            height: 100%;
+            gap: 7%;
 
-  .SpaceLogin {
-    
+            .newHere {
+                span {
+                    font-size: 1rem;
+                    white-space: nowrap;
+                }
+            }
 
-   
-    .LoginSpace{
-      height: 100%;
-      gap: 7%;
-       
-      .newHere{
-        span{
-          font-size: 1rem;
-          white-space: nowrap;
-        }
-       
-      }
-  
-      .TittleWelcomeBack{ 
-      h1{
-        font-size: clamp(1.5rem, 3px, 0.2rem);
-        white-space: nowrap;
-        margin-bottom: 3%;
-        
-      }
+            .TittleWelcomeBack {
+                h1 {
+                    font-size: clamp(1.5rem, 3px, 0.2rem);
+                    white-space: nowrap;
+                    margin-bottom: 3%;
+                }
 
-      p{
-        font-size: 0.8rem;
-        white-space: nowrap;
-      }
-    }
-    }
-
-  .LoginSpace .newHere {
-    height: 50px;
-    display: flex;
-    justify-content: end;
-    align-items: flex-start;
-    padding: 10px;
-    width: 100%;
-    margin-bottom: -2%;
-    
-  }
-  
-  .LoginSpace .TittleWelcomeBack {
-    display: flex;
-    height: 5%;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-
-
- 
-    }
-    .TittleWelcomeBack p {
-      display: flex;
-      height: 30%;
-      width: 100%;
-      font-size: 1rem;
-      font-family: $light-font;
-      font-weight: bold;
-      color: $dark-purple;
-     
-  
-  }
-  .TittleWelcomeBack h1 {
-    display: flex;
-    height: 50%;
-    width: 100%;
-    font-size: 2rem;
-    font-family: $light-font;
-    font-weight: bold;
-    color: $primary-purple;
-    margin-bottom: 3%;
-  
-
-  }
-  
-  .LoginSpace .inputLogin {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    height: clamp(50%, 4vh, 30%);
-    gap: 10%;
-
-    div{
-      width: 100%;
-      height: 45%;
-      
-      span{
-        padding-left: 1%;
-        
-      }
-
-      input{
-        height: clamp(3rem,2vh, 2rem);
-      }
-      
-  }
-  
-  
-  .LoginSpace .btnLogin {
-    display: flex;
-    height: clamp(20%,4vh,20%);
-    flex-direction: column;
-    justify-content: start;
-    gap: clamp(2%,3vh,1%);
-  }
-
-  .btnLogin {
-    width: 90%;
-
-
-
-    span {
-      display: flex;
-      margin-bottom: 1%;
-      
-    }
-
-    .InputBtnLogin{
-      width: 20%;
-      height: 50%;
-
-
-      font-size: 15px;
-    }
-
-
-    .btn_AutomaticLogin {
-      width: 100%;
-      height: 100%;
-      justify-content: space-between;
-      padding: 0px;
-      color: $light-purple;
-      flex-direction: column;
-      align-items: flex-start;
-
-
-      .LoginIcons-container{
-        width: 60%;
-        flex-direction: row;
-        justify-content: start;
-        padding: 2px;
-        
-
-        span{
-          margin-right: 5px;
-          
-   
-          
-        }
-        
-      }
-
-
-      h5 {
-
-        font-family: $light-font;
-        font-style: normal;
-        font-weight: 100;
-        font-size: 15px;
-        line-height: 24px;
-        letter-spacing: 0.03em;
-        width: auto;
-        
-
-
-
-
-
-      }
-
-      .loginIcons {
-        display: flex;
-        width: 50%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        padding-top: 5px;
-      
-
-
-        span {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          width: 20%;
-          cursor: pointer;
-          font-size: 1rem;
-          
-
+                p {
+                    font-size: 0.8rem;
+                    white-space: nowrap;
+                }
+            }
         }
 
-      }
+        .LoginSpace .newHere {
+            height: 50px;
+            display: flex;
+            justify-content: end;
+            align-items: flex-start;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: -2%;
+        }
 
+        .LoginSpace .TittleWelcomeBack {
+            display: flex;
+            height: 5%;
+            flex-direction: column;
+            justify-content: start;
+            align-items: flex-start;
+        }
 
+        .TittleWelcomeBack p {
+            display: flex;
+            height: 30%;
+            width: 100%;
+            font-size: 1rem;
+            font-family: $light-font;
+            font-weight: bold;
+            color: $dark-purple;
+        }
 
+        .TittleWelcomeBack h1 {
+            display: flex;
+            height: 50%;
+            width: 100%;
+            font-size: 2rem;
+            font-family: $light-font;
+            font-weight: bold;
+            color: $primary-purple;
+            margin-bottom: 3%;
+        }
 
+        .LoginSpace .inputLogin {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            height: clamp(50%, 4vh, 30%);
+            gap: 10%;
+
+            div {
+                width: 100%;
+                height: 45%;
+
+                span {
+                    padding-left: 1%;
+                }
+
+                input {
+                    height: clamp(3rem, 2vh, 2rem);
+                }
+            }
+
+            .LoginSpace .btnLogin {
+                display: flex;
+                height: clamp(20%, 4vh, 20%);
+                flex-direction: column;
+                justify-content: start;
+                gap: clamp(2%, 3vh, 1%);
+            }
+
+            .btnLogin {
+                width: 90%;
+
+                span {
+                    display: flex;
+                    margin-bottom: 1%;
+                }
+
+                .InputBtnLogin {
+                    width: 20%;
+                    height: 50%;
+
+                    font-size: 15px;
+                }
+
+                .btn_AutomaticLogin {
+                    width: 100%;
+                    height: 100%;
+                    justify-content: space-between;
+                    padding: 0px;
+                    color: $light-purple;
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    .LoginIcons-container {
+                        width: 60%;
+                        flex-direction: row;
+                        justify-content: start;
+                        padding: 2px;
+
+                        span {
+                            margin-right: 5px;
+                        }
+                    }
+
+                    h5 {
+                        font-family: $light-font;
+                        font-style: normal;
+                        font-weight: 100;
+                        font-size: 15px;
+                        line-height: 24px;
+                        letter-spacing: 0.03em;
+                        width: auto;
+                    }
+
+                    .loginIcons {
+                        display: flex;
+                        width: 50%;
+                        height: 100%;
+                        justify-content: center;
+                        align-items: center;
+                        padding-top: 5px;
+
+                        span {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100%;
+                            width: 20%;
+                            cursor: pointer;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+
+            .btnLogin span:nth-child(1) {
+                width: 100%;
+                justify-content: end;
+                padding: 1px;
+
+                font-family: $light-font;
+                font-style: normal;
+                font-weight: 100;
+                font-size: 15px;
+                line-height: 24px;
+                letter-spacing: 0.05em;
+            }
+        }
     }
-
-
-
-  }
-
-  .btnLogin span:nth-child(1) {
-
-    width: 100%;
-    justify-content: end;
-    padding: 1px;
-
-
-    font-family: $light-font;
-    font-style: normal;
-    font-weight: 100;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0.05em;
-
-  }  }
-  
-
 }
 
+@media (min-width: 1600px) {
+    .SpaceLogin {
+        .inputLogin {
+            gap: 25px;
+
+            .containerInput {
+                height: 50%;
+            }
+        }
+    }
 }
