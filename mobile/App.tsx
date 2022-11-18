@@ -24,6 +24,7 @@ import WorkersAppliedPage from './src/pages/WorkersAppliedPage';
 import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFreelancer';
 import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 import EditUser from './src/pages/Profile/EditUser';
+import ModalRequirements from './src/components/utils/ModalRequirements';
 
 export default function App() {
 

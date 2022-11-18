@@ -56,33 +56,24 @@ const EditUser = ({ navigation }: IEditUser) => {
         nickname: "",
         profile_picture: "",
         biography: "",
+        birth_date: "",
+        cpf: "",
+        mail: "",
+        gender: {
+            id: "",
+            gender: "Masculino",
+        },
     })
 
     const [userCategories, setUserCategories] = useState<ICategory[]>([])
-
-    const [userProject, setUserProject] = useState<IUserProjects>({
-        AWAITING_START: [],
-        VALIDATING_REQUIREMENTS: [],
-        IN_EXECUTION: [],
-        COMPLETE: [],
-        CANCELED: []
-    })
-
-    const [selectedProjects, setSelectedProjects] = useState<IProject[]>([])
-
-    // const userId = { route }
 
     const getUserInfo = async () => {
         const userId = await SecureStore.getItemAsync('userId')
 
         api.get(`user/${userId}`).then((res) => {
             setUser(res.data.data)
-            setUserCategories(res.data.data.teams[0].team.categories)
-        })
-
-        api.get(`/project/user/${userId}`).then((res) => {
-            setUserProject(res.data.data)
-            setSelectedProjects(res.data.data.AWAITING_START)
+            res.data.data.teams[0].team.categories &&
+                setUserCategories(res.data.data.teams[0].team.categories)
         })
     }
 
@@ -99,14 +90,10 @@ const EditUser = ({ navigation }: IEditUser) => {
                     <LinearGradient style={styles.header} colors={['#1B2469', '#31418D', '#5A5BB4']}>
                     </LinearGradient>
                     <View style={styles.editContainer}>
-
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>Suas Informações</Text>
                             <Icon size={Dimensions.get('window').height * 0.04} name={"lock-outline"} style={{ color: "#75A5FF" }} />
                         </View>
-
-
-
                     </View>
                     <View style={styles.profileImageContainer}>
                         <Image source={{ uri: user.profile_picture }} style={styles.profileImage}></Image>
