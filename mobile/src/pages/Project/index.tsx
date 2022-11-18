@@ -149,7 +149,7 @@ export const Project = ({ navigation, route }: IProject) => {
                         </View>
 
                    <View style={styles.containerProfile}>
-                            {/* <Image style={styles.image} source={{uri : project.user.profile_picture}} />  */}
+                            <Image style={styles.image} source={{uri : project.user.profile_picture}} /> 
                             <Text style={styles.title}>Valor estiamdo: {project.value}</Text>
                         </View>
 
