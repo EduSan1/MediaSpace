@@ -47,7 +47,8 @@ export class DeliveryService {
 
                 const freelancerId = delivery.user.id
                 const freelancer = await this.userRepository.findById(freelancerId)
-                const projectMember = await this.projectMemberRepository.findById()
+                const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
+                const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
                 
                 if (freelancer.is_active === true) {
 
