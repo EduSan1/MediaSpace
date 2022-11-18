@@ -25,7 +25,7 @@ const ProjectsSelecetFreelancer = () => {
 
 
     const [selecetFreelancer, setSelectFreelancer] = useState({
-
+        freelancerId: ""
     });
 
 
@@ -39,9 +39,9 @@ const ProjectsSelecetFreelancer = () => {
 
 
 
-    const selectidFreelancer = (idFreelancer: any) => {
+    const selectidFreelancer = () => {
 
-        api.post(`/project/registerInterest/${projectId}`, idFreelancer)
+        api.post(`/project/registerInterest/${projectId}`, selecetFreelancer)
             .then(() => {
                 window.alert('freelancer selecionado com sucesso')
             })
@@ -71,10 +71,8 @@ const ProjectsSelecetFreelancer = () => {
                     <div className="select_candidates">
                         {
                             selecetFreelancerView.interest.map((intereest: any) => {
-
-
                                 return <Interestedserver action={() => {
-                                    setSelectFreelancer(intereest.id);
+                                    setSelectFreelancer({ ...selecetFreelancer, freelancerId: intereest.id });
                                 }} type={"radio"} name={intereest.team.name} nickname={intereest.team.nickname} photo={intereest.team.profile_picture} />
 
                             })
@@ -90,7 +88,7 @@ const ProjectsSelecetFreelancer = () => {
                     <div className="send_freelance_selecet">
                         <InputBtn className="btn_selecet_freelancer" name="" onClick={() => {
 
-                            selectidFreelancer(selecetFreelancer);
+                            selectidFreelancer();
                             console.log('mandar outra tela')
 
                         }} typeInput={'button'} valueBtn={'Selecionar'} enable={false} />
