@@ -193,7 +193,7 @@ const RegisterSpace = () => {
 
             if (res.data.statusCode !== 201) {
                  console.log(res.data);
-                window.alert(res.data.message)
+               
                    
                 if(res.data.mail){
                     window.alert("Email já existente")
@@ -323,8 +323,12 @@ const RegisterSpace = () => {
 
                     </div>
 
-
-                </div>
+                         
+                </div> 
+                <span className="back_link_login"> 
+                <Link to={"/"} className="link_to_back_login">Voltar a tela de login</Link>
+                </span>
+               
             </div>
 
         </>
