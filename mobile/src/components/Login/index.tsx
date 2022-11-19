@@ -16,8 +16,8 @@ export const Login = ({ navigation }: ILogin) => {
 
     const [isLoad, setIsLoad] = useState(false)
     const [userLogin, setUserLogin] = useState({
-        mail: "edusan3456@gmail.com",
-        password: "Edu123@"
+        mail: "mediaspacetcc@gmail.com",
+        password: "123"
     })
     const [hasError, setHasError] = useState(false)
 
@@ -40,7 +40,6 @@ export const Login = ({ navigation }: ILogin) => {
         setIsLoad(true)
         // navigation.navigate("Home")      
         api.post("/user/login", userLogin).then(async (res: any) => {
-            console.log("adsa")
 
             if (res.data.is_logged) {
                 await SecureStore.setItemAsync('userImage', res.data.user.profile_picture)

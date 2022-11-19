@@ -44,7 +44,9 @@ export class TeamProjectManagementRepository {
             }],
             relations: {
                 projectManagement: {
-                    project: true
+                    project: {
+                        user: true
+                    }
                 }
             }
         })

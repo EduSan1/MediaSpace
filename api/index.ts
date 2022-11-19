@@ -1,5 +1,5 @@
-import { AppDataSource } from "./data-source"
-import routes from "./routes"
+import { AppDataSource } from "./src/data-source"
+import routes from "./src/routes"
 import * as bodyParser from "body-parser"
 import * as express from "express"
 import * as cors from "cors"
