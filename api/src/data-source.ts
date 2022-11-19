@@ -30,6 +30,9 @@ export const AppDataSource = new DataSource({
     database: "db_media_space",
     synchronize: true,
     logging: false,
+    // ssl: {
+    //     ca: process.env.SSL_CERT,
+    // },
     entities: [
         UserORM,
         GenderORM,

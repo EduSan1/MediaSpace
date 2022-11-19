@@ -79,8 +79,6 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
     })
 
 
-
-
     const handleUserPicture = (text: any) => {
 
         console.log("images => ", text)
@@ -97,7 +95,11 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         setImageIndex(imageIndex + 1)
     }
 
-    useEffect(() => { }, [projectOwner])
+    useEffect(() => {
+        api.get(`/project/${projectId}`).then((res: any)=>{
+            setProjectOwner(res.data.data)
+        })
+     }, [])
 
 
     return (
@@ -107,7 +109,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
 
 
             <ScrollView style={styles.container}>
-                <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={projectOwner.images} setUserImage={(image: string) => handleUserPicture(image)} />
+                <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={projectOwner.images} setUserImage={(image: string) => {}} />
 
                 <View style={styles.containerFilho}>
                     <View style={styles.containerDate}>

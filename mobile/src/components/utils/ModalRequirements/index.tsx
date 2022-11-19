@@ -1,19 +1,65 @@
-import React, { useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button,Pressable, TextInput} from "react-native";
+import { async } from "@firebase/util";
+import React, { useEffect, useState } from "react";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button,Pressable, TextInput, ToastAndroid} from "react-native";
+import api from "../../../../service";
 import { BtnConfirmRequirements } from "../btnConfirmRequeriments";
 
 interface IModalRequirements {
     
     onClose: () => void
     requirementId?: string
+    navigation: any
+    route: any
 
 }
-export default function ModalRequirements({requirementId, onClose}:IModalRequirements) {
+export default function ModalRequirements({navigation, route, requirementId, onClose}:IModalRequirements) {
     const [isModalVisible, setModalVisible] = useState(false);
+    const [hasError, setHasError] = useState(false)
+    const [requirementLoad, setRequirementLoad] = useState(false)
+    const {projectId} = route.params
 
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
     };
+
+    const [createModal, setCreateModal] = (useState) ({
+            title: "",
+            description: "",
+            gain_percentage: 0.2,
+            project: {
+                id: "4c72d504-5e51-490d-a831-a3ad9c3fbed8"
+            }
+    })
+
+    const modalCreate = async () =>{
+
+        const modalApi = {
+            ...createModal
+        }
+
+        setRequirementLoad(true)
+        console.log(createModal)
+        api.post("/requirement", modalApi).then((res: any)=>{
+
+            if(res.data.statusCode === 201){
+                navigation.navigate("", {
+                    modalId: res.data.data.id,
+                })
+            }else {
+                ToastAndroid.show("res.data.message", 10)
+            }
+            console.log(res.data)
+        })
+
+        setRequirementLoad(false)
+
+    }
+
+    useEffect(() => {
+        api.get(`/project/${projectId}`).then((res: any)=>{
+            setCreateModal(res.data.data)
+        })
+    }, [])
     return(
                     <Modal
                     animationType="fade"
@@ -38,20 +84,20 @@ export default function ModalRequirements({requirementId, onClose}:IModalRequire
                                 </View>
                             </View>
                                 <View style={style.TextBoxModal}>
-                                <Text style={style.TextInputModal}>Titulo</Text>
+                                <Text style={style.TextInputModal}>Titulo </Text>
                                 </View>
-                                <TextInput style={style.InputTitleModal} placeholder="Titulo..."></TextInput>
+                                <TextInput style={style.InputTitleModal} placeholder="Titulo...">{createModal.title}</TextInput>
                                 <View style={style.TextBoxModal}>
                                 <Text style={style.TextInputModal}>Descrião</Text>
                                 </View>
-                                <TextInput style={style.InputDescModal} placeholder="Descriçâo..."></TextInput>
+                                <TextInput style={style.InputDescModal} placeholder="Descriçâo...">{createModal.description}</TextInput>
                                 <View style={style.TextBoxModal}>
                                 <Text style={style.TextInputModal}>Porcentual</Text>
                                 </View>
-                                <TextInput maxLength={3} keyboardType = 'numeric' style={style.InputTitleModal} placeholder="Porcentual..."></TextInput>
+                                <TextInput maxLength={3} keyboardType = 'numeric' style={style.InputTitleModal} placeholder="Porcentual...">{createModal.gain_percentage}</TextInput>
                                 
                                 <View style={style.boxBtn}>
-                                    <BtnConfirmRequirements action={() => toggleModal()}/>
+                                    <BtnConfirmRequirements action={() => modalCreate()}/>
                                 </View>
                         </View>
                     </View>
