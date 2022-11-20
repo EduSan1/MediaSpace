@@ -32,6 +32,10 @@ export class DeliveryRepository {
 
     update = async (entity: DeliveryORM) => {
         return await this._.save(entity)
+    } 
+
+    delete = async (id: string) => {
+        return await this._.delete({ id })
     }
 
 }

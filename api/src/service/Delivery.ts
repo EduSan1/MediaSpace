@@ -50,18 +50,20 @@ export class DeliveryService {
                 const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
                 const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
                 
-                if (freelancer.is_active === true) {
+                if (!freelancer.is_active === true && !projectMember.is_active === true && !teamProjectManagement.is_active === true) {
+
+                    await this._.delete(delivery.id)
 
                     return {
-                        message: "Entrega cadastrada com sucesso!",
-                        data: delivery,
-                        statusCode: 201,
+                        message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
+                        statusCode: 200,
                     };
 
                 } else {
                     return {
-                        message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
-                        statusCode: 200,
+                        message: "Entrega cadastrada com sucesso!",
+                        data: delivery,
+                        statusCode: 201,
                     };
                 }
 
@@ -74,24 +76,6 @@ export class DeliveryService {
             };
         }
     }
-
-    /*const freelancerId = delivery.user.id
-                const freelancer = await this.userRepository.findById(freelancerId)
-                
-                if (freelancer.is_active === true && freelancer.project_member.is_active === true && freelancer.teams.is_active === true) {
-
-                    return {
-                        message: "Entrega cadastrada com sucesso!",
-                        data: delivery,
-                        statusCode: 201,
-                    };
-
-                } else {
-                    return {
-                        message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
-                        statusCode: 200,
-                    };
-                }*/
 
     list = async () => {
         try {
