@@ -2,6 +2,7 @@ import { Column, Entity, OneToMany, ManyToMany, JoinTable, PrimaryGeneratedColum
 import { ProjectRequirementsORM } from "./ProjectRequirements";
 import { ProjectMemberORM } from "./ProjectMember";
 import { DeliveryFileORM } from "./DeliveryFile";
+import { UserORM } from "./User";
 
 @Entity({ name: "tb_delivery" })
 export class DeliveryORM {
@@ -27,12 +28,16 @@ export class DeliveryORM {
     @CreateDateColumn()
     create_at: Timestamp
 
-    @ManyToMany(() => ProjectRequirementsORM)
+    @ManyToMany(() => ProjectRequirementsORM, projectRequirement => projectRequirement.delivery)
     @JoinTable()
     requirements: ProjectRequirementsORM[]
 
-    @ManyToMany(() => ProjectMemberORM, { eager: true })
+    @ManyToMany(() => UserORM, { eager: true})
     @JoinTable()
-    projectMember: ProjectMemberORM[]
+    user: UserORM[]
+
+    // @ManyToMany(() => ProjectMemberORM, { eager: true })
+    // @JoinTable()
+    // projectMember: ProjectMemberORM[]
 
 }
