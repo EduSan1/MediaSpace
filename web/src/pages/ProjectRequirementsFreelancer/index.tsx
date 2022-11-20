@@ -6,59 +6,55 @@ import NavegationBar from "../../components/utils/navegation";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import api from "../../service";
 import { stringify } from "querystring";
+import { useParams } from "react-router-dom";
+import ModalRequirements from "../../components/RequirementsModal";
 
-interface Iid{
-    id:string
-}
-
-
-const ProjectsrequirementsFreelancer = ({id}:Iid) => {
+const ProjectsrequirementsFreelancer = () => {
 
 
-    const [modal, setmodal] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [valuePorcent, setvalue] = useState();
 
-
-    
+    const { projectId } = useParams()
 
     const [requerimenteproject, setRequerimenteproject] = useState({
-        name:"",
-        id:"",
-        estimated_value:"",
-        description:""
+        name: "",
+        id: "",
+        estimated_value: "",
+        description: ""
     });
 
-    const converteValue = () =>{
-         const value = parseFloat(requerimenteproject.estimated_value ) 
-         const porcente =  parseFloat(requerimente.gain_percentage)
+    const converteValue = () => {
+        const value = parseFloat(requerimenteproject.estimated_value)
+        const porcente = parseFloat(requerimente.gain_percentage)
 
-         const valueAll = (porcente / 100)*value;  
+        const valueAll = (porcente / 100) * value;
 
         //  setvalue(valueAll);
 
     }
 
     const [requerimente, setRequerimente] = useState({
-        id:"",
-        description:"",
+        id: "",
+        description: "",
         gain_percentage: "",
-        title:"",
-        valueAll : 20
+        title: "",
+        valueAll: 20
 
 
 
 
     }
-     
+
     );
-    
+
 
     useEffect(() => {
-    api.get(`/requirement/${id}`)
-    .then((res)=>{
-        setRequerimenteproject(res.data.data.project);
-        setRequerimente(res.data.data);
-    })
+        api.get(`/requirement/${projectId}`)
+            .then((res) => {
+                setRequerimenteproject(res.data.data.project);
+                setRequerimente(res.data.data);
+            })
 
     }, [])
 
@@ -66,7 +62,7 @@ const ProjectsrequirementsFreelancer = ({id}:Iid) => {
     useEffect(() => {
 
         console.log(requerimente)
-    
+
     }, [requerimente])
 
     return (
@@ -81,24 +77,24 @@ const ProjectsrequirementsFreelancer = ({id}:Iid) => {
                         <div className="Requesit_name">
                             <span className="Components_projeteste"> <HistoryTrack name="Perfil > Projeto em execução > Requisitos técnicos" link={'/home'} classSpanDiv={"historyTrack"} /> </span>
 
-                          
 
-                                    <span className="Tittle_name_project"> <h1>Requisitos técnicos - {requerimenteproject.name} </h1></span>
-                                
-                            
+
+                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {requerimenteproject.name} </h1></span>
+
+
                         </div>
 
 
                         <div className="ContainerTecnicos">
                             <div>
-                                
-                                
-                                    
-                                 <CardShip CardClasse="" desciption={requerimente.description} issue="" layout={requerimente.title} numberissue={1} percentage={requerimente.gain_percentage} value={20} />
-                                   
-                                
-                               
-                              
+
+
+
+                                <CardShip CardClasse="" desciption={requerimente.description} issue="" layout={requerimente.title} numberissue={1} percentage={requerimente.gain_percentage} value={20} />
+
+
+
+
 
 
 
@@ -113,9 +109,15 @@ const ProjectsrequirementsFreelancer = ({id}:Iid) => {
                             </div>
                         </div>
                         <div className="btn_requirements">
+
+
                             <span className="Btn_send">
-                                <InputBtn className="submit_add" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Adicionar requisito'} enable />
+                                <button className="submit_add" onClick={() => { setIsModalVisible(true) }}>Adicionar</button>
                             </span>
+
+
+
+                            {isModalVisible ? <ModalRequirements onClose={() => setIsModalVisible(false)} /> : null}
                             <span className="Btn_Add">
                                 <InputBtn className="submit_send" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Enviar'} enable />
                             </span>
