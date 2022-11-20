@@ -23,6 +23,8 @@ import { ListProject } from './src/pages/ListProject';
 import WorkersAppliedPage from './src/pages/WorkersAppliedPage';
 import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFreelancer';
 import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
+import EditUser from './src/pages/Profile/EditUser';
+import ModalRequirements from './src/components/utils/ModalRequirements';
 
 export default function App() {
 
@@ -47,9 +49,10 @@ export default function App() {
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Messages" component={Messages} />
         <Stack.Screen name="ProjectOwner" component={ProjectOwner} />
-        <Stack.Screen name='WorkersAppliedPage' component={WorkersAppliedPage}/>
-        <Stack.Screen name='WorkersSelectedPage' component={WorkersSelectedPage}/>
-        <Stack.Screen name='TechnicalRequirementsFrelancer' component={TechnicalRequirementsFrelancer}/>
+        <Stack.Screen name='WorkersAppliedPage' component={WorkersAppliedPage} />
+        <Stack.Screen name='WorkersSelectedPage' component={WorkersSelectedPage} />
+        <Stack.Screen name='TechnicalRequirementsFrelancer' component={TechnicalRequirementsFrelancer} />
+        <Stack.Screen name='EditUser' component={EditUser} />
       </Stack.Navigator>
     </NavigationContainer>
   );

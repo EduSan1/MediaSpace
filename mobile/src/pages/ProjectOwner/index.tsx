@@ -20,7 +20,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
     const [projectLoad, setProjectLoad] = useState(false)
     const [categories, setCategories] = useState([{}])
     const [hasError, setHasError] = useState(false)
-    const {projectId} = route.params
+    const { projectId } = route.params
 
     const [projectOwner, setProjectOwner] = (useState)({
         id: "",
@@ -36,7 +36,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         update_at: "",
         interest: [],
         sub_categories: [
-       
+
         ],
         requirements: [],
         management: "",
@@ -73,12 +73,10 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         categories: [{}],
         images: [
             {
-                url : ""
+                url: ""
             }
         ]
     })
-
-
 
 
     const handleUserPicture = (text: any) => {
@@ -97,26 +95,29 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         setImageIndex(imageIndex + 1)
     }
 
-    useEffect(() => { }, [projectOwner])
+    useEffect(() => {
+        api.get(`/project/${projectId}`).then((res: any) => {
+            setProjectOwner(res.data.data)
+        })
+    }, [])
 
 
     return (
         <>
-            <TabBar currentScreen="ProjectOwner" navigateTo={navigateTo}/>
-            <View style={styles.navigationBar}></View>
+            <TabBar currentScreen="ProjectOwner" navigateTo={navigateTo} />
 
 
             <ScrollView style={styles.container}>
-                <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={projectOwner.images} setUserImage={(image: string) => handleUserPicture(image)} />
+                <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={projectOwner.images} setUserImage={(image: string) => { }} />
 
                 <View style={styles.containerFilho}>
                     <View style={styles.containerDate}>
-                        <Text style={styles.title}>Criado em: {projectOwner.create_at} </Text>
-                        <Text style={styles.title}>Prazo término: {projectOwner.estimated_deadline}</Text>
+                        <Text style={styles.date}>Criado em: {projectOwner.create_at} </Text>
+                        <Text style={styles.date}>Prazo término: {projectOwner.estimated_deadline}</Text>
                     </View>
 
                     <View style={styles.containerProfile}>
-                        <Image style={styles.image} source={{uri : projectOwner.user.profile_picture}} />
+                        <Image style={styles.image} source={{ uri: projectOwner.user.profile_picture }} />
                         <Text style={styles.title}>Valor estiamdo: {projectOwner.value}</Text>
                     </View>
 
@@ -127,18 +128,18 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                         <View style={styles.categories}>
                             <Text style={styles.title}>Categoria</Text>
                             {
-                                    projectOwner.categories.map((category : any) => {
-                                        return <Text style={styles.categorySelected}>{category.name}</Text>
+                                projectOwner.categories.map((category: any) => {
+                                    return <Text style={styles.categorySelected}>{category.name}</Text>
 
-                                    })
+                                })
                             }
 
                             <Text style={styles.title}>Subcategoria</Text>
                             {
-                                    projectOwner.sub_categories.map((sub_category : any) => {
-                                        return <Text style={styles.categorySelected}>{sub_category.name}</Text>
+                                projectOwner.sub_categories.map((sub_category: any) => {
+                                    return <Text style={styles.categorySelected}>{sub_category.name}</Text>
 
-                                    })
+                                })
                             }
                         </View>
 
@@ -155,7 +156,6 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
             </ScrollView>
 
 
-            <View style={styles.bar}></View>
         </>
     )
 
@@ -173,18 +173,14 @@ const styles = StyleSheet.create({
     },
     containerFilho: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2,
+        height: "auto",
     },
     bar: {
         height: Dimensions.get('window').height * .08,
         width: Dimensions.get('window').width,
         backgroundColor: "#f3fff1"
     },
-    navigationBar: {
-        height: Dimensions.get('window').height * .12,
-        width: Dimensions.get('window').width,
-        backgroundColor: "#f3fff1"
-    },
+
     containerDate: {
         height: Dimensions.get('window').height * 0.1,
         display: 'flex',
@@ -211,6 +207,7 @@ const styles = StyleSheet.create({
     image: {
         width: Dimensions.get('window').width * 0.2,
         height: Dimensions.get("window").width * 0.2,
+        borderRadius: 100
     },
     title: {
         fontSize: 16,
@@ -248,6 +245,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
 
     },
+    date: {
+        fontSize: 10
+    }
 
 
 })

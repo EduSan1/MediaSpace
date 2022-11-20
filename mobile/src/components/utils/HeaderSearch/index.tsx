@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import * as SecureStore from"expo-secure-store"
+import * as SecureStore from "expo-secure-store"
 import { Text, TextInput, StyleSheet, Dimensions, Pressable, ActivityIndicator, View, Image } from "react-native"
 
 
@@ -8,17 +8,22 @@ interface IHeaderSearch {
 }
 export default function HeaderSearch({ label }: IHeaderSearch) {
 
-    const [userImage, setUserImage] =  useState("")
+    const [userImage, setUserImage] = useState("")
+    const [hasImage, setHasimage] = useState(false)
 
     const setImage = async () => {
         const userImage = await SecureStore.getItemAsync('userImage')
-        setUserImage(userImage? userImage : "")
+        setUserImage(userImage ? userImage : "")
     }
 
     useEffect(() => {
         setImage()
 
-    },[])
+    }, [])
+
+    useEffect(() => {
+        setHasimage(true)
+    }, [userImage])
 
     return (
 
@@ -27,9 +32,16 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
                 <Image style={styles.iconSearch} source={require('../../../../assets/icons/searchIcon.png')} />
                 <TextInput placeholder="Pesquisar..."></TextInput>
             </View>
-            <Image style={styles.iconProfile} source={{uri : userImage}}/>
+            {
+                hasImage ?
+                    <Image style={styles.iconProfile} source={{ uri: userImage }} />
+
+                    :
+
+                    <ActivityIndicator size="large" color="#B275FF" />
+            }
             <View>
-            <Image style={styles.iconSubMenu} source={require('../../../../assets/icons/MenuSlideIcon.png')} />
+                <Image style={styles.iconSubMenu} source={require('../../../../assets/icons/MenuSlideIcon.png')} />
             </View>
         </View>
     )
@@ -67,7 +79,7 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         marginHorizontal: Dimensions.get('window').height * 0.015,
     },
-    
+
     iconSubMenu: {
         width: Dimensions.get('window').width * 0.08,
         height: Dimensions.get('window').width * 0.08,
