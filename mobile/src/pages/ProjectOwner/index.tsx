@@ -291,13 +291,10 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     button: {
-        width: Dimensions.get('window').width,
-        justifyContent: "center",
+          justifyContent: "flex-end",
         alignItems: "center",
-        position: "absolute",
-        marginTop: 0,
-        top:"50%",
-       
+        padding: 10, 
+        
     },
     btnBack:{
         width: Dimensions.get('window').width ,
