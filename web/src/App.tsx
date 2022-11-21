@@ -22,6 +22,7 @@ import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelance
 import AllFreelancerView from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
 import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
+import ProjectInExecution from './pages/ProjectInExecution';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
@@ -45,6 +46,7 @@ function App() {
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/projects' element={<Projects />} />
+        <Route path='/projectInExecution' element={<ProjectInExecution />} />
         <Route path='/changePassword' element={<SpaceBackground component={<RecoveringPasswordPage />} />} />
         <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
