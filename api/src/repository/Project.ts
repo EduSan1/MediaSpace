@@ -71,6 +71,14 @@ export class ProjectRepository {
                 requirements: true,
                 management: true,
                 user: true
+            },
+            order: {
+
+                requirements: {
+
+                    create_at: "ASC"
+                }
+
             }
         })
     }
