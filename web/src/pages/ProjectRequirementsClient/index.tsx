@@ -10,11 +10,7 @@ interface Iid{
     id:string
 }
 
-
-
 const ProjectsvisualizationFreelancer = ({id}:Iid) => {
-
-
 
     const [modal, setmodal] = useState(false);
     const [requerimenteproject, setRequerimenteproject] = useState({

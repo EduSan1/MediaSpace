@@ -10,9 +10,6 @@ interface IIcard {
     issue:string,
     numberissue:number,
     value :number
-  
-
-
 }
 
 const CardShip = ({CardClasse,percentage,desciption,layout,issue,numberissue,value}:IIcard) => {
@@ -33,9 +30,8 @@ const CardShip = ({CardClasse,percentage,desciption,layout,issue,numberissue,val
                     <h3>{desciption}</h3>
                 </span>
                 <div className="value_and_percentage">
-                    <h2>Porcentagem do valor: {percentage}% </h2>
+                    <h2>Porcentagem do valor: {percentage}%</h2>
                     <h2> valor = R${value}</h2>
-                    
                 </div>
             </div>
         </>
