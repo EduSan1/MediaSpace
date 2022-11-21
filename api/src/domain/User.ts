@@ -1,3 +1,4 @@
+import { DeliveryORM } from "../entity/Delivery"
 import { GenderORM } from "../entity/Gender"
 import { PhoneORM } from "../entity/Phone"
 import { IDomainUserProps } from "../interface/User"
@@ -17,6 +18,7 @@ export default class UserDomain {
     is_authenticated: boolean
     gender : GenderORM
     phone : PhoneORM
+    delivery: DeliveryORM[]
 
     constructor(props : IDomainUserProps) {
         this.id = props.id
@@ -33,5 +35,6 @@ export default class UserDomain {
         this.is_authenticated = props.is_authenticated
         this.gender = props.gender
         this.phone = props.phone
+        this.delivery = props.delivery
     }
 }
