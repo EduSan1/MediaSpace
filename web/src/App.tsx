@@ -29,7 +29,7 @@ import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
 import PreviewProject from './pages/PreviewProject';
 
-import ModalRequirements from './components/RequirementsModal';
+import ProjectRequirementsClient from './pages/ProjectRequirementsClient';
 
 function App() {
 
@@ -57,8 +57,8 @@ function App() {
         <Route path='/Perfil' element={<PerfilCliente />} />
         <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
         <Route path='/Perfil/Edit' element={<UpdateEdit />} />
-        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} />
-        <Route path='/projects/requirementsFreelancer/:projectId' element={<ProjectsrequirementsFreelancer />} />
+        {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} /> */}
+        <Route path='/projects/requirementsFreelancer/:projectId' element={<ProjectRequirementsClient />} />
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView />} />
         <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer />} />
 

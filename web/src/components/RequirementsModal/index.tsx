@@ -86,6 +86,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
 
             api.post('/requirement/', requirements).then((res) => {
                 if (res.data.statusCode !== 201) {
+                    console.log(res)
                     window.alert("Não foi possível criar o requisito")
                 } else {
                     window.alert(res.data.message)
