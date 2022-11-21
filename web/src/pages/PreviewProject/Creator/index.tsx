@@ -118,7 +118,7 @@ const PreviewProjectCreator = () => {
    }
    )
 
-   //console.log(project)
+   console.log(project)
 
    const dateFormat = (dates: any) => {
       dates = project.create_at.split("T")
@@ -136,12 +136,7 @@ const PreviewProjectCreator = () => {
       })
    }, [])
 
-   useEffect(() => {
-      api.get(`/project/${projectId}`).then((res: any) => {
-         setProject(res.data.data)
-
-      })
-   }, [])
+ 
 
    return (
       <>
