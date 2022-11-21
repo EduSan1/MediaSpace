@@ -21,11 +21,13 @@ export const Project = ({ navigation, route }: IProject) => {
         navigation.navigate(screen)
     }
 
+    
+
     const dateMask = (value: string) => {
         return value
             .split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/,"$1/$2/$3")
     }
-    const {projectId} = route.params
+    const {projectId, userId} = route.params
 
 
     const [imageIndex, setImageIndex] = useState(0)
@@ -96,34 +98,17 @@ export const Project = ({ navigation, route }: IProject) => {
         }
         console.log(projectApi)
 
-        api.post(`/project/registerInterest/${project.user}`).then((res:any)=>{
+        api.post(`/project/registerInterest/${project.id}`, {
+            frelancerId : userId
+        }).then((res:any)=>{
             if(res.data.statusCode === 201){
                 navigation.navigate("WorkersAppliedPage", {
                     projectId: res.data.data.id,
                 })
-            } else {
-                ToastAndroid.show("res.data.message", 10)
             }
+            ToastAndroid.show(res.data.message, 10)
             console.log(res.data)
         })
-    }
-
-    const handleChange = (text : string, name : string) => {
-        if ( name === "update_at" ) {
-            setProject(
-                {
-                    ...project,
-                    [name]: dateMask(text)               
-                }
-            )
-        }else {
-            setProject(
-                {
-                    ...project,
-                    [name] : text
-                }
-            )
-        }
     }
 
     useEffect(() => {
@@ -136,8 +121,9 @@ export const Project = ({ navigation, route }: IProject) => {
     return (
         <>
             <TabBar currentScreen="Project" navigateTo={navigateTo} />
-            {/* <BtnBackPage action={()=> navigation.navigate("ListProject")}/> */}
-
+            <View style={styles.btnBack}>
+                <BtnBackPage action={()=> navigation.navigate("ListProject")}/> 
+            </View>
                 <ScrollView style={styles.page} > 
 
                 
@@ -299,7 +285,8 @@ const styles = StyleSheet.create({
     divisor:{
         width: Dimensions.get('window').width * 0.9,
         height: Dimensions.get("window").width * 0.005,
-        borderRadius: 100
+        borderRadius: 100,
+        marginTop: 10
     },
     conatinerDate:{
         flexDirection: "row"
@@ -333,10 +320,19 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "center",
         padding: 10
-
     },
-page:{
-    backgroundColor:"black"
-}
+    btnBack:{
+        width: Dimensions.get('window').width ,
+        height: Dimensions.get("window").height * 0.12,
+        backgroundColor: "#fff",
+        alignItems: 'flex-end',
+        justifyContent:'center',
+        display:'flex',
+    },
+    page:{
+        backgroundColor:'#fff'
+    }
+
+
 
 })
