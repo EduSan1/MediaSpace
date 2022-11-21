@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.7,
+        flex: 1,
         position: "relative",
         backgroundColor:"#fff",
         alignContent: "center",
