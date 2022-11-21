@@ -17,7 +17,9 @@ import CreateProject from './pages/CreateProject';
 import Projects from './pages/Projects';
 import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
-import Perfil from './pages/Perfil';
+import PerfilFreelancer from './pages/Perfil/Freelancer';
+import PerfilCliente from './pages/Perfil/Cliente';
+import UpdateEdit from './pages/Perfil/UpdateEdit';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelancer';
 import AllFreelancerView from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
@@ -50,7 +52,9 @@ function App() {
         <Route path='/projects/:projectId' element={<PreviewProject />} />
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
-        <Route path='/Perfil' element={<Perfil />} />
+        <Route path='/Perfil' element={<PerfilCliente />} />
+        <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
+        <Route path='/Perfil/Edit' element={<UpdateEdit />} />
         <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer id={'47063063-3330-4f53-8372-b71ef426f720'}/>} />
         <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
 
