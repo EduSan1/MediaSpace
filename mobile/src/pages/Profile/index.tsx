@@ -3,77 +3,39 @@ import React, { useEffect, useState } from "react";
 import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Pressable } from "react-native";
 import api from "../../../service";
 import * as SecureStore from 'expo-secure-store';
-import HeaderSearch from "../../components/utils/HeaderSearch";
 import TabBar from "../../components/utils/TabBar";
 import ProfileNavigation from "./Body";
-import Selector from "../../components/utils/Selector";
-import { ListProjectCard } from "../../components/utils/ListProjectCard";
-import { ProfileCardProject } from "./ProfileCardProject";
+import { ICategory, IUser } from "./interfaces";
+import { MyProjectsPage } from "./Pages/MyProjects";
+import { ProjectsToWorkPage } from "./Pages/ProjectsToWork";
 
 interface IProfile {
     navigation: any
 }
 
-interface ICategory {
-    name: string
-    icon: string
-}
-
-interface IUserProjects {
-
-    AWAITING_START: [],
-    VALIDATING_REQUIREMENTS: [],
-    IN_EXECUTION: [],
-    COMPLETE: [],
-    CANCELED: []
-}
-
-interface IProject {
-    id: string
-    name: string,
-    description: string
-    value: number
-    images: [{
-        url: string
-    }]
-    categories: any
-    user: {
-        id: string
-        first_name: string
-        nickname: string
-        profile_picture: string
-    },
-    navigation: any
-}
-
 const Profile = ({ navigation }: IProfile) => {
 
-    const navigateTo = (screen: string) => {
-        navigation.navigate(screen)
-    }
-
-    const [user, setUser] = useState({
+    const [currentPage, setCurrentPage] = useState<"myProjects" | "projectsToWork">("myProjects")
+    const [userCategories, setUserCategories] = useState<ICategory[]>([])
+    const [user, setUser] = useState<IUser>({
         id: "",
         first_name: "",
         last_name: "",
         nickname: "",
         profile_picture: "",
         biography: "",
+        birth_date: "",
+        cpf: "",
+        create_at: "",
+        gender: {
+            id: "",
+            gender: "",
+        },
+        mail: "",
+        is_active: true,
+        is_authenticated: true,
+        update_at: ""
     })
-
-    const [userCategories, setUserCategories] = useState<ICategory[]>([])
-
-    const [userProject, setUserProject] = useState<IUserProjects>({
-        AWAITING_START: [],
-        VALIDATING_REQUIREMENTS: [],
-        IN_EXECUTION: [],
-        COMPLETE: [],
-        CANCELED: []
-    })
-
-    const [selectedProjects, setSelectedProjects] = useState<IProject[]>([])
-
-    // const userId = { route }
 
     const getUserInfo = async () => {
         const userId = await SecureStore.getItemAsync('userId')
@@ -82,17 +44,15 @@ const Profile = ({ navigation }: IProfile) => {
             setUser(res.data.data)
             setUserCategories(res.data.data.teams[0].team.categories)
         })
+    }
 
-        api.get(`/project/user/${userId}`).then((res) => {
-            setUserProject(res.data.data)
-            setSelectedProjects(res.data.data.AWAITING_START)
-        })
+    const navigateTo = (screen: string) => {
+        navigation.navigate(screen)
     }
 
     useEffect(() => {
         getUserInfo()
     }, [])
-
 
     return (
         <>
@@ -132,19 +92,15 @@ const Profile = ({ navigation }: IProfile) => {
                         </View>
 
                         <View style={styles.body}>
-                            <ProfileNavigation />
-                            <Text style={styles.title}>Projetos</Text>
-                            <Selector setSelectedProjects={setSelectedProjects} userProjects={userProject} />
-                            <View style={styles.projectContainer}>
-                                {
-                                    selectedProjects.map((project: IProject) => {
-                                        return (
-                                            <ProfileCardProject name={project.name} navigation={navigation} user={user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
-
-                                        )
-                                    })
-                                }
-                            </View>
+                            <ProfileNavigation setCurrentPage={setCurrentPage} currentPage={currentPage} isFreelancer={userCategories.length > 0} />
+                            {
+                                currentPage === "myProjects" &&
+                                <MyProjectsPage navigation={navigation} user={user} ></MyProjectsPage>
+                            }
+                            {
+                                currentPage === "projectsToWork" &&
+                                <ProjectsToWorkPage navigation={navigation} user={user}></ProjectsToWorkPage>
+                            }
 
                         </View>
 
@@ -279,7 +235,6 @@ const styles = StyleSheet.create({
     },
     categoryIcon: {
         width: 20,
-        // backgroundColor: "#3a4",
         height: 20,
 
     },

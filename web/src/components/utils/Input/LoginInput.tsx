@@ -9,7 +9,7 @@ interface IInput {
     placeholder: string,
     label: string,
     valueLogin: string,
-    className: "Input_Login" | "input_register" | "InputError" | "input_register_error" | "Input_PassWordRecovery" | "Input_one" | "Input_two" | "hasErrorInput" | "teste" ,
+    className: "Input_Login" | "input_register" | "InputError" | "input_register_error" | "Input_PassWordRecovery" | "Input_one" | "Input_two" | "hasErrorInput" | "InputModalPerfil"| "teste"  ,
     hasError: boolean
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     maxlength: number

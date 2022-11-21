@@ -1,0 +1,33 @@
+
+@import "../../../../styles/vars.scss";
+
+.allSelect{
+    display:flex ;
+    width: 100%;
+     height: auto;
+     background-color: $primary-blue;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+
+    span{
+        display: flex;
+        width: 50px;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+    }
+    .P_serselecet{
+        width: 100%;
+        height: 60px;
+        border: none;
+        background-color: $light-blue;
+        border-radius: 10px;
+
+        
+        font-size: 1.2rem;
+        font-family: $light-font;
+        padding-left: 50px;
+        }
+
+}

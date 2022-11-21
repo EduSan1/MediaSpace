@@ -1,5 +1,6 @@
 import { ProjectRequirementsORM } from "../entity/ProjectRequirements"
 import { DeliveryFileORM } from "../entity/DeliveryFile"
+import { UserORM } from "../entity/User"
 
 export interface IDomainDeliveryProps {
 
@@ -9,5 +10,6 @@ export interface IDomainDeliveryProps {
     files: DeliveryFileORM[]
     is_accepted: null
     requirements: ProjectRequirementsORM[]
+    user: UserORM[]
 
 }

@@ -30,13 +30,19 @@ export default function ModalRequirements({ requirementId, onClose }: IModalRequ
             id: "78ea9f82-25e2-4f95-b108-38febeece624"
         }
     })
-
+    const handleChange = (key: number | string, value: number | string) => {
+        // setCreateModal(
+        //     ...createModal,
+        //     [value]: key
+        //     )
+    }
 
 
     const modalCreate = async () => {
 
         const modalApi = {
-            ...createModal
+            ...createModal,
+
         }
 
         setRequirementLoad(true)

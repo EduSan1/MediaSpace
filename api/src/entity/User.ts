@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToMany, OneToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, ManyToMany, Column, CreateDateColumn, Timestamp, UpdateDateColumn, ManyToOne, OneToMany, OneToOne } from "typeorm"
 import { GenderORM } from "./Gender"
 import { MemberORM } from "./Member"
 import { PhoneORM } from "./Phone"
@@ -6,6 +6,7 @@ import { PostCommentORM } from "./PostComment"
 import { ProjectORM } from "./Project"
 import { ProjectMemberORM } from "./ProjectMember"
 import { UserTeamORM } from "./UserTeam"
+import { DeliveryORM } from "./Delivery"
 
 @Entity({ name: "tb_user" })
 export class UserORM {
@@ -66,6 +67,8 @@ export class UserORM {
 
     @OneToMany(() => PostCommentORM, comment => comment.post)
     comments: PostCommentORM[]
+    @ManyToMany(() => DeliveryORM, delivery => delivery.user)
+    delivery: DeliveryORM[]
 
     @CreateDateColumn()
     create_at: Timestamp
