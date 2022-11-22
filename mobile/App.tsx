@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import StartHome from './src/pages/StartHome';
 import LoginPage from './src/pages/Login/Login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

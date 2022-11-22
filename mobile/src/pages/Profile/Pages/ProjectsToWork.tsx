@@ -22,12 +22,17 @@ export const ProjectsToWorkPage = ({ navigation, user }: IProjectsToWork) => {
 
     const [selectedProjects, setSelectedProjects] = useState<IProject[]>([])
 
-    useEffect(() => {
+
+    const getProjects = async () => {
         api.get(`/project/freelancer/${user.id}`).then((res) => {
             setUserProject(res.data.data)
             setSelectedProjects(res.data.data.VALIDATING_REQUIREMENTS)
         })
-    }, [])
+    }
+
+    useEffect(() => {
+        getProjects()
+    }, [user])
 
     return (
         <>
@@ -36,10 +41,9 @@ export const ProjectsToWorkPage = ({ navigation, user }: IProjectsToWork) => {
             <View style={styles.projectContainer}>
                 {
                     selectedProjects.map((project: IProject) => {
-                        console.log(project)
+                        console.log(selectedProjects)
                         return (
                             <ProfileCardProject name={project.name} navigation={navigation} user={project.user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
-
                         )
                     })
                 }

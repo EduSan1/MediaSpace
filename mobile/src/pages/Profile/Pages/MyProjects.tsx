@@ -22,13 +22,16 @@ export const MyProjectsPage = ({ navigation, user }: IMyProjectsInterface) => {
 
     const [selectedProjects, setSelectedProjects] = useState<IProject[]>([])
 
-
-    useEffect(() => {
-        api.get(`/project/user/${user.id}`).then((res) => {
+    const getProjects = async () => {
+        await api.get(`/project/user/${user.id}`).then((res) => {
             setUserProject(res.data.data)
             setSelectedProjects(res.data.data.AWAITING_START)
         })
-    }, [])
+    }
+
+    useEffect(() => {
+        getProjects()
+    }, [user])
 
     return (
         <>
@@ -36,7 +39,7 @@ export const MyProjectsPage = ({ navigation, user }: IMyProjectsInterface) => {
             <Selector titleInitial="Aguardando inicio" setSelectedProjects={setSelectedProjects} userProjects={userProject} />
             <View style={styles.projectContainer}>
                 {
-                    selectedProjects.map((project: IProject) => {
+                    selectedProjects?.map((project: IProject) => {
                         return (
                             <ProfileCardProject name={project.name} navigation={navigation} user={user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
 
