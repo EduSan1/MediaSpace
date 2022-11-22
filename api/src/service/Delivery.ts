@@ -4,6 +4,9 @@ import { ProjectRepository } from "../repository/Project";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
 import { DeliveryRepository } from "../repository/Delivery";
 import { DeliveryFileRepository } from "../repository/DeliveryFile";
+import { UserRepository } from "../repository/User";
+import { ProjectMemberRepository } from "../repository/ProjectMember"
+import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
 
 interface IFile {
     url: string
@@ -14,37 +17,60 @@ export class DeliveryService {
     private deliveryFileRepository: DeliveryFileRepository
     private projectRepository: ProjectRepository
     private projectRequirementsRepository: ProjectRequirementsRepository
+    private userRepository: UserRepository
+    private projectMemberRepository: ProjectMemberRepository
+    private teamProjectManagementRepository: TeamProjectManagementRepository
 
     constructor(repo: DeliveryRepository) {
         this._ = repo
         this.deliveryFileRepository = new DeliveryFileRepository()
         this.projectRepository = new ProjectRepository()
         this.projectRequirementsRepository = new ProjectRequirementsRepository()
+        this.userRepository = new UserRepository()
+        this.projectMemberRepository = new ProjectMemberRepository()
+        this.teamProjectManagementRepository = new TeamProjectManagementRepository()
     }
 
-    create = async (entity: DeliveryDomain) => {
+    create =  async (entity: DeliveryDomain) => {
         try {
-            
-            const delivery = await this._.create(entity)
+                const delivery = await this._.create(entity)
 
-            entity.files?.map(async (file: IFile) => {                
-                const fileToRegister = {
-                    ...file, 
-                    delivery: {
-                        id: delivery.id
+                entity.files?.map(async (file: IFile) => {                
+                    const fileToRegister = {
+                        ...file, 
+                        delivery: {
+                            id: delivery.id
+                        }
                     }
+                    await this.deliveryFileRepository.create(fileToRegister)
+                })
+
+                const freelancerId = delivery.user.id
+                const freelancer = await this.userRepository.findById(freelancerId)
+                const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
+                const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
+                
+                if (!freelancer.is_active === true && !projectMember.is_active === true && !teamProjectManagement.is_active === true) {
+
+                    await this._.delete(delivery.id)
+
+                    return {
+                        message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
+                        statusCode: 200,
+                    };
+
+                } else {
+                    return {
+                        message: "Entrega cadastrada com sucesso!",
+                        data: delivery,
+                        statusCode: 201,
+                    };
                 }
-                await this.deliveryFileRepository.create(fileToRegister)
-            })
-    
-            return {
-                message: "Entrega cadastrada com sucesso!",
-                data: delivery,
-                statusCode: 201,
-            };
+
+            
         } catch (error) {
             return {
-                message: "Não foi possível cadastrar a entrega!",
+                message: "Não foi possível cadastrar essa entrega!",
                 error: error,
                 statusCode: 200,
             };

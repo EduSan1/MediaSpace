@@ -14,6 +14,7 @@ import { ProjectManagementRepository } from "../repository/ProjectManagement";
 import { ProjectMemberRepository } from "../repository/ProjectMember";
 import { TeamProjectManagementRepository } from "../repository/TeamProjectManagement";
 import { ProjectRequirementsRepository } from "../repository/ProjectRequirements";
+import { IDomainProjectProps } from "../interface/Project";
 
 interface IImage {
     url: string
@@ -52,7 +53,7 @@ export class ProjectService {
             entity.images?.map(async (image: IImage) => {
                 if (image.url !== "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f") {
                     const imageToRegister = {
-                        ...image, 
+                        ...image,
                         project: {
                             id: project.id
                         }
@@ -79,13 +80,28 @@ export class ProjectService {
 
     }
 
-    list = async () => {
+    list = async (query: any) => {
         try {
-            const projects = await this._.list()
+            let response = null
+            if (query.take !== undefined) {
+                const categories = query.categories.split(",")
+                const projects = await this._.listPerPage(query.take, (query.page - 1) * query.take, query.search, categories[0] === "" ? [] : categories)
+
+                response = {
+                    page: query.page,
+                    numberOfPages: Math.ceil((projects[projects.length - 1] / query.take)),
+                    count: projects[projects.length - 1],
+                    data: projects
+                }
+
+            } else {
+                response = await this._.list()
+
+            }
 
             return {
                 message: "projetos listados com sucesso",
-                data: projects,
+                data: response,
                 statusCode: 200,
             };
         } catch (error) {
@@ -238,7 +254,7 @@ export class ProjectService {
 
     selectFreelancer = async (projectId: string, body: { freelancerId: string }) => {
         const project = await this.getById(projectId)
-
+        // console.log(body.freelancerId)
         const updatedProjectStatus = {
             ...project.data,
             status: "VALIDATING_REQUIREMENTS",
@@ -310,9 +326,7 @@ export class ProjectService {
             project: {
                 id: projectId
             },
-            payment_type: {
-                id: "f8567c6d-3d54-421d-adcb-422fbd0a2804"
-            }
+            payment_type: "Cartão de crédito"
         }
 
         return await this.projectManagementRepository.create(projectManagementToSend)
@@ -350,7 +364,7 @@ export class ProjectService {
         return await this.projectMemberRepository.create(projectMemberToSend)
     }
 
-     acceptRequirements = async (id: string) => {
+    acceptRequirements = async (id: string) => {
         try {
 
             const project = await this._.getById(id);
@@ -362,7 +376,7 @@ export class ProjectService {
                 };
             }
 
-            project.requirements.map(async (requirement : any) => {
+            project.requirements.map(async (requirement: any) => {
                 if (requirement.is_active === true) {
                     requirement.is_accepted = true
                     await this.projectRequirementRepository.update(requirement)
@@ -372,9 +386,7 @@ export class ProjectService {
             project.status = "IN_EXECUTION";
             await this._.update(project)
 
-            
-
-            return{
+            return {
                 message: "Requisitos aceitos",
                 statusCode: 200
             };
@@ -401,17 +413,17 @@ export class ProjectService {
                 };
             }
 
-            project.requirements.map(async (requirement : any) => {
-                if (requirement.is_active === true) {                    
+            project.requirements.map(async (requirement: any) => {
+                if (requirement.is_active === true) {
                     await this.projectRequirementRepository.delete(requirement)
-                    
+
                     // requirement.is_accepted = false
                     // requirement.is_active = false
                     // await this.projectRequirementRepository.update(requirement)
                 }
             });
 
-            return{
+            return {
                 message: "Requisitos recusados",
                 statusCode: 200
             };
@@ -426,4 +438,57 @@ export class ProjectService {
 
     }
 
+    getAllUserProjects = async (userId: string) => {
+        try {
+            const projects = await this._.listWhere("user", { id: userId })
+            const userProjects = {
+                AWAITING_START: projects.filter((project: IDomainProjectProps) => project.status === "AWAITING_START"),
+                VALIDATING_REQUIREMENTS: projects.filter((project: IDomainProjectProps) => project.status === "VALIDATING_REQUIREMENTS"),
+                IN_EXECUTION: projects.filter((project: IDomainProjectProps) => project.status === "IN_EXECUTION"),
+                COMPLETE: projects.filter((project: IDomainProjectProps) => project.status === "COMPLETE"),
+                CANCELED: projects.filter((project: IDomainProjectProps) => project.status === "CANCELED")
+            }
+
+            return {
+                message: "Projetos listados com sucesso",
+                data: userProjects,
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
+
+    getAllFreelancerProjects = async (freelancerId: string) => {
+        try {
+            const teamManagement = await this.teamProjectManagementRepository.getAllByFreelancerId(freelancerId)
+
+            const projects = teamManagement.map((teamManagement: any) => teamManagement.projectManagement.project)
+
+            const freelancerProjects = {
+                VALIDATING_REQUIREMENTS: projects.filter((project: IDomainProjectProps) => project.status === "VALIDATING_REQUIREMENTS"),
+                IN_EXECUTION: projects.filter((project: IDomainProjectProps) => project.status === "IN_EXECUTION"),
+                COMPLETE: projects.filter((project: IDomainProjectProps) => project.status === "COMPLETE"),
+                CANCELED: projects.filter((project: IDomainProjectProps) => project.status === "CANCELED")
+            }
+            return {
+                message: "Projetos listados com sucesso",
+                data: freelancerProjects,
+                statusCode: 200
+            };
+
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 }
+

@@ -3,6 +3,7 @@ import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } f
 import { NavigationContainer } from "@react-navigation/native";
 import HeaderSearch from "../../components/utils/HeaderSearch";
 import TabBar from "../../components/utils/TabBar";
+import BtnBackPage from "../../components/utils/BtnBackPage";
 
 interface IHome {
     navigation: any
@@ -17,6 +18,7 @@ export default function Home({ navigation }: IHome) {
     return (
         <>
             <TabBar currentScreen="Home" navigateTo={navigateTo} />
+        <BtnBackPage action={()=> navigation.navigate("TechnicalRequirementsFrelancer")}/>
             <SafeAreaView style={style.body}>
                 <ScrollView style={style.Scroll}>
                     <HeaderSearch label={"Pesquisar..."} />

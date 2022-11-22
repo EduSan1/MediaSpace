@@ -29,7 +29,7 @@ export class ProjectRequirementsORM {
     @ManyToOne(() => ProjectORM, project => project.requirements)
     project: ProjectORM
 
-    @ManyToMany(() => DeliveryORM, { eager: true })
+    @ManyToMany(() => DeliveryORM, delivery => delivery.requirements, {eager: true})
     @JoinTable()
     delivery: DeliveryORM[]
 

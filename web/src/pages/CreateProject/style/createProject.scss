@@ -1,20 +1,20 @@
 .container_page_create_project {
-
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-
 }
 
 .page_create_project {
    width: 80vw;
+   height: 90vh;
    display: flex;
-   overflow-y: auto;
 
    .container {
       width: 100%;
-      display: flex;
+      height: 100%;
+      overflow-y: auto;
+
       align-items: center;
       flex-direction: column;
    }
@@ -38,13 +38,6 @@
    flex-direction: column;
 
 }
-
-.container_imagens {
-   background-color: brown;
-   height: 30%;
-}
-
-
 
 .subtitulo_projects {
    font-family: $light-font;
@@ -77,7 +70,7 @@
 }
 
 .container_categories_projects {
-   margin-top: 4%;
+   margin-top: 20%;
    height: 10vh;
    width: 30vw;
 }
@@ -89,16 +82,26 @@
 }
 
 .container_subacategories_projects {
-   margin-top: 45px;
+   margin-top: 15%;
    width: 30vw;
+   margin-bottom: 15%;
 }
 
 .aligment_button {
-   height: 10vh;
-   width: 15%;
+   height: 5%;
+   width: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
+
+   div {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      align-items: center;
+      gap: 10px;
+      //background-color: #ff6666;
+   }
 }
 
 /* Style da div de carregar imagens*/
@@ -144,10 +147,18 @@
    justify-content: space-around;
 }
 
+.container_upload_images {
+   display: flex;
+   flex-direction: column;
+   width: 90%;
+   height: 90%;
+   justify-content: space-between;
+}
+
 .container_images {
    display: flex;
-   width: 90%;
-   height: 60%;
+   width: 100%;
+   height: 90%;
    flex-direction: column;
    gap: 5px;
 }
@@ -204,7 +215,7 @@
 
       span {
          padding: 5px;
-         position: absolute;
+         position: relative;
          color: #bfbfbf;
          font-size: 1rem;
       }
@@ -234,7 +245,7 @@
 
       span {
          padding: 5px;
-         position: absolute;
+         position: relative;
          color: #bfbfbf;
          font-size: 1rem;
       }

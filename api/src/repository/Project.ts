@@ -1,3 +1,4 @@
+import { Like } from "typeorm"
 import { AppDataSource } from "../data-source"
 import ProjectDomain from "../domain/Project"
 import { ProjectORM } from "../entity/Project"
@@ -21,15 +22,37 @@ export class ProjectRepository {
         })
     }
 
-    listWhere = async (key: keyof typeof ProjectORM, value: string) => {
+    listPerPage = async (take: number, skip: number, search: string, categories: any) => {
+        return await this._.findAndCount({
+            where:
+
+            {
+                is_active: true,
+                name: Like('%' + search + '%'),
+                categories: categories.map((category: string) => { return { id: category } }),
+            },
+
+
+            relations: {
+                user: true,
+            },
+            take: take,
+            skip: skip
+        })
+    }
+
+    listWhere = async (key: any, value: any) => {
         return await this._.find({
             where: {
                 [key]: value
+            },
+            relations: {
+                management: true
             }
         })
     }
 
-    getByWhere = async (key: keyof typeof ProjectORM, value: string) => {
+    getByWhere = async (key: any, value: any) => {
         return await this._.findOne({
             where: {
                 [key]: value
@@ -46,8 +69,8 @@ export class ProjectRepository {
                 interest: true,
                 sub_categories: true,
                 requirements: true,
-                management: true
-
+                management: true,
+                user: true
             }
         })
     }

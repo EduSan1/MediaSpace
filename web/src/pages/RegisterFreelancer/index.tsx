@@ -55,10 +55,18 @@ const RegisterFreelancer = () => {
 
          const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
          setSubategoriesToRender(categoryFilter)
+
+
+         // const categoryToRemove = categoryFilter((category: any) => {
+         //    return { id: category.id }
+         // })
+         // removeFromFreelancer(categoryToRemove, "categories")
+
          const categoryToRemove = categoryFilter((category: any) => {
             return { id: category.id }
          })
          removeFromFreelancer(categoryToRemove, "categories")
+
       }
    }
  

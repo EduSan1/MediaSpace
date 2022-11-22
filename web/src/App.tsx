@@ -29,6 +29,8 @@ import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
 import PreviewProject from './pages/PreviewProject';
 
+import ModalRequirements from './components/RequirementsModal';
+
 function App() {
 
   return (
@@ -39,8 +41,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/register/provideruserregister/:userId' element={<ProviderUserRegisterPage />} />
         <Route path='/confirmRegister' element={<MailConfirmedPage />} />
-        {/* <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
-        <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} /> */}
+        <Route path='/register/registerFreelancer/:userId' element={<SpaceBackground component={<RegisterFreelancer />} />} />
+        {/* <Route path='/register/registerFreelancer' element={<SpaceBackground component={<RegisterFreelancer />} />} />  */}
         <Route path='/register/registered' element={<RegisteredPage />} />
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
@@ -55,12 +57,10 @@ function App() {
         <Route path='/Perfil' element={<PerfilCliente />} />
         <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
         <Route path='/Perfil/Edit' element={<UpdateEdit />} />
-        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer id={'47063063-3330-4f53-8372-b71ef426f720'}/>} />
-        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll />} />
-
-        <Route path='/projects/allfreelancerview' element={<AllFreelancerView/>} />
-        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer/>} />  
-
+        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer/>} />
+        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} />
+        <Route path='/projects/allfreelancerview/:projectId' element={<AllFreelancerView />} />
+        <Route path='/projects/selectFreelancer/:projectId' element={<ProjectsSelecetFreelancer />} />
 
 
 
@@ -70,6 +70,9 @@ function App() {
 
         {/* */}
         <Route path='/teste' element={<Teste />} />
+
+
+        {/* <Route path='/testeRequisito' element={<ModalRequirements action={"Editar"} />} /> */}
 
       </Routes>
 

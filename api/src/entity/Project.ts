@@ -20,7 +20,7 @@ export class ProjectORM {
     description: string
 
     @Column({ type: "double" })
-    estimated_value: number
+    value: number
 
     @Column()
     estimated_deadline: Date

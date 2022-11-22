@@ -7,6 +7,7 @@ import userRouter from "./routes/user"
 import projectRoute from "./routes/Project"
 import projectRequirementsRoute from "./routes/ProjectRequirements"
 import deliveryRoute from "./routes/Delivery"
+import postRoute from "./routes/Post"
 
 const router = Router()
 
@@ -24,6 +25,7 @@ router.use("/freelancer", freelancerRoute)
 router.use("/project", projectRoute)
 router.use("/requirement", projectRequirementsRoute)
 router.use("/delivery", deliveryRoute)
+router.use("/post", postRoute)
 
 
 export default router

@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Timestamp, UpdateDateColumn, OneToMany, ManyToMany, JoinTable } from "typeorm"
 import { CategoryORM } from "./Category"
 import { InterestORM } from "./Interest"
+import { PostORM } from "./Post"
 import { SubCategoryORM } from "./SubCategory"
 import { TeamProjectManagementORM } from "./TeamProjectManagement"
 import { UserTeamORM } from "./UserTeam"
@@ -51,6 +52,9 @@ export class TeamORM {
 
     @OneToMany(() => InterestORM, interestMember => interestMember.project)
     interest: InterestORM[]
+
+    @OneToMany(() => PostORM, post => post.team)
+    posts: PostORM[]
 
     @CreateDateColumn()
     create_at: Timestamp

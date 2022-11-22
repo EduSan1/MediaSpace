@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import * as SecureStore from "expo-secure-store"
 import { Text, TextInput, StyleSheet, Dimensions, Pressable, ActivityIndicator, View, Image } from "react-native"
 
 
@@ -6,6 +7,24 @@ interface IHeaderSearch {
     label: string
 }
 export default function HeaderSearch({ label }: IHeaderSearch) {
+
+    const [userImage, setUserImage] = useState("")
+    const [hasImage, setHasimage] = useState(false)
+
+    const setImage = async () => {
+        const userImage = await SecureStore.getItemAsync('userImage')
+        setUserImage(userImage ? userImage : "")
+    }
+
+    useEffect(() => {
+        setImage()
+
+    }, [])
+
+    useEffect(() => {
+        setHasimage(true)
+    }, [userImage])
+
     return (
 
         <View style={styles.style}>
@@ -13,7 +32,14 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
                 <Image style={styles.iconSearch} source={require('../../../../assets/icons/searchIcon.png')} />
                 <TextInput placeholder="Pesquisar..."></TextInput>
             </View>
-            <Image style={styles.iconProfile} source={require('../../../../assets/icons/ProfileTestIcon.png')} />
+            {
+                hasImage ?
+                    <Image style={styles.iconProfile} source={{ uri: userImage }} />
+
+                    :
+
+                    <ActivityIndicator size="large" color="#B275FF" />
+            }
             <View>
                 <Image style={styles.iconSubMenu} source={require('../../../../assets/icons/MenuSlideIcon.png')} />
             </View>
@@ -23,7 +49,7 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
 const styles = StyleSheet.create({
     style: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.17,
+        height: Dimensions.get('window').height * 0.13,
         // backgroundColor:"#CDCDCD",
         justifyContent: "center",
         alignItems: "center",
@@ -59,7 +85,6 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').width * 0.08,
         borderRadius: 100,
         marginHorizontal: Dimensions.get('window').height * 0.01,
-
     },
     placeholder: {
 
