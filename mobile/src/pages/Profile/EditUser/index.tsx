@@ -5,6 +5,7 @@ import api from "../../../../service";
 import * as SecureStore from 'expo-secure-store';
 import TabBar from "../../../components/utils/TabBar";
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { BtnEditProfile } from "../../../components/utils/BtnEditProfile";
 
 
 interface IEditUser {
@@ -87,20 +88,24 @@ const EditUser = ({ navigation }: IEditUser) => {
             <TabBar currentScreen="Profile" navigateTo={navigateTo} />
             <SafeAreaView style={styles.main}>
                 <ScrollView style={styles.scroll}>
+                    <View>
+                    <Image style={styles.starfield} source={require("../../../../assets/img/consteletion.png")} />
                     <LinearGradient style={styles.header} colors={['#1B2469', '#31418D', '#5A5BB4']}>
                     </LinearGradient>
-                    <View style={styles.editContainer}>
-                        <View style={styles.titleContainer}>
-                            <Text style={styles.title}>Suas Informações</Text>
-                            <Icon size={Dimensions.get('window').height * 0.04} name={"lock-outline"} style={{ color: "#75A5FF" }} />
-                        </View>
                     </View>
                     <View style={styles.profileImageContainer}>
                         <Image source={{ uri: user.profile_picture }} style={styles.profileImage}></Image>
                         <Text style={styles.name}>{user.first_name} {user.last_name}</Text>
                         <Text style={styles.nickname}>@{user.nickname}</Text>
+                        <BtnEditProfile action={console.log}/>
                     </View>
-
+                    <View style={styles.editContainer}>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>Suas Informações</Text>
+                            <Icon size={Dimensions.get('window').height * 0.03} name={"lock-outline"} style={{ color: "#75A5FF" }} />
+                        </View>
+                    </View>
+                    
 
 
                 </ScrollView>
@@ -117,23 +122,27 @@ const styles = StyleSheet.create({
     scroll: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.9,
-        position: "relative"
+        // position: "relative"
 
     },
     header: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.25,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        flexDirection: "column"
+        height: Dimensions.get('window').height * 0.3,
+        position:"absolute",
+        
+        
+
 
     },
     editContainer: {
         width: "100%",
         minHeight: Dimensions.get('window').height * 0.75,
-        height: "auto",
-        backgroundColor: "#fff"
+        height: "auto", 
+        backgroundColor: "#FFF",
+        borderTopStartRadius:40,
+        borderTopEndRadius:40,
+        marginTop:Dimensions.get('window').height * 0.25,
+        
     },
     profileImageContainer: {
         width: "100%",
@@ -142,6 +151,7 @@ const styles = StyleSheet.create({
         top: Dimensions.get('window').height * 0.15,
         display: "flex",
         alignItems: "center",
+        zIndex:2
     },
     profileImage: {
         width: Dimensions.get('window').height * 0.2,
@@ -159,8 +169,8 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         color: "#75A5FF",
         fontWeight: "400",
-        fontSize: 26,
-        marginRight: 10,
+        fontSize: 20,
+        marginRight: 2,
     },
     titleContainer: {
         width: "100%",
@@ -179,7 +189,14 @@ const styles = StyleSheet.create({
         fontWeight: "300",
         fontSize: 14,
         color: "#b3b3b3"
-    }
+    },
+    starfield: {
+        height: Dimensions.get('window').height * 0.25,
+        width: Dimensions.get('window').width * 1,
+        position: "absolute",
+        zIndex: 1
+
+    },
 })
 
 export default EditUser

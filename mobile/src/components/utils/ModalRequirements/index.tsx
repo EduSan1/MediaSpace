@@ -31,9 +31,11 @@ export default function ModalRequirements({ requirementId, onClose }: IModalRequ
         }
     })
     const handleChange = (key:number|string, value:number|string)  =>{
-        setCreateModal(
+        setCreateModal({
+
             ...createModal,
             [value]: key
+        }
             )
  }
 
