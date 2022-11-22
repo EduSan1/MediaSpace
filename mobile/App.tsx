@@ -25,6 +25,7 @@ import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFre
 import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 import EditUser from './src/pages/Profile/EditUser';
 import ModalRequirements from './src/components/utils/ModalRequirements';
+import ManagementProject from './src/pages/ManagementProject';
 
 export default function App() {
 
@@ -53,6 +54,7 @@ export default function App() {
         <Stack.Screen name='WorkersSelectedPage' component={WorkersSelectedPage} />
         <Stack.Screen name='TechnicalRequirementsFrelancer' component={TechnicalRequirementsFrelancer} />
         <Stack.Screen name='EditUser' component={EditUser} />
+        <Stack.Screen name='ManagementProject' component={ManagementProject} />
       </Stack.Navigator>
     </NavigationContainer>
   );

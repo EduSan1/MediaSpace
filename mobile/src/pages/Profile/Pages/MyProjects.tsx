@@ -41,7 +41,7 @@ export const MyProjectsPage = ({ navigation, user }: IMyProjectsInterface) => {
                 {
                     selectedProjects?.map((project: IProject) => {
                         return (
-                            <ProfileCardProject name={project.name} navigation={navigation} user={user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
+                            <ProfileCardProject status={project.status} name={project.name} navigation={navigation} user={user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
 
                         )
                     })
