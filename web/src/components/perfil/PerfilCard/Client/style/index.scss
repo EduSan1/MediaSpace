@@ -1,0 +1,146 @@
+@import "../../../../../styles/vars.scss";
+
+.perfil_card {
+    display: flex;
+    width: 35%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    box-shadow: 1px 3px 5px 3px rgba(0, 0, 0, 0.14);
+    flex-direction: column;
+    align-items: center;
+
+    .photo_and_name_user {
+        display: flex;
+        width: 100%;
+        height: 46%;
+        // background-image: url('../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: bottom;
+        border-radius: 50px 50px 1px 1px;
+
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 2%;
+
+        .img_photo_user {
+            width: 40%;
+            border-radius: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .InfoName_user {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 3px;
+
+            h2 {
+                font: 2.2em sans-serif;
+                font-weight: 550;
+                text-align: justify;
+                font-size: clamp(2em, 1.5vw, 1em);
+            }
+
+            h4 {
+                font-size: clamp(0.9em, 1vw, 0.8em);
+                font-family: sans-serif;
+                color: #686868;
+                letter-spacing: 1.2px;
+            }
+        }
+    }
+
+    .fallow_project {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 30px;
+        margin-bottom: 1%;
+
+        span {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: auto;
+
+            h2 {
+                font: 1.5em sans-serif;
+                font-weight: 550;
+                color: rgb(0, 0, 0);
+                opacity: 35%;
+            }
+
+            h3 {
+                font: 1.2em $light-font;
+                font-weight: 550;
+                color: rgb(0, 0, 0);
+                opacity: 35%;
+            }
+        }
+    }
+
+    .line {
+        display: flex;
+        width: 80%;
+        height: 1px;
+        background-color: #000;
+        opacity: 40%;
+    }
+
+    .description_user {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+
+        p {
+            color: rgb(0, 0, 0);
+            opacity: 35%;
+            font-size: clamp(0.8rem, 2vw, 0.5rem);
+            text-align: start;
+            white-space: wrap;
+            font-weight: 550;
+            font-family: $light-font;
+            letter-spacing: 1px;
+        }
+    }
+}
+@media (min-width: 1926px) {
+    .perfil_card {
+        .photo_and_name_user {
+            display: flex;
+            width: 100%;
+            height: 45%;
+            // background-image: url("../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: bottom;
+            border-radius: 50px 50px 1px 1px;
+
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 2%;
+
+            font: 1em sans-serif;
+        }
+    }
+}

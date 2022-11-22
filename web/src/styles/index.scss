@@ -23,6 +23,8 @@
     @import "../pages/ProjectRequirementsFreelancer/style/index.scss";
     @import "../pages/ProjectsViewallfrelancer/style/index.scss";
     @import "../pages/ProjectSelectfreelancer/style/index.scss";
+    @import "../pages/Perfil/style/index.scss";
+    @import "../pages/Perfil/UpdateEdit/style/index.scss";
 
     //Componentes
     @import "./components/utils/Input/indexInput.scss";
@@ -59,6 +61,13 @@
     @import "../components/ProjectRequiremens/CardShip/style/index.scss";
     @import "../pages/PreviewProject/components/FreelancersInterest/freelancersInterest.scss";
     @import "../components/RequirementsModal/requirementsModal.scss";
+    @import "../components/ProjectRequiremens/CardShip/style/index.scss";
+
+    @import "../components/perfil/ModalPassword/style/index.scss";
+    @import "../components/perfil/PerfilCard/Client/style/index.scss";
+    @import "../components/perfil/SideNav/style/index.scss";
+    @import "../components/perfil/SideNav/style/clietn.scss";
+    @import "../components/perfil/InputSelect/style/index.scss";
+    @import "../components/perfil/Card/portifolio/style/index.scss";
+    @import "../components/perfil/Card/project/style/indes.scss";
 }
-
-

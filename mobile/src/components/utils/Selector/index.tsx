@@ -1,17 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, Dimensions, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
+import { IFreelancerProjects, IMyProject } from "../../../pages/Profile/interfaces";
 import Option from "./Option";
 
 interface ISelectorProps {
-    userProjects: {
-        AWAITING_START: IProject[],
-        VALIDATING_REQUIREMENTS: IProject[],
-        IN_EXECUTION: IProject[],
-        COMPLETE: IProject[],
-        CANCELED: IProject[],
-    }
+    userProjects: IMyProject
+    titleInitial: string
     setSelectedProjects: React.Dispatch<React.SetStateAction<IProject[]>>
 }
 
@@ -31,12 +27,16 @@ interface IProject {
         profile_picture: string
     },
     navigation: any
+
 }
 
-const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
+const Selector = ({ userProjects, setSelectedProjects, titleInitial }: ISelectorProps) => {
 
     const [hasOpen, setHasOpen] = useState(false)
-    const [title, setTitle] = useState("Aguardando inicio")
+    const [title, setTitle] = useState(titleInitial)
+
+    useEffect(() => {
+    }, [])
 
     return (
         <>
@@ -49,7 +49,7 @@ const Selector = ({ userProjects, setSelectedProjects }: ISelectorProps) => {
             {
                 hasOpen && userProjects.AWAITING_START &&
                 <Option action={() => {
-                    setSelectedProjects(userProjects.AWAITING_START)
+                    setSelectedProjects(userProjects?.AWAITING_START)
                     setHasOpen(false)
                     setTitle("Aguardando inicio")
                 }} title="Aguardando inicio" />

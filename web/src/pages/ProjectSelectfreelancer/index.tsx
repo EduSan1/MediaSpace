@@ -46,9 +46,9 @@ const ProjectsSelecetFreelancer = () => {
                 if (res.data.statusCode !== 200) {
                     window.alert("Não foi possível selecionar o freelancer")
                     console.log(res.data)
-                 } else {
+                } else {
                     window.alert(res.data.message)
-                 }
+                }
             })
     }
 
@@ -93,7 +93,7 @@ const ProjectsSelecetFreelancer = () => {
                         <InputBtn className="btn_selecet_freelancer" name="" onClick={() => {
 
                             selectidFreelancer();
-                            console.log('mandar outra tela')
+                            //console.log('mandar outra tela')
 
                         }} typeInput={'button'} valueBtn={'Selecionar'} enable={false} />
                     </div>
