@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/HeaderPage/Search";
-import CardShip from "../../components/ProjectRequiremens/CardShip";
+import {CardShip, CardShipRegister} from "../../components/ProjectRequiremens/CardShip";
 import HistoryTrack from "../../components/utils/HistoryTrack";
 import NavegationBar from "../../components/utils/navegation";
 import InputBtn from "../../components/utils/Button/InputBtn";
@@ -9,9 +9,9 @@ import { stringify } from "querystring";
 import { useParams } from "react-router-dom";
 import ModalRequirements from "../../components/RequirementsModal";
 
+
+
 const ProjectsrequirementsFreelancer = () => {
-
-
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [valuePorcent, setvalue] = useState();
 
@@ -31,10 +31,7 @@ const ProjectsrequirementsFreelancer = () => {
         const valueAll = (porcente / 100) * value;
 
         return valueAll;
-
     }
-
-
 
     const getRequirements = () => {
         api.get(`/project/${projectId}`)
@@ -48,7 +45,6 @@ const ProjectsrequirementsFreelancer = () => {
 
     useEffect(() => {
         getRequirements()
-
     }, [])
 
 
@@ -77,7 +73,7 @@ const ProjectsrequirementsFreelancer = () => {
 
                                 {
                                      requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
-                                        return <CardShip CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} />
+                                        return <CardShipRegister idUserCreater={false} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} requirementId={requirement.id}/>
                                         numberissue++;
                                     })
                                 }

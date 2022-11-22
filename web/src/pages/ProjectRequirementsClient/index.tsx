@@ -1,15 +1,11 @@
 import React ,{ useEffect, useState }from "react";
 import { useParams } from "react-router-dom";
 import SearchBar from "../../components/HeaderPage/Search";
-import CardShip from "../../components/ProjectRequiremens/CardShip";
+import {CardShip, CardShipRegister} from "../../components/ProjectRequiremens/CardShip";
 import HistoryTrack from "../../components/utils/HistoryTrack";
 import NavegationBar from "../../components/utils/navegation";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import api from "../../service";
-
-// interface Iid{
-//     id:string
-// }
 
 const ProjectRequirementsClient = () => {
     const { projectId } = useParams()
@@ -59,7 +55,7 @@ const ProjectRequirementsClient = () => {
                             <div>
                             {
                                      requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
-                                        return <CardShip CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} />
+                                        return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} requirementId={""}/>
                                         numberissue++;
                                     })
                                 }

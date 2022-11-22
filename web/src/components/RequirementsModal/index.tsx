@@ -97,13 +97,12 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         }
         else if (defineAction() === "Editar") {
             const requirementToSend = {
-                tittle: requirements.title,
+                title: requirements.title,
                 description: requirements.description,
                 gain_percentage: requirements.gain_percentage
             }
             api.put(`/requirement/${requirementId}`, requirementToSend).then((res) => {
                 if (res.data.statusCode !== 200) {
-                    //console.log(res.data)
                     window.alert("Não foi possível editar o requisito")
                 } else {
                     window.alert(res.data.message)
@@ -172,7 +171,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                         <div className="container_description_requirement">
                             <label className="subtitulo_projects">Descrição <span> * </span></label>
                             <div>
-                                <textarea name="description" onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} onChange={({ target }) => { requirements.description = target.value }} onFocus={() => { handleErrors("", "description") }} />
+                                <textarea value={requirements.description} name="description" onChangeCapture={(event: React.ChangeEvent<HTMLTextAreaElement>) => { numberCaracteres(event) }} onChange={({ target }) => { requirements.description = target.value }} onFocus={() => { handleErrors("", "description") }} />
                                 <span>{caracteres.caracteres}/800</span>
 
                                 <p>{error.description}</p>

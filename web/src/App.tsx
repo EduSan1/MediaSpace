@@ -58,7 +58,7 @@ function App() {
         <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
         <Route path='/Perfil/Edit' element={<UpdateEdit />} />
         {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} /> */}
-        <Route path='/projects/requirementsFreelancer/:projectId' element={<ProjectRequirementsClient />} />
+        <Route path='/projects/requirementsFreelancer/:projectId' element={<ProjectsrequirementsFreelancer />} />
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView />} />
         <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer />} />
 

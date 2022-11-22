@@ -34,7 +34,7 @@ const ProjectRequiremensts = () =>{
     return (
         <>
             {
-                typePreviewRequirements(createrProject) ? <ProjectsrequirementsFreelancer/> : <ProjectRequirementsClient />
+                typePreviewRequirements(createrProject) ? <ProjectsrequirementsFreelancer /> : <ProjectRequirementsClient/>
             }
         </>
     )
