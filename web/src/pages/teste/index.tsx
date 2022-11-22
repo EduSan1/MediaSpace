@@ -20,7 +20,7 @@ const teste = () => {
 
         <main className="Divetste">
 
-            {/* <ModalPassword/> */}
+            <ModalPassword value="teste"/>
             {/* <PerfilCard/> */}
             {/* <SideNav  className="Nav_bar_Client" icon={<ImStatsDots onClick={() =>{console.log("Ptojecto")}}/>} icon2={<HiOutlineClipboardDocumentList/>} icon3 icon4 icon5/>
            <SideNav  className="" icon={<ImStatsDots onClick={() =>{console.log("Ptojecto")}}/>} icon2={<HiOutlineClipboardDocumentList/>} icon3={<HiOutlineClipboardDocumentList/>} icon4={<HiOutlineClipboardDocumentList/>} icon5={<HiOutlineClipboardDocumentList/>}/> */

@@ -26,6 +26,7 @@
     margin-left: 5px;
     color: $primary-purple;
     white-space: nowrap;
+    margin-bottom: 50px;
    }
 
     .InputModalPerfil{
@@ -37,6 +38,37 @@
      border-radius: 5px;
 
     
+    }
+
+
+    .btn_cancel_Continue{
+       display: flex;
+        width: 40%;
+        height: 45px;
+        gap: 15px;
+
+
+        input{
+            width: 50%;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color: $primary-purple ;
+            color: #ffffff;
+            font-size: 1.3rem;
+        }
+
+        .btnCancelar{
+            border: 1px solid $primary-purple;
+            background-color: #ffffff;
+            color: $primary-purple;
+        }
+
+        input:hover{
+            transition: 0.30s;
+            font-size: 1.5rem;
+        }
+
     }
 
 }
