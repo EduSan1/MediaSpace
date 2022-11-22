@@ -33,10 +33,12 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
             if (user.id === userId) {
                 navigation.navigate("ProjectOwner", {
                     projectId: res.data.data.id
+
                 })
             } else {
                 navigation.navigate("Project", {
-                    projectId: res.data.data.id
+                    projectId: res.data.data.id,
+                    userId : userId
                 })
             }
             console.log(res.data)
