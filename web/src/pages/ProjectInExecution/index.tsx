@@ -38,6 +38,11 @@ const ProjectInExecution = () => {
                                     })
                                 }
 
+                                <div>
+                                    <h3>Validação</h3>
+                                    <p> lorem ipsum</p>
+                                </div>
+
                                 <div className="timeline-container">
                                     <ul className="timeline">
                                         <li className="active">01</li>

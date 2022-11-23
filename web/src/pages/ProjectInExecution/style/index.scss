@@ -150,7 +150,7 @@
       }
       
       ul:nth-child(1){
-        color: #75A5FF;
+        color: #B275FF;
       }
       
       .timeline li:before{
@@ -164,7 +164,7 @@
         text-align: center;
         line-height: 50px;
         margin: 0 auto 10px auto;
-        background: #F1F1F1;
+        background: #Ffff;
         color: #fff;
         transition: all ease-in-out .3s;
         cursor: pointer;
@@ -186,7 +186,7 @@
         content: none;
       }
       .timeline li.active{
-        color: #555555;
+        color: #B3B3B3;
       }
       .timeline li.active:before{
         content: " ✓";
@@ -195,13 +195,14 @@
         font-weight: bolder;
         font-size: xx-large;
         align-content: flex-start;
-        color: #F1F1F1;
+        color: #fff;
       }
       
       .timeline li.active + li:after{
         content: "";
         height: 5px;
-        background: #B275FF;
+//        background: #B275FF;
+        background: linear-gradient(45deg, #B275FF, #75A5FF);
       }
 
     .project-card {
