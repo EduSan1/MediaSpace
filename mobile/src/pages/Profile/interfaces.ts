@@ -4,6 +4,9 @@ export interface IProject {
     description: string
     value: number
     status: string
+    estimated_deadline: string,
+    finish_project_date: string,
+    start_project_date: string,
     images: [{
         url: string
     }]
@@ -71,41 +74,41 @@ export interface IProject {
             {
                 id: string,
                 is_active: boolean
-            }
-        ],
+                team: IFreelancer
+            }],
         members: []
     },
-    user: {
-        id: string,
-        first_name: string,
-        last_name: string,
-        nickname: string,
-        birth_date: string,
-        cpf: string,
-        mail: string,
-        biography: string,
-        profile_picture: string,
-        is_active: boolean,
-        is_authenticated: boolean,
-        create_at: string,
-        update_at: string,
-        gender: {
-            id: string,
-            gender: string,
-            create_at: string,
-            update_at: string
-        },
-        phone: {
-            id: string,
-            ddd: string,
-            phone: string,
-            ddi: string
-        },
-        teams: [],
-        project_member: []
-    }
+    user: IUser
 }
 
+export interface IFreelancer {
+    id: string,
+    name: string,
+    nickname: string,
+    description: string,
+    profile_picture: string,
+    general_evaluation: number,
+    status: boolean,
+    is_active: boolean,
+    is_freelancer: boolean,
+    create_at: string,
+    update_at: string,
+    categories: [
+        {
+            id: string,
+            name: string,
+            icon: string,
+            is_active: boolean,
+        }
+    ],
+    sub_categories: [
+        {
+            id: string,
+            name: string,
+            is_active: boolean
+        }
+    ]
+}
 export interface IUser {
     id: string,
     first_name: string,
@@ -122,8 +125,18 @@ export interface IUser {
     update_at: string,
     gender: {
         id: string,
-        gender: string
-    }
+        gender: string,
+        create_at: string,
+        update_at: string
+    },
+    phone: {
+        id: string,
+        ddd: string,
+        phone: string,
+        ddi: string
+    },
+    teams: [],
+    project_member: []
 }
 
 export interface IMyProject {

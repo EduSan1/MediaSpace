@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Image, KeyboardAvoidingView, Dimensions, Pressable, SafeAreaView } from "react-native";
+import { View, StyleSheet, Text, Image, KeyboardAvoidingView, Dimensions, Pressable, SafeAreaView, ScrollView } from "react-native";
 import api from "../../../service";
 import BtnBackPage from "../../components/utils/BtnBackPage";
 import { IProject } from "../Profile/interfaces";
@@ -19,6 +19,9 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         description: "",
         value: 0,
         status: "",
+        estimated_deadline: "",
+        finish_project_date: "",
+        start_project_date: "",
         images: [{
             url: ""
         }],
@@ -85,9 +88,36 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
             team_project_management: [
                 {
                     id: "",
-                    is_active: false
-                }
-            ],
+                    is_active: false,
+                    team: {
+                        id: "",
+                        name: "",
+                        nickname: "",
+                        description: "",
+                        profile_picture: "",
+                        general_evaluation: 0,
+                        status: false,
+                        is_active: false,
+                        is_freelancer: false,
+                        create_at: "",
+                        update_at: "",
+                        categories: [
+                            {
+                                id: "",
+                                name: "",
+                                icon: "",
+                                is_active: false,
+                            }
+                        ],
+                        sub_categories: [
+                            {
+                                id: "",
+                                name: "",
+                                is_active: false
+                            }
+                        ]
+                    }
+                }],
             members: []
         },
         user: {
@@ -128,7 +158,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.navBar}>
                 <Pressable style={styles.btnStyle} onPress={() => navigation.goBack()}>
                     <Image style={styles.icon} source={require('../../../assets/icons/previous.png')} />
@@ -157,15 +187,42 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                 <View style={styles.freelancerContainer}>
                     <Text style={styles.projectTitle}>Em execução por:</Text>
                     <View style={styles.freelancerDetailsContainer}>
-                        <Image style={styles.freelancerImage} source={{ uri: project.user.profile_picture }} />
+                        <Image style={styles.freelancerImage} source={{ uri: project.management.team_project_management[0].team.profile_picture }} />
                         <View>
-                            <Text style={styles.freelancerName}>{project.user.first_name} {project.user.last_name}</Text>
-                            <Text style={styles.freelancerNickname}>@{project.user.nickname}</Text>
+                            <Text style={styles.freelancerName}>{project.management.team_project_management[0].team.name}</Text>
+                            <Text style={styles.freelancerNickname}>@{project.management.team_project_management[0].team.nickname}</Text>
                         </View>
                     </View>
                 </View>
+                <Text style={styles.attendanceTitle}>Acompanhamento</Text>
+                <View style={styles.attendanceContainer}>
+                    <View style={styles.attendanceEstimatedDeadLine}>
+                        <Text style={styles.attendanceEstimatedDeadLineText}>Estimativa de entrega final:</Text>
+                        <Text style={styles.attendanceEstimatedDeadLineText}>{project.estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
+                    </View>
+                    <Text style={styles.progressTitle}>Andamento</Text>
+                    <ScrollView horizontal={true} style={styles.progressBarContainer}>
+                        <View style={styles.progressBarItem}></View>
+                    </ScrollView>
+                    <Text style={styles.progressTitle}>Validação</Text>
+                    <Text style={styles.requirementsExplanation}>
+                        Valide as entregas feitas pelo prestador.
+                        Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça
+                    </Text>
+                    {project.requirements.map((requirement: any) => {
+                        return (
+                            <View style={styles.requirementContainer}>
+                                <Text style={styles.progressTitle}>Entregue - {requirement.title}</Text>
+                            </View>
+                        )
+                    })
+                    }
+                </View>
+
+
+
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -192,16 +249,16 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         backgroundColor: 'rgba(0,0,0,0.25)',
-        width: Dimensions.get('window').width * 0.15,
-        height: Dimensions.get('window').width * 0.15,
+        width: Dimensions.get('window').width * 0.12,
+        height: Dimensions.get('window').width * 0.12,
         borderRadius: 100,
         justifyContent: "center",
         alignItems: "center",
         marginRight: 20,
     },
     icon: {
-        width: Dimensions.get('window').width * 0.08,
-        height: Dimensions.get('window').width * 0.06,
+        width: Dimensions.get('window').width * 0.07,
+        height: Dimensions.get('window').width * 0.05,
     },
     navBarTitle: {
         fontSize: 22,
@@ -287,7 +344,7 @@ const styles = StyleSheet.create({
     },
     freelancerContainer: {
         width: "90%",
-        height: Dimensions.get('window').height * 0.1,
+        height: Dimensions.get('window').height * 0.12,
         display: "flex",
         justifyContent: "center",
         alignItems: "flex-start",
@@ -318,7 +375,73 @@ const styles = StyleSheet.create({
         color: "#999",
         fontWeight: "400"
     },
-
+    attendanceTitle: {
+        fontSize: 24,
+        color: "#000",
+        fontWeight: "800",
+        height: Dimensions.get('window').height * 0.07,
+        width: "90%",
+        textAlignVertical: "center"
+    },
+    attendanceContainer: {
+        height: "auto",
+        width: "98%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: 1,
+        borderColor: "#DBDFE8",
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
+    },
+    attendanceEstimatedDeadLine: {
+        minHeight: Dimensions.get('window').height * 0.1,
+        width: "100%",
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
+        paddingLeft: 20,
+        backgroundColor: "#C6D2FF",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center"
+    },
+    attendanceEstimatedDeadLineText: {
+        fontSize: 16,
+        color: "#000",
+        fontWeight: "500"
+    },
+    progressTitle: {
+        fontSize: 20,
+        color: "#000",
+        fontWeight: "800",
+        height: Dimensions.get('window').height * 0.07,
+        width: "90%",
+        textAlignVertical: "center"
+    },
+    progressBarContainer: {
+        maxHeight: Dimensions.get('window').height * 0.1,
+        minHeight: Dimensions.get('window').height * 0.1,
+        width: "90%",
+        backgroundColor: "#C6f2FF",
+    },
+    progressBarItem: {
+        maxHeight: Dimensions.get('window').height * 0.1,
+        width: Dimensions.get('window').width * 0.7,
+        backgroundColor: "#0602FF50",
+    },
+    requirementsExplanation: {
+        fontSize: 17,
+        color: "#000",
+        fontWeight: "400",
+        width: "90%",
+        marginBottom: 20
+    },
+    requirementContainer: {
+        height: Dimensions.get('window').height * 0.15,
+        width: "90%",
+        borderTopWidth: 2,
+        borderColor: "#DBDFE8",
+    }
 })
 
 export default ManagementProject
