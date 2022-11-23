@@ -70,11 +70,12 @@ export class ProjectRepository {
                 sub_categories: true,
                 requirements: true,
                 management: {
-                    members: {
-                        member: true
+                    team_project_management: {
+                        team: true
                     }
                 },
-                user: true
+                user: true,
+
             },
             order: {
 
