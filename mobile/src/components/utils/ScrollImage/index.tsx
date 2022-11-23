@@ -80,12 +80,12 @@ export const ScrollImage = ({ userImage, setUserImage, isActive }: ILoadImage) =
 const styles = StyleSheet.create({
     containerImage: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.4,
+        height: Dimensions.get('window').height * 0.3,
 
     },
     image: {
-        width: Dimensions.get("window").width,
-        height: Dimensions.get("window").width,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.3,
         resizeMode: 'contain',
         display: 'flex',
         alignItems: 'center',

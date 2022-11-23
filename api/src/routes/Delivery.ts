@@ -4,7 +4,7 @@ import { DeliveryController } from "../controller/Delivery"
 const deliveryRoute = Router()
 const deliveryController = new DeliveryController()
 
-deliveryRoute.post("/:userId", deliveryController.create)
+deliveryRoute.post("/create", deliveryController.create)
 deliveryRoute.get("/getAll", deliveryController.getAll)
 deliveryRoute.get("/:deliveryId", deliveryController.getById)
 deliveryRoute.post("/disable/:deliveryId", deliveryController.disable)

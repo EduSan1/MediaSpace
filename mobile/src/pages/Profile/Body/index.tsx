@@ -1,18 +1,31 @@
 
 import React from "react";
-import { View, StyleSheet, Image, Dimensions } from "react-native";
+import { View, StyleSheet, Image, Dimensions, Pressable } from "react-native";
 
+interface IProfileNavigation {
+    isFreelancer: boolean
+    currentPage: "myProjects" | "projectsToWork"
+    setCurrentPage: React.Dispatch<React.SetStateAction<"myProjects" | "projectsToWork">>
+}
 
-export default function ProfileNavigation() {
+export default function ProfileNavigation({ isFreelancer, currentPage, setCurrentPage }: IProfileNavigation) {
 
 
     return (
         <>
             <View style={styles.profileNavigationContainer}>
 
-                <View style={styles.itemSelected}>
+                <Pressable onPress={() => setCurrentPage("myProjects")} style={currentPage === "myProjects" ? styles.itemSelected : styles.item}>
                     <Image style={styles.image} source={require("../../../../assets/icons/graphicsIcon.png")}></Image>
-                </View>
+                </Pressable >
+
+                {
+                    isFreelancer &&
+                    <Pressable onPress={() => setCurrentPage("projectsToWork")} style={currentPage === "projectsToWork" ? styles.itemSelected : styles.item}>
+                        <Image style={styles.image} source={require("../../../../assets/icons/graphicsIcon.png")}></Image>
+                    </Pressable >
+                }
+
 
             </View>
         </>

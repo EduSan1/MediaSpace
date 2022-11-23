@@ -13,7 +13,7 @@ export class DeliveryController {
     }
 
     create = (request: Request, response: Response) => {
-        this.service.create(request.params.userId, request.body).then((res) => {
+        this.service.create(request.body).then((res) => {
             response.status(res.statusCode || 200).json(res)
         })
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao cadastrar a entrega"))

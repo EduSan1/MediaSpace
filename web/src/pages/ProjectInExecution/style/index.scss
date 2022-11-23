@@ -111,7 +111,6 @@
 .project-page-projects-container {
     width: 100%;
     height: auto;
-
     h2 {
         font-weight: 200;
         margin-bottom: 2vw;
@@ -123,87 +122,13 @@
     height: auto;
 
     display: flex;
+// lorem ipsum
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 1vw;
-    margin-bottom: 2vw;
-
-    .timeline-container{
-        width: 1200px;
-        margin: 200px auto;
-      }
-      
-      .timeline{
-        counter-reset: number 0;
-        position: relative;
-      }
-      
-      .timeline li{
-        list-style: none;
-        float: left;
-        width: 33.3333%;
-        position: relative;
-        text-align: center;
-        text-transform: uppercase;
-        font-family: 'Dosis', sans-serif;
-      }
-      
-      ul:nth-child(1){
-        color: #B275FF;
-      }
-      
-      .timeline li:before{
-        counter-increment: number;
-        content: counter(number);
-        width: 50px;
-        height: 50px;
-        border: 3px solid #75A5FF;
-        border-radius: 50%;
-        display: block;
-        text-align: center;
-        line-height: 50px;
-        margin: 0 auto 10px auto;
-        background: #Ffff;
-        color: #fff;
-        transition: all ease-in-out .3s;
-        cursor: pointer;
-      }
-      
-      .timeline li:after{
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 1px;
-        background-color: grey;
-        top: 25px;
-        left: -50%;
-        z-index: -999;
-        transition: all ease-in-out .3s;
-      }
-      
-      .timeline li:first-child:after{
-        content: none;
-      }
-      .timeline li.active{
-        color: #B3B3B3;
-      }
-      .timeline li.active:before{
-        content: " ✓";
-        background: #75A5FF;
-        display: flex;
-        font-weight: bolder;
-        font-size: xx-large;
-        align-content: flex-start;
-        color: #fff;
-      }
-      
-      .timeline li.active + li:after{
-        content: "";
-        height: 5px;
-//        background: #B275FF;
-        background: linear-gradient(45deg, #B275FF, #75A5FF);
-      }
+    margin-bottom: 2vw; 
 
     .project-card {
         width: 29vw;
@@ -227,8 +152,10 @@
     .project-card-image-container {
         height: 35%;
         width: 100%;
+        display: flex;
+        flex-direction: row;
         img {
-            width: 66%;
+            width: 86%;
             height: 100%;
         }
     }
@@ -295,38 +222,157 @@
             }
         }
 
-        .project-card-details-value-container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 4%;
-
-            p:nth-child(1) {
-                color: #bbb;
-                font-size: clamp(6px, 4vw, 18px);
-            }
-            p:nth-child(2) {
-                color: $green;
-                font-size: clamp(6px, 4vw, 20px);
-            }
-        }
     }
 
-    .project-card-categories {
-        border-top: 2px solid #dfdfdf;
-        width: 90%;
-        height: 15%;
+    .details-card {
+        width: 29vw;
+        height: 9vw;
+        border: 1px solid $light-blue;
+        border-radius: 20px;
+        overflow: hidden;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-
-        p {
-            margin-left: 2%;
-            vertical-align: center;
-            color: #bbb;
-            font-size: clamp(6px, 4vw, 20px);
-        }
+        justify-content: center;
+        flex-direction: column;
     }
 
-}
+    }
+
+    .card-details-container {
+        width: 90%;
+        height: 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        overflow: hidden;
+
+        .card-details {
+            h3{
+                margin-bottom: 10%;
+            }
+            p:nth-child(1) {
+                color: #000;
+                font-size: clamp(6px, 4vw, 18px);
+                font-weight: 400;
+                word-wrap: break-word;
+                word-break: break-word;
+            }
+            p:nth-child(2) {
+                color: #444;
+                font-size: clamp(4px, 4vw, 12px);
+                word-wrap: break-word;
+                word-break: break-word;
+            }
+        }
+
+    }
+
+    .view-requirements {
+        width: 29vw;
+        height: 4vw;
+        border: 1px solid $light-blue;
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        cursor: pointer;
+        transition: 0.5s;
+
+        &:hover {
+            border: 1px solid $primary-blue;
+            box-shadow: 2px 2px 10px $primary-blue;
+        }
+        
+    }
+
+
+
+.timeline-container{
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  .validation-container{
+      margin-bottom: 35px;
+  }
+  
+  .timeline{
+    max-width: 100%;
+    counter-reset: number 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  
+  .timeline li{
+    list-style: none;
+    float: left;
+    width: 33%;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Dosis', sans-serif;
+  }
+  
+  ul:nth-child(1){
+    color: #B275FF;
+  }
+  
+  .timeline li:before{
+    counter-increment: number;
+    content: counter(number);
+    width: 50px;
+    height: 50px;
+    border: 3px solid #75A5FF;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 auto 10px auto;
+    background: #Ffff;
+    color: #fff;
+    transition: all ease-in-out .3s;
+  }
+  
+  .timeline li:after{
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: grey;
+    top: 25px;
+    left: -50%;
+    z-index: -999;
+    transition: all ease-in-out .3s;
+  }
+  
+  .timeline li:first-child:after{
+    content: none;
+  }
+  .timeline li.active{
+    color: #B3B3B3;
+  }
+  .timeline li.active:before{
+    content: " ✓";
+    background: #75A5FF;
+    display: flex;
+    font-weight: bolder;
+    font-size: xx-large;
+    align-content: flex-start;
+    color: #fff;
+  }
+  
+  .timeline li.active + li:after{
+    content: "";
+    height: 5px;
+//        background: #B275FF;
+    background: linear-gradient(45deg, #B275FF, #75A5FF);
+  }
+
+
+

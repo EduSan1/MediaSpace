@@ -16,7 +16,7 @@ export class ProjectMemberRepository {
         return await this._.save(entity)
     }
 
-    findById = async (id: string) => {
+    findById = async (id: any) => {
         return await this._.findOne({
             where: {
                 id

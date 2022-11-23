@@ -25,14 +25,17 @@ export class DeliveryRepository {
             relations: {
                 files: true,
                 requirements: true,
-                user: true,
-                // projectMember: true
+                user: true
             }
         })
     }
 
     update = async (entity: DeliveryORM) => {
         return await this._.save(entity)
+    } 
+
+    delete = async (id: string) => {
+        return await this._.delete({ id })
     }
 
 }

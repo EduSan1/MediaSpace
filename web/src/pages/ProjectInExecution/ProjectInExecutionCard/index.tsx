@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ButtonCategories from "../../../components/utils/Button/Categories/Categories";
-import CategoryCard from "../../../components/utils/CategoryCard";
 
 interface IProject {
     id: string
@@ -15,7 +13,7 @@ interface IProject {
     }
 }
 
-const ProjectCard = ({ id, name, description, image, user }: IProject) => {
+const ProjectInExecutionCard = ({ id, name, description, image, user }: IProject) => {
 
     const navigate = useNavigate()
 
@@ -52,4 +50,4 @@ const ProjectCard = ({ id, name, description, image, user }: IProject) => {
     );
 }
 
-export default ProjectCard;
+export default ProjectInExecutionCard;

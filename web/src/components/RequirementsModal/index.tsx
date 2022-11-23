@@ -71,7 +71,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             createEditRequirements();
         }
     }
-    console.log(error)
+    // console.log(error)
 
     const defineAction = () => {
         let action = "Criar"
@@ -84,12 +84,13 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     const createEditRequirements = () => {
         if (defineAction() === "Criar") {
 
-            api.post("/requirement", requirements).then((res) => {
+            api.post('/requirement/', requirements).then((res) => {
                 if (res.data.statusCode !== 201) {
-                    console.log(res.data.statusCode)
                     window.alert("Não foi possível criar o requisito")
                 } else {
-                    console.log("deu certo")
+                    window.alert(res.data.message)
+                    onClose()
+
                 }
             })
         }
@@ -101,10 +102,11 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             }
             api.put(`/requirement/${requirementId}`, requirementToSend).then((res) => {
                 if (res.data.statusCode !== 200) {
-                    console.log(res.data)
+                    //console.log(res.data)
                     window.alert("Não foi possível editar o requisito")
                 } else {
-                    console.log("deu certo")
+                    window.alert(res.data.message)
+                    onClose()
                 }
             })
         }
@@ -136,7 +138,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
 
     useEffect(() => {
         api.get(`/requirements/${requirementId}`).then((res: any) => {
-            console.log(res.data.data.gain_percentage)
+            //console.log(res.data.data.gain_percentage)
 
         })
     }, [])

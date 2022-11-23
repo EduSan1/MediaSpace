@@ -69,8 +69,21 @@ export class ProjectRepository {
                 interest: true,
                 sub_categories: true,
                 requirements: true,
-                management: true,
-                user: true
+                management: {
+                    team_project_management: {
+                        team: true
+                    }
+                },
+                user: true,
+
+            },
+            order: {
+
+                requirements: {
+
+                    create_at: "ASC"
+                }
+
             }
         })
     }

@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, Dimensions, Image, ToastAndroid } f
 import { LoginButton } from "../utils/LoginButton";
 import { LoginInput } from "../utils/LoginInput";
 import { CheckboxComponent } from "../utils/LoginCheckBox";
-import { LoginTextArea } from "../utils/LoginTextArea";
+import { LoginTextAreaCad } from "../utils/LoginTextAreaCad";
 import { LoginImage } from "../utils/LoginImage";
 import api from "../../../service";
 
@@ -244,7 +244,7 @@ export const Register = ({ navigation }: IRegister) => {
                         </View>
 
                     </View>
-                    <LoginTextArea name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
+                    <LoginTextAreaCad name="biography" value={userRegister.biography} handleChange={handleChange} title="Biografia" maxLength={800} />
 
                     <View style={styles.iconViewEnd}>
                         <Image style={styles.scrollIcon} source={require("../../../assets/img/scrollhint.png")} />
@@ -324,21 +324,12 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         display: 'flex',
-        flex: 1
+        flex: 3,
 
     },
-    // containerTextButton:{
-    //     width: Dimensions.get('window').width,
-    //     height: Dimensions.get('window').height  ,
-    //     justifyContent: "flex-end",
-    //     alignItems: "center",
-    //     display: 'flex',
-    //     flex: 0.5,
-
-    // },
     scrollIcon: {
-        width: Dimensions.get('window').width * 0.059,
-        height: Dimensions.get('window').height * 0.0439,
+        width: Dimensions.get('window').width * 0.05,
+        height: Dimensions.get('window').width * 0.056,
 
     },
     iconViewStart: {

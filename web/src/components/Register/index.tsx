@@ -81,14 +81,23 @@ const RegisterSpace = () => {
         })
     }
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    
+            console.log(onlyLetters.exec(event.target.value))
+            let teste : any
+            if(onlyLetters.exec(event.target.value) != null){
+                teste = onlyLetters.exec(event.target.value)
 
-        const validation = onlyLetters.test(event.target.value)
+                setUser({
+                    ...user, [event.target.name]: teste
+                })
+            }
+          
 
-        if (validation) {
-            setUser({
-                ...user, [event.target.name]: event.target.value
-            })
-        }
+         
+               
+            
+            
+         
     }
 
 

@@ -7,17 +7,15 @@ import InputBtn from "../../components/utils/Button/InputBtn";
 import api from "../../service";
 import { stringify } from "querystring";
 import { useParams } from "react-router-dom";
+import ModalRequirements from "../../components/RequirementsModal";
 
 const ProjectsrequirementsFreelancer = () => {
 
 
-    const [modal, setmodal] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [valuePorcent, setvalue] = useState();
 
     const { projectId } = useParams()
-
-
-
 
     const [requerimenteproject, setRequerimenteproject] = useState({
         name: "",
@@ -111,9 +109,15 @@ const ProjectsrequirementsFreelancer = () => {
                             </div>
                         </div>
                         <div className="btn_requirements">
+
+
                             <span className="Btn_send">
-                                <InputBtn className="submit_add" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Adicionar requisito'} enable />
+                                <button className="submit_add" onClick={() => { setIsModalVisible(true) }}>Adicionar</button>
                             </span>
+
+
+
+                            {isModalVisible ? <ModalRequirements onClose={() => setIsModalVisible(false)} /> : null}
                             <span className="Btn_Add">
                                 <InputBtn className="submit_send" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Enviar'} enable />
                             </span>
