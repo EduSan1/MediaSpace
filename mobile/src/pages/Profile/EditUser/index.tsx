@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, TextInput } from "react-native";
 import api from "../../../../service";
 import * as SecureStore from 'expo-secure-store';
 import TabBar from "../../../components/utils/TabBar";
@@ -49,6 +49,10 @@ const EditUser = ({ navigation }: IEditUser) => {
     const navigateTo = (screen: string) => {
         navigation.navigate(screen)
     }
+    const dateMask = (value: string) => {
+        return value
+            .split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/,"$3/$2/$1")
+    }
 
     const [user, setUser] = useState({
         id: "",
@@ -64,6 +68,11 @@ const EditUser = ({ navigation }: IEditUser) => {
             id: "",
             gender: "Masculino",
         },
+        phone:{
+            id:"",
+            phone:"",
+            ddd:"",
+        }
     })
 
     const [userCategories, setUserCategories] = useState<ICategory[]>([])
@@ -99,11 +108,92 @@ const EditUser = ({ navigation }: IEditUser) => {
                         <Text style={styles.nickname}>@{user.nickname}</Text>
                         <BtnEditProfile action={console.log}/>
                     </View>
+                    {/* Container Infos */}
                     <View style={styles.editContainer}>
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>Suas Informações</Text>
                             <Icon size={Dimensions.get('window').height * 0.03} name={"lock-outline"} style={{ color: "#75A5FF" }} />
                         </View>
+
+                        <View style={styles.infoContainer}>
+                            {/* Name */}
+                            <View style={styles.textBoxContainer}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>Nome</Text>
+                                    <Text style={styles.textRequired}>*</Text>
+                                </View>
+                                <TextInput style={styles.textInfo}>{user.first_name}</TextInput>
+                            </View>
+                            {/* last Name */}
+                            <View style={styles.textBoxContainer}>
+                                <Text style={styles.textTitleInfo}>Sobrenome</Text>
+                                <TextInput style={styles.textInfo}>Carlos</TextInput>
+                            </View>
+                        </View>
+
+                        <View style={styles.infoContainer}>
+                        {/* Nickname */}
+                            <View style={styles.textBoxContainer}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>Nickname</Text>
+                                    <Text style={styles.textRequired}>*</Text>
+                                </View>
+                                <TextInput style={styles.textInfo}>@{user.nickname}</TextInput>
+                            </View>
+                            {/* Cellphone */}
+                            <View style={styles.textBoxContainer}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>Celular</Text>
+                                </View>
+                                <TextInput style={styles.textInfo}>{user.phone.ddd} {user.phone.phone}</TextInput>
+                            </View>
+                            
+                        </View>
+                        <View style={styles.infoContainer}>
+                        {/* Email */}
+                            <View style={styles.emailBox}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>Email</Text>
+                                    <Text style={styles.textRequired}>*</Text>
+                                </View>
+                                <View style={styles.textAlign}>
+                                <TextInput style={styles.textInfo}>{user.mail}</TextInput>
+                                <Image source={require("../../../../assets/icons/notEditableIcon.png")} style={styles.Icon}/>
+                                </View>
+                            </View>
+
+                        </View>
+                        <View style={styles.infoContainer}>
+                        {/* CPF */}
+                            <View style={styles.textBoxContainer}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>CPF</Text>
+                                    <Text style={styles.textRequired}>*</Text>
+                                </View>
+                                <TextInput style={styles.textInfo}>{user.cpf}</TextInput>
+                            </View>
+                            {/* Birth Date */}
+                            <View style={styles.textBoxContainer}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>Data de nascimento</Text>
+                                </View>
+                                <TextInput style={styles.textInfo}>{dateMask(user.birth_date)}</TextInput>
+                            </View>
+                            
+                        </View>
+                        <View style={styles.infoContainer}>
+                        {/* Biography */}
+                            <View style={styles.biographyBox}>
+                                <View style={styles.textAlign}>
+                                    <Text style={styles.textTitleInfo}>Biografria</Text>
+                                </View>
+                                <View style={styles.textAlign}>
+                                <TextInput style={styles.textInfo}>{user.biography}</TextInput>
+                                </View>
+                            </View>
+
+                        </View>
+
                     </View>
                     
 
@@ -168,9 +258,10 @@ const styles = StyleSheet.create({
         textAlignVertical: "center",
         paddingLeft: 20,
         color: "#75A5FF",
-        fontWeight: "400",
+        fontWeight: "500",
         fontSize: 20,
         marginRight: 2,
+        
     },
     titleContainer: {
         width: "100%",
@@ -178,7 +269,12 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        flexDirection: 'row'
+        flexDirection: 'row',
+        // backgroundColor:"black"
+    },
+    textAlign:{
+        flexDirection:"row",
+        alignItems:"center"
     },
     name: {
         fontWeight: "300",
@@ -197,6 +293,56 @@ const styles = StyleSheet.create({
         zIndex: 1
 
     },
+    infoContainer:{
+        flexDirection:"row",
+        // backgroundColor:"green",
+        height: Dimensions.get('window').height * 0.08,
+        width: Dimensions.get('window').width * 1,
+        marginBottom:Dimensions.get('window').height * 0.02,
+    },
+    textBoxContainer:{
+        height:"100%",
+        width: Dimensions.get('window').width * 0.3,
+        // backgroundColor:"gray",
+        justifyContent:"space-around",
+        marginStart:Dimensions.get('window').width * 0.1,
+        
+        
+    },
+    textTitleInfo:{
+        // backgroundColor:"blue",
+        fontSize:16,
+        fontWeight:"600",
+
+    },
+    textRequired:{
+        color:"red",
+        fontSize:16,
+        marginStart:2
+    },
+    textInfo:{
+        // backgroundColor:"blue",
+        fontSize:16,
+        fontWeight:"400",
+        color:"#808080",
+    },
+    emailBox:{
+        marginStart:Dimensions.get('window').width * 0.1,
+        // backgroundColor:"black"
+    },
+    biographyBox:{
+        width:Dimensions.get('window').width * 0.8,
+        height:Dimensions.get('window').height * 0.3,
+        marginStart:Dimensions.get('window').width * 0.1,
+        // backgroundColor:"black"
+    },
+    Icon:{
+        width:Dimensions.get('window').width * 0.04,
+        height:Dimensions.get('window').width * 0.04,
+        marginStart:Dimensions.get('window').width * 0.01,
+        // backgroundColor:"gray"
+    }
+    
 })
 
 export default EditUser

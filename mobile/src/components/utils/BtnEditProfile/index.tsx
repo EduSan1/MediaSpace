@@ -16,7 +16,6 @@ export const BtnEditProfile = ({action}:IBtnEditProfile) => {
 const styles = StyleSheet.create({
 
     btnStyle:{
-
         marginTop:Dimensions.get('window').height * 0.01,
         borderWidth:1,
         borderColor:"#B275FF",

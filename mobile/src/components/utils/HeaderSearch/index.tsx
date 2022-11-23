@@ -32,6 +32,7 @@ export default function HeaderSearch({ label }: IHeaderSearch) {
                 <Image style={styles.iconSearch} source={require('../../../../assets/icons/searchIcon.png')} />
                 <TextInput placeholder="Pesquisar..."></TextInput>
             </View>
+            
             {
                 hasImage ?
                     <Image style={styles.iconProfile} source={{ uri: userImage }} />
