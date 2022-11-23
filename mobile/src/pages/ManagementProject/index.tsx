@@ -149,8 +149,19 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                 <View style={styles.projectDetailsContainer}>
                     <Image style={styles.projectImage} source={{ uri: project.images[0].url }} />
                     <View style={styles.projectDetails}>
-                        <Text style={styles.projectTitle}>{project.name} {project.user.last_name}</Text>
+                        <Text style={styles.projectTitle}>{project.name}</Text>
                         <Text style={styles.ProjectDescription}>{project.description}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.freelancerContainer}>
+                    <Text style={styles.projectTitle}>Em execução por:</Text>
+                    <View style={styles.freelancerDetailsContainer}>
+                        <Image style={styles.freelancerImage} source={{ uri: project.user.profile_picture }} />
+                        <View>
+                            <Text style={styles.freelancerName}>{project.user.first_name} {project.user.last_name}</Text>
+                            <Text style={styles.freelancerNickname}>@{project.user.nickname}</Text>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -202,10 +213,12 @@ const styles = StyleSheet.create({
         minHeight: Dimensions.get('window').height,
         height: "auto",
         backgroundColor: "#fff",
-        borderColor: "#bbb",
+        borderColor: "#DBDFE8",
         borderWidth: 1,
         borderTopEndRadius: 20,
         borderTopStartRadius: 20,
+        display: "flex",
+        alignItems: "center"
     },
     userContainer: {
         width: "100%",
@@ -242,13 +255,15 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').width * 0.08,
     },
     projectDetailsContainer: {
-        width: "100%",
+        width: "90%",
         height: Dimensions.get('window').height * 0.18,
         display: "flex",
-        justifyContent: "space-evenly",
+        justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
-        paddingLeft: 20,
+        borderBottomColor: "#DBDFE8",
+        borderBottomWidth: 2,
+
     },
     projectImage: {
         width: Dimensions.get('window').width * 0.4,
@@ -257,7 +272,7 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     projectDetails: {
-        width: Dimensions.get('window').width * 0.5,
+        width: Dimensions.get('window').width * 0.45,
         height: "80%"
     },
     projectTitle: {
@@ -267,6 +282,39 @@ const styles = StyleSheet.create({
     },
     ProjectDescription: {
         fontSize: 14,
+        color: "#999",
+        fontWeight: "400"
+    },
+    freelancerContainer: {
+        width: "90%",
+        height: Dimensions.get('window').height * 0.1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        borderBottomColor: "#DBDFE8",
+        borderBottomWidth: 2,
+    },
+    freelancerDetailsContainer: {
+        width: "65%",
+        height: Dimensions.get('window').height * 0.06,
+        display: "flex",
+        justifyContent: "flex-start",
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    freelancerImage: {
+        width: Dimensions.get('window').width * 0.1,
+        height: Dimensions.get('window').width * 0.1,
+        marginRight: 10,
+        borderRadius: 100,
+    },
+    freelancerName: {
+        fontSize: 14,
+        color: "#000",
+        fontWeight: "400"
+    },
+    freelancerNickname: {
+        fontSize: 12,
         color: "#999",
         fontWeight: "400"
     },

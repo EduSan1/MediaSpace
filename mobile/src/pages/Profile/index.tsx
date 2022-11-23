@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
         minHeight: "100%",
         height: "auto",
         backgroundColor: "#fff",
-        borderTopEndRadius: 80,
-        borderTopStartRadius: 80
+        borderTopEndRadius: 60,
+        borderTopStartRadius: 60
     }
 })
 

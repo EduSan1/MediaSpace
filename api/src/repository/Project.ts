@@ -69,7 +69,11 @@ export class ProjectRepository {
                 interest: true,
                 sub_categories: true,
                 requirements: true,
-                management: true,
+                management: {
+                    members: {
+                        member: true
+                    }
+                },
                 user: true
             },
             order: {
