@@ -5,7 +5,6 @@ import HistoryTrack from "../../components/utils/HistoryTrack";
 import NavegationBar from "../../components/utils/navegation";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import api from "../../service";
-import { stringify } from "querystring";
 import { useParams } from "react-router-dom";
 import ModalRequirements from "../../components/RequirementsModal";
 
@@ -34,7 +33,7 @@ const ProjectsrequirementsFreelancer = () => {
     }
 
     const getRequirements = () => {
-        api.get(`/project/${projectId}`)
+            api.get(`/project/${projectId}`)
             .then((res) => {
                 setRequerimenteproject({
                     ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value:res.data.data.value
@@ -73,8 +72,10 @@ const ProjectsrequirementsFreelancer = () => {
 
                                 {
                                      requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
-                                        return <CardShipRegister idUserCreater={false} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} requirementId={requirement.id}/>
-                                        numberissue++;
+                                        if (requirement.is_active !== false) {
+                                            numberissue++;
+                                              return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} requirementId={""} useEffect={""}/>
+                                        } 
                                     })
                                 }
 

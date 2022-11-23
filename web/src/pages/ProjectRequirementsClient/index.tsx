@@ -25,15 +25,40 @@ const ProjectRequirementsClient = () => {
 
     }
 
-    useEffect(() => {
+  
+
+    const acceptRequirements = () =>{
+        api.post(`project/acceptRequirements/${projectId}`).then((res) => {
+            if (res.data.statusCode !== 201) {
+               console.log(res.data)
+            } else {
+                console.log(res.data.message)
+            }
+         })
+    }
+
+    const requestReviewRequirements = () =>{
+        api.post(`project/denyRequirement/${projectId}`).then((res) => {
+            if (res.data.statusCode !== 200) {
+               console.log(res.data)
+            } else {
+                console.log(res.data.message)
+            }
+         })
+    }
+
+    const getRequirements = () => {
         api.get(`/project/${projectId}`)
-        .then((res) => {
-            setRequerimenteproject({
-                ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value:res.data.data.value
-             })
+            .then((res) => {
+                setRequerimenteproject({
+                    ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value:res.data.data.value
+                 })
 
-        })
+            })
+    }
 
+    useEffect(() => {
+        getRequirements()
     }, [])
 
     return (
@@ -55,8 +80,11 @@ const ProjectRequirementsClient = () => {
                             <div>
                             {
                                      requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
-                                        return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} requirementId={""}/>
-                                        numberissue++;
+                                        if (requirement.is_active !== false) {
+                                            numberissue++;
+                                              return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value,requirement.gain_percentage)} requirementId={""} useEffect={""}/>
+                                        } 
+                                      
                                     })
                                 }
 
@@ -73,10 +101,10 @@ const ProjectRequirementsClient = () => {
                         </div>
                         <div className="btn_requirements">
                             <span className="Btn_send">
-                                <InputBtn className="submit_add" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Solicitar revisão'} enable />
+                                <InputBtn className="submit_add" name="" onClick={() => { requestReviewRequirements()}} typeInput={"Submit"} valueBtn={'Solicitar revisão'} enable />
                             </span>
                             <span className="Btn_send">
-                                <InputBtn className="submit_add" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Iniciar projeto'} enable />
+                                <InputBtn className="submit_add" name="" onClick={() => {acceptRequirements() }} typeInput={"Submit"} valueBtn={'Iniciar projeto'} enable />
                             </span>
                         </div>
                     </div>

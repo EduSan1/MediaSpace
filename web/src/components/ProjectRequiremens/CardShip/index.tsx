@@ -16,6 +16,7 @@ interface IIcard {
     value :number,
     idUserCreater: boolean,
     requirementId:string
+    useEffect:  any
 }
 
 export const CardShip = ({CardClasse,percentage,desciption,layout,issue,numberissue,value}:IIcard) => {
@@ -44,13 +45,14 @@ export const CardShip = ({CardClasse,percentage,desciption,layout,issue,numberis
     );
 
 }
-export const CardShipRegister = ({CardClasse,percentage,desciption,layout,numberissue,value, idUserCreater,requirementId}:IIcard) => {
+export const CardShipRegister = ({CardClasse,percentage,desciption,layout,numberissue,value, idUserCreater,requirementId, useEffect}:IIcard) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const deleteRequirement = () =>{
             api.delete(`/requirement/${requirementId}`).then((res: any) => {  
             })
     }
 
+    
 
     return (
         <>
@@ -62,7 +64,7 @@ export const CardShipRegister = ({CardClasse,percentage,desciption,layout,number
                             <IconBar Icon={<FiEdit/>} className={"iconCheck"} text=""/>
                         </span>
 
-                        {isModalVisible ? <ModalRequirements requirementId={requirementId} onClose={() =>{ setIsModalVisible(false)}} /> : null}
+                        {isModalVisible ? <ModalRequirements requirementId={requirementId} onClose={() =>{setIsModalVisible(false)}} /> : null}
                            
                    </div>
                    <div className={idUserCreater?"verification_creater":"verification"}>
