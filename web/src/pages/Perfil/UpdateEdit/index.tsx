@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
+import {BiEdit} from "react-icons/bi";
 import { HiOutlineIdentification } from "react-icons/hi";
 import { MdLockOutline, MdOutlineAlternateEmail, MdPersonOutline } from "react-icons/md";
 import { RiCalendar2Line } from "react-icons/ri";
@@ -24,7 +25,7 @@ const UpdateEdit = () => {
             <section className="section_main_perfil">
                <PerfilCard />
                <div className="Div_main_Perfil">
-                  <span className="title_name "><h2>Suas Informações</h2></span>
+                  <span className="title_name "><h2>Suas Informações</h2> <BiEdit/></span>
 
                   <div className="container_inputs_UpdateEdit">
 
@@ -42,7 +43,7 @@ const UpdateEdit = () => {
 
 
                      <span className="Upadet_cell_email">
-                        <InputLogin valueLogin={'Cell'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"l"} placeholder={""} icon={''} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
+                        <InputLogin valueLogin={'Cell'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"cell"} placeholder={""} icon={''} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
 
                         <InputLogin valueLogin={'Email'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"email"} placeholder={"Email"} icon={''} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250} />
 
@@ -50,7 +51,7 @@ const UpdateEdit = () => {
 
 
                      <span className="Upadet_Password_cpf">
-                        <InputLogin valueLogin={'Senha'} hasError={hasErrors} handleChange={() => { }} typeInput={"button"} placeholder={"Alterar"} icon={''} name={"senha"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
+                        <InputLogin valueLogin={'Alterar'} hasError={hasErrors} handleChange={() => { }} typeInput={"button"} placeholder={"Alterar"} icon={''} name={"senha"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
 
                         <InputLogin valueLogin={'Cpf'} hasError={hasErrors} handleChange={() => { }} typeInput={"string"} placeholder={"CPF"} icon={''} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
 
@@ -59,18 +60,26 @@ const UpdateEdit = () => {
 
                      </span>
 
-                     <span className="Upadet_biography">
 
-                        <label>biografia</label>
+                     <div className="biography_and_btn">
 
-                       
+
+                        <span className="Upadet_biography">
+
+                           <label>biografia</label>
+
+
                            <textarea name="biography" className="biography_Upadet" />
-                        
-                     </span>
 
-                     <span className='Upadet_btn_edit'>
-                       <InputBtn className="btn_edit" name="Editar" onClick={()=>{}} typeInput={'button'} valueBtn="Editar" enable/>
-                     </span>
+                        </span>
+
+                        <span className='Upadet_btn_edit'>
+                           <InputBtn className="btn_edit" name="Torne-se um freelancer" onClick={() => { }} typeInput={'button'} valueBtn="Torne-se um freelancer" enable />
+                           <InputBtn className="btn_edit" name="Editar" onClick={() => { }} typeInput={'button'} valueBtn="Editar" enable />
+                        </span>
+
+
+                     </div>
 
 
 

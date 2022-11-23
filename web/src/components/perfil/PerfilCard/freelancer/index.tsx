@@ -4,7 +4,7 @@ import CategoryCard from "../../../utils/CategoryCard";
 
 
 
-const PerfilCard = () => {
+const PerfilCardFreelancer = () => {
 
 
     return (
@@ -31,7 +31,14 @@ const PerfilCard = () => {
                 </span>
 
             </div>
-    
+            <div className="category_freelancer">
+                <CategoryCard category="teste" icon="" />
+                <CategoryCard category="teste" icon="" />
+                <CategoryCard category="teste" icon="" />
+                <CategoryCard category="teste" icon="" />
+
+            </div>
+
             <span className="line"></span>
 
             <span className="description_user">
@@ -52,4 +59,4 @@ const PerfilCard = () => {
 
 
 
-export default PerfilCard;
+export default PerfilCardFreelancer;

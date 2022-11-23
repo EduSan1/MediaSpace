@@ -11,61 +11,6 @@ import { useParams } from "react-router-dom";
 const ProjectsrequirementsFreelancer = () => {
 
 
-    const [modal, setmodal] = useState(false);
-    const [valuePorcent, setvalue] = useState();
-
-    const { projectId } = useParams()
-
-
-
-
-    const [requerimenteproject, setRequerimenteproject] = useState({
-        name: "",
-        id: "",
-        estimated_value: "",
-        description: ""
-    });
-
-    const converteValue = () => {
-        const value = parseFloat(requerimenteproject.estimated_value)
-        const porcente = parseFloat(requerimente.gain_percentage)
-
-        const valueAll = (porcente / 100) * value;
-
-        //  setvalue(valueAll);
-
-    }
-
-    const [requerimente, setRequerimente] = useState({
-        id: "",
-        description: "",
-        gain_percentage: "",
-        title: "",
-        valueAll: 20
-
-
-
-
-    }
-
-    );
-
-
-    useEffect(() => {
-        api.get(`/requirement/${projectId}`)
-            .then((res) => {
-                setRequerimenteproject(res.data.data.project);
-                setRequerimente(res.data.data);
-            })
-
-    }, [])
-
-
-    useEffect(() => {
-
-        console.log(requerimente)
-
-    }, [requerimente])
 
     return (
         <main id="ContentPage">
@@ -81,7 +26,7 @@ const ProjectsrequirementsFreelancer = () => {
 
 
 
-                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {requerimenteproject.name} </h1></span>
+                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {} </h1></span>
 
 
                         </div>
@@ -92,7 +37,7 @@ const ProjectsrequirementsFreelancer = () => {
 
 
 
-                                <CardShip CardClasse="" desciption={requerimente.description} issue="" layout={requerimente.title} numberissue={1} percentage={requerimente.gain_percentage} value={20} />
+                                <CardShip CardClasse="" desciption={"nada"} issue="" layout={"teste"} numberissue={1} percentage={"20"} value={20} />
 
 
 
@@ -104,7 +49,7 @@ const ProjectsrequirementsFreelancer = () => {
                         </div>
 
                         <div className="footer">
-                            <span className="tittle_Value_text"><h1>Valor total do projeto: {requerimenteproject.estimated_value} </h1></span>
+                            <span className="tittle_Value_text"><h1>Valor total do projeto: {} </h1></span>
                             <div className="revision_requisition">
                                 <h1>Revisão de requisitos</h1>
                                 <p> Caso esteja interessado em fazer mudanças ou adaptações nos requisitos, solicite uma revisão, só é permitido a edição assim que o cliente e o(s) prestador(es) aceitarem a solicitação.</p>

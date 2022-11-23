@@ -6,6 +6,7 @@ import SearchBar from "../../../components/HeaderPage/Search";
 import PortifolioCard from "../../../components/perfil/Card/portifolio";
 import InputSelect from "../../../components/perfil/InputSelect";
 import PerfilCard from "../../../components/perfil/PerfilCard/Client";
+import PerfilCardFreelancer from "../../../components/perfil/PerfilCard/freelancer";
 import SideNav from "../../../components/perfil/SideNav";
 import NavegationBar from "../../../components/utils/navegation";
 
@@ -21,7 +22,7 @@ const Perfil = () => {
                 <SearchBar />
                 <section className="section_main_perfil">
 
-                    <PerfilCard />
+                    <PerfilCardFreelancer />
 
                     <div className="Div_main_Perfil">
 

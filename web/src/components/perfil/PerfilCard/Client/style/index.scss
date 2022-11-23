@@ -116,7 +116,7 @@
         height: 1px;
         background-color: #000;
         opacity: 40%;
-        
+
     }
 
     .description_user {
@@ -140,7 +140,23 @@
 
 
     }
+
+    .category_freelancer {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+
+
+         input[type=button]{
+            width: 50%;
+            border: 0;
+            background-color: aqua;
+         }
+    }
 }
+
 @media (min-width:1926px) {
     .perfil_card {
 
@@ -153,7 +169,7 @@
             background-size: 100%;
             background-position: bottom;
             border-radius: 50px 50px 1px 1px;
-    
+
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -163,5 +179,5 @@
             font: 1em sans-serif;
         }
     }
-    
-  }
+
+}
