@@ -22,6 +22,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         estimated_deadline: "",
         finish_project_date: "",
         start_project_date: "",
+        create_at: "",
         images: [{
             url: ""
         }],
@@ -194,7 +195,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         </View>
                     </View>
                 </View>
-                <Text style={styles.attendanceTitle}>Acompanhamento</Text>
+                <Text style={styles.title}>Acompanhamento</Text>
                 <View style={styles.attendanceContainer}>
                     <View style={styles.attendanceEstimatedDeadLine}>
                         <Text style={styles.attendanceEstimatedDeadLineText}>Estimativa de entrega final:</Text>
@@ -209,16 +210,116 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         Valide as entregas feitas pelo prestador.
                         Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça
                     </Text>
-                    {project.requirements.map((requirement: any) => {
-                        return (
-                            <View style={styles.requirementContainer}>
-                                <Text style={styles.progressTitle}>Entregue - {requirement.title}</Text>
-                            </View>
-                        )
-                    })
-                    }
-                </View>
+                    <View style={styles.requirementsContainer}>
+                        {project.requirements.map((requirement: any) => {
+                            return (
+                                <View style={styles.requirementContainer}>
+                                    <Text style={styles.requirementTitle}>Requisito - {requirement.title}</Text>
+                                    {
+                                        requirement.delivery.map((delivery: any, index: number) => {
 
+                                            if (delivery.is_active) {
+                                                if (delivery.is_accepted === true)
+                                                    return (
+                                                        <View style={styles.deliveryContainer}>
+                                                            <View style={styles.deliveryTitleContainer}>
+                                                                <View style={styles.check}>
+                                                                    <Image style={styles.checkIcon} source={require("../../../assets/icons/check.png")} />
+                                                                </View>
+                                                                <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
+                                                            </View>
+                                                            <View style={styles.deliveryDocumentContainer}>
+
+                                                            </View>
+                                                            <Text style={styles.deliveryAccepted}>Validado ✓</Text>
+                                                        </View>
+
+                                                    )
+
+                                                else if (delivery.is_accepted === false)
+                                                    return (
+
+                                                        <View style={styles.deliveryContainer}>
+                                                            <View style={styles.deliveryTitleContainer}>
+                                                                <View style={styles.check}>
+                                                                    <Image style={styles.checkIcon} source={require("../../../assets/icons/check.png")} />
+                                                                </View>
+                                                                <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
+                                                            </View>
+                                                            <View style={styles.deliveryDocumentContainer}>
+
+                                                            </View>
+                                                            <Text style={styles.deliveryNotAccepted}>Recusada ✕</Text>
+                                                        </View>
+                                                    )
+
+                                                else
+                                                    return (
+                                                        <>
+                                                            <View style={styles.deliveryContainer}>
+                                                                <View style={styles.deliveryTitleContainer}>
+                                                                    <View style={styles.check}>
+                                                                        <Image style={styles.checkIcon} source={require("../../../assets/icons/check.png")} />
+                                                                    </View>
+                                                                    <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
+                                                                </View>
+                                                                <View style={styles.deliveryDocumentContainer}>
+
+                                                                </View>
+                                                                <View style={styles.deliveryButtonContainer}>
+                                                                    <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#B275FF" }}><Text style={styles.deliveryButtonText}>Aceitar</Text></Pressable>
+                                                                    <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#FF6666" }}><Text style={styles.deliveryButtonText}>Recusar</Text></Pressable>
+                                                                </View>
+                                                            </View>
+
+                                                        </>
+                                                    )
+                                            }
+
+                                        })
+
+                                    }
+                                    {
+                                        requirement.delivery.length === 0 &&
+                                        <Text>Aguardando entrega</Text>
+                                    }
+
+
+                                </View>
+                            )
+                        })
+                        }
+                    </View>
+
+
+
+
+
+
+                </View>
+                <View style={styles.detailsContainer}>
+                    <Text style={styles.title}>Detalhes</Text>
+                    <View style={styles.detailsItemContainer}>
+                        <Text style={styles.detailsItemTitle}>Pedido feito em: </Text>
+                        <Text style={styles.detailsItemText}>{project.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
+                    </View>
+                    <View style={styles.detailsItemContainer}>
+                        <Text style={styles.detailsItemTitle}>Inicio do projeto: </Text>
+                        <Text style={styles.detailsItemText}>{project.management.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
+                    </View>
+                    <View style={styles.detailsItemContainer}>
+                        <Text style={styles.detailsItemTitle}>Quantidade de requisitos: </Text>
+                        <Text style={styles.detailsItemText}>{project.requirements.length}</Text>
+                    </View>
+                    <View style={styles.detailsItemContainer}>
+                        <Text style={styles.detailsItemTitle}>Quantidade de entregas: </Text>
+                        <Text style={styles.detailsItemText}>{project.requirements.filter((requirement: any) => requirement.delivery.length > 0).length}</Text>
+                    </View>
+                    <View style={styles.detailsItemContainer}>
+                        <Text style={styles.detailsItemTitle}>Estimativa de entrega final: </Text>
+                        <Text style={styles.detailsItemText}>{project.estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
+                    </View>
+                </View>
 
 
             </View>
@@ -267,7 +368,6 @@ const styles = StyleSheet.create({
     },
     containerProject: {
         width: Dimensions.get('window').width,
-        minHeight: Dimensions.get('window').height,
         height: "auto",
         backgroundColor: "#fff",
         borderColor: "#DBDFE8",
@@ -375,7 +475,7 @@ const styles = StyleSheet.create({
         color: "#999",
         fontWeight: "400"
     },
-    attendanceTitle: {
+    title: {
         fontSize: 24,
         color: "#000",
         fontWeight: "800",
@@ -390,9 +490,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderWidth: 1,
+        marginBottom: 30,
         borderColor: "#DBDFE8",
-        borderTopStartRadius: 20,
-        borderTopEndRadius: 20,
+        borderRadius: 20
     },
     attendanceEstimatedDeadLine: {
         minHeight: Dimensions.get('window').height * 0.1,
@@ -436,11 +536,126 @@ const styles = StyleSheet.create({
         width: "90%",
         marginBottom: 20
     },
-    requirementContainer: {
-        height: Dimensions.get('window').height * 0.15,
+    requirementsContainer: {
+        // minHeight: Dimensions.get('window').height * 0.30,
+        height: "auto",
         width: "90%",
+    },
+    requirementContainer: {
+
+        height: "auto",
+        width: "100%",
         borderTopWidth: 2,
+        paddingTop: 5,
         borderColor: "#DBDFE8",
+    },
+    deliveryTitleContainer: {
+        width: "100%",
+
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        flexDirection: "row",
+    },
+    requirementTitle: {
+        fontSize: 18,
+        color: "#75A5FF",
+        fontWeight: "400",
+        marginBottom: 4
+    },
+    check: {
+        height: Dimensions.get('window').height * 0.02,
+        width: Dimensions.get('window').height * 0.02,
+        borderRadius: 100,
+        backgroundColor: "#75A5FF",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 10
+    },
+    checkIcon: {
+        width: "80%",
+        height: "80%",
+    },
+    deliveryTitle: {
+        fontSize: 14,
+        color: "#888",
+        fontWeight: "400"
+    },
+    deliveryContainer: {
+        width: "100%",
+        height: Dimensions.get('window').height * 0.24,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingBottom: 10
+    },
+    deliveryAccepted: {
+        fontSize: 20,
+        color: "#5FAC67",
+        fontWeight: "700"
+    },
+    deliveryNotAccepted: {
+        fontSize: 20,
+        color: "#FF6666",
+        fontWeight: "700"
+    },
+    deliveryButtonContainer: {
+        width: "60%",
+        height: Dimensions.get('window').height * 0.04,
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "row"
+    },
+    deliveryButton: {
+        width: "45%",
+        height: "100%",
+        borderRadius: 10,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    deliveryButtonText: {
+        fontSize: 13,
+        color: "#fff",
+        fontWeight: "700"
+    },
+    deliveryDocumentContainer: {
+        width: "90%",
+        height: "45%",
+        backgroundColor: "#E2E8FF",
+        borderRadius: 15
+    },
+    detailsContainer: {
+        width: Dimensions.get('window').width * 0.98,
+        height: "auto",
+        paddingBottom: 20,
+        backgroundColor: "#fff",
+        borderColor: "#DBDFE8",
+        marginBottom: 30,
+        borderWidth: 1,
+        borderRadius: 20,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start"
+    },
+    detailsItemContainer: {
+        width: "90%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        flexDirection: "row",
+        marginBottom: 10
+    },
+    detailsItemTitle: {
+        color: "#000",
+        fontSize: 16,
+        fontWeight: "400"
+    },
+    detailsItemText: {
+        color: "#999",
+        fontSize: 16,
+        fontWeight: "400"
     }
 })
 

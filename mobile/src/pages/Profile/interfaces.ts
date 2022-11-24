@@ -7,6 +7,7 @@ export interface IProject {
     estimated_deadline: string,
     finish_project_date: string,
     start_project_date: string,
+    create_at: string
     images: [{
         url: string
     }]
