@@ -4,16 +4,32 @@ import { useNavigate } from "react-router-dom";
 interface IProject {
     id: string
     name: string,
-    description: string
-    image: [{ "url": string }]
+    description: string,
+    image: [{ "url": string }],
     user: {
         first_name: string
         nickname: string
         profile_picture: string
+    },
+    management: {
+        team_project_management: [
+            {
+                id: "",
+            }]
     }
+    // management: {
+    //     team_project_management: [
+    //         {
+    //             team: {
+    //                 name: "",
+    //                 nickname: "",
+    //                 profile_picture: "",
+    //             }
+    //         }]
+    // }
 }
 
-const ProjectInExecutionCard = ({ id, name, description, image, user }: IProject) => {
+const ProjectInExecutionCard = ({ id, name, description, image, user, management }: IProject) => {
 
     const navigate = useNavigate()
 
@@ -44,6 +60,20 @@ const ProjectInExecutionCard = ({ id, name, description, image, user }: IProject
                     </div>
                 </div>
             </div>
+
+             <div className="project-card-freelancer">
+                <div className="project-card-freelancer-image">
+                    {/* <img src={management.team_project_management[0].team.profile_picture} alt="" /> */}
+
+                </div>
+                <div className="project-card-freelancer-details">
+                    <p>Em execução por:</p>
+                    <p>{management.team_project_management[0].id}</p>
+                    {/* <p>{management.team_project_management[0].team.name}</p>
+                    <p>@{management.team_project_management[0].team.nickname}</p> */}
+                </div>
+            </div> 
+
 
         </div>
 

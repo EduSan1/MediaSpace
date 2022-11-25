@@ -87,7 +87,7 @@
 
     display: flex;
 // lorem ipsum
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -123,6 +123,7 @@
             height: 100%;
         }
     }
+
     .project-card-user {
         width: 100%;
         height: 15%;
@@ -190,7 +191,7 @@
 
     .details-card {
         width: 29vw;
-        height: 9vw;
+        height: 19vw;
         border: 1px solid $light-blue;
         border-radius: 20px;
         overflow: hidden;
@@ -230,6 +231,49 @@
             }
         }
 
+    } 
+
+    .project-details-cards{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-card-freelancer {
+        width: 100%;
+        height: 15%;
+        display: flex;
+        padding: 0 1%;
+
+        .project-card-freelancer-image {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 90%;
+                height: 90%;
+                border-radius: 20vw;
+            }
+        }
+        .project-card-freelancer-details {
+            width: 80%;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-left: 5%;
+            flex-direction: column;
+
+            p:nth-child(1) {
+                color: #000;
+                font-size: clamp(4px, 4vw, 16px);
+            }
+            p:nth-child(2) {
+                color: #bbb;
+                font-size: clamp(2px, 4vw, 12px);
+            }
+        }
     }
 
     .view-requirements {
@@ -242,6 +286,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        margin-top: 2vw;
         cursor: pointer;
         transition: 0.5s;
 
@@ -336,6 +381,29 @@
     height: 5px;
 //        background: #B275FF;
     background: linear-gradient(45deg, #B275FF, #75A5FF);
+  }
+
+  .delivery-card-details {
+    counter-reset: number 0;
+    
+    .requirement-box {
+        display: flex;
+        flex-direction: row;
+    }
+
+    h2 {
+        color: #75A5FF;
+    }
+    h2.requirement-title {
+        margin-left: 7px;
+        color:#75A5FF
+    }
+    h2.requirement-counter::after{
+        counter-increment: number;
+        content: counter(number);
+        color: #75A5FF;
+    }
+
   }
 
 
