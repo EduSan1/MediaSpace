@@ -12,9 +12,10 @@ interface IModalRequirements {
 
 const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     const { projectId } = useParams()
+
     const [requirements, setRequirements] = useState(
         {
-            id: requirementId,
+            id: "",
             title: "",
             description: "",
             gain_percentage: "",
@@ -128,7 +129,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     useEffect(() => {
         api.get(`/requirement/${requirementId}`).then((res: any) => {
             setRequirements({
-                ...requirements, 
+                ...requirements,
                 gain_percentage: res.data.data.gain_percentage,
                 description: res.data.data.description,
                 title: res.data.data.title

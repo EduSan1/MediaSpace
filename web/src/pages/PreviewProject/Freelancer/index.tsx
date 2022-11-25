@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from "../../../components/HeaderPage/Search";
 import NavegationBar from "../../../components/utils/navegation";
-import { formatDate, formatMoney } from '../../../service/Regex/regex';
+import { formatDateProject } from '../../../service/Regex/regex';
 import InputBtn from "../../../components/utils/Button/InputBtn";
-import ButtonCategories from '../../../components/utils/Button/Categories/Categories';
 import { CarouselImages } from '../components/carousel';
 import { useParams } from 'react-router-dom';
 import api from '../../../service';
 import jwt from "jwt-decode"
+import CategoryCard from '../../../components/utils/CategoryCard';
 
 const PreviewProjectFreelancer = () => {
    const { projectId } = useParams()
@@ -71,13 +71,13 @@ const PreviewProjectFreelancer = () => {
          {
             "url": ""
          },
-       
+
 
       ]
    }
    )
 
-   const freelancersInterest = async () =>{
+   const freelancersInterest = async () => {
 
       const userJwt = await localStorage.getItem('userDetails');
       const user: any = jwt(userJwt ? userJwt : "")
@@ -102,9 +102,9 @@ const PreviewProjectFreelancer = () => {
    useEffect(() => {
       api.get(`/project/${projectId}`).then((res: any) => {
          setProject(res.data.data)
-        
+
       })
-   },[])
+   }, [])
 
    return (
       <>
@@ -120,16 +120,16 @@ const PreviewProjectFreelancer = () => {
                      </div>
 
                      <div className='container_dates'>
-                        <p><span>Criado em:   </span>{formatDate(project.estimated_deadline)}</p>
+                        <p><span>Criado em:   </span>{formatDateProject(project.estimated_deadline)}</p>
                         <p>
                            <span>Prazo de término:  </span>
-                           {formatDate(project.estimated_deadline)}
+                           {formatDateProject(project.estimated_deadline)}
                         </p>
                      </div>
                      <div className='container_creator_value'>
                         <div className='container_profile'>
                            <div className='picture_profile'>
-                              <img src={project.user.profile_picture}/>
+                              <img src={project.user.profile_picture} />
                            </div>
                            <div>
                               <label>{project.user.first_name}</label>
@@ -147,13 +147,13 @@ const PreviewProjectFreelancer = () => {
                      </div>
 
                      <div className='container_buttons_project'>
-                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_project'} valueBtn={'Candidatar-se'} onClick={() => {freelancersInterest()}} />
+                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_project'} valueBtn={'Candidatar-se'} onClick={() => { freelancersInterest() }} />
                      </div>
 
                      <div className='container_categories_project'>
                         {
                            project.categories.map((category: any) => {
-                              return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={() => { }} />
+                              return <CategoryCard category={category.name} icon={category.icon} key={category.id} />
                            })
                         }
                      </div>

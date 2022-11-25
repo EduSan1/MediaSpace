@@ -11,7 +11,7 @@ const PreviewProject = () => {
     console.log(projectId)
 
     const [createrProject, setCreaterProject] = useState("")
- 
+
     const typeProjectPreview = (createrProject: string) => {
 
         const userJwt = localStorage.getItem('userDetails');
@@ -35,7 +35,7 @@ const PreviewProject = () => {
     return (
         <>
             {
-                typeProjectPreview(createrProject) ? <PreviewProjectCreator/> : <PreviewProjectFreelancer />
+                typeProjectPreview(createrProject) ? <PreviewProjectCreator /> : <PreviewProjectFreelancer />
             }
         </>
     )
