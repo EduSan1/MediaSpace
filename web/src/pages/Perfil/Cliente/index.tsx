@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { ImStatsDots } from "react-icons/im";
 import { useJwt } from "react-jwt";
@@ -11,8 +11,36 @@ import SideNav from "../../../components/perfil/SideNav";
 import CardShip from "../../../components/ProjectRequiremens/CardShip";
 import NavegationBar from "../../../components/utils/navegation";
 import ProjectCard from "../../Projects/ProjectCard";
+import jwt from "jwt-decode"
+import { async } from "@firebase/util";
 
-const Perfil = () => {
+const Profile = () => {
+
+    const [user,setUser] = useState({
+        nickname: "",
+        first_name:"",
+        profile_picture:"",
+        biography:""
+    })
+ 
+
+  const profileDice = async ()  => {
+
+        const userJwt = await localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "");
+        setUser(user.userDetails);
+
+    }
+     
+
+
+    useEffect(() => {
+
+    },[user])
+
+    useEffect(() => {
+        profileDice();
+            },[])
 
     return (
 
@@ -24,7 +52,12 @@ const Perfil = () => {
                 <SearchBar />
                 <section className="section_main_perfil">
 
-                    <PerfilCard />
+                    {      
+
+                    
+                   <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography} />
+                    }
+                  
 
                     <div className="Div_main_Perfil">
                         <SideNav className="Nav_bar_Client" icon={<ImStatsDots onClick={() => { console.log("Ptojecto") }} />} icon2={<HiOutlineClipboardDocumentList />} icon3 icon4 icon5 />
@@ -51,4 +84,4 @@ const Perfil = () => {
     );
 }
 
-export default Perfil;
+export default Profile;

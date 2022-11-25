@@ -23,7 +23,7 @@ const UpdateEdit = () => {
          <div className="Container">
             <SearchBar />
             <section className="section_main_perfil">
-               <PerfilCard />
+               <PerfilCard first_name="" nickname="" profile_picture="" biography=""/>
                <div className="Div_main_Perfil">
                   <span className="title_name "><h2>Suas Informações</h2> <BiEdit/></span>
 

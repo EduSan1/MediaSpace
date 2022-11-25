@@ -17,7 +17,9 @@ const InputSelect = ({ optValue, classnameOption, idSelect,icon }: IISelect) => 
             {icon}
            </span>
             <select className={'P_serselecet'} id={idSelect}>
-                <option className={classnameOption ? classnameOption : "P_option"} value="valor1">{optValue}</option>``
+                <option className={classnameOption ? classnameOption : "P_option"} value="valor1">Em aberto</option>``
+                <option className={classnameOption ? classnameOption : "P_option"} value="valor1">Em Execução</option>``
+                <option className={classnameOption ? classnameOption : "P_option"} value="valor1">Finalizados</option>``
             </select>
         </div>
     )

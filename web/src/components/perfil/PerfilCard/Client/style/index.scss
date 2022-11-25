@@ -30,12 +30,14 @@
 
 
         .img_photo_user {
-            width: 40%;
+            width: 35%;
+            height: 40%;
             border-radius: 100%;
 
             img {
                 width: 100%;
                 height: 100%;
+                border-radius: 100%;
             }
         }
 

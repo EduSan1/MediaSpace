@@ -1,10 +1,22 @@
 import React from "react";
 import CategoryCard from "../../../utils/CategoryCard";
 
+interface IuserProfile{
+    first_name: string,
+    nickname: string,
+    profile_picture: string,
+    biography:string,
+     categories:[
+        {
+            name:any,
+            icon: any
+        }
+    ],
+}
 
 
 
-const PerfilCardFreelancer = () => {
+const PerfilCardFreelancer = ({first_name,nickname,profile_picture,biography,categories}:IuserProfile) => {
 
 
     return (
@@ -15,27 +27,24 @@ const PerfilCardFreelancer = () => {
                 </div>
 
                 <span className="InfoName_user">
-                    <h2>marcus</h2>
-                    <h4>@MarcusLindo</h4>
+                    <h2>{first_name}</h2>
+                    <h4>@{nickname}</h4>
                 </span>
             </div>
           
-            <div className="fallow_project">
-                <span>
-                    <h2>5.2k</h2>
-                    <h3>seguindo</h3>
-                </span>
-                <span>
-                    <h2>12</h2>
-                    <h3>projetos</h3>
-                </span>
-
-            </div>
+            <div className="fallow_project"></div>
             <div className="category_freelancer">
-                <CategoryCard category="teste" icon="" />
-                <CategoryCard category="teste" icon="" />
-                <CategoryCard category="teste" icon="" />
-                <CategoryCard category="teste" icon="" />
+                {
+
+                    categories.map((categoryUser:any)=>{
+                        return(
+                            <CategoryCard category={categoryUser.name} icon={categoryUser.icon} />
+                        )
+                    })
+                
+                }
+              
+             
 
             </div>
 
@@ -43,7 +52,7 @@ const PerfilCardFreelancer = () => {
 
             <span className="description_user">
                 <p>
-                    Texto é uma manifestação da linguagem, uma mensagem usada para transmitir informação de um autor para um leitor. Um texto é uma manifestação da linguagem. Pode ser definido como tudo aquilo que é dito por um emissor e interpretado por um receptor. Dessa forma, tudo que é interpretável é um texto.
+                 {biography}
                 </p>
             </span>
 

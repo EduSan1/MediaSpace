@@ -44,7 +44,7 @@ const NavegationBar = () => {
                 </span>
 
                 <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
-                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img" />
+                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img"  />
                     <span className="InfoName_user">
                         <h2>{decodedToken?.userDetails?.first_name}</h2>
                         <h4>@{decodedToken?.userDetails?.nickname}</h4>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface IComponentImg{
   
@@ -11,13 +12,14 @@ interface IComponentImg{
 
 const ImageComponent = ({className,src,alt}:IComponentImg) => {
 
+    
     return (
 
         <>
 
         <div className={className}>
-
-            <img className="ImgMain" src={src} alt={alt} />
+            <img className="ImgMain" src={src} alt={alt} onClick={()=>{
+            }}/>
             
 
         </div>
