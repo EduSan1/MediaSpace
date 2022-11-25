@@ -67,9 +67,9 @@ const ProjectInExecution = () => {
                                         <li className="active">04</li>
                                         <li className="active">05</li>
                                         <li className="active">06</li>
-                                        <li className="active">07</li>
-                                        <li className="active">08</li>
-                                        <li className="active">09</li>
+                                        <li>07</li>
+                                        <li>08</li>
+                                        <li>09</li>
                                     </ul>
 
                                 </div>
