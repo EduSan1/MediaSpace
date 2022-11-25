@@ -40,7 +40,7 @@ const RegisterSpace = () => {
     const [typePassword, setTypePassoword] = useState(false)
 
 
-
+    console.log(user)
 
     const navigate = useNavigate()
 
@@ -191,6 +191,8 @@ const RegisterSpace = () => {
                 phone: onlyNumbers(phone[1])
             },
         }
+
+        console.log(userToSend)
 
 
 

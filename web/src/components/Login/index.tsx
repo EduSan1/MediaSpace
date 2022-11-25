@@ -94,7 +94,7 @@ const LoginSpace = () => {
         navigation('/home');
 
       } else {
-
+        window.alert(res.data.message)
         setHasError(true);
       }
 

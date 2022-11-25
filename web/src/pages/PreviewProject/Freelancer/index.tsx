@@ -84,16 +84,18 @@ const PreviewProjectFreelancer = () => {
       const userId = user.userDetails.id
       console.log(userId)
 
-      const freelancersInterestedToSend = {
-         freelacerId: userId
-      }
+      // const freelancersInterestedToSend = {
+      //    freelacerId: userId
+      // }
 
-      api.post(`/project/registerInterest/${projectId}`, freelancersInterestedToSend).then((res) => {
+      // const freelnacerId = userId
+
+      api.post(`/project/registerInterest/${projectId}`, userId).then((res) => {
          if (res.data.statusCode !== 200) {
             window.alert("Não foi possível registrar interesse")
             console.log(res.data)
          } else {
-            console.log("deu certo")
+           console.log("enviado para api => " + userId)
             window.alert("Interesse registrado com sucesso")
          }
       })
@@ -102,7 +104,6 @@ const PreviewProjectFreelancer = () => {
    useEffect(() => {
       api.get(`/project/${projectId}`).then((res: any) => {
          setProject(res.data.data)
-
       })
    }, [])
 
@@ -137,7 +138,7 @@ const PreviewProjectFreelancer = () => {
                            </div>
                         </div>
                         <div className='container_value'>
-                           <p>Valor estimado: <span>R$ {project.estimated_deadline}</span></p>
+                           <p>Valor estimado: <span>R$ {project.value}</span></p>
                         </div>
                      </div>
 
