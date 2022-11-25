@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Image, KeyboardAvoidingView, Dimensions, Pressable, SafeAreaView, ScrollView } from "react-native";
+import { View, StyleSheet, Text, Image, Dimensions, Pressable, ScrollView, Linking } from "react-native";
 import api from "../../../service";
-import BtnBackPage from "../../components/utils/BtnBackPage";
+import * as FileSystem from 'expo-file-system';
+import * as MediaLibrary from 'expo-media-library';
 import { IProject } from "../Profile/interfaces";
+import { FullMetadata, getMetadata, getStorage, ref } from "firebase/storage";
+import { async } from "@firebase/util";
 
 interface IManagementProject {
     navigation: any,
@@ -152,11 +155,44 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         }
     })
 
+    const getMetadataFromDelivery = async (link: string) => {
+        const storage = getStorage();
+
+        const forestRef = ref(storage, link);
+
+        // Get metadata properties
+        console.log(link)
+        console.log("==================")
+        console.log(getMetadata(forestRef)
+            .then((metadata: FullMetadata) => {
+                console.log(metadata)
+                return (
+                    <Pressable onPress={() => downloadFile(link)} style={styles.deliveryDocumentContainer}>
+                        <Text> {metadata.name}</Text>
+                    </Pressable>
+                )
+            })
+            .catch((error) => {
+                // Uh-oh, an error occurred!
+            })
+        )
+        return <></>
+
+    }
+
+    const downloadFile = async (link: string) => {
+        Linking.openURL(link)
+    }
+
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
         })
+        console.log("a")
+        getMetadataFromDelivery("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/teste%2FMediaSpace%20v.2.1.1%20(1).docx?alt=media&token=e66bd6e2-9049-4dc3-a740-a98e9181bfd9")
     }, [])
+
+
 
     return (
         <ScrollView style={styles.container}>
@@ -219,7 +255,9 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                                         requirement.delivery.map((delivery: any, index: number) => {
 
                                             if (delivery.is_active) {
-                                                if (delivery.is_accepted === true)
+                                                if (delivery.is_accepted === true) {
+
+
                                                     return (
                                                         <View style={styles.deliveryContainer}>
                                                             <View style={styles.deliveryTitleContainer}>
@@ -235,6 +273,8 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                                                         </View>
 
                                                     )
+                                                }
+
 
                                                 else if (delivery.is_accepted === false)
                                                     return (
@@ -263,9 +303,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                                                                     </View>
                                                                     <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
                                                                 </View>
-                                                                <View style={styles.deliveryDocumentContainer}>
-
-                                                                </View>
+                                                                {getMetadataFromDelivery((delivery.files[0].url))}
                                                                 <View style={styles.deliveryButtonContainer}>
                                                                     <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#B275FF" }}><Text style={styles.deliveryButtonText}>Aceitar</Text></Pressable>
                                                                     <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#FF6666" }}><Text style={styles.deliveryButtonText}>Recusar</Text></Pressable>
