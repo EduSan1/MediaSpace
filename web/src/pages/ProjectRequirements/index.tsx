@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import jwt from "jwt-decode"
 import api from "../../service";
 import ProjectsrequirementsFreelancer from "../ProjectRequirementsFreelancer";
 import ProjectRequirementsClient from "../ProjectRequirementsClient";
 
-const ProjectRequiremensts = () =>{
+const ProjectRequiremensts = () => {
     const { projectId } = useParams()
     console.log(projectId)
 
@@ -34,8 +34,10 @@ const ProjectRequiremensts = () =>{
     return (
         <>
             {
-                typePreviewRequirements(createrProject) ? <ProjectsrequirementsFreelancer /> : <ProjectRequirementsClient/>
+                typePreviewRequirements(createrProject) ? <ProjectRequirementsClient /> : <ProjectsrequirementsFreelancer />
             }
         </>
     )
 }
+
+export default ProjectRequiremensts;

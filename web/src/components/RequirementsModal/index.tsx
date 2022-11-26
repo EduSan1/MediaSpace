@@ -12,17 +12,20 @@ interface IModalRequirements {
 
 const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     const { projectId } = useParams()
+
     const [requirements, setRequirements] = useState(
         {
-            id: requirementId,
+            id: "",
             title: "",
             description: "",
-            gain_percentage: 0,
+            gain_percentage: "",
             project: {
                 id: projectId
             }
         }
     )
+
+    console.log(requirements)
 
     const [caracteres, setCaracteres] = React.useState({
         caracteres: 0
@@ -83,8 +86,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
 
     const createEditRequirements = () => {
         if (defineAction() === "Criar") {
-
-            api.post('/requirement/', requirements).then((res) => {
+            api.post('/requirement', requirements).then((res) => {
                 if (res.data.statusCode !== 201) {
                     console.log(res)
                     window.alert("Não foi possível criar o requisito")
@@ -127,23 +129,13 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     useEffect(() => {
         api.get(`/requirement/${requirementId}`).then((res: any) => {
             setRequirements({
-                ...requirements, gain_percentage: res.data.data.gain_percentage,
+                ...requirements,
+                gain_percentage: res.data.data.gain_percentage,
                 description: res.data.data.description,
                 title: res.data.data.title
             })
-
-
         })
     }, [])
-
-    useEffect(() => {
-        api.get(`/requirements/${requirementId}`).then((res: any) => {
-            //console.log(res.data.data.gain_percentage)
-
-        })
-    }, [])
-
-
 
     return (
         <>
@@ -182,7 +174,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                     </div>
 
                     <div className="footer_modal">
-                        <InputBtn typeInput={'submit'} name={'btnCadastrarRequisito'} className={'btn_register_requirements'} valueBtn={defineAction()} onClick={() => { validation() }} />
+                        <InputBtn typeInput={'submit'} name={'btnCadastrarRequisito'} className={'btn_register_requirements'} valueBtn={defineAction()} onClick={() => validation()} />
                     </div>
 
 

@@ -45,6 +45,24 @@
         margin-bottom: 2px;
 
     }
+
+    span {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        button {
+            width: 10%;
+            height: 64%;
+            appearance: none;
+            background-color: transparent;
+            margin-top: 15px;
+            border: solid #D3C5F8;
+            border-radius: 0.625rem;
+            border-bottom-left-radius: 0rem;
+            border-top-left-radius: 0rem;
+        }
+    }
 }
 
 .profile-picture {
@@ -116,8 +134,8 @@
     align-items: flex-end;
     width: 100%;
 
-    .link_to_back_login{
-         font: 1em sans-serif;
+    .link_to_back_login {
+        font: 1em sans-serif;
     }
 
 }

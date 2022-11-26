@@ -415,11 +415,11 @@ export class ProjectService {
 
             project.requirements.map(async (requirement: any) => {
                 if (requirement.is_active === true) {
-                    await this.projectRequirementRepository.delete(requirement)
+                    // await this.projectRequirementRepository.delete(requirement)
 
-                    // requirement.is_accepted = false
-                    // requirement.is_active = false
-                    // await this.projectRequirementRepository.update(requirement)
+                    requirement.is_accepted = false
+                    requirement.is_active = false
+                    await this.projectRequirementRepository.update(requirement)
                 }
             });
 

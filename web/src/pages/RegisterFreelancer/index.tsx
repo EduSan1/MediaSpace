@@ -69,7 +69,7 @@ const RegisterFreelancer = () => {
 
       }
    }
- 
+
    const registerFreelancer = () => {
       api.post("/freelancer", freelancer).then((res: any) => {
          if (res.data.statusCode === 200) {
@@ -104,7 +104,7 @@ const RegisterFreelancer = () => {
                <div className="categories">
                   {
                      categories.map((category: any) => {
-                        return <ButtonCategories category={category.name} name={category} icon="" id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                        return <ButtonCategories category={category.name} name={category} icon={category.icon} id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
 
                      })
                   }
