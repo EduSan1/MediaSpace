@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Image, Dimensions, Pressable, ScrollView, Linking } from "react-native";
+import { View, StyleSheet, Text, Image, Dimensions, Pressable, ScrollView } from "react-native";
 import api from "../../../service";
-import * as FileSystem from 'expo-file-system';
-import * as MediaLibrary from 'expo-media-library';
 import { IProject } from "../Profile/interfaces";
-import { FullMetadata, getMetadata, getStorage, ref } from "firebase/storage";
-import { async } from "@firebase/util";
+import { IRequirement, RequirementCard } from "./RequirementCard";
+import { TimeLine } from "./TimeLine";
 
 interface IManagementProject {
     navigation: any,
@@ -155,41 +153,10 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         }
     })
 
-    const getMetadataFromDelivery = async (link: string) => {
-        const storage = getStorage();
-
-        const forestRef = ref(storage, link);
-
-        // Get metadata properties
-        console.log(link)
-        console.log("==================")
-        console.log(getMetadata(forestRef)
-            .then((metadata: FullMetadata) => {
-                console.log(metadata)
-                return (
-                    <Pressable onPress={() => downloadFile(link)} style={styles.deliveryDocumentContainer}>
-                        <Text> {metadata.name}</Text>
-                    </Pressable>
-                )
-            })
-            .catch((error) => {
-                // Uh-oh, an error occurred!
-            })
-        )
-        return <></>
-
-    }
-
-    const downloadFile = async (link: string) => {
-        Linking.openURL(link)
-    }
-
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
         })
-        console.log("a")
-        getMetadataFromDelivery("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/teste%2FMediaSpace%20v.2.1.1%20(1).docx?alt=media&token=e66bd6e2-9049-4dc3-a740-a98e9181bfd9")
     }, [])
 
 
@@ -216,8 +183,8 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                 <View style={styles.projectDetailsContainer}>
                     <Image style={styles.projectImage} source={{ uri: project.images[0].url }} />
                     <View style={styles.projectDetails}>
-                        <Text style={styles.projectTitle}>{project.name}</Text>
-                        <Text style={styles.ProjectDescription}>{project.description}</Text>
+                        <Text numberOfLines={2} style={styles.projectTitle}>{project.name}</Text>
+                        <Text numberOfLines={4} style={styles.ProjectDescription}>{project.description}</Text>
                     </View>
                 </View>
 
@@ -239,7 +206,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                     </View>
                     <Text style={styles.progressTitle}>Andamento</Text>
                     <ScrollView horizontal={true} style={styles.progressBarContainer}>
-                        <View style={styles.progressBarItem}></View>
+                        <TimeLine requirements={project.requirements} />
                     </ScrollView>
                     <Text style={styles.progressTitle}>Validação</Text>
                     <Text style={styles.requirementsExplanation}>
@@ -247,93 +214,8 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça
                     </Text>
                     <View style={styles.requirementsContainer}>
-                        {project.requirements.map((requirement: any) => {
-                            return (
-                                <View style={styles.requirementContainer}>
-                                    <Text style={styles.requirementTitle}>Requisito - {requirement.title}</Text>
-                                    {
-                                        requirement.delivery.map((delivery: any, index: number) => {
-
-                                            if (delivery.is_active) {
-                                                if (delivery.is_accepted === true) {
-
-
-                                                    return (
-                                                        <View style={styles.deliveryContainer}>
-                                                            <View style={styles.deliveryTitleContainer}>
-                                                                <View style={styles.check}>
-                                                                    <Image style={styles.checkIcon} source={require("../../../assets/icons/check.png")} />
-                                                                </View>
-                                                                <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
-                                                            </View>
-                                                            <View style={styles.deliveryDocumentContainer}>
-
-                                                            </View>
-                                                            <Text style={styles.deliveryAccepted}>Validado ✓</Text>
-                                                        </View>
-
-                                                    )
-                                                }
-
-
-                                                else if (delivery.is_accepted === false)
-                                                    return (
-
-                                                        <View style={styles.deliveryContainer}>
-                                                            <View style={styles.deliveryTitleContainer}>
-                                                                <View style={styles.check}>
-                                                                    <Image style={styles.checkIcon} source={require("../../../assets/icons/check.png")} />
-                                                                </View>
-                                                                <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
-                                                            </View>
-                                                            <View style={styles.deliveryDocumentContainer}>
-
-                                                            </View>
-                                                            <Text style={styles.deliveryNotAccepted}>Recusada ✕</Text>
-                                                        </View>
-                                                    )
-
-                                                else
-                                                    return (
-                                                        <>
-                                                            <View style={styles.deliveryContainer}>
-                                                                <View style={styles.deliveryTitleContainer}>
-                                                                    <View style={styles.check}>
-                                                                        <Image style={styles.checkIcon} source={require("../../../assets/icons/check.png")} />
-                                                                    </View>
-                                                                    <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
-                                                                </View>
-                                                                {getMetadataFromDelivery((delivery.files[0].url))}
-                                                                <View style={styles.deliveryButtonContainer}>
-                                                                    <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#B275FF" }}><Text style={styles.deliveryButtonText}>Aceitar</Text></Pressable>
-                                                                    <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#FF6666" }}><Text style={styles.deliveryButtonText}>Recusar</Text></Pressable>
-                                                                </View>
-                                                            </View>
-
-                                                        </>
-                                                    )
-                                            }
-
-                                        })
-
-                                    }
-                                    {
-                                        requirement.delivery.length === 0 &&
-                                        <Text>Aguardando entrega</Text>
-                                    }
-
-
-                                </View>
-                            )
-                        })
-                        }
+                        {project.requirements.map((requirement: IRequirement) => <RequirementCard numberOfRequirements={project.requirements.length} requirement={requirement} />)}
                     </View>
-
-
-
-
-
-
                 </View>
                 <View style={styles.detailsContainer}>
                     <Text style={styles.title}>Detalhes</Text>
@@ -358,8 +240,6 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         <Text style={styles.detailsItemText}>{project.estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
                     </View>
                 </View>
-
-
             </View>
         </ScrollView>
     )
@@ -560,7 +440,6 @@ const styles = StyleSheet.create({
         maxHeight: Dimensions.get('window').height * 0.1,
         minHeight: Dimensions.get('window').height * 0.1,
         width: "90%",
-        backgroundColor: "#C6f2FF",
     },
     progressBarItem: {
         maxHeight: Dimensions.get('window').height * 0.1,
@@ -575,7 +454,6 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     requirementsContainer: {
-        // minHeight: Dimensions.get('window').height * 0.30,
         height: "auto",
         width: "90%",
     },
@@ -586,83 +464,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         paddingTop: 5,
         borderColor: "#DBDFE8",
-    },
-    deliveryTitleContainer: {
-        width: "100%",
-
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        flexDirection: "row",
-    },
-    requirementTitle: {
-        fontSize: 18,
-        color: "#75A5FF",
-        fontWeight: "400",
-        marginBottom: 4
-    },
-    check: {
-        height: Dimensions.get('window').height * 0.02,
-        width: Dimensions.get('window').height * 0.02,
-        borderRadius: 100,
-        backgroundColor: "#75A5FF",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginRight: 10
-    },
-    checkIcon: {
-        width: "80%",
-        height: "80%",
-    },
-    deliveryTitle: {
-        fontSize: 14,
-        color: "#888",
-        fontWeight: "400"
-    },
-    deliveryContainer: {
-        width: "100%",
-        height: Dimensions.get('window').height * 0.24,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingBottom: 10
-    },
-    deliveryAccepted: {
-        fontSize: 20,
-        color: "#5FAC67",
-        fontWeight: "700"
-    },
-    deliveryNotAccepted: {
-        fontSize: 20,
-        color: "#FF6666",
-        fontWeight: "700"
-    },
-    deliveryButtonContainer: {
-        width: "60%",
-        height: Dimensions.get('window').height * 0.04,
-        display: "flex",
-        justifyContent: "space-between",
-        flexDirection: "row"
-    },
-    deliveryButton: {
-        width: "45%",
-        height: "100%",
-        borderRadius: 10,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    deliveryButtonText: {
-        fontSize: 13,
-        color: "#fff",
-        fontWeight: "700"
-    },
-    deliveryDocumentContainer: {
-        width: "90%",
-        height: "45%",
-        backgroundColor: "#E2E8FF",
-        borderRadius: 15
     },
     detailsContainer: {
         width: Dimensions.get('window').width * 0.98,
