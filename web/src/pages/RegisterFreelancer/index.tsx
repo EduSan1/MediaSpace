@@ -75,10 +75,10 @@ const RegisterFreelancer = () => {
    }
 
    const validation = () => {
-      if (isEmpty(freelancer.sub_categories)) {
-         window.alert("Para continuar selecione uma categoria")
-      } else {
+      if (freelancer.sub_categories.length != 0) {
          registerFreelancer()
+      } else {
+         window.alert("Para continuar selecione uma categoria")
       }
    }
 
