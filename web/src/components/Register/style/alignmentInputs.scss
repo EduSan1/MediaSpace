@@ -52,15 +52,11 @@
         width: 100%;
 
         button {
-            width: 10%;
-            height: 64%;
-            appearance: none;
-            background-color: transparent;
+            position: absolute;
             margin-top: 15px;
-            border: solid #D3C5F8;
-            border-radius: 0.625rem;
-            border-bottom-left-radius: 0rem;
-            border-top-left-radius: 0rem;
+            margin-left: 24%;
+            appearance: none;
+            border: none;
         }
     }
 }

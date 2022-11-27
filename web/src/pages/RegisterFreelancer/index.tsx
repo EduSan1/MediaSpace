@@ -4,6 +4,7 @@ import Checkbox from "../../components/utils/Input/checkbox/InputCheckbox";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import api from "../../service";
 import { useNavigate, useParams } from "react-router-dom";
+import { isEmpty } from "@firebase/util";
 
 
 const RegisterFreelancer = () => {
@@ -55,13 +56,6 @@ const RegisterFreelancer = () => {
 
          const categoryFilter = subcategoriesToRender.filter((category: any) => category.id !== idCategory)
          setSubategoriesToRender(categoryFilter)
-
-
-         // const categoryToRemove = categoryFilter((category: any) => {
-         //    return { id: category.id }
-         // })
-         // removeFromFreelancer(categoryToRemove, "categories")
-
          const categoryToRemove = categoryFilter((category: any) => {
             return { id: category.id }
          })
@@ -78,6 +72,14 @@ const RegisterFreelancer = () => {
             window.alert("Não foi possivel cadastrar o prestador")
          }
       })
+   }
+
+   const validation = () => {
+      if (isEmpty(freelancer.sub_categories)) {
+         window.alert("Para continuar selecione uma categoria")
+      } else {
+         registerFreelancer()
+      }
    }
 
    useEffect(() => {
@@ -129,7 +131,7 @@ const RegisterFreelancer = () => {
          </div>
 
          <div className="container_button_finish">
-            <InputBtn enable={freelancer.categories.length < 1} typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => registerFreelancer()} />
+            <InputBtn enable={freelancer.categories.length < 1} typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => validation()} />
          </div>
 
 

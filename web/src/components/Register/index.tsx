@@ -7,13 +7,11 @@ import { HiOutlineIdentification } from "react-icons/hi";
 import { RiCalendar2Line } from "react-icons/ri";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
-import { FaLock } from "react-icons/fa";
+import { FaLock, FaLockOpen } from "react-icons/fa";
 import InputRadio from "../utils/Input/InputRadio";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { storage } from "../../constants/firebase";
 import { cpfMask, phoneMask, onlyLetters, passwordMask, onlyNumbers } from "../../service/Regex/regex";
-import ButtonIcon from "../utils/Button/ButtonIcon";
-
 import api from "../../service";
 
 const RegisterSpace = () => {
@@ -74,35 +72,24 @@ const RegisterSpace = () => {
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(user.phone.phone.split)
         setUser({
-            // ...user, [event.target.name]: phoneMask(event.target.value)
             ...user, phone: {
                 ddd: "",
                 phone: phoneMask(event.target.value)
-
-
-
             }
-            //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         console.log(onlyLetters.exec(event.target.value))
-        let teste: any
-        if (onlyLetters.exec(event.target.value) != null) {
-            teste = onlyLetters.exec(event.target.value)
-
+        if (onlyLetters.exec(event.target.value)) {
             setUser({
-                ...user, [event.target.name]: teste
+                ...user, [event.target.name]: event.target.value
+            })
+        } else {
+            setUser({
+                ...user, [event.target.name]: ""
             })
         }
-
-
-
-
-
-
-
     }
 
 
@@ -267,7 +254,7 @@ const RegisterSpace = () => {
                             <button className="Passeyes" onClick={() => {
                                 setTypePassoword(!typePassword)
                             }}>
-                                {<FaLock />}
+                                {typePassword ? <FaLockOpen /> : <FaLock />}
                             </button>
                         </span>
 
