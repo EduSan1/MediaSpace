@@ -38,14 +38,10 @@ const RegisterSpace = () => {
     })
 
     const [typePassword, setTypePassoword] = useState(false)
-
-
-    console.log(user)
-
     const navigate = useNavigate()
-
     const [genders, setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
+    const [progressPorcent, setPorgessPorcent] = useState(0);
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,8 +163,8 @@ const RegisterSpace = () => {
         uploadTask.on(
             "state_changed",
             snapshot => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                setPorgessPorcent(progress);
             },
             error => { alert(error) },
             () => {
@@ -236,7 +232,7 @@ const RegisterSpace = () => {
     }, [])
 
 
-
+    console.log(progressPorcent)
 
     return (
         <>
@@ -301,6 +297,8 @@ const RegisterSpace = () => {
 
                                 <div className="alignment_buttons_photo_profile">
 
+
+                                    <p>{progressPorcent}%</p>
                                     <label className="input_btn_upload_photo" htmlFor="image">
                                         upload
                                     </label>

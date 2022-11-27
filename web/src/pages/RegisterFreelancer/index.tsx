@@ -80,6 +80,16 @@ const RegisterFreelancer = () => {
       })
    }
 
+
+   const validation = () => {
+
+      if (freelancer.sub_categories.length != 0) {
+         registerFreelancer()
+      } else {
+         window.alert("Para continuar selecione uma categoria")
+      }
+   }
+
    useEffect(() => {
       api.get("/category").then((res: any) => {
          setCategories(res.data)
@@ -129,7 +139,7 @@ const RegisterFreelancer = () => {
          </div>
 
          <div className="container_button_finish">
-            <InputBtn enable={freelancer.categories.length < 1} typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => registerFreelancer()} />
+            <InputBtn enable={freelancer.categories.length < 1} typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Finalizar'} onClick={() => validation()} />
          </div>
 
 
