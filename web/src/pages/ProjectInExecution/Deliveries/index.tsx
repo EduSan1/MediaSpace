@@ -30,9 +30,9 @@ const Deliveries = ({ requirement }: IRequirement) => {
                         <h2 className="requirement-counter">Entregue - 0</h2>
                         <h2 className="requirement-title"> {requirement[0].title}</h2>
                     </div>
-                    <p>{requirement[0].delivery[0].title}</p>
+                    {/*<p>{requirement[0].delivery[0].title}</p>
                     <p>{requirement[0].delivery[0].description}</p>
-                    <p>{requirement[0].delivery[0].create_at}</p>
+                    <p>{requirement[0].delivery[0].create_at}</p>*/}
                 </div>
             </div>
 
