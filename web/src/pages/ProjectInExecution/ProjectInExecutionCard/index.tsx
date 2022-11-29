@@ -4,12 +4,54 @@ import { useNavigate } from "react-router-dom";
 interface IProject {
     id: string
     name: string,
-    description: string
-    image: [{ "url": string }]
+    description: string,
+    image: [{ "url": string }],
     user: {
         first_name: string
         nickname: string
         profile_picture: string
+    },
+    management: {
+        id: "",
+        payment_confirmed: false,
+        payment_date: "",
+        payment_type: "",
+        create_at: "",
+        update_at: "",
+        team_project_management: [
+            {
+                id: "",
+                is_active: false,
+                team: {
+                    id: "",
+                    name: "",
+                    nickname: "",
+                    description: "",
+                    profile_picture: "",
+                    general_evaluation: 0,
+                    status: false,
+                    is_active: false,
+                    is_freelancer: false,
+                    create_at: "",
+                    update_at: "",
+                    categories: [
+                        {
+                            id: "",
+                            name: "",
+                            icon: "",
+                            is_active: false,
+                        }
+                    ],
+                    sub_categories: [
+                        {
+                            id: "",
+                            name: "",
+                            is_active: false
+                        }
+                    ]
+                }
+            }],
+        members: []
     }
 }
 
