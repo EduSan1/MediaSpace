@@ -13,7 +13,7 @@ const DetailsCard = ({ id, create_at, estimated_deadline }: IDetails) => {
     const navigate = useNavigate()
 
     return (
-        <div onClick={() => navigate(`/projects/${id}`)} className="details-card">
+        <div className="details-card">
 
             <div className="card-details-container">
                 <div className="card-details">

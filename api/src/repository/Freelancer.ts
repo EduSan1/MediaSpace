@@ -72,9 +72,6 @@ export class FreelancerRepository {
         return await this._.findOne({
             where: {
                 id
-            },
-            relations: {
-                project_member: true
             }
         })
     }

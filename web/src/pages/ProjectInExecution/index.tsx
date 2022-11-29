@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SearchBar from "../../components/HeaderPage/Search";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import NavegationBar from "../../components/utils/navegation";
 import api from "../../service";
 import DetailsCard from "./DetailsCard";
 import ProjectInExecutionCard from "./ProjectInExecutionCard";
+import Deliveries from "./Deliveries";
 
 const ProjectInExecution = () => {
 
     const navigate = useNavigate()
-    const [projects, setProjects] = useState([])
+    const { projectId } = useParams()
+    const [project, setProject] = useState([])
 
     useEffect(() => {
 
         api.get("/project").then((res: any) => {
-            setProjects(res.data.data)
+            setProject(res.data.data)
         })
     }, [])
 
@@ -33,27 +35,33 @@ const ProjectInExecution = () => {
                             <h2>Projeto em execução</h2> 
 
                             <div className="project-page-projects-card-container">
+
                                 {
-                                    projects.map((project: any) => {
+                                    project.map((project: any) => {
                                         if (project.is_active === true){
-                                            return <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />  
+                                            return <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} management={project.management}/>  
                                         }
                                         
                                     })
                                 }
                                 
-                                {/* {
-                                    projects.map((project: any) => {
+                                <div className="project-details-cards">
+
+                                {
+                                    project.map((project: any) => {
                                         if (project.is_active === true){
                                             return <DetailsCard id={project.id} create_at={project.create_at} estimated_deadline={project.estimated_deadline}/>  
                                         }
-                                        
+                                            
                                     })
-                                } */}
+                                
+                                }
 
                                 <div className="view-requirements">
                                     <img src="" alt="" />
                                     <p>Visualizar os requisitos técnicos do projeto</p>
+                                </div>
+
                                 </div>
 
                                 <div className="timeline-container">
@@ -64,20 +72,28 @@ const ProjectInExecution = () => {
                                         <li className="active">01</li>
                                         <li className="active">02</li>
                                         <li className="active">03</li>
-                                        <li className="active">04</li>
-                                        <li className="active">05</li>
-                                        <li className="active">06</li>
-                                        <li className="active">07</li>
-                                        <li className="active">08</li>
-                                        <li className="active">09</li>
+                                        <li>04</li>
+                                        <li>05</li>
+                                        <li>06</li>
+                                        <li>07</li>
+                                        <li>08</li>
+                                        <li>09</li>
                                     </ul>
 
                                 </div>
 
                                 <div className="validation-container">
-                                        <h3>Validação</h3>
-                                        <p>Valide as entregas feitas pelo(s) prestador(es).</p>
-                                        <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    <h3>Validação</h3>
+                                    <p>Valide as entregas feitas pelo(s) prestador(es).</p>
+                                    <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    {
+                                        project.map((project: any) => {
+                                            if (project.is_active === true){
+                                                return <Deliveries requirement={project.requirements}/>  
+                                            }
+                                                
+                                        })
+                                    }
                                 </div>
 
                             </div>
