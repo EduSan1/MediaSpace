@@ -175,10 +175,6 @@ const RegisterSpace = () => {
             },
         }
 
-        console.log(userToSend)
-
-
-
         api.post("/user", userToSend).then((res) => {
 
             if (res.data.statusCode !== 201) {

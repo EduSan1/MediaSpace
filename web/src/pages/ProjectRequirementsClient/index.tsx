@@ -96,7 +96,7 @@ const ProjectRequirementsClient = () => {
                                     requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
                                         if (requirement.is_active !== false) {
                                             numberissue++;
-                                            return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={""} useEffect={""} />
+                                            return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={""} getRequirements={""} />
                                         }
 
                                     })

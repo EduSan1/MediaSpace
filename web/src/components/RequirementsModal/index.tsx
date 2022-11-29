@@ -10,28 +10,30 @@ interface IModalRequirements {
     requirementId?: string
 }
 
-const ModalRequirements = ({ onClose, requirementId}: IModalRequirements) => {
+const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     const { projectId } = useParams()
 
     const [requirements, setRequirements] = useState(
         {
             title: "",
             description: "",
-            gain_percentage: "",
+            gain_percentage: 0,
             project: {
                 id: projectId
             }
         }
     )
 
-const [limitGainPercentage, setLimitGainPercentage] = useState({
-    gainPercentage: [
-        {gain_percentage: 0,
-        is_active: true}
-    ]
-})
+    const [limitGainPercentage, setLimitGainPercentage] = useState({
+        gainPercentage: [
+            {
+                gain_percentage: 0,
+                is_active: true
+            }
+        ]
+    })
 
-console.log(limitGainPercentage)
+    console.log(limitGainPercentage)
 
     const [caracteres, setCaracteres] = React.useState({
         caracteres: 0
@@ -54,17 +56,16 @@ console.log(limitGainPercentage)
     }
 
     const gainPorcentageLimit = () => {
-        
-        let currentPercentage= 0
 
-        for(let i= 0; limitGainPercentage.gainPercentage.length > i; i++)
-        {
-            if(limitGainPercentage.gainPercentage[i].is_active){
+        let currentPercentage = 0
+
+        for (let i = 0; limitGainPercentage.gainPercentage.length > i; i++) {
+            if (limitGainPercentage.gainPercentage[i].is_active) {
                 currentPercentage = limitGainPercentage.gainPercentage[i].gain_percentage + currentPercentage
             }
         }
 
-        let valueRestantPercentage = 100 - currentPercentage 
+        let valueRestantPercentage = 100 - currentPercentage
         return valueRestantPercentage
 
     }
@@ -87,6 +88,10 @@ console.log(limitGainPercentage)
             handleErrors("Por favor preencha o campo obrigatório", "gain_percentage")
             validate = false
         }
+        // if (requirements.gain_percentage > gainPorcentageLimit()) {
+        //     handleErrors("O valor ultrapassa de 100%", "gain_percentage")
+        //     validate = false
+        // }
         if (validate) {
             createEditRequirements();
         }
@@ -110,6 +115,7 @@ console.log(limitGainPercentage)
                 } else {
                     window.alert(res.data.message)
                     onClose()
+
 
                 }
             })
@@ -155,12 +161,12 @@ console.log(limitGainPercentage)
         })
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any) => {
-           setLimitGainPercentage({gainPercentage:res.data.data.requirements})
+            setLimitGainPercentage({ gainPercentage: res.data.data.requirements })
         })
 
-    },[])
+    }, [])
 
     return (
         <>
@@ -178,7 +184,7 @@ console.log(limitGainPercentage)
                             <div className="container_input_project">
                                 <label className="subtitulo_projects">Percentual de ganho<span> * </span></label>
                                 <div className="conatainer_input_message_error">
-                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0}  max={gainPorcentageLimit()} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
+                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} max={gainPorcentageLimit()} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
 
                                     <p>{error.gain_percentage}</p>
                                 </div>

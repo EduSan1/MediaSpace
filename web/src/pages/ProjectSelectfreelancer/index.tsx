@@ -4,6 +4,7 @@ import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
 import api from "../../service";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import { useParams } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ const ProjectsSelecetFreelancer = () => {
     const user = localStorage.getItem('userDetailes');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
     const { projectId } = useParams()
+    const navigate = useNavigate()
 
 
     const [selecetFreelancerView, setSelectFreelancerView] = useState({
@@ -47,6 +49,7 @@ const ProjectsSelecetFreelancer = () => {
                     console.log(res.data)
                 } else {
                     window.alert(res.data.message)
+                    navigate(-1)
                 }
             })
     }

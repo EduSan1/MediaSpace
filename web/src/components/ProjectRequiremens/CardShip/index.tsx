@@ -16,7 +16,7 @@ interface IIcard {
     value: number,
     idUserCreater: boolean,
     requirementId: string
-    useEffect: any
+    getRequirements: any
 }
 
 export const CardShip = ({ CardClasse, percentage, desciption, layout, issue, numberissue, value }: IIcard) => {
@@ -45,7 +45,7 @@ export const CardShip = ({ CardClasse, percentage, desciption, layout, issue, nu
     );
 
 }
-export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, numberissue, value, idUserCreater, requirementId, useEffect }: IIcard) => {
+export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, numberissue, value, idUserCreater, requirementId, getRequirements }: IIcard) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const deleteRequirement = () => {
         const confirm = window.confirm("Deseja realmente excluir este requisito?")
@@ -57,6 +57,12 @@ export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, n
         }
 
     }
+
+    useEffect
+        (() => {
+            getRequirements()
+        }, [])
+
 
     return (
         <>
