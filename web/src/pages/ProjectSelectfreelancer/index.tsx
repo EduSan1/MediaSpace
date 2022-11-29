@@ -22,11 +22,11 @@ const ProjectsSelecetFreelancer = () => {
 
     });
 
-
-
     const [selecetFreelancer, setSelectFreelancer] = useState({
         freelancerId: ""
     });
+
+    console.log(selecetFreelancer)
 
 
     useEffect(() => {
@@ -36,7 +36,6 @@ const ProjectsSelecetFreelancer = () => {
             })
             .catch()
     }, [])
-
 
 
     const selectidFreelancer = () => {
@@ -76,14 +75,12 @@ const ProjectsSelecetFreelancer = () => {
                         {
                             selecetFreelancerView.interest.map((intereest: any) => {
                                 return <Interestedserver action={() => {
-                                    setSelectFreelancer({ ...selecetFreelancer, freelancerId: intereest.id });
+                                    setSelectFreelancer({ ...selecetFreelancer, freelancerId: intereest.team.id });
                                 }} type={"radio"} name={intereest.team.name} nickname={intereest.team.nickname} photo={intereest.team.profile_picture} />
 
                             })
 
                         }
-
-
 
                     </div>
 

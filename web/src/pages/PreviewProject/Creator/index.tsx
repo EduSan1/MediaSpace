@@ -205,7 +205,8 @@ const PreviewProjectCreator = () => {
 
                               project.interest.map((interest: any) => {
                                  console.log(interest)
-                                 return <FreelancerInterest image_profile={interest.team.picture_profile} name={interest.team.name} nickname={interest.team.nickname} />
+                                 return <FreelancerInterest image_profile={interest.team.profile_picture
+                                 } name={interest.team.name} nickname={interest.team.nickname} />
                               })
 
                            }

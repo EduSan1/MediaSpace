@@ -23,6 +23,8 @@ const ProjectsrequirementsFreelancer = () => {
     });
 
 
+
+    console.log(requerimenteproject)
     const converteValue = (valueProject: string, porcenteRequirement: string) => {
         const value = parseFloat(valueProject)
         const porcente = parseFloat(porcenteRequirement)
@@ -71,7 +73,7 @@ const ProjectsrequirementsFreelancer = () => {
                             <div>
 
                                 {
-                                    requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
+                                    requerimenteproject.requirement.map((requirement: any, numberissue = 0) => {
                                         if (requirement.is_active !== false) {
                                             numberissue++;
                                             return <CardShipRegister idUserCreater={false} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={requirement.id} useEffect={""} />

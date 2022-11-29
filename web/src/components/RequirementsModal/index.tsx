@@ -10,12 +10,11 @@ interface IModalRequirements {
     requirementId?: string
 }
 
-const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
+const ModalRequirements = ({ onClose, requirementId}: IModalRequirements) => {
     const { projectId } = useParams()
 
     const [requirements, setRequirements] = useState(
         {
-            id: "",
             title: "",
             description: "",
             gain_percentage: "",
@@ -25,7 +24,14 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         }
     )
 
-    console.log(requirements)
+const [limitGainPercentage, setLimitGainPercentage] = useState({
+    gainPercentage: [
+        {gain_percentage: 0,
+        is_active: true}
+    ]
+})
+
+console.log(limitGainPercentage)
 
     const [caracteres, setCaracteres] = React.useState({
         caracteres: 0
@@ -47,12 +53,23 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         setError({ ...error, [nameInput]: errorMensage })
     }
 
-    const gainPorcentageLimit = (valueCurrent: string) => {
+    const gainPorcentageLimit = () => {
+        
+        let currentPercentage= 0
 
+        for(let i= 0; limitGainPercentage.gainPercentage.length > i; i++)
+        {
+            if(limitGainPercentage.gainPercentage[i].is_active){
+                currentPercentage = limitGainPercentage.gainPercentage[i].gain_percentage + currentPercentage
+            }
+        }
+
+        let valueRestantPercentage = 100 - currentPercentage 
+        return valueRestantPercentage
 
     }
 
-
+    gainPorcentageLimit()
 
     const validation = () => {
         let validate = true;
@@ -74,7 +91,6 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             createEditRequirements();
         }
     }
-    // console.log(error)
 
     const defineAction = () => {
         let action = "Criar"
@@ -86,6 +102,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
 
     const createEditRequirements = () => {
         if (defineAction() === "Criar") {
+            console.log("LimitGainPercentage")
             api.post('/requirement', requirements).then((res) => {
                 if (res.data.statusCode !== 201) {
                     console.log(res)
@@ -98,6 +115,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             })
         }
         else if (defineAction() === "Editar") {
+            console.log("editar")
             const requirementToSend = {
                 title: requirements.title,
                 description: requirements.description,
@@ -137,6 +155,13 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         })
     }, [])
 
+    useEffect(()=>{
+        api.get(`/project/${projectId}`).then((res: any) => {
+           setLimitGainPercentage({gainPercentage:res.data.data.requirements})
+        })
+
+    },[])
+
     return (
         <>
             <div id="container_modal" className="container_modal_requirements" onClick={(event) => { handleOutsideClick(event) }}>
@@ -153,7 +178,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                             <div className="container_input_project">
                                 <label className="subtitulo_projects">Percentual de ganho<span> * </span></label>
                                 <div className="conatainer_input_message_error">
-                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
+                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0}  max={gainPorcentageLimit()} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
 
                                     <p>{error.gain_percentage}</p>
                                 </div>

@@ -84,19 +84,19 @@ const PreviewProjectFreelancer = () => {
       const userId = user.userDetails.id
       console.log(userId)
 
-      // const freelancersInterestedToSend = {
-      //    freelacerId: userId
-      // }
+      const freelancersInterestedToSend = {
+         freelancerId: userId
+      }
 
-      // const freelnacerId = userId
+      console.log(freelancersInterestedToSend)
 
-      api.post(`/project/registerInterest/${projectId}`, userId).then((res) => {
+      api.post(`/project/registerInterest/${projectId}`, freelancersInterestedToSend).then((res) => {
          if (res.data.statusCode !== 200) {
             window.alert("Não foi possível registrar interesse")
             console.log(res.data)
          } else {
            console.log("enviado para api => " + userId)
-            window.alert("Interesse registrado com sucesso")
+            window.alert(res.data.message)
          }
       })
    }
