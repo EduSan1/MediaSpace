@@ -35,6 +35,12 @@ export const ProfileCardProject = ({ id, name, status, description, value, image
                 navigation.navigate("ManagementProject", {
                     projectId: res.data.data.id
                 })
+            } else if (status === "VALIDATING_REQUIREMENTS") {
+                navigation.navigate("TechnicalRequirementsFrelancer", {
+                    projectId: res.data.data.id,
+                    isOwner: user.id === userId
+                })
+
             } else {
                 if (user.id === userId) {
                     navigation.navigate("ProjectOwner", {

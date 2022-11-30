@@ -41,9 +41,8 @@ export const ProjectsToWorkPage = ({ navigation, user }: IProjectsToWork) => {
             <View style={styles.projectContainer}>
                 {
                     selectedProjects.map((project: IProject) => {
-                        console.log(selectedProjects)
                         return (
-                            <ProfileCardProject name={project.name} navigation={navigation} user={project.user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} />
+                            <ProfileCardProject name={project.name} navigation={navigation} user={project.user} value={project.value} key={project.id} categories={project.categories} description={project.description} id={project.id} image={project.images[0].url} status={project.status} />
                         )
                     })
                 }
