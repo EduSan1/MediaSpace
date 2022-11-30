@@ -88,10 +88,11 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             handleErrors("Por favor preencha o campo obrigatório", "gain_percentage")
             validate = false
         }
-        // if (requirements.gain_percentage > gainPorcentageLimit()) {
-        //     handleErrors("O valor ultrapassa de 100%", "gain_percentage")
-        //     validate = false
-        // }
+
+        if (requirements.gain_percentage > gainPorcentageLimit()) {
+            handleErrors("O valor ultrapassa de 100%", "gain_percentage")
+            validate = false
+        }
         if (validate) {
             createEditRequirements();
         }
