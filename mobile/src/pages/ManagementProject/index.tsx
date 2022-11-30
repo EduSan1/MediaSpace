@@ -163,19 +163,18 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         // Get metadata properties
         console.log(link)
         console.log("==================")
-        console.log(getMetadata(forestRef)
-            .then((metadata: FullMetadata) => {
-                console.log(metadata)
-                return (
-                    <Pressable onPress={() => downloadFile(link)} style={styles.deliveryDocumentContainer}>
-                        <Text> {metadata.name}</Text>
-                    </Pressable>
-                )
-            })
-            .catch((error) => {
-                // Uh-oh, an error occurred!
-            })
-        )
+        // console.log(getMetadata(forestRef)
+        //     .then((metadata: FullMetadata) => {
+        //         return (
+        //             <Pressable onPress={() => downloadFile(link)} style={styles.deliveryDocumentContainer}>
+        //                 <Text> {metadata.name}</Text>
+        //             </Pressable>
+        //         )
+        //     })
+        //     .catch((error) => {
+        //         // Uh-oh, an error occurred!
+        //     })
+        // )
         return <></>
 
     }
@@ -188,8 +187,6 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
         })
-        console.log("a")
-        getMetadataFromDelivery("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/teste%2FMediaSpace%20v.2.1.1%20(1).docx?alt=media&token=e66bd6e2-9049-4dc3-a740-a98e9181bfd9")
     }, [])
 
 
@@ -303,7 +300,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                                                                     </View>
                                                                     <Text style={styles.deliveryTitle}>{`${index + 1}/${project.requirements.length} - ${delivery.title}`}</Text>
                                                                 </View>
-                                                                {getMetadataFromDelivery((delivery.files[0].url))}
+                                                                {/* {getMetadataFromDelivery((delivery.files[0].url))} */}
                                                                 <View style={styles.deliveryButtonContainer}>
                                                                     <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#B275FF" }}><Text style={styles.deliveryButtonText}>Aceitar</Text></Pressable>
                                                                     <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#FF6666" }}><Text style={styles.deliveryButtonText}>Recusar</Text></Pressable>
