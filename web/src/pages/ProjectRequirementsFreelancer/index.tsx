@@ -63,7 +63,7 @@ const ProjectsrequirementsFreelancer = () => {
 
 
 
-                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {requerimenteproject.name} </h1></span>
+                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {} </h1></span>
 
 
                         </div>

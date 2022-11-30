@@ -302,7 +302,7 @@ const RegisterSpace = () => {
                                 <label>Sobre</label>
                             </div>
                             <div>
-                                <textarea name="biography" className="biography" />
+                                <textarea name="biography" className="biography"  onChange={({target}) => {user.biography = target.value}}/>
                             </div>
 
                         </div>

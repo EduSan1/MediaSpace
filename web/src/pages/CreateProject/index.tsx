@@ -80,8 +80,6 @@ const CreateProject = () => {
 
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(event.target.name)
-      console.log(project.user.id)
       setProject({
          ...project, [event.target.name]: event.target.value
       })

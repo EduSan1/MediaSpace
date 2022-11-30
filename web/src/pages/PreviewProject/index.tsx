@@ -18,8 +18,6 @@ const PreviewProject = () => {
         const userId = user.userDetails.id
         let isCreater = false
         
-        console.log("criador =>" + createrProject)
-        console.log("usuário =>" + userId)
         if (createrProject === userId) {
             isCreater = true
         }
