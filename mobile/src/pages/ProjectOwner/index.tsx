@@ -151,10 +151,6 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
 
                             <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                         </View>
-
-
-
-
                     </View>
 
                     <View style={styles.button}>
@@ -193,7 +189,7 @@ const styles = StyleSheet.create({
     },
     containerTitle: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: "auto",
         display: 'flex',
         padding: 20,
     },
