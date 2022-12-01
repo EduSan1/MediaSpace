@@ -6,6 +6,7 @@ import * as SecureStore from 'expo-secure-store';
 import TabBar from "../../../components/utils/TabBar";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { BtnEditProfile } from "../../../components/utils/BtnEditProfile";
+import { InputEditProfile } from "../../../components/utils/inputEditProfile";
 
 
 interface IEditUser {
@@ -127,7 +128,7 @@ const EditUser = ({ navigation }: IEditUser) => {
                             {/* last Name */}
                             <View style={styles.textBoxContainer}>
                                 <Text style={styles.textTitleInfo}>Sobrenome</Text>
-                                <TextInput style={styles.textInfo}>Carlos</TextInput>
+                                <TextInput style={styles.textInfo}>{user.last_name}</TextInput>
                             </View>
                         </View>
 
@@ -185,15 +186,14 @@ const EditUser = ({ navigation }: IEditUser) => {
                         {/* Biography */}
                             <View style={styles.biographyBox}>
                                 <View style={styles.textAlign}>
-                                    <Text style={styles.textTitleInfo}>Biografria</Text>
+                                    <Text style={styles.textTitleInfo} >Biografria</Text>
                                 </View>
-                                <View style={styles.textAlign}>
-                                <TextInput style={styles.textInfo}>{user.biography}</TextInput>
-                                </View>
+                                
+                                <InputEditProfile name="biography" value={user.biography}   maxLength={800} />
                             </View>
 
                         </View>
-
+                        <Image source={require("../../../../assets/img/upgradeCard.png")} style={styles.ImgUpgrade}/>
                     </View>
                     
 
@@ -207,11 +207,11 @@ const EditUser = ({ navigation }: IEditUser) => {
 const styles = StyleSheet.create({
     main: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.9
+        height: Dimensions.get('window').height
     },
     scroll: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.9,
+        height: Dimensions.get('window').height,
         // position: "relative"
 
     },
@@ -226,8 +226,7 @@ const styles = StyleSheet.create({
     },
     editContainer: {
         width: "100%",
-        minHeight: Dimensions.get('window').height * 0.75,
-        height: "auto", 
+        height:Dimensions.get('window').height * 2,
         backgroundColor: "#FFF",
         borderTopStartRadius:40,
         borderTopEndRadius:40,
@@ -275,6 +274,7 @@ const styles = StyleSheet.create({
     textAlign:{
         flexDirection:"row",
         alignItems:"center"
+
     },
     name: {
         fontWeight: "300",
@@ -321,7 +321,6 @@ const styles = StyleSheet.create({
         marginStart:2
     },
     textInfo:{
-        // backgroundColor:"blue",
         fontSize:16,
         fontWeight:"400",
         color:"#808080",
@@ -331,17 +330,22 @@ const styles = StyleSheet.create({
         // backgroundColor:"black"
     },
     biographyBox:{
-        width:Dimensions.get('window').width * 0.8,
-        height:Dimensions.get('window').height * 0.3,
         marginStart:Dimensions.get('window').width * 0.1,
-        // backgroundColor:"black"
+        // borderWidth:2,
+        
     },
     Icon:{
         width:Dimensions.get('window').width * 0.04,
         height:Dimensions.get('window').width * 0.04,
         marginStart:Dimensions.get('window').width * 0.01,
         // backgroundColor:"gray"
-    }
+    },
+    ImgUpgrade:{
+        width:Dimensions.get('window').width,
+        height:Dimensions.get('window').height * 1.2,
+        marginTop:Dimensions.get('window').width * 0.55,
+        // backgroundColor:"gray"
+    },
     
 })
 
