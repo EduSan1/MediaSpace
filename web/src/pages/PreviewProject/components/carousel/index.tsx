@@ -25,7 +25,6 @@ export const CarouselImages = ({ images }: ICarouselImage) => {
                         <>
                            <div className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
                               <img src={image.url} />
-                              <p>{index}</p>
                            </div>
                         </>)
                   })

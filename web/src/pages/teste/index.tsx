@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import ModalPassword from "../../components/perfil/ModalPassword";
-import PerfilCard from "../../components/perfil/PerfilCard/Client";
-import SideNav from "../../components/perfil/SideNav";
 import Interestedserver from "../../components/project";
 import ModalRequirements from "../../components/RequirementsModal";
 import HistoryTrack from "../../components/utils/HistoryTrack";
@@ -11,6 +8,7 @@ import InputSelect from "../../components/perfil/InputSelect";
 import PortifolioCard from "../../components/perfil/Card/portifolio";
 import ProjectCard from "../Projects/ProjectCard";
 import ProjectCardPerfil from "../../components/perfil/Card/project";
+import ModalPassword from "../../components/perfil/ModalPassword";
 
 
 const Teste = () => {
@@ -23,7 +21,7 @@ const Teste = () => {
 
         <main className="Divetste">
 
-            {/* <ModalPassword/> */}
+            <ModalPassword/>
             {/* <PerfilCard/> */}
             {/* <SideNav  className="Nav_bar_Client" icon={<ImStatsDots onClick={() =>{console.log("Ptojecto")}}/>} icon2={<HiOutlineClipboardDocumentList/>} icon3 icon4 icon5/>
            <SideNav  className="" icon={<ImStatsDots onClick={() =>{console.log("Ptojecto")}}/>} icon2={<HiOutlineClipboardDocumentList/>} icon3={<HiOutlineClipboardDocumentList/>} icon4={<HiOutlineClipboardDocumentList/>} icon5={<HiOutlineClipboardDocumentList/>}/> */
@@ -33,8 +31,18 @@ const Teste = () => {
 
             {/* <PortifolioCard/> */}
             {/* <ProjectCardPerfil/> */}
-
+             
         </main>
+
+
+
+
+
+
+
+
+
+          
 
 
 

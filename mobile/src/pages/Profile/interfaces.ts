@@ -1,3 +1,5 @@
+import { IRequirement } from "../ManagementProject/RequirementCard"
+
 export interface IProject {
     id: string
     name: string,
@@ -50,20 +52,7 @@ export interface IProject {
             update_at: string
         }
     ],
-    requirements: [
-        {
-            id: string,
-            title: string,
-            description: string,
-            gain_percentage: number,
-            is_accepted: boolean,
-            is_delivered: boolean,
-            is_active: boolean,
-            create_at: string,
-            update_at: string,
-            delivery: []
-        }
-    ],
+    requirements: Array<IRequirement>,
     management: {
         id: string,
         payment_confirmed: boolean,

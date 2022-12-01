@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/HeaderPage/Search";
-import CardShip from "../../components/ProjectRequiremens/CardShip";
+import { CardShip, CardShipRegister } from "../../components/ProjectRequiremens/CardShip";
 import HistoryTrack from "../../components/utils/HistoryTrack";
 import NavegationBar from "../../components/utils/navegation";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import api from "../../service";
-import { stringify } from "querystring";
 import { useParams } from "react-router-dom";
 import ModalRequirements from "../../components/RequirementsModal";
 
+
+
 const ProjectsrequirementsFreelancer = () => {
-
-
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [valuePorcent, setvalue] = useState();
 
@@ -19,51 +18,36 @@ const ProjectsrequirementsFreelancer = () => {
 
     const [requerimenteproject, setRequerimenteproject] = useState({
         name: "",
-        id: "",
-        estimated_value: "",
-        description: ""
+        requirement: [],
+        value: "",
     });
 
-    const converteValue = () => {
-        const value = parseFloat(requerimenteproject.estimated_value)
-        const porcente = parseFloat(requerimente.gain_percentage)
+
+
+    console.log(requerimenteproject)
+    const converteValue = (valueProject: string, porcenteRequirement: string) => {
+        const value = parseFloat(valueProject)
+        const porcente = parseFloat(porcenteRequirement)
 
         const valueAll = (porcente / 100) * value;
 
-        //  setvalue(valueAll);
-
+        return valueAll;
     }
 
-    const [requerimente, setRequerimente] = useState({
-        id: "",
-        description: "",
-        gain_percentage: "",
-        title: "",
-        valueAll: 20
+    const getRequirements = () => {
+        api.get(`/project/${projectId}`)
+            .then((res) => {
+                setRequerimenteproject({
+                    ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value: res.data.data.value
+                })
 
-
-
-
+            })
     }
-
-    );
-
 
     useEffect(() => {
-        api.get(`/requirement/${projectId}`)
-            .then((res) => {
-                setRequerimenteproject(res.data.data.project);
-                setRequerimente(res.data.data);
-            })
-
+        getRequirements()
     }, [])
 
-
-    useEffect(() => {
-
-        console.log(requerimente)
-
-    }, [requerimente])
 
     return (
         <main id="ContentPage">
@@ -79,7 +63,7 @@ const ProjectsrequirementsFreelancer = () => {
 
 
 
-                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {requerimenteproject.name} </h1></span>
+                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {} </h1></span>
 
 
                         </div>
@@ -88,21 +72,20 @@ const ProjectsrequirementsFreelancer = () => {
                         <div className="ContainerTecnicos">
                             <div>
 
-
-
-                                <CardShip CardClasse="" desciption={requerimente.description} issue="" layout={requerimente.title} numberissue={1} percentage={requerimente.gain_percentage} value={20} />
-
-
-
-
-
-
+                                {
+                                    requerimenteproject.requirement.map((requirement: any, numberissue = 0) => {
+                                        if (requirement.is_active !== false) {
+                                            numberissue++;
+                                            return <CardShipRegister idUserCreater={false} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={requirement.id} getRequirements={getRequirements} />
+                                        }
+                                    })
+                                }
 
                             </div>
                         </div>
 
                         <div className="footer">
-                            <span className="tittle_Value_text"><h1>Valor total do projeto: {requerimenteproject.estimated_value} </h1></span>
+                            <span className="tittle_Value_text"><h1>Valor total do projeto: {requerimenteproject.value} </h1></span>
                             <div className="revision_requisition">
                                 <h1>Revisão de requisitos</h1>
                                 <p> Caso esteja interessado em fazer mudanças ou adaptações nos requisitos, solicite uma revisão, só é permitido a edição assim que o cliente e o(s) prestador(es) aceitarem a solicitação.</p>
@@ -114,13 +97,10 @@ const ProjectsrequirementsFreelancer = () => {
                             <span className="Btn_send">
                                 <button className="submit_add" onClick={() => { setIsModalVisible(true) }}>Adicionar</button>
                             </span>
-
-
-
-                            {isModalVisible ? <ModalRequirements onClose={() => setIsModalVisible(false)} /> : null}
-                            <span className="Btn_Add">
+                            {isModalVisible ? <ModalRequirements onClose={() => { getRequirements(); setIsModalVisible(false) }} /> : null}
+                            {/* <span className="Btn_Add">
                                 <InputBtn className="submit_send" name="" onClick={() => { }} typeInput={"Submit"} valueBtn={'Enviar'} enable />
-                            </span>
+                            </span> */}
 
                         </div>
                     </div>
