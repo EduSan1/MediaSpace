@@ -22,6 +22,6 @@ export class ProjectMemberORM {
 
     @ManyToMany(() => DeliveryORM)
     @JoinTable()
-    delivery: DeliveryORM[] 
+    delivery: DeliveryORM[]
 
 }

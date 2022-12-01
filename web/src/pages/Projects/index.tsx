@@ -73,6 +73,7 @@ const ProjectsrequirementsFreelancer = () => {
 
                             </div>
 
+
                         </div>
                     </div>
 

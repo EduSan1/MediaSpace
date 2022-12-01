@@ -1,25 +1,31 @@
-import React from "react";
-import { useJwt } from "react-jwt";
-import SearchBar from "../../components/HeaderPage/Search";
-import NavegationBar from "../../components/utils/navegation";
+import React, {useState, useEffect} from 'react';
+import jwt from "jwt-decode"
+import api from "../../service";
+import ProfileClient from  "./Cliente"
+import ProfileFreelancer from "./Freelancer";
 
-const Perfil = () => {
+const Profile = ()=> {
 
-    return (
+    const typeProfile = () => {
+        const userJwt = localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "")
+        const userId = user.userDetails.id
+        
+        let isClient = false
+    
+        if (user.userDetails.teams.length === 0) {
+            isClient = true
+        }
+        return isClient
+    }
 
+    return(
+        <>
+            {typeProfile()? <ProfileClient/> : <ProfileFreelancer/>}
+        </>
+    )
 
-        <main id="ContentPage">
-
-            <NavegationBar />
-            <div className="Container">
-                <SearchBar />
-                <section className="section_main"> Perfil</section>
-            </div>
-        </main>
-
-
-
-    );
 }
 
-export default Perfil;
+export default Profile;
+

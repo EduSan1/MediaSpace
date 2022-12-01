@@ -8,17 +8,16 @@ import PreviewProjectFreelancer from "./Freelancer";
 
 const PreviewProject = () => {
     const { projectId } = useParams()
-    console.log(projectId)
 
     const [createrProject, setCreaterProject] = useState("")
- 
+
     const typeProjectPreview = (createrProject: string) => {
 
         const userJwt = localStorage.getItem('userDetails');
         const user: any = jwt(userJwt ? userJwt : "")
         const userId = user.userDetails.id
         let isCreater = false
-
+        
         if (createrProject === userId) {
             isCreater = true
         }
@@ -35,7 +34,7 @@ const PreviewProject = () => {
     return (
         <>
             {
-                typeProjectPreview(createrProject) ? <PreviewProjectCreator/> : <PreviewProjectFreelancer />
+                typeProjectPreview(createrProject) ? <PreviewProjectCreator /> : <PreviewProjectFreelancer />
             }
         </>
     )

@@ -17,17 +17,22 @@ import CreateProject from './pages/CreateProject';
 import Projects from './pages/Projects';
 import Eventes from './pages/Eventes';
 import Menssagens from './pages/Menssage';
-import Perfil from './pages/Perfil';
+import PerfilFreelancer from './pages/Perfil/Freelancer';
+import PerfilCliente from './pages/Perfil/Cliente';
+import UpdateEdit from './pages/Perfil/UpdateEdit';
 import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelancer';
 import AllFreelancerView from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
 import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
+import ProjectRequirements from './pages/ProjectRequirements';
+import ProjectInExecution from './pages/ProjectInExecution';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
 import PreviewProject from './pages/PreviewProject';
+import PreviewProjectCreator from './pages/PreviewProject/Creator';
+import Profile from './pages/Perfil';
 
-import ModalRequirements from './components/RequirementsModal';
 
 function App() {
 
@@ -45,6 +50,7 @@ function App() {
         <Route path='/recoverpassword' element={<RecoveryPasswordPage />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/projects' element={<Projects />} />
+        <Route path='/projectInExecution/:projectId' element={<ProjectInExecution />} />
         <Route path='/changePassword' element={<SpaceBackground component={<RecoveringPasswordPage />} />} />
         <Route path='/changePassword/sucess' element={<SpaceBackground component={<PasswordWarningPage />} />} />
         <Route path='recoverpassword/recoveryemailsent' element={<SendingEmailRecoveryPage />} />
@@ -52,24 +58,23 @@ function App() {
         <Route path='/projects/:projectId' element={<PreviewProject />} />
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
-        <Route path='/Perfil' element={<Perfil />} />
-        <Route path='/projects/requirementsFreelancer' element={<ProjectsrequirementsFreelancer />} />
-        {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll  />} /> */}
+        <Route path='/Perfil' element={<PerfilCliente />} />
+        <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
+        <Route path='/Perfil/Edit' element={<UpdateEdit />} />
+        {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} /> */}
+        <Route path='/projects/requirements/:projectId' element={<ProjectRequirements />} />
+        <Route path='/projects/allfreelancerview' element={<AllFreelancerView />} />
+        <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer />} />
 
         <Route path='/projects/allfreelancerview/:projectId' element={<AllFreelancerView />} />
         <Route path='/projects/selectFreelancer/:projectId' element={<ProjectsSelecetFreelancer />} />
 
 
-
-
-
-
-
         {/* */}
-        <Route path='/teste' element={<Teste />} />
+        <Route path='/teste/:projectId' element={<PreviewProjectCreator />} />
 
 
-        {/* <Route path='/testeRequisito' element={<ModalRequirements action={"Editar"} />} /> */}
+        <Route path='/testeprofile' element={<Profile />} />
 
       </Routes>
 

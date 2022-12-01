@@ -17,7 +17,9 @@ export class ProjectRepository {
     list = async () => {
         return await this._.find({
             relations: {
-                user: true
+                user: true,
+                requirements: true,
+                management: true,
             }
         })
     }
@@ -68,9 +70,26 @@ export class ProjectRepository {
             relations: {
                 interest: true,
                 sub_categories: true,
-                requirements: true,
-                management: true,
-                user: true
+                requirements: {
+                    delivery: {
+                        files: true
+                    }
+                },
+                management: {
+                    team_project_management: {
+                        team: true
+                    }
+                },
+                user: true,
+
+            },
+            order: {
+
+                requirements: {
+
+                    create_at: "ASC"
+                }
+
             }
         })
     }
