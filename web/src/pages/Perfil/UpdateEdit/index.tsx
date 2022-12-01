@@ -9,20 +9,36 @@ import InputLogin from "../../../components/utils/Input/LoginInput";
 import NavegationBar from "../../../components/utils/navegation";
 import { phoneMask } from "../../../service/Regex/regex";
 import { useJwt } from "react-jwt";
+import jwt from "jwt-decode"
 
 
 
 
 const UpdateEdit = () => {
    const [hasErrors, setHasErros] = React.useState(false);
-
    const [openEdit, setOpenEdit] = useState(true);
    const [password, setpassword] = useState();
+  
 
-   const userlocal = localStorage.getItem('userDetails');
-   const { decodedToken, isExpired } = useJwt(userlocal ? userlocal : "");
+   const [diceUser,setdiceUser] = useState({
+      nickname: "",
+      first_name:"",
+      profile_picture:"",
+      biography:""
+  })
+  
 
 
+   const profileDice = async ()  => {
+
+      const userlocal = await localStorage.getItem('userDetails');
+      const user: any = jwt(userlocal ? userlocal : "");
+      setdiceUser(user.userDetails);
+      
+
+  }
+   
+  profileDice();
 
    const [user, setUser] = React.useState({
       first_name:'',
@@ -41,8 +57,8 @@ const UpdateEdit = () => {
 
 
    useEffect(() => {
-
-   }, [openEdit,user])
+      console.log(diceUser);
+   }, [diceUser,user])
 
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

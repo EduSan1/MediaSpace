@@ -48,7 +48,7 @@ const ModalPassword = () => {
         <div className="Modal_all">
             
             <h1>Confirme sua senha</h1>
-            <InputLogin className="InputModalPerfil" valueLogin={password.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>)=>{handleChange(event)}} hasError={false} icon={''} label={''} maxlength={255} name={'password'} placeholder={''} typeInput={'text'} />
+            <InputLogin disable className="InputModalPerfil" valueLogin={password.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>)=>{handleChange(event)}} hasError={false} icon={''} label={''} maxlength={255} name={'password'} placeholder={''} typeInput={'text'} />
             <h4>esqueci minha senha</h4>
 
             <div className="btn_cancel_Continue">
