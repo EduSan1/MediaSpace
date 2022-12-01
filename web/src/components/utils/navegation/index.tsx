@@ -8,23 +8,18 @@ import { MdRssFeed } from "react-icons/md";
 import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useJwt } from "react-jwt";
+import { decodeToken, useJwt } from "react-jwt";
 
 
 const NavegationBar = () => {
-
-
-
-    // for (var key in localStorage) {
-    //     console.log(key, " => ", localStorage.getItem(key))
-    // }
 
     const [open, setOpen] = useState(false);
 
     const userJwt = localStorage.getItem('userDetails');
     const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
 
-    //console.log("token => ", decodedToken)
+  
+
 
     return (
 
@@ -32,7 +27,7 @@ const NavegationBar = () => {
             <div className={open ? "Container_navegation_Open" : "Container_navegation"}>
                 <span className="Menu_bar_icon">
                     <div className="logo_img">
-                        {<img src="../assets/img/LogoBlack.svg" className="visible_img" alt="" />}
+                        {<img src="https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FlogoColorPlay.png?alt=media&token=6a99a7e2-f527-4cb6-a6b2-532babc7b078" className="visible_img" alt="" />}
                     </div>
                     <button className="Button_menu">
                         <IconBar Icon={!open ? <FaBars onClick={() => {
@@ -44,7 +39,7 @@ const NavegationBar = () => {
                 </span>
 
                 <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
-                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img" />
+                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img"  />
                     <span className="InfoName_user">
                         <h2>{decodedToken?.userDetails?.first_name}</h2>
                         <h4>@{decodedToken?.userDetails?.nickname}</h4>
@@ -82,7 +77,7 @@ const NavegationBar = () => {
                         </ul>
                     </div>
                     <div className="rocket_icon">
-                        <ImageComponent src="../assets/img/Iconrocket.svg" alt="" className="" />
+                        <ImageComponent src="https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FnavegationRocket.png?alt=media&token=943002f9-91ea-453c-94d6-7a9792b0f9a5" alt="" className="" />
                     </div>
                     <div className="Logout_icon_nav">
 

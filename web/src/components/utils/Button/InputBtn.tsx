@@ -15,7 +15,7 @@ const InputBtn = ({ typeInput, name, className, valueBtn, onClick, enable }: IIn
 
     <>
 
-      <input  type={typeInput} className={className} name={name} value={valueBtn} onClick={(event: React.MouseEvent<HTMLInputElement>) => enable ? null : onClick(event)} />
+      <input  type={typeInput} className={className} name={name} value={valueBtn} onClick={(event)=> onClick(event)} />
 
     </>
 

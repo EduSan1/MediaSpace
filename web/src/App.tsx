@@ -24,12 +24,14 @@ import ProjectsrequirementsFreelancer from './pages/ProjectRequirementsFreelance
 import AllFreelancerView from './pages/ProjectsViewallfrelancer';
 import ProjectsvisualizationFreelancersAll from './pages/ProjectRequirementsClient';
 import ProjectsSelecetFreelancer from './pages/ProjectSelectfreelancer';
+import ProjectRequirements from './pages/ProjectRequirements';
 
 import Teste from './pages/teste';
 //import SpaceBackground from './components/SpaceBackground';
 import PreviewProject from './pages/PreviewProject';
+import PreviewProjectCreator from './pages/PreviewProject/Creator';
+import Profile from './pages/Perfil';
 
-import ModalRequirements from './components/RequirementsModal';
 
 function App() {
 
@@ -57,8 +59,8 @@ function App() {
         <Route path='/Perfil' element={<PerfilCliente />} />
         <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
         <Route path='/Perfil/Edit' element={<UpdateEdit />} />
-        <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} />
-        <Route path='/projects/requirementsFreelancer/:projectId' element={<ProjectsrequirementsFreelancer />} />
+        {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} /> */}
+        <Route path='/projects/requirements/:projectId' element={<ProjectRequirements />} />
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView />} />
         <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer />} />
 
@@ -66,16 +68,11 @@ function App() {
         <Route path='/projects/selectFreelancer/:projectId' element={<ProjectsSelecetFreelancer />} />
 
 
-
-
-
-
-
         {/* */}
-        <Route path='/teste' element={<Teste />} />
+        <Route path='/teste/:projectId' element={<PreviewProjectCreator />} />
 
 
-        {/* <Route path='/testeRequisito' element={<ModalRequirements action={"Editar"} />} /> */}
+        <Route path='/testeprofile' element={<Profile/>} />
 
       </Routes>
 

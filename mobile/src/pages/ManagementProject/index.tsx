@@ -155,7 +155,9 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
 
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any) => {
-            setProject(res.data.data)
+            let project: IProject = res.data.data
+            project = { ...project, requirements: project.requirements.filter((requirement: IRequirement) => requirement.is_accepted !== false) }
+            setProject(project)
         })
     }, [])
 

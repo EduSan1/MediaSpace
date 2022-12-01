@@ -1,5 +1,4 @@
 import React from "react";
-import LoginSpace from "../../components/Login";
 import RegisterSpace from "../../components/Register";
 import SpaceBackground from "../../components/SpaceBackground/index";
 

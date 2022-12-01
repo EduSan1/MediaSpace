@@ -44,6 +44,15 @@
         height: inherit;
         overflow: scroll;
         gap: 5px;
+
+
+        .project-page-projects-card-container{
+           
+            .project-card{
+                width: 15vw;
+                height: 20vw;
+            }
+        }
         
     }
 

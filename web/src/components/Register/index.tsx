@@ -7,6 +7,7 @@ import { HiOutlineIdentification } from "react-icons/hi";
 import { RiCalendar2Line } from "react-icons/ri";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
+import { FaLock, FaLockOpen } from "react-icons/fa";
 import InputRadio from "../utils/Input/InputRadio";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { storage } from "../../constants/firebase";
@@ -34,14 +35,12 @@ const RegisterSpace = () => {
         biography: '',
     })
 
-
-
-
+    const [typePassword, setTypePassoword] = useState(false)
     const navigate = useNavigate()
-
     const [genders, setGenders] = useState([{}])
     const [hasErrors, setHasErros] = React.useState(false)
-    
+    const [progressPorcent, setPorgessPorcent] = useState(0);
+
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
@@ -69,66 +68,55 @@ const RegisterSpace = () => {
     const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(user.phone.phone.split)
         setUser({
-            // ...user, [event.target.name]: phoneMask(event.target.value)
             ...user, phone: {
                 ddd: "",
                 phone: phoneMask(event.target.value)
-                
-                
-
             }
-            //...user, [event.target.name]: onlyNumbers(event.target.value)
         })
     }
     const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    
-            console.log(onlyLetters.exec(event.target.value))
-            let teste : any
-            if(onlyLetters.exec(event.target.value) != null){
-                teste = onlyLetters.exec(event.target.value)
 
-                setUser({
-                    ...user, [event.target.name]: teste
-                })
-            }
-          
-
-         
-               
-            
-            
-         
+        console.log(onlyLetters.exec(event.target.value))
+        if (onlyLetters.exec(event.target.value)) {
+            setUser({
+                ...user, [event.target.name]: event.target.value
+            })
+        } else {
+            setUser({
+                ...user, [event.target.name]: ""
+            })
+        }
     }
 
 
     const validation = () => {
-    
-        let validate =  true;
+
+        let validate = true;
 
         if (!user.first_name) {
-             validate = false;
-             setHasErros(true);
+            validate = false;
+            setHasErros(true);
         } else {
-            
+
         }
 
         if (!user.last_name) {
             validate = false;
-             setHasErros(true);
+            setHasErros(true);
         } else {
 
         }
 
         if (!user.nickname) {
             validate = false;
-           setHasErros(true)
+            setHasErros(true)
         } else {
 
         }
 
         if (!user.cpf) {
             validate = false;
-           setHasErros(true)
+            setHasErros(true)
         } else {
 
         }
@@ -162,8 +150,8 @@ const RegisterSpace = () => {
         uploadTask.on(
             "state_changed",
             snapshot => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                setPorgessPorcent(progress);
             },
             error => { alert(error) },
             () => {
@@ -187,40 +175,38 @@ const RegisterSpace = () => {
             },
         }
 
-     
-
         api.post("/user", userToSend).then((res) => {
 
             if (res.data.statusCode !== 201) {
-                 console.log(res.data);
-               
-                   
-                if(res.data.mail){
+                console.log(res.data);
+
+
+                if (res.data.mail) {
                     window.alert("Email já existente")
                     setHasErros(true);
                 }
-                if(res.data.cpf){
+                if (res.data.cpf) {
                     window.alert("CPF já existente")
                     setHasErros(true);
                 }
-                if(res.data.phone){
+                if (res.data.phone) {
                     window.alert("Telefone já existente")
                     setHasErros(true);
                 }
-                if(res.data.nickname){
+                if (res.data.nickname) {
                     window.alert("nickname já existente")
                     setHasErros(true);
                 }
 
-                
-                
+
+
             } else {
                 navigate(`provideruserregister/${res.data.data.id}`)
             }
         })
     }
 
-  
+
 
     useEffect(() => {
         api.get("/gender").then((res) => {
@@ -229,7 +215,7 @@ const RegisterSpace = () => {
     }, [])
 
 
-
+    console.log(progressPorcent)
 
     return (
         <>
@@ -253,7 +239,17 @@ const RegisterSpace = () => {
                     <div className="alignment-inputs-by-divs">
                         <InputLogin valueLogin={user.mail} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={<AiOutlineMail className="IconLogin" />} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250} />
 
-                        <InputLogin valueLogin={user.password} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Senha"} icon={<MdLockOutline className="IconLogin" />} name={"password"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={255} />
+                        <span>
+                            <InputLogin valueLogin={user.password} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={typePassword ? "text" : "password"} placeholder={"Senha"} icon={<MdLockOutline className="IconLogin" />} name={"password"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={255} />
+
+
+                            <button className="Passeyes" onClick={() => {
+                                setTypePassoword(!typePassword)
+                            }}>
+                                {typePassword ? <FaLockOpen /> : <FaLock />}
+                            </button>
+                        </span>
+
 
                         <InputLogin valueLogin={user.birth_date} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} />
 
@@ -284,6 +280,8 @@ const RegisterSpace = () => {
 
                                 <div className="alignment_buttons_photo_profile">
 
+
+                                    <p>{progressPorcent}%</p>
                                     <label className="input_btn_upload_photo" htmlFor="image">
                                         upload
                                     </label>
@@ -304,31 +302,31 @@ const RegisterSpace = () => {
                                 <label>Sobre</label>
                             </div>
                             <div>
-                                <textarea name="biography" className="biography" />
+                                <textarea name="biography" className="biography"  onChange={({target}) => {user.biography = target.value}}/>
                             </div>
 
                         </div>
                         <div className="container_button">
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-                               
-                                 if(validation()){
+
+                                if (validation()) {
                                     registerUser();
-                                 }  
-                                
-                             
-                               
-                            
+                                }
+
+
+
+
                             }} />
                         </div>
 
                     </div>
 
-                         
-                </div> 
-                <span className="back_link_login"> 
-                <Link to={"/"} className="link_to_back_login">Voltar a tela de login</Link>
+
+                </div>
+                <span className="back_link_login">
+                    <Link to={"/"} className="link_to_back_login">Voltar a tela de login</Link>
                 </span>
-               
+
             </div>
 
         </>

@@ -31,7 +31,9 @@ export default function TechnicalRequirementsFrelancer({ navigation, route }: IT
 
     const getProject = () => {
         api.get(`/project/${projectId}`).then((res) => {
-            setProject(res.data.data)
+            let project: IProject = res.data.data
+            project = { ...project, requirements: project.requirements.filter((requirement: IRequirement) => requirement.is_accepted !== false) }
+            setProject(project)
         })
     }
 

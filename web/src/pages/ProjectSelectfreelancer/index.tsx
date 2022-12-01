@@ -4,6 +4,7 @@ import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
 import api from "../../service";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import { useParams } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ const ProjectsSelecetFreelancer = () => {
     const user = localStorage.getItem('userDetailes');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
     const { projectId } = useParams()
+    const navigate = useNavigate()
 
 
     const [selecetFreelancerView, setSelectFreelancerView] = useState({
@@ -22,11 +24,11 @@ const ProjectsSelecetFreelancer = () => {
 
     });
 
-
-
     const [selecetFreelancer, setSelectFreelancer] = useState({
         freelancerId: ""
     });
+
+    console.log(selecetFreelancer)
 
 
     useEffect(() => {
@@ -38,7 +40,6 @@ const ProjectsSelecetFreelancer = () => {
     }, [])
 
 
-
     const selectidFreelancer = () => {
 
         api.post(`/project/selectFreelancer/${projectId}`, selecetFreelancer)
@@ -48,6 +49,7 @@ const ProjectsSelecetFreelancer = () => {
                     console.log(res.data)
                 } else {
                     window.alert(res.data.message)
+                    navigate(-1)
                 }
             })
     }
@@ -76,14 +78,12 @@ const ProjectsSelecetFreelancer = () => {
                         {
                             selecetFreelancerView.interest.map((intereest: any) => {
                                 return <Interestedserver action={() => {
-                                    setSelectFreelancer({ ...selecetFreelancer, freelancerId: intereest.id });
+                                    setSelectFreelancer({ ...selecetFreelancer, freelancerId: intereest.team.id });
                                 }} type={"radio"} name={intereest.team.name} nickname={intereest.team.nickname} photo={intereest.team.profile_picture} />
 
                             })
 
                         }
-
-
 
                     </div>
 
