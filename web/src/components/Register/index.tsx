@@ -309,14 +309,9 @@ const RegisterSpace = () => {
                         </div>
                         <div className="container_button">
                             <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_cadastrar'} valueBtn={'Cadastrar'} onClick={() => {
-
                                 if (validation()) {
                                     registerUser();
                                 }
-
-
-
-
                             }} />
                         </div>
 
