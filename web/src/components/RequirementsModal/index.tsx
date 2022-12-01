@@ -55,9 +55,10 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         setError({ ...error, [nameInput]: errorMensage })
     }
 
-    const gainPorcentageLimit = () => {
+    const gainPorcentageLimit = (valueCurrent: number) => {
 
         let currentPercentage = 0
+        let validate = true
 
         for (let i = 0; limitGainPercentage.gainPercentage.length > i; i++) {
             if (limitGainPercentage.gainPercentage[i].is_active) {
@@ -65,12 +66,15 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             }
         }
 
-        let valueRestantPercentage = 100 - currentPercentage
-        return valueRestantPercentage
-
+        if(currentPercentage - valueCurrent < 0){
+            validate = false
+        }else{
+            console.log("valor passa")
+            validate = true
+        }
+        console.log(validate)
+        return validate
     }
-
-    gainPorcentageLimit()
 
     const validation = () => {
         let validate = true;
@@ -89,10 +93,11 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             validate = false
         }
 
-        if (requirements.gain_percentage > gainPorcentageLimit()) {
-            handleErrors("O valor ultrapassa de 100%", "gain_percentage")
+        if(!gainPorcentageLimit(requirements.gain_percentage)){
+            handleErrors("O valor ultrapassa 100%", "gain_percentage")
             validate = false
         }
+
         if (validate) {
             createEditRequirements();
         }
@@ -183,7 +188,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                             <div className="container_input_project">
                                 <label className="subtitulo_projects">Percentual de ganho<span> * </span></label>
                                 <div className="conatainer_input_message_error">
-                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} max={gainPorcentageLimit()} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
+                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} onChangeCapture={()=>{}}/>
 
                                     <p>{error.gain_percentage}</p>
                                 </div>
