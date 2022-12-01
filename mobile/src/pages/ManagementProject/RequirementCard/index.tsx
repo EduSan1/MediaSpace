@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Image, Dimensions, Pressable, ScrollView } from "react-native";
+import { View, StyleSheet, Text, Image, Dimensions, Pressable, ScrollView, ToastAndroid } from "react-native";
 import api from "../../../../service";
 import { IProject } from "../../Profile/interfaces";
 import { DownloadFile, IDelivery } from "./DownloadFile";
@@ -7,6 +7,8 @@ import { DownloadFile, IDelivery } from "./DownloadFile";
 interface IRequirementCard {
     numberOfRequirements: number
     requirement: IRequirement
+    reload: () => void
+    index: number
 }
 export interface IRequirement {
     id: string,
@@ -21,69 +23,87 @@ export interface IRequirement {
     delivery: Array<IDelivery>
 }
 
-export const RequirementCard = ({ requirement, numberOfRequirements }: IRequirementCard) => {
+export const RequirementCard = ({ requirement, numberOfRequirements, reload, index }: IRequirementCard) => {
+
+    const denyRequirement = (id: string) => {
+        api.post(`delivery/deny/${id}`).then((res: any) => {
+            console.log(res.data.message)
+            ToastAndroid.show(res.data.message, 10)
+            reload()
+        })
+    }
+
+    const acceptRequirement = (id: string) => {
+        api.post(`delivery/accept/${id}`).then((res: any) => {
+            console.log(res.data.message)
+            ToastAndroid.show(res.data.message, 10)
+            reload()
+        })
+    }
     return (
         <View style={styles.requirementContainer}>
             <Text style={styles.requirementTitle}>Requisito - {requirement.title}</Text>
             {
-                requirement.delivery.map((delivery: any, index: number) => {
+                requirement.delivery.map((delivery: any) => {
+                    console.log("titulo do requisito => ", requirement.id)
+                    console.log("delivery => ", delivery.is_accepted === false ? "entrega recusada" : "entrega aceita")
 
-                    if (delivery.is_active) {
-                        if (delivery.is_accepted === true) {
+
+                    if (delivery.is_accepted === true) {
 
 
-                            return (
-                                <View style={styles.deliveryContainer}>
-                                    <View style={styles.deliveryTitleContainer}>
-                                        <View style={styles.check}>
-                                            <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
-                                        </View>
-                                        <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
+                        return (
+                            <View style={styles.deliveryContainer}>
+                                <View style={styles.deliveryTitleContainer}>
+                                    <View style={styles.check}>
+                                        <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
                                     </View>
-                                    <DownloadFile delivery={delivery} />
-                                    <Text style={styles.deliveryAccepted}>Validado ✓</Text>
+                                    <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
                                 </View>
+                                <DownloadFile delivery={delivery} />
+                                <Text style={styles.deliveryAccepted}>Validado ✓</Text>
+                            </View>
 
-                            )
-                        }
-
-
-                        else if (delivery.is_accepted === false)
-                            return (
-
-                                <View style={styles.deliveryContainer}>
-                                    <View style={styles.deliveryTitleContainer}>
-                                        <View style={styles.check}>
-                                            <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
-                                        </View>
-                                        <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
-                                    </View>
-                                    <DownloadFile delivery={delivery} />
-
-                                    <Text style={styles.deliveryNotAccepted}>Recusada ✕</Text>
-                                </View>
-                            )
-
-                        else
-                            return (
-                                <>
-                                    <View style={styles.deliveryContainer}>
-                                        <View style={styles.deliveryTitleContainer}>
-                                            <View style={styles.check}>
-                                                <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
-                                            </View>
-                                            <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
-                                        </View>
-                                        <DownloadFile delivery={delivery} />
-                                        <View style={styles.deliveryButtonContainer}>
-                                            <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#B275FF" }}><Text style={styles.deliveryButtonText}>Aceitar</Text></Pressable>
-                                            <Pressable style={{ ...styles.deliveryButton, backgroundColor: "#FF6666" }}><Text style={styles.deliveryButtonText}>Recusar</Text></Pressable>
-                                        </View>
-                                    </View>
-
-                                </>
-                            )
+                        )
                     }
+
+
+                    else if (delivery.is_accepted === false)
+                        return (
+
+                            <View style={styles.deliveryContainer}>
+                                <View style={styles.deliveryTitleContainer}>
+                                    <View style={styles.check}>
+                                        <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
+                                    </View>
+                                    <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
+                                </View>
+                                <DownloadFile delivery={delivery} />
+
+                                <Text style={styles.deliveryNotAccepted}>Recusada ✕</Text>
+                            </View>
+                        )
+
+                    else
+                        return (
+                            <>
+                                <View style={styles.deliveryContainer}>
+                                    <View style={styles.deliveryTitleContainer}>
+                                        <View style={styles.check}>
+                                            <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
+                                        </View>
+                                        <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
+                                    </View>
+                                    <DownloadFile delivery={delivery} />
+                                    <View style={styles.deliveryButtonContainer}>
+                                        <Pressable onPress={() => acceptRequirement(delivery.id)} style={{ ...styles.deliveryButton, backgroundColor: "#B275FF" }}><Text style={styles.deliveryButtonText}>Aceitar</Text></Pressable>
+                                        <Pressable onPress={() => denyRequirement(delivery.id)} style={{ ...styles.deliveryButton, backgroundColor: "#FF6666" }}><Text style={styles.deliveryButtonText}>Recusar</Text></Pressable>
+                                    </View>
+                                </View>
+
+                            </>
+                        )
+
 
                 })
 

@@ -27,7 +27,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
     const [hasError, setHasError] = useState(false)
     const { projectId } = route.params
 
-    const [projectOwner, setProjectOwner] = (useState)({
+    const [projectOwner, setProjectOwner] = useState({
         id: "",
         name: "",
         description: "",
@@ -154,7 +154,12 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                     </View>
 
                     <View style={styles.button}>
-                        <LoginButton type="dark" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId, projectName: projectOwner.name })} isLoad={projectLoad} title="Executar Projeto" />
+                        <LoginButton type="dark" action={() => navigation.navigate("WorkersAppliedPage", { projectId: projectId })} isLoad={projectLoad} title="Visualizar Interessados" />
+                    </View>
+
+
+                    <View style={styles.button}>
+                        <LoginButton type="light" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId, projectName: projectOwner.name })} isLoad={projectLoad} title="Executar Projeto" />
                     </View>
 
                 </View>
@@ -249,14 +254,13 @@ const styles = StyleSheet.create({
     },
     categ: {
         display: "flex",
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     divisor: {
         width: Dimensions.get('window').width * 0.9,
         height: Dimensions.get("window").width * 0.005,
         borderRadius: 100,
-        marginTop: 10
     },
     containerDate: {
         flexDirection: "row"
@@ -280,6 +284,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.035,
         width: "auto",
         backgroundColor: "#C6D2FF",
+        textAlignVertical: "center",
         borderRadius: 100,
         display: "flex",
         alignItems: "flex-start",

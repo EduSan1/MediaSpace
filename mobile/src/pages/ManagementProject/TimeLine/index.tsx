@@ -17,6 +17,8 @@ export const TimeLine = ({ requirements }: ITimeLine) => {
         requirement.delivery.map((delivery: IDelivery) => {
             if (delivery.is_accepted)
                 deliveryAccepted = 1
+            if (delivery.is_accepted === false)
+                deliveryAccepted = 2
         })
 
         if (deliveryAccepted == 1)
@@ -25,8 +27,11 @@ export const TimeLine = ({ requirements }: ITimeLine) => {
                     <Image style={styles.checkIcon} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2Fcheck.png?alt=media&token=47cec9bb-d486-42fa-a1fa-3208f4bb6730" }} />
                 </View>
             )
-        else
+        else if (deliveryAccepted == 2) {
+
+        } else
             return <View style={styles.recuse} />
+
     }
 
     return (
@@ -36,14 +41,19 @@ export const TimeLine = ({ requirements }: ITimeLine) => {
                     return (
                         <View style={styles.requirementContainer}>
                             {
+
                                 renderChecks(requirement)
 
                             }
                             {
+                                requirement.delivery.length === 0 && requirements.length !== index + 1 && <View style={{ ...styles.checkLine, backgroundColor: "#ccc" }} />
+                            }
+                            {
                                 requirement.delivery.map((delivery: IDelivery) => {
-                                    return requirements.length !== index &&
+                                    return requirements.length !== index + 1 && delivery.is_accepted !== false &&
                                         <View style={{ ...styles.checkLine, backgroundColor: delivery.is_accepted === true ? "#75A5FF" : "#ccc" }} />
-                                })
+                                }
+                                )
                             }
                         </View>
                     )

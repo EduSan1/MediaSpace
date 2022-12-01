@@ -31,43 +31,43 @@ export class DeliveryService {
         this.teamProjectManagementRepository = new TeamProjectManagementRepository()
     }
 
-    create =  async (entity: DeliveryDomain) => {
+    create = async (entity: DeliveryDomain) => {
         try {
-                const delivery = await this._.create(entity)
+            const delivery = await this._.create(entity)
 
-                entity.files?.map(async (file: IFile) => {                
-                    const fileToRegister = {
-                        ...file, 
-                        delivery: {
-                            id: delivery.id
-                        }
+            entity.files?.map(async (file: IFile) => {
+                const fileToRegister = {
+                    ...file,
+                    delivery: {
+                        id: delivery.id
                     }
-                    await this.deliveryFileRepository.create(fileToRegister)
-                })
-
-                const freelancerId = delivery.user.id
-                const freelancer = await this.userRepository.findById(freelancerId)
-                const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
-                const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
-                
-                if (!freelancer.is_active === true && !projectMember.is_active === true && !teamProjectManagement.is_active === true) {
-
-                    await this._.delete(delivery.id)
-
-                    return {
-                        message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
-                        statusCode: 200,
-                    };
-
-                } else {
-                    return {
-                        message: "Entrega cadastrada com sucesso!",
-                        data: delivery,
-                        statusCode: 201,
-                    };
                 }
+                await this.deliveryFileRepository.create(fileToRegister)
+            })
 
-            
+            const freelancerId = delivery.user.id
+            const freelancer = await this.userRepository.findById(freelancerId)
+            const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
+            const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
+
+            if (!freelancer.is_active === true && !projectMember.is_active === true && !teamProjectManagement.is_active === true) {
+
+                await this._.delete(delivery.id)
+
+                return {
+                    message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
+                    statusCode: 200,
+                };
+
+            } else {
+                return {
+                    message: "Entrega cadastrada com sucesso!",
+                    data: delivery,
+                    statusCode: 201,
+                };
+            }
+
+
         } catch (error) {
             return {
                 message: "Não foi possível cadastrar essa entrega!",
@@ -130,12 +130,12 @@ export class DeliveryService {
             delivery.is_accepted = true;
             const uptadedDelivery = await this._.update(delivery);
 
-            delivery.requirements.map(async (requirement : any) => {
+            delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = true
                 await this.projectRequirementsRepository.update(requirement);
             });
 
-            project.requirements.map(async (requirement : any) => {
+            project.requirements.map(async (requirement: any) => {
                 if (requirement.is_delivered === false || requirement.is_delivered === null) {
                     project.status = "IN_EXECUTION";
                     project.is_active = true
@@ -147,7 +147,7 @@ export class DeliveryService {
                 }
             });
 
-            return{
+            return {
                 message: "Entrega aceita",
                 data: uptadedDelivery,
                 statusCode: 200
@@ -179,12 +179,12 @@ export class DeliveryService {
             delivery.is_active = false
             const uptadedDelivery = await this._.update(delivery)
 
-            delivery.requirements.map(async (requirement : any) => {
+            delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = false
                 await this.projectRequirementsRepository.update(requirement);
             });
 
-            return{
+            return {
                 message: "Entrega recusada",
                 data: uptadedDelivery,
                 statusCode: 200

@@ -11,8 +11,9 @@ import api from "../../../service";
 
 interface IWorkersAppliedPafe {
     navigation: any
+    route: any
 }
-export default function WorkersAppliedPage({ navigation }: IWorkersAppliedPafe) {
+export default function WorkersAppliedPage({ navigation, route }: IWorkersAppliedPafe) {
 
     const [isModalVisible, setModalVisible] = useState(false);
     const [interest, setInterest] = useState([{
@@ -23,13 +24,14 @@ export default function WorkersAppliedPage({ navigation }: IWorkersAppliedPafe) 
         }
 
     }])
+    const { projectId } = route.params
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
 
     useEffect(() => {
 
-        api.get("/project/d2b6956f-b653-4d1d-b1eb-c50f9b371871").then((res) => {
+        api.get(`/project/${projectId}`).then((res) => {
             setInterest(res.data.data.interest)
         })
 
