@@ -85,12 +85,12 @@ const ProfileClient = () => {
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
 
-                                {
+                                {/* {
                                     statusProject.AWAITING_START.map((project: any) => {
                                         return <ProjectCard categories={project.categories} description={project.description} id={project.id} image={[{ url: "TSTERT" }]} name={project.name} user={{ first_name: "", nickname: "", profile_picture: "" }} value={project.value} />
                                     })
 
-                                }
+                                } */}
 
                                 {/* <ProjectCard categories={'ASAS'} description={"TESTE"} id={"NOTH"} image={[{ url: "TSTERT" }]} name={"NAME"} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} /> */}
                             </div>

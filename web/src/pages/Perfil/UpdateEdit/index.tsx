@@ -9,23 +9,39 @@ import InputLogin from "../../../components/utils/Input/LoginInput";
 import NavegationBar from "../../../components/utils/navegation";
 import { phoneMask } from "../../../service/Regex/regex";
 import { useJwt } from "react-jwt";
+import jwt from "jwt-decode"
 
 
 
 
 const UpdateEdit = () => {
    const [hasErrors, setHasErros] = React.useState(false);
-
    const [openEdit, setOpenEdit] = useState(true);
    const [password, setpassword] = useState();
 
-   const userlocal = localStorage.getItem('userDetails');
-   const { decodedToken, isExpired } = useJwt(userlocal ? userlocal : "");
+
+   const [diceUser, setdiceUser] = useState({
+      nickname: "",
+      first_name: "",
+      profile_picture: "",
+      biography: ""
+   })
 
 
+
+   const profileDice = async () => {
+
+      const userlocal = await localStorage.getItem('userDetails');
+      const user: any = jwt(userlocal ? userlocal : "");
+      setdiceUser(user.userDetails);
+
+
+   }
+
+   profileDice();
 
    const [user, setUser] = React.useState({
-      first_name:'',
+      first_name: '',
       last_name: '',
       nickname: '',
       phone: {
@@ -41,8 +57,8 @@ const UpdateEdit = () => {
 
 
    useEffect(() => {
-
-   }, [openEdit,user])
+      console.log(diceUser);
+   }, [diceUser, user])
 
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,11 +93,11 @@ const UpdateEdit = () => {
 
    const validate = () => {
 
-      if(!user){
+      if (!user) {
          console.log('consumir api ')
-      }else{
-        
-        window.alert('pelo menos um campo deve ser preenchido com dados diferentes')
+      } else {
+
+         window.alert('pelo menos um campo deve ser preenchido com dados diferentes')
       }
 
    }
@@ -105,11 +121,11 @@ const UpdateEdit = () => {
 
 
                      <span className="Upadet_name_nickname">
-                        <InputLogin valueLogin={user.first_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"nome"} icon={''} name={"first_name"} label={"Nome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={50}  />
+                        <InputLogin disable={false} valueLogin={user.first_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"nome"} icon={''} name={"first_name"} label={"Nome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={50} />
 
-                        <InputLogin valueLogin={user.last_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"sobrenome"} icon={''} name={"last_name"} label={"Sobrenome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={150}  />
+                        <InputLogin disable={false} valueLogin={user.last_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"sobrenome"} icon={''} name={"last_name"} label={"Sobrenome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={150} />
 
-                        <InputLogin valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={""} placeholder={"nickname"} icon={''} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25}  />
+                        <InputLogin disable={false} valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={""} placeholder={"nickname"} icon={''} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25} />
 
                      </span>
 
@@ -117,10 +133,10 @@ const UpdateEdit = () => {
 
 
                      <span className="Upadet_cell_email">
-                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"cell"} placeholder={"cell"} icon={''} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
+                        <InputLogin disable={false} valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"cell"} placeholder={"cell"} icon={''} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
 
 
-                        <InputLogin valueLogin={user.mail} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={''} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250}  />
+                        <InputLogin disable={false} valueLogin={user.mail} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={''} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250} />
                         <SiIfixit className="sgv_noEmail" />
 
 
@@ -128,13 +144,13 @@ const UpdateEdit = () => {
 
 
                      <span className="Upadet_Password_cpf">
-                        <InputLogin valueLogin={'Alterar'} hasError={hasErrors} handleChange={() => { }} typeInput={"button"} placeholder={"Alterar"} icon={''} name={"senha"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15}  />
+                        <InputLogin disable={false} valueLogin={'Alterar'} hasError={hasErrors} handleChange={() => { }} typeInput={"button"} placeholder={"Alterar"} icon={''} name={"senha"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
 
 
                         {/* <div className="not_input"> */}
-                        <InputLogin valueLogin={'Cpf'} hasError={hasErrors} handleChange={() => { }} typeInput={"string"} placeholder={"CPF"} icon={''} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15}  />
+                        <InputLogin disable={false} valueLogin={'Cpf'} hasError={hasErrors} handleChange={() => { }} typeInput={"string"} placeholder={"CPF"} icon={''} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
                         <SiIfixit className="sgv_no" />
-                        <InputLogin valueLogin={'Data'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8}  />
+                        <InputLogin disable={false} valueLogin={'Data'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} />
                         <SiIfixit className="sgv_no" />
                         {/* </div> */}
 
@@ -158,7 +174,7 @@ const UpdateEdit = () => {
 
                         <span className='Upadet_btn_edit'>
                            <InputBtn className="btn_edit" name="Torne-se um freelancer" onClick={() => { }} typeInput={'button'} valueBtn="Torne-se um freelancer" enable />
-                           <InputBtn className="btn_edit" name="Editar" onClick={() => { validate()}} typeInput={'button'} valueBtn="Editar" enable />
+                           <InputBtn className="btn_edit" name="Editar" onClick={() => { validate() }} typeInput={'button'} valueBtn="Editar" enable />
                         </span>
 
 

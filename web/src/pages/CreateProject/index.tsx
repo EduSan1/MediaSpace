@@ -198,6 +198,11 @@ const CreateProject = () => {
       })
    }, [])
 
+   useEffect(() => {
+      console.log(project);
+
+   }, [project])
+
    return (
       <>
          <main>
