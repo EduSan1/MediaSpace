@@ -154,9 +154,9 @@ export const Register = ({ navigation }: IRegister) => {
                     setHasErrorCpf(res.data.cpf)
                     setHasErrorMail(res.data.mail)
                     setHasErrorNickname(res.data.nickname)
-                    ToastAndroid.show(res.data.message, 10)
+                    // ToastAndroid.show(res.data.message, 10)
                 } else {
-                    ToastAndroid.show("res.data.message", 10)
+                    ToastAndroid.show(res.data.message, 10)
 
                 }
 

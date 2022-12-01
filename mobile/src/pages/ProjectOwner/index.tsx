@@ -156,7 +156,6 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                    
 
                     </View>
-
                     <View style={styles.button}>
                             <LoginButton type="dark" action={() => console.log('teste')} isLoad={projectLoad} title="Executar Projeto" />
                     </View>
@@ -174,7 +173,6 @@ const styles = StyleSheet.create({
 
     containerFilho: {
         width: Dimensions.get('window').width,
-        height: "auto",
         backgroundColor: '#fff'
     },
 
@@ -291,9 +289,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     button: {
-          justifyContent: "flex-end",
+        justifyContent: "flex-end",
         alignItems: "center",
-        padding: 10, 
+        padding: 10
         
     },
     btnBack:{
@@ -306,7 +304,8 @@ const styles = StyleSheet.create({
     },
     page:{
         backgroundColor:'#fff'
-    }
+    },
+ 
 
 
 

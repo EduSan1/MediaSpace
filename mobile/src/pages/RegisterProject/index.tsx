@@ -182,7 +182,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                     projectId: res.data.data.id,
                 })
             } else {
-                ToastAndroid.show("res.data.message", 10)
+                ToastAndroid.show(res.data.message, 10)
             }
             console.log(res.data)
         })
