@@ -384,7 +384,29 @@
     background: linear-gradient(45deg, #B275FF, #75A5FF);
   }
 
+  .validation-container{
+    width: 100%;
+  }
+
+  .deliveries-card{
+    width: 100%;
+  }
+
+  .delivery-card-details-container{
+    width: 100%;
+  }
+
+  .delivery-upperline-divisor, .delivery-lowerline-divisor{
+    content:"";
+    width: 100%;
+    height: 2px;
+    background-color: #DBDFE8;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+  }
+
   .delivery-card-details {
+      width: 100%;
     counter-reset: number 0;
     
     .requirement-box {
@@ -405,6 +427,74 @@
         color: #75A5FF;
     }
 
+  }
+
+  .delivery-info{
+      display: flex;
+      flex-direction: row;
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+  }
+  
+//
+  .indicator{
+    max-width: 5vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  
+  .indicator li{
+    list-style: none;
+    float: left;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Dosis', sans-serif;
+  }
+  
+//   .deliveries-indicator:nth-child(1){
+//     color: #B275FF;
+//   }
+
+    .indicator li:before{
+        //content: "Aguardando entrega...";
+        color: #75A5FF;
+        display: flex;
+        font-weight: normal;
+        font-size: xx-small;
+        flex-direction: row;
+        align-content: center;
+    }
+
+  .indicator li{
+    width: 39px;
+    height: 39px;
+    border: 3px solid #75A5FF;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 auto 10px auto;
+    background: #Ffff;
+    color: #fff;
+    transition: all ease-in-out .3s;
+  }
+
+  .indicator li.active:before{
+    content: " ✓";
+    background: #75A5FF;
+    display: flex;
+    font-weight: bolder;
+    font-size: x-large;
+    align-content: flex-start;
+    color: #fff;
+  }
+
+  .delivery-data{
+      margin-left: 2vw;
   }
 
 
