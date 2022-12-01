@@ -124,7 +124,7 @@ export const Project = ({ navigation, route }: IProject) => {
         <>
             <TabBar currentScreen="Project" navigateTo={navigateTo} />
             <View style={styles.btnBack}>
-                <BtnBackPage action={() => navigation.navigate("ListProject")} />
+                <BtnBackPage navigation={navigation} />
             </View>
             <ScrollView style={styles.page} >
 

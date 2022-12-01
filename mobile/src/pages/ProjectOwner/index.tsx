@@ -95,7 +95,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         <>
 
             <View style={styles.btnBack}>
-                <BtnBackPage action={() => navigation.navigate("ListProject")} />
+                <BtnBackPage navigation={navigation} />
             </View>
 
             <ScrollView style={styles.page}>
@@ -154,7 +154,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                     </View>
 
                     <View style={styles.button}>
-                        <LoginButton type="dark" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId })} isLoad={projectLoad} title="Executar Projeto" />
+                        <LoginButton type="dark" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId, projectName: projectOwner.name })} isLoad={projectLoad} title="Executar Projeto" />
                     </View>
 
                 </View>

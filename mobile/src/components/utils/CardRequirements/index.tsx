@@ -10,10 +10,6 @@ interface ICardRequirements {
 export const CardRequirements = ({ requirement, projectValue }: ICardRequirements) => {
     return (
         <View style={style.sectionProject}>
-            {/* <View style={style.textIcon}>
-                <Image style={style.icon} source={require('../../../../assets/icons/checkedImage.png')}/>
-                <Text style={style.textStatusRequeriments}>01 - Entregue</Text>
-            </View> */}
             <Text style={style.titleRequeriments}>{requirement.title}</Text>
             <Text style={style.TextRequirements}>{requirement.description}</Text>
             <View style={style.cardRequirements}>

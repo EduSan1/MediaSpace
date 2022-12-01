@@ -18,7 +18,7 @@ interface IWorkersSelectedPage {
 export default function WorkersSelectedPage({ navigation, route }: IWorkersSelectedPage) {
 
     const [selectedFreelancer, setSelectedFreelancer] = useState({ freelancerId: "" })
-    const { projectId } = route.params
+    const { projectId, projectName } = route.params
 
     const [interest, setInterest] = useState([{
         team: {
@@ -63,11 +63,11 @@ export default function WorkersSelectedPage({ navigation, route }: IWorkersSelec
     }, [])
     return (
         <>
-            <BtnBackPage action={() => navigation.navigate("Home")} />
+            <BtnBackPage navigation={navigation} />
             <ScrollView style={style.Scroll}>
                 <SafeAreaView>
                     <View style={style.titleSection}>
-                        <Text style={style.text}>{projectId} - Candidatos</Text>
+                        <Text style={style.text}>{projectName} - Candidatos</Text>
                         <View style={style.boxText}>
                             <Text style={style.TextRequirements}>Lista de todos os prestadores e equipes que declararam interesse no seu projeto, quando estiver pronto para dar início, execute o projeto e selecione um dos candidatos para trabalhar nele.</Text>
                             <Text style={style.TextRequirements}>Obs: recomendamos que abra um bate-papo com o prestador para que você possa conversar, esclarecer e tirar dúvidas sobre o projeto antes de executá-lo.</Text>

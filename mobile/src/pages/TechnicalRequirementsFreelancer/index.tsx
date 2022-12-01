@@ -72,7 +72,7 @@ export default function TechnicalRequirementsFrelancer({ navigation, route }: IT
 
     return (
         <>
-            <BtnBackPage action={() => navigation.navigate("Home")} />
+            <BtnBackPage navigation={navigation} />
             <ScrollView style={style.Scroll}>
                 <SafeAreaView>
                     <View style={style.titleSection}>
@@ -104,12 +104,9 @@ export default function TechnicalRequirementsFrelancer({ navigation, route }: IT
                                 <BtnConfirmRequirements color="#B275FF" label="Confirmar requisitos" action={() => navigation.goBack()} />
                             </View>
                     }
-
-
                     {
                         isModalVisible &&
                         <ModalRequirements percentage={percentage} projectId={projectId} onClose={() => onCloseModal()} />
-
                     }
                 </SafeAreaView>
             </ScrollView>
