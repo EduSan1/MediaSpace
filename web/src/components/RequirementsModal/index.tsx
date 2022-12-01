@@ -116,8 +116,6 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                 } else {
                     window.alert(res.data.message)
                     onClose()
-
-
                 }
             })
         }
