@@ -45,6 +45,20 @@
         margin-bottom: 2px;
 
     }
+
+    span {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        button {
+            position: absolute;
+            margin-top: 15px;
+            margin-left: 24%;
+            appearance: none;
+            border: none;
+        }
+    }
 }
 
 .profile-picture {
@@ -116,8 +130,8 @@
     align-items: flex-end;
     width: 100%;
 
-    .link_to_back_login{
-         font: 1em sans-serif;
+    .link_to_back_login {
+        font: 1em sans-serif;
     }
 
 }

@@ -80,8 +80,6 @@ const CreateProject = () => {
 
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(event.target.name)
-      console.log(project.user.id)
       setProject({
          ...project, [event.target.name]: event.target.value
       })
@@ -199,6 +197,11 @@ const CreateProject = () => {
          setCategories(res.data)
       })
    }, [])
+
+   useEffect(() => {
+      console.log(project);
+
+   }, [project])
 
    return (
       <>

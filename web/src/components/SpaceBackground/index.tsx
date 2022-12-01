@@ -26,7 +26,7 @@ const SpaceBackground = ({component} : ISpaceBackground) => {
     <>
       <div className="backSpace">
         <span className="MediaSpaceLogo">
-          <img src="../assets/img/MediaSpaceLogo.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FlogoColorPlay.png?alt=media&token=6a99a7e2-f527-4cb6-a6b2-532babc7b078" />
         </span>
         
 
@@ -37,7 +37,7 @@ const SpaceBackground = ({component} : ISpaceBackground) => {
 
 
         <span className="Space">
-          <img src="../assets/img/backSpace.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbackgroundPattern.png?alt=media&token=6a28434f-c869-4651-b519-26ccf58ab805" />
         </span>
       </div>
 

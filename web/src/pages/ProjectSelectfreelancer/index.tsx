@@ -4,6 +4,7 @@ import SearchBar from "../../components/HeaderPage/Search";
 import Interestedserver from "../../components/project";
 import NavegationBar from "../../components/utils/navegation";
 import api from "../../service";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import InputBtn from "../../components/utils/Button/InputBtn";
 import { useParams } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ const ProjectsSelecetFreelancer = () => {
     const user = localStorage.getItem('userDetailes');
     const { decodedToken, isExpired } = useJwt(user ? user : "");
     const { projectId } = useParams()
+    const navigate = useNavigate()
 
 
     const [selecetFreelancerView, setSelectFreelancerView] = useState({
@@ -22,11 +24,11 @@ const ProjectsSelecetFreelancer = () => {
 
     });
 
-
-
     const [selecetFreelancer, setSelectFreelancer] = useState({
-
+        freelancerId: ""
     });
+
+    console.log(selecetFreelancer)
 
 
     useEffect(() => {
@@ -38,14 +40,18 @@ const ProjectsSelecetFreelancer = () => {
     }, [])
 
 
+    const selectidFreelancer = () => {
 
-    const selectidFreelancer = (idFreelancer: any) => {
-
-        api.post(`/project/registerInterest/${projectId}`, idFreelancer)
-            .then(() => {
-                window.alert('freelancer selecionado com sucesso')
+        api.post(`/project/selectFreelancer/${projectId}`, selecetFreelancer)
+            .then((res) => {
+                if (res.data.statusCode !== 200) {
+                    window.alert("Não foi possível selecionar o freelancer")
+                    console.log(res.data)
+                } else {
+                    window.alert(res.data.message)
+                    navigate(-1)
+                }
             })
-
     }
 
 
@@ -71,17 +77,13 @@ const ProjectsSelecetFreelancer = () => {
                     <div className="select_candidates">
                         {
                             selecetFreelancerView.interest.map((intereest: any) => {
-
-
                                 return <Interestedserver action={() => {
-                                    setSelectFreelancer(intereest.id);
+                                    setSelectFreelancer({ ...selecetFreelancer, freelancerId: intereest.team.id });
                                 }} type={"radio"} name={intereest.team.name} nickname={intereest.team.nickname} photo={intereest.team.profile_picture} />
 
                             })
 
                         }
-
-
 
                     </div>
 
@@ -90,8 +92,8 @@ const ProjectsSelecetFreelancer = () => {
                     <div className="send_freelance_selecet">
                         <InputBtn className="btn_selecet_freelancer" name="" onClick={() => {
 
-                            selectidFreelancer(selecetFreelancer);
-                            console.log('mandar outra tela')
+                            selectidFreelancer();
+                            //console.log('mandar outra tela')
 
                         }} typeInput={'button'} valueBtn={'Selecionar'} enable={false} />
                     </div>

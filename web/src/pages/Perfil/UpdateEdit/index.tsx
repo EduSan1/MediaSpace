@@ -18,7 +18,6 @@ const UpdateEdit = () => {
    const [hasErrors, setHasErros] = React.useState(false);
    const [openEdit, setOpenEdit] = useState(true);
    const [password, setpassword] = useState();
-  
 
    const [userdetailes,setUserdetailes] = useState({
       nickname: "",
@@ -47,7 +46,7 @@ const profileDice = async ()  => {
           },[])
 
    const [user, setUser] = React.useState({
-      first_name:'',
+      first_name: '',
       last_name: '',
       nickname: '',
       phone: {
@@ -99,11 +98,11 @@ const profileDice = async ()  => {
 
    const validate = () => {
 
-      if(!user){
+      if (!user) {
          console.log('consumir api ')
-      }else{
-        
-        window.alert('pelo menos um campo deve ser preenchido com dados diferentes')
+      } else {
+
+         window.alert('pelo menos um campo deve ser preenchido com dados diferentes')
       }
 
    }
@@ -127,11 +126,11 @@ const profileDice = async ()  => {
 
 
                      <span className="Upadet_name_nickname">
-                        <InputLogin valueLogin={user.first_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"nome"} icon={''} name={"first_name"} label={"Nome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={50} disable={openEdit} />
+                        <InputLogin disable={false} valueLogin={user.first_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"nome"} icon={''} name={"first_name"} label={"Nome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={50} />
 
-                        <InputLogin valueLogin={user.last_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"sobrenome"} icon={''} name={"last_name"} label={"Sobrenome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={150} disable={openEdit} />
+                        <InputLogin disable={false} valueLogin={user.last_name} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleName(event) }} typeInput={""} placeholder={"sobrenome"} icon={''} name={"last_name"} label={"Sobrenome"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={150} />
 
-                        <InputLogin valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={""} placeholder={"nickname"} icon={''} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25} disable={openEdit} />
+                        <InputLogin disable={false} valueLogin={user.nickname} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={""} placeholder={"nickname"} icon={''} name={"nickname"} label={"Nickname"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={25} />
 
                      </span>
 
@@ -139,10 +138,10 @@ const profileDice = async ()  => {
 
 
                      <span className="Upadet_cell_email">
-                        <InputLogin valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"cell"} placeholder={"cell"} icon={''} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} disable={openEdit} />
+                        <InputLogin disable={false} valueLogin={user.phone.phone} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handlePhone(event) }} typeInput={"cell"} placeholder={"cell"} icon={''} name={"phone"} label={"Celular"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={14} />
 
 
-                        <InputLogin valueLogin={user.mail} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={''} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250} disable={true} />
+                        <InputLogin disable={false} valueLogin={user.mail} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={''} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250} />
                         <SiIfixit className="sgv_noEmail" />
 
 
@@ -150,11 +149,11 @@ const profileDice = async ()  => {
 
 
                      <span className="Upadet_Password_cpf">
-                        <InputLogin valueLogin={'Alterar'} hasError={hasErrors} handleChange={() => { }} typeInput={"button"} placeholder={"Alterar"} icon={''} name={"senha"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} disable={openEdit} />
+                        <InputLogin disable={false} valueLogin={'Alterar'} hasError={hasErrors} handleChange={() => { }} typeInput={"button"} placeholder={"Alterar"} icon={''} name={"senha"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
 
 
                         {/* <div className="not_input"> */}
-                        <InputLogin valueLogin={'Cpf'} hasError={hasErrors} handleChange={() => { }} typeInput={"string"} placeholder={"CPF"} icon={''} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} disable={true} />
+                        <InputLogin disable={false} valueLogin={'Cpf'} hasError={hasErrors} handleChange={() => { }} typeInput={"string"} placeholder={"CPF"} icon={''} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
                         <SiIfixit className="sgv_no" />
                         <InputLogin valueLogin={'2002-09-09'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event)}} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} disable={true} />
                         <SiIfixit className="sgv_no" />
@@ -180,7 +179,7 @@ const profileDice = async ()  => {
 
                         <span className='Upadet_btn_edit'>
                            <InputBtn className="btn_edit" name="Torne-se um freelancer" onClick={() => { }} typeInput={'button'} valueBtn="Torne-se um freelancer" enable />
-                           <InputBtn className="btn_edit" name="Editar" onClick={() => { validate()}} typeInput={'button'} valueBtn="Editar" enable />
+                           <InputBtn className="btn_edit" name="Editar" onClick={() => { validate() }} typeInput={'button'} valueBtn="Editar" enable />
                         </span>
 
 
