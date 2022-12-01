@@ -17,11 +17,11 @@ const InputSelect = ({ classnameOption, idSelect, setSelectedProjects }: IISelec
     return (
         <div className="allSelect">
             <select className={'P_serselecet'} id={idSelect} onChange={({ target }) => { selected(target.value) }}>
-                <option className={classnameOption ? classnameOption : "P_option"} value="valor1">Em aberto</option>
-                <option className={classnameOption ? classnameOption : "P_option"} value="valor2">Em Execução</option>
-                <option className={classnameOption ? classnameOption : "P_option"} value="valor3">Finalizados</option>
-                <option className={classnameOption ? classnameOption : "P_option"} value="valor4">Cancelado</option>``
-                <option className={classnameOption ? classnameOption : "P_option"} value="valor5">Concluido</option>``
+                <option className={classnameOption ? classnameOption : "P_option"} value="AWAITING_START">Em aberto</option>
+                <option className={classnameOption ? classnameOption : "P_option"} value="IN_EXECUTION">Em Execução</option>
+                <option className={classnameOption ? classnameOption : "P_option"} value="VALIDATING_REQUIREMENTS">Finalizados</option>
+                <option className={classnameOption ? classnameOption : "P_option"} value="CANCELED">Cancelado</option>
+                <option className={classnameOption ? classnameOption : "P_option"} value="COMPLETE">Concluido</option>
             </select>
         </div>
     )
