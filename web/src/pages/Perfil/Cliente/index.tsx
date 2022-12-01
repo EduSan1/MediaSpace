@@ -13,6 +13,7 @@ import NavegationBar from "../../../components/utils/navegation";
 import ProjectCard from "../../Projects/ProjectCard";
 import jwt from "jwt-decode"
 import { async } from "@firebase/util";
+import api from "../../../service";
 
 const Profile = () => {
 
@@ -35,12 +36,17 @@ const Profile = () => {
 
 
     useEffect(() => {
-
+        profileDice();
     },[user])
 
     useEffect(() => {
-        profileDice();
-            },[])
+        api.get("/category").then((res: any) => {
+           
+        })
+    }, [])
+
+
+
 
     return (
 
@@ -67,7 +73,6 @@ const Profile = () => {
 
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
-                                <ProjectCard categories={'ASAS'} description={"TESTE"} id={"NOTH"} image={[{ url: "TSTERT" }]} name={"NAME"} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} />
                                 <ProjectCard categories={'ASAS'} description={"TESTE"} id={"NOTH"} image={[{ url: "TSTERT" }]} name={"NAME"} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} />
                             </div>
 
