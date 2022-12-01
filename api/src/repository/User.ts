@@ -59,6 +59,10 @@ export class UserRepository {
         return await this._.findOne({
             where: {
                 id
+            },
+            relations: {
+                project_member: true,
+                teams: true
             }
         })
     }
