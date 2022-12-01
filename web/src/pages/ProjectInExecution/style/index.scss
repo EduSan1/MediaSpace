@@ -215,17 +215,18 @@
         .card-details {
             h3{
                 margin-bottom: 10%;
+                font-size: xx-large;
             }
             p:nth-child(1) {
                 color: #000;
-                font-size: clamp(6px, 4vw, 18px);
+                font-size: x-large;
                 font-weight: 400;
                 word-wrap: break-word;
                 word-break: break-word;
             }
             p:nth-child(2) {
                 color: #444;
-                font-size: clamp(4px, 4vw, 12px);
+                font-size: x-large;
                 word-wrap: break-word;
                 word-break: break-word;
             }

@@ -39,7 +39,7 @@ const ProjectInExecution = () => {
                                 {
                                     project.map((project: any) => {
                                         if (project.is_active === true){
-                                            return <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} management={project.management}/>  
+                                            return <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images}/>  
                                         }
                                         
                                     })
@@ -86,14 +86,14 @@ const ProjectInExecution = () => {
                                     <h3>Validação</h3>
                                     <p>Valide as entregas feitas pelo(s) prestador(es).</p>
                                     <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
-                                    {
+                                    {/*{
                                         project.map((project: any) => {
                                             if (project.is_active === true){
                                                 return <Deliveries requirement={project.requirements}/>  
                                             }
                                                 
                                         })
-                                    }
+                                    }*/}
                                 </div>
 
                             </div>

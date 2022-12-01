@@ -11,61 +11,9 @@ interface IProject {
         nickname: string
         profile_picture: string
     },
-    management: {
-        id: "",
-        payment_confirmed: false,
-        payment_date: "",
-        payment_type: "",
-        create_at: "",
-        update_at: "",
-        team_project_management: [
-            {
-                id: "",
-                is_active: false,
-                team: {
-                    id: "",
-                    name: "",
-                    nickname: "",
-                    description: "",
-                    profile_picture: "",
-                    general_evaluation: 0,
-                    status: false,
-                    is_active: false,
-                    is_freelancer: false,
-                    create_at: "",
-                    update_at: "",
-                    categories: [
-                        {
-                            id: "",
-                            name: "",
-                            icon: "",
-                            is_active: false,
-                        }
-                    ],
-                    sub_categories: [
-                        {
-                            id: "",
-                            name: "",
-                            is_active: false
-                        }
-                    ]
-                }
-            }],
-        members: []
-    }
-    // management: {
-    //     team_project_management: [
-    //         {
-    //             team: {
-    //                 name: "",
-    //                 nickname: "",
-    //                 profile_picture: "",
-    //             }
-    //         }]
-    // }
 }
 
-const ProjectInExecutionCard = ({ id, name, description, image, user, management }: IProject) => {
+const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProject) => {
 
     const navigate = useNavigate()
 
@@ -104,8 +52,8 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, management
                 </div>
                 <div className="project-card-freelancer-details">
                     <p>Em execução por:</p>
-                    <p>{management.team_project_management[0].id}</p>
-                    {/* <p>{management.team_project_management[0].team.name}</p>
+                    {/*<p>{management.team_project_management[0].id}</p>
+                    <p>{management.team_project_management[0].team.name}</p>
                     <p>@{management.team_project_management[0].team.nickname}</p> */}
                 </div>
             </div> 
