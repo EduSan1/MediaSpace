@@ -24,7 +24,7 @@ const ProjectCard = ({ id, name, description, value, image, categories, user }: 
     return (
         <div onClick={() => navigate(`/projects/${id}`)} className="project-card">
             <div className="project-card-image-container">
-                {/* <img src={image[0].url} alt="" /> */}
+                <img src={image[0].url} alt="" />
             </div>
 
             <div className="project-card-user">

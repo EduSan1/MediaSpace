@@ -8,7 +8,7 @@ import ProjectCardPerfil from "../../../components/perfil/Card/project";
 import InputSelect from "../../../components/perfil/InputSelect";
 import PerfilCard from "../../../components/perfil/PerfilCard/Client";
 import SideNav from "../../../components/perfil/SideNav";
-import {CardShip} from "../../../components/ProjectRequiremens/CardShip";
+import { CardShip } from "../../../components/ProjectRequiremens/CardShip";
 import NavegationBar from "../../../components/utils/navegation";
 import ProjectCard from "../../Projects/ProjectCard";
 import jwt from "jwt-decode"
@@ -17,12 +17,12 @@ import api from "../../../service";
 
 const ProfileClient = () => {
 
-    const [user,setUser] = useState({
+    const [user, setUser] = useState({
         nickname: "",
-        first_name:"",
-        profile_picture:"",
-        biography:"",
-        id:""
+        first_name: "",
+        profile_picture: "",
+        biography: "",
+        id: ""
     })
 
     const [statusProject, setStatusProject] = useState({
@@ -33,38 +33,29 @@ const ProfileClient = () => {
         CANCELED: []
     })
 
-
-
-  const profileDice = async ()  => {
-
+    const profileDice = async () => {
         const userJwt = await localStorage.getItem('userDetails');
         const user: any = jwt(userJwt ? userJwt : "");
         setUser(user.userDetails);
-
     }
 
-    const handleChange = () => {
-        
 
-    }
-    
     useEffect(() => {
 
-    },[user])
+    }, [user])
 
     useEffect(() => {
         profileDice();
-            },[])
+    }, [])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         api.get(`/project/user/${user.id}`).then((res: any) => {
-                setStatusProject({
-                    ...statusProject, AWAITING_START : res.data.data.AWAITING_START
-                          
-                })
+            setStatusProject({
+                ...statusProject, AWAITING_START: res.data.data
+            })
         })
-    },[]
+    }, []
     )
 
     console.log(statusProject)
@@ -79,28 +70,28 @@ const ProfileClient = () => {
                 <SearchBar />
                 <section className="section_main_perfil">
 
-                    {      
-                            <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography} />
+                    {
+                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography} />
                     }
-                  
+
 
                     <div className="Div_main_Perfil">
                         <SideNav className="Nav_bar_Client" icon={<ImStatsDots onClick={() => { console.log("Ptojecto") }} />} icon2={<HiOutlineClipboardDocumentList />} icon3 icon4 icon5 />
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
-                        <InputSelect optValue={''} classnameOption={''} idSelect={''} icon={<HiOutlineClipboardDocumentList />}  />
-                        
+                        <InputSelect optValue={''} classnameOption={''} idSelect={''} icon={<HiOutlineClipboardDocumentList />} />
+
 
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
-                                
+
                                 {
-                                    statusProject.AWAITING_START.map((project:any) =>{
+                                    statusProject.AWAITING_START.map((project: any) => {
                                         return <ProjectCard categories={project.categories} description={project.description} id={project.id} image={[{ url: "TSTERT" }]} name={project.name} user={{ first_name: "", nickname: "", profile_picture: "" }} value={project.value} />
                                     })
-                                    
+
                                 }
-                                
+
                                 {/* <ProjectCard categories={'ASAS'} description={"TESTE"} id={"NOTH"} image={[{ url: "TSTERT" }]} name={"NAME"} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} /> */}
                             </div>
 
