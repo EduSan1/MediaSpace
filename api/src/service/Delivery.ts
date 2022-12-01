@@ -142,10 +142,23 @@ export class DeliveryService {
                     await this.projectRepository.update(project);
                 } else {
                     project.status = "COMPLETE";
-                    project.is_active = false
+                    project.is_active = false;
+                    console.log("Entrega ultima aceita")
                     await this.projectRepository.update(project);
                 }
             });
+
+            if (project.requirements.filter(async (requirement: any) => (requirement.is_delivered === false || requirement.is_delivered === null)).length === 0) {
+
+                project.status = "COMPLETE";
+                project.is_active = false
+                await this.projectRepository.update(project);
+                return {
+                    message: "Entrega ultima aceita",
+                    data: uptadedDelivery,
+                    statusCode: 200
+                };
+            };
 
             return {
                 message: "Entrega aceita",
