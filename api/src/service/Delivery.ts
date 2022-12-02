@@ -117,8 +117,7 @@ export class DeliveryService {
         try {
 
             const delivery = await this._.findById(id);
-            const requirements = await this.projectRequirementsRepository.findById(delivery.requirements.id)
-            const project = await this.projectRepository.getById(requirements.project.id);
+            const requirements = await this.projectRequirementsRepository.findById(delivery.requirements[0].id)
 
             if (delivery.is_active === false) {
                 return {
@@ -129,6 +128,8 @@ export class DeliveryService {
 
             delivery.is_accepted = true;
             const uptadedDelivery = await this._.update(delivery);
+
+            const project = await this.projectRepository.getById(requirements.project.id);
 
             delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = true
@@ -147,18 +148,6 @@ export class DeliveryService {
                     await this.projectRepository.update(project);
                 }
             });
-
-            if (project.requirements.filter(async (requirement: any) => (requirement.is_delivered === false || requirement.is_delivered === null)).length === 0) {
-
-                project.status = "COMPLETE";
-                project.is_active = false
-                await this.projectRepository.update(project);
-                return {
-                    message: "Entrega ultima aceita",
-                    data: uptadedDelivery,
-                    statusCode: 200
-                };
-            };
 
             return {
                 message: "Entrega aceita",

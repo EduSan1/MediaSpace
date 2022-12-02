@@ -25,7 +25,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         start_project_date: "",
         create_at: "",
         images: [{
-            url: ""
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
         }],
         categories: [],
         navigation: [],
@@ -39,7 +39,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                     name: "",
                     nickname: "",
                     description: "",
-                    profile_picture: "",
+                    profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
                     general_evaluation: 0,
                     status: false,
                     is_active: false,
@@ -96,7 +96,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         name: "",
                         nickname: "",
                         description: "",
-                        profile_picture: "",
+                        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
                         general_evaluation: 0,
                         status: false,
                         is_active: false,
@@ -131,7 +131,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
             cpf: "",
             mail: "",
             biography: "",
-            profile_picture: "",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
             is_active: false,
             is_authenticated: false,
             create_at: "",
@@ -161,7 +161,8 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
     }
 
     useEffect(() => {
-        getProject()
+        projectId &&
+            getProject()
     }, [])
 
 

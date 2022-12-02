@@ -11,9 +11,10 @@ import { ProjectsToWorkPage } from "./Pages/ProjectsToWork";
 
 interface IProfile {
     navigation: any
+    route: any
 }
 
-const Profile = ({ navigation }: IProfile) => {
+const Profile = ({ navigation, route }: IProfile) => {
 
     const [currentPage, setCurrentPage] = useState<"myProjects" | "projectsToWork">("myProjects")
     const [userCategories, setUserCategories] = useState<ICategory[]>([])
@@ -22,7 +23,7 @@ const Profile = ({ navigation }: IProfile) => {
         first_name: "",
         last_name: "",
         nickname: "",
-        profile_picture: "",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
         biography: "",
         birth_date: "",
         cpf: "",

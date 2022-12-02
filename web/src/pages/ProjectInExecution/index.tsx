@@ -62,10 +62,10 @@ const ProjectInExecution = () => {
         user: {
             first_name: "",
             nickname: "",
-            profile_picture: ""
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8"
         },
         images: [{
-            url: ""
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
         }],
         create_at: "",
         estimated_deadline: "",
