@@ -10,13 +10,11 @@
     flex-direction: column;
     align-items: center;
 
-
-
     .photo_and_name_user {
         display: flex;
         width: 100%;
         height: 46%;
-        background-image: url('../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png');
+        // background-image: url('../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png');
         background-repeat: no-repeat;
         background-size: 100%;
         background-position: bottom;
@@ -27,7 +25,6 @@
         flex-direction: column;
         gap: 15px;
         margin-bottom: 2%;
-
 
         .img_photo_user {
             width: 35%;
@@ -41,8 +38,6 @@
             }
         }
 
-
-
         .InfoName_user {
             display: flex;
             width: 100%;
@@ -51,13 +46,11 @@
             flex-direction: column;
             gap: 3px;
 
-
             h2 {
                 font: 2.2em sans-serif;
                 font-weight: 550;
                 text-align: justify;
                 font-size: clamp(2em, 1.5vw, 1em);
-
             }
 
             h4 {
@@ -79,9 +72,6 @@
         padding-bottom: 30px;
         margin-bottom: 1%;
 
-
-
-
         span {
             display: flex;
             height: 100%;
@@ -95,21 +85,15 @@
                 font-weight: 550;
                 color: rgb(0, 0, 0);
                 opacity: 35%;
-
             }
 
             h3 {
-
                 font: 1.2em $light-font;
                 font-weight: 550;
                 color: rgb(0, 0, 0);
                 opacity: 35%;
-
-
             }
         }
-
-
     }
 
     .line {
@@ -118,7 +102,6 @@
         height: 1px;
         background-color: #000;
         opacity: 40%;
-
     }
 
     .description_user {
@@ -139,8 +122,6 @@
             font-family: $light-font;
             letter-spacing: 1px;
         }
-
-
     }
 
     .category_freelancer {
@@ -150,23 +131,21 @@
         align-items: center;
         margin-bottom: 10px;
 
-
-         input[type=button]{
+        input[type="button"] {
             width: 50%;
             border: 0;
             background-color: aqua;
-         }
+        }
     }
 }
 
-@media (min-width:1926px) {
+@media (min-width: 1926px) {
     .perfil_card {
-
         .photo_and_name_user {
             display: flex;
             width: 100%;
             height: 45%;
-            background-image: url('../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png');
+            // background-image: url("../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png");
             background-repeat: no-repeat;
             background-size: 100%;
             background-position: bottom;
@@ -181,5 +160,4 @@
             font: 1em sans-serif;
         }
     }
-
 }
