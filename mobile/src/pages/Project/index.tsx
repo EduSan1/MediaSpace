@@ -9,6 +9,7 @@ import { LoginButton } from "../../components/utils/LoginButton";
 import { ScrollImage } from "../../components/utils/ScrollImage";
 import TabBar from "../../components/utils/TabBar";
 import BtnBackPage from "../../components/utils/BtnBackPage"
+import { CategoryButton } from "../../components/utils/CategoryButton";
 
 
 interface IProject {
@@ -170,7 +171,7 @@ export const Project = ({ navigation, route }: IProject) => {
                             <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                             {
                                 project.categories.map((category: any) => {
-                                    return <Text style={styles.categorySelected}>{category.name}</Text>
+                                    return <CategoryButton action={() => { }} category={category.name} icon={category.icon} id={category.id} setSubCategories={() => { }} />
 
                                 })
                             }

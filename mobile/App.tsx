@@ -30,7 +30,6 @@ import ManagementProject from './src/pages/ManagementProject';
 export default function App() {
 
   const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, animation: 'none' }}>

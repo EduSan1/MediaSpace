@@ -115,7 +115,7 @@ const Profile = ({ navigation, route }: IProfile) => {
 const styles = StyleSheet.create({
     main: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.9
+        height: Dimensions.get('window').height * 1
     },
     Scroll: {
         width: Dimensions.get('window').width,

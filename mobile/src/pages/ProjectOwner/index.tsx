@@ -4,6 +4,8 @@ import { ScrollImage } from "../../components/utils/ScrollImage";
 import { LoginButton } from "../../components/utils/LoginButton";
 import api from "../../../service";
 import BtnBackPage from "../../components/utils/BtnBackPage"
+import { CategoryButton } from "../../components/utils/CategoryButton";
+
 
 
 interface IProject {
@@ -144,7 +146,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                             <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                             {
                                 projectOwner.categories.map((category: any) => {
-                                    return <Text style={styles.categorySelected}>{category.name}</Text>
+                                    return <CategoryButton action={() => { }} category={category.name} icon={category.icon} id={category.id} setSubCategories={() => { }} />
 
                                 })
                             }
