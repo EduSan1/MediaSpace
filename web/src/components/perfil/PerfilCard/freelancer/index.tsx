@@ -23,7 +23,7 @@ const PerfilCardFreelancer = ({first_name,nickname,profile_picture,biography,cat
         <div className="perfil_card">
             <div className="photo_and_name_user">
                 <div className="img_photo_user">
-                    <img src="../assets/img/astronaut.svg" alt="" />
+                    <img src={profile_picture} alt="" />
                 </div>
 
                 <span className="InfoName_user">

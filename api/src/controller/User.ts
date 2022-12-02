@@ -68,6 +68,12 @@ export class UserController {
             .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o usuário"))
     }
 
+    resendAuthenticationMail = (request: Request, response: Response) => {
+        this.service.resendAuthenticationMail(request.params.userMail).then((res) => {
+            response.status(res.statusCode || 200).json(res)
+        })
+            .catch(err => response.status(400).send(err.message || "Ocorreu um erro ao apagar o usuário"))
+    }
     disable = (request: Request, response: Response) => {
         this.service.disable(request.params.userId).then((res) => {
             response.status(res.statusCode || 200).json(res)

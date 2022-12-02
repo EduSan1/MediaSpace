@@ -117,10 +117,11 @@
             opacity: 35%;
             font-size: clamp(0.8rem, 2vw, 0.5rem);
             text-align: start;
-            white-space: wrap;
             font-weight: 550;
             font-family: $light-font;
             letter-spacing: 1px;
+            word-wrap: break-word;
+            word-break: break-all;
         }
     }
 

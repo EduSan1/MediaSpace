@@ -12,6 +12,7 @@ interface IProject {
     value: number
     image: string
     categories: any
+    status: string
     user: {
         id: string
         first_name: string
@@ -21,22 +22,37 @@ interface IProject {
     navigation: any
 }
 
-export const ProfileCardProject = ({ id, name, description, value, image, categories, user, navigation }: IProject) => {
+export const ProfileCardProject = ({ id, name, status, description, value, image, categories, user, navigation }: IProject) => {
 
     const userProject = async () => {
 
         const userId = await SecureStore.getItemAsync('userId')
 
         api.get(`/project/${id}`).then((res: any) => {
-            if (user.id === userId) {
-                navigation.navigate("ProjectOwner", {
+
+            if (status === "IN_EXECUTION") {
+                // 
+                navigation.navigate("ManagementProject", {
                     projectId: res.data.data.id
                 })
+            } else if (status === "VALIDATING_REQUIREMENTS") {
+                navigation.navigate("TechnicalRequirementsFrelancer", {
+                    projectId: res.data.data.id,
+                    isOwner: user.id === userId
+                })
+
             } else {
-                navigation.navigate("Project", {
-                    projectId: res.data.data.id
-                })
+                if (user.id === userId) {
+                    navigation.navigate("ProjectOwner", {
+                        projectId: res.data.data.id
+                    })
+                } else {
+                    navigation.navigate("Project", {
+                        projectId: res.data.data.id
+                    })
+                }
             }
+
         })
     }
     return (
