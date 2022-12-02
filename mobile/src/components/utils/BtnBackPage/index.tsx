@@ -2,15 +2,14 @@ import React from "react"
 import { Image, Text, StyleSheet, Dimensions, Pressable, ActivityIndicator, View } from "react-native"
 
 interface IBtnBackPage {
-
-    action: () => void
+    navigation: any
 }
 
-export default function BtnBackPage({ action }: IBtnBackPage) {
+export default function BtnBackPage({ navigation }: IBtnBackPage) {
     return (
         <View style={styles.headerNav}>
 
-            <Pressable style={styles.btnStyle} onPress={() => action()}>
+            <Pressable style={styles.btnStyle} onPress={() => navigation.goBack()}>
                 <Image style={styles.icon} source={require('../../../../assets/icons/previous.png')} />
             </Pressable>
         </View>

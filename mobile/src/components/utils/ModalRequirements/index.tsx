@@ -15,6 +15,7 @@ interface IModalRequirements {
 export default function ModalRequirements({ requirementId, onClose, projectId, percentage }: IModalRequirements) {
     const [isModalVisible, setModalVisible] = useState(false);
     const [hasError, setHasError] = useState(false)
+    const [initialPercentage, setInitialPercentage] = useState(0)
     const [requirementLoad, setRequirementLoad] = useState(false)
     // const {requirementModalId}= route.params
 
@@ -58,6 +59,10 @@ export default function ModalRequirements({ requirementId, onClose, projectId, p
 
         setRequirementLoad(true)
 
+        if (requirementId)
+            //AWAAAAAW
+            requirement.gain_percentage = requirement.gain_percentage - initialPercentage
+
         if (percentage + requirement.gain_percentage > 100) {
             ToastAndroid.show(`A porcentagem do requisito ultrapassa a porcentagem máxima do projeto! \n Porcentagem máximo: ${100 - percentage}`, 10)
             return
@@ -79,6 +84,13 @@ export default function ModalRequirements({ requirementId, onClose, projectId, p
     useEffect(() => {
         console.log(requirement)
     }, [requirement])
+
+    useEffect(() => {
+        requirementId &&
+            api.get(`/requirement/${requirementId}`).then((res: any) => {
+                setInitialPercentage(res.data.data.gain_percentage)
+            })
+    }, [])
 
     return (
         <Modal

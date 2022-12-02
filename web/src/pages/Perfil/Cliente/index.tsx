@@ -29,7 +29,7 @@ const ProfileClient = () => {
     const [user, setUser] = useState({
         nickname: "",
         first_name: "",
-        profile_picture: "",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
         biography: "",
         id: ""
     })

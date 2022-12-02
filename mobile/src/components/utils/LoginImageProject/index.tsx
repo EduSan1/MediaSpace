@@ -87,7 +87,8 @@ export const LoginImageProject = ({ userImage, setUserImage, isActive }: ILoadIm
 const styles = StyleSheet.create({
     container: {
         width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.5,
+        minHeight: Dimensions.get('window').height * 0.35,
+        height: "auto",
         borderWidth: 1,
         borderRadius: 10,
         display: "flex",
@@ -96,6 +97,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         color: '#B275FF',
         borderColor: '#D3C5F8',
+        paddingBottom: 10,
+        paddingTop: 10
     },
     inputTitle: {
         backgroundColor: "#fff",
@@ -107,17 +110,19 @@ const styles = StyleSheet.create({
         left: 10
     },
     containerImage: {
-        width: Dimensions.get('window').width * 0.8,
+        width: "98%",
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'row',
+        justifyContent: "space-between",
     },
     image: {
-        width: Dimensions.get("window").width * 0.4,
+        width: "49%",
         height: Dimensions.get("window").width * 0.3,
         resizeMode: 'contain',
         display: 'flex',
         alignItems: 'center',
+        justifyContent: "space-between",
         marginBottom: 10,
         borderColor: '#000',
 

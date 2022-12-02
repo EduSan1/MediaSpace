@@ -4,6 +4,8 @@ import { ScrollImage } from "../../components/utils/ScrollImage";
 import { LoginButton } from "../../components/utils/LoginButton";
 import api from "../../../service";
 import BtnBackPage from "../../components/utils/BtnBackPage"
+import { CategoryButton } from "../../components/utils/CategoryButton";
+
 
 
 interface IProject {
@@ -27,7 +29,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
     const [hasError, setHasError] = useState(false)
     const { projectId } = route.params
 
-    const [projectOwner, setProjectOwner] = (useState)({
+    const [projectOwner, setProjectOwner] = useState({
         id: "",
         name: "",
         description: "",
@@ -55,7 +57,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
             mai: "",
             password: "",
             biography: "",
-            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FWhatsApp%20Image%202022-10-17%20at%2017.49.13.jpeg?alt=media&token=7cde0a87-0125-45b1-b4e9-e86979334194",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
             is_active: true,
             is_authenticated: true,
             create_at: "",
@@ -95,7 +97,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         <>
 
             <View style={styles.btnBack}>
-                <BtnBackPage action={() => navigation.navigate("ListProject")} />
+                <BtnBackPage navigation={navigation} />
             </View>
 
             <ScrollView style={styles.page}>
@@ -144,7 +146,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                             <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                             {
                                 projectOwner.categories.map((category: any) => {
-                                    return <Text style={styles.categorySelected}>{category.name}</Text>
+                                    return <CategoryButton action={() => { }} category={category.name} icon={category.icon} id={category.id} setSubCategories={() => { }} />
 
                                 })
                             }
@@ -154,7 +156,12 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                     </View>
 
                     <View style={styles.button}>
-                        <LoginButton type="dark" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId })} isLoad={projectLoad} title="Executar Projeto" />
+                        <LoginButton type="dark" action={() => navigation.navigate("WorkersAppliedPage", { projectId: projectId })} isLoad={projectLoad} title="Visualizar Interessados" />
+                    </View>
+
+
+                    <View style={styles.button}>
+                        <LoginButton type="light" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId, projectName: projectOwner.name })} isLoad={projectLoad} title="Executar Projeto" />
                     </View>
 
                 </View>
@@ -249,14 +256,13 @@ const styles = StyleSheet.create({
     },
     categ: {
         display: "flex",
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     divisor: {
         width: Dimensions.get('window').width * 0.9,
         height: Dimensions.get("window").width * 0.005,
         borderRadius: 100,
-        marginTop: 10
     },
     containerDate: {
         flexDirection: "row"
@@ -280,6 +286,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.035,
         width: "auto",
         backgroundColor: "#C6D2FF",
+        textAlignVertical: "center",
         borderRadius: 100,
         display: "flex",
         alignItems: "flex-start",
