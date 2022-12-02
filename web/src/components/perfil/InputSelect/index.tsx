@@ -7,19 +7,21 @@ import React, { ReactNode, useState } from "react";
 interface IISelect {
     classnameOption: any,
     idSelect: string,
-    setSelectedProjects: React.Dispatch<React.SetStateAction<[]>>
+    setSelectedProjects: React.Dispatch<React.SetStateAction<[]>>,
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+
 }
 
 
-const InputSelect = ({ classnameOption, idSelect, setSelectedProjects }: IISelect) => {
-    const [select, selected] = useState("")
+const InputSelect = ({ classnameOption, idSelect, setSelectedProjects, onChange }: IISelect) => {
 
+ 
     return (
         <div className="allSelect">
-            <select className={'P_serselecet'} id={idSelect} onChange={({ target }) => { selected(target.value) }}>
-                <option className={classnameOption ? classnameOption : "P_option"} value="AWAITING_START">Em aberto</option>
-                <option className={classnameOption ? classnameOption : "P_option"} value="IN_EXECUTION">Em Execução</option>
-                <option className={classnameOption ? classnameOption : "P_option"} value="VALIDATING_REQUIREMENTS">Finalizados</option>
+            <select className={'P_serselecet'} id={idSelect} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChange(event)}>
+                <option className={classnameOption ? classnameOption : "P_option"} value="AWAITING_START"  selected>Em aberto</option>
+                <option className={classnameOption ? classnameOption : "P_option"} value="IN_EXECUTION" >Em Execução</option>
+                <option className={classnameOption ? classnameOption : "P_option"} value="VALIDATING_REQUIREMENTS">Validando requesitos</option>
                 <option className={classnameOption ? classnameOption : "P_option"} value="CANCELED">Cancelado</option>
                 <option className={classnameOption ? classnameOption : "P_option"} value="COMPLETE">Concluido</option>
             </select>

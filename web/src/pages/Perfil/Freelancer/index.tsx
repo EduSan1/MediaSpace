@@ -64,7 +64,7 @@ const ProfileFreelancer = () => {
                         <SideNav className="" icon={<ImStatsDots onClick={() => { console.log("Ptojecto") }} />} icon2={<HiOutlineClipboardDocumentList />} icon3={<HiOutlineClipboardDocumentList />} icon4={<HiOutlineClipboardDocumentList />} icon5={<HiOutlineClipboardDocumentList />} /> 
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
-                        <InputSelect  classnameOption={''} idSelect={''} setSelectedProjects={()=>{}}/>
+                        <InputSelect onChange={()=>{}} classnameOption={''} idSelect={''} setSelectedProjects={()=>{}}/>
 
                         <div className="Main_Card_freelancer">
 

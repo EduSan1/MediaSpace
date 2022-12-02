@@ -13,27 +13,45 @@ import ProjectCard from "../../Projects/ProjectCard";
 import jwt from "jwt-decode"
 import { async } from "@firebase/util";
 import api from "../../../service";
+import { Value } from "sass";
 
 const ProfileClient = () => {
+
+
+    const profileDice = async () => {
+        const userJwt = await localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "");
+        await setUser(user.userDetails);
+        
+    }
+
 
     const [user, setUser] = useState({
         nickname: "",
         first_name: "",
         profile_picture: "",
         biography: "",
-        id: ""
-    })
-
-   
-    const profileDice = async () => {
-        const userJwt = await localStorage.getItem('userDetails');
-        const user: any = jwt(userJwt ? userJwt : "");
-        setUser(user.userDetails);
-        
-    }
-
+        id: "" })
 
     
+   
+  
+
+    
+
+
+    const [select, setSelected] = useState('')
+    console.log(select)
+
+    // const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+         
+    //    const value = event.target.value;
+
+    //    setSelected(value)
+
+    // }
+    
+  
 
    
     const [statusProject, setStatusProject] = useState({
@@ -49,7 +67,7 @@ const ProfileClient = () => {
     useEffect(() => {
         profileDice()
         api.get(`/project/user/${user.id}`).then((res: any) => {
-           setStatusProject(res.data)
+           setStatusProject(res.data.data)
            console.log(res.data)
         })
     }, [])
@@ -75,7 +93,7 @@ const ProfileClient = () => {
                         <SideNav className="Nav_bar_Client" icon={<ImStatsDots onClick={() => { console.log("Ptojecto") }} />} icon2={<HiOutlineClipboardDocumentList />} icon3 icon4 icon5 />
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
-                        <InputSelect setSelectedProjects={()=>{}} classnameOption={''} idSelect={''} />
+                        <InputSelect onChange={({target})=>{setSelected(target.value)}} setSelectedProjects={()=>{}} classnameOption={''} idSelect={''} />
 
 
                         <div className="Main_Card">
