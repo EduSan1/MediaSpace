@@ -51,6 +51,7 @@ export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, n
         const confirm = window.confirm("Deseja realmente excluir este requisito?")
         if (confirm) {
             api.delete(`/requirement/${requirementId}`).then((res: any) => {
+                getRequirements()
             })
         } else {
 
@@ -74,7 +75,7 @@ export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, n
                             <IconBar Icon={<FiEdit />} className={"iconCheck"} text="" />
                         </span>
 
-                        {isModalVisible ? <ModalRequirements requirementId={requirementId} onClose={() => { setIsModalVisible(false) }} /> : null}
+                        {isModalVisible ? <ModalRequirements requirementId={requirementId} onClose={() => { getRequirements(); setIsModalVisible(false) }} /> : null}
 
                     </div>
                     <div className={idUserCreater ? "verification_creater" : "verification"}>
