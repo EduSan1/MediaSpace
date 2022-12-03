@@ -58,8 +58,8 @@ function App() {
         <Route path='/projects/:projectId' element={<PreviewProject />} />
         <Route path='/Eventes' element={<Eventes />} />
         <Route path='/Menssagens' element={<Menssagens />} />
-        <Route path='/Perfil' element={<PerfilCliente />} />
-        <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} />
+        {/* <Route path='/Perfil' element={<PerfilCliente />} />
+        <Route path='/Perfil/Freelancer' element={<PerfilFreelancer />} /> */}
         <Route path='/Perfil/Edit' element={<UpdateEdit />} />
         {/* <Route path='/projects/requirements/visualizationFreelancers' element={<ProjectsvisualizationFreelancersAll id='' />} /> */}
         <Route path='/projects/requirements/:projectId' element={<ProjectRequirements />} />
@@ -74,7 +74,7 @@ function App() {
         <Route path='/teste/:projectId' element={<PreviewProjectCreator />} />
 
 
-        <Route path='/testeprofile' element={<Profile />} />
+        <Route path='/Perfil' element={<Profile />} />
 
       </Routes>
 
