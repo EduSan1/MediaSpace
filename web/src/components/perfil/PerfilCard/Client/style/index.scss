@@ -122,7 +122,6 @@
             letter-spacing: 1px;
             word-wrap: break-word;
             word-break: break-all;
-            
         }
     }
 
@@ -133,16 +132,15 @@
         align-items: center;
         margin-bottom: 10px;
 
-
-         input[type=button]{
+        input[type="button"] {
             width: 50%;
             border: 0;
             background-color: aqua;
-         }
+        }
     }
 }
 
-@media (min-width:1926px) {
+@media (min-width: 1926px) {
     .perfil_card {
         .photo_and_name_user {
             display: flex;
@@ -163,5 +161,4 @@
             font: 1em sans-serif;
         }
     }
-
 }

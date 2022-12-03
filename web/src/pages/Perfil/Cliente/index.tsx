@@ -22,7 +22,7 @@ const ProfileClient = () => {
         const userJwt = await localStorage.getItem('userDetails');
         const user: any = jwt(userJwt ? userJwt : "");
         await setUser(user.userDetails);
-        
+
     }
 
 
@@ -31,29 +31,19 @@ const ProfileClient = () => {
         first_name: "",
         profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
         biography: "",
-        id: "" })
+        id: ""
+    })
 
-    
-   
-  
 
-    
+
+
+
+
 
 
     const [select, setSelected] = useState('')
     console.log(select)
 
-    // const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-         
-    //    const value = event.target.value;
-
-    //    setSelected(value)
-
-    // }
-    
-  
-
-   
     const [statusProject, setStatusProject] = useState({
         AWAITING_START: [],
         VALIDATING_REQUIREMENTS: [],
@@ -62,14 +52,26 @@ const ProfileClient = () => {
         CANCELED: []
     })
 
+    const [selectedProject, setSelectedProjects] = useState([])
 
+    const changeProjects = (status: keyof typeof statusProject) => {
+
+        setSelectedProjects(statusProject[status])
+
+    }
+
+    useEffect(() => {
+        api.get(`/project/user/${user.id}`).then((res: any) => {
+            console.log(res.data.data)
+            setStatusProject(res.data.data)
+
+            setSelectedProjects(res.data.data.AWAITING_START)
+            console.log(res.data)
+        })
+    }, [user])
 
     useEffect(() => {
         profileDice()
-        api.get(`/project/user/${user.id}`).then((res: any) => {
-           setStatusProject(res.data.data)
-           console.log(res.data)
-        })
     }, [])
 
 
@@ -93,12 +95,16 @@ const ProfileClient = () => {
                         <SideNav className="Nav_bar_Client" icon={<ImStatsDots onClick={() => { console.log("Ptojecto") }} />} icon2={<HiOutlineClipboardDocumentList />} icon3 icon4 icon5 />
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
-                        <InputSelect onChange={({target})=>{setSelected(target.value)}} setSelectedProjects={()=>{}} classnameOption={''} idSelect={''} />
+                        <InputSelect onChange={(event: any) => { changeProjects(event?.target.value) }} setSelectedProjects={() => { }} classnameOption={''} idSelect={''} />
 
 
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
-                                <ProjectCard categories={'ASAS'} description={"TESTE"} id={"NOTH"} image={[{ url: "TSTERT" }]} name={"NAME"} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} />
+                                {
+                                    selectedProject?.map((project: any) => {
+                                        return <ProjectCard categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.title} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} />
+                                    })
+                                }
                             </div>
 
                         </div>
