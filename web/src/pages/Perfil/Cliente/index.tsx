@@ -17,14 +17,12 @@ import { Value } from "sass";
 
 const ProfileClient = () => {
 
-
     const profileDice = async () => {
         const userJwt = await localStorage.getItem('userDetails');
         const user: any = jwt(userJwt ? userJwt : "");
         await setUser(user.userDetails);
 
     }
-
 
     const [user, setUser] = useState({
         nickname: "",
@@ -33,16 +31,6 @@ const ProfileClient = () => {
         biography: "",
         id: ""
     })
-
-
-
-
-
-
-
-
-    const [select, setSelected] = useState('')
-    console.log(select)
 
     const [statusProject, setStatusProject] = useState({
         AWAITING_START: [],
@@ -56,16 +44,19 @@ const ProfileClient = () => {
 
     const changeProjects = (status: keyof typeof statusProject) => {
 
+        setSelectedProjects([])
         setSelectedProjects(statusProject[status])
+
 
     }
 
     useEffect(() => {
         api.get(`/project/user/${user.id}`).then((res: any) => {
-            console.log(res.data.data)
-            setStatusProject(res.data.data)
+            if (res.data.data) {
+                setStatusProject(res.data.data)
 
-            setSelectedProjects(res.data.data.AWAITING_START)
+                setSelectedProjects(res.data.data.AWAITING_START)
+            }
             console.log(res.data)
         })
     }, [user])
@@ -101,6 +92,7 @@ const ProfileClient = () => {
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
                                 {
+
                                     selectedProject?.map((project: any) => {
                                         return <ProjectCard categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.title} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} />
                                     })

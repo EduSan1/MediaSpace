@@ -139,7 +139,7 @@ const CreateProject = () => {
    const [errors, setErrors] = React.useState({})
 
    const handleErrors = (errorMessage: string, input: string) => {
-      setErrors((prevState) => ({ ...prevState, [input]: errorMessage }))
+      setErrors((prevState: any) => ({ ...prevState, [input]: errorMessage }))
    }
 
    const validate = () => {

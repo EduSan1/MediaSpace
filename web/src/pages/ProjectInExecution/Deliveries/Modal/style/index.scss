@@ -1,0 +1,59 @@
+.delivery-modal-background {
+    background-color: #0006;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delivery-modal-container {
+    background-color: #fff;
+    width: 70%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.delivery-modal-header {
+    height: 10%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+
+    h2 {
+        width: 95%;
+        color: #75a5ff;
+        font-weight: 800;
+        font-size: 1.5rem;
+    }
+    p {
+        width: 5%;
+        color: #f66;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+
+.delivery-modal-form {
+    height: 90%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.delivery-modal-form-section {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10%;
+    flex-direction: column;
+}

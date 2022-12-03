@@ -25,9 +25,9 @@ const PreviewProjectCreator = () => {
       "finish_project_date": null,
       "start_project_date": null,
       "is_active": true,
-      "status": "AWAITING_START",
-      "create_at": "2022-11-06T19:53:48.395Z",
-      "update_at": "2022-11-06T19:53:48.395Z",
+      "status": "",
+      "create_at": "",
+      "update_at": "",
       "interest": [
          {
             "id": "",
@@ -36,19 +36,19 @@ const PreviewProjectCreator = () => {
             "team": {
                "id": "",
                "name": "",
-               "nickname": "123131",
+               "nickname": "",
                "description": null,
-               "profile_picture": "teste",
+               "profile_picture": "",
                "general_evaluation": 0,
                "status": true,
                "is_active": true,
                "is_freelancer": true,
-               "create_at": "2022-11-16T22:59:40.702Z",
-               "update_at": "2022-11-16T22:59:40.702Z"
+               "create_at": "",
+               "update_at": ""
             },
             "members": [
                {
-                  "id": "b014933b-04fe-47a9-ac0e-086b06ff9bf5",
+                  "id": "",
                   "is_active": null,
                   "accept": true,
                   "is_selected": false
@@ -58,40 +58,39 @@ const PreviewProjectCreator = () => {
       ],
       "sub_categories": [
          {
-            "id": "e0b772b1-c6a5-4e8e-bd4f-7836d9271c44",
-            "name": "outrotesteobrigatorio",
+            "id": "",
+            "name": "",
             "is_active": true,
-            "create_at": "2022-11-06T19:49:08.421Z",
-            "update_at": "2022-11-06T19:49:08.421Z"
+            "create_at": "",
+            "update_at": ""
          }
       ],
       "requirements": [],
       "management": null,
       "user": {
-         "id": "78af51cf-da66-4b4d-809a-3e9f4b024a3f",
-         "first_name": "Laise",
-         "last_name": "Silva",
-         "nickname": "1231312",
-         "birth_date": "2022-10-10T03:00:00.000Z",
-         "cpf": "11122233345",
-         "mail": "132laise@gmail.com",
-         "password": "$2b$10$MG1iPGNdickwr.2FS/n9cuyR403NRyxNiHr92QdXaOtj.zUiicV5G",
+         "id": "",
+         "first_name": "",
+         "last_name": "",
+         "nickname": "",
+         "birth_date": "",
+         "cpf": "",
+         "mail": "",
          "biography": "",
-         "profile_picture": "teste",
+         "profile_picture": "",
          "is_active": true,
          "is_authenticated": true,
-         "create_at": "2022-11-06T19:50:17.804Z",
-         "update_at": "2022-11-07T00:38:05.000Z",
+         "create_at": "",
+         "update_at": "",
          "gender": {
-            "id": "572f76e9-2940-4de1-8154-090ff7ec8ab4",
-            "gender": "Teste",
-            "create_at": "2022-11-06T19:47:46.123Z",
-            "update_at": "2022-11-06T19:47:46.123Z"
+            "id": "",
+            "gender": "",
+            "create_at": "",
+            "update_at": ""
          },
          "phone": {
-            "id": "721a6f4f-5e15-4e97-9592-437c7a2c30d8",
-            "ddd": "11",
-            "phone": "912345678",
+            "id": "",
+            "ddd": "",
+            "phone": "",
             "ddi": null
          },
          "teams": [],
@@ -99,18 +98,18 @@ const PreviewProjectCreator = () => {
       },
       "categories": [
          {
-            "id": "a10fd9ab-7dd7-4b24-977b-291fba62de6f",
-            "name": "obrigatóerio",
-            "icon": "aaaaaa",
+            "id": "",
+            "name": "",
+            "icon": "",
             "is_active": true,
-            "create_at": "2022-11-06T19:48:24.139Z",
-            "update_at": "2022-11-06T19:48:24.139Z"
+            "create_at": "",
+            "update_at": ""
          }
       ],
       "images": [
          {
-            "id": "f86c28c2-a555-4199-bf50-ab2616bf2f5a",
-            "url": "https://cdn.dribbble.com/userupload/3859445/file/original-d0324ddd20a4faca55d1cb44c66d239f.jpg?compress=1&resize=1024x768",
+            "id": "",
+            "url": "",
             "create_at": "2022-11-06T19:53:48.408Z",
             "update_at": "2022-11-06T19:53:48.408Z"
          }
