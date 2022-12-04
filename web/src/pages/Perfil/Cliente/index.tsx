@@ -29,7 +29,6 @@ const ProfileClient = () => {
 
     }
 
-
     const [user, setUser] = useState({
         nickname: "",
         first_name: "",
@@ -60,8 +59,10 @@ const ProfileClient = () => {
 
     const changeProjects = (status: keyof typeof statusProject) => {
 
+        setSelectedProjects([])
         setSelectedProjects(statusProject[status])
         setSelected(status)
+
 
     }
 
@@ -125,6 +126,7 @@ const ProfileClient = () => {
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
                                 {
+
                                     selectedProject?.map((project: any) => {
                                         return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} />
                                     })

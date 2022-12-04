@@ -1,8 +1,8 @@
 import { SubCategoryORM } from "../entity/SubCategory"
-import { TeamORM } from "../entity/team"
+import { TeamORM } from "../entity/Team"
 
 export interface IDomainCategoryProps {
-    id : string
+    id: string
     name: string
     icon: string
     is_active: boolean

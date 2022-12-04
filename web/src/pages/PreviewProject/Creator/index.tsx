@@ -27,9 +27,9 @@ const PreviewProjectCreator = () => {
       "finish_project_date": null,
       "start_project_date": null,
       "is_active": true,
-      "status": "AWAITING_START",
-      "create_at": "2022-11-06T19:53:48.395Z",
-      "update_at": "2022-11-06T19:53:48.395Z",
+      "status": "",
+      "create_at": "",
+      "update_at": "",
       "interest": [
          {
             "id": "",
@@ -77,7 +77,6 @@ const PreviewProjectCreator = () => {
          "birth_date": "",
          "cpf": "",
          "mail": "",
-         "password": "",
          "biography": "",
          "profile_picture": "",
          "is_active": true,
