@@ -92,10 +92,8 @@ const PreviewProjectFreelancer = () => {
 
       api.post(`/project/registerInterest/${projectId}`, freelancersInterestedToSend).then((res) => {
          if (res.data.statusCode !== 200) {
-            window.alert("Não foi possível registrar interesse")
             console.log(res.data)
          } else {
-           console.log("enviado para api => " + userId)
             window.alert(res.data.message)
          }
       })
