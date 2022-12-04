@@ -14,8 +14,12 @@ import jwt from "jwt-decode"
 import { async } from "@firebase/util";
 import api from "../../../service";
 import { Value } from "sass";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineProfile } from "react-icons/ai";
 
 const ProfileClient = () => {
+
+    const navigate = useNavigate()
 
 
     const profileDice = async () => {
@@ -42,7 +46,7 @@ const ProfileClient = () => {
 
 
     const [select, setSelected] = useState('')
-    console.log(select)
+
 
     const [statusProject, setStatusProject] = useState({
         AWAITING_START: [],
@@ -57,24 +61,51 @@ const ProfileClient = () => {
     const changeProjects = (status: keyof typeof statusProject) => {
 
         setSelectedProjects(statusProject[status])
+        setSelected(status)
 
     }
 
     useEffect(() => {
         api.get(`/project/user/${user.id}`).then((res: any) => {
-            console.log(res.data.data)
+
             setStatusProject(res.data.data)
 
             setSelectedProjects(res.data.data.AWAITING_START)
-            console.log(res.data)
+
         })
     }, [user])
 
     useEffect(() => {
         profileDice()
+
+        
     }, [])
 
+    const roteProject = (id: string) => {
+        if (select == 'AWAITING_START') {
+            navigate(`/projects/${id}`)
+        } else { }
 
+        if (select == 'VALIDATING_REQUIREMENTS') {
+            navigate(`/projects/requirements/${id}`)
+        } else { }
+
+        if (select == 'IN_EXECUTION') {
+            navigate(`/projectInExecution/${id}`)
+        } else { }
+
+        if (select == 'COMPLETE') {
+            navigate(`/projects/${id}`)
+
+        } else { }
+
+        if (select == 'CANCELED') {
+            console.log('COMPLETE')
+        } else { }
+
+
+
+    }
 
     return (
 
@@ -92,17 +123,17 @@ const ProfileClient = () => {
 
 
                     <div className="Div_main_Perfil">
-                        <SideNav className="Nav_bar_Client" icon={<ImStatsDots onClick={() => { console.log("Ptojecto") }} />} icon2={<HiOutlineClipboardDocumentList />} icon3 icon4 icon5 />
+                        <SideNav className="Nav_bar_Client" icon={<ImStatsDots/>} icon2={<AiOutlineProfile />} icon3 icon4 icon5 />
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
-                        <InputSelect onChange={(event: any) => { changeProjects(event?.target.value) }} setSelectedProjects={() => { }} classnameOption={''} idSelect={''} />
+                        <InputSelect onChange={(event: any) => { changeProjects(event?.target.value) }} setSelectedProjects={() => { console.log('test') }} classnameOption={''} idSelect={''} />
 
 
                         <div className="Main_Card">
                             <div className="project-page-projects-card-container">
                                 {
                                     selectedProject?.map((project: any) => {
-                                        return <ProjectCard categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.title} user={{ first_name: "", nickname: "", profile_picture: "" }} value={20} />
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.title} user={{ first_name:user.first_name, nickname: user.nickname, profile_picture: user.profile_picture}} value={20} />
                                     })
                                 }
                             </div>
