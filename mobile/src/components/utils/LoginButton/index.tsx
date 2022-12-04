@@ -13,7 +13,7 @@ export const LoginButton = ({ action, type, title, isLoad }: ILoginButton) => {
     return (
         <Pressable onPress={() => isLoad ? null : action()} style={type === "light" ? styles.lightButton : styles.darkButton}>
             {isLoad ?
-                <ActivityIndicator size="large" color="#B275FF" />
+                <ActivityIndicator size="large" color={type === "light" ? "#fff" : "#B275FF"} />
                 :
                 <Text style={type === "light" ? styles.textButton : styles.darkText}>{title}</Text>
             }

@@ -8,15 +8,98 @@ import DetailsCard from "./DetailsCard";
 import ProjectInExecutionCard from "./ProjectInExecutionCard";
 import Deliveries from "./Deliveries";
 
+interface IDelivery {
+    id: string,
+    title: string,
+    description: string,
+    is_accepted: boolean,
+    is_active: boolean,
+    create_at: string,
+    files: [
+        {
+            id: string,
+            url: string
+        }
+    ]
+}
+export interface IRequirement {
+    id: string,
+    title: string,
+    description: string,
+    gain_percentage: number,
+    is_accepted: boolean,
+    is_delivered: boolean,
+    is_active: boolean,
+    create_at: string,
+    update_at: string,
+    delivery: Array<IDelivery>
+}
+interface IProject {
+    id: string,
+    name: string,
+    description: string,
+    user: {
+        first_name: string,
+        nickname: string,
+        profile_picture: string
+    },
+    images: {
+        url: string
+    }[]
+    create_at: string,
+    estimated_deadline: string
+    requirements: Array<IRequirement>
+}
+
 const ProjectInExecution = () => {
 
     const navigate = useNavigate()
     const { projectId } = useParams()
-    const [project, setProject] = useState([])
+    const [project, setProject] = useState<IProject>({
+        id: "",
+        name: "",
+        description: "",
+        user: {
+            first_name: "",
+            nickname: "",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8"
+        },
+        images: [{
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
+        }],
+        create_at: "",
+        estimated_deadline: "",
+        requirements: [{
+            id: "",
+            title: "",
+            description: "",
+            gain_percentage: 0,
+            is_accepted: false,
+            is_delivered: false,
+            is_active: false,
+            create_at: "",
+            update_at: "",
+            delivery: [{
+                id: "",
+                title: "",
+                description: "",
+                is_accepted: false,
+                is_active: false,
+                create_at: "",
+                files: [
+                    {
+                        id: "",
+                        url: ""
+                    }
+                ]
+            }]
+        }
+        ]
+    })
 
     useEffect(() => {
 
-        api.get("/project").then((res: any) => {
+        api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
         })
     }, [])
@@ -35,32 +118,17 @@ const ProjectInExecution = () => {
                             <h1>Projeto em execução</h1> 
 
                             <div className="project-page-projects-card-container">
-
-                                {
-                                    project.map((project: any) => {
-                                        if (project.is_active === true){
-                                            return <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images}/>  
-                                        }
-                                        
-                                    })
-                                }
-                                
+                                <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
                                 <div className="project-details-cards">
 
-                                {
-                                    project.map((project: any) => {
-                                        if (project.is_active === true){
-                                            return <DetailsCard id={project.id} create_at={project.create_at} estimated_deadline={project.estimated_deadline}/>  
-                                        }
-                                            
-                                    })
-                                
-                                }
 
-                                <div className="view-requirements">
-                                    <img src="" alt="" />
-                                    <p>Visualizar os requisitos técnicos do projeto</p>
-                                </div>
+                                    <DetailsCard id={project.id} create_at={project.create_at} estimated_deadline={project.estimated_deadline} />
+
+
+                                    <div className="view-requirements">
+                                        <img src="" alt="" />
+                                        <p>Visualizar os requisitos técnicos do projeto</p>
+                                    </div>
 
                                 </div>
 
@@ -85,14 +153,19 @@ const ProjectInExecution = () => {
                                 <div className="validation-container">
                                     <h1>Validação</h1>
                                     <p>Valide as entregas feitas pelo(s) prestador(es).</p>
-                                    <p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    {/*<p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
                                     
                                     {
                                         project.map((project: any) => {
                                             if (project.is_active === true){
-                                                return <Deliveries requirement={project.requirements}/>  
+                                            return <Deliveries requirement={project.requirements}/>  */}
+                                    <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    {
+                                        project.requirements.map((requirement: any, index: number) => {
+                                            if (requirement.is_active === true) {
+                                                return <Deliveries requirement={requirement} index={index++} />
                                             }
-                                                
+
                                         })
                                     }
 
@@ -100,7 +173,7 @@ const ProjectInExecution = () => {
 
                             </div>
 
-                            
+
 
                         </div>
                     </div>

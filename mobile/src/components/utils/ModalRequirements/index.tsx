@@ -8,13 +8,14 @@ interface IModalRequirements {
 
     onClose: () => void
     requirementId?: string
-    // // navigation : any
-    // route: any
+    percentage: number
+    projectId: any
 
 }
-export default function ModalRequirements({ requirementId, onClose }: IModalRequirements) {
+export default function ModalRequirements({ requirementId, onClose, projectId, percentage }: IModalRequirements) {
     const [isModalVisible, setModalVisible] = useState(false);
     const [hasError, setHasError] = useState(false)
+    const [initialPercentage, setInitialPercentage] = useState(0)
     const [requirementLoad, setRequirementLoad] = useState(false)
     // const {requirementModalId}= route.params
 
@@ -22,49 +23,74 @@ export default function ModalRequirements({ requirementId, onClose }: IModalRequ
         setModalVisible(!isModalVisible);
     };
 
-    const [createModal, setCreateModal] = (useState)({
+    const [requirement, setRequirement] = (useState)({
         title: "",
         description: "",
         gain_percentage: 0.0,
         project: {
-            id: "78ea9f82-25e2-4f95-b108-38febeece624"
+            id: projectId
         }
     })
-    const handleChange = (key: number | string, value: number | string) => {
-        // setCreateModal(
-        //     ...createModal,
-        //     [value]: key
-        //     )
+    const handleChange = (key: keyof typeof requirement, value: string) => {
+        if (key === "gain_percentage") {
+            const valueFloat = parseFloat(value)
+
+            if (valueFloat <= 99)
+                setRequirement({
+                    ...requirement,
+                    "gain_percentage": valueFloat
+                })
+            if (value === "") {
+                setRequirement({
+                    ...requirement,
+                    "gain_percentage": 0
+                })
+            }
+            return
+        }
+        setRequirement({
+            ...requirement,
+            [key]: value
+        })
     }
 
 
-    const modalCreate = async () => {
-
-        const modalApi = {
-            ...createModal,
-
-        }
+    const registerRequirement = async () => {
 
         setRequirementLoad(true)
 
-        console.log(createModal)
-        api.post("/requirement", modalApi).then((res: any) => {
+        if (requirementId)
+            //AWAAAAAW
+            requirement.gain_percentage = requirement.gain_percentage - initialPercentage
 
-            // if(res.data.statusCode === 201){
-            //     navigation.navigate("Requirements", {
-            //         modalId: res.data.data.id
-            //     })
-            // }else{
-            //     ToastAndroid.show("res.data.message", 10)
-            // }
+        if (percentage + requirement.gain_percentage > 100) {
+            ToastAndroid.show(`A porcentagem do requisito ultrapassa a porcentagem máxima do projeto! \n Porcentagem máximo: ${100 - percentage}`, 10)
+            return
+        }
+
+        api.post("/requirement", requirement).then((res: any) => {
+            console.log(res.data)
+            if (res.data.statusCode === 201) {
+                ToastAndroid.show(res.data.message, 10)
+                onClose()
+            } else {
+                ToastAndroid.show(res.data.message, 10)
+            }
             console.log(res.data)
         })
         setRequirementLoad(false)
     }
 
     useEffect(() => {
-        console.log(createModal)
-    }, [createModal])
+        console.log(requirement)
+    }, [requirement])
+
+    useEffect(() => {
+        requirementId &&
+            api.get(`/requirement/${requirementId}`).then((res: any) => {
+                setInitialPercentage(res.data.data.gain_percentage)
+            })
+    }, [])
 
     return (
         <Modal
@@ -92,18 +118,18 @@ export default function ModalRequirements({ requirementId, onClose }: IModalRequ
                     <View style={style.TextBoxModal}>
                         <Text style={style.TextInputModal}>Titulo </Text>
                     </View>
-                    <TextInput style={style.InputTitleModal} placeholder="Titulo...">{createModal.title}</TextInput>
+                    <TextInput style={style.InputTitleModal} onChangeText={(text) => handleChange("title", text)} value={requirement.title} />
                     <View style={style.TextBoxModal}>
                         <Text style={style.TextInputModal}>Descrião</Text>
                     </View>
-                    <TextInput style={style.InputDescModal} placeholder="Descrição...">{createModal.description}</TextInput>
+                    <TextInput style={style.InputDescModal} onChangeText={(text) => handleChange("description", text)} value={requirement.description} />
                     <View style={style.TextBoxModal}>
                         <Text style={style.TextInputModal}>Porcentual</Text>
                     </View>
-                    <TextInput maxLength={3} keyboardType='numeric' style={style.InputTitleModal} placeholder="Porcentual...">{createModal.gain_percentage}</TextInput>
+                    <TextInput maxLength={3} keyboardType='numeric' style={style.InputTitleModal} onChangeText={(text) => handleChange("gain_percentage", text)} value={requirement.gain_percentage.toString()} />
 
                     <View style={style.boxBtn}>
-                        <BtnConfirmRequirements action={() => modalCreate()} />
+                        <BtnConfirmRequirements color="#B275FF" label="Criar" action={() => registerRequirement()} />
                     </View>
                 </View>
             </View>
@@ -176,6 +202,7 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         border: 10,
+        padding: 10,
         borderColor: "#000",
         flexDirection: "row",
 
@@ -186,6 +213,8 @@ const style = StyleSheet.create({
         // backgroundColor:"black",
         borderWidth: 1,
         borderRadius: 5,
+        padding: 10,
+        textAlignVertical: "top",
         border: 10,
         borderColor: "#000",
         flexDirection: "row",
@@ -195,6 +224,7 @@ const style = StyleSheet.create({
 
         fontSize: Dimensions.get('window').height * 0.024,
         fontWeight: "300",
+
 
     },
     TextBoxModal: {

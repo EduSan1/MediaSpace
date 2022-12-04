@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+//import { IRequirement } from "..";
 
 interface IRequirement {
     requirement: [
@@ -21,13 +22,19 @@ interface IRequirement {
      
         }
     ],
+    index: number
 }
 
-const Deliveries = ({ requirement }: IRequirement) => {
+interface IDeliveriesPage {
+    requirement: IRequirement
+    index: number
+}
+
+const Deliveries = ({ requirement, index }: IRequirement) => {
 
     const navigate = useNavigate()
 
-    const requirementDeliveryStatus = () => {
+    {/*const requirementDeliveryStatus = () => {
     
         let is_delivered = false
             
@@ -35,7 +42,7 @@ const Deliveries = ({ requirement }: IRequirement) => {
             is_delivered = true
         }
         return is_delivered
-    }
+    }*/}
 
     return (
         <div className="deliveries-card">
@@ -50,7 +57,7 @@ const Deliveries = ({ requirement }: IRequirement) => {
                                     <div className="delivery-upperline-divisor"></div>
                                     <div className="requirement-box">
                                         
-                                        <h2 className="requirement-counter">Entregue - 0</h2>
+                                        <h2 className="requirement-counter">Entregue - {index} </h2>
                                         <h2 className="requirement-title"> {requirement.title}</h2>
                                     </div>
                             

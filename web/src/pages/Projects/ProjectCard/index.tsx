@@ -14,16 +14,18 @@ interface IProject {
         first_name: string
         nickname: string
         profile_picture: string
-    }
+    },
+
+    onClick: ()=>void
+
 }
 
-const ProjectCard = ({ id, name, description, value, image, categories, user }: IProject) => {
+const ProjectCard = ({ id, name, description, value, image, categories, user, onClick }: IProject) => {
 
-    const navigate = useNavigate()
 
     return (
-        <div onClick={() => navigate(`/projects/${id}`)} className="project-card">
-            <div className="project-card-image-container">
+        <div onClick={onClick} className="project-list-card">
+            <div className="project-list-card-image-container">
                 <img src={image[0].url} alt="" />
             </div>
 

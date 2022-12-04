@@ -5,18 +5,19 @@ const mailer = require("nodemailer")
 export class Mail {
 
 
-    confirmRegister = async (userMail : string, id : string, userName : string) => {
+    confirmRegister = async (userMail: string, id: string, userName: string) => {
         try {
+            console.log(userMail)
             const transporter = await mailer.createTransport({
                 service: "gmail",
                 auth: APP_MAIL_AUTH,
                 secure: true,
                 tls: {
-                  rejectUnauthorized: false,
+                    rejectUnauthorized: false,
                 }
             })
 
-            const jwtID = jwt.sign({id : id}, APP_SECRET, {expiresIn: '1d',})
+            const jwtID = jwt.sign({ id: id }, APP_SECRET, { expiresIn: '1d', })
 
             const mail = await transporter.sendMail({
                 from: `"Media Space"`,
@@ -24,26 +25,26 @@ export class Mail {
                 subject: "Confirme seu cadastro",
                 text: `Olá ${userName}, acesse o link para confirmar seu cadastro! \n http://localhost:3000/confirmRegister?user=${jwtID}`,
             })
-    
+
             return mail
-    
+
         } catch (error) {
             return error
-        } 
+        }
     }
 
-    recoverPassword = async  (userMail : string, id : string, userName : string) => {
+    recoverPassword = async (userMail: string, id: string, userName: string) => {
         try {
             const transporter = await mailer.createTransport({
                 service: "gmail",
                 auth: APP_MAIL_AUTH,
                 secure: true,
                 tls: {
-                  rejectUnauthorized: false,
+                    rejectUnauthorized: false,
                 }
             })
 
-            const jwtID = jwt.sign({id : id}, APP_SECRET, {expiresIn: '30min',})
+            const jwtID = jwt.sign({ id: id }, APP_SECRET, { expiresIn: '30min', })
 
             const mail = await transporter.sendMail({
                 from: `"Media Space"`,
@@ -55,6 +56,6 @@ export class Mail {
 
         } catch (error) {
             return error
-        } 
+        }
     }
 }

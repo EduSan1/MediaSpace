@@ -27,12 +27,14 @@
         margin-bottom: 2%;
 
         .img_photo_user {
-            width: 40%;
+            width: 35%;
+            height: 40%;
             border-radius: 100%;
 
             img {
                 width: 100%;
                 height: 100%;
+                border-radius: 100%;
             }
         }
 
@@ -115,13 +117,29 @@
             opacity: 35%;
             font-size: clamp(0.8rem, 2vw, 0.5rem);
             text-align: start;
-            white-space: wrap;
             font-weight: 550;
             font-family: $light-font;
             letter-spacing: 1px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+    }
+
+    .category_freelancer {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+
+        input[type="button"] {
+            width: 50%;
+            border: 0;
+            background-color: aqua;
         }
     }
 }
+
 @media (min-width: 1926px) {
     .perfil_card {
         .photo_and_name_user {

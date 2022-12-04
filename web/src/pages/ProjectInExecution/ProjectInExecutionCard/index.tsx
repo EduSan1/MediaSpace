@@ -5,7 +5,7 @@ interface IProject {
     id: string
     name: string,
     description: string,
-    image: [{ "url": string }],
+    image: { url: string }[],
     user: {
         first_name: string
         nickname: string
@@ -19,7 +19,7 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProjec
 
     return (
         <div onClick={() => navigate(`/projects/${id}`)} className="project-card">
-            
+
 
 
             <div className="project-card-user">
@@ -33,7 +33,7 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProjec
                 </div>
             </div>
 
-            
+
 
             <div className="project-card-image-container">
                 <img src={image[0].url} alt="" />
@@ -45,7 +45,7 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProjec
                 </div>
             </div>
 
-             <div className="project-card-freelancer">
+            <div className="project-card-freelancer">
                 <div className="project-card-freelancer-image">
                     {/* <img src={management.team_project_management[0].team.profile_picture} alt="" /> */}
 
@@ -56,7 +56,7 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProjec
                     <p>{management.team_project_management[0].team.name}</p>
                     <p>@{management.team_project_management[0].team.nickname}</p> */}
                 </div>
-            </div> 
+            </div>
 
 
         </div>

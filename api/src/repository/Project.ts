@@ -16,6 +16,9 @@ export class ProjectRepository {
 
     list = async () => {
         return await this._.find({
+            where: {
+                status: "AWAITING_START"
+            },
             relations: {
                 user: true,
                 requirements: true,
@@ -29,6 +32,7 @@ export class ProjectRepository {
             where:
 
             {
+                status: "AWAITING_START",
                 is_active: true,
                 name: Like('%' + search + '%'),
                 categories: categories.map((category: string) => { return { id: category } }),
@@ -70,7 +74,11 @@ export class ProjectRepository {
             relations: {
                 interest: true,
                 sub_categories: true,
-                requirements: true,
+                requirements: {
+                    delivery: {
+                        files: true
+                    }
+                },
                 management: {
                     team_project_management: {
                         team: true
