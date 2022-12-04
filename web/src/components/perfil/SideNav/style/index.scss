@@ -7,8 +7,7 @@
 
     .side_nav{
         display: flex;
-        width: auto;
-        width: 30%;
+        width: 300px;
         height: 90%;
         border-radius: 0px 0px 40px 40px;
         justify-content: center;
@@ -29,8 +28,8 @@
             }
 
             svg:hover{
-                font-size: 1.9rem;
-                transition: 0.40s;
+                font-size: 1.8rem;
+                transition: 0.10s;
                }
             
         }
