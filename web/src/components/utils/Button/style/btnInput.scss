@@ -1,5 +1,4 @@
 .InputBtnLogin {
-
     display: flex;
     width: 18.25rem;
     height: 5rem;
@@ -10,15 +9,11 @@
     color: #fff;
     border: none;
 
-
     font-family: $light-font;
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
-
-
-
 }
 
 .input_btn_cadastrar {
@@ -78,8 +73,6 @@
     position: relative;
     background-color: transparent;
 
-
-
     span {
         width: 100%;
         display: flex;
@@ -87,7 +80,6 @@
         position: absolute;
         justify-content: center;
         align-items: center;
-
     }
 
     input {
@@ -96,9 +88,7 @@
         border: none;
         transition: 40s;
         background-color: transparent;
-
     }
-
 }
 
 .input_btn_publicar_project {
@@ -116,13 +106,22 @@
 .input_btn_project {
     display: flex;
     width: 15%;
-    height: 50%;
+    height: 100%;
     justify-content: center;
     cursor: pointer;
     border-radius: 3px;
-    background-color: transparent;
-    color: #B275FF;
-    border: 1px solid #B275FF;
+    background-color: #fff;
+    color: #b275ff;
+    border: 1px solid #b275ff;
+    transition: 0.5s;
+    font-weight: 700;
+    font-size: clamp(12px, 1vw, 24px);
+
+    &:hover {
+        background-color: #b275ff;
+        color: #fff;
+        border: 1px solid #b275ff;
+    }
 }
 
 .input_btn_select_image {
@@ -133,6 +132,6 @@
     cursor: pointer;
     border-radius: 3px;
     background-color: transparent;
-    color: #B275FF;
-    border: 1px solid #B275FF;
+    color: #b275ff;
+    border: 1px solid #b275ff;
 }

@@ -14,6 +14,13 @@
         display: flex;
         width: 100%;
         height: 46%;
+        background: linear-gradient(
+            180deg,
+            rgba(26, 35, 104, 1) 0%,
+            rgba(68, 90, 171, 1) 42%,
+            rgba(112, 0, 226, 0.2) 100%
+        );
+
         // background-image: url('../../../../../../public/assets/img/Perfil/RectanglePerfilColor.png');
         background-repeat: no-repeat;
         background-size: 100%;

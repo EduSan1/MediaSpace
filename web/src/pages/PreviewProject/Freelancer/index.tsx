@@ -11,6 +11,7 @@ import CategoryCard from '../../../components/utils/CategoryCard';
 
 const PreviewProjectFreelancer = () => {
    const { projectId } = useParams()
+   const [isLoading, setIsLoading] = useState(true)
 
    const [project, setProject] = useState({
       "id": "",
@@ -102,6 +103,7 @@ const PreviewProjectFreelancer = () => {
    useEffect(() => {
       api.get(`/project/${projectId}`).then((res: any) => {
          setProject(res.data.data)
+         setIsLoading(false)
       })
    }, [])
 
@@ -109,56 +111,59 @@ const PreviewProjectFreelancer = () => {
       <>
          <main>
             <NavegationBar />
-            <div className="Container">
-               <SearchBar />
-               <section className='container_preview_project'>
+            {
+               !isLoading &&
+               <div className="Container">
+                  <SearchBar />
+                  <section className='container_preview_project'>
 
-                  <div className='preview_project'>
-                     <div className='container_images_from_project'>
-                        <CarouselImages images={project.images} />
-                     </div>
+                     <div className='preview_project'>
+                        <div className='container_images_from_project'>
+                           <CarouselImages images={project.images} />
+                        </div>
 
-                     <div className='container_dates'>
-                        <p><span>Criado em:   </span>{formatDateProject(project.estimated_deadline)}</p>
-                        <p>
-                           <span>Prazo de término:  </span>
-                           {formatDateProject(project.estimated_deadline)}
-                        </p>
-                     </div>
-                     <div className='container_creator_value'>
-                        <div className='container_profile'>
-                           <div className='picture_profile'>
-                              <img src={project.user.profile_picture} />
+                        <div className='container_dates'>
+                           <p><span>Criado em:   </span>{formatDateProject(project.estimated_deadline)}</p>
+                           <p>
+                              <span>Prazo de término:  </span>
+                              {formatDateProject(project.estimated_deadline)}
+                           </p>
+                        </div>
+                        <div className='container_creator_value'>
+                           <div className='container_profile'>
+                              <div className='picture_profile'>
+                                 <img src={project.user.profile_picture} />
+                              </div>
+                              <div>
+                                 <label>{project.user.first_name}</label>
+                                 <span>@{project.user.nickname}</span>
+                              </div>
                            </div>
-                           <div>
-                              <label>{project.user.first_name}</label>
-                              <span>@{project.user.nickname}</span>
+                           <div className='container_value'>
+                              <p>Valor estimado: <span>R$ {project.value}</span></p>
                            </div>
                         </div>
-                        <div className='container_value'>
-                           <p>Valor estimado: <span>R$ {project.value}</span></p>
+
+                        <div className='container_informations_project'>
+                           <h1>{project.name}</h1>
+                           <p>{project.description}</p>
+                        </div>
+
+                        <div className='container_buttons_project'>
+                           <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_project'} valueBtn={'Candidatar-se'} onClick={() => { freelancersInterest() }} />
+                        </div>
+
+                        <div className='container_categories_project'>
+                           {
+                              project.categories.map((category: any) => {
+                                 return <CategoryCard category={category.name} icon={category.icon} key={category.id} />
+                              })
+                           }
                         </div>
                      </div>
-
-                     <div className='container_informations_project'>
-                        <h1>{project.name}</h1>
-                        <p>{project.description}</p>
-                     </div>
-
-                     <div className='container_buttons_project'>
-                        <InputBtn typeInput={'submit'} name={'btnCadastrar'} className={'input_btn_project'} valueBtn={'Candidatar-se'} onClick={() => { freelancersInterest() }} />
-                     </div>
-
-                     <div className='container_categories_project'>
-                        {
-                           project.categories.map((category: any) => {
-                              return <CategoryCard category={category.name} icon={category.icon} key={category.id} />
-                           })
-                        }
-                     </div>
-                  </div>
-               </section>
-            </div>
+                  </section>
+               </div>
+            }
 
          </main>
       </>
