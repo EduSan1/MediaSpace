@@ -18,8 +18,8 @@ const DetailsCard = ({ id, create_at, estimated_deadline }: IDetails) => {
             <div className="card-details-container">
                 <div className="card-details">
                     <h3>Detalhes:</h3>
-                    <p>{create_at}</p>
-                    <p>{estimated_deadline}</p>
+                    <p>Criado em: {create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
+                    <p>Término estimado: {estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                 </div>
             </div>
 

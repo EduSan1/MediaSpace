@@ -32,7 +32,7 @@ const ProjectInExecution = () => {
                     <div className="projects-page-container">
 
                         <div className="project-page-projects-container">
-                            <h2>Projeto em execução</h2> 
+                            <h1>Projeto em execução</h1> 
 
                             <div className="project-page-projects-card-container">
 
@@ -66,7 +66,7 @@ const ProjectInExecution = () => {
 
                                 <div className="timeline-container">
                                     
-                                    <h2>Andamento</h2>
+                                    <h1>Andamento</h1>
 
                                     <ul className="timeline">
                                         <li className="active">01</li>
@@ -83,9 +83,10 @@ const ProjectInExecution = () => {
                                 </div>
 
                                 <div className="validation-container">
-                                    <h3>Validação</h3>
+                                    <h1>Validação</h1>
                                     <p>Valide as entregas feitas pelo(s) prestador(es).</p>
-                                    <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    <p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    
                                     {
                                         project.map((project: any) => {
                                             if (project.is_active === true){
@@ -94,6 +95,7 @@ const ProjectInExecution = () => {
                                                 
                                         })
                                     }
+
                                 </div>
 
                             </div>
