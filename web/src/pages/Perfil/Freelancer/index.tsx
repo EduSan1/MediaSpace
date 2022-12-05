@@ -73,7 +73,7 @@ const ProfileFreelancer = () => {
 
 
     const changeProjects = (status: keyof typeof statusProject) => {
-
+        console.log(statusProject)
         setSelectedProjects(statusProject[status])
         setSelected(status)
 

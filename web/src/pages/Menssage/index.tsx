@@ -28,7 +28,7 @@ const Menssagens = () => {
             </div>
             {
                 modalVisible &&
-                <DeliveryModal onClose={() => setModalVisible(false)} requirementId="f11b70bc-a884-4865-a9e0-677121517b32" projectName={"Nome"} />
+                <DeliveryModal onSend={() => setModalVisible(false)} onClose={() => setModalVisible(false)} requirementId="f11b70bc-a884-4865-a9e0-677121517b32" projectName={"Nome"} />
             }
         </main>
 

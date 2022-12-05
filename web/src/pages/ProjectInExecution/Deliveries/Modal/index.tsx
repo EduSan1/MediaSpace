@@ -2,13 +2,16 @@ import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from "firebase/
 import React, { useEffect, useState } from "react"
 import { storage } from "../../../../constants/firebase"
 import api from "../../../../service"
+import jwt from "jwt-decode"
 import InputProject from "../../../CreateProject/components/Input"
 import DeliveryCard from "./DeliveryCard"
+import { parseJsonText } from "typescript"
 
 interface IDeliveryModal {
     projectName: string
     requirementId: string
     onClose: () => void
+    onSend: () => void
 }
 
 interface IProject {
@@ -31,7 +34,7 @@ interface IDelivery {
 
 }
 
-const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, requirementId }) => {
+const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, requirementId, onSend }) => {
 
     const [requirement, setRequirement] = useState({
         title: ""
@@ -43,7 +46,7 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
         files: [],
         requirements: [
             {
-                id: ""
+                id: requirementId
             }
         ],
         user: [
@@ -80,6 +83,17 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
 
     const handleDelivery = (value: string, name: keyof typeof delivery) => {
         setDelivery({ ...delivery, [name]: value })
+    }
+
+    const postDelivery = async () => {
+        const userJwt = await localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "")
+        const deliveryToSend = { ...delivery, user: [{ id: user.userDetails.id }] }
+        console.log(JSON.stringify(deliveryToSend))
+        api.post(`/delivery`, deliveryToSend).then((res: any) => {
+            console.log(res.data)
+            onSend()
+        })
     }
 
     const getRequirement = () => {
@@ -127,7 +141,7 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
                     </div>
                 </div>
                 <div className="delivery-modal-footer-container">
-                    <button className="delivery-modal-button">Realizar Entrega</button>
+                    <button onClick={() => postDelivery()} className="delivery-modal-button">Realizar Entrega</button>
                 </div>
             </div>
         </div>
@@ -135,3 +149,5 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
 }
 
 export default DeliveryModal
+
+
