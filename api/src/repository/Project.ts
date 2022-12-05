@@ -75,9 +75,7 @@ export class ProjectRepository {
                 interest: true,
                 sub_categories: true,
                 requirements: {
-                    delivery: {
-                        files: true
-                    }
+                    delivery: true
                 },
                 management: {
                     team_project_management: {

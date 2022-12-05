@@ -39,28 +39,28 @@ const ChangePassword = () => {
 
     const validate = async () => {
 
-        if(DiceNewPassword.NewPassword){
-            if(Object.is(DiceNewPassword.NewPassword, DiceNewPassword.repetePassword)){
-                if(passwordMask.test(DiceNewPassword.NewPassword)){
-                         await api.post("/user/recoverPassword", DiceNewPassword).then(() =>{
+        if (DiceNewPassword.NewPassword) {
+            if (Object.is(DiceNewPassword.NewPassword, DiceNewPassword.repetePassword)) {
+                if (passwordMask.test(DiceNewPassword.NewPassword)) {
+                    await api.post("/user/recoverPassword", DiceNewPassword).then(() => {
 
-                         })
-                         .catch(()=>{
+                    })
+                        .catch(() => {
 
-                         })
-                }else{
+                        })
+                } else {
                     setHasError(true);
-                }   
-            }else{
-                    setHasError(true);
+                }
+            } else {
+                setHasError(true);
             }
-           
-        }else{
+
+        } else {
             setHasError(true);
         }
 
-          
-          
+
+
     }
 
 
@@ -74,28 +74,28 @@ const ChangePassword = () => {
             </div>
 
             <div className="Container_Input">
-                <span className="Span_tow"> 
-                <InputLoign label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(event);
-                }} disable />
-                <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
-                                           setHaspass(!haspass)
-                }} />
+                <span className="Span_tow">
+                    <InputLoign label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        handleChange(event);
+                    }} disable={false} />
+                    <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock />} onClick={() => {
+                        setHaspass(!haspass)
+                    }} />
 
 
                 </span>
-               
-                
-                <span className="Span_tow" > 
-                <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={<FaLock/>} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(event);
-                    
-                }} disable />
-                    <ButtonIcon className="" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
-                                           setHasrepetepass(!hasrepetepass)
-                }} />   
+
+
+                <span className="Span_tow" >
+                    <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" : "Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={<FaLock />} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        handleChange(event);
+
+                    }} disable={false} />
+                    <ButtonIcon className="" name="" typeInput="button" valueBtn="" icon={<FaLock />} onClick={() => {
+                        setHasrepetepass(!hasrepetepass)
+                    }} />
                 </span>
-      
+
 
                 <p> Conter pelo menos 1 caractere especial, limite de 255 caracteres. </p>
 
