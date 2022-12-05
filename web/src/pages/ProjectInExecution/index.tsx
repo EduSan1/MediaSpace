@@ -51,6 +51,8 @@ interface IProject {
     requirements: Array<IRequirement>
 }
 
+
+
 const ProjectInExecution = () => {
 
     const navigate = useNavigate()
@@ -104,6 +106,7 @@ const ProjectInExecution = () => {
         })
     }, [])
 
+
     return (
 
         <main id="ContentPage">
@@ -115,16 +118,16 @@ const ProjectInExecution = () => {
                     <div className="projects-page-container">
 
                         <div className="project-page-projects-container">
-                            <h2>Projeto em execução</h2>
+                            <h1>Projeto em execução</h1> 
 
                             <div className="project-page-projects-card-container">
+                                
                                 <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
                                 <div className="project-details-cards">
 
 
                                     <DetailsCard id={project.id} create_at={project.create_at} estimated_deadline={project.estimated_deadline} />
-
-
+                                
                                     <div className="view-requirements">
                                         <img src="" alt="" />
                                         <p>Visualizar os requisitos técnicos do projeto</p>
@@ -133,8 +136,8 @@ const ProjectInExecution = () => {
                                 </div>
 
                                 <div className="timeline-container">
-
-                                    <h2>Andamento</h2>
+                                    
+                                    <h1>Andamento</h1>
 
                                     <ul className="timeline">
                                         <li className="active">01</li>
@@ -151,17 +154,19 @@ const ProjectInExecution = () => {
                                 </div>
 
                                 <div className="validation-container">
-                                    <h3>Validação</h3>
+                                    <h1>Validação</h1>
                                     <p>Valide as entregas feitas pelo(s) prestador(es).</p>
-                                    <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    <p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+
                                     {
-                                        project.requirements.map((requirement: any, index: number) => {
+                                        project.requirements.map((requirement: any) => {
                                             if (requirement.is_active === true) {
-                                                return <Deliveries requirement={requirement} index={index++} />
+                                                return <Deliveries requirement={requirement} />
                                             }
 
                                         })
                                     }
+
                                 </div>
 
                             </div>
