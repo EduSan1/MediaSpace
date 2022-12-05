@@ -65,7 +65,7 @@ const ProjectsrequirementsFreelancer = () => {
                             <div className="project-page-projects-card-container">
                                 {
                                     projects.map((project: any) => {
-                                        return <ProjectCard user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images} categories={project.categories} />
+                                        return <ProjectCard onClick={() => navigate(`/projects/${project.id}`)} user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images} categories={project.categories} />
                                     })
                                 }
 

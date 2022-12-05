@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "ty
 import { MemberORM } from "./Member";
 import { ProjectORM } from "./Project";
 import { ProjectManagementORM } from "./ProjectManagement";
-import { TeamORM } from "./team";
+import { TeamORM } from "./Team";
 import { UserORM } from "./User";
 
 @Entity({ name: "tb_interest" })

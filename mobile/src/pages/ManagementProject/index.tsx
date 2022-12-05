@@ -25,7 +25,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
         start_project_date: "",
         create_at: "",
         images: [{
-            url: ""
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
         }],
         categories: [],
         navigation: [],
@@ -39,7 +39,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                     name: "",
                     nickname: "",
                     description: "",
-                    profile_picture: "",
+                    profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
                     general_evaluation: 0,
                     status: false,
                     is_active: false,
@@ -96,7 +96,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         name: "",
                         nickname: "",
                         description: "",
-                        profile_picture: "",
+                        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
                         general_evaluation: 0,
                         status: false,
                         is_active: false,
@@ -131,7 +131,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
             cpf: "",
             mail: "",
             biography: "",
-            profile_picture: "",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
             is_active: false,
             is_authenticated: false,
             create_at: "",
@@ -146,19 +146,23 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                 id: "",
                 ddd: "",
                 phone: "",
-                ddi: ""
             },
             teams: [],
             project_member: []
         }
     })
 
-    useEffect(() => {
+    const getProject = () => {
         api.get(`/project/${projectId}`).then((res: any) => {
             let project: IProject = res.data.data
             project = { ...project, requirements: project.requirements.filter((requirement: IRequirement) => requirement.is_accepted !== false) }
             setProject(project)
         })
+    }
+
+    useEffect(() => {
+        projectId &&
+            getProject()
     }, [])
 
 
@@ -193,10 +197,10 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                 <View style={styles.freelancerContainer}>
                     <Text style={styles.projectTitle}>Em execução por:</Text>
                     <View style={styles.freelancerDetailsContainer}>
-                        <Image style={styles.freelancerImage} source={{ uri: project.management.team_project_management[0].team.profile_picture }} />
+                        <Image style={styles.freelancerImage} source={{ uri: project.management && project.management.team_project_management[0].team.profile_picture }} />
                         <View>
-                            <Text style={styles.freelancerName}>{project.management.team_project_management[0].team.name}</Text>
-                            <Text style={styles.freelancerNickname}>@{project.management.team_project_management[0].team.nickname}</Text>
+                            <Text style={styles.freelancerName}>{project.management && project.management.team_project_management[0].team.name}</Text>
+                            <Text style={styles.freelancerNickname}>@{project.management && project.management.team_project_management[0].team.nickname}</Text>
                         </View>
                     </View>
                 </View>
@@ -216,7 +220,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                         Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça
                     </Text>
                     <View style={styles.requirementsContainer}>
-                        {project.requirements.map((requirement: IRequirement) => <RequirementCard numberOfRequirements={project.requirements.length} requirement={requirement} />)}
+                        {project.requirements.map((requirement: IRequirement, index: number) => <RequirementCard index={index} reload={getProject} numberOfRequirements={project.requirements.length} requirement={requirement} />)}
                     </View>
                 </View>
                 <View style={styles.detailsContainer}>
@@ -227,7 +231,7 @@ const ManagementProject = ({ navigation, route }: IManagementProject) => {
                     </View>
                     <View style={styles.detailsItemContainer}>
                         <Text style={styles.detailsItemTitle}>Inicio do projeto: </Text>
-                        <Text style={styles.detailsItemText}>{project.management.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
+                        <Text style={styles.detailsItemText}>{project.management && project.management.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</Text>
                     </View>
                     <View style={styles.detailsItemContainer}>
                         <Text style={styles.detailsItemTitle}>Quantidade de requisitos: </Text>

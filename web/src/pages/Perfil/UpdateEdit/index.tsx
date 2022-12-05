@@ -19,26 +19,31 @@ const UpdateEdit = () => {
    const [openEdit, setOpenEdit] = useState(true);
    const [password, setpassword] = useState();
 
-
-   const [diceUser, setdiceUser] = useState({
+   const [userdetailes, setUserdetailes] = useState({
       nickname: "",
       first_name: "",
-      profile_picture: "",
+      profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
       biography: ""
    })
 
 
-
    const profileDice = async () => {
 
-      const userlocal = await localStorage.getItem('userDetails');
-      const user: any = jwt(userlocal ? userlocal : "");
-      setdiceUser(user.userDetails);
-
+      const userJwt = await localStorage.getItem('userDetails');
+      const user: any = jwt(userJwt ? userJwt : "");
+      setUserdetailes(user.userDetails);
 
    }
 
-   profileDice();
+
+
+   useEffect(() => {
+      console.log(userdetailes)
+   }, [userdetailes])
+
+   useEffect(() => {
+      profileDice();
+   }, [])
 
    const [user, setUser] = React.useState({
       first_name: '',
@@ -57,15 +62,15 @@ const UpdateEdit = () => {
 
 
    useEffect(() => {
-      console.log(diceUser);
-   }, [diceUser, user])
+      console.log(userdetailes);
+   }, [user])
 
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setUser({
          ...user, [event.target.name]: event.target.value
       })
-      console.log(user);
+
 
    }
 
@@ -150,7 +155,7 @@ const UpdateEdit = () => {
                         {/* <div className="not_input"> */}
                         <InputLogin disable={false} valueLogin={'Cpf'} hasError={hasErrors} handleChange={() => { }} typeInput={"string"} placeholder={"CPF"} icon={''} name={"cpf"} label={"CPF"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={15} />
                         <SiIfixit className="sgv_no" />
-                        <InputLogin disable={false} valueLogin={'Data'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} />
+                        <InputLogin valueLogin={'2002-09-09'} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} disable={true} />
                         <SiIfixit className="sgv_no" />
                         {/* </div> */}
 

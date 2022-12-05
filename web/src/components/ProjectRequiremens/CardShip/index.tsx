@@ -6,10 +6,10 @@ import { RiDeleteBin5Line } from "react-icons/ri"
 import api from "../../../service";
 import ModalRequirements from "../../../components/RequirementsModal";
 
-interface IIcard {
+interface ICard {
     CardClasse: string,
     percentage: string,
-    desciption: string,
+    description: string,
     layout: string,
     issue: string,
     numberissue: number,
@@ -19,7 +19,7 @@ interface IIcard {
     getRequirements: any
 }
 
-export const CardShip = ({ CardClasse, percentage, desciption, layout, issue, numberissue, value }: IIcard) => {
+export const CardShip = ({ CardClasse, percentage, description, layout, issue, numberissue, value }: ICard) => {
 
     const [check, setCheck] = React.useState(false)
 
@@ -30,11 +30,11 @@ export const CardShip = ({ CardClasse, percentage, desciption, layout, issue, nu
                     <div className="verification">
                         <IconBar Icon={<FaCheck />} className={"iconCheck"} text="" />
                     </div>
-                    <h2>{numberissue} - {issue ? issue : "Entregue"}</h2>
+                    <h2>{numberissue + 1} - {issue ? issue : "Entregue"}</h2>
                 </span>
                 <span className="lyout_Description">
                     <h2>{layout}</h2>
-                    <h3>{desciption}</h3>
+                    <h3>{description}</h3>
                 </span>
                 <div className="value_and_percentage">
                     <h2>Porcentagem do valor: {percentage}%</h2>
@@ -45,7 +45,8 @@ export const CardShip = ({ CardClasse, percentage, desciption, layout, issue, nu
     );
 
 }
-export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, numberissue, value, idUserCreater, requirementId, getRequirements }: IIcard) => {
+
+export const CardShipRegister = ({ CardClasse, percentage, description, layout, numberissue, value, idUserCreater, requirementId, getRequirements }: ICard) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const deleteRequirement = () => {
         const confirm = window.confirm("Deseja realmente excluir este requisito?")
@@ -53,15 +54,12 @@ export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, n
             api.delete(`/requirement/${requirementId}`).then((res: any) => {
                 getRequirements()
             })
-        } else {
-
         }
-
     }
 
     useEffect
         (() => {
-            getRequirements()
+            // getRequirements()
         }, [])
 
 
@@ -69,7 +67,7 @@ export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, n
         <>
             <div className={CardClasse ? CardClasse : "Compainter_CardShip"}>
                 <span className={"input_Confirmation"}>
-                    <h2>{numberissue} - {layout}</h2>
+                    <h2>{numberissue + 1} - {layout}</h2>
                     <div className={idUserCreater ? "verification_creater" : "verification"}>
                         <span onClick={() => { setIsModalVisible(true) }}>
                             <IconBar Icon={<FiEdit />} className={"iconCheck"} text="" />
@@ -86,7 +84,7 @@ export const CardShipRegister = ({ CardClasse, percentage, desciption, layout, n
                 </span>
                 <span className="lyout_Description">
                     <h2></h2>
-                    <h3>{desciption}</h3>
+                    <h3>{description}</h3>
                 </span>
                 <div className="value_and_percentage">
                     <h2>Porcentagem do valor: {percentage}%</h2>

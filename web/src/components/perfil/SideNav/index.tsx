@@ -24,15 +24,7 @@ const SideNav = ({ icon, icon2,icon3,icon4,icon5, className }: IInput) => {
                 <span>
                     {icon2}
                 </span>
-                <span>
-                    {icon3}
-                </span>
-                <span>
-                    {icon4}
-                </span>
-                <span>
-                    {icon5}
-                </span>
+                
                 
             </div>
 

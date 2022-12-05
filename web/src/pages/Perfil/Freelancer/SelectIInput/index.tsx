@@ -13,13 +13,12 @@ interface IISelect {
 }
 
 
-const InputSelect = ({ classnameOption, idSelect, setSelectedProjects, onChange }: IISelect) => {
+const InputSelectFreelancer = ({ classnameOption, idSelect, setSelectedProjects, onChange }: IISelect) => {
 
  
     return (
         <div className="allSelect">
             <select className={'P_serselecet'} id={idSelect} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChange(event)}>
-                <option className={classnameOption ? classnameOption : "P_option"} value="AWAITING_START"  selected>Em aberto</option>
                 <option className={classnameOption ? classnameOption : "P_option"} value="IN_EXECUTION" >Em Execução</option>
                 <option className={classnameOption ? classnameOption : "P_option"} value="VALIDATING_REQUIREMENTS">Validando requesitos</option>
                 <option className={classnameOption ? classnameOption : "P_option"} value="CANCELED">Cancelado</option>
@@ -32,4 +31,4 @@ const InputSelect = ({ classnameOption, idSelect, setSelectedProjects, onChange 
 
 
 
-export default InputSelect;
+export default InputSelectFreelancer;

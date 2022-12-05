@@ -10,31 +10,39 @@ const PreviewProject = () => {
     const { projectId } = useParams()
 
     const [createrProject, setCreaterProject] = useState("")
+    const [isCreater, setIsCreater] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
-    const typeProjectPreview = (createrProject: string) => {
+    const typeProjectPreview = () => {
 
-        const userJwt = localStorage.getItem('userDetails');
-        const user: any = jwt(userJwt ? userJwt : "")
-        const userId = user.userDetails.id
-        let isCreater = false
-        
-        if (createrProject === userId) {
-            isCreater = true
-        }
-        return isCreater
+        api.get(`/project/${projectId}`).then((res: any) => {
+            setCreaterProject(res.data.data.user.id)
+            const userJwt = localStorage.getItem('userDetails');
+            const user: any = jwt(userJwt ? userJwt : "")
+            setIsCreater(user.userDetails.id === res.data.data.user.id)
+        })
+
+
+        // let isCreater = false
+
+        // if (createrProject === userId) {
+        //     isCreater = true
+        // }
+        // return isCreater
     }
 
     useEffect(() => {
-        api.get(`/project/${projectId}`).then((res: any) => {
-            setCreaterProject(res.data.data.user.id)
-
-        })
+        typeProjectPreview()
     }, [])
+
+    useEffect(() => {
+        setIsLoading(false)
+    }, [isCreater])
 
     return (
         <>
-            {
-                typeProjectPreview(createrProject) ? <PreviewProjectCreator /> : <PreviewProjectFreelancer />
+            {!isLoading &&
+                isCreater ? <PreviewProjectCreator /> : <PreviewProjectFreelancer />
             }
         </>
     )

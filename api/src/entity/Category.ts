@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { SubCategoryORM } from "./SubCategory";
-import { TeamORM } from "./team";
+import { TeamORM } from "./Team";
 
 @Entity({ name: "tb_category" })
 export class CategoryORM {

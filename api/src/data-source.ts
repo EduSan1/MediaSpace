@@ -16,20 +16,23 @@ import { ProjectManagementORM } from "./entity/ProjectManagement"
 import { ProjectMemberORM } from "./entity/ProjectMember"
 import { ProjectRequirementsORM } from "./entity/ProjectRequirements"
 import { SubCategoryORM } from "./entity/SubCategory"
-import { TeamORM } from "./entity/team"
+import { TeamORM } from "./entity/Team"
 import { TeamProjectManagementORM } from "./entity/TeamProjectManagement"
 import { UserORM } from "./entity/User"
 import { UserTeamORM } from "./entity/UserTeam"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "localhost",
+    host: "db-media-space.mysql.database.azure.com",
     port: 3306,
-    username: "root",
-    password: "12345678",
+    username: "mediaSpace",
+    password: "egglmm123@",
     database: "db_media_space",
     synchronize: true,
     logging: false,
+    ssl: {
+        ca: process.env.SSL_CERT,
+    },
     entities: [
         UserORM,
         GenderORM,

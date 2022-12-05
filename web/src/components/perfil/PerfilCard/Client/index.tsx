@@ -1,17 +1,17 @@
 import React from "react";
 import CategoryCard from "../../../utils/CategoryCard";
 
-interface Iperfil{
+interface Iperfil {
 
-        first_name: string,
-        nickname: string,
-        profile_picture: string,
-        biography:string,
+    first_name: string,
+    nickname: string,
+    profile_picture: string,
+    biography: string,
 
 }
 
 
-const PerfilCard = ({first_name,nickname,profile_picture,biography}:Iperfil) => {
+const PerfilCard = ({ first_name, nickname, profile_picture, biography }: Iperfil) => {
 
 
     return (
@@ -26,13 +26,13 @@ const PerfilCard = ({first_name,nickname,profile_picture,biography}:Iperfil) => 
                     <h4>@{nickname}</h4>
                 </span>
             </div>
-          
+
             <div className="fallow_project">
-               
-         
+
+
 
             </div>
-    
+
             <span className="line"></span>
 
             <span className="description_user">
