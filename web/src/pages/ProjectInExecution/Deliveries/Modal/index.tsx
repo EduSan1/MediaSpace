@@ -1,6 +1,9 @@
+import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from "firebase/storage"
 import React, { useEffect, useState } from "react"
+import { storage } from "../../../../constants/firebase"
 import api from "../../../../service"
 import InputProject from "../../../CreateProject/components/Input"
+import DeliveryCard from "./DeliveryCard"
 
 interface IDeliveryModal {
     projectName: string
@@ -11,6 +14,22 @@ interface IDeliveryModal {
 interface IProject {
     name: string
 }
+interface IDelivery {
+    title: string,
+    description: string,
+    files: {
+        url: string
+    }[],
+    requirements:
+    {
+        id: string
+    }[],
+    user:
+    {
+        id: string
+    }[]
+
+}
 
 const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, requirementId }) => {
 
@@ -18,14 +37,10 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
         title: ""
     })
 
-    const [delivery, setDelivery] = useState({
+    const [delivery, setDelivery] = useState<IDelivery>({
         title: "",
         description: "",
-        files: [
-            {
-                url: ""
-            }
-        ],
+        files: [],
         requirements: [
             {
                 id: ""
@@ -37,6 +52,31 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
             }
         ]
     })
+    const [progressPorcent, setPorgessPorcent] = useState(0);
+
+
+    const uploadDelivery = (event: any) => {
+        event.preventDefault();
+        const file = event.target.files[0]
+        if (!file) return
+        const storageRef = ref(storage, `deliveries/${file.name}`)
+        const uploadTask: UploadTask = uploadBytesResumable(storageRef, file)
+        uploadTask.on(
+            "state_changed",
+            snapshot => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                console.log(progress)
+                setPorgessPorcent(progress);
+            },
+            error => { alert(error) },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+                    console.log(url)
+                    setDelivery({ ...delivery, files: [...delivery.files, { url: url }] })
+                })
+            }
+        )
+    }
 
     const handleDelivery = (value: string, name: keyof typeof delivery) => {
         setDelivery({ ...delivery, [name]: value })
@@ -52,12 +92,20 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
         getRequirement()
     }, [])
 
+    useEffect(() => {
+        console.log(delivery);
+    }, [delivery])
+
+    useEffect(() => {
+        console.log("progresso => ", progressPorcent);
+    }, [progressPorcent])
+
     return (
         <div className="delivery-modal-background">
             <div className="delivery-modal-container">
                 <div className="delivery-modal-header">
                     <h2>{projectName} - {requirement.title}</h2>
-                    <p onClick={() => onClose()} >✖</p>
+                    <p onClick={() => onClose()}>✖</p>
                 </div>
                 <div className="delivery-modal-form">
                     <div className="delivery-modal-form-section">
@@ -66,7 +114,20 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
                     </div>
                     <div className="delivery-modal-form-section">
 
+                        <p>Anexos<span>*</span></p>
+                        <p>Envie um arquivo relacioando a sua entrega</p>
+
+                        <div className="deliveries-modal-requirements-deliveries">
+                            {
+                                delivery.files.map((delivery: { url: string }, index) => <DeliveryCard deliveryLink={delivery.url} index={index} onRemove={(index: number) => console.log(index)} />)
+                            }
+                        </div>
+
+                        <input type="file" onChange={(event: any) => uploadDelivery(event)} />
                     </div>
+                </div>
+                <div className="delivery-modal-footer-container">
+                    <button className="delivery-modal-button">Realizar Entrega</button>
                 </div>
             </div>
         </div>
