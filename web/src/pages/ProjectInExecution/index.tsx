@@ -51,6 +51,8 @@ interface IProject {
     requirements: Array<IRequirement>
 }
 
+
+
 const ProjectInExecution = () => {
 
     const navigate = useNavigate()
@@ -104,6 +106,7 @@ const ProjectInExecution = () => {
         })
     }, [])
 
+
     return (
 
         <main id="ContentPage">
@@ -118,13 +121,13 @@ const ProjectInExecution = () => {
                             <h1>Projeto em execução</h1> 
 
                             <div className="project-page-projects-card-container">
+                                
                                 <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
                                 <div className="project-details-cards">
 
 
                                     <DetailsCard id={project.id} create_at={project.create_at} estimated_deadline={project.estimated_deadline} />
-
-
+                                
                                     <div className="view-requirements">
                                         <img src="" alt="" />
                                         <p>Visualizar os requisitos técnicos do projeto</p>
@@ -153,17 +156,12 @@ const ProjectInExecution = () => {
                                 <div className="validation-container">
                                     <h1>Validação</h1>
                                     <p>Valide as entregas feitas pelo(s) prestador(es).</p>
-                                    {/*<p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
-                                    
+                                    <p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+
                                     {
-                                        project.map((project: any) => {
-                                            if (project.is_active === true){
-                                            return <Deliveries requirement={project.requirements}/>  */}
-                                    <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
-                                    {
-                                        project.requirements.map((requirement: any, index: number) => {
+                                        project.requirements.map((requirement: any) => {
                                             if (requirement.is_active === true) {
-                                                return <Deliveries requirement={requirement} index={index++} />
+                                                return <Deliveries requirement={requirement} />
                                             }
 
                                         })

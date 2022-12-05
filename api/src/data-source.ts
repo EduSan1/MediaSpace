@@ -23,16 +23,13 @@ import { UserTeamORM } from "./entity/UserTeam"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "db-media-space.mysql.database.azure.com",
+    host: "localhost",
     port: 3306,
-    username: "mediaSpace",
-    password: "egglmm123@",
+    username: "root",
+    password: "bcd127",
     database: "db_media_space",
     synchronize: true,
     logging: false,
-    ssl: {
-        ca: process.env.SSL_CERT,
-    },
     entities: [
         UserORM,
         GenderORM,
