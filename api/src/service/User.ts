@@ -342,4 +342,37 @@ export class UserService {
             };
         }
     }
+    resendAuthenticationMail = async (mail: string) => {
+        try {
+            console.log(mail)
+
+            const user = await this._.findByWhere("mail", mail)
+            if (user === null) {
+                return {
+                    message: "Não foi possivel encontrar um usuário com esse email",
+                    user: user,
+                    statusCode: 200,
+                };
+            }
+            const mailer = new Mail()
+            const hasSend = await mailer.confirmRegister(user.mail, user.id, user.first_name)
+            if (!hasSend.accepted) {
+                return {
+                    message: "Não foi possivel enviar o email",
+                    error: hasSend,
+                    statusCode: 200,
+                };
+            }
+            return {
+                message: "",
+                statusCode: 200,
+            };
+        } catch (error) {
+            return {
+                message: error.message,
+                error: error.code,
+                statusCode: 200,
+            };
+        }
+    }
 }

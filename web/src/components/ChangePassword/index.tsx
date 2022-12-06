@@ -75,9 +75,9 @@ const ChangePassword = () => {
 
             <div className="Container_Input">
                 <span className="Span_tow"> 
-                <InputLoign label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                <InputLoign disable={false} label={"Nova Senha"} className={hasError ? "InputError" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(event);
-                }} />
+                }}  />
                 <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
                                            setHaspass(!haspass)
                 }} />
@@ -87,10 +87,10 @@ const ChangePassword = () => {
                
                 
                 <span className="Span_tow" > 
-                <InputLoign label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={<FaLock/>} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                <InputLoign disable={false} label={"Reescreva Sua Senha "} className={hasError ? "InputError" :"Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={DiceNewPassword.repetePassword} icon={<FaLock/>} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     handleChange(event);
                     
-                }} />
+                }}  />
                     <ButtonIcon className="" name="" typeInput="button" valueBtn="" icon={<FaLock/>} onClick={() =>{
                                            setHasrepetepass(!hasrepetepass)
                 }} />   

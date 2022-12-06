@@ -18,7 +18,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
 
     const dateMask = (value: string) => {
         return value
-            .split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/,"$1/$2/$3")
+            .split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/, "$1/$2/$3")
     }
 
     const [imageIndex, setImageIndex] = useState(0)
@@ -94,9 +94,9 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
     return (
         <>
 
-        <View style={styles.btnBack}>
-            <BtnBackPage action={()=> navigation.navigate("ListProject")}/> 
-        </View>
+            <View style={styles.btnBack}>
+                <BtnBackPage action={() => navigation.navigate("ListProject")} />
+            </View>
 
             <ScrollView style={styles.page}>
 
@@ -104,32 +104,32 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
 
                 <View style={styles.containerFilho}>
                     <View style={styles.containerDates}>
-                    
+
                         <View style={styles.containerDate}>
-                        <Text style={styles.date}>Criado em: </Text>
-                        <Text>{dateMask(projectOwner.create_at)}</Text>
-   
+                            <Text style={styles.date}>Criado em: </Text>
+                            <Text>{dateMask(projectOwner.create_at)}</Text>
+
                         </View>
 
                         <Text style={styles.traco}>|</Text>
 
                         <View style={styles.containerDate}>
-                        <Text style={styles.date}>Prazo término: </Text>
-                        <Text>{dateMask(projectOwner.estimated_deadline)}</Text>
+                            <Text style={styles.date}>Prazo término: </Text>
+                            <Text>{dateMask(projectOwner.estimated_deadline)}</Text>
                         </View>
 
                     </View>
 
                     <View style={styles.containerProfile}>
                         <View style={styles.containerNameImage}>
-                            <Image style={styles.image} source={{uri : projectOwner.user.profile_picture}} />
+                            <Image style={styles.image} source={{ uri: projectOwner.user.profile_picture }} />
                             <View>
-                            <Text style={styles.nameUser}>{projectOwner.user.first_name} {projectOwner.user.last_name}</Text> 
-                            <Text style={styles.nicknameUser}>@{projectOwner.user.nickname}</Text> 
-                        </View>
+                                <Text style={styles.nameUser}>{projectOwner.user.first_name} {projectOwner.user.last_name}</Text>
+                                <Text style={styles.nicknameUser}>@{projectOwner.user.nickname}</Text>
+                            </View>
 
                         </View >
-                            <View>
+                        <View>
                             <Text style={styles.value}>Valor estimado:</Text>
                             <Text style={styles.price}> R$ {projectOwner.value}</Text>
                         </View>
@@ -139,25 +139,21 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
                         <Text style={styles.nameProject}>{projectOwner.name}</Text>
                         <Text style={styles.describle}> {projectOwner.description}</Text>
 
-                        <View style={styles.categ}>      
+                        <View style={styles.categ}>
 
-                        <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />              
-                                {
-                                    projectOwner.categories.map((category : any) => {
-                                        return <Text style={styles.categorySelected}>{category.name}</Text>
+                            <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
+                            {
+                                projectOwner.categories.map((category: any) => {
+                                    return <Text style={styles.categorySelected}>{category.name}</Text>
 
-                                    })
-                                }
+                                })
+                            }
 
-                        <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />                        
+                            <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                         </View>
-
-                     
-                   
-
                     </View>
                     <View style={styles.button}>
-                            <LoginButton type="dark" action={() => console.log('teste')} isLoad={projectLoad} title="Executar Projeto" />
+                        <LoginButton type="dark" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId })} isLoad={projectLoad} title="Executar Projeto" />
                     </View>
 
                 </View>
@@ -191,16 +187,16 @@ const styles = StyleSheet.create({
     },
     containerTitle: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: "auto",
         display: 'flex',
         padding: 20,
     },
     containerImage: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.21,
-        backgroundColor:"blue"
+        backgroundColor: "blue"
     },
-    containerNameImage:{
+    containerNameImage: {
         flexDirection: 'row',
         alignItems: 'center',
         display: 'flex',
@@ -219,51 +215,51 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "300",
         paddingStart: 10,
-        color:'#B3B3B3'
+        color: '#B3B3B3'
     },
-    value:{
+    value: {
         fontSize: 14,
         fontWeight: "400",
-        color:'#B3B3B3'
+        color: '#B3B3B3'
     },
-    price:{
+    price: {
         fontSize: 14,
         fontWeight: "500",
-        color:'#30A851'
+        color: '#30A851'
     },
-    nameProject:{
+    nameProject: {
         fontSize: 16,
         fontWeight: "bold",
     },
-    titleDate:{
+    titleDate: {
         fontSize: 14,
         fontWeight: "400",
     },
-    traco:{
+    traco: {
         fontSize: 25,
         fontWeight: "300",
-        color:'#999999',
+        color: '#999999',
     },
-    date:{
+    date: {
         fontSize: 14,
         fontWeight: "400",
-        color:'#999999'
+        color: '#999999'
     },
-    categ:{
+    categ: {
         display: "flex",
-        justifyContent:'space-around',
-        alignItems:'center'
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
-    divisor:{
+    divisor: {
         width: Dimensions.get('window').width * 0.9,
         height: Dimensions.get("window").width * 0.005,
         borderRadius: 100,
         marginTop: 10
     },
-    containerDate:{
+    containerDate: {
         flexDirection: "row"
     },
-    describle:{
+    describle: {
         fontSize: 14,
         fontWeight: "300",
         color: '#4D4D4D'
@@ -280,7 +276,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: Dimensions.get('window').width * 0.06,
         margin: Dimensions.get('window').width * 0.03,
         height: Dimensions.get('window').height * 0.035,
-        width: "auto" ,
+        width: "auto",
         backgroundColor: "#C6D2FF",
         borderRadius: 100,
         display: "flex",
@@ -291,21 +287,20 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: "flex-end",
         alignItems: "center",
-        padding: 10
-        
+        padding: 10,
+
     },
-    btnBack:{
-        width: Dimensions.get('window').width ,
+    btnBack: {
+        width: Dimensions.get('window').width,
         height: Dimensions.get("window").height * 0.12,
         backgroundColor: "#fff",
         alignItems: 'center',
-        justifyContent:'center',
-        display:'flex',
+        justifyContent: 'center',
+        display: 'flex',
     },
-    page:{
-        backgroundColor:'#fff'
-    },
- 
+    page: {
+        backgroundColor: '#fff'
+    }
 
 
 

@@ -16,7 +16,7 @@ const ProviderUserRegister = () => {
 
             <div className="Container_Providor_user">
 
-                <ImageComponent alt='' src='../assets/img/astronaut.svg' className='img_Astronaut' />
+                <ImageComponent alt='' src='https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8' className='img_Astronaut' />
                 <div className="container_texte_previdor">
                     <h3>Perfil de prestador de serviço </h3>
                     <span>

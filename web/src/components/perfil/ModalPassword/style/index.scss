@@ -1,0 +1,74 @@
+@import "../../../../styles/vars.scss";
+
+
+.Modal_all {
+    display: flex;
+    width: 50%;
+    height: 50%;
+    background-color: #ffffff;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+
+   h1{
+    font-family: $light-font;
+    font-weight: 500;
+    margin-left: 5px;
+    white-space: nowrap;
+   font-size: clamp(2.5rem,2vw,1rem);
+   }
+
+   h4{
+    font-family: $light-font;
+    font-weight: 300;
+    margin-left: 5px;
+    color: $primary-purple;
+    white-space: nowrap;
+    margin-bottom: 50px;
+   }
+
+    .InputModalPerfil{
+     display: flex;
+     width: 60%;
+     height: 30px;
+     border: 1.5px solid $light-purple;
+     margin-left: 20%;
+     border-radius: 5px;
+
+    
+    }
+
+
+    .btn_cancel_Continue{
+       display: flex;
+        width: 40%;
+        height: 45px;
+        gap: 15px;
+
+
+        input{
+            width: 50%;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color: $primary-purple ;
+            color: #ffffff;
+            font-size: 1.3rem;
+        }
+
+        .btnCancelar{
+            border: 1px solid $primary-purple;
+            background-color: #ffffff;
+            color: $primary-purple;
+        }
+
+        input:hover{
+            transition: 0.30s;
+            font-size: 1.5rem;
+        }
+
+    }
+
+}

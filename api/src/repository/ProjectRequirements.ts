@@ -14,7 +14,9 @@ export class ProjectRequirementsRepository {
     }
 
     list = async () => {
-        return await this._.find(ProjectRequirementsORM)
+        return await this._.find({
+
+        })
     }
 
     listWhere = async (key: keyof typeof ProjectRequirementsORM, value: string) => {
