@@ -124,15 +124,15 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
                 <div className="delivery-modal-form">
                     <div className="delivery-modal-form-section">
                         <InputProject handleChange={(event) => handleDelivery(event.target.value, "title")} label="Titulo" maxLenght={100} name="title" onFocus={() => { }} value={delivery.title} />
-                        <InputProject handleChange={(event) => handleDelivery(event.target.value, "description")} label="Description" maxLenght={800} name="title" onFocus={() => { }} value={delivery.description} />
+                        <InputProject handleChange={(event) => handleDelivery(event.target.value, "description")} label="Descrição" maxLenght={800} name="title" onFocus={() => { }} value={delivery.description} />
                     </div>
-                    <div className="delivery-modal-form-section">
+                    <div className="delivery-modal-form-section files-modal">
                         <div>
                             <label className="subtitulo_projects">Anexos<span> * </span></label>
                             <p className="paragraph_projects" >Envie um arquivo relacionado a sua entrega</p>
                         </div>
-                        
-                        
+
+
                         <div className="deliveries-modal-requirements-deliveries">
                             {
                                 delivery.files.map((delivery: { url: string }, index) => <DeliveryCard deliveryLink={delivery.url} index={index} onRemove={(index: number) => console.log(index)} />)
