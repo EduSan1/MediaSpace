@@ -12,7 +12,6 @@ import CheckMailPage from './src/pages/CheckMailPage';
 import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelancer';
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterProject } from './src/pages/RegisterProject';
-import { NavigationScreen } from './src/pages/NavigationScreen';
 import { ProjectOwner } from './src/pages/ProjectOwner';
 import Home from './src/pages/Home';
 import { Project } from './src/pages/Project';
@@ -40,7 +39,6 @@ export default function App() {
         <Stack.Screen name="CheckMail" component={CheckMailPage} />
         <Stack.Screen name="RegisterFreelancer" component={RegisterFreelancerPage} />
         <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
-        <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
         <Stack.Screen name="RegisterProject" component={RegisterProject} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="ListProject" component={ListProject} />
