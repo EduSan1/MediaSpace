@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useJwt } from "react-jwt";
 import SearchBar from "../../components/HeaderPage/Search";
 import NavegationBar from "../../components/utils/navegation";
 import DeliveryModal from "../ProjectInExecution/Deliveries/Modal";

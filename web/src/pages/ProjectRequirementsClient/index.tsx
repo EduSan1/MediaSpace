@@ -80,8 +80,8 @@ const ProjectRequirementsClient = () => {
 
     return (
         <main id="ContentPage">
-
             <NavegationBar />
+
             <div className="Container">
                 <SearchBar />
                 <section className="section_main">

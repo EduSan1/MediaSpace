@@ -67,13 +67,18 @@ const ProfileClient = () => {
     }
 
     useEffect(() => {
-        api.get(`/project/user/${user.id}`).then((res: any) => {
+        console.log("PROBLEMA user =>", user)
+        console.log("PROBLEMA ROTA =>", `/project/user/${user.id}`)
+        user.id &&
+            api.get(`/project/user/${user.id}`).then((res: any) => {
 
-            setStatusProject(res.data.data)
+                console.log("PROBLEMA obj =>", res)
 
-            setSelectedProjects(res.data.data.AWAITING_START)
+                setStatusProject(res.data.data)
 
-        })
+                setSelectedProjects(res.data.data.AWAITING_START)
+
+            })
     }, [user])
 
     useEffect(() => {
