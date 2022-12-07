@@ -67,6 +67,7 @@ export class UserORM {
 
     @OneToMany(() => PostCommentORM, comment => comment.post)
     comments: PostCommentORM[]
+
     @ManyToMany(() => DeliveryORM, delivery => delivery.user)
     delivery: DeliveryORM[]
 

@@ -12,7 +12,7 @@
 .delivery-modal-container {
     background-color: #fff;
     width: 80%;
-    height: 80%;
+    height: 65%;
     display: flex;
     align-items: center;
     padding: 10px 0;
@@ -23,7 +23,7 @@
 
 .delivery-modal-header {
     height: 10%;
-    width: 98%;
+    width: 95%;
     display: flex;
     align-items: center;
 
@@ -33,12 +33,14 @@
         font-weight: 800;
         font-size: 1.5rem;
     }
+
     p {
         width: 5%;
         color: #f66;
         font-size: 1.5rem;
         cursor: pointer;
         font-weight: 400;
+
         &:hover {
             font-weight: 800;
         }
@@ -53,14 +55,50 @@
     justify-content: center;
     flex-direction: row;
 }
+
 .delivery-modal-form-section {
     height: 100%;
     width: 50%;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10%;
     flex-direction: column;
+
+    span {
+        color: #ff6666;
+        font-size: 1.5rem;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .add_file {
+        width: 40%;
+        height: 8%;
+        border: solid $lavander;
+        border-radius: 5px;
+        color: $primary-purple;
+        font-family: $light-font;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        justify-content: center;
+        margin-left: 30%;
+        align-self: center;
+        cursor: pointer;
+    }
+
+    .add_file:hover {
+        background-color: $lavander;
+        color: #fff;
+
+    }
+}
+
+.files-modal {
+    gap: 5%;
 }
 
 .delivery-modal-footer-container {
@@ -93,4 +131,55 @@
 }
 
 .deliveries-modal-requirements-deliveries {
+    width: 85%;
+    height: 45%;
+    overflow-y: auto;
+    box-shadow: inset 0px 4px 15px #DEDEDE;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.delivery-modal-card-container {
+    width: 90%;
+    height: 30%;
+    border-radius: 10px;
+    background-color: #C6D2FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $light-font;
+
+    img {
+        width: 10%;
+        height: 70%;
+    }
+
+    .delivery-modal-card-details-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 80%;
+        margin-left: 10px;
+
+        div {
+            width: 50%;
+            display: flex;
+            color: #717480;
+            font-weight: lighter;
+            font-size: 0.8rem;
+            justify-content: space-between;
+        }
+    }
+
+    .remove_file {
+        font-size: 2rem;
+        color: #717480;
+        cursor: pointer;
+    }
 }
