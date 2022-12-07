@@ -83,7 +83,7 @@ const RecoveringPasswordPage = () => {
 
             <div className="Container_Input">
                 <span className="Span_tow">
-                    <InputLoign disable label={"Nova Senha"} className={hasError ? "hasErrorInput" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={user.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    <InputLoign disable={false} label={"Nova Senha"} className={hasError ? "hasErrorInput" : "Input_one"} placeholder="" name={"NewPassword"} typeInput={!haspass ? "password" : "text"} maxlength={255} valueLogin={user.NewPassword} icon={''} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         handleChange(event);
                     }} />
                     <ButtonIcon className="Passeyes" name="" typeInput="button" valueBtn="" icon={<FaLock onClick={()=>{setHaspass(!haspass)}} />} onClick={() => {
@@ -95,7 +95,7 @@ const RecoveringPasswordPage = () => {
 
 
                 <span className="Span_tow" >
-                    <InputLoign disable label={"Reescreva Sua Senha "} className={hasError ? "hasErrorInput" : "Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={user.repetePassword} icon={<FaLock />} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    <InputLoign disable={false} label={"Reescreva Sua Senha "} className={hasError ? "hasErrorInput" : "Input_two"} placeholder="" name={"repetePassword"} typeInput={!hasrepetepass ? "password" : "text"} maxlength={255} valueLogin={user.repetePassword} icon={<FaLock />} hasError={hasError} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         handleChange(event);
 
                     }} />

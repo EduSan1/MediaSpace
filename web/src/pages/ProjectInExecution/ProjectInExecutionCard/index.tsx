@@ -11,9 +11,14 @@ interface IProject {
         nickname: string
         profile_picture: string
     },
+    freelancer: {
+        first_name: string
+        nickname: string
+        profile_picture: string
+    }
 }
 
-const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProject) => {
+const ProjectInExecutionCard = ({ id, name, description, image, user, freelancer }: IProject) => {
 
     const navigate = useNavigate()
 
@@ -52,9 +57,14 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, }: IProjec
                 </div>
                 <div className="project-card-freelancer-details">
                     <p>Em execução por:</p>
-                    {/*<p>{management.team_project_management[0].id}</p>
-                    <p>{management.team_project_management[0].team.name}</p>
-                    <p>@{management.team_project_management[0].team.nickname}</p> */}
+                    <div className="project-in-execution-freelancer-container">
+                        <img src={freelancer.profile_picture} alt={"freelancer"} />
+                        <div className="details">
+
+                            <p>{freelancer.first_name}</p>
+                            <p>@{freelancer.nickname}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

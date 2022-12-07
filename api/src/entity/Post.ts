@@ -3,7 +3,7 @@ import { CategoryORM } from "./Category";
 import { PostCommentORM } from "./PostComment";
 import { PostImageORM } from "./PostImage";
 import { SubCategoryORM } from "./SubCategory";
-import { TeamORM } from "./team";
+import { TeamORM } from "./Team";
 
 @Entity({ name: "tb_post" })
 export class PostORM {

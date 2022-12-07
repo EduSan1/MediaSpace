@@ -12,19 +12,15 @@ import ModalRequirements from "../../components/RequirementsModal";
 
 const ProjectsrequirementsFreelancer = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [valuePorcent, setvalue] = useState();
 
     const { projectId } = useParams()
 
     const [requerimenteproject, setRequerimenteproject] = useState({
         name: "",
-        requirement: [],
+        requirements: [],
         value: "",
     });
 
-
-
-    console.log(requerimenteproject)
     const converteValue = (valueProject: string, porcenteRequirement: string) => {
         const value = parseFloat(valueProject)
         const porcente = parseFloat(porcenteRequirement)
@@ -37,10 +33,10 @@ const ProjectsrequirementsFreelancer = () => {
     const getRequirements = () => {
         api.get(`/project/${projectId}`)
             .then((res) => {
-                setRequerimenteproject({
-                    ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value: res.data.data.value
-                })
-
+                // setRequerimenteproject({
+                //     ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value: res.data.data.value
+                // })
+                setRequerimenteproject(res.data.data)
             })
     }
 
@@ -63,7 +59,7 @@ const ProjectsrequirementsFreelancer = () => {
 
 
 
-                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - {} </h1></span>
+                            <span className="Tittle_name_project"> <h1>Requisitos técnicos - { } </h1></span>
 
 
                         </div>
@@ -73,10 +69,10 @@ const ProjectsrequirementsFreelancer = () => {
                             <div>
 
                                 {
-                                    requerimenteproject.requirement.map((requirement: any, numberissue = 0) => {
+                                    requerimenteproject.requirements.map((requirement: any, index) => {
                                         if (requirement.is_active !== false) {
-                                            numberissue++;
-                                            return <CardShipRegister idUserCreater={false} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={requirement.id} getRequirements={getRequirements} />
+                                            // index++;
+                                            return <CardShipRegister idUserCreater={false} CardClasse="" description={requirement.description} issue="" layout={requirement.title} numberissue={index++} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={requirement.id} getRequirements={getRequirements} />
                                         }
                                     })
                                 }

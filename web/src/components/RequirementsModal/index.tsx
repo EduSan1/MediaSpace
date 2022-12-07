@@ -17,7 +17,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         {
             title: "",
             description: "",
-            gain_percentage: 0,
+            gain_percentage: "",
             project: {
                 id: projectId
             }
@@ -33,10 +33,10 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         ]
     })
 
-    console.log(limitGainPercentage)
+    const [gainPercentageEdit, setGainPercentageEdit] = useState(0)
 
     const [caracteres, setCaracteres] = React.useState({
-        caracteres: 0
+        caracteres: requirements.title
     })
 
     const numberCaracteres = (event: any) => {
@@ -55,9 +55,10 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         setError({ ...error, [nameInput]: errorMensage })
     }
 
-    const gainPorcentageLimit = () => {
+    const gainPorcentageLimit = (valueCurrent: string) => {
 
         let currentPercentage = 0
+        let validate = true
 
         for (let i = 0; limitGainPercentage.gainPercentage.length > i; i++) {
             if (limitGainPercentage.gainPercentage[i].is_active) {
@@ -65,12 +66,25 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             }
         }
 
-        let valueRestantPercentage = 100 - currentPercentage
-        return valueRestantPercentage
+        let valueCurrentToFloat = parseFloat(valueCurrent)
 
+        if (requirementId) {
+            const percentageEdit = currentPercentage - gainPercentageEdit
+            if (percentageEdit + valueCurrentToFloat > 100) {
+                validate = false
+            } else {
+                validate = true
+            }
+        } else {
+            if (currentPercentage + valueCurrentToFloat > 100) {
+                validate = false
+            } else {
+                validate = true
+            }
+        }
+
+        return validate
     }
-
-    gainPorcentageLimit()
 
     const validation = () => {
         let validate = true;
@@ -89,10 +103,11 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
             validate = false
         }
 
-        if (requirements.gain_percentage > gainPorcentageLimit()) {
-            handleErrors("O valor ultrapassa de 100%", "gain_percentage")
+        if (gainPorcentageLimit(requirements.gain_percentage) === false) {
+            handleErrors("O valor ultrapassa 100%", "gain_percentage")
             validate = false
         }
+
         if (validate) {
             createEditRequirements();
         }
@@ -106,23 +121,21 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
         return action
     }
 
+    console.log("valor antes da ediçaõ " + gainPercentageEdit)
+    gainPorcentageLimit(requirements.gain_percentage)
+
     const createEditRequirements = () => {
         if (defineAction() === "Criar") {
-            console.log("LimitGainPercentage")
             api.post('/requirement', requirements).then((res) => {
                 if (res.data.statusCode !== 201) {
-                    console.log(res)
-                    window.alert("Não foi possível criar o requisito")
+                    window.alert(res.data.message)
                 } else {
                     window.alert(res.data.message)
                     onClose()
-
-
                 }
             })
         }
         else if (defineAction() === "Editar") {
-            console.log("editar")
             const requirementToSend = {
                 title: requirements.title,
                 description: requirements.description,
@@ -152,14 +165,19 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
     }
 
     useEffect(() => {
-        api.get(`/requirement/${requirementId}`).then((res: any) => {
-            setRequirements({
-                ...requirements,
-                gain_percentage: res.data.data.gain_percentage,
-                description: res.data.data.description,
-                title: res.data.data.title
+        if (requirementId) {
+            api.get(`/requirement/${requirementId}`).then((res: any) => {
+                setRequirements({
+                    ...requirements,
+                    gain_percentage: res.data.data.gain_percentage,
+                    description: res.data.data.description,
+                    title: res.data.data.title
+                })
+
+                setGainPercentageEdit(res.data.data.gain_percentage)
+
             })
-        })
+        }
     }, [])
 
     useEffect(() => {
@@ -185,7 +203,7 @@ const ModalRequirements = ({ onClose, requirementId }: IModalRequirements) => {
                             <div className="container_input_project">
                                 <label className="subtitulo_projects">Percentual de ganho<span> * </span></label>
                                 <div className="conatainer_input_message_error">
-                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} max={gainPorcentageLimit()} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} />
+                                    <input value={requirements.gain_percentage} className={"input_gain_requirement"} type="number" min={0} name="gain_percentage" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} onFocus={() => { handleErrors("", "gain_percentage") }} onChangeCapture={() => { }} />
 
                                     <p>{error.gain_percentage}</p>
                                 </div>

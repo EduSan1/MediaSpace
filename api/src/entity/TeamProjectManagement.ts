@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProjectManagementORM } from "./ProjectManagement";
 import { ProjectMemberORM } from "./ProjectMember";
-import { TeamORM } from "./team";
+import { TeamORM } from "./Team";
 
 @Entity({ name: "tb_team_project_management" })
 export class TeamProjectManagementORM {
@@ -19,6 +19,6 @@ export class TeamProjectManagementORM {
     projectManagement: ProjectManagementORM
 
     @OneToMany(() => ProjectMemberORM, projectMember => projectMember.teamProjectManagement)
-    members: ProjectMemberORM[] 
+    members: ProjectMemberORM[]
 
 }

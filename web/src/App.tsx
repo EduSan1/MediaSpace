@@ -65,12 +65,8 @@ function App() {
         <Route path='/projects/requirements/:projectId' element={<ProjectRequirements />} />
         <Route path='/projects/allfreelancerview' element={<AllFreelancerView />} />
         <Route path='/projects/selectFreelancer' element={<ProjectsSelecetFreelancer />} />
-
         <Route path='/projects/allfreelancerview/:projectId' element={<AllFreelancerView />} />
         <Route path='/projects/selectFreelancer/:projectId' element={<ProjectsSelecetFreelancer />} />
-
-
-        {/* */}
         <Route path='/teste/:projectId' element={<PreviewProjectCreator />} />
 
 

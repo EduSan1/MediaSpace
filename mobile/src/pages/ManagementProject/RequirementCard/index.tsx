@@ -45,13 +45,7 @@ export const RequirementCard = ({ requirement, numberOfRequirements, reload, ind
             <Text style={styles.requirementTitle}>Requisito - {requirement.title}</Text>
             {
                 requirement.delivery.map((delivery: any) => {
-                    console.log("titulo do requisito => ", requirement.id)
-                    console.log("delivery => ", delivery.is_accepted === false ? "entrega recusada" : "entrega aceita")
-
-
                     if (delivery.is_accepted === true) {
-
-
                         return (
                             <View style={styles.deliveryContainer}>
                                 <View style={styles.deliveryTitleContainer}>
@@ -61,7 +55,7 @@ export const RequirementCard = ({ requirement, numberOfRequirements, reload, ind
                                     <Text style={styles.deliveryTitle}>{`${index + 1}/${numberOfRequirements} - ${delivery.title}`}</Text>
                                 </View>
                                 <DownloadFile delivery={delivery} />
-                                <Text style={styles.deliveryAccepted}>Validado ✓</Text>
+                                <Text style={styles.deliveryAccepted}>Aceita ✓</Text>
                             </View>
 
                         )

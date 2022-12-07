@@ -107,7 +107,7 @@ const RecoveryPassword = () => {
 
 
           <span className="btn_span">
-            <InputLogin disable label="Email" hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<BsFillPersonFill />} className={hasError ? "InputError" : "Input_PassWordRecovery"}
+            <InputLogin disable={false} label="Email" hasError={hasError} typeInput={'email'} name={'mail'} placeholder={"username@mediaspace.com"} icon={<BsFillPersonFill />} className={hasError ? "InputError" : "Input_PassWordRecovery"}
               valueLogin={user.mail} handleChange={handleChange} maxlength={300} />
           </span>
 
