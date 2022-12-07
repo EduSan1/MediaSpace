@@ -67,7 +67,7 @@ export const CardShipRegister = ({ CardClasse, percentage, description, layout, 
         <>
             <div className={CardClasse ? CardClasse : "Compainter_CardShip"}>
                 <span className={"input_Confirmation"}>
-                    <h2>{numberissue + 1} - {layout}</h2>
+                    <h2>{numberissue} - {layout}</h2>
                     <div className={idUserCreater ? "verification_creater" : "verification"}>
                         <span onClick={() => { setIsModalVisible(true) }}>
                             <IconBar Icon={<FiEdit />} className={"iconCheck"} text="" />

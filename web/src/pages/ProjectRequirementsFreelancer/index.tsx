@@ -71,7 +71,7 @@ const ProjectsrequirementsFreelancer = () => {
                                 {
                                     requerimenteproject.requirements.map((requirement: any, index) => {
                                         if (requirement.is_active !== false) {
-                                            // index++;
+                                             index++;
                                             return <CardShipRegister idUserCreater={false} CardClasse="" description={requirement.description} issue="" layout={requirement.title} numberissue={index++} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={requirement.id} getRequirements={getRequirements} />
                                         }
                                     })

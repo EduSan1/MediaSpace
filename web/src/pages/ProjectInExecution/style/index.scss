@@ -328,7 +328,10 @@ h1 {
 
 .validation-container {
     margin-bottom: 35px;
-    p,
+    font-family: $light-font;
+    p{
+        font-size: 1rem;
+    }
     h3 {
         font-size: xx-large;
     }
@@ -419,6 +422,43 @@ ul:nth-child(1) {
 
 .delivery-card-details-container {
     width: 100%;
+
+    .container-buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        height: 40%;
+
+        button{
+            border: none;
+            width: 20%;
+            height: 80%;
+            border-radius: 20px;
+            color: #fff;
+            transition: 0.5s;
+            background-color: $red;
+            cursor: pointer;
+
+            &:hover {
+                background-color: transparent;
+                color: $red;
+                border:solid 2px $red;
+            }
+        }
+
+        button:nth-child(1){
+            background-color:$primary-purple; 
+            &:hover {
+                background-color: transparent;
+                color: $primary-purple;
+                border:solid 2px $primary-purple;
+            }
+        }
+
+        
+
+    }
 }
 
 .validation-desc {
@@ -452,23 +492,20 @@ ul:nth-child(1) {
         font-size: xx-large;
     }
     h2.requirement-title {
-        margin-left: 7px;
         color: #75a5ff;
         font-size: xx-large;
     }
-    h2.requirement-counter::after {
-        counter-increment: number;
-        content: counter(number);
-        color: #75a5ff;
-        font-size: xx-large;
-    }
+    // h2.requirement-counter::after {
+    //     counter-increment: number;
+    //     content: counter(number);
+    //     color: #75a5ff;
+    //     font-size: xx-large;
+    // }
 }
 
 .delivery-info {
     display: flex;
     flex-direction: row;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
 }
 
 //
@@ -538,6 +575,18 @@ ul:nth-child(1) {
 .delivery-data {
     margin-left: 2vw;
     width: 100%;
+
+    .accept{
+        color:#64E176;
+        display: flex;
+        justify-content: center;
+    }
+
+    .refused{
+        color:$red;
+        display: flex;
+        justify-content: center;
+    }
     p {
         font-size: 24px;
         color: #b3b3b3;
@@ -548,4 +597,11 @@ ul:nth-child(1) {
     display: flex;
     justify-content: flex-start;
     margin-left: 90%;
+}
+
+.deliveries{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
