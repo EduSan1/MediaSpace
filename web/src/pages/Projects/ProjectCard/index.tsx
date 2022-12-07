@@ -16,15 +16,16 @@ interface IProject {
         profile_picture: string
     },
 
-    onClick: ()=>void
+    onClick: () => void
 
 }
 
 const ProjectCard = ({ id, name, description, value, image, categories, user, onClick }: IProject) => {
 
 
+
     return (
-        <div onClick={onClick} className="project-list-card">
+        <div onClick={() => onClick()} className="project-list-card">
             <div className="project-list-card-image-container">
                 <img src={image[0].url} alt="" />
             </div>

@@ -49,7 +49,7 @@ const ProjectsSelecetFreelancer = () => {
                     console.log(res.data)
                 } else {
                     window.alert(res.data.message)
-                    navigate(-1)
+                    navigate(-2)
                 }
             })
     }

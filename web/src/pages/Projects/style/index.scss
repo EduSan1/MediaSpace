@@ -74,7 +74,7 @@
 .project-page-filter-container {
     width: 90vw;
     height: 6vh;
-
+    padding: 0 2%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -113,6 +113,7 @@
     height: auto;
 
     h2 {
+        padding: 0 2%;
         font-weight: 200;
         margin-bottom: 2vw;
     }
@@ -125,6 +126,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    padding: 0 2%;
     flex-wrap: wrap;
     gap: 1vw;
     margin-bottom: 2vw;

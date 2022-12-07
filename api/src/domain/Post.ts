@@ -1,7 +1,7 @@
 import { CategoryORM } from "../entity/Category"
 import { PostImageORM } from "../entity/PostImage"
 import { SubCategoryORM } from "../entity/SubCategory"
-import { TeamORM } from "../entity/team"
+import { TeamORM } from "../entity/Team"
 import { IDomainPostProps } from "../interface/Post"
 
 export default class PostDomain {

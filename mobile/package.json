@@ -50,7 +50,8 @@
     "react-native-web": "~0.18.7",
     "rn-fetch-blob": "^0.12.0",
     "save": "^2.9.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "expo-updates": "~0.14.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

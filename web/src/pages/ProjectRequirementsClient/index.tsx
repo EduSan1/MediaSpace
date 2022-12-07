@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SearchBar from "../../components/HeaderPage/Search";
 import { CardShip, CardShipRegister } from "../../components/ProjectRequiremens/CardShip";
 import HistoryTrack from "../../components/utils/HistoryTrack";
@@ -9,6 +9,7 @@ import api from "../../service";
 
 const ProjectRequirementsClient = () => {
     const { projectId } = useParams()
+    const navigate = useNavigate()
     const [requerimenteproject, setRequerimenteproject] = useState({
         name: "",
         requirement: [],
@@ -32,8 +33,10 @@ const ProjectRequirementsClient = () => {
 
         if (confirm) {
             api.post(`project/acceptRequirements/${projectId}`).then((res) => {
+
                 if (res.data.statusCode !== 201) {
                     console.log(res.data)
+                    navigate("/Perfil")
                 } else {
                     console.log(res.data.message)
                 }
@@ -77,8 +80,8 @@ const ProjectRequirementsClient = () => {
 
     return (
         <main id="ContentPage">
-
             <NavegationBar />
+
             <div className="Container">
                 <SearchBar />
                 <section className="section_main">
@@ -96,7 +99,7 @@ const ProjectRequirementsClient = () => {
                                     requerimenteproject.requirement.map((requirement: any, numberissue = 1) => {
                                         if (requirement.is_active !== false) {
                                             numberissue++;
-                                            return <CardShipRegister idUserCreater={true} CardClasse="" desciption={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={""} getRequirements={""} />
+                                            return <CardShipRegister idUserCreater={true} CardClasse="" description={requirement.description} issue="" layout={requirement.title} numberissue={numberissue} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={""} getRequirements={""} />
                                         }
 
                                     })

@@ -58,7 +58,7 @@ const ProfileFreelancer = () => {
 
 
 
-    const [select, setSelected] = useState('')
+    const [select, setSelected] = useState('IN_EXECUTION')
 
 
     const [statusProject, setStatusProject] = useState({
@@ -66,14 +66,14 @@ const ProfileFreelancer = () => {
         IN_EXECUTION: [],
         COMPLETE: [],
         CANCELED: [],
-       
+
     })
 
     const [selectedProject, setSelectedProjects] = useState([])
-   
+
 
     const changeProjects = (status: keyof typeof statusProject) => {
-
+        console.log(statusProject)
         setSelectedProjects(statusProject[status])
         setSelected(status)
 
@@ -96,26 +96,18 @@ const ProfileFreelancer = () => {
     }, [])
 
     const roteProject = (id: string) => {
-        if (select == 'AWAITING_START') {
+        console.log(select)
+        if (select === 'AWAITING_START') {
             navigate(`/projects/${id}`)
-        } else { }
-
-        if (select == 'VALIDATING_REQUIREMENTS') {
+        } else if (select === 'VALIDATING_REQUIREMENTS') {
             navigate(`/projects/requirements/${id}`)
-        } else { }
-
-        if (select == 'IN_EXECUTION') {
+        } else if (select === 'IN_EXECUTION') {
             navigate(`/projectInExecution/${id}`)
-        } else { }
-
-        if (select == 'COMPLETE') {
-            navigate(`/projects/${id}`)
-
-        } else { }
-
-        if (select == 'CANCELED') {
+        } else if (select === 'COMPLETE') {
+            navigate(`/projectInExecution/${id}`)
+        } else if (select === 'CANCELED') {
             console.log('COMPLETE')
-        } else { }
+        }
 
 
 
@@ -137,14 +129,14 @@ const ProfileFreelancer = () => {
                         <SideNav className="" icon={<ImStatsDots />} icon2={<AiOutlineProfile />} icon3 icon4 icon5 />
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
-                        <InputSelectFreelancer  onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} setSelectedProjects={() => { }} classnameOption={''}/>
+                        <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} setSelectedProjects={() => { }} classnameOption={''} />
 
                         <div className="Main_Card">
 
                             <div className="project-page-projects-card-container">
                                 {
                                     selectedProject?.map((project: any) => {
-                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.title} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
                                     })
                                 }
                             </div>
