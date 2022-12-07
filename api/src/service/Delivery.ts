@@ -31,8 +31,9 @@ export class DeliveryService {
         this.teamProjectManagementRepository = new TeamProjectManagementRepository()
     }
 
-    create = async (entity: DeliveryDomain) => {
+    create =  async (entity: DeliveryDomain) => {
         try {
+<<<<<<< HEAD
             const delivery = await this._.create(entity)
 
             entity.files?.map(async (file: IFile) => {
@@ -40,8 +41,42 @@ export class DeliveryService {
                     ...file,
                     delivery: {
                         id: delivery.id
+=======
+                const delivery = await this._.create(entity)
+
+                entity.files?.map(async (file: IFile) => {                
+                    const fileToRegister = {
+                        ...file, 
+                        delivery: {
+                            id: delivery.id
+                        }
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
                     }
+                    await this.deliveryFileRepository.create(fileToRegister)
+                })
+
+                const freelancerId = delivery.user.id
+                const freelancer = await this.userRepository.findById(freelancerId)
+                const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
+                const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
+                
+                if (!freelancer.is_active === true && !projectMember.is_active === true && !teamProjectManagement.is_active === true) {
+
+                    await this._.delete(delivery.id)
+
+                    return {
+                        message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
+                        statusCode: 200,
+                    };
+
+                } else {
+                    return {
+                        message: "Entrega cadastrada com sucesso!",
+                        data: delivery,
+                        statusCode: 201,
+                    };
                 }
+<<<<<<< HEAD
                 await this.deliveryFileRepository.create(fileToRegister)
             })
 
@@ -68,6 +103,10 @@ export class DeliveryService {
             }
 
 
+=======
+
+            
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
         } catch (error) {
             return {
                 message: "Não foi possível cadastrar essa entrega!",

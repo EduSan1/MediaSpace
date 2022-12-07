@@ -29,7 +29,11 @@ export class ProjectRequirementsORM {
     @ManyToOne(() => ProjectORM, project => project.requirements)
     project: ProjectORM
 
+<<<<<<< HEAD
     @ManyToMany(() => DeliveryORM, delivery => delivery.requirements, { eager: true })
+=======
+    @ManyToMany(() => DeliveryORM, delivery => delivery.requirements, {eager: true})
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
     @JoinTable()
     delivery: DeliveryORM[]
 
