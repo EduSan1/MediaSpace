@@ -34,6 +34,7 @@ export class DeliveryORM {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @ManyToMany(() => UserORM, user => user.delivery, { eager: true}) 
 =======
     @ManyToMany(() => UserORM, user => user.delivery, { eager: true })
@@ -41,6 +42,12 @@ export class DeliveryORM {
 =======
     @ManyToMany(() => UserORM, user => user.delivery)
 >>>>>>> 60eb95b3c923a9a6b032a80a4db5fd3bf0ea55ce
+=======
+    @ManyToMany(() => UserORM, user => user.delivery, { eager: true })
+=======
+    @ManyToMany(() => UserORM, user => user.delivery, { eager: true}) 
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
+>>>>>>> a7c3be84ee24b0b6588cbf9410a3a70b136c73ce
     @JoinTable()
     user: UserORM[]
 

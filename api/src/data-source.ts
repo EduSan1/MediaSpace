@@ -25,8 +25,13 @@ export const AppDataSource = new DataSource({
     type: "mysql",
     host: "db-media-space.mysql.database.azure.com",
     port: 3306,
+<<<<<<< HEAD
     username: "mediaSpace",
     password: "egglmm123@",
+=======
+    username: "root",
+    password: "bcd127",
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
     database: "db_media_space",
     synchronize: true,
     logging: false,

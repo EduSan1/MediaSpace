@@ -1,12 +1,17 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, TextInput } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, TextInput, ImageBackground } from "react-native";
 import api from "../../../../service";
 import * as SecureStore from 'expo-secure-store';
 import TabBar from "../../../components/utils/TabBar";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { BtnEditProfile } from "../../../components/utils/BtnEditProfile";
 import { InputEditProfile } from "../../../components/utils/inputEditProfile";
+import { LoginButton } from "../../../components/utils/LoginButton";
+import { BtnEdit } from "../../../components/utils/BtnEdit";
+import UpgradeClient from "../UpgradeClient";
+import { BtnUpdateProfile } from "../../../components/BtnUpdtateProfile";
+
 
 
 interface IEditUser {
@@ -172,10 +177,24 @@ const EditUser = ({ navigation }: IEditUser) => {
                                 </View>
                                 
                                 <InputEditProfile name="biography" value={user.biography}   maxLength={800} />
+                                <View style={styles.containerBtn}>
+                                    <BtnUpdateProfile action={() => navigation.navigate("EditPassaword", {userId : user.id})} type="dark" title="Alterar Senha" />
+                                    <BtnUpdateProfile action={() => console.log} type="light" title="Confirmar"/>
+                                </View>
                             </View>
-
                         </View>
-                        <Image source={require("../../../../assets/img/upgradeCard.png")} style={styles.ImgUpgrade}/>
+                        
+                            <ImageBackground source={require("../../../../assets/img/upgradeCard.png")} style={styles.ImgUpgrade}>
+
+                            <Text style={styles.TitleBanner}>Olá, {user.nickname}</Text>
+                            <Text style={styles.TextBanner}>Para se tornar um prestador de serviço e ativar recursos de vendas use o upgrade de perfil</Text>
+                            <Text style={styles.SubTextBanner}>Uma vez ativo, você não poderá desativar</Text>
+                            <View style={styles.boxBtnBanner}>
+                                <BtnEdit type="dark" title="Update" action={() => navigation.navigate("UpgradeClient")}/>
+                            </View>
+                            </ImageBackground>
+                      
+
                     </View>
                     
 
@@ -323,10 +342,44 @@ const styles = StyleSheet.create({
         // backgroundColor:"gray"
     },
     ImgUpgrade:{
+        position:"absolute",
         width:Dimensions.get('window').width,
         height:Dimensions.get('window').height * 1.2,
-        marginTop:Dimensions.get('window').width * 0.55,
-        // backgroundColor:"gray"
+        marginTop:Dimensions.get('window').width * 2.3,
+        // justifyContent:"center",
+        // alignItems:"center"
+    },
+    TitleBanner:{
+        paddingTop:Dimensions.get('window').width * 0.7,
+        paddingLeft:Dimensions.get('window').width * 0.15,
+        fontSize:20,
+        fontWeight:"700",
+        color:"#B275FF"
+        
+    },
+    TextBanner:{
+        paddingTop:Dimensions.get('window').width * 0.05,
+        paddingLeft:Dimensions.get('window').width * 0.05,
+        paddingRight:Dimensions.get('window').width * 0.03,
+        fontSize:15,
+        fontWeight:"400",
+    },
+    SubTextBanner:{
+        paddingTop:Dimensions.get('window').width * 0.02,
+        paddingLeft:Dimensions.get('window').width * 0.24,
+        paddingRight:Dimensions.get('window').width * 0.0,
+        fontSize:13,
+        fontWeight:"400",
+        
+    },
+    boxBtnBanner:{
+        marginTop:Dimensions.get('window').width * 0.14,
+        alignItems:"center"
+    },
+    containerBtn:{
+        paddingTop:Dimensions.get('window').width * 0.1,
+        flexDirection:"row",
+        justifyContent:"space-evenly"
     },
     
 })

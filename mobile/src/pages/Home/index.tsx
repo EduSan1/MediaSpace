@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import HeaderSearch from "../../components/utils/HeaderSearch";
 import TabBar from "../../components/utils/TabBar";
 import BtnBackPage from "../../components/utils/BtnBackPage";
+import { BtnEdit } from "../../components/utils/BtnEdit";
+import UpgradeClient from "../Profile/UpgradeClient";
 
 interface IHome {
     navigation: any
@@ -42,5 +44,6 @@ const style = StyleSheet.create({
         textAlign: "center",
         fontSize: 50,
         fontWeight: "500",
-    }
+    },
+    
 })

@@ -23,8 +23,10 @@ import WorkersAppliedPage from './src/pages/WorkersAppliedPage';
 import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFreelancer';
 import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 import EditUser from './src/pages/Profile/EditUser';
+import UpgradeClient from './src/pages/Profile/UpgradeClient';
 import ModalRequirements from './src/components/utils/ModalRequirements';
 import ManagementProject from './src/pages/ManagementProject';
+import EditPassaword from './src/pages/Profile/EditPassaword';
 
 export default function App() {
 
@@ -51,6 +53,8 @@ export default function App() {
         <Stack.Screen name='WorkersSelectedPage' component={WorkersSelectedPage} />
         <Stack.Screen name='TechnicalRequirementsFrelancer' component={TechnicalRequirementsFrelancer} />
         <Stack.Screen name='EditUser' component={EditUser} />
+        <Stack.Screen name='UpgradeClient' component={UpgradeClient} />
+        <Stack.Screen name='EditPassaword' component={EditPassaword} />
         <Stack.Screen name='ManagementProject' component={ManagementProject} />
       </Stack.Navigator>
     </NavigationContainer>

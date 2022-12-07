@@ -34,6 +34,7 @@ export class DeliveryService {
     create =  async (entity: DeliveryDomain) => {
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 const delivery = await this._.create(entity)
 
                 entity.files?.map(async (file: IFile) => {                
@@ -43,6 +44,8 @@ export class DeliveryService {
                             id: delivery.id
                         }
 =======
+=======
+>>>>>>> a7c3be84ee24b0b6588cbf9410a3a70b136c73ce
             const delivery = await this._.create(entity)
 
             entity.files?.map(async (file: IFile) => {
@@ -50,7 +53,20 @@ export class DeliveryService {
                     ...file,
                     delivery: {
                         id: delivery.id
+<<<<<<< HEAD
 >>>>>>> 12fe4e6c757459782848a1d54d1210ca617d6403
+=======
+=======
+                const delivery = await this._.create(entity)
+
+                entity.files?.map(async (file: IFile) => {                
+                    const fileToRegister = {
+                        ...file, 
+                        delivery: {
+                            id: delivery.id
+                        }
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
+>>>>>>> a7c3be84ee24b0b6588cbf9410a3a70b136c73ce
                     }
                     await this.deliveryFileRepository.create(fileToRegister)
                 })
@@ -77,9 +93,12 @@ export class DeliveryService {
                     };
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             
 =======
+=======
+>>>>>>> a7c3be84ee24b0b6588cbf9410a3a70b136c73ce
                 await this.deliveryFileRepository.create(fileToRegister)
             })
 
@@ -106,7 +125,14 @@ export class DeliveryService {
             }
 
 
+<<<<<<< HEAD
 >>>>>>> 12fe4e6c757459782848a1d54d1210ca617d6403
+=======
+=======
+
+            
+>>>>>>> 0fd725cd510f024f503dea23cb770866887d72be
+>>>>>>> a7c3be84ee24b0b6588cbf9410a3a70b136c73ce
         } catch (error) {
             return {
                 message: "Não foi possível cadastrar essa entrega!",
