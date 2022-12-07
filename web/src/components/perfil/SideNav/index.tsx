@@ -7,7 +7,7 @@ interface IInput {
     icon3: ReactNode
     icon4: ReactNode
     icon5: ReactNode,
-    onClick:()=>void
+    onClick:() => void
     
 }
 
@@ -23,7 +23,7 @@ const SideNav = ({ icon, icon2,icon3,icon4,icon5, className, onClick }: IInput) 
             <div className={className? className  : "side_nav"}>
                 <span>
                   
-                    <img src="../assets/img/perfil/projects.png" alt="" onClick={({})=>{console.log('teste')}} />
+                    <img src="../assets/img/perfil/projects.png" alt="" onClick={onClick} />
                     
                     
                 </span>

@@ -51,10 +51,12 @@ const DeliveryCard = ({ deliveryLink, index, onRemove }: IDelivery) => {
             <img src="https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfileIcon.png?alt=media&token=892a6315-2670-4682-8e8f-60a79940cc04" alt="arquivo.png" />
             <div className="delivery-modal-card-details-container">
                 <p>{metadata?.name}</p>
-                <p>{metadata?.timeCreated.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
-                <p> {formatBytes(metadata?.size)}</p>
+                <div>
+                    <p>{metadata?.timeCreated.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
+                    <p> {formatBytes(metadata?.size)}</p>
+                </div>
             </div>
-            <p onClick={() => onRemove(index)} >✖</p>
+            <p className="remove_file" onClick={() => onRemove(index)} >x</p>
         </div >
     )
 }

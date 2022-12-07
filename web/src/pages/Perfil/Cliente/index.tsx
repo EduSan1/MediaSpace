@@ -68,13 +68,18 @@ const ProfileClient = () => {
     }
 
     useEffect(() => {
-        api.get(`/project/user/${user.id}`).then((res: any) => {
+        console.log("PROBLEMA user =>", user)
+        console.log("PROBLEMA ROTA =>", `/project/user/${user.id}`)
+        user.id &&
+            api.get(`/project/user/${user.id}`).then((res: any) => {
 
-            setStatusProject(res.data.data)
+                console.log("PROBLEMA obj =>", res)
 
-            setSelectedProjects(res.data.data.AWAITING_START)
+                setStatusProject(res.data.data)
 
-        })
+                setSelectedProjects(res.data.data.AWAITING_START)
+
+            })
     }, [user])
 
     useEffect(() => {
@@ -113,7 +118,7 @@ const ProfileClient = () => {
                 <section className="section_main_perfil">
 
                     {
-                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography} />
+                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography}  />
                     }
 
 
@@ -129,7 +134,7 @@ const ProfileClient = () => {
                                 {
 
                                     selectedProject?.map((project: any) => {
-                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} />
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} key={user.id} />
                                     })
                                 }
                             </div>

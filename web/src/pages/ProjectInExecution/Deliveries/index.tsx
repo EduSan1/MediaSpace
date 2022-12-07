@@ -7,10 +7,12 @@ import DeliveryModal from "./Modal";
 interface IDeliveriesPage {
     requirement: IRequirement
     openModal: (requirementId: string) => void
+    isOwner: boolean
+    isFreelancer: boolean
     reload: () => void
 }
 
-const Deliveries = ({ requirement, openModal, reload }: IDeliveriesPage) => {
+const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: IDeliveriesPage) => {
 
     const denyRequirement = (id: string) => {
         api.post(`delivery/deny/${id}`).then((res: any) => {
@@ -47,7 +49,10 @@ const Deliveries = ({ requirement, openModal, reload }: IDeliveriesPage) => {
                                 <div>
 
                                     <p>Aguardando entrega</p>
-                                    <button onClick={() => openModal(requirement.id)}>ABRIR MODAL DE CADASTRO DE ENTREGA</button>
+                                    {
+                                        isFreelancer &&
+                                        <button onClick={() => openModal(requirement.id)}>ABRIR MODAL DE CADASTRO DE ENTREGA</button>
+                                    }
 
                                 </div>
 
@@ -76,6 +81,7 @@ const Deliveries = ({ requirement, openModal, reload }: IDeliveriesPage) => {
                                             <p>Recusada ✕</p>
                                             {
                                                 requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 &&
+                                                isFreelancer &&
                                                 <button onClick={() => openModal(requirement.id)}>ABRIR MODAL DE CADASTRO DE ENTREGA</button>
                                             }
                                             <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
@@ -87,8 +93,13 @@ const Deliveries = ({ requirement, openModal, reload }: IDeliveriesPage) => {
                                         <div className="delivery-data">
                                             <p>{delivery.title}</p>
                                             <p>{delivery.description}</p>
-                                            <button onClick={() => acceptRequirement(delivery.id)} >aceitar</button>
-                                            <button onClick={() => denyRequirement(delivery.id)}>recusar</button>
+                                            {
+                                                isOwner &&
+                                                <>
+                                                    <button onClick={() => acceptRequirement(delivery.id)} >aceitar</button>
+                                                    <button onClick={() => denyRequirement(delivery.id)}>recusar</button>
+                                                </>
+                                            }
                                             <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                         </div>
                                     }

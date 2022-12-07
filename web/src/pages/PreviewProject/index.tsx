@@ -41,8 +41,8 @@ const PreviewProject = () => {
 
     return (
         <>
-            {!isLoading &&
-                isCreater ? <PreviewProjectCreator /> : <PreviewProjectFreelancer />
+            {!isLoading ?
+                isCreater ? <PreviewProjectCreator /> : <PreviewProjectFreelancer /> : <></>
             }
         </>
     )

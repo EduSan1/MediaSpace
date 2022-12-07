@@ -30,7 +30,7 @@ const ProfileFreelancer = () => {
 
 
 
-  const [currentPage, setCurrentPage] = useState("");
+    const [ currentPage, setCurrentPage] = useState("");
 
 
 
@@ -62,39 +62,65 @@ const ProfileFreelancer = () => {
 
 
 
+    const [selectedProject, setSelectedProjects] = useState([])
+
+    const [selectedMyProject, setSelectedMyProjects] = useState([])
 
 
-    const [select, setSelected] = useState('IN_EXECUTION')
+    const [select, setSelected] = useState('')
+
+
 
 
     const [statusProject, setStatusProject] = useState({
+        AWAITING_START: [],
         VALIDATING_REQUIREMENTS: [],
         IN_EXECUTION: [],
         COMPLETE: [],
-        CANCELED: [],
-
+        CANCELED: []
     })
-
-    const [selectedProject, setSelectedProjects] = useState([])
+    
+   
+    const [statusmyProject, setStatusmyProject] = useState({
+        AWAITING_START: [],
+        VALIDATING_REQUIREMENTS: [],
+        IN_EXECUTION: [],
+        COMPLETE: [],
+        CANCELED: []
+    })
 
 
     const changeProjects = (status: keyof typeof statusProject) => {
-        console.log(statusProject)
+    
         setSelectedProjects(statusProject[status])
+        setSelectedMyProjects(statusmyProject[status])
         setSelected(status)
+        
 
     }
 
-     useEffect  ( ()  =>   {
-        api.get(`/project/freelancer/${user.id}`).then((res: any) => {
+   
 
-            setStatusProject(res.data.data)
 
-            setSelectedProjects(res.data.data.IN_EXECUTION)
+    useEffect(() => {
+        user.id &&
+            api.get(`/project/freelancer/${user.id}`).then((res: any) => {
+                
 
-         
+                setStatusProject(res.data.data)
+                setSelectedProjects(res.data.data.IN_EXECUTION)
 
-        })
+
+
+            })
+    }, [user])
+
+    useEffect(() => {
+        user.id &&
+            api.get(`/project/user/${user.id}`).then((res: any) => {
+                setStatusmyProject(res.data.data)
+                setSelectedMyProjects(res.data.data.AWAITING_START)
+            })
     }, [user])
 
     useEffect(() => {
@@ -104,7 +130,10 @@ const ProfileFreelancer = () => {
     }, [])
 
     const roteProject = (id: string) => {
-         if (select === 'VALIDATING_REQUIREMENTS') {
+        if (select == 'AWAITING_START') {
+            navigate(`/projects/${id}`)
+        }
+        else if (select === 'VALIDATING_REQUIREMENTS') {
             navigate(`/projects/requirements/${id}`)
         } else if (select === 'IN_EXECUTION') {
             navigate(`/projectInExecution/${id}`)
@@ -117,6 +146,7 @@ const ProfileFreelancer = () => {
 
 
     }
+
     return (
 
 
@@ -130,10 +160,10 @@ const ProfileFreelancer = () => {
                     <PerfilCardFreelancer profile_picture={user.profile_picture} nickname={user.nickname} first_name={user.first_name} biography={user.biography} categories={[{ name: userCategories.name, icon: userCategories.icon }]} />
 
                     <div className="Div_main_Perfil">
-                         {
-                                 <SideNav className="" icon icon2={<AiOutlineProfile onClick={()=>{setCurrentPage('my work')}}/>} icon3 icon4 icon5  onClick={()=>{console.log('hello word')}} />
-                         }
-                    
+                        {
+                            <SideNav className="" icon icon2={<AiOutlineProfile onClick={() => { setCurrentPage('my work'); setSelected("IN_EXECUTION") }} />} icon3 icon4 icon5 onClick={() => { setCurrentPage('myProjects'); setSelected("AWAITING_START") }} />
+                        }
+
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
                         <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} setSelectedProjects={() => { }} classnameOption={''} />
@@ -142,21 +172,18 @@ const ProfileFreelancer = () => {
 
                             <div className="project-page-projects-card-container">
 
-                                {   currentPage == "myProjects" &&
-                                    selectedProject?.map((project: any) => {
-                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
+                                {currentPage == "myProjects" &&
+                                    selectedMyProject?.map((project: any) => {
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name:user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} key={user.id} />
                                     })
+
                                 }
 
                                 {
                                     currentPage == "my work" &&
-                                
-                                    //   <ProjectCard onClick={() => { }} categories={''} description={''} id={'1'} image={[{url:""}]} name={'yeste'} user={{ first_name: '', nickname: '', profile_picture: '' }} value={20} />
-                                  
-                                  
-                                      <div>project</div>
-
-                                    
+                                    selectedProject?.map((project: any) => {
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
+                                    })
                                 }
                             </div>
 
