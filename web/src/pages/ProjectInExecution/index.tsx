@@ -7,6 +7,7 @@ import api from "../../service";
 import DetailsCard from "./DetailsCard";
 import ProjectInExecutionCard from "./ProjectInExecutionCard";
 import Deliveries from "./Deliveries";
+import DeliveryModal from "./Deliveries/Modal";
 
 interface IDelivery {
     id: string,
@@ -45,16 +46,31 @@ interface IProject {
     },
     images: {
         url: string
-    }[]
+    }[],
+    management: {
+        create_at: string
+        team_project_management: {
+            team: {
+                name: string,
+                nickname: string,
+                profile_picture: string,
+            }
+        }[]
+    }
     create_at: string,
     estimated_deadline: string
     requirements: Array<IRequirement>
 }
 
+
+
 const ProjectInExecution = () => {
 
     const navigate = useNavigate()
     const { projectId } = useParams()
+    const [modalVisible, setModalVisible] = useState(false)
+    const [modal, setModal] = useState(<></>)
+
     const [project, setProject] = useState<IProject>({
         id: "",
         name: "",
@@ -62,11 +78,21 @@ const ProjectInExecution = () => {
         user: {
             first_name: "",
             nickname: "",
-            profile_picture: ""
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8"
         },
         images: [{
-            url: ""
+            url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
         }],
+        management: {
+            create_at: "",
+            team_project_management: [{
+                team: {
+                    name: "",
+                    nickname: "",
+                    profile_picture: "",
+                }
+            }]
+        },
         create_at: "",
         estimated_deadline: "",
         requirements: [{
@@ -96,13 +122,30 @@ const ProjectInExecution = () => {
         }
         ]
     })
-
-    useEffect(() => {
-
+    const getProject = () => {
         api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
+            console.log(res.data)
         })
+    }
+
+    useEffect(() => {
+        getProject()
     }, [])
+
+    const resetDelivery = () => {
+        setModalVisible(false)
+        getProject()
+    }
+
+    const openModal = (id: string) => {
+        setModal(<DeliveryModal onClose={() => setModalVisible(false)} onSend={() => resetDelivery()} requirementId={id} projectName={project.name} />
+        )
+        setModalVisible(!modalVisible)
+
+        console.log(id)
+    }
+
 
     return (
 
@@ -115,15 +158,26 @@ const ProjectInExecution = () => {
                     <div className="projects-page-container">
 
                         <div className="project-page-projects-container">
-                            <h2>Projeto em execução</h2>
+                            <h1>Projeto em execução</h1>
 
                             <div className="project-page-projects-card-container">
-                                <ProjectInExecutionCard user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
+
+                                <ProjectInExecutionCard freelancer={{
+                                    first_name: project.management.team_project_management[0].team.name,
+                                    nickname: project.management.team_project_management[0].team.nickname,
+                                    profile_picture: project.management.team_project_management[0].team.profile_picture
+                                }} user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
                                 <div className="project-details-cards">
 
 
-                                    <DetailsCard id={project.id} create_at={project.create_at} estimated_deadline={project.estimated_deadline} />
-
+                                    <DetailsCard id={project.id}
+                                        create_at={project.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
+                                        estimated_deadline={project.estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
+                                        numberOfRequirements={project.requirements.length}
+                                        numberOfDeliveries={project.requirements.filter((requirement: any) => requirement.delivery.length > 0).length}
+                                        startDate={project.management && project.management.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")
+                                        }
+                                    />
 
                                     <div className="view-requirements">
                                         <img src="" alt="" />
@@ -134,34 +188,30 @@ const ProjectInExecution = () => {
 
                                 <div className="timeline-container">
 
-                                    <h2>Andamento</h2>
+                                    <h1>Andamento</h1>
 
                                     <ul className="timeline">
-                                        <li className="active">01</li>
-                                        <li className="active">02</li>
-                                        <li className="active">03</li>
-                                        <li>04</li>
-                                        <li>05</li>
-                                        <li>06</li>
-                                        <li>07</li>
-                                        <li>08</li>
-                                        <li>09</li>
+                                        {
+                                            project.requirements.map((requirement: any, index) => <li className={requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 ? "" : "active"}>{index + 1}</li>)
+                                        }
                                     </ul>
 
                                 </div>
 
                                 <div className="validation-container">
-                                    <h3>Validação</h3>
+                                    <h1>Validação</h1>
                                     <p>Valide as entregas feitas pelo(s) prestador(es).</p>
-                                    <p>Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+                                    <p className="validation-desc">Caso uma delas não atenda aos seus requisitos, você pode recusá-la até que te satisfaça</p>
+
                                     {
-                                        project.requirements.map((requirement: any, index: number) => {
+                                        project.requirements.map((requirement: any) => {
                                             if (requirement.is_active === true) {
-                                                return <Deliveries requirement={requirement} index={index++} />
+                                                return <Deliveries reload={getProject} openModal={openModal} requirement={requirement} />
                                             }
 
                                         })
                                     }
+
                                 </div>
 
                             </div>
@@ -173,6 +223,10 @@ const ProjectInExecution = () => {
 
                 </section>
             </div>
+            {
+                modalVisible &&
+                modal
+            }
         </main>
 
 

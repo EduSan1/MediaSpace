@@ -1,4 +1,4 @@
-import { TeamORM } from "../entity/team";
+import { TeamORM } from "../entity/Team";
 import { FreelancerRepository } from "../repository/Freelancer";
 import { UserRepository } from "../repository/User";
 import { UserTeamRepository } from "../repository/UserTeam";

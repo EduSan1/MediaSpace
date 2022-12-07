@@ -32,13 +32,14 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
         api.get(`/project/${id}`).then((res: any) => {
             if (user.id === userId) {
                 navigation.navigate("ProjectOwner", {
-                    projectId: res.data.data.id
+                    projectId: res.data.data.id,
+
 
                 })
             } else {
                 navigation.navigate("Project", {
                     projectId: res.data.data.id,
-                    userId : userId
+                    userId: userId
                 })
             }
             console.log(res.data)

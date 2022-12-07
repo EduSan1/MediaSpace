@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { TeamORM } from "./team";
+import { TeamORM } from "./Team";
 import { UserORM } from "./User";
 
 @Entity({ name: "tb_user_team" })

@@ -6,6 +6,7 @@ export interface IProject {
     description: string
     value: number
     status: string
+    is_active?: boolean
     estimated_deadline: string,
     finish_project_date: string,
     start_project_date: string,
@@ -18,8 +19,8 @@ export interface IProject {
     interest: [
         {
             id: string,
-            all_members_accept: boolean,
-            is_selected: boolean,
+            all_members_accept?: boolean,
+            is_selected?: boolean,
             team: {
                 id: string,
                 name: string,
@@ -33,7 +34,7 @@ export interface IProject {
                 create_at: string,
                 update_at: string
             },
-            members: [
+            members?: [
                 {
                     id: string,
                     is_active: boolean,
@@ -53,7 +54,7 @@ export interface IProject {
         }
     ],
     requirements: Array<IRequirement>,
-    management: {
+    management?: {
         id: string,
         payment_confirmed: boolean,
         payment_date: string,
@@ -122,8 +123,7 @@ export interface IUser {
     phone: {
         id: string,
         ddd: string,
-        phone: string,
-        ddi: string
+        phone: string
     },
     teams: [],
     project_member: []

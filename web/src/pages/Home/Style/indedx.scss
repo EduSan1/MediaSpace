@@ -1,22 +1,132 @@
-#ContentPage {
+.container_home {
     width: 100vw;
-    height: 98vh;
-    display: flex;
-    flex-direction: row;
-    gap: 2vw;
-    justify-content: center;
-    align-items: flex-start;
+    height: 100vh;
+    flex-direction: column;
+    overflow: auto;
 
-    .Container {
-        width: 98%;
-        height: 100%;
+    .header_home {
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbackgroundHome.png?alt=media&token=fcf00efb-e362-478b-9ffb-0632553e4446");
+        background-position: center bottom;
+
+        .container_logo_text {
+            margin-left: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 60%;
+            height: 70%;
+            color: #ffffff;
+            font-family: $light-font;
+
+            img {
+                width: 80%;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+        }
     }
-    .section_main {
-        height: 90%;
-        width: auto;
 
+    .function_site {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 40%;
+        color: #75a5ff;
+        text-shadow: 0px 5px 9px rgba(92, 99, 255, 0.5);
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .container_functions {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            justify-content: space-around;
+
+            div {
+                height: 100%;
+                width: 25%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .elispe_function {
+                width: 55%;
+                height: 65%;
+                border-radius: 100%;
+                box-shadow: -5px 0px 15px 12px rgba(43, 166, 255, 0.2),
+                    5px 0px 15px 12px rgba(218, 68, 255, 0.2);
+                margin-bottom: 10px;
+                margin-right: 10pxc;
+
+                img {
+                    height: 60%;
+                }
+            }
+        }
+    }
+
+    footer {
+        width: 100%;
+        height: 45%;
+        font-family: $light-font;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .back_start {
+            width: 100%;
+            height: 15%;
+            background-color: #fcfaff;
+            color: #75a5ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .container_mapa_site {
+            width: 100%;
+            height: 30%;
+            display: flex;
+            justify-content: space-around;
+
+            div {
+                li {
+                    list-style: none;
+                    color: #000000;
+                }
+
+                li:first-child {
+                    font-weight: bolder;
+                }
+            }
+        }
+
+        .container_empresa_desenvolvedores {
+            width: 100%;
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            img {
+                height: 30%;
+            }
+        }
     }
 }

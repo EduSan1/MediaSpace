@@ -1,7 +1,7 @@
 import { Like, Repository } from "typeorm"
 import { AppDataSource } from "../data-source"
 import { TeamDomain } from "../domain/Team"
-import { TeamORM } from "../entity/team"
+import { TeamORM } from "../entity/Team"
 
 export class FreelancerRepository {
     private _: any

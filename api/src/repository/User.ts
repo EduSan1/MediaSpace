@@ -1,7 +1,7 @@
 import { Like, Repository } from "typeorm"
 import { AppDataSource } from "../data-source"
 import UserDomain from "../domain/User"
-import { TeamORM } from "../entity/team"
+import { TeamORM } from "../entity/Team"
 import { UserORM } from "../entity/User"
 
 export class UserRepository {

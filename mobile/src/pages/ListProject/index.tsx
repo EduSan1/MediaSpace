@@ -24,14 +24,18 @@ export const ListProject = ({ navigation }: IListProject) => {
 
     const findSubCategories = () => { }
 
+    const getProjects = () => {
+        api.get("/project").then((res: any) => {
+            setProjects(res.data.data)
+        })
+    }
+
     useEffect(() => {
         api.get("/category").then((res: any) => {
             setCategories(res.data)
         })
+        getProjects()
 
-        api.get("/project").then((res: any) => {
-            setProjects(res.data.data)
-        })
     }, [])
 
     return (
@@ -46,7 +50,7 @@ export const ListProject = ({ navigation }: IListProject) => {
                         <View style={styles.containerImageText}>
                             <Text style={styles.textImage}>Impulsione sua espaçonave</Text>
                             <Text style={styles.textImage2}>Deseja ter seu projeto exibido primeiro para os melhores prestadores da plataforma?</Text>
-                            <BtnList onPress={() => navigation.navigate('RegisterProject')} title="Criar projeto" />
+                            <BtnList onPress={() => navigation.navigate('RegisterProject', { reload: getProjects })} title="Criar projeto" />
                         </View>
 
                     </ImageBackground>

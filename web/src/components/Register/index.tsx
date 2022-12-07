@@ -239,8 +239,8 @@ const RegisterSpace = () => {
                     <div className="alignment-inputs-by-divs">
                         <InputLogin disable={false} valueLogin={user.mail} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"email"} placeholder={"Email"} icon={<AiOutlineMail className="IconLogin" />} name={"mail"} label={"Email"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={250} />
 
-                        {/* <span>
-                            <InputLogin valueLogin={user.password} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={typePassword ? "text" : "password"} placeholder={"Senha"} icon={<MdLockOutline className="IconLogin" />} name={"password"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={255} />
+                        <span>
+                            <InputLogin disable={false} valueLogin={user.password} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={typePassword ? "text" : "password"} placeholder={"Senha"} icon={<MdLockOutline className="IconLogin" />} name={"password"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={255} />
 
 
                             <button className="Passeyes" onClick={() => {
@@ -248,9 +248,7 @@ const RegisterSpace = () => {
                             }}>
                                 {typePassword ? <FaLockOpen /> : <FaLock />}
                             </button>
-                        </span> */}
-
-                        <InputLogin disable={false} valueLogin={user.password} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"text"} placeholder={"Senha"} icon={<MdLockOutline className="IconLogin" />} name={"password"} label={"Senha"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={255} />
+                        </span>
 
                         <InputLogin disable={false} valueLogin={user.birth_date} hasError={hasErrors} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => { handleChange(event) }} typeInput={"date"} placeholder={""} icon={<RiCalendar2Line className="IconLogin" />} name={"birth_date"} label={"Data de nascimento"} className={hasErrors ? "input_register_error" : "input_register"} maxlength={8} />
 
