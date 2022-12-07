@@ -136,19 +136,22 @@ export class DeliveryService {
             });
 
             const project = await this.projectRepository.getById(requirements.project.id);
-            console.log(project.requirements);
+
+            console.log(project.requirements)
 
 
             project.requirements.map(async (requirement: any) => {
-                console.log(requirement.is_delivered)
-                if (requirement.is_delivered === false || requirement.is_delivered === null) {
-                    project.status = "IN_EXECUTION";
-                    project.is_active = true
-                    await this.projectRepository.update(project);
-                } else {
-                    project.status = "COMPLETE";
-                    project.is_active = false;
-                    await this.projectRepository.update(project);
+                if (requirement.is_active) {
+
+                    if (requirement.is_delivered === false || requirement.is_delivered === null) {
+                        project.status = "IN_EXECUTION";
+                        project.is_active = true
+                        await this.projectRepository.update(project);
+                    } else {
+                        project.status = "COMPLETE";
+                        project.is_active = false;
+                        await this.projectRepository.update(project);
+                    }
                 }
             });
 
