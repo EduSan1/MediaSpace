@@ -124,12 +124,14 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
                 <div className="delivery-modal-form">
                     <div className="delivery-modal-form-section">
                         <InputProject handleChange={(event) => handleDelivery(event.target.value, "title")} label="Titulo" maxLenght={100} name="title" onFocus={() => { }} value={delivery.title} />
-                        <InputProject handleChange={(event) => handleDelivery(event.target.value, "description")} label="Description" maxLenght={800} name="title" onFocus={() => { }} value={delivery.description} />
+                        <InputProject handleChange={(event) => handleDelivery(event.target.value, "description")} label="Descrição" maxLenght={800} name="title" onFocus={() => { }} value={delivery.description} />
                     </div>
-                    <div className="delivery-modal-form-section">
+                    <div className="delivery-modal-form-section files-modal">
+                        <div>
+                            <label className="subtitulo_projects">Anexos<span> * </span></label>
+                            <p className="paragraph_projects" >Envie um arquivo relacionado a sua entrega</p>
+                        </div>
 
-                        <p>Anexos<span>*</span></p>
-                        <p>Envie um arquivo relacioando a sua entrega</p>
 
                         <div className="deliveries-modal-requirements-deliveries">
                             {
@@ -137,7 +139,9 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
                             }
                         </div>
 
-                        <input type="file" onChange={(event: any) => uploadDelivery(event)} />
+                        <label className="add_file" htmlFor="add_file">Adicionar arquivo</label>
+
+                        <input type="file" onChange={(event: any) => uploadDelivery(event)} id="add_file" />
                     </div>
                 </div>
                 <div className="delivery-modal-footer-container">

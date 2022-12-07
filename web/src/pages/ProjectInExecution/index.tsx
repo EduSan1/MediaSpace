@@ -4,6 +4,7 @@ import SearchBar from "../../components/HeaderPage/Search";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import NavegationBar from "../../components/utils/navegation";
 import api from "../../service";
+import jwt from "jwt-decode"
 import DetailsCard from "./DetailsCard";
 import ProjectInExecutionCard from "./ProjectInExecutionCard";
 import Deliveries from "./Deliveries";
@@ -40,6 +41,7 @@ interface IProject {
     name: string,
     description: string,
     user: {
+        id: string
         first_name: string,
         nickname: string,
         profile_picture: string
@@ -70,12 +72,15 @@ const ProjectInExecution = () => {
     const { projectId } = useParams()
     const [modalVisible, setModalVisible] = useState(false)
     const [modal, setModal] = useState(<></>)
+    const [loggedUserId, setLoggedUserId] = useState("")
+    const [freelancerId, setFreelancerId] = useState("")
 
     const [project, setProject] = useState<IProject>({
         id: "",
         name: "",
         description: "",
         user: {
+            id: "",
             first_name: "",
             nickname: "",
             profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8"
@@ -122,11 +127,17 @@ const ProjectInExecution = () => {
         }
         ]
     })
+
     const getProject = () => {
         api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
-            console.log(res.data)
+            setFreelancerId(res.data.data.management.team_project_management.find((team: any) => team.is_active !== false).team.id)
         })
+
+        const userJwt = localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "")
+
+        setLoggedUserId(user.userDetails.id)
     }
 
     useEffect(() => {
@@ -206,7 +217,7 @@ const ProjectInExecution = () => {
                                     {
                                         project.requirements.map((requirement: any) => {
                                             if (requirement.is_active === true) {
-                                                return <Deliveries reload={getProject} openModal={openModal} requirement={requirement} />
+                                                return <Deliveries isFreelancer={freelancerId === loggedUserId} isOwner={project.user.id === loggedUserId} reload={getProject} openModal={openModal} requirement={requirement} />
                                             }
 
                                         })

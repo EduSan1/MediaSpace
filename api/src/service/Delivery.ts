@@ -129,14 +129,18 @@ export class DeliveryService {
             delivery.is_accepted = true;
             const uptadedDelivery = await this._.update(delivery);
 
-            const project = await this.projectRepository.getById(requirements.project.id);
 
             delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = true
                 await this.projectRequirementsRepository.update(requirement);
             });
 
+            const project = await this.projectRepository.getById(requirements.project.id);
+            console.log(project.requirements);
+
+
             project.requirements.map(async (requirement: any) => {
+                console.log(requirement.is_delivered)
                 if (requirement.is_delivered === false || requirement.is_delivered === null) {
                     project.status = "IN_EXECUTION";
                     project.is_active = true
@@ -144,7 +148,6 @@ export class DeliveryService {
                 } else {
                     project.status = "COMPLETE";
                     project.is_active = false;
-                    console.log("Entrega ultima aceita")
                     await this.projectRepository.update(project);
                 }
             });

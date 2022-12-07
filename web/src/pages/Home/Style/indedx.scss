@@ -63,8 +63,11 @@
             }
 
             .elispe_function {
-                width: 55%;
-                height: 65%;
+                // width: 40%;
+                width: 5vw;
+
+                aspect-ratio: 1/1;
+                height: 5vw;
                 border-radius: 100%;
                 box-shadow: -5px 0px 15px 12px rgba(43, 166, 255, 0.2),
                     5px 0px 15px 12px rgba(218, 68, 255, 0.2);
@@ -72,7 +75,8 @@
                 margin-right: 10pxc;
 
                 img {
-                    height: 60%;
+                    height: 40%;
+                    height: 40%;
                 }
             }
         }
