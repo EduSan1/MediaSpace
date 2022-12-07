@@ -69,7 +69,7 @@ const NavegationBar = () => {
                     <div className={!open ? "icons_all_navBar" : "icons_all_navBar_open"}>
                         <ul>
                             <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} /></Link></li>
-                            <li> <Link to={'/projects'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/projects'} className='Link_NextPage'>   <img src="../assets/img/perfil/project.svg" alt="" title={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /> </Link></li>
                             <li> <Link to={'/Menssagens'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Mensagens'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed />} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Perfil'} className='Link_NextPage'><IconBar Icon={<BiUser />} text={'Perfil'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>

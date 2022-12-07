@@ -17,6 +17,7 @@ import { Value } from "sass";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineProfile } from "react-icons/ai";
 
+
 const ProfileClient = () => {
 
     const navigate = useNavigate()
@@ -117,7 +118,7 @@ const ProfileClient = () => {
 
 
                     <div className="Div_main_Perfil">
-                        <SideNav className="Nav_bar_Client" icon={<ImStatsDots />} icon2={<AiOutlineProfile />} icon3 icon4 icon5 />
+                        <SideNav className="Nav_bar_Client" icon icon2 icon3 icon4 icon5 onClick={()=>{}}/>
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
                         <InputSelect onChange={(event: any) => { changeProjects(event?.target.value) }} setSelectedProjects={() => { console.log('test') }} classnameOption={''} idSelect={''} />

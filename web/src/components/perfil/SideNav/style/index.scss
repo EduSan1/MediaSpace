@@ -21,15 +21,19 @@
             justify-content: center;
             align-items: center;
 
+            img{
+                font: 1.6rem;
+                cursor: pointer;
+            }
+            
+
             svg {
-                font-size: 1.2rem;
+                font-size: 1.6rem;
                 cursor: pointer;
             }
 
-            svg:hover {
-                font-size: 1.3rem;
-                transition: 0.1s;
-            }
-        }
+          
     }
+}
+
 }

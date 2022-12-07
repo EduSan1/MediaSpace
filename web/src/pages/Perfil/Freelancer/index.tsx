@@ -15,6 +15,7 @@ import api from "../../../service";
 import { Navigate, useNavigate } from "react-router-dom";
 import ProjectCard from "../../Projects/ProjectCard";
 import { AiOutlineProfile } from "react-icons/ai";
+import { async } from "@firebase/util";
 
 
 
@@ -26,6 +27,11 @@ const ProfileFreelancer = () => {
         name: "",
         icon: ""
     })
+
+
+
+  const [currentPage, setCurrentPage] = useState("");
+
 
 
     const profileDice = async () => {
@@ -79,12 +85,14 @@ const ProfileFreelancer = () => {
 
     }
 
-    useEffect(() => {
+     useEffect  ( ()  =>   {
         api.get(`/project/freelancer/${user.id}`).then((res: any) => {
 
             setStatusProject(res.data.data)
 
             setSelectedProjects(res.data.data.IN_EXECUTION)
+
+         
 
         })
     }, [user])
@@ -96,10 +104,7 @@ const ProfileFreelancer = () => {
     }, [])
 
     const roteProject = (id: string) => {
-        console.log(select)
-        if (select === 'AWAITING_START') {
-            navigate(`/projects/${id}`)
-        } else if (select === 'VALIDATING_REQUIREMENTS') {
+         if (select === 'VALIDATING_REQUIREMENTS') {
             navigate(`/projects/requirements/${id}`)
         } else if (select === 'IN_EXECUTION') {
             navigate(`/projectInExecution/${id}`)
@@ -125,8 +130,10 @@ const ProfileFreelancer = () => {
                     <PerfilCardFreelancer profile_picture={user.profile_picture} nickname={user.nickname} first_name={user.first_name} biography={user.biography} categories={[{ name: userCategories.name, icon: userCategories.icon }]} />
 
                     <div className="Div_main_Perfil">
-
-                        <SideNav className="" icon={<ImStatsDots />} icon2={<AiOutlineProfile />} icon3 icon4 icon5 />
+                         {
+                                 <SideNav className="" icon icon2={<AiOutlineProfile onClick={()=>{setCurrentPage('my work')}}/>} icon3 icon4 icon5  onClick={()=>{console.log('hello word')}} />
+                         }
+                    
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
                         <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} setSelectedProjects={() => { }} classnameOption={''} />
@@ -134,10 +141,22 @@ const ProfileFreelancer = () => {
                         <div className="Main_Card">
 
                             <div className="project-page-projects-card-container">
-                                {
+
+                                {   currentPage == "myProjects" &&
                                     selectedProject?.map((project: any) => {
                                         return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
                                     })
+                                }
+
+                                {
+                                    currentPage == "my work" &&
+                                
+                                    //   <ProjectCard onClick={() => { }} categories={''} description={''} id={'1'} image={[{url:""}]} name={'yeste'} user={{ first_name: '', nickname: '', profile_picture: '' }} value={20} />
+                                  
+                                  
+                                      <div>project</div>
+
+                                    
                                 }
                             </div>
 

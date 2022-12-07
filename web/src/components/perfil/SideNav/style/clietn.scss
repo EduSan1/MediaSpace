@@ -1,20 +1,12 @@
 .Nav_bar_Client{
     display: flex;
-    width: 100%;
-    height: 10%;
+    width: 20%;
+    height: 90%;
     justify-content: center;
+    align-items: center;
     gap: 20px;
-    padding-left: 100px;
-
-   
-        display: flex;
-        width: auto;
-        width: 20%;
-        height: 90%;
-        border-radius: 0px 0px 40px 40px;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 1px 1px 10px  rgba(0, 0, 0, 0.911);
+    border-radius: 0px 0px 40px 40px;
+    box-shadow: 1px 1px 10px  rgba(0, 0, 0, 0.911);
         
         
         span{
@@ -24,10 +16,13 @@
             align-items: center;
             margin-left: 30px;
             
-          
+            img{
+                font: 5rem;
+                cursor: pointer;
+            }
             
             svg{
-                font-size: 1.7rem;
+                font-size: 2rem;
                 cursor: pointer;
             }
 

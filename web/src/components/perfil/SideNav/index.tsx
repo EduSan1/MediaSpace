@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import IconBar from "../../utils/Icon";
 interface IInput {
     icon: ReactNode,
@@ -6,20 +6,26 @@ interface IInput {
     icon2: ReactNode
     icon3: ReactNode
     icon4: ReactNode
-    icon5: ReactNode
+    icon5: ReactNode,
+    onClick:()=>void
+    
 }
 
 
-const SideNav = ({ icon, icon2,icon3,icon4,icon5, className }: IInput) => {
+const SideNav = ({ icon, icon2,icon3,icon4,icon5, className, onClick }: IInput) => {
 
-  
+
+
 
     return (
 
         <div className= "All_div">
             <div className={className? className  : "side_nav"}>
                 <span>
-                    {icon}
+                  
+                    <img src="../assets/img/perfil/projects.png" alt="" onClick={({})=>{console.log('teste')}} />
+                    
+                    
                 </span>
                 <span>
                     {icon2}
