@@ -3,7 +3,9 @@ import { View, StyleSheet, Dimensions, ScrollView, Text, Image } from "react-nat
 import { ScrollImage } from "../../components/utils/ScrollImage";
 import { LoginButton } from "../../components/utils/LoginButton";
 import api from "../../../service";
-import TabBar from "../../components/utils/TabBar";
+import BtnBackPage from "../../components/utils/BtnBackPage"
+import { CategoryButton } from "../../components/utils/CategoryButton";
+
 
 
 interface IProject {
@@ -16,13 +18,18 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
         navigation.navigate(screen)
     }
 
+    const dateMask = (value: string) => {
+        return value
+            .split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/, "$1/$2/$3")
+    }
+
     const [imageIndex, setImageIndex] = useState(0)
     const [projectLoad, setProjectLoad] = useState(false)
     const [categories, setCategories] = useState([{}])
     const [hasError, setHasError] = useState(false)
     const { projectId } = route.params
 
-    const [projectOwner, setProjectOwner] = (useState)({
+    const [projectOwner, setProjectOwner] = useState({
         id: "",
         name: "",
         description: "",
@@ -50,7 +57,7 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
             mai: "",
             password: "",
             biography: "",
-            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FWhatsApp%20Image%202022-10-17%20at%2017.49.13.jpeg?alt=media&token=7cde0a87-0125-45b1-b4e9-e86979334194",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
             is_active: true,
             is_authenticated: true,
             create_at: "",
@@ -79,22 +86,6 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
     })
 
 
-    const handleUserPicture = (text: any) => {
-
-        console.log("images => ", text)
-        let newImages = projectOwner.images
-
-        newImages[imageIndex] = { url: text }
-
-        setProjectOwner({
-
-            ...projectOwner,
-            images: newImages
-        })
-
-        setImageIndex(imageIndex + 1)
-    }
-
     useEffect(() => {
         api.get(`/project/${projectId}`).then((res: any) => {
             setProjectOwner(res.data.data)
@@ -104,53 +95,74 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
 
     return (
         <>
-            <TabBar currentScreen="ProjectOwner" navigateTo={navigateTo} />
 
+            <View style={styles.btnBack}>
+                <BtnBackPage navigation={navigation} />
+            </View>
 
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.page}>
+
                 <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={projectOwner.images} setUserImage={(image: string) => { }} />
 
                 <View style={styles.containerFilho}>
-                    <View style={styles.containerDate}>
-                        <Text style={styles.date}>Criado em: {projectOwner.create_at} </Text>
-                        <Text style={styles.date}>Prazo término: {projectOwner.estimated_deadline}</Text>
+                    <View style={styles.containerDates}>
+
+                        <View style={styles.containerDate}>
+                            <Text style={styles.date}>Criado em: </Text>
+                            <Text>{dateMask(projectOwner.create_at)}</Text>
+
+                        </View>
+
+                        <Text style={styles.traco}>|</Text>
+
+                        <View style={styles.containerDate}>
+                            <Text style={styles.date}>Prazo término: </Text>
+                            <Text>{dateMask(projectOwner.estimated_deadline)}</Text>
+                        </View>
+
                     </View>
 
                     <View style={styles.containerProfile}>
-                        <Image style={styles.image} source={{ uri: projectOwner.user.profile_picture }} />
-                        <Text style={styles.title}>Valor estiamdo: {projectOwner.value}</Text>
+                        <View style={styles.containerNameImage}>
+                            <Image style={styles.image} source={{ uri: projectOwner.user.profile_picture }} />
+                            <View>
+                                <Text style={styles.nameUser}>{projectOwner.user.first_name} {projectOwner.user.last_name}</Text>
+                                <Text style={styles.nicknameUser}>@{projectOwner.user.nickname}</Text>
+                            </View>
+
+                        </View >
+                        <View>
+                            <Text style={styles.value}>Valor estimado:</Text>
+                            <Text style={styles.price}> R$ {projectOwner.value}</Text>
+                        </View>
                     </View>
 
                     <View style={styles.containerTitle}>
-                        <Text style={styles.title2}>{projectOwner.name}</Text>
+                        <Text style={styles.nameProject}>{projectOwner.name}</Text>
                         <Text style={styles.describle}> {projectOwner.description}</Text>
 
-                        <View style={styles.categories}>
-                            <Text style={styles.title}>Categoria</Text>
+                        <View style={styles.categ}>
+
+                            <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                             {
                                 projectOwner.categories.map((category: any) => {
-                                    return <Text style={styles.categorySelected}>{category.name}</Text>
+                                    return <CategoryButton action={() => { }} category={category.name} icon={category.icon} id={category.id} setSubCategories={() => { }} />
 
                                 })
                             }
 
-                            <Text style={styles.title}>Subcategoria</Text>
-                            {
-                                projectOwner.sub_categories.map((sub_category: any) => {
-                                    return <Text style={styles.categorySelected}>{sub_category.name}</Text>
-
-                                })
-                            }
+                            <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
                         </View>
+                    </View>
 
-                        <View style={styles.button}>
-                            <LoginButton type="light" action={() => console.log('teste')} isLoad={projectLoad} title="Executar Projeto" />
-                        </View>
-
-                        <Text style={styles.title}>Prestadores que se candidataram</Text>
+                    <View style={styles.button}>
+                        <LoginButton type="dark" action={() => navigation.navigate("WorkersAppliedPage", { projectId: projectId })} isLoad={projectLoad} title="Visualizar Interessados" />
                     </View>
 
 
+                    <View style={styles.button}>
+                        <LoginButton type="light" action={() => navigation.navigate("WorkersSelectedPage", { projectId: projectId, projectName: projectOwner.name })} isLoad={projectLoad} title="Executar Projeto" />
+                    </View>
 
                 </View>
             </ScrollView>
@@ -162,92 +174,144 @@ export const ProjectOwner = ({ navigation, route }: IProject) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#fff',
-        display: "flex",
-        height: Dimensions.get('window').height * 0.01,
-    },
-    fix: {
-        width: Dimensions.get('window').width,
 
-    },
     containerFilho: {
         width: Dimensions.get('window').width,
         height: "auto",
-    },
-    bar: {
-        height: Dimensions.get('window').height * .08,
-        width: Dimensions.get('window').width,
-        backgroundColor: "#f3fff1"
+        backgroundColor: '#fff'
     },
 
-    containerDate: {
-        height: Dimensions.get('window').height * 0.1,
+    containerDates: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        fontSize: 34,
-        padding: 20,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     containerProfile: {
         height: Dimensions.get('window').height * 0.1,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 20,
         justifyContent: 'space-around'
     },
     containerTitle: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: "auto",
         display: 'flex',
         padding: 20,
     },
+    containerImage: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.21,
+        backgroundColor: "blue"
+    },
+    containerNameImage: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        display: 'flex',
+    },
     image: {
-        width: Dimensions.get('window').width * 0.2,
-        height: Dimensions.get("window").width * 0.2,
-        borderRadius: 100
+        width: Dimensions.get('window').width * 0.15,
+        height: Dimensions.get("window").width * 0.15,
+        borderRadius: 100,
     },
-    title: {
+    nameUser: {
+        fontSize: 14,
+        fontWeight: "400",
+        paddingStart: 10,
+    },
+    nicknameUser: {
+        fontSize: 14,
+        fontWeight: "300",
+        paddingStart: 10,
+        color: '#B3B3B3'
+    },
+    value: {
+        fontSize: 14,
+        fontWeight: "400",
+        color: '#B3B3B3'
+    },
+    price: {
+        fontSize: 14,
+        fontWeight: "500",
+        color: '#30A851'
+    },
+    nameProject: {
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: "bold",
     },
-    title2: {
-        fontSize: 26,
-        fontWeight: 'bold'
+    titleDate: {
+        fontSize: 14,
+        fontWeight: "400",
+    },
+    traco: {
+        fontSize: 25,
+        fontWeight: "300",
+        color: '#999999',
+    },
+    date: {
+        fontSize: 14,
+        fontWeight: "400",
+        color: '#999999'
+    },
+    categ: {
+        display: "flex",
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    divisor: {
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get("window").width * 0.005,
+        borderRadius: 100,
+    },
+    containerDate: {
+        flexDirection: "row"
     },
     describle: {
-        fontSize: 16
+        fontSize: 14,
+        fontWeight: "300",
+        color: '#4D4D4D'
     },
     categories: {
         margin: Dimensions.get('window').width * 0.02,
-        height: Dimensions.get('window').height * 0.25,
+        height: Dimensions.get('window').height * 0.05,
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        flexDirection: 'row'
     },
     categorySelected: {
         paddingHorizontal: Dimensions.get('window').width * 0.06,
-        margin: Dimensions.get('window').width * 0.02,
-        height: Dimensions.get('window').height * 0.04,
-        backgroundColor: "#75A5FF",
+        margin: Dimensions.get('window').width * 0.03,
+        height: Dimensions.get('window').height * 0.035,
+        width: "auto",
+        backgroundColor: "#C6D2FF",
+        textAlignVertical: "center",
         borderRadius: 100,
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "flex-start",
         justifyContent: "flex-end",
         textAlign: 'center'
-
     },
     button: {
-        width: Dimensions.get('window').width,
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
+        padding: 10,
 
     },
-    date: {
-        fontSize: 10
+    btnBack: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get("window").height * 0.12,
+        backgroundColor: "#fff",
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+    },
+    page: {
+        backgroundColor: '#fff'
     }
+
+
 
 
 })

@@ -8,11 +8,13 @@ import HeaderSearch from "../../components/utils/HeaderSearch";
 import { LoginButton } from "../../components/utils/LoginButton";
 import { ScrollImage } from "../../components/utils/ScrollImage";
 import TabBar from "../../components/utils/TabBar";
+import BtnBackPage from "../../components/utils/BtnBackPage"
+import { CategoryButton } from "../../components/utils/CategoryButton";
 
 
 interface IProject {
     navigation: any
-    route : any
+    route: any
 }
 
 export const Project = ({ navigation, route }: IProject) => {
@@ -20,13 +22,13 @@ export const Project = ({ navigation, route }: IProject) => {
         navigation.navigate(screen)
     }
 
+
+
     const dateMask = (value: string) => {
         return value
-            .replace(/\D/g, '')
-            .replace(/(\d{2})(\d)/, "$1/$2")
-            .replace(/(\d{2})(\d{4})/, "$1/$2")
+            .split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/, "$1/$2/$3")
     }
-    const {projectId} = route.params
+    const { projectId, userId } = route.params
 
 
     const [imageIndex, setImageIndex] = useState(0)
@@ -48,7 +50,7 @@ export const Project = ({ navigation, route }: IProject) => {
         update_at: "",
         interest: [],
         sub_categories: [
-       
+
         ],
         requirements: [],
         management: "",
@@ -62,7 +64,7 @@ export const Project = ({ navigation, route }: IProject) => {
             mai: "",
             password: "",
             biography: "",
-            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/profilePicture%2FWhatsApp%20Image%202022-10-17%20at%2017.49.13.jpeg?alt=media&token=7cde0a87-0125-45b1-b4e9-e86979334194",
+            profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
             is_active: true,
             is_authenticated: true,
             create_at: "",
@@ -85,147 +87,129 @@ export const Project = ({ navigation, route }: IProject) => {
         categories: [{}],
         images: [
             {
-                url : ""
+                url: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f"
             }
         ]
     })
 
     const freelancerProject = async () => {
         const projectApi = {
-            ...project.user
+            ...project.user,
+
         }
         console.log(projectApi)
 
-        api.post(`/project/registerInterest/${project.user}`).then((res:any)=>{
-            if(res.data.statusCode === 201){
+        console.log(`/project/registerInterest/${project.id}`)
+
+        api.post(`/project/registerInterest/${project.id}`, {
+            freelancerId: userId
+        }).then((res: any) => {
+            if (res.data.statusCode === 201) {
                 navigation.navigate("WorkersAppliedPage", {
                     projectId: res.data.data.id,
                 })
-            } else {
-                ToastAndroid.show("res.data.message", 10)
             }
+            ToastAndroid.show(res.data.message, 10)
             console.log(res.data)
         })
     }
 
-    const handleChange = (text : string, name : string) => {
-        if ( name === "update_at" ) {
-            setProject(
-                {
-                    ...project,
-                    [name]: dateMask(text)               
-                }
-            )
-        }else {
-            setProject(
-                {
-                    ...project,
-                    [name] : text
-                }
-            )
-        }
-    }
-
     useEffect(() => {
-        api.get(`/project/${projectId}`).then((res: any)=>{
+        api.get(`/project/${projectId}`).then((res: any) => {
             setProject(res.data.data)
-         })
-     }, [])
+        })
+    }, [])
 
 
     return (
         <>
             <TabBar currentScreen="Project" navigateTo={navigateTo} />
-            <View style={styles.navigationBar}></View>
-
-            <View style={styles.fix}>
-                <ScrollView style={styles.container}> 
-                 <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string)  => {} } /> 
-
-                    <View style={styles.containerFilho}>
-                           <View style={styles.containerDate} >
-                            <Text style={styles.title3} >Criado em: {project.create_at} </Text>
-                            <Text style={styles.title3}>Prazo término: {project.estimated_deadline}</Text>
-                        </View>
-
-                   <View style={styles.containerProfile}>
-                            <Image style={styles.image} source={{uri : project.user.profile_picture}} /> 
-                            <Text style={styles.title}>Valor estiamdo: {project.value}</Text>
-                        </View>
-
-                        <View style={styles.containerTitle}>
-                            <Text style={styles.title2}>{project.name}</Text>
-                            <Text style={styles.describle}> {project.description}</Text>
-
-                        <View>                        
-                                <Text style={styles.title}>Categoria</Text>
-                                {
-                                    project.categories.map((category : any) => {
-                                        return <Text style={styles.categorySelected}>{category.name}</Text>
-
-                                    })
-                                }                        
-                        </View>
-
-                        <View>       
-                                <Text style={styles.title}>Subcategoria</Text>
-                                {
-                                    project.sub_categories.map((sub_category : any) => {
-                                        return <Text style={styles.categorySelected}>{sub_category.name}</Text>
-
-                                    })
-                                }
-                        </View> 
-                            
-
-                             <View style={styles.button}>
-                                <LoginButton type="light" action={() => freelancerProject()} isLoad={projectLoad} title="Participar" />
-                            </View>
-                        </View>
-
-
-
-                    </View> 
-                </ScrollView>  
+            <View style={styles.btnBack}>
+                <BtnBackPage navigation={navigation} />
             </View>
+            <ScrollView style={styles.page} >
 
-            <View style={styles.bar}></View>
+
+                <ScrollImage isActive={imageIndex == 4 ? false : true} userImage={project.images} setUserImage={(image: string) => { }} />
+
+
+                <View style={styles.containerFilho}>
+                    <View style={styles.containerDates} >
+                        <View style={styles.conatinerDate}>
+                            <Text style={styles.titleDate}>Criado em:  </Text>
+                            <Text style={styles.date}>{dateMask(project.create_at)}</Text>
+                        </View>
+
+                        <Text style={styles.traco}>|</Text>
+
+                        <View style={styles.conatinerDate}>
+                            <Text style={styles.titleDate}>Prazo término: </Text>
+                            <Text style={styles.date}>{dateMask(project.estimated_deadline)}</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.containerProfile}>
+                        <View style={styles.containerNameImage}>
+                            <Image style={styles.image} source={{ uri: project.user.profile_picture }} />
+                            <View>
+                                <Text style={styles.nameUser}>{project.user.first_name} {project.user.last_name}</Text>
+                                <Text style={styles.nicknameUser}>@{project.user.nickname}</Text>
+                            </View>
+                        </View >
+                        <View>
+                            <Text style={styles.value}>Valor estimado:</Text>
+                            <Text style={styles.price}> R$ {project.value}</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.containerTitle}>
+                        <Text style={styles.nameProject}>{project.name}</Text>
+                        <Text style={styles.describle}>{project.description}</Text>
+
+                        <View style={styles.categ}>
+
+                            <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
+                            {
+                                project.categories.map((category: any) => {
+                                    return <CategoryButton action={() => { }} category={category.name} icon={category.icon} id={category.id} setSubCategories={() => { }} />
+
+                                })
+                            }
+
+                            <Image style={styles.divisor} source={require("../../../assets/icons/divisor.png")} />
+                        </View>
+
+
+
+                        <View style={styles.button}>
+                            <LoginButton type="dark" action={() => freelancerProject()} isLoad={projectLoad} title="Declarar interesse" />
+                        </View>
+                    </View>
+
+
+
+                </View>
+            </ScrollView>
+
+
         </>
     )
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#fff',
-        display: "flex",
-        height: Dimensions.get('window').height * 0.01,
-    },
-    fix: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 2,
-    },
+
     containerFilho: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 1.9,
+        height: "auto",
+        backgroundColor: '#fff',
     },
-    bar: {
-        height: Dimensions.get('window').height * .08,
-        width: Dimensions.get('window').width,
-        backgroundColor: "#f3fff1"
-    },
-    navigationBar: {
-        height: Dimensions.get('window').height * .12,
-        width: Dimensions.get('window').width,
-        backgroundColor: "#f3fff1"
-    },
-    containerDate: {
-        height: Dimensions.get('window').height * 0.1,
+
+    containerDates: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        fontSize: 34,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     containerProfile: {
         height: Dimensions.get('window').height * 0.1,
@@ -240,25 +224,80 @@ const styles = StyleSheet.create({
         display: 'flex',
         padding: 20,
     },
+    containerImage: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.21,
+        backgroundColor: "blue"
+    },
+    containerNameImage: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        display: 'flex',
+    },
     image: {
-        width: Dimensions.get('window').width * 0.2,
-        height: Dimensions.get("window").width * 0.2,
-        borderRadius: 100
+        width: Dimensions.get('window').width * 0.15,
+        height: Dimensions.get("window").width * 0.15,
+        borderRadius: 100,
     },
-    title: {
+    nameUser: {
         fontSize: 14,
-        fontWeight: 'bold',
+        fontWeight: "400",
+        paddingStart: 10,
+
     },
-    title2: {
-        fontSize: 26,
-        fontWeight: 'bold'
+    nicknameUser: {
+        fontSize: 14,
+        fontWeight: "300",
+        paddingStart: 10,
+        color: '#B3B3B3'
     },
-    title3: {
-        fontSize: 10,
-        fontWeight: 'bold'
+    value: {
+        fontSize: 14,
+        fontWeight: "400",
+        color: '#B3B3B3'
+    },
+    price: {
+        fontSize: 14,
+        fontWeight: "500",
+        color: '#30A851'
+    },
+    nameProject: {
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    titleDate: {
+        fontSize: 14,
+        fontWeight: "400",
+    },
+    traco: {
+        fontSize: 25,
+        fontWeight: "300",
+        color: '#999999',
+
+    },
+    date: {
+        fontSize: 14,
+        fontWeight: "400",
+        color: '#999999'
+    },
+    categ: {
+        display: "flex",
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    divisor: {
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get("window").width * 0.005,
+        borderRadius: 100,
+        marginTop: 10
+    },
+    conatinerDate: {
+        flexDirection: "row"
     },
     describle: {
-        fontSize: 16
+        fontSize: 14,
+        fontWeight: "300",
+        color: '#4D4D4D'
     },
     categories: {
         margin: Dimensions.get('window').width * 0.02,
@@ -270,24 +309,33 @@ const styles = StyleSheet.create({
     },
     categorySelected: {
         paddingHorizontal: Dimensions.get('window').width * 0.06,
-        margin: Dimensions.get('window').width * 0.01,
-        height: Dimensions.get('window').height * 0.04,
-        width: Dimensions.get('window').width * 0.5,
-        backgroundColor: "#75A5FF",
+        margin: Dimensions.get('window').width * 0.03,
+        height: Dimensions.get('window').height * 0.035,
+        width: "auto",
+        backgroundColor: "#C6D2FF",
         borderRadius: 100,
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "flex-end",
         textAlign: 'center'
-
     },
     button: {
-        width: Dimensions.get('window').width,
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
         padding: 10
-
     },
+    btnBack: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get("window").height * 0.12,
+        backgroundColor: "#fff",
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        display: 'flex',
+    },
+    page: {
+        backgroundColor: '#fff'
+    }
+
 
 
 })

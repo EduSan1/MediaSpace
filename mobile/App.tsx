@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import StartHome from './src/pages/StartHome';
 import LoginPage from './src/pages/Login/Login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,7 +12,6 @@ import CheckMailPage from './src/pages/CheckMailPage';
 import CompleteRegisterFreelancerPage from './src/pages/CompleteRegisterFreelancer';
 import RegisterFreelancerPage from './src/pages/RegisterFreelancerPage';
 import { RegisterProject } from './src/pages/RegisterProject';
-import { NavigationScreen } from './src/pages/NavigationScreen';
 import { ProjectOwner } from './src/pages/ProjectOwner';
 import Home from './src/pages/Home';
 import { Project } from './src/pages/Project';
@@ -25,11 +24,11 @@ import TechnicalRequirementsFrelancer from './src/pages/TechnicalRequirementsFre
 import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 import EditUser from './src/pages/Profile/EditUser';
 import ModalRequirements from './src/components/utils/ModalRequirements';
+import ManagementProject from './src/pages/ManagementProject';
 
 export default function App() {
 
   const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, animation: 'none' }}>
@@ -40,7 +39,6 @@ export default function App() {
         <Stack.Screen name="CheckMail" component={CheckMailPage} />
         <Stack.Screen name="RegisterFreelancer" component={RegisterFreelancerPage} />
         <Stack.Screen name="RegisterFreelancerComplete" component={CompleteRegisterFreelancerPage} />
-        <Stack.Screen name="NavigationScreen" component={NavigationScreen} />
         <Stack.Screen name="RegisterProject" component={RegisterProject} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="ListProject" component={ListProject} />
@@ -53,6 +51,7 @@ export default function App() {
         <Stack.Screen name='WorkersSelectedPage' component={WorkersSelectedPage} />
         <Stack.Screen name='TechnicalRequirementsFrelancer' component={TechnicalRequirementsFrelancer} />
         <Stack.Screen name='EditUser' component={EditUser} />
+        <Stack.Screen name='ManagementProject' component={ManagementProject} />
       </Stack.Navigator>
     </NavigationContainer>
   );

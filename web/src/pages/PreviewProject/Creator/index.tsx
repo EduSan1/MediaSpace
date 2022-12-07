@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import SearchBar from "../../../components/HeaderPage/Search";
 import NavegationBar from "../../../components/utils/navegation";
-import { formatDate, formatMoney } from '../../../service/Regex/regex';
+import { formatDateProject } from '../../../service/Regex/regex';
 import InputBtn from "../../../components/utils/Button/InputBtn";
 import { RiDeleteBinLine, RiEditBoxLine } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
@@ -118,12 +118,12 @@ const PreviewProjectCreator = () => {
    }
    )
 
-   //console.log(project)
 
-   const dateFormat = (dates: any) => {
-      dates = project.create_at.split("T")
-      return dates[0]
-   }
+
+   // const dateFormat = (dates: any) => {
+   //    dates = project.create_at.split("T")
+   //    return dates[0]
+   // }
 
 
 
@@ -136,12 +136,7 @@ const PreviewProjectCreator = () => {
       })
    }, [])
 
-   useEffect(() => {
-      api.get(`/project/${projectId}`).then((res: any) => {
-         setProject(res.data.data)
 
-      })
-   }, [])
 
    return (
       <>
@@ -160,10 +155,10 @@ const PreviewProjectCreator = () => {
                      </div>
 
                      <div className='container_dates'>
-                        <p><span>Criado em:   </span>{dateFormat(project.create_at)}</p>
+                        <p><span>Criado em:   </span>{formatDateProject(project.create_at)}</p>
                         <p>
                            <span>Prazo de término:  </span>
-                           {dateFormat(project.estimated_deadline)}
+                           {formatDateProject(project.estimated_deadline)}
                         </p>
                      </div>
                      <div className='container_creator_value'>
@@ -196,7 +191,7 @@ const PreviewProjectCreator = () => {
                      <div className='container_categories_project'>
                         {
                            project.categories.map((category: any) => {
-                              return <CategoryCard category={category.name} icon="" key={category.id} />
+                              return <CategoryCard category={category.name} icon={category.icon} key={category.id} />
                            })
                         }
                      </div>
@@ -210,7 +205,8 @@ const PreviewProjectCreator = () => {
 
                               project.interest.map((interest: any) => {
                                  console.log(interest)
-                                 return <FreelancerInterest image_profile={interest.team.picture_profile} name={interest.team.name} nickname={interest.team.nickname} />
+                                 return <FreelancerInterest image_profile={interest.team.profile_picture
+                                 } name={interest.team.name} nickname={interest.team.nickname} />
                               })
 
                            }

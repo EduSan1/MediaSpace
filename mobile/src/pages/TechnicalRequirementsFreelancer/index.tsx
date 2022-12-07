@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button, Pressable, TextInput } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, Image, ScrollView, Dimensions, Modal, Button, Pressable, TextInput, Alert, ToastAndroid } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import BtnBackPage from "../../components/utils/BtnBackPage";
 import { CardRequirements } from "../../components/utils/CardRequirements";
@@ -7,45 +7,106 @@ import { BtnRequirements } from "../../components/utils/BtnRequeriments";
 import { BtnConfirmRequirements } from "../../components/utils/btnConfirmRequeriments";
 import { BtnCardRequirements } from "../../components/utils/BtnCardRequirements";
 import ModalRequirements from "../../components/utils/ModalRequirements";
+import api from "../../../service";
+import { IProject } from "../Profile/interfaces";
+import { IRequirement } from "../ManagementProject/RequirementCard";
 
 interface ITechnicalRequirementsFrelancer {
     navigation: any
+    route: any
 }
 
-export default function TechnicalRequirementsFrelancer({ navigation }: ITechnicalRequirementsFrelancer) {
+export default function TechnicalRequirementsFrelancer({ navigation, route }: ITechnicalRequirementsFrelancer) {
     const [isModalVisible, setModalVisible] = useState(false);
 
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
+    const onCloseModal = () => {
+        setModalVisible(!isModalVisible)
+        getProject()
     };
 
+    const [project, setProject] = useState<IProject>()
+    const [percentage, setPercentage] = useState(0)
+
+    const { projectId, isOwner } = route.params
+
+    const getProject = () => {
+        api.get(`/project/${projectId}`).then((res) => {
+            let project: IProject = res.data.data
+            project = { ...project, requirements: project.requirements.filter((requirement: IRequirement) => requirement.is_accepted !== false) }
+            setProject(project)
+        })
+    }
+
+    const getPercentage = (array: number[]) => {
+        let soma: number = 0
+        for (var i = 0; i < array.length; i++)
+            soma += array[i];
+
+        setPercentage(soma)
+    }
+
+    const refuseRequirements = () => {
+        api.post(`/project/denyRequirement/${projectId}`).then((res) => {
+            console.log(res.data.data)
+            ToastAndroid.show(res.data.message, 10)
+            navigation.goBack()
+        })
+    }
+
+    const acceptRequirements = () => {
+        api.post(`/project/acceptRequirements/${projectId}`).then((res) => {
+            console.log(res.data.data)
+            ToastAndroid.show(res.data.message, 10)
+            navigation.goBack()
+        })
+    }
+
     useEffect(() => {
-        console.log(isModalVisible)
-    }, [isModalVisible])
+        const percentageArray = project?.requirements.map((requirement: IRequirement) => requirement.gain_percentage)
+        getPercentage(percentageArray ? percentageArray : [])
+    }, [project])
+
+    useEffect(() => {
+        getProject()
+    }, [])
+
     return (
         <>
-            <BtnBackPage action={() => navigation.navigate("Home")} />
+            <BtnBackPage navigation={navigation} />
             <ScrollView style={style.Scroll}>
                 <SafeAreaView>
                     <View style={style.titleSection}>
-                        <Text style={style.text}>Requisitos técnicos - Nome do projeto</Text>
+                        <Text style={style.text}>Requisitos técnicos - {project?.name}</Text>
                     </View>
-                    <CardRequirements />
-                    <BtnCardRequirements action={() => setModalVisible(!isModalVisible)} />
-                    <Text style={style.textValue}>Valor total do projeto: R$ 2.000,00</Text>
+                    {
+                        project?.requirements.map((requirement: IRequirement) => {
+                            return <CardRequirements projectValue={project.value} requirement={requirement} />
+                        })
+                    }
+                    {
+                        percentage <= 99 && !isOwner &&
+                        <BtnCardRequirements action={() => setModalVisible(!isModalVisible)} />
+                    }
+                    <Text style={style.textValue}>Valor total do projeto: R$ {project?.value}</Text>
                     <View style={style.footerProject}>
                         <Text style={style.titleRequeriments}>Requisitos</Text>
                         <Text style={style.TextRequirements}>Caso esteja interessado em fazer mudanças ou adaptações nos requisitos, solicite uma revisão, só é permitido a edição assim que o cliente e o(s) prestador(es) aceitarem a solicitação.</Text>
                     </View>
-                  
-                    <View style={style.btnSection}>
-                        <BtnConfirmRequirements action={() => toggleModal()} />
-                    </View>
 
-  {
+                    {
+                        isOwner ?
+                            <View style={style.btnSection}>
+                                <BtnConfirmRequirements color="#f66" label="Recusar requisitos" action={() => refuseRequirements()} />
+                                <BtnConfirmRequirements color="#B275FF" label="Confirmar requisitos" action={() => acceptRequirements()} />
+                            </View>
+                            :
+                            <View style={style.btnSection}>
+                                <BtnConfirmRequirements color="#B275FF" label="Confirmar requisitos" action={() => navigation.goBack()} />
+                            </View>
+                    }
+                    {
                         isModalVisible &&
-                        <ModalRequirements onClose={() => toggleModal()} />
-                       
+                        <ModalRequirements percentage={percentage} projectId={projectId} onClose={() => onCloseModal()} />
                     }
                 </SafeAreaView>
             </ScrollView>
@@ -77,7 +138,7 @@ const style = StyleSheet.create({
     },
     titleSection: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.20,
+        height: "auto",
         marginBottom: Dimensions.get('window').height * 0.03,
 
     },
@@ -100,9 +161,9 @@ const style = StyleSheet.create({
         color: "#808080",
     },
     btnSection: {
-        width: Dimensions.get('window').width * 0.90,
+        width: Dimensions.get('window').width,
         flexDirection: "row",
-        justifyContent: "flex-end",
+        justifyContent: "space-evenly",
 
         // // modal
     },

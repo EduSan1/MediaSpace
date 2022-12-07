@@ -27,24 +27,6 @@ interface IUserProjects {
     CANCELED: []
 }
 
-interface IProject {
-    id: string
-    name: string,
-    description: string
-    value: number
-    images: [{
-        url: string
-    }]
-    categories: any
-    user: {
-        id: string
-        first_name: string
-        nickname: string
-        profile_picture: string
-    },
-    navigation: any
-}
-
 const EditUser = ({ navigation }: IEditUser) => {
 
     const navigateTo = (screen: string) => {
@@ -60,7 +42,7 @@ const EditUser = ({ navigation }: IEditUser) => {
         first_name: "",
         last_name: "",
         nickname: "",
-        profile_picture: "",
+        profile_picture: "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8",
         biography: "",
         birth_date: "",
         cpf: "",

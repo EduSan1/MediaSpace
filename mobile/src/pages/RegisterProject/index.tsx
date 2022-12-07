@@ -9,23 +9,24 @@ import { CheckboxComponent } from "../../components/utils/subCategory";
 import { CategoryButton } from "../../components/utils/CategoryButton";
 import { SubcategoryButton } from "../../components/utils/SubcategoryButton"
 import api from "../../../service";
-import * as SecureStore from"expo-secure-store"
+import * as SecureStore from "expo-secure-store"
 import G from "glob"
-import  BtnBackPage  from "../../components/utils/BtnBackPage"
+import BtnBackPage from "../../components/utils/BtnBackPage"
 
 interface IRegisterProject {
     navigation: any
+    route: any
 }
 
-export const RegisterProject = ({ navigation }: IRegisterProject) => {
+export const RegisterProject = ({ navigation, route }: IRegisterProject) => {
     const [imageIndex, setImageIndex] = useState(0)
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([{}])
     const [user, setUser] = useState()
-    
+
     const setUserId = async () => {
         const userId = await SecureStore.getItemAsync('userId')
-        setProjectRegister({...projectRegister, user: {id : userId || ""}})
+        setProjectRegister({ ...projectRegister, user: { id: userId || "" } })
     }
 
     const dateMask = (value: string) => {
@@ -83,11 +84,6 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
     })
 
 
-    useEffect(() => {
-        console.log(projectRegister)
-    },[projectRegister])
-
-
     const addToProject = (id: string, name: "sub_categories" | "categories") => {
         setProjectRegister({
             ...projectRegister, [name]: [
@@ -124,7 +120,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
     const handleChange = (text: string, name: string) => {
 
-        
+
         if (name == "estimated_deadline") {
             setProjectRegister(
                 {
@@ -162,22 +158,22 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
 
     const registerProject = async () => {
 
-       
-        const projectApi = { 
+
+        const projectApi = {
             ...projectRegister,
             estimated_deadline: dateToSend(projectRegister.estimated_deadline),
-            categories : projectRegister.categories.filter((category : any) => category.id !== ""),
-            sub_categories : projectRegister.sub_categories.filter((sub_categories : any) => sub_categories.id !== "")
+            categories: projectRegister.categories.filter((category: any) => category.id !== ""),
+            sub_categories: projectRegister.sub_categories.filter((sub_categories: any) => sub_categories.id !== "")
 
         }
-         console.log(projectApi)
+        console.log(projectApi)
 
-        
+
         setProjectLoad(true)
         console.log(projectApi)
         api.post("/project", projectApi).then((res: any) => {
 
-            if(res.data.statusCode === 201){
+            if (res.data.statusCode === 201) {
                 navigation.navigate("ListProject", {
                     projectId: res.data.data.id,
                 })
@@ -186,7 +182,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
             }
             console.log(res.data)
         })
-       
+
         setProjectLoad(false)
 
     }
@@ -204,15 +200,15 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
         setUserId()
     }, [])
 
-    useEffect (()=>{
-        api.get("/user").then((res:any)=>{
+    useEffect(() => {
+        api.get("/user").then((res: any) => {
             setUser(res.data)
         })
     }, [])
 
     return (
         <>
-        {/* <BtnBackPage action={() => navigation.navigate("ListProject")}/> */}
+            {/* <BtnBackPage action={() => navigation.navigate("ListProject")}/> */}
             <View style={styles.scrollContainer}>
 
 
@@ -232,7 +228,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                             <ScrollView horizontal={true} style={styles.sectionCategory}>
                                 {
                                     categories?.map((category: any) => {
-                                        return <CategoryButton key={category.id} id={category.id} setSubCategories={findSubCategories} icon="s" action={() => console.log("a")} category={category.name} />
+                                        return <CategoryButton key={category.id} id={category.id} setSubCategories={findSubCategories} icon={category.icon} action={() => console.log("a")} category={category.name} />
                                     })
                                 }
                             </ScrollView>
@@ -242,6 +238,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                         </View>
                         <View style={styles.areaContainer2}>
                             <ScrollView horizontal={true} style={styles.sectionSubCategory}>
+
                                 {
                                     subcategoriesToRender?.map((category: any) => {
                                         return category.sub_categories.map((subcategory: any) => {
@@ -249,6 +246,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                                         })
                                     })
                                 }
+
                             </ScrollView>
 
 
@@ -260,7 +258,7 @@ export const RegisterProject = ({ navigation }: IRegisterProject) => {
                         <LoginInputNumber type="numeric" name="estimated_deadline" iconName="today" value={projectRegister.estimated_deadline} handleChange={handleChange} hasError={hasError} title="Prazo estimado da entrega" maxLength={10} />
                         <LoginInputNumber type="numeric" name="value" iconName="attach-money" value={projectRegister.value.toString()} handleChange={handleChange} hasError={hasError} title="Valor estimado (BRL)" maxLength={12} />
 
-                 
+
 
 
 
@@ -290,7 +288,8 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.1,
         textAlign: "center",
         fontSize: Dimensions.get("window").width * 0.05,
-        color: "#B275FF",
+        color: "#75A5FF",
+        fontWeight: "600",
         textAlignVertical: "center",
         backgroundColor: "#fff"
     },
@@ -313,6 +312,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 1,
         backgroundColor: "#fff",
         display: 'flex',
+        paddingTop: 40
     },
     view: {
         width: Dimensions.get('window').width,
@@ -436,7 +436,8 @@ const styles = StyleSheet.create({
 
     },
     areaContainer2: {
-        height: Dimensions.get('window').height * 0.10,
+        height: Dimensions.get('window').height * 0.08,
+        // height: Dimensions.get('window').height * 0.07,
         marginBottom: 50,
         borderColor: "#DEDEDE"
         // elevation:7,

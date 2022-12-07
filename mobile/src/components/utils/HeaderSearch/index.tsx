@@ -8,12 +8,12 @@ interface IHeaderSearch {
 }
 export default function HeaderSearch({ label }: IHeaderSearch) {
 
-    const [userImage, setUserImage] = useState("")
+    const [userImage, setUserImage] = useState("https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FbaseProjectImage.png?alt=media&token=b270e971-908f-4e2e-8250-fd36fb1f496f")
     const [hasImage, setHasimage] = useState(false)
 
     const setImage = async () => {
         const userImage = await SecureStore.getItemAsync('userImage')
-        setUserImage(userImage ? userImage : "")
+        setUserImage(userImage ? userImage : "https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FfreelancerBaseProfile.png?alt=media&token=61fb92c6-82c5-4245-a621-91470ba196b8")
     }
 
     useEffect(() => {

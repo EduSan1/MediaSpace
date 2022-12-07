@@ -1,0 +1,181 @@
+@import "../../../../styles/vars.scss";
+
+.Div_main_Perfil {
+
+    .title_name {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+
+        h2 {
+            font: 1.3em sans-serif;
+            font-weight: 600;
+            text-align: justify;
+            color: #000;
+
+        }
+
+        svg{
+            font-size: 2rem;
+            color: $light-blue;
+            cursor: pointer;
+        }
+
+    }
+
+    .container_inputs_UpdateEdit {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-top: 20px;
+
+        .Upadet_name_nickname,
+        .Upadet_cell_email,
+        .Upadet_Password_cpf {
+            display: flex;
+            width: 100%;
+            height: 20%;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+
+            input[type=button]{
+                display: flex;
+                width: 250px;
+                border-radius: 30px;
+                border: 1.2px solid $light-purple;
+                color: $dark-purple;
+                font: 1.2em sans-serif;
+                font-weight: 400;
+                background-color: #fff;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                
+            }
+
+            input[type=button]:hover{
+                display: flex;
+                transition: 0.50s;
+                background-color: $light-purple;
+                color: #fff;
+                justify-content: center;
+                align-items: center;
+            }
+
+            input {
+                border: 0;
+                border-radius: 3px;
+                border-bottom: 1.5px solid $light-purple;
+                
+
+            }
+
+         
+
+
+
+        }
+
+
+        .Upadet_cell_email {
+            width: 80%;
+
+    
+        }
+
+        
+    
+
+    }
+
+    
+
+    .container_inputs_UpdateEdit .Upadet_biography{
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+          height: 100%;
+          margin-bottom: 10px;
+          gap: 2px;
+         
+        
+         
+
+          label{
+            display: flex;
+            font-size: 1rem;
+            font-family: "Inter", sans-serif;
+            font-weight: bolder;
+            color: #46307b;
+            height: 10%;
+            align-items: center;
+          }
+          
+
+          .biography_Upadet{
+            display: flex;
+            width: 100%;
+            height: 90%;
+            border: 1.2px solid $light-purple;
+            resize: none;
+            padding: 10px;
+            
+          }
+    }
+
+    .container_inputs_UpdateEdit .Upadet_btn_edit{
+        display: flex;
+        width: 50%;
+        height: 100%;
+        justify-content: end;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 10px;
+
+        .btn_edit{
+            display: flex;
+            width: 200px;
+            height: 60px;
+            border: 1.2px solid $light-purple;
+            justify-content: center;
+            align-items: center;
+            font: 1.5em sans-serif;
+            color: $dark-purple;
+            font-weight: 500;
+            background-color: #fff;
+            border-radius:10px ;
+            cursor: pointer;
+            
+        }
+
+        .btn_edit:hover{
+            transition: 0.50s;
+            background-color: $primary-purple;
+            color: #fff;
+        }
+    }
+
+  .container_inputs_UpdateEdit .btn_edit:first-child{
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 1.1rem;
+    word-wrap: wrap;
+  }
+
+    .biography_and_btn{
+        display: flex;
+        width: 100%;
+        height: 40%;
+        padding: 20px;
+       
+        
+    }
+}

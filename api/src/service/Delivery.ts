@@ -33,6 +33,7 @@ export class DeliveryService {
 
     create =  async (entity: DeliveryDomain) => {
         try {
+<<<<<<< HEAD
                 const delivery = await this._.create(entity)
 
                 entity.files?.map(async (file: IFile) => {                
@@ -41,6 +42,15 @@ export class DeliveryService {
                         delivery: {
                             id: delivery.id
                         }
+=======
+            const delivery = await this._.create(entity)
+
+            entity.files?.map(async (file: IFile) => {
+                const fileToRegister = {
+                    ...file,
+                    delivery: {
+                        id: delivery.id
+>>>>>>> 12fe4e6c757459782848a1d54d1210ca617d6403
                     }
                     await this.deliveryFileRepository.create(fileToRegister)
                 })
@@ -66,8 +76,37 @@ export class DeliveryService {
                         statusCode: 201,
                     };
                 }
+<<<<<<< HEAD
 
             
+=======
+                await this.deliveryFileRepository.create(fileToRegister)
+            })
+
+            const freelancerId = delivery.user.id
+            const freelancer = await this.userRepository.findById(freelancerId)
+            const projectMember = await this.projectMemberRepository.findById(freelancer.project_member.id)
+            const teamProjectManagement = await this.teamProjectManagementRepository.getById(freelancer.teams.id)
+
+            if (!freelancer.is_active === true && !projectMember.is_active === true && !teamProjectManagement.is_active === true) {
+
+                await this._.delete(delivery.id)
+
+                return {
+                    message: "Não é possivel realizar uma entrega caso você não esteja ativo no projeto",
+                    statusCode: 200,
+                };
+
+            } else {
+                return {
+                    message: "Entrega cadastrada com sucesso!",
+                    data: delivery,
+                    statusCode: 201,
+                };
+            }
+
+
+>>>>>>> 12fe4e6c757459782848a1d54d1210ca617d6403
         } catch (error) {
             return {
                 message: "Não foi possível cadastrar essa entrega!",
@@ -117,8 +156,7 @@ export class DeliveryService {
         try {
 
             const delivery = await this._.findById(id);
-            const requirements = await this.projectRequirementsRepository.findById(delivery.requirements.id)
-            const project = await this.projectRepository.getById(requirements.project.id);
+            const requirements = await this.projectRequirementsRepository.findById(delivery.requirements[0].id)
 
             if (delivery.is_active === false) {
                 return {
@@ -130,24 +168,27 @@ export class DeliveryService {
             delivery.is_accepted = true;
             const uptadedDelivery = await this._.update(delivery);
 
-            delivery.requirements.map(async (requirement : any) => {
+            const project = await this.projectRepository.getById(requirements.project.id);
+
+            delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = true
                 await this.projectRequirementsRepository.update(requirement);
             });
 
-            project.requirements.map(async (requirement : any) => {
+            project.requirements.map(async (requirement: any) => {
                 if (requirement.is_delivered === false || requirement.is_delivered === null) {
                     project.status = "IN_EXECUTION";
                     project.is_active = true
                     await this.projectRepository.update(project);
                 } else {
                     project.status = "COMPLETE";
-                    project.is_active = false
+                    project.is_active = false;
+                    console.log("Entrega ultima aceita")
                     await this.projectRepository.update(project);
                 }
             });
 
-            return{
+            return {
                 message: "Entrega aceita",
                 data: uptadedDelivery,
                 statusCode: 200
@@ -179,12 +220,12 @@ export class DeliveryService {
             delivery.is_active = false
             const uptadedDelivery = await this._.update(delivery)
 
-            delivery.requirements.map(async (requirement : any) => {
+            delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = false
                 await this.projectRequirementsRepository.update(requirement);
             });
 
-            return{
+            return {
                 message: "Entrega recusada",
                 data: uptadedDelivery,
                 statusCode: 200

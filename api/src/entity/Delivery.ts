@@ -32,7 +32,11 @@ export class DeliveryORM {
     @JoinTable()
     requirements: ProjectRequirementsORM[]
 
+<<<<<<< HEAD
     @ManyToMany(() => UserORM, user => user.delivery, { eager: true}) 
+=======
+    @ManyToMany(() => UserORM, user => user.delivery, { eager: true })
+>>>>>>> 12fe4e6c757459782848a1d54d1210ca617d6403
     @JoinTable()
     user: UserORM[]
 
