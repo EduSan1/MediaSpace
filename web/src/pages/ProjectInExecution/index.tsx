@@ -203,7 +203,7 @@ const ProjectInExecution = () => {
 
                                     <ul className="timeline">
                                         {
-                                            project.requirements.map((requirement: any, index) => <li className={requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 ? "" : "active"}>{index + 1}</li>)
+                                            project.requirements.map((requirement: any) => requirement.is_accepted && <li className={requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 ? "" : "active"}></li>)
                                         }
                                     </ul>
 

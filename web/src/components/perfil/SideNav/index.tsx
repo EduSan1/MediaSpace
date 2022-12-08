@@ -10,22 +10,22 @@ interface IInput {
 }
 
 
-const SideNav = ({ icon, icon2,icon3,icon4,icon5, className }: IInput) => {
+const SideNav = ({ icon, icon2, icon3, icon4, icon5, className }: IInput) => {
 
-  
+
 
     return (
 
-        <div className= "All_div">
-            <div className={className? className  : "side_nav"}>
+        <div className="All_div">
+            <div className={className ? className : "side_nav"}>
                 <span>
                     {icon}
                 </span>
                 <span>
                     {icon2}
                 </span>
-                
-                
+
+
             </div>
 
         </div>

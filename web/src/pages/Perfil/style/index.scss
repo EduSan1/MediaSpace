@@ -61,3 +61,19 @@
         }
     }
 }
+
+.section_main_messages {
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        font-weight: 900;
+        font-size: 10vw;
+        color: #75a5ff90;
+    }
+
+    img {
+        height: 140%;
+    }
+}

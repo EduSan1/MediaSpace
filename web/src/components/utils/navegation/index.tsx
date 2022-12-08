@@ -18,7 +18,7 @@ const NavegationBar = () => {
     const userJwt = localStorage.getItem('userDetails');
     const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
 
-  
+
 
 
     return (
@@ -39,12 +39,12 @@ const NavegationBar = () => {
                 </span>
 
                 <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
-                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img"  />
+                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img" />
                     <span className="InfoName_user">
                         <h2>{decodedToken?.userDetails?.first_name}</h2>
                         <h4>@{decodedToken?.userDetails?.nickname}</h4>
                     </span>
-                    <div className="Info_data">
+                    {/* <div className="Info_data">
                         <span>
                             <h2>5.7K</h2>
                             <h4>seguidores</h4>
@@ -57,7 +57,7 @@ const NavegationBar = () => {
                             <h2>2</h2>
                             <h4>Equipes</h4>
                         </span>
-                    </div>
+                    </div> */}
 
                     {/* <div className="btns">
                         button
@@ -70,7 +70,7 @@ const NavegationBar = () => {
                         <ul>
                             <li> <Link to={'/home'} className='Link_NextPage'> <IconBar Icon={<AiOutlineHome />} text={'Home'} className={!open ? 'icon_navBar' : 'icon_navBar_open '} /></Link></li>
                             <li> <Link to={'/projects'} className='Link_NextPage'>  <IconBar Icon={<AiOutlineRise />} text={'Projetos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
-                            <li> <Link to={'/Menssagens'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Mensagens'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
+                            <li> <Link to={'/Menssagens'} className='Link_NextPage'><IconBar Icon={<BsChatText />} text={'Chat'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Eventes'} className='Link_NextPage'><IconBar Icon={<MdRssFeed />} text={'Eventos'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
                             <li> <Link to={'/Perfil'} className='Link_NextPage'><IconBar Icon={<BiUser />} text={'Perfil'} className={!open ? 'icon_navBar' : 'icon_navBar_open'} /></Link></li>
 

@@ -18,9 +18,9 @@ const Menssagens = () => {
 
             <NavegationBar />
             <div className="Container">
-                <SearchBar />
-                <section className="section_main">
-                    <button onClick={() => openModal("6514a3b7-1ba2-4c92-8d09-7aa02552572c")}>ABRIR MODAL DE CADASTRO DE ENTREGA</button>
+                <section className="section_main_messages">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/mediaspace-35054.appspot.com/o/system%2FGroup%2049%20(1).png?alt=media&token=52895689-1325-4e21-a5ff-970002dfd337" />
+
                 </section>
 
 
