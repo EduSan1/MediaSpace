@@ -68,7 +68,7 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                                         <div className="delivery-data">
                                             <p>{delivery.title}</p>
                                             <p>{delivery.description}</p>
-                                            <p>Aceita ✓</p>
+                                            <p className="accept">Aceita ✓</p>
                                             <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                         </div>
                                     }
@@ -78,7 +78,7 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                                         <div className="delivery-data">
                                             <p>{delivery.title}</p>
                                             <p>{delivery.description}</p>
-                                            <p>Recusada ✕</p>
+                                            <p className="refused">Recusada ✕</p>
                                             {
                                                 requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 &&
                                                 isFreelancer &&
@@ -96,8 +96,11 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                                             {
                                                 isOwner &&
                                                 <>
-                                                    <button onClick={() => acceptRequirement(delivery.id)} >aceitar</button>
-                                                    <button onClick={() => denyRequirement(delivery.id)}>recusar</button>
+                                                <div className="container-buttons">
+                                                    <button onClick={() => acceptRequirement(delivery.id)} >Aceitar</button>
+                                                    <button onClick={() => denyRequirement(delivery.id)}>Recusar</button>
+                                                </div>
+                                                   
                                                 </>
                                             }
                                             <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
