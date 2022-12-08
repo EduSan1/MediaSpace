@@ -8,7 +8,7 @@ interface IISelect {
     classnameOption: any,
     idSelect: string,
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
-    optiondisable : boolean
+    optiondisable? : boolean
 
 }
 
@@ -26,7 +26,7 @@ const InputSelectFreelancer = ({ classnameOption, idSelect, onChange,  optiondis
     return (
         <div className="allSelect" >
             {
-                currentPage &&
+                optiondisable &&
                 <select className={'P_serselecet'} id={idSelect} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChange(event)}>
                     <option className={classnameOption ? classnameOption : "P_option"} value="AWAITING_START"  >Em aberto</option>
                     <option className={classnameOption ? classnameOption : "P_option"} value="IN_EXECUTION" >Em Execução</option>
@@ -37,7 +37,7 @@ const InputSelectFreelancer = ({ classnameOption, idSelect, onChange,  optiondis
 
             }
             {
-                currentPage == false &&
+                optiondisable == false &&
 
                 <select className={'P_serselecet'} id={idSelect} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChange(event)}>
                     <option className={classnameOption ? classnameOption : "P_option"} value="IN_EXECUTION" >Em Execução</option>

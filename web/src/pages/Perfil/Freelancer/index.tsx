@@ -32,7 +32,7 @@ const ProfileFreelancer = () => {
 
     const [ currentPage, setCurrentPage] = useState("");
 
-    const [ currentPageoption, setCurrentPageoption] = useState(Boolean);
+    const [ currentPageoption, setCurrentPageoption] = useState(true);
 
 
 
