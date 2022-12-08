@@ -41,8 +41,8 @@ const DeliveryModal: React.FC<IDeliveryModal> = ({ projectName, onClose, require
     })
 
     const [delivery, setDelivery] = useState<IDelivery>({
-        title: "",
-        description: "",
+        title: "a",
+        description: "a",
         files: [],
         requirements: [
             {

@@ -24,9 +24,9 @@ export default function ModalRequirements({ requirementId, onClose, projectId, p
     };
 
     const [requirement, setRequirement] = (useState)({
-        title: "",
-        description: "",
-        gain_percentage: 0.0,
+        title: "a",
+        description: "a",
+        gain_percentage: 50,
         project: {
             id: projectId
         }
