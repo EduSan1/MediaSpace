@@ -32,6 +32,8 @@ const ProfileFreelancer = () => {
 
     const [ currentPage, setCurrentPage] = useState("");
 
+    const [ currentPageoption, setCurrentPageoption] = useState(Boolean);
+
 
 
     const profileDice = async () => {
@@ -57,8 +59,8 @@ const ProfileFreelancer = () => {
 
 
     useEffect(() => {
-
-    }, [user, userCategories])
+     
+    }, [user, userCategories,currentPageoption])
 
 
 
@@ -66,9 +68,12 @@ const ProfileFreelancer = () => {
 
     const [selectedMyProject, setSelectedMyProjects] = useState([])
 
+  
 
-    const [select, setSelected] = useState('')
-
+     const [select, setSelected] = useState('AWAITING_START')
+     const [text, setText] = useState('Meus Projetos')
+      
+ 
 
 
 
@@ -101,6 +106,21 @@ const ProfileFreelancer = () => {
 
    
 
+    useEffect(() => {
+        profileDice()
+        
+        
+    }, [])
+
+    useEffect(() => {
+        user.id &&
+            api.get(`/project/user/${user.id}`).then((res: any) => {
+                setStatusmyProject(res.data.data)
+                setSelectedMyProjects(res.data.data.AWAITING_START)
+                setCurrentPage('myProjects')
+                
+            })
+    }, [user])
 
     useEffect(() => {
         user.id &&
@@ -109,25 +129,15 @@ const ProfileFreelancer = () => {
 
                 setStatusProject(res.data.data)
                 setSelectedProjects(res.data.data.IN_EXECUTION)
+              
 
 
 
             })
     }, [user])
 
-    useEffect(() => {
-        user.id &&
-            api.get(`/project/user/${user.id}`).then((res: any) => {
-                setStatusmyProject(res.data.data)
-                setSelectedMyProjects(res.data.data.AWAITING_START)
-            })
-    }, [user])
 
-    useEffect(() => {
-        profileDice()
 
-        // () => navigate(`/projects/${id}`)
-    }, [])
 
     const roteProject = (id: string) => {
         if (select == 'AWAITING_START') {
@@ -147,7 +157,7 @@ const ProfileFreelancer = () => {
 
     }
 
-    return (
+    return ( 
 
 
         <main id="ContentPage">
@@ -161,12 +171,12 @@ const ProfileFreelancer = () => {
 
                     <div className="Div_main_Perfil">
                         {
-                            <SideNav className="" icon icon2={<AiOutlineProfile onClick={() => { setCurrentPage('my work'); setSelected("IN_EXECUTION") }} />} icon3 icon4 icon5 onClick={() => { setCurrentPage('myProjects'); setSelected("AWAITING_START") }} />
+                            <SideNav className="" icon icon2={<AiOutlineProfile onClick={() => { setCurrentPage('my work');setText('Projetos');setSelected('IN_EXECUTION'); setCurrentPageoption(false) }} />} icon3 icon4 icon5 onClick={() => {  setCurrentPage('myProjects'); setText('Meus Projetos'); setCurrentPageoption(true)  }}  />
                         }
 
-                        <span className="name_Poject"><h2>Projetos</h2></span>
+                        <span className="name_Poject"><h2>{text}</h2></span>
 
-                        <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} setSelectedProjects={() => { }} classnameOption={''} />
+                        <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''}  classnameOption={''} optiondisable={ currentPageoption}/>
 
                         <div className="Main_Card">
 
