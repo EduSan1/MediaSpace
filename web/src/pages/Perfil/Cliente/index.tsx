@@ -17,6 +17,7 @@ import { Value } from "sass";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineProfile } from "react-icons/ai";
 
+
 const ProfileClient = () => {
 
     const navigate = useNavigate()
@@ -117,12 +118,12 @@ const ProfileClient = () => {
                 <section className="section_main_perfil">
 
                     {
-                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography} />
+                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography}  />
                     }
 
 
                     <div className="Div_main_Perfil">
-                        <SideNav className="Nav_bar_Client" icon={<ImStatsDots />} icon2={<AiOutlineProfile />} icon3 icon4 icon5 />
+                        <SideNav className="Nav_bar_Client" icon icon2 icon3 icon4 icon5 onClick={()=>{}}/>
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
                         <InputSelect onChange={(event: any) => { changeProjects(event?.target.value) }} setSelectedProjects={() => { console.log('test') }} classnameOption={''} idSelect={''} />
@@ -133,7 +134,7 @@ const ProfileClient = () => {
                                 {
 
                                     selectedProject?.map((project: any) => {
-                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} />
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} key={user.id} />
                                     })
                                 }
                             </div>

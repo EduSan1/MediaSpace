@@ -53,7 +53,7 @@ export class TeamORM {
     @OneToMany(() => InterestORM, interestMember => interestMember.project)
     interest: InterestORM[]
 
-    @OneToMany(() => PostORM, post => post.team)
+    @OneToMany(() => PostORM, post => post.team, { eager: true })
     posts: PostORM[]
 
     @CreateDateColumn()

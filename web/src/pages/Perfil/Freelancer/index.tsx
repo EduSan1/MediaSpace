@@ -15,6 +15,7 @@ import api from "../../../service";
 import { Navigate, useNavigate } from "react-router-dom";
 import ProjectCard from "../../Projects/ProjectCard";
 import { AiOutlineProfile } from "react-icons/ai";
+import { async } from "@firebase/util";
 
 
 
@@ -26,6 +27,13 @@ const ProfileFreelancer = () => {
         name: "",
         icon: ""
     })
+
+
+
+    const [currentPage, setCurrentPage] = useState("myProjects");
+
+    const [currentPageoption, setCurrentPageoption] = useState(true);
+
 
 
     const profileDice = async () => {
@@ -52,54 +60,90 @@ const ProfileFreelancer = () => {
 
     useEffect(() => {
 
-    }, [user, userCategories])
+    }, [user, userCategories, currentPageoption])
 
 
-
-
-
-    const [select, setSelected] = useState('IN_EXECUTION')
-
-
-    const [statusProject, setStatusProject] = useState({
-        VALIDATING_REQUIREMENTS: [],
-        IN_EXECUTION: [],
-        COMPLETE: [],
-        CANCELED: [],
-
-    })
 
     const [selectedProject, setSelectedProjects] = useState([])
 
+    const [selectedMyProject, setSelectedMyProjects] = useState([])
+
+
+
+    const [select, setSelected] = useState('AWAITING_START')
+    const [text, setText] = useState('Meus Projetos')
+
+
+
+
+
+    const [statusProject, setStatusProject] = useState({
+        AWAITING_START: [],
+        VALIDATING_REQUIREMENTS: [],
+        IN_EXECUTION: [],
+        COMPLETE: [],
+        CANCELED: []
+    })
+
+
+    const [statusmyProject, setStatusmyProject] = useState({
+        AWAITING_START: [],
+        VALIDATING_REQUIREMENTS: [],
+        IN_EXECUTION: [],
+        COMPLETE: [],
+        CANCELED: []
+    })
+
 
     const changeProjects = (status: keyof typeof statusProject) => {
-        console.log(statusProject)
+
         setSelectedProjects(statusProject[status])
+        setSelectedMyProjects(statusmyProject[status])
         setSelected(status)
+
 
     }
 
-    useEffect(() => {
-        api.get(`/project/freelancer/${user.id}`).then((res: any) => {
 
-            setStatusProject(res.data.data)
-
-            setSelectedProjects(res.data.data.IN_EXECUTION)
-
-        })
-    }, [user])
 
     useEffect(() => {
         profileDice()
 
-        // () => navigate(`/projects/${id}`)
+
     }, [])
 
+    useEffect(() => {
+        user.id &&
+            api.get(`/project/user/${user.id}`).then((res: any) => {
+                setStatusmyProject(res.data.data)
+                setSelectedMyProjects(res.data.data.AWAITING_START)
+                setCurrentPage('myProjects')
+
+            })
+    }, [user])
+
+    useEffect(() => {
+        user.id &&
+            api.get(`/project/freelancer/${user.id}`).then((res: any) => {
+
+
+                setStatusProject(res.data.data)
+                setSelectedProjects(res.data.data.IN_EXECUTION)
+
+
+
+
+            })
+    }, [user])
+
+
+
+
     const roteProject = (id: string) => {
-        console.log(select)
-        if (select === 'AWAITING_START') {
+        if (select == 'AWAITING_START') {
             navigate(`/projects/${id}`)
-        } else if (select === 'VALIDATING_REQUIREMENTS') {
+        }
+        else if (select === 'VALIDATING_REQUIREMENTS') {
             navigate(`/projects/requirements/${id}`)
         } else if (select === 'IN_EXECUTION') {
             navigate(`/projectInExecution/${id}`)
@@ -112,6 +156,7 @@ const ProfileFreelancer = () => {
 
 
     }
+
     return (
 
 
@@ -125,16 +170,27 @@ const ProfileFreelancer = () => {
                     <PerfilCardFreelancer profile_picture={user.profile_picture} nickname={user.nickname} first_name={user.first_name} biography={user.biography} categories={[{ name: userCategories.name, icon: userCategories.icon }]} />
 
                     <div className="Div_main_Perfil">
+                        {
+                            <SideNav className="" icon icon2={<AiOutlineProfile onClick={() => { setCurrentPage('my work'); setText('Projetos para realizar'); setSelected('IN_EXECUTION'); setCurrentPageoption(false) }} />} icon3 icon4 icon5 onClick={() => { setCurrentPage('myProjects'); setText('Meus Projetos'); setCurrentPageoption(true) }} />
+                        }
 
-                        <SideNav className="" icon={<ImStatsDots />} icon2={<AiOutlineProfile />} icon3 icon4 icon5 />
-                        <span className="name_Poject"><h2>Projetos</h2></span>
+                        <span className="name_Poject"><h2>{text}</h2></span>
 
-                        <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} setSelectedProjects={() => { }} classnameOption={''} />
+                        <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} classnameOption={''} optiondisable={currentPageoption} />
 
                         <div className="Main_Card">
 
                             <div className="project-page-projects-card-container">
+
+                                {currentPage == "myProjects" &&
+                                    selectedMyProject?.map((project: any) => {
+                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} key={user.id} />
+                                    })
+
+                                }
+
                                 {
+                                    currentPage == "my work" &&
                                     selectedProject?.map((project: any) => {
                                         return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
                                     })
