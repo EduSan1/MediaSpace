@@ -6,7 +6,35 @@ import NavegationBar from "../../components/utils/navegation";
 import ButtonCategories from "../../components/utils/Button/Categories/Categories";
 import api from "../../service";
 import ProjectCard from "../Projects/ProjectCard";
+import PortifolioCard from "../../components/perfil/Card/portifolio";
+import PortifolioCardHome from "./PortfolioCardHome";
 
+export interface IPost {
+    id: string,
+    title: string,
+    description: string,
+    is_active: boolean,
+    categories:
+    {
+        id: string,
+        name: string,
+        icon: string,
+        is_active: boolean,
+        create_at: string,
+        update_at: string
+    }[],
+    images:
+    {
+        id: string,
+        url: string
+    }[],
+    team: {
+        id: string,
+        name: string,
+        nickname: string,
+        profile_picture: string
+    }
+}
 
 const HomePage = () => {
 
@@ -14,21 +42,40 @@ const HomePage = () => {
     const { decodedToken, isExpired } = useJwt(user ? user : "");
     const navigate = useNavigate()
     const [categories, setCategories] = useState([])
-    const [projects, setProjects] = useState([])
+    const [posts, setPosts] = useState([])
+    const [selectedCategories, setselectedCategories] = useState<string[]>([])
+
 
     const findSubCategories = () => {
 
+    }
+
+    const changeCategories = (id: string) => {
+        if (selectedCategories.find((idCategory: string) => idCategory === id)) {
+            setselectedCategories(selectedCategories.filter((idCategory: string) => idCategory !== id))
+        } else {
+            setselectedCategories([...selectedCategories, id])
+        }
+
+    }
+
+    const getPosts = () => {
+        api.get(`/post?page=1&take=100&search=&categories=${selectedCategories.join()}`).then((res: any) => {
+            setPosts(res.data.data.data[0])
+        })
     }
 
     useEffect(() => {
         api.get("/category").then((res: any) => {
             setCategories(res.data)
         })
+        getPosts()
 
-        api.get("/project").then((res: any) => {
-            setProjects(res.data.data)
-        })
     }, [])
+
+    useEffect(() => {
+        getPosts()
+    }, [selectedCategories])
 
     return (
 
@@ -102,13 +149,13 @@ const HomePage = () => {
                     </div>
 
                     <div className="project-page-projects-container">
-                        <h2>Projetos</h2>
+                        <h2>Portfólios</h2>
 
                         <div className="project-page-projects-card-container">
                             {
-                                projects.map((project: any) => {
-                                    return <ProjectCard user={project.user} id={project.id} name={project.name} description={project.description} value={project.value} image={project.images} categories={project.categories} onClick={() => navigate(`/projects/${project.id}`)} />
-                                })
+                                posts.map((post: IPost) =>
+                                    <PortifolioCardHome post={post} />
+                                )
                             }
                         </div>
 

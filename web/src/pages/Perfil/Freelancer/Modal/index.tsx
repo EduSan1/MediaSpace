@@ -128,6 +128,7 @@ const PostModal: React.FC<IPostModal> = ({ onClose, onPost }) => {
             if (res.data.statusCode === 201) {
                 onPost()
             } else {
+                console.log(res.data)
                 window.alert("Não foi possivel realizar o post")
             }
         })

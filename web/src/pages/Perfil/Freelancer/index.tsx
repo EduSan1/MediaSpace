@@ -37,7 +37,13 @@ export interface IPost {
         is_active: boolean,
         create_at: string,
         update_at: string
-    }[]
+    }[],
+    team: {
+        id: string,
+        name: string,
+        nickname: string,
+        profile_picture: string
+    }
 
 }
 
