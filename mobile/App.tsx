@@ -26,6 +26,7 @@ import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 import EditUser from './src/pages/Profile/EditUser';
 import ModalRequirements from './src/components/utils/ModalRequirements';
 import ManagementProject from './src/pages/ManagementProject';
+import FreelancerProfile from './src/pages/Profile/FreelancerView';
 
 export default function App() {
 
@@ -48,6 +49,7 @@ export default function App() {
         <Stack.Screen name="ListProject" component={ListProject} />
         <Stack.Screen name="Project" component={Project} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="FreelancerProfile" component={FreelancerProfile} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Messages" component={Messages} />
         <Stack.Screen name="ProjectOwner" component={ProjectOwner} />

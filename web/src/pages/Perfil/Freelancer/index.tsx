@@ -16,6 +16,30 @@ import { Navigate, useNavigate } from "react-router-dom";
 import ProjectCard from "../../Projects/ProjectCard";
 import { AiOutlineProfile } from "react-icons/ai";
 import { async } from "@firebase/util";
+import PostModal from "./Modal";
+
+export interface IPost {
+
+    id: string,
+    title: string,
+    description: string,
+    is_active: boolean,
+    images:
+    {
+        id: string,
+        url: string
+    }[],
+    categories:
+    {
+        id: string,
+        name: string,
+        icon: string,
+        is_active: boolean,
+        create_at: string,
+        update_at: string
+    }[]
+
+}
 
 
 
@@ -30,10 +54,17 @@ const ProfileFreelancer = () => {
 
 
 
-    const [currentPage, setCurrentPage] = useState("myProjects");
-
+    const [currentPage, setCurrentPage] = useState("portfolio");
     const [currentPageoption, setCurrentPageoption] = useState(true);
+    const [posts, setPosts] = useState<IPost[]>([]);
+    const [modalVisible, setModalVisible] = useState(false)
 
+
+    const getUserPosts = (userId: string) => {
+        api.get(`/freelancer/${userId}`).then((res: any) => {
+            setPosts(res.data.data.teams[0].team.posts)
+        })
+    }
 
 
     const profileDice = async () => {
@@ -41,6 +72,8 @@ const ProfileFreelancer = () => {
         const userJwt = await localStorage.getItem('userDetails');
         const user: any = jwt(userJwt ? userJwt : "");
         setUser(user.userDetails);
+        console.log(user)
+        getUserPosts(user.userDetails.id)
         setUserCategories(user.userDetails.teams[0].team.categories[0]);
 
     }
@@ -104,12 +137,12 @@ const ProfileFreelancer = () => {
 
     }
 
-
+    const closeModal = () => {
+        setModalVisible(false)
+    }
 
     useEffect(() => {
         profileDice()
-
-
     }, [])
 
     useEffect(() => {
@@ -117,22 +150,15 @@ const ProfileFreelancer = () => {
             api.get(`/project/user/${user.id}`).then((res: any) => {
                 setStatusmyProject(res.data.data)
                 setSelectedMyProjects(res.data.data.AWAITING_START)
-                setCurrentPage('myProjects')
-
+                setCurrentPage('portfolio')
             })
     }, [user])
 
     useEffect(() => {
         user.id &&
             api.get(`/project/freelancer/${user.id}`).then((res: any) => {
-
-
                 setStatusProject(res.data.data)
                 setSelectedProjects(res.data.data.IN_EXECUTION)
-
-
-
-
             })
     }, [user])
 
@@ -170,39 +196,69 @@ const ProfileFreelancer = () => {
                     <PerfilCardFreelancer profile_picture={user.profile_picture} nickname={user.nickname} first_name={user.first_name} biography={user.biography} categories={[{ name: userCategories.name, icon: userCategories.icon }]} />
 
                     <div className="Div_main_Perfil">
+                        <SideNav className="" icon icon2={<AiOutlineProfile onClick={() => { setCurrentPage('my work'); setText('Projetos'); setSelected('IN_EXECUTION'); setCurrentPageoption(false) }} />} icon3 setCurrentPage={setCurrentPage} icon4 icon5 onClick={() => { setCurrentPage('myProjects'); setText('Meus Projetos'); setCurrentPageoption(true) }} />
+
                         {
-                            <SideNav className="" icon icon2={<AiOutlineProfile onClick={() => { setCurrentPage('my work'); setText('Projetos para realizar'); setSelected('IN_EXECUTION'); setCurrentPageoption(false) }} />} icon3 icon4 icon5 onClick={() => { setCurrentPage('myProjects'); setText('Meus Projetos'); setCurrentPageoption(true) }} />
+                            currentPage === "portfolio" ?
+
+                                <>
+                                    <span className="name_profile_portfolio"><h2>Meu Portfólio</h2> <p onClick={() => setModalVisible(true)}>Adicionar +</p></span>
+                                    <div className="profile-portfolio-container-c">
+                                        {
+                                            posts.map((post: IPost) => {
+                                                return <PortifolioCard post={post} />
+                                            })
+                                        }
+                                    </div>
+
+
+                                </>
+
+                                :
+                                <>
+
+
+                                    <span className="name_Poject"><h2>{text}</h2></span>
+
+                                    <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} classnameOption={''} optiondisable={currentPageoption} />
+
+                                    <div className="Main_Card">
+
+                                        <div className="project-page-projects-card-container">
+
+                                            {currentPage == "myProjects" &&
+                                                selectedMyProject?.map((project: any) => {
+                                                    return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} key={user.id} />
+                                                })
+
+                                            }
+
+                                            {
+                                                currentPage == "my work" &&
+                                                selectedProject?.map((project: any) => {
+                                                    return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
+                                                })
+                                            }
+                                        </div>
+
+                                    </div>
+                                </>
+
                         }
 
-                        <span className="name_Poject"><h2>{text}</h2></span>
 
-                        <InputSelectFreelancer onChange={(event: any) => { changeProjects(event?.target.value) }} idSelect={''} classnameOption={''} optiondisable={currentPageoption} />
-
-                        <div className="Main_Card">
-
-                            <div className="project-page-projects-card-container">
-
-                                {currentPage == "myProjects" &&
-                                    selectedMyProject?.map((project: any) => {
-                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: user.first_name, nickname: user.nickname, profile_picture: user.profile_picture }} value={20} key={user.id} />
-                                    })
-
-                                }
-
-                                {
-                                    currentPage == "my work" &&
-                                    selectedProject?.map((project: any) => {
-                                        return <ProjectCard onClick={() => { roteProject(project.id) }} categories={project.categories} description={project.description} id={project.id} image={project.images} name={project.name} user={{ first_name: project.user.first_name, nickname: project.user.nickname, profile_picture: project.user.profile_picture }} value={20} />
-                                    })
-                                }
-                            </div>
-
-                        </div>
                     </div>
 
 
                 </section>
             </div>
+            {
+                modalVisible &&
+                <PostModal onPost={() => {
+                    closeModal()
+                    getUserPosts(user.id)
+                }} onClose={closeModal} />
+            }
         </main>
 
 

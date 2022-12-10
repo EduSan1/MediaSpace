@@ -1,7 +1,8 @@
 .All_div {
     display: flex;
     width: 100%;
-    height: 10%;
+    height: 12%;
+    max-height: 55px;
     justify-content: center;
     gap: 10px;
 
@@ -21,19 +22,16 @@
             justify-content: center;
             align-items: center;
 
-            img{
+            img {
                 font: 1.6rem;
+                width: 1.6rem;
                 cursor: pointer;
             }
-            
 
             svg {
                 font-size: 1.6rem;
                 cursor: pointer;
             }
-
-          
+        }
     }
-}
-
 }

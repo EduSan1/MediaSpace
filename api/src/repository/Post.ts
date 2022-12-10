@@ -37,6 +37,7 @@ export class PostRepository {
                 categories: true,
                 sub_categories: true,
                 images: true,
+                team: true
             }
         })
     }
