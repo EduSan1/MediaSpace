@@ -19,7 +19,19 @@ const ProjectsrequirementsFreelancer = () => {
         name: "",
         requirements: [],
         value: "",
+        status: ""
     });
+
+    const previewRequirements = () => {
+        let validation = false
+        if (requerimenteproject.status === "IN_EXECUTION") {
+            validation = true
+        } else {
+            validation = false
+        }
+
+        return validation
+    }
 
     const converteValue = (valueProject: string, porcenteRequirement: string) => {
         const value = parseFloat(valueProject)
@@ -33,9 +45,6 @@ const ProjectsrequirementsFreelancer = () => {
     const getRequirements = () => {
         api.get(`/project/${projectId}`)
             .then((res) => {
-                // setRequerimenteproject({
-                //     ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value: res.data.data.value
-                // })
                 setRequerimenteproject(res.data.data)
             })
     }
@@ -71,7 +80,7 @@ const ProjectsrequirementsFreelancer = () => {
                                 {
                                     requerimenteproject.requirements.map((requirement: any, index) => {
                                         if (requirement.is_active !== false) {
-                                             index++;
+                                            index++;
                                             return <CardShipRegister idUserCreater={false} CardClasse="" description={requirement.description} issue="" layout={requirement.title} numberissue={index++} percentage={requirement.gain_percentage} value={converteValue(requerimenteproject.value, requirement.gain_percentage)} requirementId={requirement.id} getRequirements={getRequirements} />
                                         }
                                     })
@@ -82,12 +91,12 @@ const ProjectsrequirementsFreelancer = () => {
 
                         <div className="footer">
                             <span className="tittle_Value_text"><h1>Valor total do projeto: {requerimenteproject.value} </h1></span>
-                            <div className="revision_requisition">
+                            <div className={previewRequirements() ? "disable_buttons" : "revision_requisition"}>
                                 <h1>Revisão de requisitos</h1>
                                 <p> Caso esteja interessado em fazer mudanças ou adaptações nos requisitos, solicite uma revisão, só é permitido a edição assim que o cliente e o(s) prestador(es) aceitarem a solicitação.</p>
                             </div>
                         </div>
-                        <div className="btn_requirements">
+                        <div className={previewRequirements() ? "disable_buttons" : "btn_requirements"}>
 
 
                             <span className="Btn_send">

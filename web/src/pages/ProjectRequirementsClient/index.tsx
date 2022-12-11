@@ -14,7 +14,19 @@ const ProjectRequirementsClient = () => {
         name: "",
         requirement: [],
         value: "",
+        status: ""
     });
+
+    const previewRequirements = () => {
+        let validation = false
+        if (requerimenteproject.status === "IN_EXECUTION") {
+            validation = true
+        } else {
+            validation = false
+        }
+
+        return validation
+    }
 
     const converteValue = (valueProject: string, porcenteRequirement: string) => {
         const value = parseFloat(valueProject)
@@ -67,10 +79,7 @@ const ProjectRequirementsClient = () => {
     const getRequirements = () => {
         api.get(`/project/${projectId}`)
             .then((res) => {
-                setRequerimenteproject({
-                    ...requerimenteproject, name: res.data.data.name, requirement: res.data.data.requirements, value: res.data.data.value
-                })
-
+                setRequerimenteproject(res.data.data)
             })
     }
 
@@ -105,18 +114,17 @@ const ProjectRequirementsClient = () => {
                                     })
                                 }
 
-
                             </div>
                         </div>
 
                         <div className="footer">
                             <span className="tittle_Value_text"><h1>Valor total do projeto: {requerimenteproject.value} </h1></span>
-                            <div className="revision_requisition">
+                            <div className={previewRequirements() ? "disable_buttons" : "revision_requisition"}>
                                 <h1>Revisão de requisitos</h1>
                                 <p> Caso esteja interessado em fazer mudanças ou adaptações nos requisitos, solicite uma revisão, só é permitido a edição assim que o cliente e o(s) prestador(es) aceitarem a solicitação.</p>
                             </div>
                         </div>
-                        <div className="btn_requirements">
+                        <div className={previewRequirements() ? "disable_buttons" : "btn_requirements"}>
                             <span className="Btn_send">
                                 <InputBtn className="submit_add" name="" onClick={() => { requestReviewRequirements() }} typeInput={"Submit"} valueBtn={'Solicitar revisão'} enable />
                             </span>

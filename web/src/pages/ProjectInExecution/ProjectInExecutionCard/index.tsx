@@ -27,10 +27,9 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, freelancer
 
 
 
-            <div className="project-card-user">
-                <div className="project-card-user-image">
+            <div className="project-card-user-execution">
+                <div>
                     <img src={user.profile_picture} alt="" />
-
                 </div>
                 <div className="project-card-user-details">
                     <p>{user.first_name}</p>
@@ -43,30 +42,22 @@ const ProjectInExecutionCard = ({ id, name, description, image, user, freelancer
             <div className="project-card-image-container">
                 <img src={image[0].url} alt="" />
                 <div className="project-card-details-container">
-                    <div className="project-card-details">
-                        <p>{name}</p>
-                        <p>{description}</p>
+                    <p>{name}</p>
+                    <p>{description}</p>
+                </div>
+            </div>
+
+            <div className="project-card-freelancer-details">
+                <p>Em execução por:</p>
+                <div className="project-in-execution-freelancer-container">
+                    <img src={freelancer.profile_picture} alt={"freelancer"} />
+                    <div className="details">
+                        <p>{freelancer.first_name}</p>
+                        <p>@{freelancer.nickname}</p>
                     </div>
                 </div>
             </div>
 
-            <div className="project-card-freelancer">
-                <div className="project-card-freelancer-image">
-                    {/* <img src={management.team_project_management[0].team.profile_picture} alt="" /> */}
-
-                </div>
-                <div className="project-card-freelancer-details">
-                    <p>Em execução por:</p>
-                    <div className="project-in-execution-freelancer-container">
-                        <img src={freelancer.profile_picture} alt={"freelancer"} />
-                        <div className="details">
-
-                            <p>{freelancer.first_name}</p>
-                            <p>@{freelancer.nickname}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
         </div>
