@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, LogBox, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import StartHome from './src/pages/StartHome';
 import LoginPage from './src/pages/Login/Login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -26,8 +26,11 @@ import WorkersSelectedPage from './src/pages/WorkersSelectedPage';
 import EditUser from './src/pages/Profile/EditUser';
 import ModalRequirements from './src/components/utils/ModalRequirements';
 import ManagementProject from './src/pages/ManagementProject';
+import FreelancerProfile from './src/pages/Profile/FreelancerView';
 
 export default function App() {
+
+  LogBox.ignoreAllLogs();
 
   const Stack = createNativeStackNavigator();
   return (
@@ -46,6 +49,7 @@ export default function App() {
         <Stack.Screen name="ListProject" component={ListProject} />
         <Stack.Screen name="Project" component={Project} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="FreelancerProfile" component={FreelancerProfile} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Messages" component={Messages} />
         <Stack.Screen name="ProjectOwner" component={ProjectOwner} />

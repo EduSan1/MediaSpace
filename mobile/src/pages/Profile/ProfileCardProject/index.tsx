@@ -30,7 +30,7 @@ export const ProfileCardProject = ({ id, name, status, description, value, image
 
         api.get(`/project/${id}`).then((res: any) => {
 
-            if (status === "IN_EXECUTION") {
+            if (status === "IN_EXECUTION" || status === "COMPLETE") {
                 // 
                 navigation.navigate("ManagementProject", {
                     projectId: res.data.data.id

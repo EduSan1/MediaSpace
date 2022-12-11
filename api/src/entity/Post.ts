@@ -33,7 +33,7 @@ export class PostORM {
     @JoinTable()
     categories: CategoryORM[]
 
-    @ManyToMany(() => SubCategoryORM, { eager: true })
+    @ManyToMany(() => SubCategoryORM)
     @JoinTable()
     sub_categories: SubCategoryORM[]
 }

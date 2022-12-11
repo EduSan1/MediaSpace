@@ -3,7 +3,7 @@ import { Text, StyleSheet, Dimensions, Pressable, Image } from "react-native"
 
 interface ICategoryButton {
     id: string
-    action: () => void
+    action?: (id: string) => void
     category: string
     icon: string
     setSubCategories: (id: string, action: "REMOVE" | "ADD") => void
@@ -18,6 +18,7 @@ export const CategoryButton = ({ id, action, icon, category, setSubCategories }:
     const onSelected = () => {
         setIsSelected(!isSelected)
         setSubCategories(id, isSelected ? "REMOVE" : "ADD")
+        action && action(id)
     }
 
 

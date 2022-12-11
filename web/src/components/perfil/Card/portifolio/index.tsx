@@ -1,34 +1,33 @@
 import React from "react";
+import { IPost } from "../../../../pages/Perfil/Freelancer";
 
+interface IPostCard {
+    post: IPost
+}
 
-const PortifolioCard = () => {
+const PortifolioCard = ({ post }: IPostCard) => {
     return (
         <div className="all_card_Portifolio">
             <div className="image_Portifoli">
                 <span>
-                    img
-                </span>
-                <span>
-                    img
-                </span>
-                <span>
-                    img
+                    <img src={post.images[0].url} alt="profileImage" />
                 </span>
             </div>
             <span className="Text_descript">
-               <h2>text principal</h2>
-               <h4>Este atributo booleano indica que várias opções podem ser selecionadas na lista. Se não for especificado, apenas uma opção poderá ser selecionada de cada vez.</h4>
+                <h2>{post.title}</h2>
+                <h4>{post.description}</h4>
             </span>
             <div className="photo_category">
-                <div className="photo_img">
-                    photo
-                </div>
-                <span className="Text_name_perfil">
-                     textNAME
-                </span>
-               <span className="category_card">
-                categoryy
-               </span>
+                {
+                    post.categories.map((category: any) => {
+                        return (
+                            <button value={category} className="button_category" >
+                                {category.name}
+                                <img src={category.icon} className="icone" />
+                            </button>
+                        )
+                    })
+                }
             </div>
         </div>
     );

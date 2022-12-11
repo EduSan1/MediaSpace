@@ -45,11 +45,7 @@ const ProjectsrequirementsFreelancer = () => {
                         </div>
                         <div className="project-page-filter-container">
 
-                            <div className="project-page-filter-icon">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
+
                             {
                                 categories.map((category: any) =>
                                     <ButtonCategories category={category.name} name={category} icon={category.icon} id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />

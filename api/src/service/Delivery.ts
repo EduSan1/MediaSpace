@@ -117,6 +117,7 @@ export class DeliveryService {
         try {
 
             const delivery = await this._.findById(id);
+            console.log(id)
             const requirements = await this.projectRequirementsRepository.findById(delivery.requirements[0].id)
 
             if (delivery.is_active === false) {
@@ -130,27 +131,13 @@ export class DeliveryService {
             const uptadedDelivery = await this._.update(delivery);
 
 
-            delivery.requirements.map(async (requirement: any) => {
+            await delivery.requirements.map(async (requirement: any) => {
                 requirement.is_delivered = true
                 await this.projectRequirementsRepository.update(requirement);
             });
 
-            const project = await this.projectRepository.getById(requirements.project.id);
-            console.log(project.requirements);
 
-
-            project.requirements.map(async (requirement: any) => {
-                console.log(requirement.is_delivered)
-                if (requirement.is_delivered === false || requirement.is_delivered === null) {
-                    project.status = "IN_EXECUTION";
-                    project.is_active = true
-                    await this.projectRepository.update(project);
-                } else {
-                    project.status = "COMPLETE";
-                    project.is_active = false;
-                    await this.projectRepository.update(project);
-                }
-            });
+            await this.finishProject(requirements.project.id, delivery.requirements[0].id)
 
             return {
                 message: "Entrega aceita",
@@ -204,6 +191,49 @@ export class DeliveryService {
         }
 
     }
+
+    finishProject = async (projectId: string, atualRequerimentId: string) => {
+        const project = await this.projectRepository.getById(projectId);
+        console.log(project.requirements)
+        console.log(projectId)
+        console.log(atualRequerimentId)
+
+
+        console.log("size ", project.requirements.filter((requirement: any) => requirement.is_active === true && requirement.is_delivered === true || requirement.is_active === true && requirement.id === atualRequerimentId).length)
+
+        const isFinish = project.requirements.filter((requirement: any) => requirement.is_active === true && requirement.is_delivered === true || requirement.is_active === true && requirement.id === atualRequerimentId).length === project.requirements.filter((requirement: any) => requirement.is_active === true).length
+
+        console.log(isFinish)
+        // project.requirements.map(async (requirement: any) => {
+        //     if (requirement.is_active) {
+
+        //         console.log("requisito => ", requirement.title);
+        //         console.log("requisito id => ", requirement.id);
+        //         console.log("requisito ativo? => ", requirement.is_active);
+        //         console.log("requisito is_delivered  => ", requirement.is_delivered);
+
+
+        //         if (requirement.is_delivered === false || requirement.is_delivered === null || requirement.id !== atualRequerimentId) {
+        //             // project.status = "IN_EXECUTION";
+        //             // project.is_active = true
+        //             // await this.projectRepository.update(project);
+        //         } else {
+        //             project.status = "COMPLETE";
+        //             project.is_active = false;
+        //             await this.projectRepository.update(project);
+        //         }
+        //     }
+        // });
+
+        project.status = "COMPLETE";
+        project.is_active = false;
+        isFinish &&
+            await this.projectRepository.update(project);
+
+
+    }
+
+
 
     disable = async (id: string) => {
         try {

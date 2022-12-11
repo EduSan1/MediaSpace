@@ -5,13 +5,18 @@
     justify-content: center;
     padding: 10px;
     background-color: $light-blue;
-    min-width: 80px;
+    margin-bottom: 20px;
+    width: auto;
     height: 30px;
     border-radius: 30px;
     border-style: none;
     cursor: pointer;
     font-family: $light-font;
     margin-left: 10px;
+
+    p {
+        font-size: 12px;
+    }
 }
 
 .category_selected {

@@ -28,7 +28,7 @@ const SearchBar = () => {
 
    return (
       <>
-         <div className="container_bar_search">
+         <div className="container_bar_search bar_search_preview_project">
             <div className="icone_serach">
                {/* <BiSearchAlt /> */}
             </div>

@@ -21,14 +21,29 @@ export const ListProject = ({ navigation }: IListProject) => {
     const [isLoad, setIsLoad] = useState(false)
     const [categories, setCategories] = useState([])
     const [projects, setProjects] = useState([])
+    const [selectedCategories, setselectedCategories] = useState<string[]>([])
+
 
     const findSubCategories = () => { }
 
+    const changeCategories = (id: string) => {
+        if (selectedCategories.find((idCategory: string) => idCategory === id)) {
+            setselectedCategories(selectedCategories.filter((idCategory: string) => idCategory !== id))
+        } else {
+            setselectedCategories([...selectedCategories, id])
+        }
+    }
+
     const getProjects = () => {
-        api.get("/project").then((res: any) => {
-            setProjects(res.data.data)
+        console.log(`/project?page=1&take=100&search=&categories=${selectedCategories.join()}`)
+        api.get(`/project?page=1&take=100&search=&categories=${selectedCategories.join()}`).then((res: any) => {
+            setProjects(res.data.data.data[0])
         })
     }
+
+    useEffect(() => {
+        getProjects()
+    }, [selectedCategories])
 
     useEffect(() => {
         api.get("/category").then((res: any) => {
@@ -67,13 +82,13 @@ export const ListProject = ({ navigation }: IListProject) => {
                     </View>
                     {
                         categories.map((category: any) =>
-                            <CategoryButton category={category.name} icon={category.icon} id={category.id} key={category.id} action={() => console.log("")} setSubCategories={findSubCategories} />
+                            <CategoryButton category={category.name} icon={category.icon} id={category.id} key={category.id} action={(id: string) => changeCategories(id)} setSubCategories={findSubCategories} />
                         )
                     }
                 </ScrollView>
 
                 <View>
-                    <Text>Projetos</Text>
+                    <Text style={styles.title}>Projetos</Text>
                 </View>
 
                 <View style={styles.card}>
@@ -109,8 +124,12 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         marginBottom: 10,
         paddingBottom: 100
-
-
+    },
+    title: {
+        width: "100%",
+        paddingLeft: 20,
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     category: {
         width: Dimensions.get('window').width,

@@ -163,39 +163,43 @@ const ProjectInExecution = () => {
         <main id="ContentPage">
             <NavegationBar />
             <div className="Container">
-                <SearchBar />
                 <section className="section_main_Project">
 
                     <div className="projects-page-container">
 
                         <div className="project-page-projects-container">
-                            <h1>Projeto em execução</h1>
+                            <h1>Projeto em execução - {project.name}</h1>
 
-                            <div className="project-page-projects-card-container">
+                            <div className="page-projects-in-execution-container">
 
-                                <ProjectInExecutionCard freelancer={{
-                                    first_name: project.management.team_project_management[0].team.name,
-                                    nickname: project.management.team_project_management[0].team.nickname,
-                                    profile_picture: project.management.team_project_management[0].team.profile_picture
-                                }} user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
-                                <div className="project-details-cards">
+                                <div className="container-project-in-execution">
+                                    <ProjectInExecutionCard freelancer={{
+                                        first_name: project.management.team_project_management[0].team.name,
+                                        nickname: project.management.team_project_management[0].team.nickname,
+                                        profile_picture: project.management.team_project_management[0].team.profile_picture
+                                    }} user={project.user} id={project.id} name={project.name} description={project.description} image={project.images} />
+                                    <div className="project-details-cards">
 
 
-                                    <DetailsCard id={project.id}
-                                        create_at={project.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
-                                        estimated_deadline={project.estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
-                                        numberOfRequirements={project.requirements.length}
-                                        numberOfDeliveries={project.requirements.filter((requirement: any) => requirement.delivery.length > 0).length}
-                                        startDate={project.management && project.management.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")
-                                        }
-                                    />
+                                        <DetailsCard id={project.id}
+                                            create_at={project.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
+                                            estimated_deadline={project.estimated_deadline.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
+                                            numberOfRequirements={project.requirements.length}
+                                            numberOfDeliveries={project.requirements.filter((requirement: any) => requirement.delivery.length > 0).length}
+                                            startDate={project.management && project.management.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")
+                                            }
+                                        />
 
-                                    <div className="view-requirements">
-                                        <img src="" alt="" />
-                                        <p>Visualizar os requisitos técnicos do projeto</p>
+                                        <div className="view-requirements">
+                                            <img src="" alt="" />
+                                            <p>Visualizar os requisitos técnicos do projeto</p>
+                                        </div>
+
                                     </div>
 
                                 </div>
+
+
 
                                 <div className="timeline-container">
 
@@ -203,7 +207,7 @@ const ProjectInExecution = () => {
 
                                     <ul className="timeline">
                                         {
-                                            project.requirements.map((requirement: any, index) => <li className={requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 ? "" : "active"}>{index + 1}</li>)
+                                            project.requirements.map((requirement: any) => requirement.is_accepted && <li className={requirement.delivery.filter((delivery: any) => delivery.is_accepted === true).length === 0 ? "" : "active"}></li>)
                                         }
                                     </ul>
 

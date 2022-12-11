@@ -51,7 +51,7 @@ export default function WorkersAppliedPage({ navigation, route }: IWorkersApplie
                     </View>
                     {
                         interest.map((interest: any) => {
-                            return <WorkersAppliedProfile icon={interest.team.profile_picture} name={interest.team.name} nickname={interest.team.nickname} />
+                            return <WorkersAppliedProfile navigation={navigation} id={interest.team.id} icon={interest.team.profile_picture} name={interest.team.name} nickname={interest.team.nickname} />
                         })
                     }
 

@@ -14,7 +14,7 @@ const IconBar = ({ Icon, text, className }: Iconbar) => {
 
 
         <span id="IconBar" className={className}>
-            <div>
+            <div >
                 <span className="iconBar-image">{Icon} </span>
                 <h3 className="iconBar-text">{text}</h3>
 

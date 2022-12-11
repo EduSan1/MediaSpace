@@ -22,14 +22,14 @@ const StartHome = () => {
                         frequency={3}
                         offset={60}
                         color="#B275FF"
-                        />
+                    />
                 </View>
                 <View style={style.section}>
                     <Text style={style.textStart}>Vamos lá!</Text>
                 </View>
-                    <Image style={style.imageConstelacao} source={require('../../assets/img/constelacao.png')}/>
+                <Image style={style.imageConstelacao} source={require('../../assets/img/constelacao.png')} />
             </View>
-  
+
         </SafeAreaView>
     )
 }
@@ -40,12 +40,12 @@ const style = StyleSheet.create({
         // backgroundColor:"blue"
 
     },
-  
+
     section: {
         height: "40%",
         width: "100%",
         backgroundColor: '#B275FF',
-        
+
     },
     textStart: {
         fontSize: 20,
@@ -62,8 +62,8 @@ const style = StyleSheet.create({
     },
     icon: {
         alignItems: "center",
-        width:150,
-        height:150,
+        width: 150,
+        height: 150,
 
     },
     textWelcome: {
@@ -71,23 +71,23 @@ const style = StyleSheet.create({
         fontWeight: '900',
         textAlign: "center",
         color: "#935DCA",
-        paddingVertical:20
+        paddingVertical: 20
     },
     textInfo: {
         fontSize: 16,
         fontWeight: '900',
         textAlign: "center",
         color: "#BCA7F4",
-        paddingTop:10,
-        paddingHorizontal:50,
+        paddingTop: 10,
+        paddingHorizontal: 50,
     },
-    imageConstelacao:{
+    imageConstelacao: {
         // zIndex:10,
         height: "75%",
         width: "100%",
         // backgroundColor:"black",
-        position:"absolute",
- 
+        position: "absolute",
+
     },
 })
 

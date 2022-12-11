@@ -52,7 +52,8 @@
     width: 95%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+
     flex-direction: row;
 }
 
@@ -93,7 +94,6 @@
     .add_file:hover {
         background-color: $lavander;
         color: #fff;
-
     }
 }
 
@@ -134,7 +134,7 @@
     width: 85%;
     height: 45%;
     overflow-y: auto;
-    box-shadow: inset 0px 4px 15px #DEDEDE;
+    box-shadow: inset 0px 4px 15px #dedede;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -147,9 +147,11 @@
 
 .delivery-modal-card-container {
     width: 90%;
-    height: 30%;
+    height: auto;
+    padding: 1%;
+    height: 300px;
     border-radius: 10px;
-    background-color: #C6D2FF;
+    background-color: #c6d2ff;
     display: flex;
     align-items: center;
     justify-content: center;
