@@ -114,16 +114,15 @@ const ProfileClient = () => {
 
             <NavegationBar />
             <div className="Container">
-                <SearchBar />
                 <section className="section_main_perfil">
 
                     {
-                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography}  />
+                        <PerfilCard nickname={user.nickname} first_name={user.first_name} profile_picture={user.profile_picture} biography={user.biography} />
                     }
 
 
                     <div className="Div_main_Perfil">
-                        <SideNav className="Nav_bar_Client" icon icon2 icon3 icon4 icon5 onClick={()=>{}}/>
+                        <SideNav className="Nav_bar_Client" icon icon2 icon3 icon4 icon5 onClick={() => { }} />
                         <span className="name_Poject"><h2>Projetos</h2></span>
 
                         <InputSelect onChange={(event: any) => { changeProjects(event?.target.value) }} setSelectedProjects={() => { console.log('test') }} classnameOption={''} idSelect={''} />

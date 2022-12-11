@@ -24,7 +24,7 @@ const ButtonCategories = ({ name, category, icon, action, setSubCategories, id }
    return (
       <>
          <button name={name} value={category} onClick={() => onClick()} className={isSelected ? "category_selected" : "button_category"} >
-            {category}
+            <p>{category}</p>
             <img src={icon} className="icone" />
          </button>
       </>

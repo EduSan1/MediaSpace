@@ -24,7 +24,7 @@ const PortifolioCardHome = ({ post }: IPostCard) => {
 
                 </div>
                 <div className="project-card-user-details">
-                    <p>{post.team.nickname}</p>
+                    <p>@{post.team.nickname}</p>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@ const PortifolioCardHome = ({ post }: IPostCard) => {
                     post.categories.map((category: any) => {
                         return (
                             <button value={category} className="button_category" >
-                                {category.name}
+                                <p> {category.name}</p>
                                 <img src={category.icon} className="icone" />
                             </button>
                         )

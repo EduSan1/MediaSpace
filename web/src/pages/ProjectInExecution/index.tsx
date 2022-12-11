@@ -163,7 +163,6 @@ const ProjectInExecution = () => {
         <main id="ContentPage">
             <NavegationBar />
             <div className="Container">
-                <SearchBar />
                 <section className="section_main_Project">
 
                     <div className="projects-page-container">

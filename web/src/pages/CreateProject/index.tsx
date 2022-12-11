@@ -208,7 +208,6 @@ const CreateProject = () => {
          <main>
             <NavegationBar />
             <div className="Container">
-               <SearchBar />
                <section className="container_page_create_project">
                   <div className="page_create_project">
                      <div className="container">

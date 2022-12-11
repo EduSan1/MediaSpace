@@ -196,7 +196,6 @@ const ProfileFreelancer = () => {
 
             <NavegationBar />
             <div className="Container">
-                <SearchBar />
                 <section className="section_main_perfil">
 
                     <PerfilCardFreelancer profile_picture={user.profile_picture} nickname={user.nickname} first_name={user.first_name} biography={user.biography} categories={[{ name: userCategories.name, icon: userCategories.icon }]} />

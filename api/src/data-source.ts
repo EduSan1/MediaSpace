@@ -27,7 +27,7 @@ export const AppDataSource = new DataSource({
     port: 3306,
     username: "mediaSpace",
     password: "egglmm123@",
-    database: "db_media_space",
+    database: "db_media_space_apresentacao",
     synchronize: true,
     logging: false,
     ssl: {
