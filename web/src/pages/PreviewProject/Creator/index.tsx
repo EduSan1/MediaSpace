@@ -145,18 +145,17 @@ const PreviewProjectCreator = () => {
             <NavegationBar />
             {
                !isLoading &&
-               <div className="Container">
+               <div className="page_preview_project">
                   <SearchBar />
+                  <div className='container_images_from_project'>
+
+                     <CarouselImages images={project.images} />
+
+
+                  </div>
                   <section className='container_preview_project'>
 
                      <div className='preview_project'>
-                        <div className='container_images_from_project'>
-
-                           <CarouselImages images={project.images} />
-
-
-                        </div>
-
                         <div className='container_dates'>
                            <p><span>Criado em:   </span>{formatDateProject(project.create_at)}</p>
                            <p>

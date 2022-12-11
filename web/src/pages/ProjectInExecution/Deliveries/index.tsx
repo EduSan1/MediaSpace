@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IRequirement } from "..";
 import api from "../../../service";
 import DeliveryModal from "./Modal";
+import { BsClockHistory } from "react-icons/bs"
 
 interface IDeliveriesPage {
     requirement: IRequirement
@@ -39,8 +40,8 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                         <div className="delivery-upperline-divisor"></div>
                         <div className="requirement-box">
 
-                            <h2 className="requirement-counter">Requisito - </h2>
-                            <h2 className="requirement-title"> {requirement.title}</h2>
+                            <h2 className="requirement-counter">Requisito - {requirement.title}</h2>
+                            <h2 className="requirement-title"> </h2>
                         </div>
 
                         <div className="deliveries">
@@ -48,10 +49,10 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                                 requirement.delivery.length === 0 &&
                                 <div>
 
-                                    <p>Aguardando entrega</p>
+                                    <p>Aguardando entrega <BsClockHistory /></p>
                                     {
                                         isFreelancer &&
-                                        <button onClick={() => openModal(requirement.id)}>ABRIR MODAL DE CADASTRO DE ENTREGA</button>
+                                        <button onClick={() => openModal(requirement.id)}>ABRIR MODAL DE ENTREGA</button>
                                     }
 
                                 </div>
@@ -66,16 +67,17 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                                     {
                                         delivery.is_accepted === true &&
                                         <div className="delivery-data">
+                                            <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                             <p>{delivery.title}</p>
                                             <p>{delivery.description}</p>
                                             <p className="accept">Aceita ✓</p>
-                                            <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                         </div>
                                     }
 
                                     {
                                         delivery.is_accepted === false &&
                                         <div className="delivery-data">
+                                            <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                             <p>{delivery.title}</p>
                                             <p>{delivery.description}</p>
                                             <p className="refused">Recusada ✕</p>
@@ -84,26 +86,25 @@ const Deliveries = ({ requirement, openModal, reload, isOwner, isFreelancer }: I
                                                 isFreelancer &&
                                                 <button onClick={() => openModal(requirement.id)}>ABRIR MODAL DE CADASTRO DE ENTREGA</button>
                                             }
-                                            <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                         </div>
                                     }
 
                                     {
                                         delivery.is_accepted === null &&
                                         <div className="delivery-data">
+                                            <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                             <p>{delivery.title}</p>
                                             <p>{delivery.description}</p>
                                             {
                                                 isOwner &&
                                                 <>
-                                                <div className="container-buttons">
-                                                    <button onClick={() => acceptRequirement(delivery.id)} >Aceitar</button>
-                                                    <button onClick={() => denyRequirement(delivery.id)}>Recusar</button>
-                                                </div>
-                                                   
+                                                    <div className="container-buttons">
+                                                        <button onClick={() => acceptRequirement(delivery.id)} >Aceitar</button>
+                                                        <button onClick={() => denyRequirement(delivery.id)}>Recusar</button>
+                                                    </div>
+
                                                 </>
                                             }
-                                            <p className="delivery-date">{delivery.create_at.split("T")[0].replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</p>
                                         </div>
                                     }
                                 </div>

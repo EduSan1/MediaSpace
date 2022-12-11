@@ -113,15 +113,15 @@ const PreviewProjectFreelancer = () => {
             <NavegationBar />
             {
                !isLoading &&
-               <div className="Container">
-                  <SearchBar />
+               <div className="page_preview_project">
+
+                  <div className='container_images_from_project'>
+                     <SearchBar />
+                     <CarouselImages images={project.images} />
+                  </div>
                   <section className='container_preview_project'>
 
                      <div className='preview_project'>
-                        <div className='container_images_from_project'>
-                           <CarouselImages images={project.images} />
-                        </div>
-
                         <div className='container_dates'>
                            <p><span>Criado em:   </span>{formatDateProject(project.estimated_deadline)}</p>
                            <p>

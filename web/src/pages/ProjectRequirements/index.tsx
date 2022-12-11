@@ -22,17 +22,6 @@ const ProjectRequiremensts = () => {
             const user: any = jwt(userJwt ? userJwt : "")
             setIsCreater(user.userDetails.id === res.data.data.user.id)
         })
-
-
-        // const userJwt = localStorage.getItem('userDetails');
-        // const user: any = jwt(userJwt ? userJwt : "")
-        // const userId = user.userDetails.id
-        // let isCreater = false
-
-        // if (createrProject === userId) {
-        //     isCreater = true
-        // }
-        // return isCreater
     }
 
     useEffect(() => {
@@ -43,17 +32,11 @@ const ProjectRequiremensts = () => {
         setIsLoading(false)
     }, [isCreater])
 
-    // useEffect(() => {
-    //     api.get(`/project/${projectId}`).then((res: any) => {
-    //         setCreaterProject(res.data.data.user.id)
-
-    //     })
-    // }, [])
 
     return (
         <>
             {!isLoading ?
-                isCreater ? <ProjectRequirementsClient  /> : <ProjectsrequirementsFreelancer /> : <></>
+                isCreater ? <ProjectRequirementsClient /> : <ProjectsrequirementsFreelancer /> : <></>
             }
         </>
     )
