@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineHome, AiOutlineRise, AiOutlineLogout } from "react-icons/ai";
 import { BsChatText } from "react-icons/bs";
 import { BiRocket, BiUser } from "react-icons/bi";
@@ -9,14 +9,26 @@ import IconBar from "../Icon";
 import ImageComponent from "../imageComponent/imageComponent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { decodeToken, useJwt } from "react-jwt";
+import jwt from "jwt-decode"
 
 
 const NavegationBar = () => {
 
     const [open, setOpen] = useState(false);
 
-    const userJwt = localStorage.getItem('userDetails');
-    const { decodedToken, isExpired }: any = useJwt(userJwt ? userJwt : "");
+    const [user, setUser] = useState({
+        profile_picture: "",
+        first_name: "",
+        nickname: "",
+    })
+
+
+    useEffect(() => {
+        const userJwt = localStorage.getItem('userDetails');
+        const user: any = jwt(userJwt ? userJwt : "")
+        console.log(user.userDetails)
+        setUser(user.userDetails)
+    }, [])
 
 
 
@@ -39,10 +51,10 @@ const NavegationBar = () => {
                 </span>
 
                 <div className={!open ? "photo_User_container" : "photo_User_container_open"}>
-                    <ImageComponent src={decodedToken?.userDetails?.profile_picture} alt="" className="photo_user_img" />
+                    <ImageComponent src={user.profile_picture} alt="" className="photo_user_img" />
                     <span className="InfoName_user">
-                        <h2>{decodedToken?.userDetails?.first_name}</h2>
-                        <h4>@{decodedToken?.userDetails?.nickname}</h4>
+                        <h2>{user.first_name}</h2>
+                        <h4>@{user.nickname}</h4>
                     </span>
                     {/* <div className="Info_data">
                         <span>

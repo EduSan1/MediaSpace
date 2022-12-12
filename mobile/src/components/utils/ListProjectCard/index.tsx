@@ -56,13 +56,13 @@ export const ListProjectCard = ({ id, name, description, value, image, categorie
                 </View>
 
                 <View style={styles.profile}>
-                    <Image style={{ width: "15%", height: "100%", borderRadius: 100 }} source={{ uri: user.profile_picture }} />
+                    <Image style={{ width: "20%", height: "100%", borderRadius: 100 }} source={{ uri: user.profile_picture }} />
                     <Text style={styles.nameArroba}> @{user.nickname}</Text>
                 </View>
 
                 <View style={styles.describle}>
                     <Text style={styles.nameProject}> {name}</Text>
-                    <Text style={styles.description}> {description}</Text>
+                    <Text numberOfLines={3} style={styles.description}> {description}</Text>
                 </View>
 
                 <View style={styles.value}>
@@ -92,20 +92,21 @@ const styles = StyleSheet.create({
 
     containerCard: {
         width: Dimensions.get('window').width * 0.45,
-        height: Dimensions.get("window").height * 0.45,
+        minHeight: Dimensions.get("window").height * 0.35,
         alignItems: 'center',
         justifyContent: 'space-between',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#D3C5F8',
         backgroundColor: "#fff",
-        marginBottom: 20
+        marginBottom: 20,
+        height: "auto",
 
     },
 
     imagecontainer: {
         width: Dimensions.get('window').width * 0.44,
-        height: Dimensions.get("window").height * 0.2,
+        height: Dimensions.get("window").height * 0.1,
         borderTopStartRadius: 10,
         borderTopEndRadius: 10,
 
@@ -121,7 +122,8 @@ const styles = StyleSheet.create({
     },
     describle: {
         width: Dimensions.get('window').width * 0.44,
-        height: Dimensions.get("window").height * 0.045,
+        minHeight: Dimensions.get("window").height * 0.05,
+        height: "auto",
 
     },
     value: {
@@ -129,6 +131,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height * 0.035,
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'center',
         paddingTop: 10
     },
     category: {

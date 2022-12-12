@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         flexDirection: "column",
-        paddingTop: 20
+        paddingTop: 20,
+
+        paddingBottom: 30
     },
     title: {
         width: "100%",
