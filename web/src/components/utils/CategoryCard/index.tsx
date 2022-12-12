@@ -13,10 +13,11 @@ const CategoryCard = ({ category, icon }: ICategoryCard) => {
 
     return (
         <>
-            <button value={category} className="category_selected" >
-                {category}
+            <button value={category} className="button_category" >
+                <p className="button_category_text">{category}</p>
                 <img src={icon} className="icone" />
             </button>
+
         </>
     );
 

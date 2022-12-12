@@ -57,6 +57,7 @@ const ProjectCard = ({ id, name, description, value, image, categories, user, on
                 <CategoryCard category={categories[0].name} icon={categories[0].icon} key={categories[0].id} />
                 {
                     categories[1] &&
+
                     <CategoryCard category={categories[1].name} icon={categories[1].icon} key={categories[1].id} />
 
                 }

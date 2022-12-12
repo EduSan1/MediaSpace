@@ -62,7 +62,6 @@ const ProjectsSelecetFreelancer = () => {
 
             <NavegationBar />
             <div className="Container">
-                <SearchBar />
                 <section className="section_main_Project">
 
                     <header className="Tittles_Description">
@@ -70,9 +69,7 @@ const ProjectsSelecetFreelancer = () => {
                         <span className="small_Tittle"> <h3> {selecetFreelancerView.description} </h3>   </span>
                     </header>
 
-                    <div className="SearchBar_candidates">
-                        <SearchBar />
-                    </div>
+
 
                     <div className="select_candidates">
                         {

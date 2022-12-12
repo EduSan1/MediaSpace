@@ -16,7 +16,7 @@ export default function WorkersAppliedProfile({ name, nickname, icon, id, naviga
 
             <View style={style.textBox}>
 
-                <Text style={style.textName}>{name}</Text>
+                <Text numberOfLines={1} style={style.textName}>{name}</Text>
                 <Text style={style.textNick}>@{nickname}</Text>
             </View>
             <BtnRequirementsOpenProfile onPress={() => navigation.navigate("FreelancerProfile", { freelancerId: id })} />
@@ -44,19 +44,20 @@ const style = StyleSheet.create({
     textBox: {
         width: Dimensions.get('window').width * 0.37,
         height: Dimensions.get('window').width * 0.15,
-        // backgroundColor:"black"
+        paddingRight: 10,
+        // backgroundColor: "black"
         // marginLeft:"20",
 
     },
     textName: {
         textAlign: "left",
-        fontSize: Dimensions.get('window').height * 0.023,
+        fontSize: 20,
         fontWeight: "400",
 
     },
     textNick: {
         textAlign: "left",
-        fontSize: Dimensions.get('window').height * 0.023,
+        fontSize: 16,
         fontWeight: "200",
         color: "#808080",
 

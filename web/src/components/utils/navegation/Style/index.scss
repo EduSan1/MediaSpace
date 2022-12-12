@@ -12,7 +12,7 @@
         border-radius: 0px 8px 0px;
         transition: 0.2s;
         position: absolute;
-        z-index: 1;
+        z-index: 2;
 
         .Menu_bar_icon {
             display: flex;
@@ -194,31 +194,25 @@
             transition: 0.5s;
             color: #d9d9d9;
 
-            svg,img {
+            svg,
+            img {
                 width: 90%;
                 height: 90%;
-
-                
             }
-
 
             h3 {
                 display: none;
                 visibility: hidden;
             }
-        } 
+        }
 
-        img:hover  {
-
+        img:hover {
             // background-image:url(../.../../../../../../public/assets/img/Perfil/projectblue.svg) ;
             background-position: center;
             background-size: contain;
             background-clip: content-box;
             transition: all;
-
         }
-        
-    
 
         .icon_navBar:hover {
             color: $primary-blue;
@@ -240,7 +234,7 @@
     box-shadow: 1px 1px 6px #979797;
     border-radius: 0px 20px 20px 0px;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     background-color: white;
 
     .visible_open_img {
