@@ -1,5 +1,5 @@
 import axios from "axios";
 
-const api = axios.create({ baseURL: "http://192.168.1.112:3001/api" })
+const api = axios.create({ baseURL: "https://mediaspaceapi.azurewebsites.net/api" })
 
 export default api

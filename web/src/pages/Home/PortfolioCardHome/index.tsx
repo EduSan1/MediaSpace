@@ -30,13 +30,17 @@ const PortifolioCardHome = ({ post }: IPostCard) => {
 
             <div className="photo_category-home">
                 {
-                    post.categories.map((category: any) => {
-                        return (
+                    post.categories.map((category: any, index) => {
+                        return index <= 1 ?
                             <button value={category} className="button_category" >
                                 <p> {category.name}</p>
                                 <img src={category.icon} className="icone" />
                             </button>
-                        )
+
+                            : index === 2 &&
+                            <>...</>
+
+
                     })
                 }
             </div>
