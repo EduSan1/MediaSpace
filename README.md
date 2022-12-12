@@ -12,12 +12,13 @@ A MediaSpace é uma plataforma intermediadora de compras e vendas de serviços, 
 ## Funcionalidades
 > Status do projeto: `Em andamento`
 - [x] Publicação de projetos
-- [ ] Publicação de portfólios
+- [x] Publicação de portfólios
 - [ ] Publicação de produtos
 - [ ] Formação de equipes
 - [ ] Eventos de premiação
 
-### Tecnologias usadas
+### Tecnologias usadas 
+
 <table>
 <tr>
 <td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" width="64" /></td>
